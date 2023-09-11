@@ -24,6 +24,36 @@
           </div>
         </div>
 
+        <div class="col-md-4" style="margin-top: 28.5px">
+          <div class="input-group-prepend">
+
+            <span class="dropleft float-right input-group-text" style="padding : 0;">
+              <a class="fa fa-filter" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 15px;"></a>
+              <div class="dropdown-menu">
+                <div ng-show="!data.CourseActivity.disable_admin_quiz_button">
+                  <a class="dropdown-item text-dark" href="javascript:void(0)" ng-click="changeFilter('date')">DATE</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item text-dark" href="javascript:void(0)" ng-click="changeFilter('month')">MONTH</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item text-dark" href="javascript:void(0)" ng-click="changeFilter('customRange')">CUSTOM RANGE</a>
+                </div>
+              </div>
+            </span>
+            <input ng-show="selectedFilter == 'date'" type="text" class="form-control datepicker input-sm uppercase" ng-model="search.date" ng-change="searchFilter(search)" placeholder="FILTER BY DATE">
+            <input ng-show="selectedFilter == 'month'" type="text" class="form-control monthpicker input-sm uppercase" ng-model="search.month" ng-change="searchFilter(search)" placeholder="FILTER BY MONTH">
+            <div class="input-group input-daterange" style="margin-bottom: 0;" ng-show="selectedFilter == 'customRange'">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+              </div>
+              <input type="text" class="form-control input-sm uppercase" ng-model="search.startDate" ng-change="searchFilter(search)" placeholder="START DATE">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+              </div>
+              <input type="text" class="form-control input-sm uppercase" ng-model="search.endDate" ng-change="searchFilter(search)" placeholder="END DATE">
+            </div>
+          </div>
+        </div>
+
         <div class="clearfix"></div><hr> 
 
         <div class="col-md-12">
