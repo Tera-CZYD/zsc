@@ -196,6 +196,7 @@ app.controller('StudentProfileController', function($scope, StudentProfile,Selec
     });
   
   } 
+  
   $scope.print = function(){
 
     if ($scope.conditionsPrint !== '') {
