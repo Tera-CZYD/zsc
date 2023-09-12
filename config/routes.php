@@ -119,6 +119,16 @@
       $routes->resources('ClassSchedules');
 
       $routes->resources('StudentLedgers');
+      
+      $routes->connect('/reports/medical_daily_treatments', ['controller' => 'Reports', 'action' => 'medical_daily_treatments']);
+
+      $routes->connect('/reports/medical_property_equipment', ['controller' => 'Reports', 'action' => 'medical_property_equipment']);
+
+      $routes->connect('/reports/subject_masterlists', ['controller' => 'Reports', 'action' => 'subject_masterlists']);
+
+      $routes->connect('/reports/promoted_student', ['controller' => 'Reports', 'action' => 'promoted_student']);
+
+      $routes->connect('/reports/transcript_of_records', ['controller' => 'Reports', 'action' => 'transcript_of_records']);
 
 
       //sir raff

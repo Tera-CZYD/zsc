@@ -1756,6 +1756,8 @@ class ReportsTable extends Table
 
           $query = $this->getConnection()->prepare($sql);
 
+          var_dump($query);
+
           $query->execute();
 
           return $query;
@@ -1873,11 +1875,10 @@ class ReportsTable extends Table
 
         $program_id = @$conditions['program_id'];
 
-          $offset = ($page - 1) * $limit;
+        $offset = ($page - 1) * $limit;
 
           // Your SQL query here, make sure to adjust table names and columns
-          $sql =  " SELECT *  FROM 
-          (
+          $sql =  " 
 
             SELECT 
 
@@ -1926,9 +1927,6 @@ class ReportsTable extends Table
 
           full_name ASC
 
-        
-
-          ) as Report 
 
 
         LIMIT
@@ -1942,7 +1940,7 @@ class ReportsTable extends Table
           return $query;
       }
 
-      public function countAllFacultyMasterlist($conditions = []): string
+      public function countAllFacultyMasterlist($conditions)
       {
 
           $search = strtolower(@$conditions['search']);
@@ -1989,10 +1987,6 @@ class ReportsTable extends Table
           )
 
           ) as Report
-
-        LIMIT
-
-        $limit OFFSET $offset
 
           ";
 
@@ -2795,7 +2789,7 @@ class ReportsTable extends Table
         $offset = ($page - 1) * $limit;
 
         // Your SQL query here, make sure to adjust table names and columns
-        $sql =  " SELECT * FROM (
+        $sql =  "
 
         SELECT
 
@@ -2807,7 +2801,7 @@ class ReportsTable extends Table
 
         WHERE
 
-          PropertyLog.visible = true AND 
+          PropertyLog.visible = true $date AND 
 
           (
 
@@ -2823,7 +2817,12 @@ class ReportsTable extends Table
 
           PropertyLog.property_name
 
-      ) as Report ";
+          LIMIT
+
+          $limit OFFSET $offset
+
+
+       ";
 
         $query = $this->getConnection()->prepare($sql);
 
@@ -2963,6 +2962,160 @@ class ReportsTable extends Table
 
       return $query;
       
+    }
+
+    public function getAllMedicalDailyTreatmentPrint($conditions){
+
+      $search = @$conditions['search'];
+
+      $date = @$conditions['date'];
+
+      $sql = "
+
+        SELECT
+
+          Consultation.*
+
+        FROM
+
+          consultations as Consultation  LEFT JOIN
+
+          consultation_subs as ConsultationSub ON ConsultationSub.consultation_id = Consultation.id 
+
+        WHERE
+
+          Consultation.visible = true $date AND
+
+          Consultation.status = 1 AND 
+
+          ConsultationSub.visible = true AND 
+
+          (
+
+            Consultation.student_name LIKE '%$search%' OR 
+
+            Consultation.employee_name LIKE '%$search%'
+
+          )
+
+        GROUP BY
+
+          Consultation.id
+
+        ORDER BY
+
+          Consultation.id ASC
+
+     ";
+
+      $query = $this->getConnection()->prepare($sql);
+
+      $query->execute();
+
+      return $query;
+
+    }
+
+    public function getAllMedicalDailyTreatment($conditions, $limit, $page){
+
+      $search = @$conditions['search'];
+
+      $date = @$conditions['date'];
+
+      $offset = ($page - 1) * $limit;
+
+      $sql = "
+
+        SELECT
+
+          Consultation.*
+
+        FROM
+
+          consultations as Consultation  LEFT JOIN
+
+          consultation_subs as ConsultationSub ON ConsultationSub.consultation_id = Consultation.id 
+
+        WHERE
+
+          Consultation.visible = true $date AND
+
+          Consultation.status = 1 AND 
+
+          ConsultationSub.visible = true AND 
+
+          (
+
+            Consultation.student_name LIKE '%$search%' OR 
+
+            Consultation.employee_name LIKE '%$search%'
+
+          )
+
+        GROUP BY
+
+          Consultation.id
+
+        ORDER BY
+
+          Consultation.id ASC
+
+        LIMIT
+
+          $limit OFFSET $offset
+
+     ";
+
+      $query = $this->getConnection()->prepare($sql);
+
+      var_dump($query);
+
+      $query->execute();
+
+      return $query;
+
+    }
+
+    public function countAllMedicalDailyTreatment($conditions = []): string{
+
+      $search = @$conditions['search'];
+
+      $date = @$conditions['date'];
+
+      $sql = "
+
+        SELECT
+
+          count(*) as count
+
+        FROM
+
+          consultations as Consultation  LEFT JOIN
+
+          consultation_subs as ConsultationSub ON ConsultationSub.consultation_id = Consultation.id 
+
+        WHERE
+
+          Consultation.visible = true $date AND
+
+          Consultation.status = 1 AND 
+
+          ConsultationSub.visible = true AND 
+
+          (
+
+            Consultation.student_name LIKE '%$search%' OR 
+
+            Consultation.employee_name LIKE '%$search%'
+
+          )
+
+      ";
+
+      $query = $this->getConnection()->execute($sql)->fetch('assoc');
+
+      return $query['count'];
+
     }
 
     public function countAllConsultation($conditions = []): string{
@@ -3212,7 +3365,11 @@ class ReportsTable extends Table
 
           employees as Employee LEFT JOIN
 
-          consultations as Consultation ON Employee.id = Consultation.employee_id AND $date Consultation.visible = true AND Consultation.employee_id IS NOT NULL AND 
+          consultations as Consultation ON Employee.id = Consultation.employee_id
+
+        WHERE 
+
+          Employee.visible = true $date AND Consultation.visible = true AND Consultation.employee_id IS NOT NULL AND 
 
           (
 
@@ -3221,10 +3378,6 @@ class ReportsTable extends Table
             Consultation.employee_name LIKE '%$search%'
 
           )
-
-        WHERE 
-
-          Employee.visible = true 
 
         GROUP BY
 
@@ -3248,6 +3401,274 @@ class ReportsTable extends Table
       
     }
 
+    public function getAllListStudent($conditions, $limit, $page)
+    {
+
+      $search = @$conditions['search'];
+
+      $date = @$conditions['date'];
+
+      $year_term_id = @$conditions['year_term_id'];
+
+      $year_term_id_enrollment = @$conditions['year_term_id_enrollment'];
+
+      $offset = ($page - 1) * $limit;
+
+      $sql =  "
+
+        SELECT
+
+          Student.*,
+
+          CONCAT(IFNULL(Student.last_name,''),', ',IFNULL(Student.first_name,''),' ',IFNULL(Student.middle_name,'')) as full_name,
+
+          StudentEnrollment.date,
+
+          College.name as college,
+
+          CollegeProgram.name as program
+
+        FROM
+
+          students as Student  LEFT JOIN
+
+          colleges as College ON College.id = Student.college_id LEFT JOIN 
+
+          college_programs as CollegeProgram ON CollegeProgram.id = Student.program_id LEFT JOIN 
+
+          (
+
+            SELECT 
+
+              StudentEnrollment.*
+
+            FROM
+
+              student_enrollments as StudentEnrollment
+
+            WHERE 
+
+              StudentEnrollment.visible = true $year_term_id_enrollment
+
+          ) as StudentEnrollment ON StudentEnrollment.student_id = Student.id
+
+        WHERE
+
+          Student.visible = true $date $year_term_id AND
+
+          StudentEnrollment.visible = true AND 
+
+          (
+
+            Student.last_name LIKE '%$search%' OR 
+
+            Student.first_name LIKE '%$search%' OR 
+
+            Student.middle_name LIKE '%$search%' OR 
+
+            Student.student_no LIKE '%$search%' OR  
+
+            College.name LIKE '%$search%' OR 
+
+            CollegeProgram.name LIKE '%$search%'
+
+          )
+
+        GROUP BY
+
+          Student.id
+
+        ORDER BY
+
+          full_name ASC
+
+        LIMIT
+
+        $limit OFFSET $offset
+
+             ";
+
+
+        $query = $this->getConnection()->prepare($sql);
+
+        $query->execute();
+
+        return $query;
+    }
+
+    public function getAllListStudentPrint($conditions){
+
+      $search = @$conditions['search'];
+
+      $date = @$conditions['date'];
+
+      $year_term_id = @$conditions['year_term_id'];
+
+      $year_term_id_enrollment = @$conditions['year_term_id_enrollment'];
+
+      $sql =  "
+
+        SELECT
+
+          Student.*,
+
+          CONCAT(IFNULL(Student.last_name,''),', ',IFNULL(Student.first_name,''),' ',IFNULL(Student.middle_name,'')) as full_name,
+
+          StudentEnrollment.date,
+
+          College.name as college,
+
+          CollegeProgram.name as program
+
+        FROM
+
+          students as Student  LEFT JOIN
+
+          colleges as College ON College.id = Student.college_id LEFT JOIN 
+
+          college_programs as CollegeProgram ON CollegeProgram.id = Student.program_id LEFT JOIN 
+
+          (
+
+            SELECT 
+
+              StudentEnrollment.*
+
+            FROM
+
+              student_enrollments as StudentEnrollment
+
+            WHERE 
+
+              StudentEnrollment.visible = true $year_term_id_enrollment
+
+          ) as StudentEnrollment ON StudentEnrollment.student_id = Student.id
+
+        WHERE
+
+          Student.visible = true $date $year_term_id AND
+
+          StudentEnrollment.visible = true AND 
+
+          (
+
+            Student.last_name LIKE '%$search%' OR 
+
+            Student.first_name LIKE '%$search%' OR 
+
+            Student.middle_name LIKE '%$search%' OR 
+
+            Student.student_no LIKE '%$search%' OR  
+
+            College.name LIKE '%$search%' OR 
+
+            CollegeProgram.name LIKE '%$search%'
+
+          )
+
+        GROUP BY
+
+          Student.id
+
+        ORDER BY
+
+          full_name ASC
+           ";
+
+
+        $query = $this->getConnection()->prepare($sql);
+
+        $query->execute();
+
+        return $query;
+    }
+
+    public function countAllListStudent($conditions = []): string{
+
+        $search = @$conditions['search'];
+
+        $date = @$conditions['date'];
+
+        $year_term_id = @$conditions['year_term_id'];
+
+        $year_term_id_enrollment = @$conditions['year_term_id_enrollment'];
+          
+        $sql = "SELECT count(*) as count FROM (
+
+        SELECT
+
+          Student.*,
+
+          CONCAT(IFNULL(Student.last_name,''),', ',IFNULL(Student.first_name,''),' ',IFNULL(Student.middle_name,'')) as full_name,
+
+          StudentEnrollment.date,
+
+          College.name as college,
+
+          CollegeProgram.name as program
+
+        FROM
+
+          students as Student  LEFT JOIN
+
+          colleges as College ON College.id = Student.college_id LEFT JOIN 
+
+          college_programs as CollegeProgram ON CollegeProgram.id = Student.program_id LEFT JOIN 
+
+          (
+
+            SELECT 
+
+              StudentEnrollment.*
+
+            FROM
+
+              student_enrollments as StudentEnrollment
+
+            WHERE 
+
+              StudentEnrollment.visible = true $year_term_id_enrollment
+
+          ) as StudentEnrollment ON StudentEnrollment.student_id = Student.id
+
+        WHERE
+
+          Student.visible = true $date $year_term_id AND
+
+          StudentEnrollment.visible = true AND 
+
+          (
+
+            Student.last_name LIKE '%$search%' OR 
+
+            Student.first_name LIKE '%$search%' OR 
+
+            Student.middle_name LIKE '%$search%' OR 
+
+            Student.student_no LIKE '%$search%' OR  
+
+            College.name LIKE '%$search%' OR 
+
+            CollegeProgram.name LIKE '%$search%'
+
+          )
+
+        GROUP BY
+
+          Student.id
+
+        ORDER BY
+
+          full_name ASC
+
+      ) as Report ";
+
+        $query = $this->getConnection()->execute($sql)->fetch('assoc');
+
+        return $query['count'];
+
+    }
+
     public function countAllEmployeeFrequency($conditions = []): string{
 
       $search = @$conditions['search'];
@@ -3264,7 +3685,11 @@ class ReportsTable extends Table
 
           employees as Employee LEFT JOIN
 
-          consultations as Consultation ON Employee.id = Consultation.employee_id AND $date Consultation.visible = true AND Consultation.employee_id IS NOT NULL AND 
+          consultations as Consultation ON Employee.id = Consultation.employee_id
+
+        WHERE 
+
+          Employee.visible = true $date AND Consultation.visible = true AND Consultation.employee_id IS NOT NULL AND  
 
           (
 
@@ -3273,10 +3698,6 @@ class ReportsTable extends Table
             Consultation.employee_name LIKE '%$search%'
 
           )
-
-        WHERE 
-
-          Employee.visible = true
 
       ";
 
@@ -3634,6 +4055,889 @@ class ReportsTable extends Table
 
     }   
 
+  
+  //REGISTRAR
+
+    public function getAllPromotedStudentPrint($conditions){
+
+      $search = @$conditions['search'];
+
+      $year_term_id = @$conditions['year_term_id'];
+
+      $program_id = @$conditions['program_id'];
+
+      $sql =  "
+
+        SELECT
+
+          Student.*,
+
+          CONCAT(IFNULL(Student.last_name,''),', ',IFNULL(Student.first_name,''),' ',IFNULL(Student.middle_name,'')) as full_name,
+
+          IFNULL(StudentEnrolledCourse.ave,'') as ave,
+
+          CollegeProgram.name as program
+
+        FROM
+
+          students as Student  LEFT JOIN
+
+          college_programs as CollegeProgram ON CollegeProgram.id = Student.program_id LEFT JOIN
+
+          (
+
+            SELECT
+
+              StudentEnrolledCourse.student_id,
+
+              ROUND(AVG(StudentEnrolledCourse.final_grade),2) as ave
+
+            FROM  
+
+              student_enrolled_courses as StudentEnrolledCourse
+
+            WHERE 
+
+              StudentEnrolledCourse.year_term_id = $year_term_id AND 
+
+              StudentEnrolledCourse.visible = true
+
+          ) as StudentEnrolledCourse ON StudentEnrolledCourse.student_id = Student.id 
+
+        WHERE
+
+          Student.visible = true AND
+
+          Student.program_id = $program_id AND 
+
+          Student.year_term_id = $year_term_id AND
+
+          CollegeProgram.visible = true AND 
+
+          (
+
+            Student.last_name LIKE '%$search%' OR 
+
+            Student.first_name LIKE '%$search%' OR 
+
+            Student.middle_name LIKE '%$search%' OR 
+
+            Student.student_no LIKE '%$search%' OR  
+
+            CollegeProgram.name LIKE '%$search%'
+
+          )
+
+        ORDER BY
+
+          ave ASC
+
+      ";
+
+      $query = $this->getConnection()->prepare($sql);
+
+      $query->execute();
+
+      return $query;
+      
+    }
+
+    public function getAllPromotedStudent($conditions, $limit, $page){
+
+      $search = @$conditions['search'];
+
+      $year_term_id = @$conditions['year_term_id'];
+
+      $program_id = @$conditions['program_id'];
+
+      $offset = ($page - 1) * $limit;
+
+      $sql =  "
+
+        SELECT
+
+          Student.*,
+
+          CONCAT(IFNULL(Student.last_name,''),', ',IFNULL(Student.first_name,''),' ',IFNULL(Student.middle_name,'')) as full_name,
+
+          IFNULL(StudentEnrolledCourse.ave,'') as ave,
+
+          CollegeProgram.name as program
+
+        FROM
+
+          students as Student  LEFT JOIN
+
+          college_programs as CollegeProgram ON CollegeProgram.id = Student.program_id LEFT JOIN
+
+          (
+
+            SELECT
+
+              StudentEnrolledCourse.student_id,
+
+              ROUND(AVG(StudentEnrolledCourse.final_grade),2) as ave
+
+            FROM  
+
+              student_enrolled_courses as StudentEnrolledCourse
+
+            WHERE 
+
+              StudentEnrolledCourse.year_term_id = $year_term_id AND 
+
+              StudentEnrolledCourse.visible = true
+
+          ) as StudentEnrolledCourse ON StudentEnrolledCourse.student_id = Student.id 
+
+        WHERE
+
+          Student.visible = true AND
+
+          Student.program_id = $program_id AND 
+
+          Student.year_term_id = $year_term_id AND
+
+          CollegeProgram.visible = true AND 
+
+          (
+
+            Student.last_name LIKE '%$search%' OR 
+
+            Student.first_name LIKE '%$search%' OR 
+
+            Student.middle_name LIKE '%$search%' OR 
+
+            Student.student_no LIKE '%$search%' OR  
+
+            CollegeProgram.name LIKE '%$search%'
+
+          )
+
+        ORDER BY
+
+          ave ASC
+
+        LIMIT
+
+          $limit OFFSET $offset
+
+      ";
+
+      $query = $this->getConnection()->prepare($sql);
+
+      $query->execute();
+
+      return $query;
+      
+    }
+
+    public function countAllPromotedStudent($conditions = []): string{
+
+      $search = @$conditions['search'];
+
+      $year_term_id = @$conditions['year_term_id'];
+
+      $program_id = @$conditions['program_id'];
+      
+      $sql = "
+
+        SELECT
+
+          count(*) as count
+
+        FROM
+
+          students as Student  LEFT JOIN
+
+          college_programs as CollegeProgram ON CollegeProgram.id = Student.program_id LEFT JOIN
+
+          (
+
+            SELECT
+
+              StudentEnrolledCourse.student_id,
+
+              ROUND(AVG(StudentEnrolledCourse.final_grade),2) as ave
+
+            FROM  
+
+              student_enrolled_courses as StudentEnrolledCourse
+
+            WHERE 
+
+              StudentEnrolledCourse.year_term_id = $year_term_id AND 
+
+              StudentEnrolledCourse.visible = true
+
+          ) as StudentEnrolledCourse ON StudentEnrolledCourse.student_id = Student.id 
+
+        WHERE
+
+          Student.visible = true AND
+
+          Student.program_id = $program_id AND 
+
+          Student.year_term_id = $year_term_id AND
+
+          CollegeProgram.visible = true AND 
+
+          (
+
+            Student.last_name LIKE '%$search%' OR 
+
+            Student.first_name LIKE '%$search%' OR 
+
+            Student.middle_name LIKE '%$search%' OR 
+
+            Student.student_no LIKE '%$search%' OR  
+
+            CollegeProgram.name LIKE '%$search%'
+
+          )
+
+      ";
+
+      $query = $this->getConnection()->execute($sql)->fetch('assoc');
+
+      return $query['count'];
+
+    }
+
+    public function getAllTranscriptOfRecordPrint($conditions){
+
+      $search = @$conditions['search'];
+
+      $date = @$conditions['date'];
+
+      $college_id = @$conditions['college_id'];
+
+      $program_id = @$conditions['program_id'];
+
+      $year_term_id = @$conditions['year_term_id'];
+
+      $sql =  "
+
+        SELECT
+
+          Student.id,
+
+          StudentEnrollment.*,
+
+          IFNULL(CONCAT(Student.last_name,', ',Student.first_name,' ',IFNULL(Student.middle_name,' ')),' ') AS full_name,
+
+          College.name as college,
+
+          CollegeProgram.name as program 
+
+        FROM
+
+          students as Student LEFT JOIN
+
+          student_enrollments as StudentEnrollment ON StudentEnrollment.student_id = Student.id LEFT JOIN 
+
+          colleges as College ON College.id = Student.college_id LEFT JOIN 
+
+          college_programs as CollegeProgram ON CollegeProgram.id = Student.program_id
+
+        WHERE
+
+          Student.visible = true $date $college_id $program_id $year_term_id AND
+
+          StudentEnrollment.visible = true AND 
+
+          (
+   
+            Student.first_name LIKE  '%$search%' OR
+
+            Student.middle_name LIKE  '%$search%' OR
+
+            Student.last_name LIKE  '%$search%' OR
+
+            Student.email LIKE  '%$search%' OR
+
+            StudentEnrollment.student_no LIKE '%$search%' OR 
+
+            CollegeProgram.name LIKE '%$search%' OR 
+
+            College.name LIKE '%$search%'
+
+          )
+
+        ORDER BY 
+
+          full_name ASC
+
+      ";
+
+      $query = $this->getConnection()->prepare($sql);
+
+      $query->execute();
+
+      return $query;
+      
+    }
+
+    public function getAllTranscriptOfRecord($conditions, $limit, $page){
+
+      $search = @$conditions['search'];
+
+      $date = @$conditions['date'];
+
+      $college_id = @$conditions['college_id'];
+
+      $program_id = @$conditions['program_id'];
+
+      $year_term_id = @$conditions['year_term_id'];
+
+      $offset = ($page - 1) * $limit;
+
+      $sql =  "
+
+        SELECT
+
+          Student.id,
+
+          StudentEnrollment.*,
+
+          IFNULL(CONCAT(Student.last_name,', ',Student.first_name,' ',IFNULL(Student.middle_name,' ')),' ') AS full_name,
+
+          College.name as college,
+
+          CollegeProgram.name as program 
+
+        FROM
+
+          students as Student LEFT JOIN
+
+          student_enrollments as StudentEnrollment ON StudentEnrollment.student_id = Student.id LEFT JOIN 
+
+          colleges as College ON College.id = Student.college_id LEFT JOIN 
+
+          college_programs as CollegeProgram ON CollegeProgram.id = Student.program_id
+
+        WHERE
+
+          Student.visible = true $date $college_id $program_id $year_term_id AND
+
+          StudentEnrollment.visible = true AND 
+
+          (
+   
+            Student.first_name LIKE  '%$search%' OR
+
+            Student.middle_name LIKE  '%$search%' OR
+
+            Student.last_name LIKE  '%$search%' OR
+
+            Student.email LIKE  '%$search%' OR
+
+            StudentEnrollment.student_no LIKE '%$search%' OR 
+
+            CollegeProgram.name LIKE '%$search%' OR 
+
+            College.name LIKE '%$search%'
+
+          )
+
+        ORDER BY 
+
+          full_name ASC
+
+        LIMIT
+
+          $limit OFFSET $offset
+
+      ";
+
+      $query = $this->getConnection()->prepare($sql);
+
+      $query->execute();
+
+      return $query;
+      
+    }
+
+    public function countAllTranscriptOfRecord($conditions = []): string{
+
+      $search = @$conditions['search'];
+
+      $date = @$conditions['date'];
+
+      $college_id = @$conditions['college_id'];
+
+      $program_id = @$conditions['program_id'];
+
+      $year_term_id = @$conditions['year_term_id'];
+      
+      $sql = "
+
+        SELECT
+
+          count(*) as count
+
+        FROM
+
+          students as Student LEFT JOIN
+
+          student_enrollments as StudentEnrollment ON StudentEnrollment.student_id = Student.id LEFT JOIN 
+
+          colleges as College ON College.id = Student.college_id LEFT JOIN 
+
+          college_programs as CollegeProgram ON CollegeProgram.id = Student.program_id
+
+        WHERE
+
+          Student.visible = true $date $college_id $program_id $year_term_id AND
+
+          StudentEnrollment.visible = true AND 
+
+          (
+   
+            Student.first_name LIKE  '%$search%' OR
+
+            Student.middle_name LIKE  '%$search%' OR
+
+            Student.last_name LIKE  '%$search%' OR
+
+            Student.email LIKE  '%$search%' OR
+
+            StudentEnrollment.student_no LIKE '%$search%' OR 
+
+            CollegeProgram.name LIKE '%$search%' OR 
+
+            College.name LIKE '%$search%'
+
+          )
+
+      ";
+
+      $query = $this->getConnection()->execute($sql)->fetch('assoc');
+
+      return $query['count'];
+
+    }
+
+    public function getAllAcademicListPrint($conditions){
+
+      $search = @$conditions['search'];
+
+      $date = @$conditions['date'];
+
+      $year = @$conditions['year'];
+
+      $section_id = @$conditions['section_id'];
+
+      $college_id = @$conditions['college_id'];
+
+      $program_id = @$conditions['program_id'];
+
+      $semester = @$conditions['semester'];
+
+      $sql =  "
+
+        SELECT 
+
+            AwardeeManagement.*
+
+          FROM 
+
+            awardee_managements as AwardeeManagement LEFT JOIN
+
+            sections as Section ON Section.id = AwardeeManagement.section_id 
+
+          WHERE 
+
+          AwardeeManagement.visible = true $date $section_id $year $college_id $program_id $semester AND
+
+          Section.visible = true AND 
+
+          ( 
+
+            AwardeeManagement.student_name LIKE '%$search%' OR
+            AwardeeManagement.student_no LIKE '%$search%' 
+          )
+
+        ORDER BY 
+
+        AwardeeManagement.id ASC
+
+      ";
+
+      $query = $this->getConnection()->prepare($sql);
+
+      $query->execute();
+
+      return $query;
+      
+    }
+
+    public function getAllAcademicList($conditions, $limit, $page){
+
+      $search = @$conditions['search'];
+
+      $date = @$conditions['date'];
+
+      $year = @$conditions['year'];
+
+      $section_id = @$conditions['section_id'];
+
+      $college_id = @$conditions['college_id'];
+
+      $program_id = @$conditions['program_id'];
+
+      $semester = @$conditions['semester'];
+
+      $offset = ($page - 1) * $limit;
+
+      $sql =  "
+
+        SELECT 
+
+            AwardeeManagement.*
+
+          FROM 
+
+            awardee_managements as AwardeeManagement LEFT JOIN
+
+            sections as Section ON Section.id = AwardeeManagement.section_id 
+
+          WHERE 
+
+          AwardeeManagement.visible = true $date $section_id $year $college_id $program_id $semester AND
+
+          Section.visible = true AND 
+
+          ( 
+
+            AwardeeManagement.student_name LIKE '%$search%' OR
+            AwardeeManagement.student_no LIKE '%$search%' 
+          )
+
+        ORDER BY 
+
+        AwardeeManagement.id ASC
+
+        LIMIT
+
+          $limit OFFSET $offset
+
+      ";
+
+      $query = $this->getConnection()->prepare($sql);
+
+      $query->execute();
+
+      return $query;
+      
+    }
+
+    public function countAllAcademicList($conditions = []): string{
+
+      $search = @$conditions['search'];
+
+      $date = @$conditions['date'];
+
+      $year = @$conditions['year'];
+
+      $section_id = @$conditions['section_id'];
+
+      $college_id = @$conditions['college_id'];
+
+      $program_id = @$conditions['program_id'];
+
+      $semester = @$conditions['semester'];
+      
+      $sql = "
+
+        SELECT 
+
+            count(*) as count
+
+          FROM 
+
+            awardee_managements as AwardeeManagement LEFT JOIN
+
+            sections as Section ON Section.id = AwardeeManagement.section_id 
+
+          WHERE 
+
+          AwardeeManagement.visible = true $date $section_id $year $college_id $program_id $semester AND
+
+          Section.visible = true AND 
+
+          ( 
+
+            AwardeeManagement.student_name LIKE '%$search%' OR
+            AwardeeManagement.student_no LIKE '%$search%' 
+          )
+
+        ORDER BY 
+
+        AwardeeManagement.id ASC ";
+
+      $query = $this->getConnection()->execute($sql)->fetch('assoc');
+
+      return $query['count'];
+
+    }
+
+    public function getAllGwaPrint($conditions){
+
+      $search = strtolower(@$conditions['search']);
+
+      $date = @$conditions['date'];
+
+      $college_id = @$conditions['college_id'];
+
+      $program_id = @$conditions['program_id'];
+
+      $section_id = @$conditions['section_id'];
+
+      $sql =  "
+
+        SELECT
+
+          Student.*,
+
+          CONCAT(IFNULL(Student.last_name,''),', ',IFNULL(Student.first_name,''),' ',IFNULL(Student.middle_name,'')) as full_name,
+
+          IFNULL(StudentEnrolledCourse.ave,'') as ave,
+
+          College.name as college,
+
+          CollegeProgram.name as program
+
+        FROM
+
+          students as Student  LEFT JOIN
+
+          colleges as College ON College.id = Student.college_id LEFT JOIN 
+
+          college_programs as CollegeProgram ON CollegeProgram.id = Student.program_id LEFT JOIN
+
+          (
+
+            SELECT 
+
+              StudentEnrolledCourse.student_id,
+
+              StudentEnrolledCourse.year_term_id,
+
+              ROUND(AVG(StudentEnrolledCourse.final_grade),2) as ave
+
+            FROM 
+
+              student_enrolled_courses as StudentEnrolledCourse
+
+            WHERE 
+
+              StudentEnrolledCourse.visible = true $section_id
+
+          ) as StudentEnrolledCourse ON StudentEnrolledCourse.student_id = Student.id AND StudentEnrolledCourse.year_term_id = Student.year_term_id
+
+        WHERE
+
+          Student.visible = true $college_id $program_id AND
+
+          (
+
+            Student.last_name LIKE '%$search%' OR 
+
+            Student.first_name LIKE '%$search%' OR 
+
+            Student.middle_name LIKE '%$search%' OR 
+
+            Student.student_no LIKE '%$search%' OR  
+
+            College.name LIKE '%$search%' OR 
+
+            CollegeProgram.name LIKE '%$search%'
+
+          )
+
+        ORDER BY
+
+          ave ASC
+
+      ";
+
+      $query = $this->getConnection()->prepare($sql);
+
+      $query->execute();
+
+      return $query;
+      
+    }
+
+    public function getAllGwa($conditions, $limit, $page){
+
+      $search = strtolower(@$conditions['search']);
+
+      $date = @$conditions['date'];
+
+      $college_id = @$conditions['college_id'];
+
+      $program_id = @$conditions['program_id'];
+
+      $section_id = @$conditions['section_id'];
+
+      $offset = ($page - 1) * $limit;
+
+      $sql =  "
+
+        SELECT
+
+          Student.*,
+
+          CONCAT(IFNULL(Student.last_name,''),', ',IFNULL(Student.first_name,''),' ',IFNULL(Student.middle_name,'')) as full_name,
+
+          IFNULL(StudentEnrolledCourse.ave,'') as ave,
+
+          College.name as college,
+
+          CollegeProgram.name as program
+
+        FROM
+
+          students as Student  LEFT JOIN
+
+          colleges as College ON College.id = Student.college_id LEFT JOIN 
+
+          college_programs as CollegeProgram ON CollegeProgram.id = Student.program_id LEFT JOIN
+
+          (
+
+            SELECT 
+
+              StudentEnrolledCourse.student_id,
+
+              StudentEnrolledCourse.year_term_id,
+
+              ROUND(AVG(StudentEnrolledCourse.final_grade),2) as ave
+
+            FROM 
+
+              student_enrolled_courses as StudentEnrolledCourse
+
+            WHERE 
+
+              StudentEnrolledCourse.visible = true $section_id
+
+          ) as StudentEnrolledCourse ON StudentEnrolledCourse.student_id = Student.id AND StudentEnrolledCourse.year_term_id = Student.year_term_id
+
+        WHERE
+
+          Student.visible = true $college_id $program_id AND
+
+          (
+
+            Student.last_name LIKE '%$search%' OR 
+
+            Student.first_name LIKE '%$search%' OR 
+
+            Student.middle_name LIKE '%$search%' OR 
+
+            Student.student_no LIKE '%$search%' OR  
+
+            College.name LIKE '%$search%' OR 
+
+            CollegeProgram.name LIKE '%$search%'
+
+          )
+
+        ORDER BY
+
+          ave ASC
+
+        LIMIT
+
+          $limit OFFSET $offset
+
+      ";
+
+      $query = $this->getConnection()->prepare($sql);
+
+      $query->execute();
+
+      return $query;
+      
+    }
+
+    public function countAllGwa($conditions = []): string{
+
+      $search = strtolower(@$conditions['search']);
+
+      $date = @$conditions['date'];
+
+      $college_id = @$conditions['college_id'];
+
+      $program_id = @$conditions['program_id'];
+
+      $section_id = @$conditions['section_id'];
+      
+      $sql = "
+
+        SELECT
+
+          count(*) as count
+
+        FROM
+
+          students as Student  LEFT JOIN
+
+          colleges as College ON College.id = Student.college_id LEFT JOIN 
+
+          college_programs as CollegeProgram ON CollegeProgram.id = Student.program_id LEFT JOIN
+
+          (
+
+            SELECT 
+
+              StudentEnrolledCourse.student_id,
+
+              StudentEnrolledCourse.year_term_id,
+
+              ROUND(AVG(StudentEnrolledCourse.final_grade),2) as ave
+
+            FROM 
+
+              student_enrolled_courses as StudentEnrolledCourse
+
+            WHERE 
+
+              StudentEnrolledCourse.visible = true $section_id
+
+          ) as StudentEnrolledCourse ON StudentEnrolledCourse.student_id = Student.id AND StudentEnrolledCourse.year_term_id = Student.year_term_id
+
+        WHERE
+
+          Student.visible = true $college_id $program_id AND
+
+          (
+
+            Student.last_name LIKE '%$search%' OR 
+
+            Student.first_name LIKE '%$search%' OR 
+
+            Student.middle_name LIKE '%$search%' OR 
+
+            Student.student_no LIKE '%$search%' OR  
+
+            College.name LIKE '%$search%' OR 
+
+            CollegeProgram.name LIKE '%$search%'
+
+          )
+
+      ";
+
+      $query = $this->getConnection()->execute($sql)->fetch('assoc');
+
+      return $query['count'];
+
+    }
+
   public function paginate($query, array $options = []){
 
     $extra = isset($options['extra']) ? $options['extra'] : [];
@@ -3765,6 +5069,42 @@ class ReportsTable extends Table
 
       $paginateCount = $this->countAllEmployeeFrequency($conditions);
 
+    }else if($extra['type'] == 'medical-daily-treatment'){
+
+      $result = $this->getAllMedicalDailyTreatment($conditions, $limit, $page)->fetchAll('assoc');
+
+      $paginateCount = $this->countAllMedicalDailyTreatment($conditions);
+
+    }else if($extra['type'] == 'list-student'){
+
+      $result = $this->getAllListStudent($conditions, $limit, $page)->fetchAll('assoc');
+
+      $paginateCount = $this->countAllListStudent($conditions);
+
+    }else if($extra['type'] == 'promoted-student'){
+
+      $result = $this->getAllPromotedStudent($conditions, $limit, $page)->fetchAll('assoc');
+
+      $paginateCount = $this->countAllPromotedStudent($conditions);
+
+    }else if($extra['type'] == 'transcript-of-records'){
+
+      $result = $this->getAllTranscriptOfRecord($conditions, $limit, $page)->fetchAll('assoc');
+
+      $paginateCount = $this->countAllTranscriptOfRecord($conditions);
+
+    }else if($extra['type'] == 'academic-list'){
+
+      $result = $this->getAllAcademicList($conditions, $limit, $page)->fetchAll('assoc');
+
+      $paginateCount = $this->countAllAcademicList($conditions);
+
+    }else if($extra['type'] == 'gwa'){
+
+      $result = $this->getAllGwa($conditions, $limit, $page)->fetchAll('assoc');
+
+      $paginateCount = $this->countAllGwa($conditions);
+
     }
 
 
@@ -3793,53 +5133,6 @@ class ReportsTable extends Table
 
   }
 
-  // public function paginateCount($conditions = null){ 
-
-  //   $search = @$conditions['search'];
-
-  //   $date = @$conditions['date'];
-
-  //   $sql = "
-
-  //     SELECT
-
-  //       count(*) as count
-
-      
-  //     FROM
-
-  //       referral_slips as ReferralSlip LEFT JOIN
-
-  //       college_programs as CollegeProgram ON ReferralSlip.course_id = CollegeProgram.id LEFT JOIN
-
-  //       students as Student ON ReferralSlip.student_id = Student.id
-
-
-  //     WHERE
-
-  //       ReferralSlip.visible = true $date AND
-
-  //       (
- 
-
-  //         ReferralSlip.code              LIKE  '%$search%' OR
-
-  //         ReferralSlip.remarks             LIKE  '%$search%' OR
-
-  //         ReferralSlip.reason              LIKE  '%$search%' OR
-
-  //         ReferralSlip.student_name             LIKE  '%$search%' 
-
-
-  //       )
-
-  //   ";
-
-  //   $query = $this->getConnection()->execute($sql)->fetch('assoc');
-
-  //   return $query['count'];
-
-  // }
 
 
 }

@@ -100,122 +100,76 @@ app.controller('ClassScheduleController', function($scope, ClassSchedule, Select
 
   }
 
-  $scope.advance_search = function() {
+  $scope.selectedFilter = 'date';
+
+  $scope.changeFilter = function(type){
 
     $scope.search = {};
 
-    $scope.advanceSearch = false;
+    $scope.selectedFilter = type;
+
+    $('.monthpicker').datepicker({format: 'MM', autoclose: true, minViewMode: 'months',maxViewMode:'months'});
  
-    $scope.position_id = null;
+    $('.input-daterange').datepicker({
  
-    $scope.office_id = null;
+      format: 'mm/dd/yyyy'
 
-
-
-    $('#advance-search-modal').modal('show');
-
-
+    });
 
   }
 
   $scope.searchFilter = function(search) {
-
-    $scope.filter = false;
-
-    $scope.advanceSearch = true;
-
+   
     $scope.searchTxt = '';
 
-    $scope.advSearch = '';
+    $scope.dateToday = null;
+   
+    $scope.startDate = null;
+   
+    $scope.endDate = null;
 
-     
+    if ($scope.selectedFilter == 'date') {
+    
+      $scope.dateToday = Date.parse(search.date).toString('yyyy-MM-dd');
+   
+    }else if ($scope.selectedFilter == 'month') {
+   
+      date = $('.monthpicker').datepicker('getDate');
+   
+      year = date.getFullYear();
+   
+      month = date.getMonth() + 1;
+   
+      lastDay = new Date(year, month, 0);
 
-
-
-     if (search.filterBy == 'program') {
-
-
+      if (month < 10) month = '0' + month;
       
-
-        $scope.program = $scope.search.program;
-
-        $scope.load({
-        program      : $scope.program,
-        advSearch : $scope.program
-
-      });
-
-    }else if (search.filterBy == 'faculty') {
-
-
+      $scope.startDate = year + '-' + month + '-01';
       
+      $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
+    
+    }else if ($scope.selectedFilter == 'customRange') {
+    
+      $scope.startDate = Date.parse(search.startDate).toString('yyyy-MM-dd');
+    
+      $scope.endDate = Date.parse(search.endDate).toString('yyyy-MM-dd');
 
-        $scope.faculty = $scope.search.faculty;
-
-        $scope.load({
-
-        advSearch : $scope.faculty,
-
-        faculty      : $scope.faculty,
-
-      });
-
-        
-
-    }else if (search.filterBy == 'college') {
-
-
-      
-
-        $scope.college = $scope.search.college;
-
-        $scope.load({
-        college      : $scope.college,
-        advSearch: $scope.college
-
-      });
-
-        
-
-    }else if (search.filterBy == 'year_term') {
-
-
-      
-
-        $scope.year_term = $scope.search.year_term;
-
-        $scope.load({
-
-        advSearch: $scope.year_term,
-        year_term    : $scope.year_term,
-
-      });
-
-        
-
-    }else if (search.filterBy == 'school_year') {
-
-
-      
-
-        $scope.school_year = $scope.search.school_year;
-
-        $scope.load({
-        school_year  : $scope.school_year,
-        advSearch: $scope.school_year
-
-      });
-
-        
-
+    
     }
 
+    $scope.load({
 
+      date         : $scope.dateToday,
 
+      startDate    : $scope.startDate,
 
-    $('#advance-search-modal').modal('hide');
+      endDate      : $scope.endDate,
 
-  }
+      year_term_id : $scope.year_term_id
+
+    });
+  
+  } 
 
   $scope.remove = function(data) {
 

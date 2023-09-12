@@ -98,5 +98,13 @@ app.config(function($routeProvider) {
 
   })
 
+  .when('/reports/registrar/transcript-of-records', {
+
+    templateUrl: 'angularjs/views/reports/registrar/transcript-of-records.ctp',
+
+    controller: 'TranscriptOfRecordsController',
+
+  })
+
 
 });

@@ -60,7 +60,7 @@
           <div class="row">
             <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                <a href="#/registrar/student-behavior/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
-              <a href="javascript:void(0)" class="btn btn-success btn-sm btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
+              <!-- <a href="javascript:void(0)" class="btn btn-success btn-sm btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
               <?php if (hasAccess('student behavior/index', $currentUser)): ?>
               <button type="button" class="btn btn-danger btn-sm btn-min" ng-click="print()"><i class="fa fa-print"></i> PRINT </button>
               <?php endif ?>

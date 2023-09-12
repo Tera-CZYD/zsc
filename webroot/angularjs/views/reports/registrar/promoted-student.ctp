@@ -1,17 +1,27 @@
-<?php if (hasAccess('report registrar/enrollment list', $currentUser)): ?>
+<?php if (hasAccess('report registrar/promoted student', $currentUser)): ?>
 <div class="row">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
-        <h4 class="header-title">ENROLLMENT LIST</h4>
+        <h4 class="header-title">PROMOTED STUDENTS</h4>
         <div class="clearfix"></div><hr>
 
         <div class="col-md-8">
-          <div class="form-group col-md-4">
-            <label> YEAR LEVEL AND TERM </label>
-            <select class="form-control" ng-model="year_term_id" ng-options="opt.id as opt.value for opt in year_terms" ng-change = "getData(year_term_id)">
-              <option value=""></option>
-            </select>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label> PROGRAM </label>
+              <select selectize ng-model="program_id" ng-options="opt.id as opt.value for opt in programs">
+                <option value=""></option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label> YEAR TERM </label>
+              <select selectize ng-model="year" ng-options="opt.id as opt.value for opt in year_terms" ng-change = "getFinal()">
+                <option value=""></option>
+              </select>
+            </div>
           </div>
         </div> 
 
@@ -44,13 +54,27 @@
             </div>
           </div>
         </div>
+        <!-- <div class="col-md-3">
+          <div class="form-group">
+            <label> YEAR LEVEL <i class="required">*</i></label>
+            <select class="form-control" ng-model="year" autocomplete="false"
+                data-validation-engine="validate[required]" style="height: 44px" ng-change = "getFinal()">
+                <option value=""></option>
+                <option value="1">First Year</option>
+                <option value="2">Second Year</option>
+                <option value="3">Third Year</option>
+                <option value="4">Fourth Year</option>
+            </select>
+          </div>
+        </div> -->
+
         <div class="clearfix"></div><hr> 
 
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
               <!-- <a href="javascript:void(0)" class="btn btn-success btn-sm btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-              <button type="button" class="btn btn-print btn-sm btn-min" ng-click="print()"><i class="fa fa-print"></i> PRINT </button>
+              <button type="button" class="btn btn-danger btn-sm btn-min" ng-click="print()"><i class="fa fa-print"></i> PRINT </button>
               <button type="button" class="btn btn-warning btn-sm btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
             </div>
             <div class="col-md-4 col-xs-12 pull-right">
@@ -71,9 +95,8 @@
                   <th class="w30px"> No. </th>
                   <th class="text-center"> STUDENT NO. </th>
                   <th class="text-center"> STUDENT NAME </th>
-                  <th class="text-center"> COLLEGE </th>
                   <th class="text-center"> PROGRAM </th>
-                  <th class="text-center"> REGISTRATION DATE </th>
+                  <!-- <th class="text-center"> AVERAGE </th> -->
                 </tr>
               </thead>
               <tbody>
@@ -81,9 +104,8 @@
                   <td class="text-left uppercase">{{ (paginator.page - 1 ) * paginator.limit + $index + 1 }}</td>
                   <td class="text-center uppercase">{{ data.student_no }}</td>
                   <td class="text-left uppercase">{{ data.student_name }}</td>
-                  <td class="text-center uppercase">{{ data.college }}</td>
                   <td class="text-center uppercase">{{ data.program }}</td>
-                  <td class="text-center uppercase">{{ data.date }}</td>
+                  <!-- <td class="text-center uppercase">{{ data.ave }}</td> -->
                 </tr>
                 <tr ng-show="datas == ''">
                   <td colspan="6" class="text-center">No available data</td>

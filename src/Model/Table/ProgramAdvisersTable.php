@@ -24,6 +24,8 @@ class ProgramAdvisersTable extends Table{
 
     $status = @$conditions['status'];
 
+    $date = @$conditions['date'];
+
     $year_term_id = @$conditions['year_term_id'];
 
     $sql = "
@@ -74,7 +76,7 @@ class ProgramAdvisersTable extends Table{
 
       WHERE 
 
-        Student.visible = true $status AND 
+        Student.visible = true $status $date AND 
 
         Student.year_term_id = $year_term_id AND 
 
@@ -113,6 +115,8 @@ class ProgramAdvisersTable extends Table{
     $search = strtolower(@$conditions['search']);
 
     $status = @$conditions['status'];
+
+    $date = @$conditions['date'];
 
     $year_term_id = @$conditions['year_term_id'];
 
@@ -168,7 +172,7 @@ class ProgramAdvisersTable extends Table{
 
       WHERE 
 
-        Student.visible = true $status AND 
+        Student.visible = true $status $date AND 
 
         Student.year_term_id = $year_term_id AND 
 

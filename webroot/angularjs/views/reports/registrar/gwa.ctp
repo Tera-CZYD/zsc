@@ -1,56 +1,49 @@
-<?php if (hasAccess('report registrar/enrollment list', $currentUser)): ?>
+<?php if (hasAccess('report registrar/gwa', $currentUser)): ?>
 <div class="row">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
-        <h4 class="header-title">ENROLLMENT LIST</h4>
+        <h4 class="header-title"> General Weighted Average (GWA)</h4>
         <div class="clearfix"></div><hr>
 
-        <div class="col-md-8">
-          <div class="form-group col-md-4">
-            <label> YEAR LEVEL AND TERM </label>
-            <select class="form-control" ng-model="year_term_id" ng-options="opt.id as opt.value for opt in year_terms" ng-change = "getData(year_term_id)">
+      
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>COLLEGE</label>
+            <select class="form-control" ng-model="college_id" ng-options="opt.id as opt.value for opt in colleges">
+              <option value=""></option>
+            </select>
+          </div>
+        </div>
+
+         <div class="col-md-4">
+          <div class="form-group">
+            <label>PROGRAM</label>
+            <select class="form-control" ng-model="program_id" ng-options="opt.id as opt.value for opt in programs">
+              <option value=""></option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label> Sections </label>
+            <select selectize ng-model="section_id" ng-options="opt.id as opt.value for opt in sections" ng-change="getData()">
               <option value=""></option>
             </select>
           </div>
         </div> 
+       
 
-        <div class="col-md-4" style="margin-top: 28.5px">
-          <div class="input-group-prepend">
-
-            <span class="dropleft float-right input-group-text" style="padding : 0;">
-              <a class="fa fa-filter" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 15px;"></a>
-              <div class="dropdown-menu">
-                <div ng-show="!data.CourseActivity.disable_admin_quiz_button">
-                  <a class="dropdown-item text-dark" href="javascript:void(0)" ng-click="changeFilter('date')">DATE</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item text-dark" href="javascript:void(0)" ng-click="changeFilter('month')">MONTH</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item text-dark" href="javascript:void(0)" ng-click="changeFilter('customRange')">CUSTOM RANGE</a>
-                </div>
-              </div>
-            </span>
-            <input ng-show="selectedFilter == 'date'" type="text" class="form-control datepicker input-sm uppercase" ng-model="search.date" ng-change="searchFilter(search)" placeholder="FILTER BY DATE">
-            <input ng-show="selectedFilter == 'month'" type="text" class="form-control monthpicker input-sm uppercase" ng-model="search.month" ng-change="searchFilter(search)" placeholder="FILTER BY MONTH">
-            <div class="input-group input-daterange" style="margin-bottom: 0;" ng-show="selectedFilter == 'customRange'">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-              </div>
-              <input type="text" class="form-control input-sm uppercase" ng-model="search.startDate" ng-change="searchFilter(search)" placeholder="START DATE">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-              </div>
-              <input type="text" class="form-control input-sm uppercase" ng-model="search.endDate" ng-change="searchFilter(search)" placeholder="END DATE">
-            </div>
-          </div>
-        </div>
+         
         <div class="clearfix"></div><hr> 
 
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
               <!-- <a href="javascript:void(0)" class="btn btn-success btn-sm btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-              <button type="button" class="btn btn-print btn-sm btn-min" ng-click="print()"><i class="fa fa-print"></i> PRINT </button>
+              <button type="button" class="btn btn-danger btn-sm btn-min" ng-click="print()"><i class="fa fa-print"></i> PRINT </button>
               <button type="button" class="btn btn-warning btn-sm btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
             </div>
             <div class="col-md-4 col-xs-12 pull-right">
@@ -68,28 +61,39 @@
             <table class="table table-bordered text-center">
               <thead>
                 <tr class="bg-info">
-                  <th class="w30px"> No. </th>
-                  <th class="text-center"> STUDENT NO. </th>
-                  <th class="text-center"> STUDENT NAME </th>
-                  <th class="text-center"> COLLEGE </th>
-                  <th class="text-center"> PROGRAM </th>
-                  <th class="text-center"> REGISTRATION DATE </th>
+                  <th class="w10px" style="width: 50px">#</th>
+                  <th class="text-center">STUDENT NAME</th>
+                  <th class="text-center">COLLEGE</th>
+                  <th class="text-center">COURSE</th>
+                  <th class="text-center">AVERAGE</th>
                 </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="data in datas">
-                  <td class="text-left uppercase">{{ (paginator.page - 1 ) * paginator.limit + $index + 1 }}</td>
-                  <td class="text-center uppercase">{{ data.student_no }}</td>
-                  <td class="text-left uppercase">{{ data.student_name }}</td>
-                  <td class="text-center uppercase">{{ data.college }}</td>
-                  <td class="text-center uppercase">{{ data.program }}</td>
-                  <td class="text-center uppercase">{{ data.date }}</td>
-                </tr>
-                <tr ng-show="datas == ''">
+              <tr ng-repeat="data in datas">
+                <td class="text-center">{{ (paginator.page - 1) * paginator.limit + $index + 1 }}</td>
+                <td class="text-left">{{ data.student_name }}</td>
+                <td class="text-center">{{ data.college }}</td>
+                <td class="text-center">{{ data.program }}</td>
+                <td class="text-center">{{ data.ave }}</td>
+              </tr>
+
+            <tr ng-show="datas == null || datas == '' ">
+              <td colspan="11" class="text-center">No available data</td>
+            </tr>
+
+
+               <!--  <tr ng-show="(datas == null || datas == '') && award === ''">
                   <td colspan="6" class="text-center">No available data</td>
                 </tr>
+                <tr ng-show="(datas == null || datas == '') && award !== ''">
+                  <td colspan="6" class="text-center">No available data</td>
+                </tr> -->
               </tbody>
             </table>
+
+            <thead>
+                <tr class="bg-info">
+           
           </div>
         </div>
         <div class="clearfix"></div>
@@ -97,19 +101,19 @@
           <div class="col-md-12">
             <ul class="pagination justify-content-center">
               <li class="page-item">
-                <a class="page-link" href="javascript:void(0)" ng-click="load({ page: 1, search: searchTxt,date:dateToday,startDate: startDate,endDate: endDate, year_term_id : year_term_id})"><sub>&laquo;&laquo;</sub></a>
+                <a class="page-link" href="javascript:void(0)" ng-click="load({ page: 1, search: searchTxt,date:dateToday,startDate: startDate,endDate: endDate, college_id : college_id})"><sub>&laquo;&laquo;</sub></a>
               </li>
               <li class="page-item prevPage {{ !paginator.prevPage? 'disabled':'' }}">
-                <a class="page-link" href="javascript:void(0)" ng-click="load({ page: paginator.page - 1, search: searchTxt,date:dateToday,startDate: startDate,endDate: endDate, year_term_id : year_term_id })">&laquo;</a>
+                <a class="page-link" href="javascript:void(0)" ng-click="load({ page: paginator.page - 1, search: searchTxt,date:dateToday,startDate: startDate,endDate: endDate, college_id : college_id })">&laquo;</a>
               </li>
               <li ng-repeat="page in pages" class="page-item {{ paginator.page == page.number ? 'active':''}}" >
-                <a class="page-link" href="javascript:void(0)" class="text-center" ng-click="load({ page: page.number, search: searchTxt,date:dateToday,startDate: startDate,endDate: endDate, year_term_id : year_term_id })">{{ page.number }}</a>
+                <a class="page-link" href="javascript:void(0)" class="text-center" ng-click="load({ page: page.number, search: searchTxt,date:dateToday,startDate: startDate,endDate: endDate, college_id : college_id })">{{ page.number }}</a>
               </li>
               <li class="page-item nextPage {{ !paginator.nextPage? 'disabled':'' }}">
-                <a class="page-link" href="javascript:void(0)" ng-click="load({ page: paginator.page + 1, search: searchTxt,date:dateToday,startDate: startDate,endDate: endDate, year_term_id : year_term_id })">&raquo;</a>
+                <a class="page-link" href="javascript:void(0)" ng-click="load({ page: paginator.page + 1, search: searchTxt,date:dateToday,startDate: startDate,endDate: endDate, college_id : college_id })">&raquo;</a>
               </li>
               <li class="page-item">
-                <a class="page-link" href="javascript:void(0)" ng-click="load({ page: paginator.pageCount, search: searchTxt,date:dateToday,startDate: startDate,endDate: endDate, year_term_id : year_term_id })"><sub>&raquo;&raquo;</sub> </a>
+                <a class="page-link" href="javascript:void(0)" ng-click="load({ page: paginator.pageCount, search: searchTxt,date:dateToday,startDate: startDate,endDate: endDate, college_id : college_id })"><sub>&raquo;&raquo;</sub> </a>
               </li>
             </ul>
             <div class="clearfix"></div>

@@ -98,23 +98,9 @@ app.controller('MonthlyPaymentController', function($scope,Select, MonthlyPaymen
   
   }
 
-  $scope.selectedFilter = 'date';
+  $scope.selectedFilter = 'month';
 
-  $scope.changeFilter = function(type){
-
-    $scope.search = {};
-
-    $scope.selectedFilter = type;
-
-    $('.monthpicker').datepicker({format: 'MM', autoclose: true, minViewMode: 'months',maxViewMode:'months'});
- 
-    $('.input-daterange').datepicker({
- 
-      format: 'mm/dd/yyyy'
-
-    });
-
-  }
+  $('.monthpicker').datepicker({format: 'MM', autoclose: true, minViewMode: 'months',maxViewMode:'months'});
 
   $scope.searchFilter = function(search) {
    

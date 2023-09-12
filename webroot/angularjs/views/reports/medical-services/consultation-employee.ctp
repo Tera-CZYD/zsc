@@ -3,12 +3,28 @@
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
-        <h4 class="header-title">EMPLOYEE STATISTICS</h4>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-8 col-xs-12">
+              <h4 class="header-title">EMPLOYEE STATISTICS</h4>
+            </div>
+            <div class="col-md-4 col-xs-12 pull-right">
+              <div class="input-group-prepend">
+
+                <span class="dropleft float-right input-group-text" style="padding : 0;">
+                  <a class="fa fa-filter" href="javascript:void(0)" style="padding: 15px;"></a>
+                </span>
+                <input ng-show="selectedFilter == 'month'" type="text" class="form-control monthpicker input-sm uppercase" ng-model="search.month" ng-change="searchFilter(search)" placeholder="FILTER BY MONTH">
+              </div>
+            </div>
+          </div>
+        </div>
+        
         <div class="clearfix"></div><hr>
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-              <a href="javascript:void(0)" class="btn btn-success btn-sm btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
+              <!-- <a href="javascript:void(0)" class="btn btn-success btn-sm btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
               <button type="button" class="btn btn-danger btn-sm btn-min" ng-click="print()"><i class="fa fa-print"></i> PRINT </button>
               <button type="button" class="btn btn-warning btn-sm btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
             </div>

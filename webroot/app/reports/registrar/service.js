@@ -14,7 +14,7 @@ app.factory("CollegeProgramReport", function($resource) {
 
 app.factory("EnrollmentListReport", function($resource) {
 
-  return $resource( api + "Reports/enrollment_list/:id", { id: '@id', search: '@search' }, {
+  return $resource( api + "reports/enrollment_list/:id", { id: '@id', search: '@search' }, {
 
     query: { method: 'GET', isArray: false },
 
@@ -157,6 +157,24 @@ app.factory("GWA", function($resource) {
 app.factory("EnrollmentProfile", function($resource) {
 
   return $resource( api + "Reports/enrollment_profile/:id", { id: '@id', search: '@search' }, {
+
+    query: { method: 'GET', isArray: false },
+
+    update: { method: 'PUT' },
+
+    search: { method: 'GET' },
+    
+  });
+
+});
+
+app.factory("TranscriptOfRecord", function($resource, $http) {
+
+  var csrfToken = angular.element(document.querySelector('meta[name="csrf-token"]')).attr('content');
+  
+  $http.defaults.headers.common['X-CSRF-Token'] = csrfToken;
+
+  return $resource( api + "reports/transcript_of_records/:id", { id: '@id', search: '@search' }, {
 
     query: { method: 'GET', isArray: false },
 

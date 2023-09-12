@@ -282,125 +282,76 @@ app.controller('EnrollmentListReportController', function($scope, EnrollmentList
 
   }
 
-  $scope.advance_search = function() {
+  $scope.selectedFilter = 'date';
+
+  $scope.changeFilter = function(type){
 
     $scope.search = {};
 
-    $scope.advanceSearch = false;
+    $scope.selectedFilter = type;
+
+    $('.monthpicker').datepicker({format: 'MM', autoclose: true, minViewMode: 'months',maxViewMode:'months'});
  
-    $scope.position_id = null;
- 
-    $scope.office_id = null;
-
-    $('.monthpicker').datepicker({
-
-      format: 'MM',
-
-      autoclose: true,
-
-      minViewMode: 'months',
-
-      maxViewMode: 'months'
-
-    });
-
     $('.input-daterange').datepicker({
-
-      format: 'yyyy-mm-dd'
+ 
+      format: 'mm/dd/yyyy'
 
     });
-
-    $('.datepicker').datepicker('setDate', '');
-
-    $('.monthpicker').datepicker('setDate', '');
-
-    $('.input-daterange').datepicker('setDate', '');
-
-    $('#advance-search-modal').modal('show');
 
   }
 
   $scope.searchFilter = function(search) {
-
-    $scope.filter = false;
-
-    $scope.advanceSearch = true;
-
+   
     $scope.searchTxt = '';
 
     $scope.dateToday = null;
-
+   
     $scope.startDate = null;
-
+   
     $scope.endDate = null;
 
-    if (search.filterBy == 'today') {
-
-      $scope.dateToday = Date.parse('today').toString('yyyy-MM-dd');
-
-      $scope.today = Date.parse('today').toString('yyyy-MM-dd');
-
-      $scope.dateToday = $scope.today;
-
-    }else if (search.filterBy == 'date') {
-
+    if ($scope.selectedFilter == 'date') {
+    
       $scope.dateToday = Date.parse(search.date).toString('yyyy-MM-dd');
-
-    }else if (search.filterBy == 'month') {
-
+   
+    }else if ($scope.selectedFilter == 'month') {
+   
       date = $('.monthpicker').datepicker('getDate');
-
+   
       year = date.getFullYear();
-
+   
       month = date.getMonth() + 1;
-
+   
       lastDay = new Date(year, month, 0);
 
       if (month < 10) month = '0' + month;
-
+      
       $scope.startDate = year + '-' + month + '-01';
-
+      
       $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
-
-    }else if (search.filterBy == 'this-month') {
-
-      date = new Date();
-
-      year = date.getFullYear();
-
-      month = date.getMonth() + 1;
-
-      lastDay = new Date(year, month, 0);
-
-      if (month < 10) month = '0' + month;
-
-      $scope.startDate = year + '-' + month + '-01';
-
-      $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
-
-    }else if (search.filterBy == 'custom') {
-
+    
+    }else if ($scope.selectedFilter == 'customRange') {
+    
       $scope.startDate = Date.parse(search.startDate).toString('yyyy-MM-dd');
+    
+      $scope.endDate = Date.parse(search.endDate).toString('yyyy-MM-dd');
 
-      $scope.endDate =  Date.parse(search.endDate).toString('yyyy-MM-dd');
-
+    
     }
 
     $scope.load({
 
-      date           : $scope.dateToday,
+      date         : $scope.dateToday,
 
-      startDate      : $scope.startDate,
+      startDate    : $scope.startDate,
 
-      endDate        : $scope.endDate,
+      endDate      : $scope.endDate,
 
-      year_term_id   : $scope.year_term_id,
+      year_term_id : $scope.year_term_id
 
     });
-
-    $('#advance-search-modal').modal('hide');
-
-  }
+  
+  } 
 
   $scope.print = function(){
 
@@ -418,245 +369,6 @@ app.controller('EnrollmentListReportController', function($scope, EnrollmentList
 
 });
 
-app.controller('ListStudentController', function($scope,Select, ListStudent) {
-
-  $scope.today = Date.parse('today').toString('MM/dd/yyyy');
-
-  $('.datepicker').datepicker({
-   
-    format: 'mm/dd/yyyy',
-   
-    autoclose: true,
-   
-    todayHighlight: true
-  
-  });
-
-  Select.get({ code: 'year-term-list' },function(e){
-
-    $scope.year_terms = e.data;
-
-  });
-
-  $scope.getData = function(year_term_id){
-
-    $scope.year_term_id = year_term_id;
-
-    $scope.load({
-
-      year_term_id: $scope.year_term_id
-
-    });
-
-  }
-
-  $scope.datas = '';
-
-  // load data
-
-  $scope.load = function(options) {
-
-    options = typeof options !== 'undefined' ?  options : {};
-
-    ListStudent.query(options, function(e) {
-
-      if (e.ok) {
-
-        $scope.datas = e.data; 
-
-        $scope.conditionsPrint = e.conditionsPrint;     
-
-        //paginator
-
-        $scope.paginator = e.paginator;
-
-        $scope.pages = paginator($scope.paginator, 5);   
-
-      }
-
-    });
-
-  }
-  
-  // $scope.load(); 
-
-  $scope.reload = function(options) {
-  
-    $scope.search = {};
- 
-    $scope.advanceSearch = false;
- 
-    $scope.position_id = null;
- 
-    $scope.office_id = null;
- 
-    $scope.employmentStatusId = null;
-
-    $scope.strSearch = '';
-
-    $scope.load();
-
-  }
-
-  $scope.searchy = function(search) {
-    
-    search = typeof search !== 'undefined' ?  search : '';
-
-    $scope.searchTxts = search;
-
-    if (search.length > 0){
-
-      $scope.load({
-
-        search    : search,
-
-        date      : $scope.dateToday,
-
-        startDate : $scope.startDate,
-
-        endDate   : $scope.endDate,
-
-        year_term_id: $scope.year_term_id
-
-      });
-
-    }else{
-
-      $scope.load({
-
-        date      : $scope.dateToday,
-
-        startDate : $scope.startDate,
-
-        endDate   : $scope.endDate,
-
-        year_term_id: $scope.year_term_id
-
-      });
-    
-    }
-  
-  }
-
-  $scope.advanceSearch = false;
-  
-  $scope.advance_search = function() {
-  
-    $scope.search = {};
- 
-    $scope.advanceSearch = false;
- 
-    $('.monthpicker').datepicker({format: 'MM', autoclose: true, minViewMode: 'months',maxViewMode:'months'});
- 
-    $('.input-daterange').datepicker({
- 
-      format: 'mm/dd/yyyy'
-
-    });
-
-    $('#advance-search-modal').modal('show');
-
-  }
-
-  $scope.searchFilter = function(search) {
-  
-    $scope.filter = false;
-   
-    $scope.advanceSearch = true;
-   
-    $scope.searchTxt = '';
-   
-    $scope.dateToday = null;
-   
-    $scope.startDate = null;
-   
-    $scope.endDate = null;
- 
-    $scope.position_id = null;
- 
-    $scope.office_id = null;
- 
-    $scope.employmentStatusId = null;
-
-    if (search.filterBy == 'today') {
-     
-      $scope.dateToday = Date.parse($scope.today).toString('yyyy-MM-dd');
-    
-    }else if (search.filterBy == 'date') {
-    
-      $scope.dateToday = Date.parse(search.date).toString('yyyy-MM-dd');
-   
-    }else if (search.filterBy == 'month') {
-   
-      date = $('.monthpicker').datepicker('getDate');
-   
-      year = date.getFullYear();
-   
-      month = date.getMonth() + 1;
-   
-      lastDay = new Date(year, month, 0);
-
-      if (month < 10) month = '0' + month;
-      
-      $scope.startDate = year + '-' + month + '-01';
-      
-      $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
-    
-    }else if (search.filterBy == 'this-month') {
-      
-      date = new Date();
-      
-      year = date.getFullYear();
-      
-      month = date.getMonth() + 1;
-      
-      lastDay = new Date(year, month, 0);
-
-      if (month < 10) month = '0' + month;
-      
-      $scope.startDate = year + '-' + month + '-01';
-      
-      $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
-   
-    }else if (search.filterBy == 'custom-range') {
-    
-      $scope.startDate = search.startDate;
-    
-      $scope.endDate = search.endDate;
-    
-    }
-
-    $scope.load({
-
-      date         : $scope.dateToday,
-
-      startDate    : $scope.startDate,
-
-      endDate      : $scope.endDate,
-
-      year_term_id : $scope.year_term_id
-
-    });
-
-    $('#advance-search-modal').modal('hide');
-  
-  } 
-
-  $scope.print = function(){
-
-    if ($scope.conditionsPrint !== ''){
-
-      printTable(base + 'print/student_masterlist?print=1' + $scope.conditionsPrint);
-
-    }else{
-
-      printTable(base + 'print/student_masterlist');
-
-    }
-
-  }
-
-});
 
 app.controller('StudentRankingController', function($scope, StudentRanking,Select) {
 
@@ -802,127 +514,79 @@ app.controller('StudentRankingController', function($scope, StudentRanking,Selec
 
   }
 
-  $scope.advance_search = function() {
+  $scope.selectedFilter = 'date';
+
+  $scope.changeFilter = function(type){
 
     $scope.search = {};
 
-    $scope.advanceSearch = false;
+    $scope.selectedFilter = type;
+
+    $('.monthpicker').datepicker({format: 'MM', autoclose: true, minViewMode: 'months',maxViewMode:'months'});
  
-    $scope.position_id = null;
- 
-    $scope.office_id = null;
-
-    $('.monthpicker').datepicker({
-
-      format: 'MM',
-
-      autoclose: true,
-
-      minViewMode: 'months',
-
-      maxViewMode: 'months'
-
-    });
-
     $('.input-daterange').datepicker({
-
-      format: 'yyyy-mm-dd'
+ 
+      format: 'mm/dd/yyyy'
 
     });
-
-    $('.datepicker').datepicker('setDate', '');
-
-    $('.monthpicker').datepicker('setDate', '');
-
-    $('.input-daterange').datepicker('setDate', '');
-
-    $('#advance-search-modal').modal('show');
 
   }
 
   $scope.searchFilter = function(search) {
-
-    $scope.filter = false;
-
-    $scope.advanceSearch = true;
-
+   
     $scope.searchTxt = '';
 
     $scope.dateToday = null;
-
+   
     $scope.startDate = null;
-
+   
     $scope.endDate = null;
 
-    if (search.filterBy == 'today') {
-
-      $scope.dateToday = Date.parse('today').toString('yyyy-MM-dd');
-
-      $scope.today = Date.parse('today').toString('yyyy-MM-dd');
-
-      $scope.dateToday = $scope.today;
-
-    }else if (search.filterBy == 'date') {
-
+    if ($scope.selectedFilter == 'date') {
+    
       $scope.dateToday = Date.parse(search.date).toString('yyyy-MM-dd');
-
-    }else if (search.filterBy == 'month') {
-
+   
+    }else if ($scope.selectedFilter == 'month') {
+   
       date = $('.monthpicker').datepicker('getDate');
-
+   
       year = date.getFullYear();
-
+   
       month = date.getMonth() + 1;
-
+   
       lastDay = new Date(year, month, 0);
 
       if (month < 10) month = '0' + month;
-
+      
       $scope.startDate = year + '-' + month + '-01';
-
+      
       $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
-
-    }else if (search.filterBy == 'this-month') {
-
-      date = new Date();
-
-      year = date.getFullYear();
-
-      month = date.getMonth() + 1;
-
-      lastDay = new Date(year, month, 0);
-
-      if (month < 10) month = '0' + month;
-
-      $scope.startDate = year + '-' + month + '-01';
-
-      $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
-
-    }else if (search.filterBy == 'custom') {
-
+    
+    }else if ($scope.selectedFilter == 'customRange') {
+    
       $scope.startDate = Date.parse(search.startDate).toString('yyyy-MM-dd');
+    
+      $scope.endDate = Date.parse(search.endDate).toString('yyyy-MM-dd');
 
-      $scope.endDate =  Date.parse(search.endDate).toString('yyyy-MM-dd');
-
+    
     }
 
     $scope.load({
 
-      date           : $scope.dateToday,
+      date         : $scope.dateToday,
 
-      startDate      : $scope.startDate,
+      startDate    : $scope.startDate,
 
-      endDate        : $scope.endDate,
+      endDate      : $scope.endDate,
 
       year_term_id   : $scope.year_term_id,
 
       program_id   : $scope.program_id,
 
+
     });
-
-    $('#advance-search-modal').modal('hide');
-
-  }
+  
+  } 
 
   $scope.print = function(){
 
@@ -1016,7 +680,7 @@ app.controller('PromotedStudentController', function($scope, PromotedStudent,Sel
 
       program_id: $scope.program_id,
 
-      year_term_id: $scope.year_term_id,
+      year: $scope.year,
 
     });
 
@@ -1035,7 +699,8 @@ app.controller('PromotedStudentController', function($scope, PromotedStudent,Sel
    
     $scope.endDate = null;
 
-    $scope.year_term_id = null;
+    $scope.year = null;
+
     $scope.program_id = null;
 
     $scope.load();
@@ -1058,7 +723,7 @@ app.controller('PromotedStudentController', function($scope, PromotedStudent,Sel
 
         endDate       : $scope.endDate,
 
-        year_term_id  : $scope.year_term_id,
+        year  : $scope.year,
 
         program_id  : $scope.program_id,
 
@@ -1074,7 +739,7 @@ app.controller('PromotedStudentController', function($scope, PromotedStudent,Sel
 
         endDate       : $scope.endDate,
 
-        year_term_id  : $scope.year_term_id,
+        year  : $scope.year,
 
          program_id  : $scope.program_id,
 
@@ -1084,127 +749,79 @@ app.controller('PromotedStudentController', function($scope, PromotedStudent,Sel
 
   }
 
-  $scope.advance_search = function() {
+  $scope.selectedFilter = 'date';
+
+  $scope.changeFilter = function(type){
 
     $scope.search = {};
 
-    $scope.advanceSearch = false;
+    $scope.selectedFilter = type;
+
+    $('.monthpicker').datepicker({format: 'MM', autoclose: true, minViewMode: 'months',maxViewMode:'months'});
  
-    $scope.position_id = null;
- 
-    $scope.office_id = null;
-
-    $('.monthpicker').datepicker({
-
-      format: 'MM',
-
-      autoclose: true,
-
-      minViewMode: 'months',
-
-      maxViewMode: 'months'
-
-    });
-
     $('.input-daterange').datepicker({
-
-      format: 'yyyy-mm-dd'
+ 
+      format: 'mm/dd/yyyy'
 
     });
-
-    $('.datepicker').datepicker('setDate', '');
-
-    $('.monthpicker').datepicker('setDate', '');
-
-    $('.input-daterange').datepicker('setDate', '');
-
-    $('#advance-search-modal').modal('show');
 
   }
 
   $scope.searchFilter = function(search) {
-
-    $scope.filter = false;
-
-    $scope.advanceSearch = true;
-
+   
     $scope.searchTxt = '';
 
     $scope.dateToday = null;
-
+   
     $scope.startDate = null;
-
+   
     $scope.endDate = null;
 
-    if (search.filterBy == 'today') {
-
-      $scope.dateToday = Date.parse('today').toString('yyyy-MM-dd');
-
-      $scope.today = Date.parse('today').toString('yyyy-MM-dd');
-
-      $scope.dateToday = $scope.today;
-
-    }else if (search.filterBy == 'date') {
-
+    if ($scope.selectedFilter == 'date') {
+    
       $scope.dateToday = Date.parse(search.date).toString('yyyy-MM-dd');
-
-    }else if (search.filterBy == 'month') {
-
+   
+    }else if ($scope.selectedFilter == 'month') {
+   
       date = $('.monthpicker').datepicker('getDate');
-
+   
       year = date.getFullYear();
-
+   
       month = date.getMonth() + 1;
-
+   
       lastDay = new Date(year, month, 0);
 
       if (month < 10) month = '0' + month;
-
+      
       $scope.startDate = year + '-' + month + '-01';
-
+      
       $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
-
-    }else if (search.filterBy == 'this-month') {
-
-      date = new Date();
-
-      year = date.getFullYear();
-
-      month = date.getMonth() + 1;
-
-      lastDay = new Date(year, month, 0);
-
-      if (month < 10) month = '0' + month;
-
-      $scope.startDate = year + '-' + month + '-01';
-
-      $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
-
-    }else if (search.filterBy == 'custom') {
-
+    
+    }else if ($scope.selectedFilter == 'customRange') {
+    
       $scope.startDate = Date.parse(search.startDate).toString('yyyy-MM-dd');
+    
+      $scope.endDate = Date.parse(search.endDate).toString('yyyy-MM-dd');
 
-      $scope.endDate =  Date.parse(search.endDate).toString('yyyy-MM-dd');
-
+    
     }
 
     $scope.load({
 
-      date           : $scope.dateToday,
+      date         : $scope.dateToday,
 
-      startDate      : $scope.startDate,
+      startDate    : $scope.startDate,
 
-      endDate        : $scope.endDate,
+      endDate      : $scope.endDate,
 
       year_term_id   : $scope.year_term_id,
 
       program_id   : $scope.program_id,
 
+
     });
-
-    $('#advance-search-modal').modal('hide');
-
-  }
+  
+  } 
 
   $scope.print = function(){
 
@@ -1367,126 +984,78 @@ app.controller('StudentBehaviorReportController', function($scope, StudentBehavi
 
   }
 
-  $scope.advance_search = function() {
+  $scope.selectedFilter = 'date';
+
+  $scope.changeFilter = function(type){
 
     $scope.search = {};
 
-    $scope.advanceSearch = false;
+    $scope.selectedFilter = type;
+
+    $('.monthpicker').datepicker({format: 'MM', autoclose: true, minViewMode: 'months',maxViewMode:'months'});
  
-    $scope.position_id = null;
- 
-    $scope.office_id = null;
-
-    $('.monthpicker').datepicker({
-
-      format: 'MM',
-
-      autoclose: true,
-
-      minViewMode: 'months',
-
-      maxViewMode: 'months'
-
-    });
-
     $('.input-daterange').datepicker({
-
-      format: 'yyyy-mm-dd'
+ 
+      format: 'mm/dd/yyyy'
 
     });
-
-    $('.datepicker').datepicker('setDate', '');
-
-    $('.monthpicker').datepicker('setDate', '');
-
-    $('.input-daterange').datepicker('setDate', '');
-
-    $('#advance-search-modal').modal('show');
 
   }
 
   $scope.searchFilter = function(search) {
-
-    $scope.filter = false;
-
-    $scope.advanceSearch = true;
-
+   
     $scope.searchTxt = '';
 
     $scope.dateToday = null;
-
+   
     $scope.startDate = null;
-
+   
     $scope.endDate = null;
 
-    if (search.filterBy == 'today') {
-
-      $scope.dateToday = Date.parse('today').toString('yyyy-MM-dd');
-
-      $scope.today = Date.parse('today').toString('yyyy-MM-dd');
-
-      $scope.dateToday = $scope.today;
-
-    }else if (search.filterBy == 'date') {
-
+    if ($scope.selectedFilter == 'date') {
+    
       $scope.dateToday = Date.parse(search.date).toString('yyyy-MM-dd');
-
-    }else if (search.filterBy == 'month') {
-
+   
+    }else if ($scope.selectedFilter == 'month') {
+   
       date = $('.monthpicker').datepicker('getDate');
-
+   
       year = date.getFullYear();
-
+   
       month = date.getMonth() + 1;
-
+   
       lastDay = new Date(year, month, 0);
 
       if (month < 10) month = '0' + month;
-
+      
       $scope.startDate = year + '-' + month + '-01';
-
+      
       $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
-
-    }else if (search.filterBy == 'this-month') {
-
-      date = new Date();
-
-      year = date.getFullYear();
-
-      month = date.getMonth() + 1;
-
-      lastDay = new Date(year, month, 0);
-
-      if (month < 10) month = '0' + month;
-
-      $scope.startDate = year + '-' + month + '-01';
-
-      $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
-
-    }else if (search.filterBy == 'custom') {
-
+    
+    }else if ($scope.selectedFilter == 'customRange') {
+    
       $scope.startDate = Date.parse(search.startDate).toString('yyyy-MM-dd');
+    
+      $scope.endDate = Date.parse(search.endDate).toString('yyyy-MM-dd');
 
-      $scope.endDate =  Date.parse(search.endDate).toString('yyyy-MM-dd');
-
+    
     }
 
     $scope.load({
 
-      date           : $scope.dateToday,
+      date         : $scope.dateToday,
 
-      startDate      : $scope.startDate,
+      startDate    : $scope.startDate,
 
-      endDate        : $scope.endDate,
+      endDate      : $scope.endDate,
 
       year_term_id   : $scope.year_term_id,
 
       program_id   : $scope.program_id,
 
+
     });
-
-    $('#advance-search-modal').modal('hide');
-
+  
   }
 
   $scope.print = function(){
@@ -1998,14 +1567,14 @@ app.controller('AcademicListController', function($scope,Select, AcademicList) {
   
   }
 
-  $scope.advanceSearch = false;
-  
-  $scope.advance_search = function() {
-  
+  $scope.selectedFilter = 'date';
+
+  $scope.changeFilter = function(type){
+
     $scope.search = {};
- 
-    $scope.advanceSearch = false;
- 
+
+    $scope.selectedFilter = type;
+
     $('.monthpicker').datepicker({format: 'MM', autoclose: true, minViewMode: 'months',maxViewMode:'months'});
  
     $('.input-daterange').datepicker({
@@ -2014,39 +1583,23 @@ app.controller('AcademicListController', function($scope,Select, AcademicList) {
 
     });
 
-    $('#advance-search-modal').modal('show');
-
   }
 
   $scope.searchFilter = function(search) {
-  
-    $scope.filter = false;
-   
-    $scope.advanceSearch = true;
    
     $scope.searchTxt = '';
-   
+
     $scope.dateToday = null;
    
     $scope.startDate = null;
    
     $scope.endDate = null;
- 
-    $scope.position_id = null;
- 
-    $scope.office_id = null;
- 
-    $scope.employmentStatusId = null;
 
-    if (search.filterBy == 'today') {
-     
-      $scope.dateToday = Date.parse($scope.today).toString('yyyy-MM-dd');
-    
-    }else if (search.filterBy == 'date') {
+    if ($scope.selectedFilter == 'date') {
     
       $scope.dateToday = Date.parse(search.date).toString('yyyy-MM-dd');
    
-    }else if (search.filterBy == 'month') {
+    }else if ($scope.selectedFilter == 'month') {
    
       date = $('.monthpicker').datepicker('getDate');
    
@@ -2062,27 +1615,12 @@ app.controller('AcademicListController', function($scope,Select, AcademicList) {
       
       $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
     
-    }else if (search.filterBy == 'this-month') {
-      
-      date = new Date();
-      
-      year = date.getFullYear();
-      
-      month = date.getMonth() + 1;
-      
-      lastDay = new Date(year, month, 0);
+    }else if ($scope.selectedFilter == 'customRange') {
+    
+      $scope.startDate = Date.parse(search.startDate).toString('yyyy-MM-dd');
+    
+      $scope.endDate = Date.parse(search.endDate).toString('yyyy-MM-dd');
 
-      if (month < 10) month = '0' + month;
-      
-      $scope.startDate = year + '-' + month + '-01';
-      
-      $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
-   
-    }else if (search.filterBy == 'custom-range') {
-    
-      $scope.startDate = search.startDate;
-    
-      $scope.endDate = search.endDate;
     
     }
 
@@ -2094,11 +1632,17 @@ app.controller('AcademicListController', function($scope,Select, AcademicList) {
 
       endDate      : $scope.endDate,
 
-      section_id : $scope.section_id
+      semester: $scope.semester,
+      
+      section_id: $scope.section_id,
+      
+      year: $scope.year,
+      
+      college_id: $scope.college_id,
+
+      program_id: $scope.program_id,
 
     });
-
-    $('#advance-search-modal').modal('hide');
   
   } 
 
@@ -2873,6 +2417,241 @@ app.controller('EnrollmentProfileController', function($scope,Select, Enrollment
     }else{
 
       printTable(base + 'print/enrollment_profile');
+
+    }
+
+  }
+
+});
+
+app.controller('TranscriptOfRecordsController', function($scope, TranscriptOfRecord,Select) {
+
+  $scope.today = Date.parse('today').toString('MM/dd/yyyy');
+
+  $('.datepicker').datepicker({
+   
+    format: 'mm/dd/yyyy',
+   
+    autoclose: true,
+   
+    todayHighlight: true
+  
+  });
+
+  $('.clockpicker').clockpicker({
+
+    donetext: 'Done',
+
+    twelvehour:  true,
+
+    placement: 'bottom',
+
+  });
+
+  Select.get({ code: 'college-list' }, function(e) {
+
+    $scope.colleges = e.data;
+
+  });
+
+  Select.get({ code: 'year-term-list' },function(e){
+
+    $scope.year_terms = e.data;
+
+  });
+
+  $scope.getCollegeProgram = function(id){
+
+    $scope.college_id = id;
+
+    Select.get({ code: 'application-program-list', college_id : id }, function(e) {
+
+      $scope.programs = e.data;
+
+    });
+
+  }
+
+  $scope.getData = function(program_id){
+
+    $scope.load({
+
+      college_id: $scope.college_id,
+
+      program_id: $scope.program_id,
+
+      year_term_id: $scope.year_term_id,
+
+    });
+
+  }
+
+  $scope.load = function(options) {
+
+    options = typeof options !== 'undefined' ?  options : {};
+
+    TranscriptOfRecord.query(options, function(e) {
+      
+      if (e.ok) {
+
+        $scope.datas = e.data;
+
+        $scope.conditionsPrint = e.conditionsPrint;
+
+        $scope.paginator = e.paginator;
+
+        $scope.pages = paginator($scope.paginator, 5);
+
+      }
+
+    });
+
+  }
+
+  $scope.load();
+  
+  $scope.reload = function(options) {
+  
+    $scope.search = {};
+ 
+    $scope.searchTxt = '';
+   
+    $scope.dateToday = null;
+   
+    $scope.startDate = null;
+   
+    $scope.endDate = null;
+
+    $scope.year_term_id = null;
+
+    $scope.program_id = null;
+
+    $scope.college_id = null;
+
+    $scope.load();
+
+  }
+
+  $scope.searchy = function(search) {
+
+    search = typeof search !== 'undefined' ? search : '';
+
+    if (search.length > 0){
+
+      $scope.load({
+
+        search        : search,
+
+        date          : $scope.dateToday,
+
+        startDate     : $scope.startDate,
+
+        endDate       : $scope.endDate,
+
+        year_term_id  : $scope.year_term_id,
+
+      });
+
+    }else{
+
+      $scope.load({
+
+        date          : $scope.dateToday,
+
+        startDate     : $scope.startDate,
+
+        endDate       : $scope.endDate,
+
+        year_term_id  : $scope.year_term_id,
+
+      });
+    
+    }
+
+  }
+
+  $scope.selectedFilter = 'date';
+
+  $scope.changeFilter = function(type){
+
+    $scope.search = {};
+
+    $scope.selectedFilter = type;
+
+    $('.monthpicker').datepicker({format: 'MM', autoclose: true, minViewMode: 'months',maxViewMode:'months'});
+ 
+    $('.input-daterange').datepicker({
+ 
+      format: 'mm/dd/yyyy'
+
+    });
+
+  }
+
+  $scope.searchFilter = function(search) {
+   
+    $scope.searchTxt = '';
+
+    $scope.dateToday = null;
+   
+    $scope.startDate = null;
+   
+    $scope.endDate = null;
+
+    if ($scope.selectedFilter == 'date') {
+    
+      $scope.dateToday = Date.parse(search.date).toString('yyyy-MM-dd');
+   
+    }else if ($scope.selectedFilter == 'month') {
+   
+      date = $('.monthpicker').datepicker('getDate');
+   
+      year = date.getFullYear();
+   
+      month = date.getMonth() + 1;
+   
+      lastDay = new Date(year, month, 0);
+
+      if (month < 10) month = '0' + month;
+      
+      $scope.startDate = year + '-' + month + '-01';
+      
+      $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
+    
+    }else if ($scope.selectedFilter == 'customRange') {
+    
+      $scope.startDate = Date.parse(search.startDate).toString('yyyy-MM-dd');
+    
+      $scope.endDate = Date.parse(search.endDate).toString('yyyy-MM-dd');
+
+    
+    }
+
+    $scope.load({
+
+      date         : $scope.dateToday,
+
+      startDate    : $scope.startDate,
+
+      endDate      : $scope.endDate,
+
+      year_term_id : $scope.year_term_id,
+
+      program_id   : $scope.program_id,
+
+    });
+  
+  } 
+
+  $scope.print = function(){
+
+    if ($scope.conditionsPrint !== '') {
+    
+      printTable(base + 'print/transcript_of_records?print=1' + $scope.conditionsPrint);
+
+    }else{
+
+      printTable(base + 'print/transcript_of_records?print=1');
 
     }
 

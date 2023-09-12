@@ -130,7 +130,131 @@ class ReportsController extends AppController {
 
   }
 
-  public function student_ranking() {
+  public function promotedStudent() {
+
+    //with pagination
+
+    $page = isset($this->request->query['page'])? $this->request->query['page'] : 1;
+
+    $conditions = array();
+    
+    $conditionsPrint = '';
+
+    $conditions['search'] = '';
+
+    // search conditions
+
+    if($this->request->getQuery('search') != null){
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+      $conditionsPrint .= '&search='.$search;
+
+    }
+
+    $conditions['program_id'] = 0;
+
+    if ($this->request->getQuery('program_id') != null) {
+
+      $program_id = $this->request->getQuery('program_id'); 
+
+      $conditions['program_id'] = $program_id;
+
+      $conditionsPrint .= '&program_id='.$program_id;
+
+    }
+
+    $conditions['year_term_id'] = 0;
+
+    if ($this->request->getQuery('year_term_id') != null) {
+
+      $year_term_id = $this->request->getQuery('year_term_id'); 
+
+      $conditions['year_term_id'] = $year_term_id;
+
+      $conditionsPrint .= '&year_term_id='.$year_term_id;
+
+    }
+
+    $limit = 25;
+
+    $tmpData = $this->Reports->paginate($this->Reports->getAllPromotedStudent($conditions, $limit, $page), [
+
+      'extra' => [
+
+        'conditions' => $conditions,
+
+        'type'   => 'promoted-student'
+
+      ],
+
+      'page' => $page,
+
+      'limit' => $limit
+
+    ]);
+
+    $main = $tmpData['data'];
+
+    $paginator = $tmpData['pagination'];
+
+    $datas = array();
+
+    if(!empty($main)){
+
+      foreach ($main as $data) {
+
+        $datas[] = array(
+
+          'id'          => $data['id'],
+
+          'student_name'   => $data['full_name'],
+
+          'student_no'  => $data['student_no'],
+
+          'program'     => $data['program'],
+
+          'ave'     => $data['ave'],
+
+        );
+
+      }
+
+    }
+
+    $response = [
+
+      'ok' => true,
+
+      'data' => $datas,
+
+      'paginator' => $paginator,
+
+      'conditionsPrint' => $conditionsPrint
+
+    ];
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+    $this->set(array(
+
+      'response'=>$response,
+
+      '_serialize'=>'response'
+
+    ));
+
+  }
+
+  public function studentRanking() {
 
     //with pagination
 
@@ -258,7 +382,7 @@ class ReportsController extends AppController {
 
   }
 
-  public function list_academic_awardees() {
+  public function listAcademicAwardees() {
 
     $page = $this->request->getQuery('page', 1);
 
@@ -424,7 +548,7 @@ class ReportsController extends AppController {
   } 
 
 
-  public function faculty_masterlists() {
+  public function facultyMasterlists() {
 
     //with pagination
 
@@ -502,6 +626,192 @@ class ReportsController extends AppController {
           'college'       => $data['college'],
 
        );
+
+    }
+
+    $response = [
+
+      'ok' => true,
+
+      'data' => $datas,
+
+      'paginator' => $paginator,
+
+      'conditionsPrint' => $conditionsPrint
+
+    ];
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+  }
+
+  public function academicList(){
+
+    // default page 1
+
+    $page = $this->request->getQuery('page', 1);
+    
+    // default conditions
+
+    $conditionsPrint = '';
+
+    $conditions = array();
+
+    $conditions['search'] = '';
+
+    // search conditions
+
+    if($this->request->getQuery('search')!=null){
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+      $conditionsPrint .= '&search='.$search;
+
+    }
+
+    $conditions['date'] = '';
+
+    if ($this->request->getQuery('date')!=null) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(AwardeeManagement.date) = '$search_date'"; 
+
+      $dates['date'] = $search_date;
+
+      $conditionsPrint .= '&date='.$search_date;
+
+    }  
+
+    //advance search
+
+    if ($this->request->getQuery('startDate')!=null) {
+
+      $start = $this->request->getQuery('startDate'); 
+
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = " AND DATE(AwardeeManagement.date) >= '$start' AND DATE(AwardeeManagement.date) <= '$end'";
+
+      $dates['startDate'] = $start;
+
+      $dates['endDate']   = $end;
+
+      $conditionsPrint .= '&startDate='.$start.'&endDate='.$end;
+
+    }
+
+    $conditions['college_id'] = '';
+
+    if ($this->request->getQuery('college_id')!=null) {
+
+      $college_id = $this->request->getQuery('college_id'); 
+
+      $conditions['college_id'] = " AND AwardeeManagement.college_id = $college_id";
+
+      $conditionsPrint .= '&college_id='.$college_id;
+
+    }
+
+    $conditions['program_id'] = '';
+
+    if ($this->request->getQuery('program_id')!=null) {
+
+      $program_id = $this->request->getQuery('program_id'); 
+
+      $conditions['program_id'] = " AND AwardeeManagement.program_id = $program_id";
+
+      $conditionsPrint .= '&program_id='.$program_id;
+
+    }
+
+    $conditions['semester'] = '';
+
+    if ($this->request->getQuery('semester')!=null) {
+
+      $semester = $this->request->getQuery('semester'); 
+
+      $conditions['semester'] = " AND AwardeeManagement.semester = $semester";
+
+      $conditionsPrint .= '&semester='.$semester;
+
+    }
+
+    $conditions['year'] = '';
+
+    if ($this->request->getQuery('year')!=null) {
+
+      $year = $this->request->getQuery('year'); 
+
+      $conditions['year'] = " AND AwardeeManagement.year = $year";
+
+      $conditionsPrint .= '&year='.$year;
+
+    }
+
+    $conditions['section_id'] = " AND AwardeeManagement.section_id IS NULL";
+
+    if ($this->request->getQuery('section_id')!=null) {
+
+      $section_id = $this->request->getQuery('section_id'); 
+
+      $conditions['section_id'] = " AND AwardeeManagement.section_id = $section_id";
+
+      $conditionsPrint .= '&section_id='.$section_id;
+
+    }
+
+    $limit = 25;
+
+    $tmpData = $this->Reports->paginate($this->Reports->getAllAcademicList($conditions, $limit, $page), [
+
+      'extra' => [
+
+        'conditions' => $conditions,
+
+        'type'   => 'academic-list'
+
+      ],
+
+      'page' => $page,
+
+      'limit' => $limit
+
+    ]);
+
+    $acads_list = $tmpData['data'];
+
+    $paginator = $tmpData['pagination'];
+
+    $datas = [];
+
+
+
+    foreach ($acads_list as $data) {
+
+      $datas[] = array(
+
+        'id'          => $data['id'],
+
+        'student_name'   => $data['student_name'],
+
+        'student_no'  => $data['student_no'],
+
+        'year'     => $data['year'],
+
+        'award_id'     => $data['award_id'],
+
+        'date'        => fdate($data['date'],'m/d/Y'),
+
+      );
 
     }
 
@@ -759,7 +1069,7 @@ class ReportsController extends AppController {
 
     $conditions['search'] = '';
 
-    if ($this->request->getQuery('search')) {
+    if ($this->request->getQuery('search')!=null) {
 
       $search = $this->request->getQuery('search');
 
@@ -771,19 +1081,19 @@ class ReportsController extends AppController {
 
     }
 
-    $start = date('Y-m-d');
+    $start = date('Y-m-t');
 
     $end = date('Y-m-t');
 
-    $conditionDate = "AND DATE(ItemIssuance.date) >= '$start' AND DATE(ItemIssuance.date) <= '$end'";
+    $conditions['date'] = "AND DATE(PropertyLog.date) >= '$start' AND DATE(PropertyLog.date) <= '$end'";
 
-    if ($this->request->getQuery('startDate')) {
+    if ($this->request->getQuery('startDate')!=null) {
 
       $start = $this->request->getQuery('startDate'); 
 
       $end = $this->request->getQuery('endDate');
 
-      $conditionDate = "AND DATE(ItemIssuance.date) >= '$start' AND DATE(ItemIssuance.date) <= '$end'";
+      $conditions['date'] = "AND DATE(PropertyLog.date) >= '$start' AND DATE(PropertyLog.date) <= '$end'";
 
       $conditionsPrint .= '&startDate='.$start.'&endDate='.$end;
 
@@ -908,6 +1218,166 @@ class ReportsController extends AppController {
       return $this->response;
 
   }  
+
+  public function medicalDailyTreatments() {
+
+    //with pagination
+
+    $page = $this->request->getQuery('page', 1);
+
+    $conditions = array();
+    
+    $conditionsPrint = '';
+
+    $conditions['search'] = '';
+
+    if($this->request->getQuery('search') != null){
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+      $conditionsPrint .= '&search='.$search;
+
+    }
+
+    $today = date('Y-m-d');
+
+    $conditions['date'] = " AND DATE(ConsultationSub.date) = '$today'"; 
+
+    $condition = " AND DATE(ConsultationSub.date) = '$today'"; 
+
+    if ($this->request->getQuery('date')!=null) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(ConsultationSub.date) = '$search_date'"; 
+
+      $condition = " AND DATE(ConsultationSub.date) = '$search_date'"; 
+
+      $conditionsPrint .= '&date='.$search_date;
+
+    }  
+
+    //advance search
+
+    if ($this->request->getQuery('startDate')!=null) {
+
+      $start = $this->request->getQuery('startDate'); 
+
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = " AND DATE(ConsultationSub.date) >= '$start' AND DATE(ConsultationSub.date) <= '$end'";
+
+      $condition = " AND DATE(ConsultationSub.date) >= '$start' AND DATE(ConsultationSub.date) <= '$end'";
+
+      $conditionsPrint .= '&startDate='.$start.'&endDate='.$end;
+
+    }
+
+    $limit = 25;
+
+    $tmpData = $this->Reports->paginate($this->Reports->getAllFacultyMasterlist($conditions, $limit, $page), [
+
+      'extra' => [
+
+        'conditions' => $conditions,
+
+        'type'   => 'medical-daily-treatment'
+
+      ],
+
+      'page' => $page,
+
+      'limit' => $limit
+
+    ]);
+
+    $faculty_masterlists = $tmpData['data'];
+
+    $paginator = $tmpData['pagination'];
+
+    $datas = [];
+
+    foreach ($faculty_masterlists as $data) {
+
+      $consultation_id = $data['id'];
+
+      $tmp = "
+
+        SELECT 
+
+          ConsultationSub.*
+
+        FROM  
+
+          consultation_subs as ConsultationSub
+
+        WHERE 
+
+          ConsultationSub.visible = true $condition AND 
+
+          ConsultationSub.consultation_id = $consultation_id
+
+      ";
+
+      $connection = $this->ConsultationSubs->getConnection();
+
+      $consultation_sub = $connection->execute($tmp)->fetchAll('assoc');
+
+      $subs = array();
+
+      if(!empty($consultation_sub)){
+
+        foreach ($consultation_sub as $key => $value) {
+          
+          $subs[] = array(
+
+            'ailments'   => $value['chief_complaints'],
+
+            'treatments' => $value['treatments'],
+
+            'remarks'    => $value['remarks'],
+
+          );
+
+        }
+
+      }
+
+      $datas[] = array(
+
+        'id'            => $data['id'],
+
+        'patient_name'  => $data['student_name'] != null ? $data['student_name'] : $data['employee_name'],
+
+        'subs'          => $subs
+
+      );
+
+    }
+
+    $response = [
+
+      'ok' => true,
+
+      'data' => $datas,
+
+      'paginator' => $paginator,
+
+      'conditionsPrint' => $conditionsPrint
+
+    ];
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+  }
 
 
   public function enrollment_profile() {
@@ -1051,7 +1521,7 @@ class ReportsController extends AppController {
 
   }
 
-  public function enrollment_list() {
+  public function enrollmentList() {
 
     //with pagination
 
@@ -1327,7 +1797,169 @@ class ReportsController extends AppController {
 
   }
 
-  public function student_behavior() {
+  public function transcriptOfRecords() {
+
+    //with pagination
+
+    $page = isset($this->request->query['page'])? $this->request->query['page'] : 1;
+
+    $conditions = array();
+    
+    $conditionsPrint = '';
+
+    $conditions['search'] = '';
+
+    // search conditions
+
+    if($this->request->getQuery('search') != null){
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+      $conditionsPrint .= '&search='.$search;
+
+    }
+
+    $conditions['date'] = '';
+
+    if ($this->request->getQuery('date') != null) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(StudentEnrollment.date) = '$search_date'"; 
+
+      $conditionsPrint .= '&date='.$search_date;
+
+    }  
+
+    //advance search
+
+    if ($this->request->getQuery('startDate') != null) {
+
+      $start = $this->request->getQuery('startDate'); 
+
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = " AND DATE(StudentEnrollment.date) >= '$start' AND DATE(StudentEnrollment.date) <= '$end'";
+
+      $conditionsPrint .= '&startDate='.$start.'&endDate='.$end;
+
+    }
+
+    $conditions['college_id'] = " AND Student.college_id = 0";
+
+    if ($this->request->getQuery('college_id') != null) {
+
+      $college_id = $this->request->getQuery('college_id'); 
+
+      $conditions['college_id'] = " AND Student.college_id = $college_id";
+
+      $conditionsPrint .= '&college_id='.$college_id;
+
+    }
+
+    $conditions['program_id'] = '';
+
+    if ($this->request->getQuery('program_id') != null) {
+
+      $program_id = $this->request->getQuery('program_id'); 
+
+      $conditions['program_id'] = " AND Student.program_id = $program_id";
+
+      $conditionsPrint .= '&program_id='.$program_id;
+
+    }
+
+    $conditions['year_term_id'] = '';
+
+    if ($this->request->getQuery('year_term_id')) {
+
+      $year_term_id = $this->request->getQuery('year_term_id'); 
+
+      $conditions['year_term_id'] = " AND StudentEnrollment.year_term_id = $year_term_id";
+
+      $conditionsPrint .= '&year_term_id='.$year_term_id;
+
+    }
+
+    $limit = 25;
+
+    $tmpData = $this->Reports->paginate($this->Reports->getAllTranscriptOfRecord($conditions, $limit, $page), [
+
+      'extra' => [
+
+        'conditions' => $conditions,
+
+        'type'   => 'transcript-of-records'
+
+      ],
+
+      'page' => $page,
+
+      'limit' => $limit
+
+    ]);
+
+    $main = $tmpData['data'];
+
+    $paginator = $tmpData['pagination'];
+
+    $datas = array();
+
+    if(!empty($main)){
+
+      foreach ($main as $data) {
+
+        $datas[] = array(
+
+          'id'          => $data['id'],
+
+          'full_name'   => $data['full_name'],
+
+          'student_no'  => $data['student_no'],
+
+          'college'     => $data['college'],
+
+          'program'     => $data['program'],
+
+        );
+
+      }
+
+    }
+
+    $response = [
+
+      'ok' => true,
+
+      'data' => $datas,
+
+      'paginator' => $paginator,
+
+      'conditionsPrint' => $conditionsPrint
+
+    ];
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+    $this->set(array(
+
+      'response'=>$response,
+
+      '_serialize'=>'response'
+
+    ));
+
+  }
+
+  public function studentBehavior() {
 
     //with pagination
 
@@ -1471,7 +2103,7 @@ class ReportsController extends AppController {
 
 
   //admission
-  public function list_applicants(){   
+  public function listApplicants(){   
 
    $page = $this->request->getQuery('page', 1);
 
@@ -1645,7 +2277,141 @@ class ReportsController extends AppController {
     return $this->response;
 
   }
-  public function list_scholars() {
+
+  public function listStudents() {
+
+    //with pagination
+
+    $page = $this->request->getQuery('page', 1);
+
+    $conditions = array();
+    
+    $conditionsPrint = '';
+
+    $conditions['search'] = '';
+
+    if ($this->request->getQuery('search')) {
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+      $conditionsPrint .= '&search='.$search;
+
+    }
+
+    $conditions['date'] = '';
+
+    if ($this->request->getQuery('date')) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(StudentEnrollment.date) = '$search_date'"; 
+
+      $conditionsPrint .= '&date='.$search_date;
+
+    }  
+
+    //advance search
+
+    if ($this->request->getQuery('startDate')) {
+
+      $start = $this->request->getQuery('startDate'); 
+
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = " AND DATE(StudentEnrollment.date) >= '$start' AND DATE(StudentEnrollment.date) <= '$end'";
+
+      $conditionsPrint .= '&startDate='.$start.'&endDate='.$end;
+
+    }
+
+    $conditions['year_term_id'] = " AND Student.year_term_id IS NULL";
+
+    $conditions['year_term_id_enrollment'] = '';
+
+    if ($this->request->getQuery('year_term_id')) {
+
+      $year_term_id = $this->request->getQuery('year_term_id'); 
+
+      $conditions['year_term_id'] = " AND Student.year_term_id = $year_term_id";
+
+      $conditions['year_term_id_enrollment'] = " AND StudentEnrollment.year_term_id = $year_term_id";
+
+      $conditionsPrint .= '&year_term_id='.$year_term_id;
+
+    }
+
+    $limit = 25;
+
+    $tmpData = $this->Reports->paginate($this->Reports->getAllListStudent($conditions, $limit, $page), [
+
+      'extra' => [
+
+        'conditions' => $conditions,
+
+        'type'   => 'list-student'
+
+      ],
+
+      'page' => $page,
+
+      'limit' => $limit
+
+    ]);
+
+    
+    $student_lists = $tmpData['data'];
+
+    $paginator = $tmpData['pagination'];
+
+    $datas = [];
+
+    foreach ($student_lists as $data) {
+
+      $datas[] = array(
+
+          'id'          => $data['id'],
+
+          'student_name'   => $data['full_name'],
+
+          'student_no'  => $data['student_no'],
+
+          'college'     => $data['college'],
+
+          'program'     => $data['program'],
+
+          'date'        => fdate($data['date'],'m/d/Y'),
+
+       );
+
+    }
+
+
+
+    $response = array(
+
+      'ok' => true,
+
+      'conditionsPrint' => $conditionsPrint,
+
+      'data' => $datas,
+
+      'paginator' => $paginator
+
+    );
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+  }
+
+  public function listScholars() {
 
     //with pagination
 
@@ -2709,6 +3475,144 @@ class ReportsController extends AppController {
     $this->response->getBody()->write(json_encode($response));
 
     return $this->response;
+
+  }
+
+  public function gwa() {
+
+    //with pagination
+
+    $page = isset($this->request->query['page'])? $this->request->query['page'] : 1;
+
+    $conditions = array();
+    
+    $conditionsPrint = '';
+
+    $conditions['search'] = '';
+
+    // search conditions
+
+    if($this->request->getQuery('search') != null){
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+      $conditionsPrint .= '&search='.$search;
+
+    }
+
+    $conditions['college_id'] = "AND Student.college_id = 0";
+
+    if ($this->request->getQuery('college_id') != null) {
+
+      $college_id = $this->request->getQuery('college_id'); 
+
+      $conditions['college_id'] = " AND Student.college_id = $college_id";
+
+      $conditionsPrint .= '&college_id='.$college_id;
+
+    }
+
+    $conditions['program_id'] = " AND Student.program_id = 0";
+
+    if ($this->request->getQuery('program_id') != null) {
+
+      $program_id = $this->request->getQuery('program_id'); 
+
+      $conditions['program_id'] = " AND Student.program_id = $program_id";
+
+      $conditionsPrint .= '&program_id='.$program_id;
+
+    }
+
+    $conditions['section_id'] = " AND StudentEnrolledCourse.section_id = 0";
+
+    if ($this->request->getQuery('section_id') != null) {
+
+      $section_id = $this->request->getQuery('section_id'); 
+
+      $conditions['section_id'] = " AND StudentEnrolledCourse.section_id = $section_id";
+
+      $conditionsPrint .= '&section_id='.$section_id;
+
+    }
+
+    $limit = 25;
+
+    $tmpData = $this->Reports->paginate($this->Reports->getAllGwa($conditions, $limit, $page), [
+
+      'extra' => [
+
+        'conditions' => $conditions,
+
+        'type'   => 'gwa'
+
+      ],
+
+      'page' => $page,
+
+      'limit' => $limit
+
+    ]);
+
+    $main = $tmpData['data'];
+
+    $paginator = $tmpData['pagination'];
+
+    $datas = array();
+
+    if(!empty($main)){
+
+      foreach ($main as $data) {
+
+        $datas[] = array(
+
+          'id' => $data['id'],
+
+          'student_name' => $data['full_name'],
+
+          'college' => $data['college'],
+
+          'program' => $data['program'],
+
+          'ave' => $data['ave'],
+
+
+
+        );
+
+      }
+
+    }
+
+    $response = [
+
+      'ok' => true,
+
+      'data' => $datas,
+
+      'paginator' => $paginator,
+
+      'conditionsPrint' => $conditionsPrint
+
+    ];
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+    $this->set(array(
+
+      'response'=>$response,
+
+      '_serialize'=>'response'
+
+    ));
 
   }
 

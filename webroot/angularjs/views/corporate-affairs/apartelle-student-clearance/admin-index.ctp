@@ -28,7 +28,7 @@
 	                      <?php if (hasAccess('apartelle student clearance/add', $currentUser)): ?>
 	                        <a href="#/corporate-affairs/admin-apartelle-student-clearance/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
 	                      <?php endif ?>
-	                      <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
+	                      <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
 	                      <?php if (hasAccess('apartelle student clearance/print', $currentUser)): ?>
 	                        <button ng-click="print()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
 	                      <?php endif ?>

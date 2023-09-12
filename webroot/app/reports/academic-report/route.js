@@ -4,7 +4,7 @@ app.config(function($routeProvider) {
 
   .when('/reports/academic-report/faculty-masterlists', {
 
-    templateUrl: tmp + 'reports__academic_report__faculty_masterlists',
+    templateUrl: 'angularjs/views/reports/academic-report/faculty-masterlists.ctp',
 
     controller: 'FacultyMasterlistController',
 

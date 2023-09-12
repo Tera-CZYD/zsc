@@ -121,7 +121,7 @@
 
                 <?php if (hasAccess('admin transferee/index', $currentUser)): ?>
                   <li class="nav-link-side nav-transferee">
-                    <a href="#/registrar/admin-transferee" onclick="change('admin-transferee')">School Transfer Request</a>
+                    <a href="#/registrar/admin-transferee" onclick="change('transferee')">School Transfer Request</a>
                   </li>
                 <?php endif ?>
 
@@ -620,7 +620,7 @@
                     <?php endif ?>
                     <?php if (hasAccess('health and medical service/index', $currentUser)): ?>
                       <li class="nav-link-side nav-health">
-                        <a href="#/reports/medical-services/consultation" onclick="change('consultation')"> Consultation Report </a>
+                        <a href="#/reports/medical-services/consultation" onclick="change('report-consultation')"> Consultation Report </a>
                       </li>
                     <?php endif ?>
                     <?php if (hasAccess('health and medical service/index', $currentUser)): ?>

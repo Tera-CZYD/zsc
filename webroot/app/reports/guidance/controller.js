@@ -98,14 +98,14 @@ app.controller('ListRequestedFormController', function($scope,Select, ListReques
   
   }
 
-  $scope.advanceSearch = false;
-  
-  $scope.advance_search = function() {
-  
+  $scope.selectedFilter = 'date';
+
+  $scope.changeFilter = function(type){
+
     $scope.search = {};
- 
-    $scope.advanceSearch = false;
- 
+
+    $scope.selectedFilter = type;
+
     $('.monthpicker').datepicker({format: 'MM', autoclose: true, minViewMode: 'months',maxViewMode:'months'});
  
     $('.input-daterange').datepicker({
@@ -114,39 +114,23 @@ app.controller('ListRequestedFormController', function($scope,Select, ListReques
 
     });
 
-    $('#advance-search-modal').modal('show');
-
   }
 
   $scope.searchFilter = function(search) {
-  
-    $scope.filter = false;
-   
-    $scope.advanceSearch = true;
    
     $scope.searchTxt = '';
-   
+
     $scope.dateToday = null;
    
     $scope.startDate = null;
    
     $scope.endDate = null;
- 
-    $scope.position_id = null;
- 
-    $scope.office_id = null;
- 
-    $scope.employmentStatusId = null;
 
-    if (search.filterBy == 'today') {
-     
-      $scope.dateToday = Date.parse($scope.today).toString('yyyy-MM-dd');
-    
-    }else if (search.filterBy == 'date') {
+    if ($scope.selectedFilter == 'date') {
     
       $scope.dateToday = Date.parse(search.date).toString('yyyy-MM-dd');
    
-    }else if (search.filterBy == 'month') {
+    }else if ($scope.selectedFilter == 'month') {
    
       date = $('.monthpicker').datepicker('getDate');
    
@@ -162,27 +146,12 @@ app.controller('ListRequestedFormController', function($scope,Select, ListReques
       
       $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
     
-    }else if (search.filterBy == 'this-month') {
-      
-      date = new Date();
-      
-      year = date.getFullYear();
-      
-      month = date.getMonth() + 1;
-      
-      lastDay = new Date(year, month, 0);
+    }else if ($scope.selectedFilter == 'customRange') {
+    
+      $scope.startDate = Date.parse(search.startDate).toString('yyyy-MM-dd');
+    
+      $scope.endDate = Date.parse(search.endDate).toString('yyyy-MM-dd');
 
-      if (month < 10) month = '0' + month;
-      
-      $scope.startDate = year + '-' + month + '-01';
-      
-      $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
-   
-    }else if (search.filterBy == 'custom-range') {
-    
-      $scope.startDate = search.startDate;
-    
-      $scope.endDate = search.endDate;
     
     }
 
@@ -197,8 +166,6 @@ app.controller('ListRequestedFormController', function($scope,Select, ListReques
       year_term_id : $scope.year_term_id
 
     });
-
-    $('#advance-search-modal').modal('hide');
   
   } 
 
@@ -370,14 +337,14 @@ app.controller('GcoEvaluationListController', function($scope,Select, GcoEvaluat
   
   }
 
-  $scope.advanceSearch = false;
-  
-  $scope.advance_search = function() {
-  
+  $scope.selectedFilter = 'date';
+
+  $scope.changeFilter = function(type){
+
     $scope.search = {};
- 
-    $scope.advanceSearch = false;
- 
+
+    $scope.selectedFilter = type;
+
     $('.monthpicker').datepicker({format: 'MM', autoclose: true, minViewMode: 'months',maxViewMode:'months'});
  
     $('.input-daterange').datepicker({
@@ -386,39 +353,23 @@ app.controller('GcoEvaluationListController', function($scope,Select, GcoEvaluat
 
     });
 
-    $('#advance-search-modal').modal('show');
-
   }
 
   $scope.searchFilter = function(search) {
-  
-    $scope.filter = false;
-   
-    $scope.advanceSearch = true;
    
     $scope.searchTxt = '';
-   
+
     $scope.dateToday = null;
    
     $scope.startDate = null;
    
     $scope.endDate = null;
- 
-    $scope.position_id = null;
- 
-    $scope.office_id = null;
- 
-    $scope.employmentStatusId = null;
 
-    if (search.filterBy == 'today') {
-     
-      $scope.dateToday = Date.parse($scope.today).toString('yyyy-MM-dd');
-    
-    }else if (search.filterBy == 'date') {
+    if ($scope.selectedFilter == 'date') {
     
       $scope.dateToday = Date.parse(search.date).toString('yyyy-MM-dd');
    
-    }else if (search.filterBy == 'month') {
+    }else if ($scope.selectedFilter == 'month') {
    
       date = $('.monthpicker').datepicker('getDate');
    
@@ -434,27 +385,12 @@ app.controller('GcoEvaluationListController', function($scope,Select, GcoEvaluat
       
       $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
     
-    }else if (search.filterBy == 'this-month') {
-      
-      date = new Date();
-      
-      year = date.getFullYear();
-      
-      month = date.getMonth() + 1;
-      
-      lastDay = new Date(year, month, 0);
+    }else if ($scope.selectedFilter == 'customRange') {
+    
+      $scope.startDate = Date.parse(search.startDate).toString('yyyy-MM-dd');
+    
+      $scope.endDate = Date.parse(search.endDate).toString('yyyy-MM-dd');
 
-      if (month < 10) month = '0' + month;
-      
-      $scope.startDate = year + '-' + month + '-01';
-      
-      $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
-   
-    }else if (search.filterBy == 'custom-range') {
-    
-      $scope.startDate = search.startDate;
-    
-      $scope.endDate = search.endDate;
     
     }
 
@@ -469,10 +405,8 @@ app.controller('GcoEvaluationListController', function($scope,Select, GcoEvaluat
       year_term_id : $scope.year_term_id
 
     });
-
-    $('#advance-search-modal').modal('hide');
   
-  } 
+  }
 
   $scope.print = function(){
 

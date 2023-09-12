@@ -208,7 +208,11 @@ app.controller('StudentBehaviorController', function($scope, StudentBehavior,Sel
 
       startDate    : $scope.startDate,
 
-      endDate      : $scope.endDate
+      endDate      : $scope.endDate,
+
+      year_term_id  : $scope.year_term_id,
+
+      program_id  : $scope.program_id,
 
     });
   

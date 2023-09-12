@@ -53,6 +53,38 @@ class ProgramAdvisersController extends AppController {
 
     }
 
+    $conditions['date'] = '';
+
+    if ($this->request->getQuery('date')!= null) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(StudentApplication.approved_date) = '$search_date'"; 
+
+      $dates['date'] = $search_date;
+
+      $conditionsPrint .= '&date='.$search_date;
+
+    }  
+
+    //advance search
+
+    if ($this->request->getQuery('startdate')!= null) {
+
+      $start = $this->request->getQuery('startdate'); 
+
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = " AND DATE(StudentApplication.approved_date) >= '$start' AND DATE(StudentApplication.approved_date) <= '$end'";
+
+      $dates['startDate'] = $start;
+
+      $dates['endDate']   = $end;
+
+      $conditionsPrint .= '&startDate='.$start.'&endDate='.$end;
+
+    }
+
     $conditions['year_term_id'] = 0; 
 
     if($this->request->getQuery('year_term_id') != null) {
