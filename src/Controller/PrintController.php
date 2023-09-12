@@ -17638,133 +17638,113 @@ class PrintController extends AppController {
 
   }
 
-  public function certificate_registrations($id = null){
+  public function certificateRegistrations($id = null){
 
-    $office_reference = $this->Global->OfficeReference('Registered Student');
+    // $office_reference = $this->Global->OfficeReference('Registered Student');
 
-    $data = $this->Student->find('first', array(
+    // debug($id);
 
-      'contain' => array(
+    $student = $this->Students->find()
+    ->contain([
+        'YearLevelTerms',
+        'Colleges' => function ($q) {
+            return $q->where(['Colleges.visible' => 1]);
+        },
+        'CollegePrograms' => function ($q) {
+            return $q->where(['CollegePrograms.visible' => 1]);
+        },
+        'StudentEnrolledCourses' => function ($q) {
+            return $q->where(['StudentEnrolledCourses.visible' => 1]);
+        },
+        'StudentEnrolledUnits' => function ($q) {
+            return $q->where(['StudentEnrolledUnits.visible' => 1]);
+        },
+        'StudentEnrollments' => function ($q) {
+            return $q->where(['StudentEnrollments.visible' => 1]);
+        },
+    ])
+    ->where([
+        'Students.visible' => 1,
+        'Students.id' => $id,
+    ])
+    ->first();
 
-        'YearLevelTerm',
-        
-        'College' => array(
-        
-          'Campus' => array(
+      if ($student) {
 
-            'conditions' => array(
+          $data['YearLevelTerm'] = $student->year_level_term;
 
-              'Campus.visible' => true
+          $data['CollegeProgram'] = $student->college_program;
 
-            ),
+          $data['StudentEnrolledCourse'] = $student->student_enrolled_courses;
 
-          ),
+          $data['StudentEnrolledUnit'] = $student->student_enrolled_units;
 
-          'conditions' => array(
+          $data['StudentEnrollment'] = $student->student_enrollments;
 
-            'College.visible' => true
+          $data['College'] = $student->college;
 
-          ),
+          unset($student->year_level_term);
 
-        ),
-        
-        'CollegeProgram' => array(
+          unset($student->college_program);
 
-          'conditions' => array(
+          unset($student->student_enrolled_courses);
 
-            'CollegeProgram.visible' => true
+          unset($student->student_enrolled_units);
 
-          ),
+          unset($student->student_enrollments);
 
-        ),
-        
-        'StudentEnrolledCourse' => array(
+          unset($student->college);
 
-          'conditions' => array(
+          $data['Student'] = $student;
+      }
 
-            'StudentEnrolledCourse.visible' => true
+      if (!empty($data['StudentEnrolledCourse'])) {
 
-          )
+          foreach ($data['StudentEnrolledCourse'] as $key => $value) {
 
-        ),
+              $schedule = $this->StudentEnrolledSchedules->find()
 
-        'StudentEnrolledUnit' => array(
+                  ->where([
 
-          'conditions' => array(
+                      'visible' => 1,
 
-            'StudentEnrolledUnit.visible' => true
+                      'course_id' => $value['course_id'],
 
-          )
+                      'student_id' => $id,
 
-        ),
+                  ])
 
-        'StudentEnrollment' => array(
+                  ->all();
 
-          'conditions' => array(
+              $subs = [];
 
-            'StudentEnrollment.visible' => true
+              if (!empty($schedule)) {
 
-          )
+                  foreach ($schedule as $keys => $values) {
 
-        )
+                      $subs[] = [
 
-      ),
+                          'days' => $values->day,
 
-      'conditions' => array(
+                          'time' => date('h:i A', strtotime($values->time_start))
 
-        'Student.visible' => true,
+                              . ' - ' . date('h:i A', strtotime($values->time_end)),
 
-        'Student.id'      => $id,
+                          'room' => $values->room,
 
-      )
+                          'faculty_name' => $values->faculty_name,
 
-    ));
+                      ];
 
-    if(!empty($data['StudentEnrolledCourse'])){
+                  }
 
-      foreach ($data['StudentEnrolledCourse'] as $key => $value) {
-        
-        $schedule = $this->StudentEnrolledSchedule->find('all', array(
+              }
 
-          'conditions' => array(
-
-            'StudentEnrolledSchedule.visible' => true,
-
-            'StudentEnrolledSchedule.course_id' => $value['course_id'],
-
-            'StudentEnrolledSchedule.student_id' => $id,
-
-          )
-
-        ));
-
-        $subs = array();
-
-        if(!empty($schedule)){
-
-          foreach ($schedule as $keys => $values) {
-
-            $subs[] = array(
-
-              'days' => $values['StudentEnrolledSchedule']['day'],
-
-              'time' => fdate($values['StudentEnrolledSchedule']['time_start'],'h:i A').' - '.fdate($values['StudentEnrolledSchedule']['time_end'],'h:i A'),
-
-              'room' => $values['StudentEnrolledSchedule']['room'],
-
-              'faculty_name' => $values['StudentEnrolledSchedule']['faculty_name'],
-
-            );
+              $data['StudentEnrolledCourse'][$key]['subs'] = $subs;
 
           }
 
-        }
-
-        $data['StudentEnrolledCourse'][$key]['subs'] = $subs;
-
       }
-
-    }
 
     $student_name = @$data['Student']['last_name'].', '.$data['Student']['first_name'].' '.$data['Student']['middle_name'];
 
@@ -17843,63 +17823,64 @@ class PrintController extends AppController {
     
 
 
-//     $pdf->SetXY(10, $pdf->getY()-5);
-//     $pdf->SetFont("Arial", 'B', 20);
-//     $pdf->Cell(15, 5, '', 0, 0, 'L');
-//     $pdf->Cell(0, 5, 'CERTIFICATE OF REGISTRATION', 0, 0, 'L');
-//     $pdf->Ln(9);
-//     $pdf->SetFont("Arial", '', 9);
-//     $pdf->Cell(1, 5, '', 0, 0, 'L');
-//     $pdf->MultiCell(100, 5, 'Family Name, First Name MI 
-//       '.strtoupper($student_name), 1, 1);
-//     $pdf->SetXY(111, $pdf->getY()-10);
-//     $pdf->SetFont("Arial", '', 8);
-//     $pdf->MultiCell(50, 5, 'SEMESTER/SCHOOL YEAR
-// '.$data['YearLevelTerm']['semester'].' - '.$data['Student']['school_year'], 1, 1);
-//     $pdf->SetXY(161, $pdf->getY()-10);
-//         $pdf->SetFont("Arial", '', 9);
-//     $pdf->MultiCell(45, 5, 'STUDENT NO.: 
-//       '.$data['Student']['student_no'], 1, 1);
-//     $pdf->SetFont("Arial", '', 9);
-//     $pdf->Cell(1, 5, '', 0, 0, 'L');
-//     $pdf->MultiCell(30, 4, 'Course: 
+    //     $pdf->SetXY(10, $pdf->getY()-5);
+    //     $pdf->SetFont("Arial", 'B', 20);
+    //     $pdf->Cell(15, 5, '', 0, 0, 'L');
+    //     $pdf->Cell(0, 5, 'CERTIFICATE OF REGISTRATION', 0, 0, 'L');
+    //     $pdf->Ln(9);
+    //     $pdf->SetFont("Arial", '', 9);
+    //     $pdf->Cell(1, 5, '', 0, 0, 'L');
+    //     $pdf->MultiCell(100, 5, 'Family Name, First Name MI 
+    //       '.strtoupper($student_name), 1, 1);
+    //     $pdf->SetXY(111, $pdf->getY()-10);
+    //     $pdf->SetFont("Arial", '', 8);
+    //     $pdf->MultiCell(50, 5, 'SEMESTER/SCHOOL YEAR
+    // '.$data['YearLevelTerm']['semester'].' - '.$data['Student']['school_year'], 1, 1);
+    //     $pdf->SetXY(161, $pdf->getY()-10);
+    //         $pdf->SetFont("Arial", '', 9);
+    //     $pdf->MultiCell(45, 5, 'STUDENT NO.: 
+    //       '.$data['Student']['student_no'], 1, 1);
+    //     $pdf->SetFont("Arial", '', 9);
+    //     $pdf->Cell(1, 5, '', 0, 0, 'L');
+    //     $pdf->MultiCell(30, 4, 'Course: 
 
-// '.$data['CollegeProgram']['code'], 'LBR', 1);
-//     $pdf->SetXY(41, $pdf->getY()-12);
-//     $pdf->MultiCell(30, 4, 'MAJOR:
+    // '.$data['CollegeProgram']['code'], 'LBR', 1);
+    //     $pdf->SetXY(41, $pdf->getY()-12);
+    //     $pdf->MultiCell(30, 4, 'MAJOR:
 
-// '.$data['CollegeProgram']['major'], 'LBR', 1);
-//     $pdf->SetXY(71, $pdf->getY()-12);
-//     $pdf->MultiCell(85, 4, 'COLLEGE: 
+    // '.$data['CollegeProgram']['major'], 'LBR', 1);
+    //     $pdf->SetXY(71, $pdf->getY()-12);
+    //     $pdf->MultiCell(85, 4, 'COLLEGE: 
 
-// '.$data['College']['name'], 'LBR', 1);
-//     $pdf->SetXY(156, $pdf->getY()-12);
-//     $pdf->MultiCell(25, 4, 'YEAR LEVEL:
+    // '.$data['College']['name'], 'LBR', 1);
+    //     $pdf->SetXY(156, $pdf->getY()-12);
+    //     $pdf->MultiCell(25, 4, 'YEAR LEVEL:
 
-// '.$data['YearLevelTerm']['year'], 'LBR', 1);
-//     $pdf->SetXY(181, $pdf->getY()-12);
-//     $active = 'INACTIVE';
-//     if($data['Student']['active']==1){
-//       $active = "Continuing";
-//     }
-//     $pdf->MultiCell(25, 4, 'STATUS:
+    // '.$data['YearLevelTerm']['year'], 'LBR', 1);
+    //     $pdf->SetXY(181, $pdf->getY()-12);
+    //     $active = 'INACTIVE';
+    //     if($data['Student']['active']==1){
+    //       $active = "Continuing";
+    //     }
+    //     $pdf->MultiCell(25, 4, 'STATUS:
 
-// '.$active, 'LBR', 1);
-    $pdf->getY()-7;
-// print_r($data);
+    // '.$active, 'LBR', 1);
+        $pdf->getY()-7;
+    // print_r($data);
     $pdf->SetFont("Arial", '', 7);
     $pdf->Cell(1, 5, '', 0, 0, 'L');
-    $pdf->Cell(20, 5, 'Comp Code', 1, 0, 'C');
-    $pdf->Cell(15, 5, 'Subj Title', 1, 0, 'C');
+    // $pdf->Cell(20, 5, 'Comp Code', 1, 0, 'C');
+    $pdf->Cell(20, 5, 'Subj Title', 1, 0, 'C');
     $pdf->Cell(95, 5, 'DESCRIPTION', 1, 0, 'C');
     $pdf->Cell(20,5, 'UNITS', 1, 0, 'C');
     $pdf->Cell(30, 5, 'TIME', 1, 0, 'C');
     $pdf->Cell(15, 5, 'DAYS', 1, 0, 'C');
+    $pdf->Cell(15, 5, 'SECTION', 1, 0, 'C');
     // $pdf->Cell(20, 5, 'ROOM', 1, 0, 'C');
     // $pdf->Cell(30, 5, 'INSTRUCTOR', 1, 0, 'C');
     $pdf->Ln(5);
-    $pdf->SetWidths(array(20,15,95,10,10,30,15));
-    $pdf->SetAligns(array('C','C','L','C','C','C','C'));
+    $pdf->SetWidths(array(20,95,10,10,30,15,15));
+    $pdf->SetAligns(array('C','L','C','C','C','C','C'));
     $pdf->SetFont("Arial", '', 7);
     $rows = 0;
     
@@ -17954,19 +17935,26 @@ class PrintController extends AppController {
           
           $pdf->Cell(1, 5, '', 0, 0, 'L');
 
+          $lab = ($value['laboratory_unit'] > 0 && $value['laboratory_unit'] != null ) ? "lab" : "";
+
+          $lecture = ($value['lecture_unit'] > 0 && $value['lecture_unit'] != null ) ? "lecture" : "";
+
           $pdf->RowLegalP(array(
 
-            "",
+            
             $value['course_code'],
 
             strtoupper($value['course']),
 
-            $value['credit_unit'],
-            "3.00",
+            $lab,
+
+            $lecture,
 
             $time,
 
             $days,
+
+            $value['section'],
 
           ));
 
@@ -17982,11 +17970,12 @@ class PrintController extends AppController {
         
         $pdf->Cell(1, 7, '', 0, 0, 'L');
         $pdf->Cell(20, 7, '', 1, 0, 'C');
-        $pdf->Cell(15, 7, '', 1, 0, 'C');
+        // $pdf->Cell(15, 7, '', 1, 0, 'C');
         $pdf->Cell(95, 7, '', 1, 0, 'C');
         $pdf->Cell(10, 7, '', 1, 0, 'C');
         $pdf->Cell(10, 7, '', 1, 0, 'C');
         $pdf->Cell(30, 7, '', 1, 0, 'C');
+        $pdf->Cell(15, 7, '', 1, 0, 'C');
         $pdf->Cell(15, 7, '', 1, 0, 'C');
         $pdf->Ln(7);
         

@@ -618,6 +618,21 @@
                         <a href="#/reports/medical-services/daily-treatments" onclick="change('daily-treatments')"> Daily Treatments </a>
                       </li>
                     <?php endif ?>
+                    <?php if (hasAccess('health and medical service/index', $currentUser)): ?>
+                      <li class="nav-link-side nav-health">
+                        <a href="#/reports/medical-services/consultation" onclick="change('consultation')"> Consultation Report </a>
+                      </li>
+                    <?php endif ?>
+                    <?php if (hasAccess('health and medical service/index', $currentUser)): ?>
+                      <li class="nav-link-side nav-health">
+                        <a href="#/reports/medical-services/consultation-employee" onclick="change('consultation-employee')"> Employee Statistics Report </a>
+                      </li>
+                    <?php endif ?>
+                    <?php if (hasAccess('health and medical service/index', $currentUser)): ?>
+                      <li class="nav-link-side nav-health">
+                        <a href="#/reports/medical-services/employee-frequency" onclick="change('employee-frequency')"> Employee Consultation Frequency </a>
+                      </li>
+                    <?php endif ?>
                     </ul>
                 </li>
 

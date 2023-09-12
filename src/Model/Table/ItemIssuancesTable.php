@@ -10,6 +10,12 @@
 
       $this->addBehavior('Timestamp');
 
+      $this->hasMany('ItemIssuanceSubs', [
+
+      'foreignKey' => 'item_issuance_id', 
+
+    ]);
+
     }
 
     public function getAllItemIssuance($conditions, $limit, $page){

@@ -377,6 +377,44 @@ class SelectController extends AppController {
    
       $datas = 'MSP-' . str_pad($tmp + 1, 5, "0", STR_PAD_LEFT);
 
+    }else if ($code == 'employee-list') {
+
+      $this->loadModel('Employees');
+  
+      $tmp = $this->Employees
+
+          ->find()
+
+          ->where([
+
+              'visible' => 1,
+
+          ])
+
+          ->order([
+
+              'code' => 'ASC',
+
+          ])
+
+          ->all();
+
+      if(!empty($tmp)){
+
+        foreach ($tmp as $k => $data) {
+
+          $datas[] = array(
+
+            'id'    => $data['id'],
+
+            'value' => $data['code']. " - " . $data['family_name']. " , " .  $data['given_name'] . "  ". $data['middle_name'],
+
+          );
+
+        }
+
+      }
+
     } else if ($code == 'medical-employee-profile-code'){
 
       $tmp = $this->MedicalEmployeeProfiles->find()->where([

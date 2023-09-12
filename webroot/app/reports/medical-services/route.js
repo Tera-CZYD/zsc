@@ -34,4 +34,28 @@ app.config(function($routeProvider) {
 
   })
 
+  .when('/reports/medical-services/consultation', {
+
+    templateUrl: 'angularjs/views/reports/medical-services/consultation.ctp',
+
+    controller: 'ConsultationReportController',
+
+  })
+
+  .when('/reports/medical-services/consultation-employee', {
+
+    templateUrl: 'angularjs/views/reports/medical-services/consultation-employee.ctp',
+
+    controller: 'ConsultationEmployeeReportController',
+
+  })
+
+  .when('/reports/medical-services/employee-frequency', {
+
+    templateUrl: 'angularjs/views/reports/medical-services/employee-frequency.ctp',
+
+    controller: 'EmployeeFrequencyReportController',
+
+  })
+
 });

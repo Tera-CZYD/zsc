@@ -525,7 +525,7 @@ class ReportsController extends AppController {
 
   }
 
-  public function medical_monthly_accomplishment() {
+  public function medicalMonthlyAccomplishment() {
 
     //with pagination
 
@@ -637,7 +637,7 @@ class ReportsController extends AppController {
 
   }  
 
-  public function medical_property_equipment() {
+  public function medicalPropertyEquipment() {
 
     //with pagination
 
@@ -747,7 +747,7 @@ class ReportsController extends AppController {
 
   }
 
-  public function medical_monthly_consumption() {
+  public function medicalMonthlyConsumption() {
 
     //with pagination
 
@@ -2037,7 +2037,11 @@ class ReportsController extends AppController {
 
   } 
 
-  public function consultation_report() {
+
+
+  //MEDICAL
+
+  public function consultationReport() {
 
     //with pagination
 
@@ -2144,7 +2148,7 @@ class ReportsController extends AppController {
 
   }
 
-  public function consultation_employee_report() {
+  public function consultationEmployeeReport() {
 
     //with pagination
 
@@ -2276,7 +2280,7 @@ class ReportsController extends AppController {
 
   }
 
-  public function employee_frequency_report() {
+  public function employeeFrequencyReport() {
 
     //with pagination
 
@@ -2386,7 +2390,7 @@ class ReportsController extends AppController {
 
   //GUIDANCE
 
-  public function list_requested_form() {
+  public function listRequestedForm() {
 
     //with pagination
 
@@ -2544,7 +2548,7 @@ class ReportsController extends AppController {
 
   }
 
-  public function gco_evaluation_list() {
+  public function gcoEvaluationList() {
 
     //with pagination
 
