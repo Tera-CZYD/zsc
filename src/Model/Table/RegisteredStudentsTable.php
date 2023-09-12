@@ -270,13 +270,10 @@ class RegisteredStudentsTable extends Table {
 
         )
 
-      GROUP BY 
-
-        Student.id
-
     ";
 
     $query = $this->getConnection()->execute($sql)->fetch('assoc');
+    // var_dump($query);
 
     return $query['count'];
 

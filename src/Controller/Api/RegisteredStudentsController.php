@@ -58,7 +58,7 @@ class RegisteredStudentsController extends AppController {
 
     // search conditions
 
-    if ($this->request->getQuery('search')) {
+    if ($this->request->getQuery('search')!=null) {
 
       $search = $this->request->getQuery('search');
 
@@ -70,7 +70,7 @@ class RegisteredStudentsController extends AppController {
 
     $conditions['date'] = '';
 
-    if ($this->request->getQuery('date')) {
+    if ($this->request->getQuery('date')!=null) {
 
       $search_date = $this->request->getQuery('date');
 
@@ -84,7 +84,7 @@ class RegisteredStudentsController extends AppController {
 
     //advance search
 
-    if ($this->request->getQuery('startdate')) {
+    if ($this->request->getQuery('startdate')!=null) {
 
       $start = $this->request->getQuery('startdate'); 
 
@@ -100,7 +100,7 @@ class RegisteredStudentsController extends AppController {
 
     }
 
-    if ($this->request->getQuery('year_term_id')) {
+    if ($this->request->getQuery('year_term_id')!=null) {
 
       $year_term_id = $this->request->getQuery('year_term_id');
 

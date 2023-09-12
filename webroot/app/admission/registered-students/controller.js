@@ -148,8 +148,6 @@ app.controller('RegisteredStudentController', function($scope, RegisteredStudent
    
     $scope.endDate = null;
 
-    $scope.year_term_id = null;
-
     if ($scope.selectedFilter == 'date') {
     
       $scope.dateToday = Date.parse(search.date).toString('yyyy-MM-dd');
