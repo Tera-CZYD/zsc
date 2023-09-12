@@ -724,6 +724,23 @@
                     </ul>
                 </li>
 
+                <li class="nav-link-side nav-list-students nav-list-requested-form nav-list-gco-evaluation"><a><i></i> Guidance </a>
+                  <ul class="nav child_menu_bot collapse collapse-list-requested-form collapse-list-gco-evaluation " >
+                    <?php if (hasAccess('report guidance/list of requested forms', $currentUser)): ?>
+                      <li class="nav-link-side nav-list-requested-form">
+                        <a href="#/reports/guidance/requested-form" onclick="change('list-requested-form')"> List of Requested Forms </a>
+                      </li>
+                    <?php endif ?>
+
+                    <?php if (hasAccess('report guidance/list of requested forms', $currentUser)): ?>
+                      <li class="nav-link-side nav-list-gco-evaluation' ">
+                        <a href="#/reports/guidance/gco-evaluation" onclick="change('list-gco-evaluation')"> GCO Evaluation Report </a>
+                      </li>
+                    <?php endif ?>
+
+                    </ul>
+                </li>
+
                 <li class="nav-link-side nav-learning-resource-report nav-report-bibliography nav-report-checkout nav-report-checkin"><a><i></i> Learning Resource Center  </a>
                   <ul class="nav child_menu_bot collapse collapse-learning-resource-center collapse-report-bibliography collapse-report-checkout collapse-report-checkin" >
                     <?php if (hasAccess('learning resource center/index', $currentUser)): ?>

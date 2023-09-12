@@ -2037,6 +2037,677 @@ class ReportsController extends AppController {
 
   } 
 
+  public function consultation_report() {
+
+    //with pagination
+
+    $page = $this->request->getQuery('page', 1);
+
+    $conditions = array();
+    
+    $conditionsPrint = '';
+
+    $conditions['search'] = '';
+
+    if($this->request->getQuery('search')){
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+      $conditionsPrint .= '&search='.$search;
+
+    }
+
+    $conditions['date'] = '';
+
+    if ($this->request->getQuery('date')) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(Consultation.date) = '$search_date'"; 
+
+      $conditionsPrint .= '&date='.$search_date;
+
+    }
+
+    if ($this->request->getQuery('startDate')) {
+
+      $start = $this->request->getQuery('startDate'); 
+
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = " AND DATE(Consultation.date) >= '$start' AND DATE(Consultation.date) <= '$end'";
+
+      $conditionsPrint .= '&startDate='.$start.'&endDate='.$end; 
+
+    }
+    
+    $limit = 25;
+
+    $tmpData = $this->Reports->paginate($this->Reports->getAllConsultationEmployee($conditions, $limit, $page), [
+
+      'extra' => [
+
+        'conditions' => $conditions,
+
+        'type'   => 'consultation'
+
+      ],
+
+      'page' => $page,
+
+      'limit' => $limit
+
+    ]);
+
+    $consultation = $tmpData['data'];
+
+    $paginator = $tmpData['pagination'];
+
+    $datas = [];
+
+    foreach ($consultation as $data) {
+
+        
+        $datas[] = array(
+
+        'id'                 => $data['id'],
+
+        'name'  =>  $data['student_name'],
+
+        'date' => $data['date']
+
+       );
+
+    }
+
+    $response = [
+
+      'ok' => true,
+
+      'data' => $datas,
+
+      'paginator' => $paginator,
+
+      'conditionsPrint' => $conditionsPrint
+
+    ];
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+  }
+
+  public function consultation_employee_report() {
+
+    //with pagination
+
+    $page = $this->request->getQuery('page', 1);
+
+    $conditions = array();
+    
+    $conditionsPrint = '';
+
+    $conditions['search'] = '';
+
+    if($this->request->getQuery('search')){
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+      $conditionsPrint .= '&search='.$search;
+
+    }
+
+    $conditions['date'] = '';
+
+    if ($this->request->getQuery('date')) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(Consultation.date) = '$search_date'"; 
+
+      $conditionsPrint .= '&date='.$search_date;
+
+    }
+
+    if ($this->request->getQuery('startDate')) {
+
+      $start = $this->request->getQuery('startDate'); 
+
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = " AND DATE(Consultation.date) >= '$start' AND DATE(Consultation.date) <= '$end'";
+
+      $conditionsPrint .= '&startDate='.$start.'&endDate='.$end; 
+
+    }
+    
+    $limit = 25;
+
+    $tmpData = $this->Reports->paginate($this->Reports->getAllConsultationEmployee($conditions, $limit, $page), [
+
+      'extra' => [
+
+        'conditions' => $conditions,
+
+        'type'   => 'consultation-employee'
+
+      ],
+
+      'page' => $page,
+
+      'limit' => $limit
+
+    ]);
+
+    $consultation_employee = $tmpData['data'];
+
+    $paginator = $tmpData['pagination'];
+
+    $datas = [];
+
+    foreach ($consultation_employee as $data) {
+
+        if($data['status'] == 0){
+
+          $status = 'PENDING';
+
+        }else if($data['status'] == 3){
+
+          $status = 'APPROVED';
+
+        }else if($data['status'] == 4){
+
+          $status = 'DISAPPROVED';
+
+        }else if($data['status'] == 1){
+
+          $status = 'TREATED';
+
+        }else if($data['status'] == 2){
+
+          $status = 'REFERRED';
+
+        }
+
+        $datas[] = array(
+
+        'id'                 => $data['id'],
+
+        'name'  =>  $data['employee_name'],
+
+        'remarks'  =>  $data['nurse_remarks'],
+
+        'status'  =>  $status,
+
+        'date' => $data['date']
+
+       );
+
+    }
+
+    $response = [
+
+      'ok' => true,
+
+      'data' => $datas,
+
+      'paginator' => $paginator,
+
+      'conditionsPrint' => $conditionsPrint
+
+    ];
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+  }
+
+  public function employee_frequency_report() {
+
+    //with pagination
+
+    $page = $this->request->getQuery('page', 1);
+
+    $conditions = array();
+    
+    $conditionsPrint = '';
+
+    $conditions['search'] = '';
+
+    if($this->request->getQuery('search')){
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+      $conditionsPrint .= '&search='.$search;
+
+    }
+
+    $conditions['date'] = '';
+
+    if ($this->request->getQuery('date')) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(Consultation.date) = '$search_date'"; 
+
+      $conditionsPrint .= '&date='.$search_date;
+
+    }
+
+    if ($this->request->getQuery('startDate')) {
+
+      $start = $this->request->getQuery('startDate'); 
+
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = " AND DATE(Consultation.date) >= '$start' AND DATE(Consultation.date) <= '$end'";
+
+      $conditionsPrint .= '&startDate='.$start.'&endDate='.$end; 
+
+    }
+    
+    $limit = 25;
+
+    $tmpData = $this->Reports->paginate($this->Reports->getAllEmployeeFrequency($conditions, $limit, $page), [
+
+      'extra' => [
+
+        'conditions' => $conditions,
+
+        'type'   => 'employee-frequency'
+
+      ],
+
+      'page' => $page,
+
+      'limit' => $limit
+
+    ]);
+
+    $employee_frequency = $tmpData['data'];
+
+    $paginator = $tmpData['pagination'];
+
+    $datas = [];
+
+    foreach ($employee_frequency as $data) {
+
+
+        $datas[] = array(
+
+        'id'                 => $data['id'],
+
+        'name'  =>  $data['employee_name'],
+
+        'frequency'  =>  $data['frequency'],
+
+       );
+
+    }
+
+    $response = [
+
+      'ok' => true,
+
+      'data' => $datas,
+
+      'paginator' => $paginator,
+
+      'conditionsPrint' => $conditionsPrint
+
+    ];
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+  }
+
+
+  //GUIDANCE
+
+  public function list_requested_form() {
+
+    //with pagination
+
+    $page = $this->request->getQuery('page', 1);
+
+    $conditions = array();
+    
+    $conditionsPrint = '';
+
+    $conditions['search'] = '';
+
+    if($this->request->getQuery('search')){
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+      $conditionsPrint .= '&search='.$search;
+
+    }
+
+    $conditions['date'] = '';
+
+    if ($this->request->getQuery('date')) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(RequestForm.date) = '$search_date'"; 
+
+      $conditionsPrint .= '&date='.$search_date;
+
+    }
+
+    if ($this->request->getQuery('startDate')) {
+
+      $start = $this->request->getQuery('startDate'); 
+
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = " AND DATE(RequestForm.date) >= '$start' AND DATE(Consultation.date) <= '$end'";
+
+      $conditionsPrint .= '&startDate='.$start.'&endDate='.$end; 
+
+    }
+
+    $conditions['year_term_id'] = "";
+
+
+    // if ($this->request->getQuery('year_term_id')) {
+
+    //   $year_term_id = $this->request->getQuery('year_term_id'); 
+
+    //   $conditions['year_term_id'] = " AND Student.year_term_id = '$year_term_id' ";
+
+    //   $conditionsPrint .= '&year_term_id='.$year_term_id;
+
+    // }
+    
+    $limit = 25;
+
+    $tmpData = $this->Reports->paginate($this->Reports->getAllRequestedForm($conditions, $limit, $page), [
+
+      'extra' => [
+
+        'conditions' => $conditions,
+
+        'type'   => 'requested-form'
+
+      ],
+
+      'page' => $page,
+
+      'limit' => $limit
+
+    ]);
+
+    $requested_forms = $tmpData['data'];
+
+    $paginator = $tmpData['pagination'];
+
+    $datas = [];
+
+
+    foreach ($requested_forms as $data) {
+
+        $data['otr'] = ($data['otr'] != null && $data['otr'] == 1) ? "Transcript of Records" : "";
+
+        $data['cav'] = ($data['cav'] != null && $data['cav'] == 1) ? "Certification Authentication Verification" : "";
+
+        $data['cert'] = ($data['cert'] != null && $data['cert'] == 1) ? "Certification" : "";
+
+        $data['hon'] = ($data['hon'] != null && $data['hon'] == 1) ? "Honorable Dismissal" : "";
+
+        $data['authGrad'] = ($data['authGrad'] != null && $data['authGrad'] == 1) ? "Authorization Gradudate" : "";
+
+        $data['authUGrad'] = ($data['authUGrad'] != null && $data['authUGrad'] == 1) ? "Authorization Under Gradudate" : "";
+
+        $data['dip'] = ($data['otr'] != null && $data['dip'] == 1) ? "Diploma" : "";
+
+        $data['rr'] = ($data['rr'] != null && $data['rr'] == 1) ? "Red Ribbon" : "";
+
+        $data['other'] = ($data['other'] != null && $data['rr'] == 1) ? $data['otherVal'] : "";
+
+
+        $datas[] = array(
+
+        'id'   => $data['id'],
+
+        'student_name' => $data['student_name'],
+
+        'student_no' => $data['student_no'],
+
+        'otr' => $data['otr'],
+
+        'cert' => $data['cert'],
+
+        'cav' => $data['cav'],
+
+        'hon' => $data['hon'],
+
+        'authGrad' => $data['authGrad'],
+
+        'authUGrad' => $data['authUGrad'],
+
+        'dip' => $data['dip'],
+
+        'rr' => $data['rr'],
+
+        'other' => $data['other'],
+
+
+       );
+
+    }
+
+    $response = [
+
+      'ok' => true,
+
+      'data' => $datas,
+
+      'paginator' => $paginator,
+
+      'conditionsPrint' => $conditionsPrint
+
+    ];
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+  }
+
+  public function gco_evaluation_list() {
+
+    //with pagination
+
+    $page = $this->request->getQuery('page', 1);
+
+    $conditions = array();
+    
+    $conditionsPrint = '';
+
+    $conditions['search'] = '';
+
+    if($this->request->getQuery('search')){
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+      $conditionsPrint .= '&search='.$search;
+
+    }
+
+    $conditions['date'] = '';
+
+    if ($this->request->getQuery('date')) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(GcoEvaluation.date) = '$search_date'"; 
+
+      $conditionsPrint .= '&date='.$search_date;
+
+    }
+
+    if ($this->request->getQuery('startDate')) {
+
+      $start = $this->request->getQuery('startDate'); 
+
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = " AND DATE(GcoEvaluation.date) >= '$start' AND DATE(GcoEvaluation.date) <= '$end'";
+
+      $conditionsPrint .= '&startDate='.$start.'&endDate='.$end; 
+
+    }
+
+    $conditions['year_term_id'] = "";
+
+
+    if ($this->request->getQuery('year_term_id')) {
+
+      $year_term_id = $this->request->getQuery('year_term_id'); 
+
+      $conditions['year_term_id'] = " AND Student.year_term_id = '$year_term_id' ";
+
+      $conditionsPrint .= '&year_term_id='.$year_term_id;
+
+    }
+
+    $conditions['college_id'] = "AND Student.college_id IS NULL";
+
+
+    if ($this->request->getQuery('college_id')) {
+
+      $college_id = $this->request->getQuery('college_id'); 
+
+      $conditions['college_id'] = " AND Student.college_id = '$college_id' ";
+
+      $conditionsPrint .= '&college_id='.$college_id;
+
+    }
+
+    $conditions['program_id'] = "AND Student.program_id IS NULL";
+
+
+    if ($this->request->getQuery('program_id')) {
+
+      $program_id = $this->request->getQuery('program_id'); 
+
+      $conditions['program_id'] = " AND Student.program_id = '$program_id' ";
+
+      $conditionsPrint .= '&program_id='.$program_id;
+
+    }
+
+    $conditions['employee_id'] = "";
+
+
+    if ($this->request->getQuery('employee_id')) {
+
+      $employee_id = $this->request->getQuery('employee_id'); 
+
+      $conditions['employee_id'] = " AND CounselingAppointment.employee_id = '$employee_id' ";
+
+      $conditionsPrint .= '&employee_id='.$employee_id;
+
+    }
+    
+    $limit = 25;
+
+    $tmpData = $this->Reports->paginate($this->Reports->getAllGcoEvaluation($conditions, $limit, $page), [
+
+      'extra' => [
+
+        'conditions' => $conditions,
+
+        'type'   => 'gco-evaluation'
+
+      ],
+
+      'page' => $page,
+
+      'limit' => $limit
+
+    ]);
+
+    $gco_evaluation = $tmpData['data'];
+
+    $paginator = $tmpData['pagination'];
+
+    $datas = [];
+
+    // debug($gco_evaluation);
+
+    foreach ($gco_evaluation as $data) {
+
+        $datas[] = array(
+
+        'id'   => $data['id'],
+
+        'student_no'   => $data['student_no'],
+
+        'student_name'   => $data['student_name'],
+
+        'comments'   => $data['comments'],
+
+        'date'   => $data['date'],
+
+       );
+
+    }
+
+    $response = [
+
+      'ok' => true,
+
+      'data' => $datas,
+
+      'paginator' => $paginator,
+
+      'conditionsPrint' => $conditionsPrint
+
+    ];
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+  }
+
 
 
 

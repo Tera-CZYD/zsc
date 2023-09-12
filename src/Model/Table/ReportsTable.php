@@ -164,7 +164,7 @@ class ReportsTable extends Table
   // END CORPORATE AFFAIRS
 
 
-    // learning resource
+  // learning resource
 
     public function getAllCheckout($conditions, $limit, $page)
     {
@@ -2868,7 +2868,352 @@ class ReportsTable extends Table
     }
 
 
+  //GUIDANCE
 
+    public function getAllRequestedFormPrint($conditions){
+
+      $search = @$conditions['search'];
+
+      $date = @$conditions['date'];
+
+
+      $sql = "
+
+      SELECT 
+
+        Student.*,
+
+        RequestForm.*
+
+      FROM 
+
+        students as Student LEFT JOIN
+
+        year_level_terms as YearLevelTerm ON Student.year_term_id = YearLevelTerm.id LEFT JOIN
+
+        request_forms as RequestForm ON Student.id = RequestForm.student_id 
+
+      WHERE 
+
+        RequestForm.visible = true $date AND 
+
+        (
+
+          RequestForm.date LIKE '%$search%' OR 
+
+          RequestForm.code LIKE '%$search%'
+
+        )
+
+      ORDER BY 
+
+        Student.student_no ASC
+
+      ";
+
+      $query = $this->getConnection()->prepare($sql);
+
+      $query->execute();
+
+      return $query;
+
+  }
+
+  public function getAllRequestedForm($conditions, $limit, $page){
+
+    $search = @$conditions['search'];
+
+    $date = @$conditions['date'];
+
+    $offset = ($page - 1) * $limit;
+
+    $sql = "
+
+      SELECT 
+
+        Student.*,
+
+        RequestForm.*
+
+      FROM 
+
+        students as Student LEFT JOIN
+
+        year_level_terms as YearLevelTerm ON Student.year_term_id = YearLevelTerm.id LEFT JOIN
+
+        request_forms as RequestForm ON Student.id = RequestForm.student_id 
+
+      WHERE 
+
+        RequestForm.visible = true $date AND 
+
+        (
+
+          RequestForm.date LIKE '%$search%' OR 
+
+          RequestForm.code LIKE '%$search%'
+
+        )
+
+      ORDER BY 
+
+        Student.student_no ASC
+
+      LIMIT
+
+        $limit OFFSET $offset
+
+    ";
+
+    $query = $this->getConnection()->prepare($sql);
+
+    $query->execute();
+
+    return $query;
+    
+  }
+
+  public function countAllRequestedForm($conditions = []): string{
+
+    $search = @$conditions['search'];
+
+    $date = @$conditions['date'];
+
+    $sql = "
+
+      SELECT 
+
+        count(*) as count
+
+      FROM 
+
+        students as Student LEFT JOIN
+
+        year_level_terms as YearLevelTerm ON Student.year_term_id = YearLevelTerm.id LEFT JOIN
+
+        request_forms as RequestForm ON Student.id = RequestForm.student_id 
+
+      WHERE 
+
+        RequestForm.visible = true $date AND 
+
+        (
+
+          RequestForm.date LIKE '%$search%' OR 
+
+          RequestForm.code LIKE '%$search%'
+
+        )
+
+    ";
+
+    $query = $this->getConnection()->execute($sql)->fetch('assoc');
+
+    return $query['count'];
+
+  }
+
+  public function getAllGcoEvaluationPrint($conditions){
+
+      $search = @$conditions['search'];
+
+      $date = @$conditions['date'];
+
+      $employee = @$conditions['employee_id'];
+
+      $program = @$conditions['program_id'];
+
+      $college = @$conditions['college_id'];
+
+      $year_term = @$conditions['year_term_id'];
+
+
+      $sql = "
+
+      SELECT 
+
+        GcoEvaluation.*,
+
+        Student.id as student_id
+
+      FROM 
+
+        students as Student LEFT JOIN
+
+        gco_evaluations as GcoEvaluation ON Student.id = GcoEvaluation.student_id LEFT JOIN
+
+        year_level_terms as YearLevelTerm ON Student.year_term_id = YearLevelTerm.id LEFT JOIN
+
+        counseling_appointments as CounselingAppointment ON CounselingAppointment.student_id = Student.id LEFT JOIN
+
+        attendance_counselings as AttendanceCounseling ON CounselingAppointment.id = AttendanceCounseling.counseling_appointment_id LEFT JOIN
+
+        employees as Employee ON CounselingAppointment.counselor_id = Employee.id 
+
+
+
+
+      WHERE 
+
+        Student.visible = true $date $employee $program $college $year_term AND 
+
+        (
+
+          GcoEvaluation.date LIKE '%$search%' OR 
+
+          GcoEvaluation.code LIKE '%$search%'
+
+        )
+
+      GROUP BY
+      
+        Student.id  
+
+      ORDER BY 
+
+        GcoEvaluation.student_no ASC
+
+      ";
+
+      $query = $this->getConnection()->prepare($sql);
+
+      $query->execute();
+
+      return $query;
+
+  }
+
+  public function getAllGcoEvaluation($conditions, $limit, $page){
+
+    $search = @$conditions['search'];
+
+    $date = @$conditions['date'];
+
+    $employee = @$conditions['employee_id'];
+
+    $program = @$conditions['program_id'];
+
+    $college = @$conditions['college_id'];
+
+    $year_term = @$conditions['year_term_id'];
+
+    $offset = ($page - 1) * $limit;
+
+    $sql = "
+
+      SELECT 
+
+        GcoEvaluation.*,
+
+        Student.id as student_id
+
+      FROM 
+
+        students as Student LEFT JOIN
+
+        gco_evaluations as GcoEvaluation ON Student.id = GcoEvaluation.student_id LEFT JOIN
+
+        year_level_terms as YearLevelTerm ON Student.year_term_id = YearLevelTerm.id LEFT JOIN
+
+        counseling_appointments as CounselingAppointment ON CounselingAppointment.student_id = Student.id LEFT JOIN
+
+        attendance_counselings as AttendanceCounseling ON CounselingAppointment.id = AttendanceCounseling.counseling_appointment_id LEFT JOIN
+
+        employees as Employee ON CounselingAppointment.counselor_id = Employee.id 
+
+
+
+
+      WHERE 
+
+        Student.visible = true $date $employee $program $college $year_term AND 
+
+        (
+
+          GcoEvaluation.date LIKE '%$search%' OR 
+
+          GcoEvaluation.code LIKE '%$search%'
+
+        )
+
+      GROUP BY
+      
+        Student.id  
+
+      ORDER BY 
+
+        GcoEvaluation.student_no ASC
+
+      LIMIT
+
+        $limit OFFSET $offset
+
+    ";
+
+    $query = $this->getConnection()->prepare($sql);
+
+    $query->execute();
+
+    return $query;
+    
+  }
+
+  public function countAllGcoEvaluation($conditions = []): string{
+
+    $search = @$conditions['search'];
+
+    $date = @$conditions['date'];
+
+    $employee = @$conditions['employee_id'];
+
+    $program = @$conditions['program_id'];
+
+    $college = @$conditions['college_id'];
+
+    $year_term = @$conditions['year_term_id'];
+
+    $sql = "
+
+      SELECT 
+
+        count(*) as count
+
+      FROM 
+
+        students as Student LEFT JOIN
+
+        gco_evaluations as GcoEvaluation ON Student.id = GcoEvaluation.student_id LEFT JOIN
+
+        year_level_terms as YearLevelTerm ON Student.year_term_id = YearLevelTerm.id LEFT JOIN
+
+        counseling_appointments as CounselingAppointment ON CounselingAppointment.student_id = Student.id LEFT JOIN
+
+        attendance_counselings as AttendanceCounseling ON CounselingAppointment.id = AttendanceCounseling.counseling_appointment_id LEFT JOIN
+
+        employees as Employee ON CounselingAppointment.counselor_id = Employee.id 
+
+
+
+
+      WHERE 
+
+        Student.visible = true $date $employee $program $college $year_term AND 
+
+        (
+
+          GcoEvaluation.date LIKE '%$search%' OR 
+
+          GcoEvaluation.code LIKE '%$search%'
+
+        )
+
+    ";
+
+    $query = $this->getConnection()->execute($sql)->fetch('assoc');
+
+    return $query['count'];
+
+  }   
 
   public function paginate($query, array $options = []){
 
@@ -2970,6 +3315,18 @@ class ReportsTable extends Table
       $result = $this->getAllMonthlyPayment($conditions, $limit, $page)->fetchAll('assoc');
 
       $paginateCount = $this->countAllMonthlyPayment($conditions);
+
+    }else if($extra['type'] == 'requested-form'){
+
+      $result = $this->getAllRequestedForm($conditions, $limit, $page)->fetchAll('assoc');
+
+      $paginateCount = $this->countAllRequestedForm($conditions);
+
+    }else if($extra['type'] == 'gco-evaluation'){
+
+      $result = $this->getAllGcoEvaluation($conditions, $limit, $page)->fetchAll('assoc');
+
+      $paginateCount = $this->countAllGcoEvaluation($conditions);
 
     }
 

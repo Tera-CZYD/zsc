@@ -350,6 +350,10 @@
 
     'reports/corporate-affairs',
 
+    //GUIDANCE
+
+    'reports/guidance',
+
     //LEARNING RESOURCE
 
     'reports/learning-resource-center/check-outs/',

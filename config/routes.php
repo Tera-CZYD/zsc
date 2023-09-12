@@ -221,6 +221,36 @@
       $routes->connect('/reports/apartelle-monhtly-payments', ['controller' => 'Reports', 'action' => 'apartelle_monhtly_payments']);
 
 
+      //REPORTS MEDICAL SERVICES
+
+      $routes->connect('/reports/medical_monthly_accomplishment', ['controller' => 'Reports', 'action' => 'medical_monthly_accomplishment']); 
+
+      $routes->connect('/reports/medical_property_equipment', ['controller' => 'Reports', 'action' => 'medical_property_equipment']);
+
+      $routes->connect('/reports/medical_monthly_consumption', ['controller' => 'Reports', 'action' => 'medical_monthly_consumption']);
+
+      $routes->connect('/reports/consultation_report', ['controller' => 'Reports', 'action' => 'consultation_report']);
+
+      $routes->connect('/reports/consultation_employee_report', ['controller' => 'Reports', 'action' => 'consultation_employee_report']);
+
+      $routes->connect('/reports/employee_frequency_report', ['controller' => 'Reports', 'action' => 'employee_frequency_report']);
+
+      //REPORTS GUIDANCE
+
+      $routes->connect('/reports/list_requested_form', ['controller' => 'Reports', 'action' => 'list_requested_form']);
+
+      $routes->connect('/reports/gco_evaluation_list', ['controller' => 'Reports', 'action' => 'gco_evaluation_list']);
+
+      //REPORTS ADMISSION
+
+      $routes->connect('/reports/list_students', ['controller' => 'Reports', 'action' => 'list_students']);
+
+
+      //REPORTS LEARNING RESOURCE
+
+      $routes->connect('/reports/list_bibliographies', ['controller' => 'Reports', 'action' => 'list_inventory_bibliographies']);
+
+
 
 	    //czyd
 
