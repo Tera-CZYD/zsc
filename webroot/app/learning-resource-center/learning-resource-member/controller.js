@@ -134,6 +134,74 @@ app.controller('LearningResourceMemberController', function($scope, LearningReso
 
   }
 
+  $scope.selectedFilter = 'date';
+
+  $scope.changeFilter = function(type){
+
+    $scope.search = {};
+
+    $scope.selectedFilter = type;
+
+    $('.monthpicker').datepicker({format: 'MM', autoclose: true, minViewMode: 'months',maxViewMode:'months'});
+ 
+    $('.input-daterange').datepicker({
+ 
+      format: 'mm/dd/yyyy'
+
+    });
+
+  }
+
+  $scope.searchFilter = function(search) {
+   
+    $scope.searchTxt = '';
+
+    $scope.dateToday = null;
+   
+    $scope.startDate = null;
+   
+    $scope.endDate = null;
+
+    if ($scope.selectedFilter == 'date') {
+    
+      $scope.dateToday = Date.parse(search.date).toString('yyyy-MM-dd');
+   
+    }else if ($scope.selectedFilter == 'month') {
+   
+      date = $('.monthpicker').datepicker('getDate');
+   
+      year = date.getFullYear();
+   
+      month = date.getMonth() + 1;
+   
+      lastDay = new Date(year, month, 0);
+
+      if (month < 10) month = '0' + month;
+      
+      $scope.startDate = year + '-' + month + '-01';
+      
+      $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
+    
+    }else if ($scope.selectedFilter == 'customRange') {
+    
+      $scope.startDate = Date.parse(search.startDate).toString('yyyy-MM-dd');
+    
+      $scope.endDate = Date.parse(search.endDate).toString('yyyy-MM-dd');
+    
+    }
+
+    $scope.load({
+
+      date         : $scope.dateToday,
+
+      startDate    : $scope.startDate,
+
+      endDate      : $scope.endDate
+
+    });
+  
+  }
+
   $scope.remove = function(data) {
 
     bootbox.confirm('Are you sure you want to delete ' + data.code +' ?', function(c) {
