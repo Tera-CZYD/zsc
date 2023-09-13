@@ -4938,6 +4938,210 @@ class ReportsTable extends Table
 
     }
 
+  
+    public function getAllListInventoryBibliography($conditions, $limit, $page){
+
+      $search = strtolower(@$conditions['search']);
+
+      $date = @$conditions['date'];
+
+
+      $offset = ($page - 1) * $limit;
+
+      $sql =  "
+
+        SELECT 
+
+          InventoryBibliography.*,
+
+          Bibliography.title,
+
+          Bibliography.author,
+
+          Bibliography.code,
+
+          Bibliography.call_number1,
+
+          Bibliography.call_number2,
+
+          Bibliography.call_number3,
+
+          MaterialType.name as material_type,
+
+          CollectionType.name as collection_type,
+
+          Bibliography.date_of_publication
+
+        FROM 
+
+          inventory_bibliographies as InventoryBibliography LEFT JOIN 
+
+          bibliographies as Bibliography ON Bibliography.id = InventoryBibliography.bibliography_id LEFT JOIN 
+
+          material_types as MaterialType ON MaterialType.id = Bibliography.material_type_id LEFT JOIN
+
+          collection_types as CollectionType ON CollectionType.id = Bibliography.collection_type_id
+
+        WHERE 
+
+          InventoryBibliography.visible = true $date AND 
+
+          Bibliography.visible = true AND 
+
+          (
+
+            Bibliography.title LIKE '%$search%' OR 
+
+            Bibliography.code LIKE '%$search%' OR
+
+            Bibliography.author LIKE '%$search%'
+
+          )
+
+        LIMIT
+
+          $limit OFFSET $offset
+
+           ";
+
+
+        $query = $this->getConnection()->prepare($sql);
+
+        $query->execute();
+
+        return $query;
+    }
+
+    public function getAllListInventoryBibliographyPrint($conditions){
+
+      $search = strtolower(@$conditions['search']);
+
+      $date = @$conditions['date'];
+
+      $sql =  "
+
+        SELECT 
+
+          InventoryBibliography.*,
+
+          Bibliography.title,
+
+          Bibliography.author,
+
+          Bibliography.code,
+
+          Bibliography.call_number1,
+
+          Bibliography.call_number2,
+
+          Bibliography.call_number3,
+
+          MaterialType.name as material_type,
+
+          CollectionType.name as collection_type,
+
+          Bibliography.date_of_publication
+
+        FROM 
+
+          inventory_bibliographies as InventoryBibliography LEFT JOIN 
+
+          bibliographies as Bibliography ON Bibliography.id = InventoryBibliography.bibliography_id LEFT JOIN 
+
+          material_types as MaterialType ON MaterialType.id = Bibliography.material_type_id LEFT JOIN
+
+          collection_types as CollectionType ON CollectionType.id = Bibliography.collection_type_id
+
+        WHERE 
+
+          InventoryBibliography.visible = true $date AND 
+
+          Bibliography.visible = true AND 
+
+          (
+
+            Bibliography.title LIKE '%$search%' OR 
+
+            Bibliography.code LIKE '%$search%' OR
+
+            Bibliography.author LIKE '%$search%'
+
+          )
+
+           ";
+
+
+        $query = $this->getConnection()->prepare($sql);
+
+        $query->execute();
+
+        return $query;
+    }
+
+    public function countAllListInventoryBibliography($conditions = []): string{
+
+        $search = @$conditions['search'];
+
+        $date = @$conditions['date'];
+          
+        $sql = "SELECT count(*) as count FROM (
+
+        SELECT 
+
+          InventoryBibliography.*,
+
+          Bibliography.title,
+
+          Bibliography.author,
+
+          Bibliography.code,
+
+          Bibliography.call_number1,
+
+          Bibliography.call_number2,
+
+          Bibliography.call_number3,
+
+          MaterialType.name as material_type,
+
+          CollectionType.name as collection_type,
+
+          Bibliography.date_of_publication
+
+        FROM 
+
+          inventory_bibliographies as InventoryBibliography LEFT JOIN 
+
+          bibliographies as Bibliography ON Bibliography.id = InventoryBibliography.bibliography_id LEFT JOIN 
+
+          material_types as MaterialType ON MaterialType.id = Bibliography.material_type_id LEFT JOIN
+
+          collection_types as CollectionType ON CollectionType.id = Bibliography.collection_type_id
+
+        WHERE 
+
+          InventoryBibliography.visible = true $date AND 
+
+          Bibliography.visible = true AND 
+
+          (
+
+            Bibliography.title LIKE '%$search%' OR 
+
+            Bibliography.code LIKE '%$search%' OR
+
+            Bibliography.author LIKE '%$search%'
+
+          )
+
+      ) as Report ";
+
+        $query = $this->getConnection()->execute($sql)->fetch('assoc');
+
+        return $query['count'];
+
+    } 
+
   public function paginate($query, array $options = []){
 
     $extra = isset($options['extra']) ? $options['extra'] : [];
@@ -5104,6 +5308,12 @@ class ReportsTable extends Table
       $result = $this->getAllGwa($conditions, $limit, $page)->fetchAll('assoc');
 
       $paginateCount = $this->countAllGwa($conditions);
+
+    }else if($extra['type'] == 'inventory-bibliographies'){
+
+      $result = $this->getAllListInventoryBibliography($conditions, $limit, $page)->fetchAll('assoc');
+
+      $paginateCount = $this->countAllListInventoryBibliography($conditions);
 
     }
 

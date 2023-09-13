@@ -2562,7 +2562,7 @@ class ReportsController extends AppController {
 
   }
 
-  public function list_checkouts() {
+  public function listCheckouts() {
 
     //with pagination
 
@@ -3613,6 +3613,133 @@ class ReportsController extends AppController {
       '_serialize'=>'response'
 
     ));
+
+  }
+
+  public function listInventoryBibliographies() {
+
+    //with pagination 
+
+    $page = $this->request->getQuery('page', 1);
+
+    $conditions = array();
+    
+    $conditionsPrint = '';
+
+    $conditions['search'] = '';
+
+    if ($this->request->getQuery('search')) {
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+      $conditionsPrint .= '&search='.$search;
+
+    }
+
+    $conditions['date'] = '';
+
+    if ($this->request->getQuery('date')) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(Bibliography.date_of_publication) = '$search_date'"; 
+
+      $dates['date'] = $search_date;
+
+      $conditionsPrint .= '&date='.$search_date;
+
+    }  
+
+    //advance search
+
+    if ($this->request->getQuery('startDate')) {
+
+      $start = $this->request->getQuery('startDate'); 
+
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = " AND DATE(Bibliography.date_of_publication) >= '$start' AND DATE(Bibliography.date_of_publication) <= '$end'";
+
+      $dates['startDate'] = $start;
+
+      $dates['endDate']   = $end;
+
+      $conditionsPrint .= '&startDate='.$start.'&endDate='.$end;
+
+    }
+
+    $limit = 25;
+
+    $tmpData = $this->Reports->paginate($this->Reports->getAllListInventoryBibliography($conditions, $limit, $page), [
+
+      'extra' => [
+
+        'conditions' => $conditions,
+
+        'type'   => 'inventory-bibliographies'
+
+      ],
+
+      'page' => $page,
+
+      'limit' => $limit
+
+    ]);
+
+    $inventory_bibiliographies = $tmpData['data'];
+
+    $paginator = $tmpData['pagination'];
+
+    $datas = [];
+
+    // debug($inventory_bibiliographies);
+
+    foreach ($inventory_bibiliographies as $data) {
+
+      $datas[] = array(
+
+          'id'        => $data['id'],
+
+          'code'      => $data['code'],
+
+          'dueback'   => date('m/d/Y',strtotime($data['dueback'])),
+
+          'title'      => $data['title'],
+
+          'author'      => $data['author'],
+
+          'material_type'      => $data['material_type'],
+
+          'collection_type'      => $data['collection_type'],
+
+          'date_of_publication'      => $data['date_of_publication'],
+
+       );
+
+    }
+
+
+    $response = array(
+
+      'ok' => true,
+
+      'conditionsPrint' => $conditionsPrint,
+
+      'data' => $datas,
+
+      'paginator' => $paginator
+
+    );
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
 
   }
 

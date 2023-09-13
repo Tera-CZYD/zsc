@@ -4,9 +4,9 @@ app.config(function($routeProvider) {
 
   .when('/reports/learning-resource-center/bibliographies/index', {
 
-    templateUrl: tmp + 'reports__learning_resource_center__bibliographies__index',
+    templateUrl: 'angularjs/views/reports/learning-resource-center/bibliographies/index.ctp',
 
-    controller: 'ReportBibliographyController',
+    controller: 'ListBibliography', 
 
   })
 

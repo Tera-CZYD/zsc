@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="col-md-8 col-xs-12">
-              <h4 class="header-title">LIST OF ACCOUNTABILITY</h4>
+              <h4 class="header-title">LIST OF BOOK COLLECTION</h4>
             </div>
             <div class="col-md-4 col-xs-12 pull-right">
               <div class="input-group-prepend">
@@ -66,25 +66,25 @@
               <thead>
                 <tr class="bg-info">
                   <th class="w30px"> # </th>
+                  <th class="text-center"> CALL NUMBER </th>
                   <th class="text-center"> CONTROL NO. </th>
-                  <th class="text-center"> MEMBER NAME </th>
                   <th class="text-center"> TITLE </th>
                   <th class="text-center"> AUTHOR </th>
-                  <th class="text-center"> BARCODE NO. </th>
-                  <th class="text-center"> DATE BORROWED </th>
-                  <th class="text-center"> DATE DUE</th>
+                  <th class="text-center"> ACQUSITION DATE </th>
+                  <th class="text-center"> COLLECTION </th>
+                  <th class="text-center"> MATERIAL </th>
                 </tr>
               </thead>
               <tbody>
                 <tr ng-repeat="data in datas">
                   <td class="text-left uppercase">{{ (paginator.page - 1 ) * paginator.limit + $index + 1 }}</td>
+                  <td class="text-center">{{ data.call_number1 }} , {{ data.call_number2 }} , {{ data.call_number3 }}</td>
                   <td class="text-center uppercase">{{ data.code }}</td>
-                  <td class="text-left uppercase">{{ data.member_name }}</td>
-                  <td class="text-left uppercase"><div ng-repeat='sub in data.subs'>{{ sub.title }}</div></td>
-                  <td class="text-center uppercase"><div ng-repeat='sub in data.subs'>{{ sub.author }}</div></td>
-                  <td class="text-center uppercase"><div ng-repeat='sub in data.subs'>{{ sub.barcode_no }}</div></td>
-                  <td class="text-center uppercase">{{ data.date_borrowed }}</td>
-                  <td class="text-center"><div ng-repeat='sub in data.subs'>{{ sub.dueback | date: mm/dd/yyyy }}</div></td>
+                  <td class="text-left uppercase">{{ data.title }}</td>
+                  <td class="text-left">{{ data.author }}</td>
+                  <td class="text-center">{{ data.date_of_publication | date : 'MM/dd/yyyy' }}</td>
+                  <td class="text-center">{{ data.collection_type }}</td>
+                  <td class="text-center">{{ data.material_type }}</td>
                 </tr>
                 <tr ng-show="datas == ''">
                   <td colspan="9" class="text-center">No available data</td>

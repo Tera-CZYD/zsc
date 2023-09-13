@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="col-md-8 col-xs-12">
-              <h4 class="header-title">LIST OF ACCOUNTABILITY</h4>
+              <h4 class="header-title">LIST OF RETURN ITEMS</h4>
             </div>
             <div class="col-md-4 col-xs-12 pull-right">
               <div class="input-group-prepend">
@@ -71,8 +71,7 @@
                   <th class="text-center"> TITLE </th>
                   <th class="text-center"> AUTHOR </th>
                   <th class="text-center"> BARCODE NO. </th>
-                  <th class="text-center"> DATE BORROWED </th>
-                  <th class="text-center"> DATE DUE</th>
+                  <th class="text-center"> DATE RETURNED </th>
                 </tr>
               </thead>
               <tbody>
@@ -80,11 +79,10 @@
                   <td class="text-left uppercase">{{ (paginator.page - 1 ) * paginator.limit + $index + 1 }}</td>
                   <td class="text-center uppercase">{{ data.code }}</td>
                   <td class="text-left uppercase">{{ data.member_name }}</td>
-                  <td class="text-left uppercase"><div ng-repeat='sub in data.subs'>{{ sub.title }}</div></td>
-                  <td class="text-center uppercase"><div ng-repeat='sub in data.subs'>{{ sub.author }}</div></td>
-                  <td class="text-center uppercase"><div ng-repeat='sub in data.subs'>{{ sub.barcode_no }}</div></td>
-                  <td class="text-center uppercase">{{ data.date_borrowed }}</td>
-                  <td class="text-center"><div ng-repeat='sub in data.subs'>{{ sub.dueback | date: mm/dd/yyyy }}</div></td>
+                  <td class="text-left uppercase">{{ data.title }}</td>
+                  <td class="text-center uppercase">{{ data.author }}</td>
+                  <td class="text-center uppercase">{{ data.barcode_no }}</td>
+                  <td class="text-center uppercase">{{ data.status_dt }}</td>
                 </tr>
                 <tr ng-show="datas == ''">
                   <td colspan="9" class="text-center">No available data</td>
