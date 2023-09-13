@@ -156,6 +156,14 @@ app.controller('InventoryBibliographyController', function($scope,Select, Invent
     
       $scope.endDate = Date.parse(search.endDate).toString('yyyy-MM-dd');
     
+    }else if ($scope.selectedFilter == 'materialType') {
+
+      $scope.material_type =  search.material_type;
+
+    }else if ($scope.selectedFilter == 'collectionType') {
+
+      $scope.collection_type =  search.collection_type;
+
     }
 
     $scope.load({
@@ -164,7 +172,11 @@ app.controller('InventoryBibliographyController', function($scope,Select, Invent
 
       startDate    : $scope.startDate,
 
-      endDate      : $scope.endDate
+      endDate      : $scope.endDate,
+
+      material_type     : $scope.material_type,
+
+      collection_type     : $scope.collection_type,
 
     });
   
