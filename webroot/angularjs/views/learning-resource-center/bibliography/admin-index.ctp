@@ -20,6 +20,8 @@
                       <a class="dropdown-item text-dark" href="javascript:void(0)" ng-click="changeFilter('month')">MONTH</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item text-dark" href="javascript:void(0)" ng-click="changeFilter('customRange')">CUSTOM RANGE</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item text-dark" href="javascript:void(0)" ng-click="changeFilter('materialType')">MATERIAL TYPE</a>
                     </div>
                   </div>
                 </span>
@@ -35,6 +37,9 @@
                   </div>
                   <input type="text" class="form-control input-sm uppercase" ng-model="search.endDate" ng-change="searchFilter(search)" placeholder="END DATE">
                 </div>
+                <select class="form-control input-sm uppercase" ng-model="search.material_type" ng-change="searchFilter(search)" data-validation-engine="validate[required]" ng-options="opt.id as opt.value for opt in material_types" ng-show="selectedFilter == 'materialType'">
+                  <option value=""></option>
+                </select>
               </div>
             </div>
           </div>

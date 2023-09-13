@@ -100,6 +100,8 @@ app.controller('BibliographyController', function($scope, Bibliography) {
    
     $scope.endDate = null;
 
+    $scope.material_type = null;
+
     if ($scope.selectedFilter == 'date') {
     
       $scope.dateToday = Date.parse(search.date).toString('yyyy-MM-dd');
@@ -126,6 +128,11 @@ app.controller('BibliographyController', function($scope, Bibliography) {
     
       $scope.endDate = Date.parse(search.endDate).toString('yyyy-MM-dd');
     
+    }else if (search.selectedFilter == 'materialType') {
+
+      $scope.material_type =  search.material_type;
+
+
     }
 
     $scope.load({
@@ -134,7 +141,9 @@ app.controller('BibliographyController', function($scope, Bibliography) {
 
       startDate    : $scope.startDate,
 
-      endDate      : $scope.endDate
+      endDate      : $scope.endDate,
+
+      material_type     : $scope.material_type,
 
     });
   
@@ -284,7 +293,7 @@ app.controller('BibliographyAddController', function($scope, Bibliography, Selec
 
   Select.get({code: 'material-type-list'}, function(e) {
 
-    $scope.material_type = e.data;
+    $scope.material_types = e.data;
 
   });
 
@@ -625,6 +634,12 @@ app.controller('AdminBibliographyController', function($scope,Select, Bibliograp
     
       $scope.endDate = Date.parse(search.endDate).toString('yyyy-MM-dd');
     
+    }else if ($scope.selectedFilter == 'materialType') {
+
+      $scope.material_type =  search.material_type;
+
+      // console.log("asdf");
+
     }
 
     $scope.load({
@@ -633,7 +648,9 @@ app.controller('AdminBibliographyController', function($scope,Select, Bibliograp
 
       startDate    : $scope.startDate,
 
-      endDate      : $scope.endDate
+      endDate      : $scope.endDate,
+
+      material_type     : $scope.material_type,
 
     });
   
