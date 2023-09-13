@@ -38,57 +38,56 @@
             <div class="clearfix"></div>
             <hr>
             <div class="single-table mb-5">
-                <div class="table-responsive">
-                    <table class="table table-bordered text-center">
-                        <thread>
-                            <tr class="bg-info">
-                                <th class="text-center w30px">#</th>
-                                <th class="text-center"> CONTROL NO. </th>
-                                <th class="text-center"> STUDENT NAME </th>
-                                <th class="text-center"> COLLEGE PROGRAM </th>
-                                <th class="text-center"> MAJOR </th>
-                                <th class="text-center"> YEAR LEVEL TERM</th>
-                                <th class="text-center"> SCHOOL YEAR </th>
-                                <th class="text-center"> SA NO. </th>
-                                <th class="w90px"></th>
-                            </tr>
-                        </thread>
-                        <tbody>
-                            <tr ng-repeat="data in datas">
-                                <td class="text-center">
-                                    {{ (paginator.page - 1 ) * paginator.limit + $index + 1 }}</td>
-                                <td class="text-center">{{ data.code }}</td>
-                                <td class="text-left">{{ data.student_name }}</td>
-                                <td class="text-center">{{ data.program }}</td>
-                                <td class="text-center">{{ data.major }}</td>
-                                <td class="text-center">{{ data.year_level_term }}</td>
-                                <td class="text-center">{{ data.school_year }}</td>
-                                <td class="text-center">{{ data.sa_number }}</td>
-                                <td>
-                                    <div class="btn-group btn-group-xs">
-                                        <?php if (hasAccess('student clearance/view', $currentUser)): ?>
-                                        <a href="#/faculty/student-clearance/view/{{ data.id }}"
-                                            class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
-                                        <?php endif ?>
-                                        <?php if (hasAccess('student clearance/edit', $currentUser)): ?>
-                                        <a href="#/faculty/student-clearance/edit/{{ data.id }}"
-                                            class="btn btn-primary" ng-disabled="data.status != 0"
-                                            title="EDIT"><i class="fa fa-edit"></i></a>
-                                        <?php endif ?>
-                                        <?php if (hasAccess('student clearance/delete', $currentUser)): ?>
-                                        <a href="javascript:void(0)" ng-click="remove(data)"
-                                            class="btn btn-danger" ng-disabled="data.status != 0"
-                                            title="DELETE"><i class="fa fa-trash"></i></a>
-                                        <?php endif ?>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr ng-show="datas == null || datas == ''">
-                                <td colspan="10">No available data</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+              <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                  <thread>
+                    <tr class="bg-info">
+                      <th class="text-center w30px">#</th>
+                      <th class="text-center"> CONTROL NO. </th>
+                      <th class="text-center"> STUDENT NAME </th>
+                      <th class="text-center"> COLLEGE PROGRAM </th>
+                      <th class="text-center"> YEAR LEVEL TERM</th>
+                      <th class="text-center"> SCHOOL YEAR </th>
+                      <th class="text-center"> SA NO. </th>
+                      <th class="w90px"></th>
+                    </tr>
+                  </thread>
+                  <tbody>
+                    <tr ng-repeat="data in datas">
+                      <td class="text-center">
+                          {{ (paginator.page - 1 ) * paginator.limit + $index + 1 }}</td>
+                      <td class="text-center">{{ data.code }}</td>
+                      <td class="text-left">{{ data.student_name }}</td>
+                      <td class="text-center">{{ data.course }}</td>
+                      <td class="text-center">{{ data.year_level_term }}</td>
+                      <td class="text-center">{{ data.school_year }}</td>
+                      <td class="text-center">{{ data.sa_number }}</td>
+                      <td>
+                        <div class="btn-group btn-group-xs">
+                          <?php if (hasAccess('student clearance/view', $currentUser)): ?>
+                            <a href="#/faculty/student-clearance/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
+                          <?php endif ?>
+                          <?php if (hasAccess('student clearance/edit', $currentUser)): ?>
+                            <a href="#/faculty/student-clearance/edit/{{ data.id }}" class="btn btn-primary" ng-disabled="data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a>
+                          <?php endif ?>
+                          <?php if (hasAccess('student clearance/delete', $currentUser)): ?>
+                            <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled="data.status != 0"  title="DELETE"><i class="fa fa-trash"></i></a>
+                          <?php endif ?>
+                          <?php if (hasAccess('student clearance/email', $currentUser)): ?>
+                            <a href="javascript:void(0)" ng-click="sendMail(data)" class="btn btn-info" title="SEND EMAIL"><i class="fa fa-envelope"></i></a>
+                          <?php endif ?>
+                          <?php if (hasAccess('student clearance/clear', $currentUser)): ?>
+                            <a href="javascript:void(0)" ng-click="clearStudent(data)" class="btn btn-warning" title="CLEAR STUDENT"><i class="fa fa-check"></i></a>
+                          <?php endif ?>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr ng-show="datas == null || datas == ''">
+                        <td colspan="10">No available data</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
             <div class="row">
               <div class="col-md-12">

@@ -129,7 +129,7 @@ class StudentClearancesController extends AppController {
       $conditionsPrint .= '&faculty='.$employee_id;
     }
 
-    // var_dump($conditions);
+    // var_dump($this->Auth->user('roleId'));
 
 
     $limit = 25;
@@ -664,25 +664,40 @@ class StudentClearancesController extends AppController {
 
     $studentId = $app['student_id'];
 
-    $courses = $this->StudentEnrolledCourses->find()
-
-      ->where([
-
-        'student_id' => $studentId,
-
-        'course_id' => $course_id
-
-      ])
-
-      ->first();
-
-    $courses->clearance_remarks = null;
-
-    $courses->clearance_status = 1;
+    $save = '';
 
     $student = $this->Students->get($app['student_id']);
 
-    if ($this->StudentEnrolledCourses->save($courses)) {
+    if($this->Auth->user('roleId')==12){
+      $courses = $this->StudentEnrolledCourses->find()
+
+        ->where([
+
+          'student_id' => $studentId,
+
+          'course_id' => $course_id
+
+        ])
+
+        ->first();
+
+      $courses->clearance_remarks = null;
+
+      $courses->clearance_status = 1;
+
+      $save = $this->StudentEnrolledCourses->save($courses);
+
+    }else if($this->Auth->user('roleId')==36){
+
+      $app->status_cashier = 1;
+
+      $save = $this->StudentClearances->save($app);
+
+    }
+
+    
+
+    if ($save) {
 
 
       //EMAIL VERIFICATION
@@ -724,11 +739,19 @@ class StudentClearancesController extends AppController {
             $mail->isHTML(true); // Set email format to HTML
             $mail->Subject = 'STUDENT CLEARANCE';
 
+            if($this->Auth->user('roleId')==12){
+              
+              $_SESSION['status'] = @$app['status_faculty'] == 1 ? 'CLEARED' : '';
+
+            }else if($this->Auth->user('roleId')==36){
+
+              $_SESSION['status'] = @$app['status_cashier'] == 1 ? 'CLEARED' : '';
+
+            }
+
             $_SESSION['name'] = @$name; 
 
             $_SESSION['faculty'] =  $faculty;
-
-            $_SESSION['status'] = @$app['status_faculty'] == 1 ? 'CLEARED' : '';
 
             $_SESSION['id'] = $id; 
 
