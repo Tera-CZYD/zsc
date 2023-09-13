@@ -116,17 +116,64 @@ class StudentClearancesController extends AppController {
 
     $conditions['faculty'] = '';
 
+    
+
     if($this->Auth->user('employeeId')!=null){
 
       $employee_id = $this->Auth->user('employeeId');
 
+      $step = 1;
+
       if (!empty($employee_id)) {
 
-          $conditions['faculty'] = " AND StudentEnrolledCourse.faculty_id = $employee_id ";
+        $conditions['faculty'] = " AND StudentEnrolledCourse.faculty_id = $employee_id ";
 
       }
 
       $conditionsPrint .= '&faculty='.$employee_id;
+    }
+
+    $conditions['college_program'] = '';
+
+    if ($this->request->getQuery('college_program_id')!=null) {
+
+      $college_program_id = $this->request->getQuery('college_program_id');
+
+      $conditions['college_program'] = " AND StudentClearance.course_id = $college_program_id";
+
+      $conditionsPrint .= '&college_program_id=' . $college_program_id;
+      
+    }
+
+
+
+    $role_id = $this->Auth->user('roleId');
+
+    $conditions['step'] = '';
+
+    if($role_id!=null){
+
+      if ($role_id==8){
+
+        $conditions['step'] = " AND StudentClearance.step = 2 ";
+
+        $step = 2;
+
+      }else if ($role_id==23){
+
+        $conditions['step'] = " AND StudentClearance.step = 3 ";
+
+        $step = 3;
+
+      }else if ($role_id==23){
+
+        $conditions['step'] = " AND StudentClearance.step = 3 ";
+
+        $step = 3;
+
+      }
+
+      $conditionsPrint .= '&step='.$step;
     }
 
     // var_dump($this->Auth->user('roleId'));
@@ -153,6 +200,7 @@ class StudentClearancesController extends AppController {
     $paginator = $tmpData['pagination'];
 
     $datas = [];
+
     // var_dump($conditions);
     foreach ($student_clearances as $data) {
 
@@ -160,7 +208,6 @@ class StudentClearancesController extends AppController {
 
       $datas[] = array(
 
-  
           'id'            => $data['id'],
   
           'code'          => $data['code'],
@@ -182,6 +229,23 @@ class StudentClearancesController extends AppController {
           'status_faculty'       => $data['status_faculty'],
 
           'course'       => $data['name'],
+
+          'fac' => $data['status_faculty'],
+
+          'cash' => $data['status_cashier'],
+
+          'lib' => $data['status_librarian'],
+
+          'lab' => $data['status_laboratory'],
+
+          'studAf' => $data['status_affairs'],
+
+          'head' => $data['status_head'],
+
+          'dean' => $data['status_dean'],
+
+          'step' => $data['step'],
+
 
       );
 
@@ -669,13 +733,16 @@ class StudentClearancesController extends AppController {
     $student = $this->Students->get($app['student_id']);
 
     if($this->Auth->user('roleId')==12){
+
       $courses = $this->StudentEnrolledCourses->find()
 
         ->where([
 
           'student_id' => $studentId,
 
-          'course_id' => $course_id
+          'course_id' => $course_id,
+
+          'visible'   => 1
 
         ])
 
@@ -687,9 +754,19 @@ class StudentClearancesController extends AppController {
 
       $save = $this->StudentEnrolledCourses->save($courses);
 
-    }else if($this->Auth->user('roleId')==36){
+    }else if($this->Auth->user('roleId')==8){
 
       $app->status_cashier = 1;
+
+      $app->step = 3;
+
+      $save = $this->StudentClearances->save($app);
+
+    }else if($this->Auth->user('roleId')==23){
+
+      $app->status_librarian = 1;
+
+      $app->step = 4;
 
       $save = $this->StudentClearances->save($app);
 
@@ -698,6 +775,30 @@ class StudentClearancesController extends AppController {
     
 
     if ($save) {
+
+      if($this->Auth->user('roleId')==12){
+
+        $tmp = $this->StudentEnrolledCourses->find()->where([
+
+          'student_id' => $studentId,
+
+          'clearance_status !=' => 1,
+
+          'visible'   => 1
+
+        ])->count();
+
+        if($tmp==0){
+
+          $app->status_faculty = 1;
+
+          $app->step = 2;
+
+          $this->StudentClearances->save($app);
+
+        }
+
+      }
 
 
       //EMAIL VERIFICATION
@@ -743,7 +844,7 @@ class StudentClearancesController extends AppController {
               
               $_SESSION['status'] = @$app['status_faculty'] == 1 ? 'CLEARED' : '';
 
-            }else if($this->Auth->user('roleId')==36){
+            }else if($this->Auth->user('roleId')==8){
 
               $_SESSION['status'] = @$app['status_cashier'] == 1 ? 'CLEARED' : '';
 

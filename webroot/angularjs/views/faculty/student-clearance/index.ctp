@@ -6,6 +6,14 @@
           <h4 class="header-title">STUDENT CLEARANCE</h4>
           <div class="clearfix"></div>
 
+          <div class="col-md-8">
+            <div class="form-group col-md-4 px-0">
+              <label> COLLEGE PROGRAM </label>
+              <select class="form-control" ng-model="college_program_id" ng-options="opt.id as opt.value for opt in college_programs" ng-change = "getData(college_program_id)">
+                <option value=""></option>
+              </select>
+            </div>
+          </div>
           
           <hr>
           <!-- nav tab start -->
@@ -54,8 +62,7 @@
                   </thread>
                   <tbody>
                     <tr ng-repeat="data in datas">
-                      <td class="text-center">
-                          {{ (paginator.page - 1 ) * paginator.limit + $index + 1 }}</td>
+                      <td class="text-center">{{ (paginator.page - 1 ) * paginator.limit + $index + 1 }}</td>
                       <td class="text-center">{{ data.code }}</td>
                       <td class="text-left">{{ data.student_name }}</td>
                       <td class="text-center">{{ data.course }}</td>
@@ -73,11 +80,10 @@
                           <?php if (hasAccess('student clearance/delete', $currentUser)): ?>
                             <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled="data.status != 0"  title="DELETE"><i class="fa fa-trash"></i></a>
                           <?php endif ?>
-                          <?php if (hasAccess('student clearance/email', $currentUser)): ?>
-                            <a href="javascript:void(0)" ng-click="sendMail(data)" class="btn btn-info" title="SEND EMAIL"><i class="fa fa-envelope"></i></a>
-                          <?php endif ?>
                           <?php if (hasAccess('student clearance/clear', $currentUser)): ?>
+
                             <a href="javascript:void(0)" ng-click="clearStudent(data)" class="btn btn-warning" title="CLEAR STUDENT"><i class="fa fa-check"></i></a>
+
                           <?php endif ?>
                         </div>
                       </td>

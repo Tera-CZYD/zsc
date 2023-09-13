@@ -52,6 +52,8 @@ class StudentClearancesTable extends Table
 
     // $date = @$conditions['date'];
 
+    $college_program = @$conditions['college_program'];
+
     $sql = "
 
       SELECT
@@ -73,7 +75,7 @@ class StudentClearancesTable extends Table
         year_level_terms as YearLevelTerm ON YearLevelTerm.id = StudentClearance.year_term_id
       WHERE
 
-      StudentClearance.visible = true AND
+      StudentClearance.visible = true $college_program AND
 
         (
  
@@ -114,6 +116,10 @@ class StudentClearancesTable extends Table
 
     $status = @$conditions['status'];
 
+    $college_program = @$conditions['college_program'];
+
+    $step = @$conditions['step'];
+
     $offset = ($page - 1) * $limit;
 
     $sql = "
@@ -142,7 +148,7 @@ class StudentClearancesTable extends Table
 
       WHERE
 
-        StudentClearance.visible = true $faculty $course $status AND 
+        StudentClearance.visible = true $faculty $course $status $college_program $step AND 
 
         (
  
