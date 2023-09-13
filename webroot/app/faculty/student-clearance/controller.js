@@ -12,6 +12,12 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
   });
 
+  Select.get({ code: 'college-program-list-all' },function(e){
+
+    $scope.college_programs = e.data;
+
+  });
+
 
   Select.get({ code: 'student-enrolled-courses' },function(e){
 
@@ -30,6 +36,20 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
     });
 
   }
+
+  $scope.getData = function(college_program_id){
+
+    $scope.college_program_id = college_program_id;
+
+    $scope.load({
+
+      college_program_id: $scope.college_program_id
+
+    });
+
+  }
+
+  $scope.roleId = currentUser.roleId;
 
   if(currentUser.roleId == 12){
 
@@ -155,7 +175,7 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
       });
 
     };
-    $scope.load();
+    // $scope.load();
   }
  
 

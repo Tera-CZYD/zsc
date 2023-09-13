@@ -1,0 +1,50 @@
+2023-08-14 07:44:52 notice: `Router::prefix()` is deprecated, use the non-static method `RouteBuilder::prefix()` instead.
+C:\xampp\htdocs\new\config\routes.php, line: 69
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `config/routes.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only.
+Trace:
+deprecationWarning C:\xampp\htdocs\new\vendor\cakephp\cakephp\src\Core\functions.php, line 328
+Cake\Routing\Router::prefix() C:\xampp\htdocs\new\vendor\cakephp\cakephp\src\Routing\Router.php, line 879
+Cake\Http\BaseApplication::{closure}() C:\xampp\htdocs\new\config\routes.php, line 69
+Cake\Http\BaseApplication::routes() C:\xampp\htdocs\new\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 200
+Cake\Console\CommandRunner::loadRoutes() C:\xampp\htdocs\new\vendor\cakephp\cakephp\src\Console\CommandRunner.php, line 397
+Cake\Console\CommandRunner::run() C:\xampp\htdocs\new\vendor\cakephp\cakephp\src\Console\CommandRunner.php, line 147
+[main] C:\xampp\htdocs\new\bin\cake.php, line 12
+
+2023-08-14 07:44:52 notice: `Router::scope()` is deprecated, use the non-static method `RouteBuilder::scope()` instead.
+C:\xampp\htdocs\new\vendor\cakephp\cakephp\src\Routing\Router.php, line: 892
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/cakephp/src/Routing/Router.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only.
+Trace:
+deprecationWarning C:\xampp\htdocs\new\vendor\cakephp\cakephp\src\Core\functions.php, line 328
+Cake\Routing\Router::scope() C:\xampp\htdocs\new\vendor\cakephp\cakephp\src\Routing\Router.php, line 840
+Cake\Routing\Router::prefix() C:\xampp\htdocs\new\vendor\cakephp\cakephp\src\Routing\Router.php, line 892
+Cake\Http\BaseApplication::{closure}() C:\xampp\htdocs\new\config\routes.php, line 69
+Cake\Http\BaseApplication::routes() C:\xampp\htdocs\new\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 200
+Cake\Console\CommandRunner::loadRoutes() C:\xampp\htdocs\new\vendor\cakephp\cakephp\src\Console\CommandRunner.php, line 397
+Cake\Console\CommandRunner::run() C:\xampp\htdocs\new\vendor\cakephp\cakephp\src\Console\CommandRunner.php, line 147
+[main] C:\xampp\htdocs\new\bin\cake.php, line 12
+
+2023-09-04 03:47:51 notice: `Router::prefix()` is deprecated, use the non-static method `RouteBuilder::prefix()` instead.
+C:\xampp\htdocs\zsc\config\routes.php, line: 54
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `config/routes.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only.
+Trace:
+deprecationWarning C:\xampp\htdocs\zsc\vendor\cakephp\cakephp\src\Core\functions.php, line 328
+Cake\Routing\Router::prefix() C:\xampp\htdocs\zsc\vendor\cakephp\cakephp\src\Routing\Router.php, line 879
+Cake\Http\BaseApplication::{closure}() C:\xampp\htdocs\zsc\config\routes.php, line 54
+Cake\Http\BaseApplication::routes() C:\xampp\htdocs\zsc\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 200
+Cake\Console\CommandRunner::loadRoutes() C:\xampp\htdocs\zsc\vendor\cakephp\cakephp\src\Console\CommandRunner.php, line 397
+Cake\Console\CommandRunner::run() C:\xampp\htdocs\zsc\vendor\cakephp\cakephp\src\Console\CommandRunner.php, line 147
+[main] C:\xampp\htdocs\zsc\bin\cake.php, line 12
+
+2023-09-04 03:47:51 notice: `Router::scope()` is deprecated, use the non-static method `RouteBuilder::scope()` instead.
+C:\xampp\htdocs\zsc\vendor\cakephp\cakephp\src\Routing\Router.php, line: 892
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/cakephp/src/Routing/Router.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only.
+Trace:
+deprecationWarning C:\xampp\htdocs\zsc\vendor\cakephp\cakephp\src\Core\functions.php, line 328
+Cake\Routing\Router::scope() C:\xampp\htdocs\zsc\vendor\cakephp\cakephp\src\Routing\Router.php, line 840
+Cake\Routing\Router::prefix() C:\xampp\htdocs\zsc\vendor\cakephp\cakephp\src\Routing\Router.php, line 892
+Cake\Http\BaseApplication::{closure}() C:\xampp\htdocs\zsc\config\routes.php, line 54
+Cake\Http\BaseApplication::routes() C:\xampp\htdocs\zsc\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 200
+Cake\Console\CommandRunner::loadRoutes() C:\xampp\htdocs\zsc\vendor\cakephp\cakephp\src\Console\CommandRunner.php, line 397
+Cake\Console\CommandRunner::run() C:\xampp\htdocs\zsc\vendor\cakephp\cakephp\src\Console\CommandRunner.php, line 147
+[main] C:\xampp\htdocs\zsc\bin\cake.php, line 12
+

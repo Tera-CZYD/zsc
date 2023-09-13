@@ -14089,58 +14089,63 @@ class PrintController extends AppController {
 
     }
 
-    
+    $cash = $data['StudentClearance']['status_cashier'] ==1? 'CLEARED':'';
+    $lib = $data['StudentClearance']['status_librarian'] ==1? 'CLEARED':'';
+    $lab = $data['StudentClearance']['status_laboratory'] ==1? 'CLEARED':'';
+    $aff = $data['StudentClearance']['status_affairs'] ==1? 'CLEARED':'';
+    $head = $data['StudentClearance']['status_head'] ==1? 'CLEARED':'';
+    $dean = $data['StudentClearance']['status_dean'] ==1? 'CLEARED':'';
     $pdf->Ln(3);
     $y = $pdf->GetY();
-    $pdf->Cell(15,5,'Assesment:',0,0,'L');
-    $pdf->Line(25,$pdf->getY()+4,95,$pdf->getY()+4);
+    $pdf->Cell(15,5,'Assesment: ' . $cash,0,0,'L');
+    $pdf->Line(22,$pdf->getY()+4,95,$pdf->getY()+4);
     $pdf->Ln(4);
-    $pdf->Cell(15,5,'Cashier:',0,0,'L');
+    $pdf->Cell(15,5,'Cashier: ' . $cash,0,0,'L');
+    $pdf->Line(18,$pdf->getY()+4,95,$pdf->getY()+4);
+    $pdf->Ln(4);
+    $pdf->Cell(15,5,'Librarian: ' . $lib,0,0,'L');
     $pdf->Line(20,$pdf->getY()+4,95,$pdf->getY()+4);
     $pdf->Ln(4);
-    $pdf->Cell(15,5,'Librarian:',0,0,'L');
-    $pdf->Line(21,$pdf->getY()+4,95,$pdf->getY()+4);
-    $pdf->Ln(4);
-    $pdf->Cell(15,5,'In-Charge, Laboratory Supplies:',0,0,'L');
+    $pdf->Cell(15,5,'In-Charge, Laboratory Supplies: ' . $lab,0,0,'L');
     $pdf->Line(50,$pdf->getY()+4,95,$pdf->getY()+4);
     $pdf->Ln(4);
-    $pdf->Cell(15,5,'Adviser/Head, Students Affairs:',0,0,'L');
+    $pdf->Cell(15,5,'Adviser/Head, Students Affairs: ' . $aff,0,0,'L');
     $pdf->Line(50,$pdf->getY()+4,95,$pdf->getY()+4);
     $pdf->Ln(4);
-    $pdf->Cell(15,5,'Department Head:',0,0,'L');
+    $pdf->Cell(15,5,'Department Head: ' . $head,0,0,'L');
     $pdf->Line(32,$pdf->getY()+4,95,$pdf->getY()+4);
     $pdf->Ln(4);
-    $pdf->Cell(15,5,'College Dean:',0,0,'L');
+    $pdf->Cell(15,5,'College Dean: ' . $dean,0,0,'L');
     $pdf->Line(26,$pdf->getY()+4,95,$pdf->getY()+4);
 
     $pdf->SetY($y);
     $pdf->Cell(109);
 
-    $pdf->Cell(15,5,'Assesment:',0,0,'L');
+    $pdf->Cell(15,5,'Assesment: ' . $cash,0,0,'L');
     $pdf->Line(133,$pdf->getY()+4,205,$pdf->getY()+4);
     $pdf->Ln(4);
     $pdf->Cell(109);
-    $pdf->Cell(15,5,'Cashier:',0,0,'L');
+    $pdf->Cell(15,5,'Cashier: ' . $cash,0,0,'L');
     $pdf->Line(127,$pdf->getY()+4,205,$pdf->getY()+4);
     $pdf->Ln(4);
     $pdf->Cell(109);
-    $pdf->Cell(15,5,'Librarian:',0,0,'L');
+    $pdf->Cell(15,5,'Librarian: ' . $lib,0,0,'L');
     $pdf->Line(130,$pdf->getY()+4,205,$pdf->getY()+4);
     $pdf->Ln(4);
     $pdf->Cell(109);
-    $pdf->Cell(15,5,'In-Charge, Laboratory Supplies:',0,0,'L');
+    $pdf->Cell(15,5,'In-Charge, Laboratory Supplies: ' . $lab,0,0,'L');
     $pdf->Line(158,$pdf->getY()+4,205,$pdf->getY()+4);
     $pdf->Ln(4);
     $pdf->Cell(109);
-    $pdf->Cell(15,5,'Adviser/Head, Students Affairs:',0,0,'L');
+    $pdf->Cell(15,5,'Adviser/Head, Students Affairs: ' . $aff,0,0,'L');
     $pdf->Line(158,$pdf->getY()+4,205,$pdf->getY()+4);
     $pdf->Ln(4);
     $pdf->Cell(109);
-    $pdf->Cell(15,5,'Department Head:',0,0,'L');
+    $pdf->Cell(15,5,'Department Head: ' . $head,0,0,'L');
     $pdf->Line(140,$pdf->getY()+4,205,$pdf->getY()+4);
     $pdf->Ln(4);
     $pdf->Cell(109);
-    $pdf->Cell(15,5,'College Dean:',0,0,'L');
+    $pdf->Cell(15,5,'College Dean: ' . $dean,0,0,'L');
     $pdf->Line(135,$pdf->getY()+4,205,$pdf->getY()+4);
 
 
@@ -14254,55 +14259,55 @@ class PrintController extends AppController {
     
     $pdf->Ln(3);
     $y = $pdf->GetY();
-    $pdf->Cell(15,5,'Assesment:',0,0,'L');
+    $pdf->Cell(15,5,'Assesment: ' . $cash,0,0,'L');
     $pdf->Line(25,$pdf->getY()+4,95,$pdf->getY()+4);
     $pdf->Ln(4);
-    $pdf->Cell(15,5,'Cashier:',0,0,'L');
+    $pdf->Cell(15,5,'Cashier: ' . $cash,0,0,'L');
     $pdf->Line(20,$pdf->getY()+4,95,$pdf->getY()+4);
     $pdf->Ln(4);
-    $pdf->Cell(15,5,'Librarian:',0,0,'L');
+    $pdf->Cell(15,5,'Librarian: ' . $lib,0,0,'L');
     $pdf->Line(21,$pdf->getY()+4,95,$pdf->getY()+4);
     $pdf->Ln(4);
-    $pdf->Cell(15,5,'In-Charge, Laboratory Supplies:',0,0,'L');
+    $pdf->Cell(15,5,'In-Charge, Laboratory Supplies: ' . $lab,0,0,'L');
     $pdf->Line(50,$pdf->getY()+4,95,$pdf->getY()+4);
     $pdf->Ln(4);
-    $pdf->Cell(15,5,'Adviser/Head, Students Affairs:',0,0,'L');
+    $pdf->Cell(15,5,'Adviser/Head, Students Affairs: ' . $aff,0,0,'L');
     $pdf->Line(50,$pdf->getY()+4,95,$pdf->getY()+4);
     $pdf->Ln(4);
-    $pdf->Cell(15,5,'Department Head:',0,0,'L');
+    $pdf->Cell(15,5,'Department Head: ' . $head,0,0,'L');
     $pdf->Line(32,$pdf->getY()+4,95,$pdf->getY()+4);
     $pdf->Ln(4);
-    $pdf->Cell(15,5,'College Dean:',0,0,'L');
+    $pdf->Cell(15,5,'College Dean: ' . $dean,0,0,'L');
     $pdf->Line(26,$pdf->getY()+4,95,$pdf->getY()+4);
 
     $pdf->SetY($y);
     $pdf->Cell(109);
 
-    $pdf->Cell(15,5,'Assesment:',0,0,'L');
+    $pdf->Cell(15,5,'Assesment: ' . $cash,0,0,'L');
     $pdf->Line(133,$pdf->getY()+4,205,$pdf->getY()+4);
     $pdf->Ln(4);
     $pdf->Cell(109);
-    $pdf->Cell(15,5,'Cashier:',0,0,'L');
+    $pdf->Cell(15,5,'Cashier: ' . $cash,0,0,'L');
     $pdf->Line(127,$pdf->getY()+4,205,$pdf->getY()+4);
     $pdf->Ln(4);
     $pdf->Cell(109);
-    $pdf->Cell(15,5,'Librarian:',0,0,'L');
+    $pdf->Cell(15,5,'Librarian: ' . $lib,0,0,'L');
     $pdf->Line(130,$pdf->getY()+4,205,$pdf->getY()+4);
     $pdf->Ln(4);
     $pdf->Cell(109);
-    $pdf->Cell(15,5,'In-Charge, Laboratory Supplies:',0,0,'L');
+    $pdf->Cell(15,5,'In-Charge, Laboratory Supplies: ' . $lab,0,0,'L');
     $pdf->Line(158,$pdf->getY()+4,205,$pdf->getY()+4);
     $pdf->Ln(4);
     $pdf->Cell(109);
-    $pdf->Cell(15,5,'Adviser/Head, Students Affairs:',0,0,'L');
+    $pdf->Cell(15,5,'Adviser/Head, Students Affairs: ' . $aff,0,0,'L');
     $pdf->Line(158,$pdf->getY()+4,205,$pdf->getY()+4);
     $pdf->Ln(4);
     $pdf->Cell(109);
-    $pdf->Cell(15,5,'Department Head:',0,0,'L');
+    $pdf->Cell(15,5,'Department Head: ' . $head,0,0,'L');
     $pdf->Line(140,$pdf->getY()+4,205,$pdf->getY()+4);
     $pdf->Ln(4);
     $pdf->Cell(109);
-    $pdf->Cell(15,5,'College Dean:',0,0,'L');
+    $pdf->Cell(15,5,'College Dean: ' . $dean,0,0,'L');
     $pdf->Line(135,$pdf->getY()+4,205,$pdf->getY()+4);
 
 
