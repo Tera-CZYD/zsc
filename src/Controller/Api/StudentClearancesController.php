@@ -181,7 +181,7 @@ class StudentClearancesController extends AppController {
 
           'status_faculty'       => $data['status_faculty'],
 
-          'course'       => $data['course'],
+          'course'       => $data['name'],
 
       );
 
