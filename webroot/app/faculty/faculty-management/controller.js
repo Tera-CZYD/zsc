@@ -170,6 +170,12 @@ app.controller('FacultyAddController', function($scope, Employee, Select) {
 
   });
 
+  Select.get({ code: 'academic-rank-list' },function(e){
+
+    $scope.academic_ranks = e.data;
+
+  });
+
   $scope.save = function() {
 
     valid = $("#form").validationEngine('validate');
@@ -296,11 +302,18 @@ app.controller('FacultyEditController', function($scope, $routeParams, Employee,
 
   });
 
-    Select.get({ code: 'specialization-list' },function(e){
+  Select.get({ code: 'specialization-list' },function(e){
 
     $scope.specialization = e.data;
 
   });
+
+  Select.get({ code: 'academic-rank-list' },function(e){
+
+    $scope.academic_ranks = e.data;
+
+  });
+
 
   // load 
   $scope.load = function() {

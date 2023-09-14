@@ -19,7 +19,7 @@
 
       <?php echo $this->element('sidebar-vice') ?>
 
-    <?php }else if ($currentUser['role']['code'] == 'Faculty') { ?>
+    <?php }else if ($currentUser['role']['code'] == 'Faculty' && $currentUser['employee']['academic_rank_id'] == 2) { ?>
 
       <?php echo $this->element('sidebar-faculty') ?>
 

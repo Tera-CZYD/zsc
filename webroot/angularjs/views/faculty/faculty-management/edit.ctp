@@ -56,12 +56,14 @@
               </div>
             </div>
             
-            <div class="col-md-12">
+            <div class="col-md-6">
               <div class="form-group">
                 <label> ACADEMIC RANK <i class="required">*</i></label>
-                <input type="text" class="form-control" ng-model="data.Employee.academic_rank" data-validation-engine="validate[required]">
+                <select class="form-control" ng-model="data.Employee.academic_rank_id" ng-options="opt.id as opt.value for opt in academic_ranks" data-validation-engine="validate[required]">
+                  <option value=""></option>
+                </select>
               </div>
-            </div>
+            </div> 
 
             <div class="col-md-6">
               <div class="form-group">

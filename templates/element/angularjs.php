@@ -308,6 +308,8 @@
 
     'faculty/student-profile',
 
+    'faculty/academic-rank',
+
     //COLLEGES
 
     'college',

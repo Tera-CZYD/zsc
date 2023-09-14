@@ -36,6 +36,8 @@ class StudentClearancesController extends AppController {
 
     $this->Students = TableRegistry::getTableLocator()->get('Students');
 
+    $this->Employees = TableRegistry::getTableLocator()->get('Employees');
+
   }
 
   public function index(){   
@@ -116,21 +118,43 @@ class StudentClearancesController extends AppController {
 
     $conditions['faculty'] = '';
 
-    
+    $employees = [];
 
     if($this->Auth->user('employeeId')!=null){
 
       $employee_id = $this->Auth->user('employeeId');
 
-      $step = 1;
+      $employees = $this->Employees->find()
+      ->contain([
+          'AcademicRanks'=> [
+              'conditions' => ['AcademicRanks.visible' => 1],
+            ]
+        ])
 
-      if (!empty($employee_id)) {
+      ->where([
 
-        $conditions['faculty'] = " AND StudentEnrolledCourse.faculty_id = $employee_id ";
+        'Employees.visible' => 1,
+
+        'Employees.id' => $employee_id
+
+      ])
+
+      ->first();
+
+      
+
+      if($employees['academic_rank_id']!=1){
+
+        if (!empty($employee_id)) {
+
+          $conditions['faculty'] = " AND StudentEnrolledCourse.faculty_id = $employee_id ";
+
+        }
+
+        $conditionsPrint .= '&faculty='.$employee_id;
 
       }
 
-      $conditionsPrint .= '&faculty='.$employee_id;
     }
 
     $conditions['college_program'] = '';
@@ -146,10 +170,12 @@ class StudentClearancesController extends AppController {
     }
 
 
-
+    // var_dump($employees['academic_rank_id']);
     $role_id = $this->Auth->user('roleId');
 
     $conditions['step'] = '';
+
+    $step = 1;
 
     if($role_id!=null){
 
@@ -165,11 +191,29 @@ class StudentClearancesController extends AppController {
 
         $step = 3;
 
-      }else if ($role_id==23){
+      }else if ($role_id==0){
 
-        $conditions['step'] = " AND StudentClearance.step = 3 ";
+        $conditions['step'] = " AND StudentClearance.step = 4 ";
 
-        $step = 3;
+        $step = 4;
+
+      }else if ($role_id==25){
+
+        $conditions['step'] = " AND StudentClearance.step = 5 ";
+
+        $step = 5;
+
+      }else if ($role_id==12 && $employees['academic_rank_id'] == 1){
+
+        $conditions['step'] = " AND StudentClearance.step = 6 ";
+
+        $step = 6;
+
+      }else if ($role_id==39){
+
+        $conditions['step'] = " AND StudentClearance.step = 7 ";
+
+        $step = 7;
 
       }
 
@@ -732,7 +776,31 @@ class StudentClearancesController extends AppController {
 
     $student = $this->Students->get($app['student_id']);
 
-    if($this->Auth->user('roleId')==12){
+    $employees = [];
+
+    if($this->Auth->user('employeeId')!=null){
+
+      $employee_id = $this->Auth->user('employeeId');
+
+      $employees = $this->Employees->find()
+        ->contain([
+            'AcademicRanks'=> [
+                'conditions' => ['AcademicRanks.visible' => 1],
+              ]
+          ])
+
+        ->where([
+
+          'Employees.visible' => 1,
+
+          'Employees.id' => $employee_id
+
+        ])
+
+        ->first();
+    }
+
+    if($this->Auth->user('roleId')==12 && $employees['academic_rank_id'] != 1){
 
       $courses = $this->StudentEnrolledCourses->find()
 
@@ -770,13 +838,45 @@ class StudentClearancesController extends AppController {
 
       $save = $this->StudentClearances->save($app);
 
+    }else if($this->Auth->user('roleId')==0){
+
+      $app->status_laboratory = 1;
+
+      $app->step = 5;
+
+      $save = $this->StudentClearances->save($app);
+
+    }else if($this->Auth->user('roleId')==25){
+
+      $app->status_affairs = 1;
+
+      $app->step = 6;
+
+      $save = $this->StudentClearances->save($app);
+
+    }else if($this->Auth->user('roleId')==12 && $employees['academic_rank_id'] == 1){
+
+      $app->status_head = 1;
+
+      $app->step = 7;
+
+      $save = $this->StudentClearances->save($app);
+
+    }else if($this->Auth->user('roleId')==39){
+
+      $app->status_dean = 1;
+
+      $app->step = 8;
+
+      $save = $this->StudentClearances->save($app);
+
     }
 
     
 
     if ($save) {
 
-      if($this->Auth->user('roleId')==12){
+      if($this->Auth->user('roleId')==12 && $employees['academic_rank_id'] != 1){
 
         $tmp = $this->StudentEnrolledCourses->find()->where([
 
