@@ -162,6 +162,14 @@ class AppController extends Controller
 
                 ],
 
+                'Employees' => [
+
+                    'conditions' => ['Employees.visible' => 1],
+
+                    'AcademicRanks'
+
+                ],
+
                 'Roles',
 
                 'Students' => [

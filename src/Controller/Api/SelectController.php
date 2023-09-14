@@ -44,7 +44,11 @@ class SelectController extends AppController {
 
     $this->loadComponent('RequestHandler');
 
+    $this->loadModel('Checkouts');
+
     $this->loadModel("Colleges");
+
+    $this->loadModel("AcademicRanks");
 
     $this->loadModel("Employees");
 
@@ -335,6 +339,31 @@ class SelectController extends AppController {
             'id'    => $data['id'],
 
             'value' => $data['code'].' - '.$data['name'],
+
+          );
+
+        }
+
+      }
+
+    }else if ($code == 'academic-rank-list') {
+     
+      $tmp = $this->AcademicRanks->find()
+        ->where(['visible' => 1])
+
+        ->order(['id' => 'ASC'])
+
+        ->all();
+
+      if(!empty($tmp)){
+
+        foreach ($tmp as $k => $data) {
+
+          $datas[] = array(
+
+            'id'    => $data['id'],
+
+            'value' => $data['rank'],
 
           );
 
@@ -2663,6 +2692,64 @@ class SelectController extends AppController {
       ->count();
 
       if($tmp > 1){
+
+        $datas = 0;
+
+      }else{
+
+        $datas = 1;
+
+      }
+
+    }else if ($code == 'check-student-check-outs') {
+
+      $student_id = $this->request->getQuery('student_id');
+
+      $lrm = $this->LearningResourceMembers->find()
+
+          ->where([
+
+            'visible' => 1,
+
+            'student_id' => $student_id
+
+          ])
+
+          ->first();
+
+      $lrm_id = $lrm['id'];
+     
+      $tmp = $this->Checkouts->find()
+
+        ->contain([
+
+          'CheckOutSubs' => [
+
+            'conditions' => [
+
+              'CheckOutSubs.visible' => 1,
+
+              'CheckOutSubs.returned' => 0
+
+            ],
+
+          ],
+
+        ])
+
+        ->where([
+
+          'Checkouts.visible' => 1,
+
+          'Checkouts.learning_resource_member_id' => $lrm_id
+
+        ])
+
+      ->first();
+
+      // var_dump($tmp['check_out_subs']);
+
+      if(count($tmp['check_out_subs']) > 0){
 
         $datas = 0;
 

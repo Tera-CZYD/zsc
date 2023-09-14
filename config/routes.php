@@ -324,6 +324,8 @@
 
       $routes->resources('StudentGrades');
 
+      $routes->resources('AcademicRanks');
+
       $routes->resources('FacultyStudentAttendances');
 
 

@@ -26,6 +26,12 @@ class EmployeesTable extends Table{
 
     ]);
 
+    $this->belongsTo('AcademicRanks', [
+
+     'foreignKey' => 'academic_rank_id'
+
+    ]);
+
   }
 
   public function getAllEmployeePrint($conditions){

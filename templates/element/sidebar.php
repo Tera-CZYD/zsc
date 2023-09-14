@@ -279,8 +279,8 @@
           <?php endif ?>
 
           <?php if (hasAccess('faculty/menu', $currentUser)): ?>
-            <li class="nav-link-side nav-faculty-clearance nav-student-clearance nav-faculty-management nav-grades nav-program-advisers nav-student-attendance nav-faculty-student-profile"><a><i class="fa fa-user"></i> Faculty </a>
-              <ul class="nav child_menu collapse collapse-faculty-clearance collapse-student-clearance collapse-faculty-management collapse-grades collapse-program-advisers collapse-student-attendance collapse-faculty-student-profile">
+            <li class="nav-link-side nav-faculty-clearance nav-student-clearance nav-faculty-management nav-academic-rank nav-grades nav-program-advisers nav-student-attendance nav-faculty-student-profile"><a><i class="fa fa-user"></i> Faculty </a>
+              <ul class="nav child_menu collapse collapse-faculty-clearance collapse-student-clearance collapse-faculty-management collapse-grades collapse-program-advisers collapse-student-attendance collapse-faculty-student-profile collapse-academic-rank">
                 <?php if (hasAccess('student profile/index', $currentUser)): ?>
                   <li class="nav-link-side nav-faculty-student-profile">
                     <a href="#/faculty/student-profile" onclick="change('faculty-student-profile')"> Student Profile </a>
@@ -326,6 +326,11 @@
                 <?php if (hasAccess('specialization management/index', $currentUser)): ?>
                   <li class="nav-link-side nav-specialization">
                     <a href="#/faculty/specialization" onclick="change('specialization')"> Specialization Management </a>
+                  </li>
+                <?php endif ?>
+                <?php if (hasAccess('academic rank management/index', $currentUser)): ?>
+                  <li class="nav-link-side nav-academic-rank">
+                    <a href="#/faculty/academic-rank" onclick="change('academic-rank')"> Academic Rank Management </a>
                   </li>
                 <?php endif ?>
               </ul>

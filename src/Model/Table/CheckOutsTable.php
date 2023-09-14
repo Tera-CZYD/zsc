@@ -18,6 +18,12 @@ class CheckOutsTable extends Table{
 
     ]);
 
+    $this->belongsTo('LearningResourceMembers', [
+
+      'foreignKey' => 'learning_resource_member_id', 
+
+    ]);
+
   }
 
   public function getAllCheckOutPrint($conditions){
