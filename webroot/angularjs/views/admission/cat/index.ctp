@@ -3,7 +3,7 @@
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
-        <h4 class="header-title">asd</h4>
+        <h4 class="header-title">EXAMINATION</h4>
         <div class="clearfix"></div><hr> 
         <!-- nav tab start -->
           <div class="col-lg-12">
