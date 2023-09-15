@@ -1,5 +1,33 @@
-<?php if (hasAccess('referral slip/index', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'referral slip/index', currentUser);
+  handleAccess('pageAdd', 'referral slip/add', currentUser);
+  handleAccess('pagePrint', 'referral slip/print', currentUser);
+  handleAccess('pageView', 'referral slip/view', currentUser);
+  handleAccess('pageEdit', 'referral slip/edit', currentUser);
+  handleAccess('pageDelete', 'referral slip/delete', currentUser);
+
+  handleAccess('pageAddAppointment', 'appointment slip/add', currentUser);
+  handleAccess('pagePrintAppointment', 'appointment slip/print', currentUser);
+  handleAccess('pageViewAppointment', 'appointment slip/view', currentUser);
+  handleAccess('pageEditAppointment', 'appointment slip/edit', currentUser);
+  handleAccess('pageDeleteAppointment', 'appointment slip/delete', currentUser);
+
+</script>
+
+<div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -11,11 +39,9 @@
                 <li class="nav-item">
                   <a class="nav-link active" data-toggle="tab" data-target ="#referral" role="tab">REFERRAL</a>
                 </li>
-                <?php if (hasAccess('appointment slip/index', $currentUser)): ?>
                 <li class="nav-item">
                   <a class="nav-link" data-toggle="tab" data-target ="#appointment" role="tab">APPOINTMENT</a>
                 </li>
-                <?php endif ?> 
               </ul>
             </div>
             <div class="col-md-4 col-xs-12 pull-right">
@@ -47,18 +73,13 @@
               </div>
             </div>
             <div class="tab-content mt-3" id="myTabContent">
-              <div class="clearfix"></div><hr>
+              <div class="clearfix"></div>
               <div class="tab-pane fade show active" id="referral">
-                <div class="col-md-12">
+                <div class="col-md-12 pt-3">
                   <div class="row">
                     <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                      <?php if (hasAccess('referral slip/add', $currentUser)): ?>
-                        <a href="#/guidance/referral-slip/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD </a>
-                      <?php endif ?> 
-                      <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-                      <?php if (hasAccess('referral slip/print', $currentUser)): ?>
-                        <button ng-click="printReferral()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
-                      <?php endif ?>
+                      <a id="pageAdd" href="#/guidance/referral-slip/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD </a>
+                      <button id="pagePrint" ng-click="printReferral()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
                     <div class="col-md-4 col-xs-12 pull-right">
@@ -95,15 +116,9 @@
                           <td class="text-center">{{ data.reason }}</td>
                           <td>
                             <div class="btn-group btn-group-xs">
-                              <?php if (hasAccess('referral slip/view', $currentUser)): ?>
-                                <a href="#/guidance/referral-slip/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
-                              <?php endif ?> 
-                              <?php if (hasAccess('referral slip/edit', $currentUser)): ?>
-                                <a href="#/guidance/referral-slip/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a>
-                              <?php endif ?> 
-                              <?php if (hasAccess('referral slip/delete', $currentUser)): ?>
-                              <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
-                              <?php endif ?> 
+                              <a id="pageView" href="#/guidance/referral-slip/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
+                              <a id="pageEdit" href="#/guidance/referral-slip/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a>
+                              <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
                             </div>
                           </td> 
                         </tr>
@@ -142,16 +157,11 @@
                 </div>
               </div>
               <div class="tab-pane fade show" id="appointment">
-                <div class="col-md-12">
+                <div class="col-md-12 pt-3">
                   <div class="row">
                     <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                      <?php if (hasAccess('appointment slip/add', $currentUser)): ?>
-                        <a href="#/guidance/appointment-slip/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD </a>
-                      <?php endif ?> 
-                      <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-                      <?php if (hasAccess('appointment slip/print', $currentUser)): ?>
-                        <button ng-click="printAppointment()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
-                      <?php endif ?>
+                      <a id="pageAddAppointment" href="#/guidance/appointment-slip/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD </a>
+                      <button id="pagePrintAppointment" ng-click="printAppointment()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
                     <div class="col-md-4 col-xs-12 pull-right">
@@ -188,15 +198,9 @@
                           <td class="text-left">{{ data.location }}</td>
                           <td>
                             <div class="btn-group btn-group-xs">
-                              <?php if (hasAccess('appointment slip/view', $currentUser)): ?>
-                                <a href="#/guidance/appointment-slip/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
-                              <?php endif ?> 
-                              <?php if (hasAccess('appointment slip/edit', $currentUser)): ?>
-                                <a href="#/guidance/appointment-slip/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a>
-                              <?php endif ?> 
-                              <?php if (hasAccess('appointment slip/delete', $currentUser)): ?>
-                              <a href="javascript:void(0)" ng-click="removeAppointment(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
-                              <?php endif ?> 
+                              <a id="pageViewAppointment" href="#/guidance/appointment-slip/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
+                              <a id="pageEditAppointment" href="#/guidance/appointment-slip/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a>
+                              <a id="pageDeleteAppointment" href="javascript:void(0)" ng-click="removeAppointment(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
                             </div>
                           </td> 
                         </tr>
@@ -237,89 +241,8 @@
             </div>
           </div>
 
-
-
-
         </div>
       </div>
     </div>
   </div>
-</div>
-<?php endif ?>
-
-
-<div class="modal fade" id="advance-search-modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">ADVANCE SEARCH</h5>
-        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-      </div>
-      <div class="modal-body">
-        <div class="col-md-12">
-          <div class="form-group">
-            <label>FILTER BY</label>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-list-ul"></i></span>
-              </div>
-              <select class="form-control input-sm" ng-model="search.filterBy">
-                <option value="date">DATE</option>
-                <option value="today">TODAY</option>
-                <option value="month">MONTH</option>
-                <option value="this-month">THIS MONTH</option>
-                <option value="custom-range">CUSTOM RANGE</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div ng-show="search.filterBy == 'custom-range'">
-          <div class="col-md-12">
-            <div class="input-group input-daterange mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-              </div>
-              <input type="text" class="form-control input-sm uppercase" ng-model="search.startDate">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-              </div>
-              <input type="text" class="form-control input-sm uppercase" ng-model="search.endDate">
-            </div>
-          </div>  
-        </div>  
-        <div ng-show="search.filterBy == 'month'">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label>MONTH</label>
-                <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                </div>
-                <input type="text" class="form-control monthpicker input-sm uppercase" ng-model="search.month">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div ng-show="search.filterBy == 'date'">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label>DATE</label>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                </div>
-                <input type="text" class="form-control datepicker input-sm uppercase" ng-model="search.date">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <!-- <div class="btn-group btn-group-sm pull-right btn-min"> -->
-          <button type="button" class="btn btn-danger btn-sm btn-min" data-dismiss="modal"> CANCEL</button>
-          <button type="button" class="btn btn-primary btn-sm btn-min" ng-click="searchFilter(search)"> SEARCH</button>
-        <!-- </div>  -->
-      </div>
-    </div><!-- modal-content -->
-  </div><!-- modal-dialog -->
 </div>

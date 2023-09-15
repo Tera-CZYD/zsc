@@ -1,5 +1,27 @@
-<?php if (hasAccess('counseling intake management/add', $currentUser)) : ?>
-  <div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'student exit management/view', currentUser);
+  handleAccess('pageEdit', 'student exit management/edit', currentUser);
+  handleAccess('pageDelete', 'student exit management/delete', currentUser);
+  handleAccess('pagePrintForm', 'student exit management/print stdent exit form', currentUser);
+
+
+</script>
+
+
+  <div class="row" id="pageView">
     <div class="col-lg-12 mt-3">
       <div class="card">
         <div class="card-body">
@@ -123,15 +145,15 @@
           <div class="clearfix"></div><hr>
             <div class="col-md-12">
               <div class="pull-right">
-                <?php if (hasAccess('participant evaluation management/edit', $currentUser)): ?>
-                  <a href="#/guidance/student-exit/edit/{{ data.StudentExit.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
-                  <?php endif ?>
-                  <?php if (hasAccess('participant evaluation activity/print', $currentUser)): ?>
-                  <button type="button" class="btn btn-info  btn-min" ng-click="print(data.id )"><i class="fa fa-print"></i> PRINT STUDENT EXIT FORM</button>
-                  <?php endif ?>
-                  <?php if (hasAccess('participant evaluation management/delete', $currentUser)): ?> 
-                  <button class="btn btn-danger btn-min" ng-click="remove(data.StudentExit)"><i class="fa fa-trash"></i> DELETE </button>
-                <?php endif ?>
+                
+                  <a id="pageEdit" href="#/guidance/student-exit/edit/{{ data.StudentExit.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
+                  
+                  
+                  <button id="pagePrintForm" type="button" class="btn btn-info  btn-min" ng-click="print(data.id )"><i class="fa fa-print"></i> PRINT STUDENT EXIT FORM</button>
+                  
+                  
+                  <button id="pageDelete" class="btn btn-danger btn-min" ng-click="remove(data.StudentExit)"><i class="fa fa-trash"></i> DELETE </button>
+                
               </div>
             </div>
           </div>
@@ -139,8 +161,7 @@
       </div>
     </div>
   </div>
-<?php endif ?>
-<?php echo $this->element('modals/search/searched-student-modal') ?>
+
 <style type="text/css">
   th {
     white-space: nowrap;
