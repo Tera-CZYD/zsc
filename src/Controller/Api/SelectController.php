@@ -7237,6 +7237,18 @@ class SelectController extends AppController {
 
     } else if ($code == 'get-month-attendance') {
 
+      $currentMonth = date('n');
+      $currentYear = date('Y');
+
+      // Get the first day of the month
+      $firstDay = date('N', strtotime("$currentYear-$currentMonth-01"));
+
+      // Calculate the number of days in the current month
+      $daysInMonth = date('t', strtotime("$currentYear-$currentMonth-01"));
+
+      // Initialize a counter for the day of the week
+                    $dayOfWeek = 1;
+
       $header = array();
 
       // $year = $this->request->query['year'];
