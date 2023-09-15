@@ -492,6 +492,8 @@ class FacultyStudentAttendancesController extends AppController {
             $found = false;
 
             $excused = '';
+
+            $fileName ='';
             
             foreach ($attendance as $d) {
 
@@ -501,23 +503,25 @@ class FacultyStudentAttendancesController extends AppController {
 
                 if ($i == $day) {
 
-                    $found = true;
+                  $fileName = $d['images'];
 
-                    if($d['status']=='present'){
+                  $found = true;
 
-                      $excused = 1;
+                  if($d['status']=='present'){
 
-                    }else if($d['status']=='absent'){
+                    $excused = 1;
 
-                      $excused = 2;
+                  }else if($d['status']=='absent'){
 
-                    }else if($d['status']=='excused'){
+                    $excused = 2;
 
-                      $excused = 3;
+                  }else if($d['status']=='excused'){
 
-                    }
+                    $excused = 3;
 
-                    break;
+                  }
+
+                  break;
                 }
             }
 
@@ -527,11 +531,34 @@ class FacultyStudentAttendancesController extends AppController {
             
             if ($found) {
 
-                $present[] = array('id'=>$sid,'day'=>$excused,'dayName' => $dayName);
+                $present[] = array(
+
+                  'id'=>$sid,
+
+                  'day'=>$excused,
+
+                  'dayName' => $dayName, 
+
+                  'image' => $fileName,
+
+                  'imageSrc' => $this->base . '/uploads/student-attendance/' . $sid . '/' . $fileName
+
+                );
 
             } else {
 
-                $present[] = array('id'=>$sid,'day'=>'','dayName' => $dayName);
+                $present[] = array(
+
+                  'id'=>$sid,
+
+                  'day'=>'',
+
+                  'dayName' => $dayName, 
+
+                  'image' => $fileName,
+
+                  'imageSrc' => ''
+                );
 
             }
 
@@ -542,132 +569,7 @@ class FacultyStudentAttendancesController extends AppController {
       }
 
 
-
-      // $attendance = $this->Attendances->find()
-
-      //     ->where([
-
-      //         'MONTH(date)' => date('m'),
-
-      //         'YEAR(date)' => date('Y')
-
-      //     ])
-
-      //     ->orderAsc('date')
-
-      //     ->all();
-
-      // $currentMonth = date('n');
-
-      // $month = date('F');
-
-      // $currentYear = date('Y');
-
-      // // Get the first day of the month
-      // $firstDay = date('D', strtotime("$currentYear-$currentMonth-01"));
-
-      // // Calculate the number of days in the current month
-      // $daysInMonth = date('t', strtotime("$currentYear-$currentMonth-01"));
-
-      //  $header = array();
-
-      //   // Loop through each day of the month and display day of the week headers
-      //   for ($day = 1; $day <= $daysInMonth; $day++) {
-
-      //     $date = strtotime("$currentYear-$currentMonth-$day");
-
-      //     $dayName = date('D', $date);
-
-      //     $header[] = array(
-
-      //       'dayName' => $dayName
-
-      //     );
-
-          
-      //   }
-
-
-      // var_dump($currentMonth.'<br>'.$currentYear.'<br>'.$firstDay.'<br>'.$daysInMonth);
-
-
-      // $counter = 1;
-
-      // $presentDay = array();
-
-      // $student_id = 0;
-
-      // foreach ($attendance as $d) {
-
-      //   $found = false;
-
-      //   $student_id = $d['student_id'];
-
-      //   $day = DATE_FORMAT($d['date'], 'j');
-        
-        
-
-      //   for ($i = 1; $i <= $daysInMonth; $i++) {
-
-      //     if ($i == $day) {
-
-      //       $found = true;
-
-      //       break;
-      //     }
-
-      //   }
-
-      //   if ($found) {
-
-      //       $presentDay[] = array('id'=>$student_id,'day'=>$i);
-
-      //   } else {
-
-      //       $presentDay[] = array('id'=>$student_id,'day'=>'');
-
-      //   }
-
-      // }
-
-
-      // for ($i = 1; $i <= $daysInMonth; $i++) {
-
-      //     $found = false;
-          
-      //     foreach ($attendance as $d) {
-
-      //         $student_id = $d['student_id'];
-
-      //         $day = DATE_FORMAT($d['date'], 'j');
-              
-      //         if ($i == $day) {
-
-      //             $found = true;
-
-      //             break;
-      //         }
-      //     }
-          
-      //     if ($found) {
-
-      //         $presentDay[] = array('day'=>$i);
-
-      //     } else {
-
-      //         $presentDay[] = array('day'=>'');
-
-      //     }
-      // }
-          // foreach($attendance as $d){
-
-          //   $d['date'] = DATE_FORMAT($d['date'], 'j');
-
-          // }
-
     $courses = $this->Courses->get($course);
-
-
 
     $response = [
 

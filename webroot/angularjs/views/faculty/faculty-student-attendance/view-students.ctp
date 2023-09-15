@@ -46,8 +46,8 @@
                     <div class="btn-group btn-group-xs" ng-show="record.dayName != 'Sat' && record.dayName != 'Sun'">
                       <?php if (hasAccess('course/view', $currentUser)): ?>
                         <span ng-show="record.day != '' && record.day == 1"><i class="fa fa-check"></i></span>
-                        <a href="javascript:void(0)" ng-show="record.day != '' && record.day != 1" ng-click="attendance(data.id)" class="btn btn-success" style="color:white !important;" title="Add Attendance"><i class="fa fa-eye"></i></a>
-                        <a href="javascript:void(0)" ng-show="record.day == ''" ng-click="attendance(data.id)" class="btn btn-print" style="color:white !important;" title="Add Attendance"><i class="fa fa-user-plus"></i></a>
+                        <a href="javascript:void(0)" ng-show="record.day != '' && record.day != 1" ng-click="showImage(data.id,record.image,record.imageSrc)" class="btn btn-success" style="color:white !important;" title="Add Attendance"><i class="fa fa-eye"></i></a>
+                        <a href="javascript:void(0)" ng-show="record.day == ''" ng-click="attendance(data.id,$index+1)" class="btn btn-print" style="color:white !important;" title="Add Attendance"><i class="fa fa-user-plus"></i></a>
                       <?php endif ?> 
                     </div>
                   </td> 
@@ -91,6 +91,24 @@
 </div>
 
 
+<div class="modal fade" id="view-file">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12">
+          <img src="{{ base }}/uploads/student-attendance/{{folder_id}}/{{imageName}}" width="100%">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="{{ imageSrc }}" target="_blank" class="btn btn-print">Download</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <div class="modal fade" id="add-attendance" role="dialog">
   <div class="modal-dialog">
@@ -111,12 +129,12 @@
             </select>
           </div>
         </div>
-        <div class="col-md-12">
+        <!-- <div class="col-md-12">
           <div class="form-group">
             <label> DATE <i class="required">*</i></label>
             <input type="text" class="form-control datepicker" autocomplete="false" ng-model="attendanceData.date" data-validation-engine="validate[required]">
           </div>
-        </div>
+        </div> -->
         <div class="col-md-12" ng-show="attendanceData.status == 'absent' || attendanceData.status == 'excused'">
           <center>
             <ul class="list-group">

@@ -181,6 +181,8 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
 
   $scope.faculty = $routeParams.faculty;
 
+  $scope.base = base;
+
     // console.log($scope);
 
 
@@ -224,9 +226,25 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
 
   $scope.load();  
 
-  $scope.attendance = function(data) {
+  $scope.showImage = function(data,image,imageSrc) {
+
+    $scope.folder_id = data;
+
+    $scope.imageName = image;
+
+    $scope.imageSrc = imageSrc;
+
+    // alert(data+'<br>'+image);
+
+    $('#view-file').modal('show');
+
+  };
+
+  $scope.attendance = function(data,index) {
 
     $scope.student_id = data;
+
+    $scope.day = index;
 
     $scope.attendanceData = {};
 
@@ -236,17 +254,7 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
 
   };
 
-  $scope.showImage = function(data) {
 
-    $scope.student_id = data;
-
-    $scope.attendanceData = {};
-
-    var x = document.getElementById("upload_prev").innerHTML = " ";
-
-    $('#add-attendance').modal('show');
-
-  };
 
   $scope.saveFile = function (files,attendanceData) {
 
@@ -256,6 +264,17 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
 
 
     }
+
+    var year = new Date().getFullYear(); // Get the current year
+
+    var month = new Date().getMonth() + 1; // Get the current month (add 1 because it's zero-based)
+
+
+    // Format the number with leading zeros if needed (e.g., '01')
+    var formattedNumber = $scope.day < 10 ? '0' + $scope.day : '' + $scope.day;
+
+    // Create the formatted date string 'yyyy-MM-number'
+    var formattedDate = year + '-' + (month < 10 ? '0' + month : '' + month) + '-' + formattedNumber;
 
     // alert(files.length);
     
@@ -272,21 +291,24 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
 
       });
 
-    }else if(files.length == 0){
-
-      $.gritter.add({
-
-        title: 'Warning!',
-
-        text:  'Please upload a file.',
-
-      });
-
     }else{
 
       if(attendanceData.status != 'present'){
 
-         angular.forEach(files, function(file, e){
+
+        if(files.length == 0){
+
+          $.gritter.add({
+
+            title: 'Warning!',
+
+            text:  'Please upload a file.',
+
+          });
+
+        }else{
+
+          angular.forEach(files, function(file, e){
 
           $scope.StudentAttendanceFile.push({
 
@@ -294,7 +316,7 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
 
             status           : attendanceData.status,
 
-            date             : Date.parse(attendanceData.date).toString('yyyy-MM-dd'),
+            date             : Date.parse(formattedDate).toString('yyyy-MM-dd'),
 
             course_id        : $scope.course,
 
@@ -314,7 +336,10 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
 
         });
 
+        }
+
        }else{
+
 
           $scope.StudentAttendanceFile.push({
 
@@ -322,7 +347,7 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
 
             status           : attendanceData.status,
 
-            date             : Date.parse(attendanceData.date).toString('yyyy-MM-dd'),
+            date             : Date.parse(formattedDate).toString('yyyy-MM-dd'),
 
             course_id        : $scope.course,
 
