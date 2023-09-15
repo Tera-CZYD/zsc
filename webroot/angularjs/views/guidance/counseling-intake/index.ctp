@@ -1,5 +1,29 @@
-<?php if (hasAccess('counseling intake/index', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'counseling intake/index', currentUser);
+  handleAccess('pageAdd', 'counseling intake/add', currentUser);
+  handleAccess('pagePrint', 'counseling intake/print', currentUser);
+  handleAccess('pageView', 'counseling intake/view', currentUser);
+  handleAccess('pageEdit', 'counseling intake/edit', currentUser);
+  handleAccess('pageDelete', 'counseling intake/delete', currentUser);
+
+</script>
+
+
+
+<div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -8,12 +32,11 @@
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-              <?php if (hasAccess('counseling intake/add', $currentUser)): ?>
-                <a href="#/guidance/counseling-intake/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD RECORD </a>
-              <?php endif ?> 
-              <?php if (hasAccess('counseling intake/print', $currentUser)): ?>
-                <a ng-click="print()" class="btn btn-print btn-sm btn-min"><i class="fa fa-print"></i> PRINT </a>
-              <?php endif ?>
+              
+                <a id="pageAdd" href="#/guidance/counseling-intake/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD RECORD </a>
+              
+                <a id="pagePrint" ng-click="print()" class="btn btn-print btn-sm btn-min"><i class="fa fa-print"></i> PRINT </a>
+              
             </div>
             <div class="col-md-4 col-xs-12 pull-right">
               <div class="input-group-prepend">
@@ -49,15 +72,13 @@
 
                   <td>
                     <div class="btn-group btn-group-xs">
-                      <?php if (hasAccess('counseling intake/view', $currentUser)): ?>
-                      	<a href="#/guidance/counseling-intake/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
-                      <?php endif ?> 
-                      <?php if (hasAccess('counseling intake/edit', $currentUser)): ?>
-                      	<a href="#/guidance/counseling-intake/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a>
-                      <?php endif ?> 
-                      <?php if (hasAccess('counseling intake/delete', $currentUser)): ?>
-                      <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
-                      <?php endif ?> 
+                      
+                      	<a id="pageView" href="#/guidance/counseling-intake/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
+                           
+                      	<a id="pageEdit" href="#/guidance/counseling-intake/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a>
+                                    
+                      <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
+                      <
                     </div>
                   </td> 
                 </tr>
@@ -98,4 +119,4 @@
     </div>
   </div>
 </div>
-<?php endif ?>
+

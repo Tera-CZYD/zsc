@@ -1,5 +1,26 @@
-<?php if (hasAccess('counseling intake management/view', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'participant evaluation activity/view', currentUser);
+  handleAccess('pageEdit', 'participant evaluation activity/edit', currentUser);
+  handleAccess('pageDelete', 'participant evaluation activity/delete', currentUser);
+  handleAccess('pagePrint', 'participant evaluation activity/print', currentUser);
+
+
+</script>
+
+<div class="row" id="pageView">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -320,15 +341,15 @@
           </div>
           <div class="col-md-12">
             <div class="pull-right">
-              <?php if (hasAccess('participant evaluation management/edit', $currentUser)): ?>
-                <a href="#/guidance/participant-evaluation/edit/{{ adata.ParticipantEvaluationActivity.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
-                <?php endif ?>
-                <?php if (hasAccess('participant evaluation activity/print', $currentUser)): ?>
-                <button type="button" class="btn btn-info  btn-min" ng-click="print(data.id )"><i class="fa fa-print"></i> PRINT PARTICIPANT EVALUATION ACTIVITY</button>
-                <?php endif ?>
-                <?php if (hasAccess('participant evaluation management/delete', $currentUser)): ?> 
-                <button class="btn btn-danger btn-min" ng-click="remove(adata.ParticipantEvaluationActivity)"><i class="fa fa-trash"></i> DELETE </button>
-              <?php endif ?>
+              
+                <a id="pageEdit" href="#/guidance/participant-evaluation/edit/{{ adata.ParticipantEvaluationActivity.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
+                
+                
+                <button id="pagePrint" type="button" class="btn btn-info  btn-min" ng-click="print(data.id )"><i class="fa fa-print"></i> PRINT PARTICIPANT EVALUATION ACTIVITY</button>
+                
+                
+                <button id="pageDelete" class="btn btn-danger btn-min" ng-click="remove(adata.ParticipantEvaluationActivity)"><i class="fa fa-trash"></i> DELETE </button>
+              
             </div>
           </div>
         </div>
@@ -336,7 +357,7 @@
     </div>
   </div>
 </div>
-<?php endif ?>
+
 <style type="text/css">
   th {
     white-space: nowrap;

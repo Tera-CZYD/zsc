@@ -31,22 +31,23 @@
                 <tr class="bg-info">
                   <th class="w10px" style="width: 50px" rowspan="2">NO.</th>
                   <th rowspan="2" style="white-space: nowrap;">STUDENT NAME</th>
-                  <th ng-repeat="head in header">{{head.dayName}}</th>
+                  <th ng-repeat="record in records[0]">{{record.dayName}}</th>
                   <!-- <th class="w90px"></th> -->
                 </tr>
                 <tr class="bg-info">
-                  <th ng-repeat="head in header">{{$index+1}}</th>
+                  <th ng-repeat="record in records[0]">{{$index+1}}</th>
                 </tr>
               </thead>
               <tbody>
                 <tr ng-repeat="data in students">
                   <td class="text-center">{{ $index + 1 }}</td>
                   <td class="text-center" style="white-space: nowrap;">{{ data.last_name }}, {{data.first_name}} {{data.middle_name}}</td>
-                  <td ng-repeat="head in header">
-                    <div class="btn-group btn-group-xs" ng-show="head.dayName != 'Sat' && head.dayName != 'Sun'">
+                  <td ng-repeat="record in records[$index]">
+                    <div class="btn-group btn-group-xs" ng-show="record.dayName != 'Sat' && record.dayName != 'Sun'">
                       <?php if (hasAccess('course/view', $currentUser)): ?>
-                        <span ng-show="attendances[$index].student_id == data.id && attendances[$index].date == $index+1"><i class="fa fa-check"></i></span>
-                        <a href="javascript:void(0)" ng-click="attendance(data.id)" class="btn btn-print" style="color:white !important;" title="ABSENT/EXCUSED"><i class="fa fa-user-plus"></i></a>
+                        <span ng-show="record.day != '' && record.day == 1"><i class="fa fa-check"></i></span>
+                        <a href="javascript:void(0)" ng-show="record.day != '' && record.day != 1" ng-click="attendance(data.id)" class="btn btn-success" style="color:white !important;" title="Add Attendance"><i class="fa fa-eye"></i></a>
+                        <a href="javascript:void(0)" ng-show="record.day == ''" ng-click="attendance(data.id)" class="btn btn-print" style="color:white !important;" title="Add Attendance"><i class="fa fa-user-plus"></i></a>
                       <?php endif ?> 
                     </div>
                   </td> 
