@@ -1,5 +1,24 @@
-<?php if (hasAccess('user logs/index', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'user logs/index', currentUser);
+  handleAccess('pagePrint', 'user logs/print', currentUser);
+
+</script>
+
+
+<div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -8,9 +27,9 @@
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-              <?php if (hasAccess('user logs/print', $currentUser)): ?>
-                <button class="btn btn-print  btn-min" ng-click="print()"><i class="fa fa-print"></i> PRINT</button>
-              <?php endif ?>
+              
+                <button id="pagePrint" class="btn btn-print  btn-min" ng-click="print()"><i class="fa fa-print"></i> PRINT</button>
+
               <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
               <button type="button" class="btn btn-warning btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
             </div>
@@ -83,7 +102,7 @@
     </div>
   </div>
 </div>
-<?php endif ?>
+
 
 <div class="modal fade" id="advance-search-modal">
   <div class="modal-dialog">
