@@ -1,5 +1,28 @@
-<?php if (hasAccess('counseling appointment/index', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'counseling appointment/index', currentUser);
+  handleAccess('pageAdd', 'counseling appointment/add', currentUser);
+  handleAccess('pagePrint', 'counseling appointment/print', currentUser);
+  handleAccess('pageView', 'counseling appointment/view', currentUser);
+  handleAccess('pageEdit', 'counseling appointment/edit', currentUser);
+  handleAccess('pageDelete', 'counseling appointment/delete', currentUser);
+
+</script>
+
+
+<div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -61,13 +84,13 @@
                 <div class="col-md-12">
                   <div class="row">
                     <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                      <?php if (hasAccess('counseling appointment/add', $currentUser)): ?>
-                        <a href="#/guidance/admin-counseling-appointment/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
-                      <?php endif ?>
+                      
+                        <a id="pageAdd" href="#/guidance/admin-counseling-appointment/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
+                      
                       <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-                      <?php if (hasAccess('counseling appointment/print', $currentUser)): ?>
-                        <button ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
-                      <?php endif ?>
+                      
+                        <button id="pagePrint" ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                      
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
                     <div class="col-md-4 col-xs-12 pull-right">
@@ -112,15 +135,15 @@
                           </td>
                           <td>
                             <div class="btn-group btn-group-xs">
-                              <?php if (hasAccess('counseling appointment/view', $currentUser)): ?>
-                              <a href="#/guidance/admin-counseling-appointment/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                              <?php endif ?>
-                              <?php if (hasAccess('counseling appointment/edit', $currentUser)): ?>
-                              <a href="#/guidance/admin-counseling-appointment/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
-                              <?php endif ?>
-                              <?php if (hasAccess('counseling appointment/delete', $currentUser)): ?>
-                              <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
-                              <?php endif ?>
+                              
+                              <a id="pageView" href="#/guidance/admin-counseling-appointment/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                              
+                              
+                              <a id="pageEdit" href="#/guidance/admin-counseling-appointment/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
+                              
+                             
+                              <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
+                              
                             </div>
                           </td>
                         </tr>
@@ -164,9 +187,9 @@
                   <div class="row">
                     <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                       <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-                      <?php if (hasAccess('counseling appointment/print', $currentUser)): ?>
-                        <button ng-click="printApproved()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
-                      <?php endif ?>
+                      
+                        <button id="pagePrint" ng-click="printApproved()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                      
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
                     <div class="col-md-4 col-xs-12 pull-right">
@@ -211,9 +234,9 @@
                           </td>
                           <td>
                             <div class="btn-group btn-group-xs">
-                              <?php if (hasAccess('counseling appointment/view', $currentUser)): ?>
-                              <a href="#/guidance/admin-counseling-appointment/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
-                              <?php endif ?>
+                              
+                              <a id="pageView" href="#/guidance/admin-counseling-appointment/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
+                              
                             </div>
                           </td>
                         </tr>
@@ -257,9 +280,9 @@
                   <div class="row">
                     <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                       <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-                      <?php if (hasAccess('counseling appointment/print', $currentUser)): ?>
-                        <button ng-click="printConfirmed()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
-                      <?php endif ?>
+                      
+                        <button id="pagePrint" ng-click="printConfirmed()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                      
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
                     <div class="col-md-4 col-xs-12 pull-right">
@@ -304,9 +327,9 @@
                           </td>
                           <td>
                             <div class="btn-group btn-group-xs">
-                              <?php if (hasAccess('counseling appointment/view', $currentUser)): ?>
-                              <a href="#/guidance/admin-counseling-appointment/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                              <?php endif ?>
+                              
+                              <a id="pageView" href="#/guidance/admin-counseling-appointment/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                              
                             </div>
                           </td>
                         </tr>
@@ -350,9 +373,9 @@
                   <div class="row">
                     <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                       <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-                      <?php if (hasAccess('counseling appointment/print', $currentUser)): ?>
-                        <button ng-click="printDisapproved()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
-                      <?php endif ?>
+                      
+                        <button id="pagePrint" ng-click="printDisapproved()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                      
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
                     <div class="col-md-4 col-xs-12 pull-right">
@@ -397,9 +420,9 @@
                           </td>
                           <td>
                             <div class="btn-group btn-group-xs">
-                              <?php if (hasAccess('counseling appointment/view', $currentUser)): ?>
-                              <a href="#/guidance/admin-counseling-appointment/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                              <?php endif ?>
+                              
+                              <a id="pageView" href="#/guidance/admin-counseling-appointment/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                              
                             </div>
                           </td>
                         </tr>
@@ -443,9 +466,9 @@
                   <div class="row">
                     <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                       <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-                      <?php if (hasAccess('counseling appointment/print', $currentUser)): ?>
-                        <button ng-click="printCancelled()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
-                      <?php endif ?>
+                      
+                        <button id="pagePrint" ng-click="printCancelled()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                      
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
                     <div class="col-md-4 col-xs-12 pull-right">
@@ -490,9 +513,9 @@
                           </td>
                           <td>
                             <div class="btn-group btn-group-xs">
-                              <?php if (hasAccess('counseling appointment/view', $currentUser)): ?>
-                              <a href="#/guidance/admin-counseling-appointment/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                              <?php endif ?>
+                              
+                              <a id="pageView" href="#/guidance/admin-counseling-appointment/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                              
                             </div>
                           </td>
                         </tr>
@@ -536,7 +559,7 @@
     </div>
   </div>
 </div>
-<?php endif ?>
+
 
 <div class="modal fade" id="advance-search-modal">
   <div class="modal-dialog">
