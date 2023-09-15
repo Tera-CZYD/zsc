@@ -45,7 +45,8 @@
                   <td ng-repeat="head in header">
                     <div class="btn-group btn-group-xs" ng-show="head.dayName != 'Sat' && head.dayName != 'Sun'">
                       <?php if (hasAccess('course/view', $currentUser)): ?>
-                        <a href="javascript:void(0)" ng-click="attendance(data.id)"  class="btn btn-print" style="color:white !important;" title="ABSENT/EXCUSED"><i class="fa fa-user-plus"></i></a>
+                        <span ng-show="attendances[$index].student_id == data.id && attendances[$index].date == $index+1"><i class="fa fa-check"></i></span>
+                        <a href="javascript:void(0)" ng-click="attendance(data.id)" class="btn btn-print" style="color:white !important;" title="ABSENT/EXCUSED"><i class="fa fa-user-plus"></i></a>
                       <?php endif ?> 
                     </div>
                   </td> 

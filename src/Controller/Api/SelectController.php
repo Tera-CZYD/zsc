@@ -7248,8 +7248,6 @@ class SelectController extends AppController {
       // Calculate the number of days in the current month
       $daysInMonth = date('t', strtotime("$currentYear-$currentMonth-01"));
 
-       $daysInMonth = date('t', strtotime("$currentYear-$currentMonth-01"));
-
        $header = array();
 
         // Loop through each day of the month and display day of the week headers
