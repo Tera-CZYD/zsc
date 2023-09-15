@@ -1,5 +1,25 @@
-<?php if (hasAccess('gco evaluation/view', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'gco evaluation/view', currentUser);
+  handleAccess('pagePrintForm', 'gco evaluation/print gco evaluation form', currentUser);
+
+
+</script>
+
+
+<div class="row" id="pageView">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -142,9 +162,9 @@
           </div>
           <div class="col-md-12">
             <div class="pull-right">
-              <?php if (hasAccess('gco evaluation/print gco evaluation form', $currentUser)): ?>
-              <button type="button" class="btn btn-info  btn-min" ng-click="print(data.GcoEvaluation.id )"><i class="fa fa-print"></i> PRINT GCO EVALUATION FORM </button>
-              <?php endif ?>
+              
+              <button id="pagePrintForm" type="button" class="btn btn-info  btn-min" ng-click="print(data.GcoEvaluation.id )"><i class="fa fa-print"></i> PRINT GCO EVALUATION FORM </button>
+              
             </div> 
           </div>
         </div>
@@ -152,7 +172,7 @@
     </div>
   </div>
 </div>
-<?php endif ?>
+
 <style>
   .table-wrapper{
     width:100%;
