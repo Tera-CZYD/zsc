@@ -14,16 +14,8 @@
   // INCLUDE ALL PAGE PERMISSION
   handleAccess('pageIndex', 'chart of accounts/index', currentUser);
   handleAccess('pageAdd', 'chart of accounts/add', currentUser);
-  handleAccess('pagePrint', 'referral slip/print', currentUser);
-  handleAccess('pageView', 'referral slip/view', currentUser);
   handleAccess('pageEdit', 'chart of accounts/edit', currentUser);
   handleAccess('pageDelete', 'chart of accounts/delete', currentUser);
-
-  handleAccess('pageAddAppointment', 'appointment slip/add', currentUser);
-  handleAccess('pagePrintAppointment', 'appointment slip/print', currentUser);
-  handleAccess('pageViewAppointment', 'appointment slip/view', currentUser);
-  handleAccess('pageEditAppointment', 'appointment slip/edit', currentUser);
-  handleAccess('pageDeleteAppointment', 'appointment slip/delete', currentUser);
 
 </script>
 

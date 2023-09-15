@@ -448,14 +448,44 @@ class FacultyStudentAttendancesController extends AppController {
 
           ->all();
 
+          $currentMonth = date('n');
+
+          $currentYear = date('Y');
+
+          // Calculate the number of days in the current month
+          $daysInMonth = date('t', strtotime("$currentYear-$currentMonth-01"));
+
+
           $counter = 1;
 
-          for($i = 0; i<)
-          foreach($attendance as $d){
+          $presentDay = array();
 
-            $d['date'] = DATE_FORMAT($d['date'], 'j');
+          for($i = 0; $i<$daysInMonth;$i++){
+
+            foreach($attendance as $d){
+
+              $day = DATE_FORMAT($d['date'], 'j');
+
+              if($i == $day){
+
+                $presentDay[]=array(
+
+                  $i => $day
+
+                );
+
+              }
+
+              
+
+            }
 
           }
+          // foreach($attendance as $d){
+
+          //   $d['date'] = DATE_FORMAT($d['date'], 'j');
+
+          // }
 
     $courses = $this->Courses->get($course);
 
@@ -471,7 +501,9 @@ class FacultyStudentAttendancesController extends AppController {
 
       'students' => $studentData,
 
-      'attendances' => $attendance
+      'attendances' => $attendance,
+
+      'records' => $$presentDay
 
     ];
 
