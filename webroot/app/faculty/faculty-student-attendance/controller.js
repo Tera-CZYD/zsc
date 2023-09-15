@@ -207,6 +207,8 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
 
       $scope.students = e.students;
 
+      $scope.attendances = e.attendances;
+
     });
 
   }
