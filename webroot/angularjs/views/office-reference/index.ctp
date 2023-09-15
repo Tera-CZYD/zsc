@@ -1,5 +1,26 @@
-<?php if (hasAccess('office reference/index', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'office reference/index', currentUser);
+  handleAccess('pageAdd', 'office reference/add', currentUser);
+  handleAccess('pageView', 'office reference/view', currentUser);
+  handleAccess('pageEdit', 'office reference/edit', currentUser);
+  handleAccess('pageDelete', 'office reference/delete', currentUser);
+
+</script>
+
+<div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -8,9 +29,7 @@
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-              <?php if (hasAccess('office reference/add', $currentUser)): ?>
-                <a href="#/settings/office-reference/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD RECORD </a>
-              <?php endif ?> 
+                <a id="pageAdd" href="#/settings/office-reference/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD RECORD </a>
               <button type="button" class="btn btn-warning btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
             </div>
             <div class="col-md-4 col-xs-12 pull-right">
@@ -43,15 +62,9 @@
                   <td class="text-center">{{ data.reference_code }}</td>
                   <td>
                     <div class="btn-group btn-group-xs">
-                      <?php if (hasAccess('office reference/view', $currentUser)): ?>
-                          <a href="#/settings/office-reference/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                          <?php endif ?>
-                      <?php if (hasAccess('office reference/edit', $currentUser)): ?>
-                      	<a href="#/settings/office-reference/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a>
-                      <?php endif ?> 
-                      <?php if (hasAccess('office reference/delete', $currentUser)): ?>
-                      <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
-                      <?php endif ?> 
+                        <a id="pageView" href="#/settings/office-reference/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
+                      	<a id="pageEdit" href="#/settings/office-reference/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a>
+                        <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
                     </div>
                   </td> 
                 </tr>
@@ -92,4 +105,3 @@
     </div>
   </div>
 </div>
-<?php endif ?>
