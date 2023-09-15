@@ -444,11 +444,18 @@ class FacultyStudentAttendancesController extends AppController {
 
           ])
 
+          ->orderAsc('date')
+
           ->all();
 
-      // $datas['Student'] = $datas['student'];
+          $counter = 1;
 
-      // unset($datas['student']);
+          for($i = 0; i<)
+          foreach($attendance as $d){
+
+            $d['date'] = DATE_FORMAT($d['date'], 'j');
+
+          }
 
     $courses = $this->Courses->get($course);
 
@@ -464,7 +471,7 @@ class FacultyStudentAttendancesController extends AppController {
 
       'students' => $studentData,
 
-      'attendance' => $attendance
+      'attendances' => $attendance
 
     ];
 
