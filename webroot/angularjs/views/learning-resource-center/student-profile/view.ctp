@@ -1,5 +1,24 @@
-<?php if (hasAccess('registered students/view', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'registered students/view', currentUser);
+  handleAccess('pagePrintCor', 'registered students/print cor', currentUser);
+
+
+</script>
+
+<div class="row" id="pageView">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -34,9 +53,9 @@
           </div>
 
           <div class="col-md-12">
-            <?php if (hasAccess('registered students/print cor', $currentUser)): ?>
-              <button type="button" class="btn btn-info  btn-min" ng-click="print(data.Student.id )"><i class="fa fa-print"></i> PRINT CERTIFICATE OF REGISTRATION </button>
-             <?php endif ?>
+            
+              <button id="pagePrintCor" type="button" class="btn btn-info  btn-min" ng-click="print(data.Student.id )"><i class="fa fa-print"></i> PRINT CERTIFICATE OF REGISTRATION </button>
+             <
           </div>
 
           <div class="col-md-12">
@@ -88,7 +107,7 @@
     </div>
   </div>
 </div>
-<?php endif ?>
+
 <style type="text/css">
   th {
     white-space: nowrap;

@@ -1,5 +1,28 @@
-<?php if (hasAccess('check out/index', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'check out/index', currentUser);
+  handleAccess('pageAdd', 'check out/add', currentUser);
+  handleAccess('pagePrint', 'check out/print', currentUser);
+  handleAccess('pageView', 'check out/view', currentUser);
+  handleAccess('pageEdit', 'check out/edit', currentUser);
+  handleAccess('pageDelete', 'check out/delete', currentUser);
+
+</script>
+
+
+<div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -46,13 +69,13 @@
             <div class="col-md-12">
               <div class="row">
                 <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                  <?php if (hasAccess('check out/add', $currentUser)): ?>
-                    <a href="#/learning-resource-center/check-out/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
-                  <?php endif ?>
+                  
+                    <a id="pageAdd" href="#/learning-resource-center/check-out/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
+                  
                   <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-                  <?php if (hasAccess('check out/print', $currentUser)): ?>
-                    <button ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
-                  <?php endif ?>
+                  
+                    <button id="pagePrint" ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                  
                   <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                 </div>
                 <div class="col-md-4 col-xs-12 pull-right">
@@ -87,15 +110,15 @@
                       <td class="text-center uppercase">{{ data.date_borrowed }}</td>
                       <td>
                         <div class="btn-group btn-group-xs">
-                          <?php if (hasAccess('check out/view', $currentUser)): ?>
-                          <a href="#/learning-resource-center/check-out/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                          <?php endif ?>
-                          <?php if (hasAccess('check out/edit', $currentUser)): ?>
-                          <a href="#/learning-resource-center/check-out/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a> 
-                          <?php endif ?>
-                          <?php if (hasAccess('check out/delete', $currentUser)): ?>
-                          <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
-                          <?php endif ?>
+                          
+                          <a id="pageView" href="#/learning-resource-center/check-out/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                          
+                          
+                          <a id="pageEdit" href="#/learning-resource-center/check-out/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a> 
+                          
+                          
+                          <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
+                          
                         </div>
                       </td>
                     </tr>
@@ -137,7 +160,7 @@
     </div>
   </div>
 </div>
-<?php endif ?>
+
 
 <div class="modal fade" id="advance-search-modal">
   <div class="modal-dialog">

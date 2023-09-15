@@ -1,5 +1,28 @@
-<?php if (hasAccess('inventory bibliography/index', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'inventory bibliography/index', currentUser);
+  handleAccess('pageAdd', 'inventory bibliography/add', currentUser);
+  handleAccess('pagePrint', 'inventory bibliography/print', currentUser);
+  handleAccess('pageView', 'inventory bibliography/view', currentUser);
+  handleAccess('pageEdit', 'inventory bibliography/edit', currentUser);
+  handleAccess('pageDelete', 'inventory bibliography/delete', currentUser);
+
+</script>
+
+
+<div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -57,15 +80,15 @@
               <div class="row">
                 <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                   <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-                  <?php if (hasAccess('inventory-bibliography/print', $currentUser)): ?>
-                    <button ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
-                  <?php endif ?>
-                  <?php if (hasAccess('inventory-bibliography/print', $currentUser)): ?>
-                  <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
-                  <?php endif ?>
-                  <?php if (hasAccess('inventory-bibliography management/print', $currentUser)): ?>
-                  <!-- <button type="button" class="btn btn-primary  btn-min" ng-click="export()"><i class="fa fa-file-excel-o"></i> EXPORT </button> -->
-                  <?php endif ?>
+                  
+                    <button id="pagePrint" ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                  
+                  
+                  <button id="pagePrint" type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
+                  
+                  
+                  <!-- <button id="pagePrint" type="button" class="btn btn-primary  btn-min" ng-click="export()"><i class="fa fa-file-excel-o"></i> EXPORT </button> -->
+                  
                 </div>
                 <div class="col-md-4 col-xs-12 pull-right">
                   <div class="input-group-prepend">
@@ -137,7 +160,7 @@
     </div>
   </div>
 </div>
-<?php endif ?>
+
 
 <div class="modal fade" id="advance-search-modal">
   <div class="modal-dialog">
