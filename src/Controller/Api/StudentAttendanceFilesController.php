@@ -71,13 +71,16 @@ public function add() {
 
     $entities = $this->Attendances->newEntities($requestData);
 
+    // var_dump($requestData);
+
     if ($this->Attendances->saveMany($entities)) {
 
         $response = [
 
+
             'ok' => true,
 
-            'msg' => 'Image(s) successfully saved.',
+            'msg' => 'Attendance successfully saved.',
 
             'data' => $requestData,
 
@@ -89,7 +92,7 @@ public function add() {
 
             'ok' => false,
 
-            'msg' => 'Image(s) cannot be saved at this time.',
+            'msg' => 'Attendance cannot be saved at this time.',
 
         ];
     }

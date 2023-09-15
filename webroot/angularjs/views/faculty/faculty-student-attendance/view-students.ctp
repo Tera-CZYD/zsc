@@ -7,8 +7,12 @@
         <div class="clearfix"></div><hr>
         <div class="col-md-12">
           <div class="row">
-            <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
+            <div class="col-md-4 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
               <button type="button" class="btn btn-warning btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
+            </div>
+
+            <div class="col-md-4 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
+              <h4><strong>{{ month }} {{ year }}</strong></h4>
             </div>
             <div class="col-md-4 col-xs-12 pull-right">
               <div class="input-group-prepend">
@@ -25,19 +29,23 @@
             <table class="table table-bordered text-center">
               <thead>
                 <tr class="bg-info">
-                  <th class="w10px" style="width: 50px">NO.</th>
-                  <th>STUDENT NAME</th>
-                  <th class="w90px"></th>
+                  <th class="w10px" style="width: 50px" rowspan="2">NO.</th>
+                  <th rowspan="2" style="white-space: nowrap;">STUDENT NAME</th>
+                  <th ng-repeat="head in header">{{head.dayName}}</th>
+                  <!-- <th class="w90px"></th> -->
+                </tr>
+                <tr class="bg-info">
+                  <th ng-repeat="head in header">{{$index+1}}</th>
                 </tr>
               </thead>
               <tbody>
                 <tr ng-repeat="data in students">
                   <td class="text-center">{{ $index + 1 }}</td>
-                  <td class="text-center">{{ data.last_name }}, {{data.first_name}} {{data.middle_name}}</td>
-                  <td>
-                    <div class="btn-group btn-group-xs">
+                  <td class="text-center" style="white-space: nowrap;">{{ data.last_name }}, {{data.first_name}} {{data.middle_name}}</td>
+                  <td ng-repeat="head in header">
+                    <div class="btn-group btn-group-xs" ng-show="head.dayName != 'Sat' && head.dayName != 'Sun'">
                       <?php if (hasAccess('course/view', $currentUser)): ?>
-                      	<a href="javascript:void(0)" ng-click="attendance(data.id)" class="btn btn-info" title="ADD ATTENDANCE"><i class="fa fa-plus"></i></a>
+                        <a href="javascript:void(0)" ng-click="attendance(data.id)"  class="btn btn-print" style="color:white !important;" title="ABSENT/EXCUSED"><i class="fa fa-user-plus"></i></a>
                       <?php endif ?> 
                     </div>
                   </td> 

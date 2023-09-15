@@ -213,9 +213,15 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
 
   Select.get({ code: 'get-month-attendance' },function(e) {
 
-    $scope.months = e.data;
+    // console.log(e.data[0].header);
 
-    $scope.header = e.header;
+    $scope.header = e.data[0].header;
+
+    $scope.year = e.data[0].year;
+
+    $scope.month = e.data[0].month;
+
+    // $scope.header = e.header;
 
   });
 
@@ -241,7 +247,9 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
     
     $scope.StudentAttendanceFile = [];
 
-    angular.forEach(files, function(file, e){
+   if(attendanceData.status != 'present'){
+
+     angular.forEach(files, function(file, e){
 
       $scope.StudentAttendanceFile.push({
 
@@ -268,6 +276,28 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
       });
 
     });
+
+   }else{
+
+      $scope.StudentAttendanceFile.push({
+
+        images           : '',
+
+        status           : attendanceData.status,
+
+        date             : Date.parse(attendanceData.date).toString('yyyy-MM-dd'),
+
+        course_id        : $scope.course,
+
+        student_id        : $scope.student_id,
+
+        section_id        : $scope.id,
+
+        faculty_id       : $scope.faculty,
+
+      });
+
+   }
     
     StudentAttendanceFile.save($scope.StudentAttendanceFile, function(e) {
 
