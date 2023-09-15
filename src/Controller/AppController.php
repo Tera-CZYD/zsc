@@ -65,7 +65,9 @@ class AppController extends Controller
 
                 'password' => 'password' // Replace with your password field
 
-              ]
+              ],
+
+              'finder' => 'auth',
 
             ]
 
