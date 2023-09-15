@@ -1,5 +1,27 @@
-<?php if (hasAccess('permission management/index', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'permission management/index', currentUser);
+  handleAccess('pageAdd', 'referral slip/add', currentUser);
+  handleAccess('pagePrint', 'referral slip/print', currentUser);
+  handleAccess('pageView', 'referral slip/view', currentUser);
+  handleAccess('pageEdit', 'referral slip/edit', currentUser);
+  handleAccess('pageDelete', 'referral slip/delete', currentUser);
+
+</script>
+
+<div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -8,9 +30,7 @@
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-              <?php if (hasAccess('permission management/add', $currentUser)): ?>
-                <a href="#/permissions/add" class="btn btn-primary btn-min modal-form"><i class="fa fa-plus"></i> NEW PERMISSION </a>
-              <?php endif ?> 
+                <a id="pageAdd" href="#/permissions/add" class="btn btn-primary btn-min modal-form"><i class="fa fa-plus"></i> NEW PERMISSION </a>
             </div>
             <div class="col-md-4 col-xs-12 pull-right">
               <div class="input-group-prepend">
@@ -40,12 +60,8 @@
                   <td class="text-center uppercase">{{ permission.action }}</td>
                   <td class="text-center">
                     <div class="btn-group btn-group-xs">  
-                      <?php if (hasAccess('permission management/edit', $currentUser)): ?>
-                      <a href="#/permissions/edit/{{ permission.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a> 
-                      <?php endif ?> 
-                      <?php if (hasAccess('permission management/delete', $currentUser)): ?>
-                      <a href="javascript:void(0)" class="btn btn-danger no-border-radius" ng-click="remove(permission)"><i class="fa fa-trash"></i></a>
-                      <?php endif ?>
+                      <a id="pageEdit" href="#/permissions/edit/{{ permission.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a>
+                      <a id="pageDelete" href="javascript:void(0)" class="btn btn-danger no-border-radius" ng-click="remove(permission)"><i class="fa fa-trash"></i></a>
                     </div>
                   </td>
                 </tr>
@@ -86,4 +102,3 @@
     </div>
   </div>
 </div>
-<?php endif ?>

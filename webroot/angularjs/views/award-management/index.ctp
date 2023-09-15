@@ -14,7 +14,6 @@
   // INCLUDE ALL PAGE PERMISSION
   handleAccess('pageIndex', 'award  management/index', currentUser);
   handleAccess('pageAdd', 'award  management/add', currentUser);
-  handleAccess('pageView', 'award  management/view', currentUser);
   handleAccess('pageEdit', 'award  management/edit', currentUser);
   handleAccess('pageDelete', 'award  management/delete', currentUser);
 

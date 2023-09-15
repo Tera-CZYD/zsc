@@ -428,19 +428,58 @@ class FacultyStudentAttendancesController extends AppController {
 
       $studentData = [];
 
-      foreach ($datas as $data) {
+       $presentDay = [];
+
+       $present = [];
+       $currentMonth = date('n');
+
+      $month = date('F');
+
+      $currentYear = date('Y');
+
+      // Get the first day of the month
+      $firstDay = date('D', strtotime("$currentYear-$currentMonth-01"));
+
+      // Calculate the number of days in the current month
+      $daysInMonth = date('t', strtotime("$currentYear-$currentMonth-01"));
+
+       $header = array();
+
+        // Loop through each day of the month and display day of the week headers
+        // for ($day = 1; $day <= $daysInMonth; $day++) {
+
+        //   $date = strtotime("$currentYear-$currentMonth-$day");
+
+        //   $dayName = date('D', $date);
+
+        //   $header[] = array(
+
+        //     'dayName' => $dayName
+
+        //   );
+
+          
+        // }
+
+      foreach ($datas as $key => $data) {
+
+        $present = [];
+
+          $sid = $data->student_id;
 
           $studentData[] = $data->student; // Assuming 'student' is the correct association name
 
-      }
-
-      $attendance = $this->Attendances->find()
+          $attendance = $this->Attendances->find()
 
           ->where([
 
               'MONTH(date)' => date('m'),
 
-              'YEAR(date)' => date('Y')
+              'YEAR(date)' => date('Y'),
+
+              'student_id' => $sid,
+
+              'visible'    => 1 
 
           ])
 
@@ -448,39 +487,178 @@ class FacultyStudentAttendancesController extends AppController {
 
           ->all();
 
-          $currentMonth = date('n');
+          for ($i = 1; $i <= $daysInMonth; $i++) {
 
-          $currentYear = date('Y');
+            $found = false;
 
-          // Calculate the number of days in the current month
-          $daysInMonth = date('t', strtotime("$currentYear-$currentMonth-01"));
+            $excused = '';
+            
+            foreach ($attendance as $d) {
 
+                $student_id = $d['student_id'];
 
-          $counter = 1;
+                $day = DATE_FORMAT($d['date'], 'j');
 
-          $presentDay = array();
+                if ($i == $day) {
 
-          for($i = 0; $i<$daysInMonth;$i++){
+                    $found = true;
 
-            foreach($attendance as $d){
+                    if($d['status']=='present'){
 
-              $day = DATE_FORMAT($d['date'], 'j');
+                      $excused = 1;
 
-              if($i == $day){
+                    }else if($d['status']=='absent'){
 
-                $presentDay[]=array(
+                      $excused = 2;
 
-                  $i => $day
+                    }else if($d['status']=='excused'){
 
-                );
+                      $excused = 3;
 
-              }
+                    }
 
-              
+                    break;
+                }
+            }
+
+            $date = strtotime("$currentYear-$currentMonth-$i");
+
+            $dayName = date('D', $date);
+            
+            if ($found) {
+
+                $present[] = array('id'=>$sid,'day'=>$excused,'dayName' => $dayName);
+
+            } else {
+
+                $present[] = array('id'=>$sid,'day'=>'','dayName' => $dayName);
 
             }
 
           }
+
+           $presentDay[]= $present;
+
+      }
+
+
+
+      // $attendance = $this->Attendances->find()
+
+      //     ->where([
+
+      //         'MONTH(date)' => date('m'),
+
+      //         'YEAR(date)' => date('Y')
+
+      //     ])
+
+      //     ->orderAsc('date')
+
+      //     ->all();
+
+      // $currentMonth = date('n');
+
+      // $month = date('F');
+
+      // $currentYear = date('Y');
+
+      // // Get the first day of the month
+      // $firstDay = date('D', strtotime("$currentYear-$currentMonth-01"));
+
+      // // Calculate the number of days in the current month
+      // $daysInMonth = date('t', strtotime("$currentYear-$currentMonth-01"));
+
+      //  $header = array();
+
+      //   // Loop through each day of the month and display day of the week headers
+      //   for ($day = 1; $day <= $daysInMonth; $day++) {
+
+      //     $date = strtotime("$currentYear-$currentMonth-$day");
+
+      //     $dayName = date('D', $date);
+
+      //     $header[] = array(
+
+      //       'dayName' => $dayName
+
+      //     );
+
+          
+      //   }
+
+
+      // var_dump($currentMonth.'<br>'.$currentYear.'<br>'.$firstDay.'<br>'.$daysInMonth);
+
+
+      // $counter = 1;
+
+      // $presentDay = array();
+
+      // $student_id = 0;
+
+      // foreach ($attendance as $d) {
+
+      //   $found = false;
+
+      //   $student_id = $d['student_id'];
+
+      //   $day = DATE_FORMAT($d['date'], 'j');
+        
+        
+
+      //   for ($i = 1; $i <= $daysInMonth; $i++) {
+
+      //     if ($i == $day) {
+
+      //       $found = true;
+
+      //       break;
+      //     }
+
+      //   }
+
+      //   if ($found) {
+
+      //       $presentDay[] = array('id'=>$student_id,'day'=>$i);
+
+      //   } else {
+
+      //       $presentDay[] = array('id'=>$student_id,'day'=>'');
+
+      //   }
+
+      // }
+
+
+      // for ($i = 1; $i <= $daysInMonth; $i++) {
+
+      //     $found = false;
+          
+      //     foreach ($attendance as $d) {
+
+      //         $student_id = $d['student_id'];
+
+      //         $day = DATE_FORMAT($d['date'], 'j');
+              
+      //         if ($i == $day) {
+
+      //             $found = true;
+
+      //             break;
+      //         }
+      //     }
+          
+      //     if ($found) {
+
+      //         $presentDay[] = array('day'=>$i);
+
+      //     } else {
+
+      //         $presentDay[] = array('day'=>'');
+
+      //     }
+      // }
           // foreach($attendance as $d){
 
           //   $d['date'] = DATE_FORMAT($d['date'], 'j');
@@ -503,7 +681,15 @@ class FacultyStudentAttendancesController extends AppController {
 
       'attendances' => $attendance,
 
-      'records' => $$presentDay
+      'records' => $presentDay,
+
+      'month' => $month,
+
+      'year' => $currentYear,
+
+      'header' => $header,
+
+      'days' => $daysInMonth
 
     ];
 
