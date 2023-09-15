@@ -230,6 +230,8 @@
 
       $routes->connect('/reports/apartelle-monhtly-payments', ['controller' => 'Reports', 'action' => 'apartelle_monhtly_payments']);
 
+      $routes->resources('StudentAttendanceFiles');
+
 
       //REPORTS MEDICAL SERVICES
 

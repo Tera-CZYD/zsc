@@ -4,6 +4,7 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Authentication\PasswordHasher\DefaultPasswordHasher;
+use Cake\Validation\Validator;
 
 class UsersTable extends Table{
 
@@ -49,14 +50,22 @@ class UsersTable extends Table{
 
   }
 
+  public function findAuth(\Cake\ORM\Query $query, array $options){
+
+    $query->where(['Users.visible' => 1]);
+
+    return $query;
+    
+  }
+
   public function validSave($data){
 
     
     $result = [];
 
-    $data['lastName'] = ucwords(@$data['lastName']);
+    $data['last_name'] = ucwords(@$data['last_name']);
 
-    $data['firstName'] = ucwords(@$data['firstName']);
+    $data['first_name'] = ucwords(@$data['first_name']);
 
     if (isset($data['password'])) {
 

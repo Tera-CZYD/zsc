@@ -7235,6 +7235,91 @@ class SelectController extends AppController {
 
       }
 
+    } else if ($code == 'get-month-attendance') {
+
+      $header = array();
+
+      // $year = $this->request->query['year'];
+
+      $header = array('Sun','Mon','Tue','Wed','Thu','Fri','Sat','Sun','Mon','Tue','Wed','Thu','Fri','Sat','Sun','Mon','Tue','Wed','Thu','Fri','Sat','Sun','Mon','Tue','Wed','Thu','Fri','Sat','Sun','Mon','Tue','Wed','Thu','Fri','Sat','Sun','Mon');
+
+      for ($m=1; $m <=12 ; $m++) { 
+
+        $date = array();
+
+        $month = $year.'-'.$m; 
+
+        for ($day=1; $day <=fdate($month,'t') ; $day++) { 
+            
+          $month = $year.'-'.$m.'-'.$day; 
+
+          for ($d=1; $d <= count($header); $d++) { 
+
+            if(fdate($month,'D') == $header[$d-1]){
+
+              $color = 'color : black;';
+
+              if(fdate($month,'D') == 'Sun'){
+
+                $color = 'color : red;';
+
+              }
+
+              $date[] = array(
+
+                'date' => $day,
+
+                'color' => $color
+
+              );
+
+              break;
+
+            }else{
+
+              if($day == 1){
+
+                $date[] = array(
+
+                  'date' => ''
+
+                );
+
+              }
+
+            }
+
+          }
+
+        }
+
+        if(count($date) < count($header)){
+
+          $diff = count($header) - count($date);
+
+          for ($c=0; $c <$diff ; $c++) { 
+            
+            $date[] = array(
+
+              'date' => ''
+
+            );
+
+          }
+
+        }
+
+        
+        $datas[] = array(
+
+          'month' => fdate($month,'F'),
+
+          'date' => $date,
+
+        );
+
+      }
+    
     } else if ($code == 'schedule-list-attendance') {
 
       $conditions = array();

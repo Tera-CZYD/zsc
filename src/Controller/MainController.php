@@ -36,41 +36,41 @@ class MainController extends AppController {
 
     $this->loadComponent('Global');
 
-    $this->loadComponent('Auth', [
+    // $this->loadComponent('Auth', [
 
-      'authenticate' => [
+    //   'authenticate' => [
 
-        'Form' => [
+    //     'Form' => [
 
-          'fields' => [
+    //       'fields' => [
 
-            'username' => 'username', // Replace with your username field
+    //         'username' => 'username', // Replace with your username field
 
-            'password' => 'password' // Replace with your password field
+    //         'password' => 'password' // Replace with your password field
 
-          ]
+    //       ]
 
-        ]
+    //     ]
 
-      ],
+    //   ],
 
-      'loginAction' => [
+    //   'loginAction' => [
 
-        'controller' => 'Pages',
+    //     'controller' => 'Pages',
 
-        'action' => 'login'
+    //     'action' => 'login'
 
-      ],
+    //   ],
 
-      'logoutRedirect' => [
+    //   'logoutRedirect' => [
 
-        'controller' => 'Pages',
+    //     'controller' => 'Pages',
 
-        'action' => 'login'
+    //     'action' => 'login'
 
-      ]
+    //   ]
 
-    ]);
+    // ]);
 
   }
 
@@ -301,14 +301,6 @@ class MainController extends AppController {
 
       }
 
-    } else {
-
-      if ($this->Auth->isLoggedIn()) {
-
-        return $this->redirect(['controller' => 'Pages', 'action' => 'index']);
-          
-      }
-
     }
 
   }
@@ -325,7 +317,7 @@ class MainController extends AppController {
 
       $this->Auth->logout();
 
-      return $this->redirect(['controller' => 'Pages', 'action' => 'login']);
+      return $this->redirect(['controller' => 'Main', 'action' => 'login']);
 
     // }
     

@@ -12,7 +12,6 @@ app.factory("StudentApplication", function($resource, $http) {
 
       method: 'PUT',
 
-      
     },
 
     save: {

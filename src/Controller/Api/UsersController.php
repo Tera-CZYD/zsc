@@ -483,7 +483,7 @@ class UsersController extends AppController
 
   public function edit($id){
 
-    var_dump($id);
+    // var_dump($id);
 
     if ($this->request->is(['post', 'ajax']) && $this->request->is('json')) {
 
