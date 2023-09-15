@@ -209,25 +209,18 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
 
       $scope.attendances = e.attendances;
 
+      $scope.records = e.records;
+
+      $scope.header = e.header;
+
+      $scope.year = e.year;
+
+      $scope.month = e.month;
+
     });
 
   }
 
-  Select.get({ code: 'get-month-attendance' },function(e) {
-
-    // console.log(e.data[0].header);
-
-    $scope.header = e.data[0].header;
-
-    $scope.year = e.data[0].year;
-
-    $scope.month = e.data[0].month;
-
-    // $scope.header = e.header;
-
-  });
-
-  // $scope.year = $scope.search.year
 
   $scope.load();  
 
@@ -243,93 +236,137 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
 
   };
 
+  $scope.showImage = function(data) {
+
+    $scope.student_id = data;
+
+    $scope.attendanceData = {};
+
+    var x = document.getElementById("upload_prev").innerHTML = " ";
+
+    $('#add-attendance').modal('show');
+
+  };
+
   $scope.saveFile = function (files,attendanceData) {
 
-    // console.log(files);
+    if(files == undefined){
+
+      files = '';
+
+
+    }
+
+    // alert(files.length);
     
     $scope.StudentAttendanceFile = [];
 
-   if(attendanceData.status != 'present'){
 
-     angular.forEach(files, function(file, e){
+    if(files.length > 1){
 
-      $scope.StudentAttendanceFile.push({
+      $.gritter.add({
 
-        images           : file.name,
+        title: 'Warning!',
 
-        status           : attendanceData.status,
-
-        date             : Date.parse(attendanceData.date).toString('yyyy-MM-dd'),
-
-        course_id        : $scope.course,
-
-        student_id        : $scope.student_id,
-
-        section_id        : $scope.id,
-
-        faculty_id       : $scope.faculty,
-
-        url              : file.url,
-
-        _file            : file._file,
-
-        $$hashKey        : file.$$hashKey
+        text:  'Upload 1 File only',
 
       });
 
-    });
+    }else if(files.length == 0){
 
-   }else{
+      $.gritter.add({
 
-      $scope.StudentAttendanceFile.push({
+        title: 'Warning!',
 
-        images           : '',
-
-        status           : attendanceData.status,
-
-        date             : Date.parse(attendanceData.date).toString('yyyy-MM-dd'),
-
-        course_id        : $scope.course,
-
-        student_id        : $scope.student_id,
-
-        section_id        : $scope.id,
-
-        faculty_id       : $scope.faculty,
+        text:  'Please upload a file.',
 
       });
 
-   }
+    }else{
+
+      if(attendanceData.status != 'present'){
+
+         angular.forEach(files, function(file, e){
+
+          $scope.StudentAttendanceFile.push({
+
+            images           : file.name,
+
+            status           : attendanceData.status,
+
+            date             : Date.parse(attendanceData.date).toString('yyyy-MM-dd'),
+
+            course_id        : $scope.course,
+
+            student_id        : $scope.student_id,
+
+            section_id        : $scope.id,
+
+            faculty_id       : $scope.faculty,
+
+            url              : file.url,
+
+            _file            : file._file,
+
+            $$hashKey        : file.$$hashKey
+
+          });
+
+        });
+
+       }else{
+
+          $scope.StudentAttendanceFile.push({
+
+            images           : '',
+
+            status           : attendanceData.status,
+
+            date             : Date.parse(attendanceData.date).toString('yyyy-MM-dd'),
+
+            course_id        : $scope.course,
+
+            student_id        : $scope.student_id,
+
+            section_id        : $scope.id,
+
+            faculty_id       : $scope.faculty,
+
+          });
+
+       }
     
-    StudentAttendanceFile.save($scope.StudentAttendanceFile, function(e) {
+      StudentAttendanceFile.save($scope.StudentAttendanceFile, function(e) {
 
-      if (e.ok) {
+        if (e.ok) {
 
-        $.gritter.add({
+          $.gritter.add({
 
-          title: 'Success!',
+            title: 'Success!',
 
-          text:  e.msg,
+            text:  e.msg,
 
-        });
+          });
 
-        $('#add-attendance').modal('hide');
+          $('#add-attendance').modal('hide');
 
-        $scope.load();
+          $scope.load();
 
-      } else {
+        } else {
 
-        $.gritter.add({
+          $.gritter.add({
 
-          title: 'Warning!',
+            title: 'Warning!',
 
-          text:  e.msg,
+            text:  e.msg,
 
-        });
+          });
 
-      }
+        }
 
-    });
+      });
+
+    }
 
   }
   
