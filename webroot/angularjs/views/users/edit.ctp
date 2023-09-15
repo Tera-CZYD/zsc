@@ -1,4 +1,21 @@
-<?php if (hasAccess('user management/edit', $currentUser)){ ?>
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageEdit', 'user management/edit', currentUser);
+
+</script>
+
 <div class="row">
   <div class="col-lg-12 mt-3">
     <div class="card">
