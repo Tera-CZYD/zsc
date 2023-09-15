@@ -79,3 +79,31 @@
 <script>
    var base = <?php echo $base; ?>;
 </script>
+
+<!-- CHECKING OF USER PERMISSIONS -->
+
+<script type="text/javascript">
+
+   function hasAccess(code, user) {
+
+     let result = false;
+
+     if (user.roleId === 1) {
+
+       result = true;
+
+     }
+
+     if (Array.isArray(user.user_permissions) && user.user_permissions.includes(code)) {
+
+       result = true;
+
+     }
+
+     return result;
+
+   }
+  
+</script>
+
+<!-- END  -->
