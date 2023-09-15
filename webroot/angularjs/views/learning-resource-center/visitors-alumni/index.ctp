@@ -14,8 +14,6 @@
   // INCLUDE ALL PAGE PERMISSION
   handleAccess('pageIndex', 'visitors alumni management/index', currentUser);
   handleAccess('pageAdd', 'visitors alumni management/add', currentUser);
-  handleAccess('pagePrint', 'visitors alumni management/print', currentUser);
-  handleAccess('pageView', 'visitors alumni management/view', currentUser);
   handleAccess('pageEdit', 'visitors alumni management/edit', currentUser);
   handleAccess('pageDelete', 'visitors alumni management/delete', currentUser);
 
