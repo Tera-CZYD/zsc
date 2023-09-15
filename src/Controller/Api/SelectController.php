@@ -7237,88 +7237,50 @@ class SelectController extends AppController {
 
     } else if ($code == 'get-month-attendance') {
 
-      $header = array();
+      $currentMonth = date('n');
 
-      // $year = $this->request->query['year'];
+      $month = date('F');
+      $currentYear = date('Y');
 
-      $header = array('Sun','Mon','Tue','Wed','Thu','Fri','Sat','Sun','Mon','Tue','Wed','Thu','Fri','Sat','Sun','Mon','Tue','Wed','Thu','Fri','Sat','Sun','Mon','Tue','Wed','Thu','Fri','Sat','Sun','Mon','Tue','Wed','Thu','Fri','Sat','Sun','Mon');
+      // Get the first day of the month
+      $firstDay = date('D', strtotime("$currentYear-$currentMonth-01"));
 
-      for ($m=1; $m <=12 ; $m++) { 
+      // Calculate the number of days in the current month
+      $daysInMonth = date('t', strtotime("$currentYear-$currentMonth-01"));
 
-        $date = array();
+       $daysInMonth = date('t', strtotime("$currentYear-$currentMonth-01"));
 
-        $month = $year.'-'.$m; 
+       $header = array();
 
-        for ($day=1; $day <=fdate($month,'t') ; $day++) { 
-            
-          $month = $year.'-'.$m.'-'.$day; 
+        // Loop through each day of the month and display day of the week headers
+        for ($day = 1; $day <= $daysInMonth; $day++) {
 
-          for ($d=1; $d <= count($header); $d++) { 
+            $date = strtotime("$currentYear-$currentMonth-$day");
 
-            if(fdate($month,'D') == $header[$d-1]){
+            $dayName = date('D', $date);
 
-              $color = 'color : black;';
+            $header[] = array(
 
-              if(fdate($month,'D') == 'Sun'){
-
-                $color = 'color : red;';
-
-              }
-
-              $date[] = array(
-
-                'date' => $day,
-
-                'color' => $color
-
-              );
-
-              break;
-
-            }else{
-
-              if($day == 1){
-
-                $date[] = array(
-
-                  'date' => ''
-
-                );
-
-              }
-
-            }
-
-          }
-
-        }
-
-        if(count($date) < count($header)){
-
-          $diff = count($header) - count($date);
-
-          for ($c=0; $c <$diff ; $c++) { 
-            
-            $date[] = array(
-
-              'date' => ''
+              'dayName' => $dayName
 
             );
-
-          }
-
         }
 
-        
+
+      // var_dump($currentMonth.'<br>'.$currentYear.'<br>'.$firstDay.'<br>'.$daysInMonth);
+
         $datas[] = array(
 
-          'month' => fdate($month,'F'),
+          'month' => $month,
 
-          'date' => $date,
+          'year' => $currentYear,
+
+          'header' => $header,
+
+          'days' => $daysInMonth
 
         );
 
-      }
     
     } else if ($code == 'schedule-list-attendance') {
 

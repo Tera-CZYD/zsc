@@ -96,6 +96,30 @@ $(document).ready(function() {
 });
 
 </script>
+
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'calendar of activities/index', currentUser);
+  handleAccess('pageAdd', 'calendar of activities/add', currentUser);
+  handleAccess('pagePrint', 'calendar of activities/print', currentUser);
+  handleAccess('pageView', 'calendar of activities/view', currentUser);
+  handleAccess('pageEdit', 'calendar of activities/edit', currentUser);
+  handleAccess('pageDelete', 'calendar of activities/delete', currentUser);
+
+</script>
+
 <style>
 
   #calendar {
@@ -151,13 +175,13 @@ $(document).ready(function() {
                 <div class="col-md-12">
                   <div class="row">
                     <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                      <?php if (hasAccess('calendar of activities/add', $currentUser)): ?>
-                        <a href="#/guidance/calendar-activities/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD </a>
-                      <?php endif ?>
+                      
+                        <a id="pageAdd" href="#/guidance/calendar-activities/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD </a>
+                      
                       <a href="javascript:void(0)" class="btn btn-success btn-sm btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
-                      <?php if (hasAccess('calendar of activities/print', $currentUser)): ?>
-                        <button type="button" class="btn btn-print btn-sm btn-min" ng-click="printActivity()"><i class="fa fa-print"></i> PRINT </button>
-                      <?php endif ?>
+                      
+                        <button id="pagePrint" type="button" class="btn btn-print btn-sm btn-min" ng-click="printActivity()"><i class="fa fa-print"></i> PRINT </button>
+                      
                       <button type="button" class="btn btn-warning btn-sm btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
                     <div class="col-md-4 col-xs-12 pull-right">
@@ -194,15 +218,15 @@ $(document).ready(function() {
                           <td class="text-left uppercase">{{ data.remarks }}</td>
                           <td>
                             <div class="btn-group btn-group-xs">
-                              <?php if (hasAccess('calendar of activities/view', $currentUser)): ?>
-                              <a href="#/guidance/calendar-activities/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                              <?php endif ?>
-                              <?php if (hasAccess('calendar of activities/edit', $currentUser)): ?>
-                              <a href="#/guidance/calendar-activities/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a> 
-                              <?php endif ?>
-                              <?php if (hasAccess('calendar of activities/delete', $currentUser)): ?>
-                              <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
-                              <?php endif ?>
+                              
+                              <a id="pageView" href="#/guidance/calendar-activities/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                              
+                              
+                              <a id="pageEdit" href="#/guidance/calendar-activities/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a> 
+                              
+                             
+                              <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
+                              
                             </div>
                           </td>
                         </tr>
@@ -247,7 +271,7 @@ $(document).ready(function() {
     </div>
   </div>
 </div>
-<?php endif ?>
+
 
 
 <div class="modal fade" id="advance-search-modal">

@@ -20,6 +20,8 @@ class FacultyStudentAttendancesController extends AppController {
 
     $this->Courses = TableRegistry::getTableLocator()->get('Courses');
 
+    $this->Attendances = TableRegistry::getTableLocator()->get('Attendances');
+
   }
 
   public function index(){   
@@ -432,6 +434,18 @@ class FacultyStudentAttendancesController extends AppController {
 
       }
 
+      $attendance = $this->Attendances->find()
+
+          ->where([
+
+              'MONTH(date)' => date('m'),
+
+              'YEAR(date)' => date('Y')
+
+          ])
+
+          ->all();
+
       // $datas['Student'] = $datas['student'];
 
       // unset($datas['student']);
@@ -448,7 +462,9 @@ class FacultyStudentAttendancesController extends AppController {
 
       'course' => $courses,
 
-      'students'=>$studentData
+      'students' => $studentData,
+
+      'attendance' => $attendance
 
     ];
 
