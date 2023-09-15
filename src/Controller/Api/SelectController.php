@@ -7235,51 +7235,6 @@ class SelectController extends AppController {
 
       }
 
-    } else if ($code == 'get-month-attendance') {
-
-      $currentMonth = date('n');
-
-      $month = date('F');
-      $currentYear = date('Y');
-
-      // Get the first day of the month
-      $firstDay = date('D', strtotime("$currentYear-$currentMonth-01"));
-
-      // Calculate the number of days in the current month
-      $daysInMonth = date('t', strtotime("$currentYear-$currentMonth-01"));
-
-       $header = array();
-
-        // Loop through each day of the month and display day of the week headers
-        for ($day = 1; $day <= $daysInMonth; $day++) {
-
-            $date = strtotime("$currentYear-$currentMonth-$day");
-
-            $dayName = date('D', $date);
-
-            $header[] = array(
-
-              'dayName' => $dayName
-
-            );
-        }
-
-
-      // var_dump($currentMonth.'<br>'.$currentYear.'<br>'.$firstDay.'<br>'.$daysInMonth);
-
-        $datas[] = array(
-
-          'month' => $month,
-
-          'year' => $currentYear,
-
-          'header' => $header,
-
-          'days' => $daysInMonth
-
-        );
-
-    
     } else if ($code == 'schedule-list-attendance') {
 
       $conditions = array();

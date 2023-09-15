@@ -29,7 +29,7 @@
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                <a id="pageIndex" href="#/settings/admin-management/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD RECORD </a>
+                <a id="pageAdd" href="#/settings/admin-management/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD RECORD </a>
               <button type="button" class="btn btn-warning btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
             </div>
             <div class="col-md-4 col-xs-12 pull-right">
