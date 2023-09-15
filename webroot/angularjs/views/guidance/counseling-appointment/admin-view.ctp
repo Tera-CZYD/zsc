@@ -14,7 +14,6 @@
   // INCLUDE ALL PAGE PERMISSION
   handleAccess('pageView', 'counseling appointment/view', currentUser);
   handleAccess('pageEdit', 'counseling appointment/edit', currentUser);
-  handleAccess('pageDelete', 'counseling appointment/delete', currentUser);
   handleAccess('pagePrintFormNoHarm', 'counseling appointment/print no harm contact form', currentUser);
   handleAccess('pagePrintFormCounselee', 'counseling appointment/print counselee informed counsent form', currentUser);
   handleAccess('pagePrintFormRelease', 'counseling appointment/print release information form', currentUser);
