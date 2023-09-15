@@ -14,9 +14,7 @@
   // INCLUDE ALL PAGE PERMISSION
   handleAccess('pageIndex', 'material type management/index', currentUser);
   handleAccess('pageAdd', 'material type management/add', currentUser);
-  handleAccess('pagePrint', 'material type management/print', currentUser);
 
-  handleAccess('pageView', 'material type management/view', currentUser);
   handleAccess('pageEdit', 'material type management/edit', currentUser);
   handleAccess('pageDelete', 'material type management/delete', currentUser);
 

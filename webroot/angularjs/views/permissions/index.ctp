@@ -14,8 +14,6 @@
   // INCLUDE ALL PAGE PERMISSION
   handleAccess('pageIndex', 'permission management/index', currentUser);
   handleAccess('pageAdd', 'referral slip/add', currentUser);
-  handleAccess('pagePrint', 'referral slip/print', currentUser);
-  handleAccess('pageView', 'referral slip/view', currentUser);
   handleAccess('pageEdit', 'referral slip/edit', currentUser);
   handleAccess('pageDelete', 'referral slip/delete', currentUser);
 

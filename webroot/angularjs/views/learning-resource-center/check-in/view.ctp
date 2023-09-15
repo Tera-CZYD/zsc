@@ -14,7 +14,6 @@
   // INCLUDE ALL PAGE PERMISSION
   handleAccess('pageView', 'check in/view', currentUser);
   handleAccess('pageEdit', 'check in/edit', currentUser);
-  handleAccess('pageDelete', 'check in/delete', currentUser);
 
 
 </script>

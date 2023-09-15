@@ -13,11 +13,7 @@
 
   // INCLUDE ALL PAGE PERMISSION
   handleAccess('pageIndex', 'inventory bibliography/index', currentUser);
-  handleAccess('pageAdd', 'inventory bibliography/add', currentUser);
   handleAccess('pagePrint', 'inventory bibliography/print', currentUser);
-  handleAccess('pageView', 'inventory bibliography/view', currentUser);
-  handleAccess('pageEdit', 'inventory bibliography/edit', currentUser);
-  handleAccess('pageDelete', 'inventory bibliography/delete', currentUser);
 
 </script>
 
