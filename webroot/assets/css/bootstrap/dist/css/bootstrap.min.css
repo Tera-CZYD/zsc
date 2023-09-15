@@ -5400,6 +5400,12 @@ a.bg-light:focus,a.bg-light:hover,button.bg-light:focus,button.bg-light:hover{
 a.bg-dark:focus,a.bg-dark:hover,button.bg-dark:focus,button.bg-dark:hover{
     background-color:#1d2124!important
 }
+.bg-print{
+    background-color:#8cc0f5!important
+}
+a.bg-print:focus,a.bg-dark:hover,button.bg-dark:focus,button.bg-dark:hover{
+    background-color:#8cc0f5!important
+}
 .bg-white{
     background-color:#fff!important
 }
