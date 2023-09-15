@@ -1,5 +1,29 @@
-<?php if (hasAccess('learning resource member/index', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'learning resource member/index', currentUser);
+  handleAccess('pageAdd', 'learning resource member/add', currentUser);
+  handleAccess('pagePrint', 'learning resource member/print', currentUser);
+  // handleAccess('pageExport', 'learning resource member/export', currentUser);
+  handleAccess('pageView', 'learning resource member/view', currentUser);
+  handleAccess('pageEdit', 'learning resource member/edit', currentUser);
+  handleAccess('pageDelete', 'learning resource member/delete', currentUser);
+
+</script>
+
+
+<div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -55,17 +79,17 @@
             <div class="col-md-12">
               <div class="row">
                 <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                  <?php if (hasAccess('learning resource member/add', $currentUser)): ?>
-                    <a href="#/learning-resource-center/learning-resource-member/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
-                  <?php endif ?>
+                  
+                    <a id="pageAdd" href="#/learning-resource-center/learning-resource-member/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
+                  
                   <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-                  <?php if (hasAccess('learning resource member/print', $currentUser)): ?>
-                    <button ng-click="print()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
-                  <?php endif ?>
+                  
+                    <button id="pagePrint" ng-click="print()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                  
                   <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
-                  <?php if (hasAccess('learning resource member/export', $currentUser)): ?>
-                  <!-- <button type="button" class="btn btn-primary  btn-min" ng-click="export()"><i class="fa fa-refresh"></i> EXPORT </button> -->
-                  <?php endif ?>
+                  
+                  <!-- <button id="pageExport" type="button" class="btn btn-primary  btn-min" ng-click="export()"><i class="fa fa-refresh"></i> EXPORT </button> -->
+                  
                 </div>
                 <div class="col-md-4 col-xs-12 pull-right">
                   <div class="input-group-prepend">
@@ -101,15 +125,15 @@
                       <td class="text-center">{{ data.date }}</td>
                       <td>
                         <div class="btn-group btn-group-xs">
-                          <?php if (hasAccess('learning resource member/view', $currentUser)): ?>
-                          <a href="#/learning-resource-center/learning-resource-member/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                          <?php endif ?>
-                          <?php if (hasAccess('learning resource member/edit', $currentUser)): ?>
-                          <a href="#/learning-resource-center/learning-resource-member/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a> 
-                          <?php endif ?>
-                          <?php if (hasAccess('learning resource member/delete', $currentUser)): ?>
-                          <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
-                          <?php endif ?>
+                          
+                          <a id="pageView" href="#/learning-resource-center/learning-resource-member/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                          
+                          
+                          <a id="pageEdit" href="#/learning-resource-center/learning-resource-member/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a> 
+                          
+                          
+                          <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
+                          
                         </div>
                       </td>
                     </tr>
@@ -152,17 +176,17 @@
             <div class="col-md-12">
               <div class="row">
                 <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                  <?php if (hasAccess('learning resource member/add', $currentUser)): ?>
-                    <a href="#/learning-resource-center/learning-resource-member/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
-                  <?php endif ?>
+                  
+                    <a id="pageAdd" href="#/learning-resource-center/learning-resource-member/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
+                  
                   <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-                  <?php if (hasAccess('learning resource member/print', $currentUser)): ?>
-                    <button ng-click="printFaculty()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
-                  <?php endif ?>
+                  
+                    <button id="pagePrint" ng-click="printFaculty()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                  
                   <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
-                  <?php if (hasAccess('learning resource member/export', $currentUser)): ?>
-                  <!-- <button type="button" class="btn btn-primary  btn-min" ng-click="exportFaculty()"><i class="fa fa-refresh"></i> EXPORT </button> -->
-                  <?php endif ?>
+                  
+                  <!-- <button id type="button" class="btn btn-primary  btn-min" ng-click="exportFaculty()"><i class="fa fa-refresh"></i> EXPORT </button> -->
+                  
                 </div>
                 <div class="col-md-4 col-xs-12 pull-right">
                   <div class="input-group-prepend">
@@ -198,15 +222,15 @@
                       <td class="text-center">{{ data.date }}</td>
                       <td>
                         <div class="btn-group btn-group-xs">
-                          <?php if (hasAccess('learning resource member/view', $currentUser)): ?>
-                          <a href="#/learning-resource-center/learning-resource-member/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                          <?php endif ?>
-                          <?php if (hasAccess('learning resource member/edit', $currentUser)): ?>
-                          <a href="#/learning-resource-center/learning-resource-member/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a> 
-                          <?php endif ?>
-                          <?php if (hasAccess('learning resource member/delete', $currentUser)): ?>
-                          <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
-                          <?php endif ?>
+                          
+                          <a id="pageView" href="#/learning-resource-center/learning-resource-member/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                          
+                          
+                          <a id="pageEdit" href="#/learning-resource-center/learning-resource-member/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a> 
+                          
+                          
+                          <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
+                          
                         </div>
                       </td>
                     </tr>
@@ -249,17 +273,17 @@
             <div class="col-md-12">
               <div class="row">
                 <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                  <?php if (hasAccess('learning resource member/add', $currentUser)): ?>
-                    <a href="#/learning-resource-center/learning-resource-member/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
-                  <?php endif ?>
+                  
+                    <a id="pageAdd" href="#/learning-resource-center/learning-resource-member/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
+                  
                   <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-                  <?php if (hasAccess('learning resource member/print', $currentUser)): ?>
-                    <button ng-click="printAdmin()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
-                  <?php endif ?>
+                  
+                    <button id="pagePrint" ng-click="printAdmin()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                  
                   <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
-                  <?php if (hasAccess('learning resource member/export', $currentUser)): ?>
-                  <!-- <button type="button" class="btn btn-primary  btn-min" ng-click="exportAdmin()"><i class="fa fa-refresh"></i> EXPORT </button> -->
-                  <?php endif ?>
+                  
+                  <!-- <button id="pageExport" type="button" class="btn btn-primary  btn-min" ng-click="exportAdmin()"><i class="fa fa-refresh"></i> EXPORT </button> -->
+                  
                 </div>
                 <div class="col-md-4 col-xs-12 pull-right">
                   <div class="input-group-prepend">
@@ -293,15 +317,15 @@
                       <td class="text-center">{{ data.date }}</td>
                       <td>
                         <div class="btn-group btn-group-xs">
-                          <?php if (hasAccess('learning resource member/view', $currentUser)): ?>
-                          <a href="#/learning-resource-center/learning-resource-member/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                          <?php endif ?>
-                          <?php if (hasAccess('learning resource member/edit', $currentUser)): ?>
-                          <a href="#/learning-resource-center/learning-resource-member/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a> 
-                          <?php endif ?>
-                          <?php if (hasAccess('learning resource member/delete', $currentUser)): ?>
-                          <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
-                          <?php endif ?>
+                          
+                          <a id="pageView" href="#/learning-resource-center/learning-resource-member/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                          
+                          
+                          <a id="pageEdit" href="#/learning-resource-center/learning-resource-member/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a> 
+                          
+                          
+                          <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
+                          
                         </div>
                       </td>
                     </tr>
@@ -344,7 +368,7 @@
     </div>
   </div>
 </div>
-<?php endif ?>
+
 
 <div class="modal fade" id="advance-search-modal">
   <div class="modal-dialog">

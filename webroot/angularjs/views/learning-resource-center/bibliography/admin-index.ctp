@@ -1,5 +1,31 @@
-<?php if (hasAccess('bibliography/index', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'bibliography/index', currentUser);
+  handleAccess('pageAdd', 'bibliography/add', currentUser);
+  handleAccess('pagePrint', 'bibliography/print', currentUser);
+  handleAccess('pagePrintBarcode', 'bibliography/print barcode', currentUser);
+  handleAccess('pagePrintCall', 'bibliography/print call number', currentUser);
+  handleAccess('pagePrintCataloge', 'bibliography/print cataloge', currentUser);
+  handleAccess('pageView', 'bibliography/view', currentUser);
+  handleAccess('pageEdit', 'bibliography/edit', currentUser);
+  handleAccess('pageDelete', 'bibliography/delete', currentUser);
+
+</script>
+
+
+<div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -51,17 +77,17 @@
             <div class="col-md-12">
               <div class="row">
                 <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                  <?php if (hasAccess('bibliography/add', $currentUser)): ?>
-                    <a href="#/learning-resource-center/admin-bibliography/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
-                  <?php endif ?>
+                  
+                    <a id="pageAdd" href="#/learning-resource-center/admin-bibliography/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
+                  
                   <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-                  <?php if (hasAccess('bibliography/print', $currentUser)): ?>
-                    <button ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
-                  <?php endif ?>
+                  
+                    <button id="pagePrint" ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                  
                   <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
-                  <?php if (hasAccess('bibliography/print', $currentUser)): ?>
-                  <button type="button" class="btn btn-primary  btn-min" ng-click="export()"><i class="fa fa-file-excel-o"></i> EXPORT </button>
-                  <?php endif ?>
+                  
+                  <button id="pagePrint" type="button" class="btn btn-primary  btn-min" ng-click="export()"><i class="fa fa-file-excel-o"></i> EXPORT </button>
+                  
                 </div>
                 <div class="col-md-4 col-xs-12 pull-right">
                   <div class="input-group-prepend">
@@ -75,15 +101,15 @@
             <div class="col-md-12">
               <div class="row"> 
                 <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                  <?php if (hasAccess('biblipgraphy/print barcode', $currentUser)): ?>
-                    <button type="button" class="btn btn-print btn-min" ng-click="printBarcode()"><i class="fa fa-print"></i> PRINT BARCODE </button>
-                  <?php endif ?>
-                  <?php if (hasAccess('biblipgraphy/print call number', $currentUser)): ?>
-                    <button type="button" class="btn btn-print btn-min" ng-click="printCallNumber()"><i class="fa fa-print"></i> PRINT CALL NUMBER </button>
-                  <?php endif ?>
-                  <?php if (hasAccess('biblipgraphy/print cataloge', $currentUser)): ?>
-                    <button type="button" class="btn btn-print btn-min" ng-click="printCatalog()"><i class="fa fa-print"></i> PRINT CATALOG </button>
-                  <?php endif ?>
+                  
+                    <button id="pagePrintBarcode" type="button" class="btn btn-print btn-min" ng-click="printBarcode()"><i class="fa fa-print"></i> PRINT BARCODE </button>
+                  
+                  
+                    <button id="pagePrintCall" type="button" class="btn btn-print btn-min" ng-click="printCallNumber()"><i class="fa fa-print"></i> PRINT CALL NUMBER </button>
+                  
+                  
+                    <button id="pagePrintCataloge" type="button" class="btn btn-print btn-min" ng-click="printCatalog()"><i class="fa fa-print"></i> PRINT CATALOG </button>
+                  
                 </div>
               </div>
           </div>
@@ -118,15 +144,15 @@
                       <td class="text-center"></td>
                       <td>
                         <div class="btn-group btn-group-xs">
-                          <?php if (hasAccess('bibliography/view', $currentUser)): ?>
-                          <a href="#/learning-resource-center/admin-bibliography/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                          <?php endif ?>
-                          <?php if (hasAccess('bibliography/edit', $currentUser)): ?>
-                          <a href="#/learning-resource-center/admin-bibliography/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
-                          <?php endif ?>
-                          <?php if (hasAccess('bibliography/delete', $currentUser)): ?>
-                          <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
-                          <?php endif ?>
+                          
+                          <a id="pageView" href="#/learning-resource-center/admin-bibliography/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                          
+                          
+                          <a id="pageEdit" href="#/learning-resource-center/admin-bibliography/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
+                          
+                          
+                          <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
+                          
                         </div>
                       </td>
                     </tr>
@@ -168,7 +194,7 @@
     </div>
   </div>
 </div>
-<?php endif ?>
+
 
 <div class="modal fade" id="advance-search-modal">
   <div class="modal-dialog">
