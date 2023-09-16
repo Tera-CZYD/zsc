@@ -1,5 +1,4 @@
 app.controller("StudentClearanceController", function ($scope,Select, StudentClearance,StudentClearanceEmail,StudentClearanceClear) {
-  // console.log(currentUser.employee);
 
   $scope.today = Date.parse("today").toString("MM/dd/yyyy");
 
@@ -300,107 +299,200 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
   };
 
-  // console.log(currentUser);
+  // console.log($scope);
 
   if(currentUser.roleId != 23){
 
-    $scope.clearStudent = function(data){  
+    if(currentUser.roleId ==25){
 
-      // console.log(data);
+      $scope.clearStudent = function(data){  
 
-      bootbox.confirm('Are you sure you want to approve the student clearance?', function(b){
+        // console.log(data);
 
-        if(b) {
+        bootbox.confirm('Are you sure you want to approve the student clearance?', function(b){
 
-          $scope.data = {
+          if(b) {
 
-            course_id : $scope.course_id
+            Select.get({code: 'get-student', student_id : data.student_id },function(n){
 
-          };
+              console.log(n.id);
 
-          StudentClearanceClear.update({id:data.id},$scope.data, function(e){
+              Select.get({ code: 'get-student-attendance', student_id : n.data.id, year_term_id : n.data.year_term_id },function(q){
 
-            if(e.ok){
+                $scope.count = q.data;
 
-              $.gritter.add({
+                if($scope.count<=5){
 
-                title : 'Successful!',
+                  if($scope.count==5){
 
-                text: e.msg
+                    $.gritter.add({
 
-              });
+                      title: 'Unable to clear Student!',
 
-              $scope.load();
+                      text:  'Student Dropped',
 
-            }
+                    });
 
-          });
 
-        }
+                  }else{
 
-      });
+                    StudentClearanceClear.update({id:data.id},$scope.data, function(e){
 
-    }
-  }else{
+                      if(e.ok){
 
-    $scope.clearStudent = function(data){  
+                        $.gritter.add({
 
-      bootbox.confirm('Are you sure you want to approve the student clearance?', function(b){
+                          title : 'Successful!',
 
-        if(b) {
+                          text: e.msg
 
-          $scope.data = {
+                        });
 
-            course_id : $scope.course_id
+                        $scope.load();
 
-          };
+                      }
 
-          // console.log(data);
+                    });
 
-          Select.get({code: 'check-student-check-outs',student_id:data.student_id}, function(q) {
+                  }
 
-            // alert(q.data);
-
-            if(q.data){
-
-              StudentClearanceClear.update({id:data.id},$scope.data, function(e){
-
-                if(e.ok){
+                }else{
 
                   $.gritter.add({
 
-                    title : 'Successful!',
+                    title: 'Warning!',
 
-                    text: e.msg
+                    text:  'Student Dropped',
 
                   });
 
-                  $scope.load();
-
                 }
-
-              });
-
-            }else{
-
-              $.gritter.add({
-
-                title: 'Warning!',
-
-                text:  'Student still have some unreturned books.',
-
                 
+
               });
 
-            }
+              $scope.data = {
 
-          }); 
+                course_id : $scope.course_id
 
-        }
+              };
 
-      });
+            });
+
+          }
+
+        });
+
+      }
+
+      
+
+    }else{
+
+      $scope.clearStudent = function(data){  
+
+        // console.log(data);
+
+        bootbox.confirm('Are you sure you want to approve the student clearance?', function(b){
+
+          if(b) {
+
+            $scope.data = {
+
+              course_id : $scope.course_id
+
+            };
+
+            StudentClearanceClear.update({id:data.id},$scope.data, function(e){
+
+              if(e.ok){
+
+                $.gritter.add({
+
+                  title : 'Successful!',
+
+                  text: e.msg
+
+                });
+
+                $scope.load();
+
+              }
+
+            });
+
+          }
+
+        });
+
+      }
 
     }
+
+  }else{
+
+      $scope.clearStudent = function(data){  
+
+        bootbox.confirm('Are you sure you want to approve the student clearance?', function(b){
+
+          if(b) {
+
+            $scope.data = {
+
+              course_id : $scope.course_id
+
+            };
+
+            // console.log(data);
+
+            Select.get({code: 'check-student-check-outs',student_id:data.student_id}, function(q) {
+
+              // alert(q.data);
+
+              if(q.data){
+
+                StudentClearanceClear.update({id:data.id},$scope.data, function(e){
+
+                  if(e.ok){
+
+                    $.gritter.add({
+
+                      title : 'Successful!',
+
+                      text: e.msg
+
+                    });
+
+                    $scope.load();
+
+                  }
+
+                });
+
+              }else{
+
+                $.gritter.add({
+
+                  title: 'Warning!',
+
+                  text:  'Student still have some unreturned books.',
+
+                  
+                });
+
+              }
+
+            }); 
+
+          }
+
+        });
+
+      }
+
+    
+
+    
   }
 
 

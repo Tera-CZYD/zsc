@@ -421,18 +421,27 @@ class StudentClearancesController extends AppController {
   public function view($id = null){
 
     $data['StudentClearance'] = $this->StudentClearances->find()
+
       ->contain([
+
           'Students'=> [
+
               'conditions' => ['Students.visible' => 1],
+
             ],
 
           'CollegePrograms'=> [
+
               'conditions' => ['CollegePrograms.visible' => 1],
+
             ],
 
           'YearLevelTerms'=> [
+
               'conditions' => ['YearLevelTerms.visible' => 1],
+
             ]
+
         ])
 
       ->where([
