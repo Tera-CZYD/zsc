@@ -31,6 +31,8 @@ class FacultyStudentAttendancesController extends AppController {
 
     $this->Courses = TableRegistry::getTableLocator()->get('Courses');
 
+    $this->Employees = TableRegistry::getTableLocator()->get('Employees');
+
     $this->Attendances = TableRegistry::getTableLocator()->get('Attendances');
 
     $this->UserLogs = TableRegistry::getTableLocator()->get('UserLogs');
@@ -616,6 +618,20 @@ class FacultyStudentAttendancesController extends AppController {
     $this->autoRender = false;
 
     $app = $this->Students->get($id);
+     // var_dump($faculty.'<br>'.$course);
+
+    $course = $this->request->getData('course');
+
+    $faculty = $this->request->getData('faculty');
+
+    // var_dump($course);
+
+    $co = $this->Courses->get($course);
+
+    $fa = $this->Employees->get($faculty);
+
+    // var_dump($co);
+    // var_dump($fa);
 
     $app->status = 'DROPPED';
 
@@ -680,17 +696,19 @@ class FacultyStudentAttendancesController extends AppController {
             // Content
             $mail->isHTML(true); // Set email format to HTML
 
-            $mail->Subject = 'Application Status';
+            $mail->Subject = 'Student Status';
 
             $_SESSION['name'] = @$name; 
 
-            $_SESSION['application_no'] = @$app['application_no'];
+            $_SESSION['course'] = @$co['code'].' - '.@$co['title'];
+
+            $_SESSION['faculty'] = @$fa['given_name'].' '.@$fa['family_name'];
 
             $_SESSION['id'] = $id; 
 
             ob_start();
 
-            include('Email/admission-application-qualified.ctp');
+            include('Email/student-dropped.ctp');
 
             $bodyContent = ob_get_contents();
 
@@ -736,7 +754,7 @@ class FacultyStudentAttendancesController extends AppController {
 
         'ok'   => false,
 
-        'data' => $data,
+        'data' => $app,
 
         'msg'  =>'Examinee cannot be rated this time.'
 
