@@ -1,5 +1,27 @@
-<?php if (hasAccess('student log/index', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'medical employee profile/index', currentUser);
+  handleAccess('pageAdd', 'medical employee profile/add', currentUser);
+  handleAccess('pagePrint', 'medical employee profile/print', currentUser);
+  handleAccess('pageView', 'medical employee profile/view', currentUser);
+  handleAccess('pageEdit', 'medical employee profile/edit', currentUser);
+  handleAccess('pageDelete', 'medical employee profile/delete', currentUser);
+
+</script>
+
+<div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -8,12 +30,8 @@
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-              <?php if (hasAccess('student log/add', $currentUser)): ?>
-                <a href="#/medical-services/medical-employee-profile/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD RECORD </a>
-              <?php endif ?> 
-              <?php if (hasAccess('student log/print', $currentUser)): ?>
-                <a ng-click="print()" class="btn btn-print btn-sm btn-min"><i class="fa fa-print"></i> PRINT </a>
-              <?php endif ?>
+              <a id="pageAdd" href="#/medical-services/medical-employee-profile/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD RECORD </a>
+              <a id="pagePrint" ng-click="print()" class="btn btn-print btn-sm btn-min"><i class="fa fa-print"></i> PRINT </a>
               <button type="button" class="btn btn-warning btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
             </div>
             <div class="col-md-4 col-xs-12 pull-right"> 
@@ -54,15 +72,9 @@
                   <td class="text-center">{{ data.remarks }}</td>
                   <td>
                     <div class="btn-group btn-group-xs">
-                      <?php if (hasAccess('medical employee profile/view', $currentUser)): ?>
-                      	<a href="#/medical-services/medical-employee-profile/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
-                      <?php endif ?> 
-                      <?php if (hasAccess('medical employee profile/edit', $currentUser)): ?>
-                      	<a href="#/medical-services/medical-employee-profile/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a>
-                      <?php endif ?> 
-                      <?php if (hasAccess('medical employee profile/delete', $currentUser)): ?>
-                      <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
-                      <?php endif ?> 
+                    	<a id="pageView" href="#/medical-services/medical-employee-profile/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
+                    	<a id="pageEdit" href="#/medical-services/medical-employee-profile/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a>
+                      <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
                     </div>
                   </td> 
                 </tr>
@@ -103,4 +115,3 @@
     </div>
   </div>
 </div>
-<?php endif ?>
