@@ -1,5 +1,28 @@
-<?php if (hasAccess('apartelle registration/view', $currentUser)): ?>
-  <div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'apartelle registration/view', currentUser);
+  handleAccess('pageEdit', 'apartelle registration/edit', currentUser);
+  handleAccess('pageDelete', 'apartelle registration/delete', currentUser);
+  handleAccess('pageApprove', 'apartelle registration/approve', currentUser);
+  handleAccess('pageDisapprove', 'apartelle registration/disapprove', currentUser);
+
+
+</script>
+
+
+  <div class="row" id="pageView">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -194,20 +217,20 @@
           <div class="col-md-12">
             <div class="pull-right">
 
-              <?php if (hasAccess('apartelle registration/approve', $currentUser)): ?>
-                <button href="javascript:void(0)" ng-click="selectRoom(data.ApartelleRegistration)" ng-disabled="data.ApartelleRegistration.approve == 1 || data.ApartelleRegistration.approve == 2" class="btn btn-warning  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
-              <?php endif ?>
+              
+                <button id="pageApprove" href="javascript:void(0)" ng-click="selectRoom(data.ApartelleRegistration)" ng-disabled="data.ApartelleRegistration.approve == 1 || data.ApartelleRegistration.approve == 2" class="btn btn-warning  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
+              
 
-              <?php if (hasAccess('counseling appointment/disapprove', $currentUser)): ?>
-                <button href="javascript:void(0)" ng-click="disapprove(data.ApartelleRegistration)" ng-disabled="data.ApartelleRegistration.approve == 2 || data.ApartelleRegistration.approve == 1" class="btn btn-danger  btn-min" ><i class="fa fa-close"></i> DISAPPROVE </button>
-              <?php endif ?>
+              
+                <button id="pageDisapprove" href="javascript:void(0)" ng-click="disapprove(data.ApartelleRegistration)" ng-disabled="data.ApartelleRegistration.approve == 2 || data.ApartelleRegistration.approve == 1" class="btn btn-danger  btn-min" ><i class="fa fa-close"></i> DISAPPROVE </button>
+              
 
-              <?php if (hasAccess('apartelle registration/edit', $currentUser)): ?>
-               <a href="#/corporate-affairs/admin-apartelle-registration/edit/{{ data.ApartelleRegistration.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
-              <?php endif ?>
-              <?php if (hasAccess('apartelle registration/delete', $currentUser)): ?>
-               <button class="btn btn-danger btn-min" ng-click="remove(data.ApartelleRegistration)"><i class="fa fa-trash"></i> DELETE </button>
-              <?php endif ?>
+              
+               <a id="pageEdit" href="#/corporate-affairs/admin-apartelle-registration/edit/{{ data.ApartelleRegistration.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
+              
+              
+               <button id="pageDelete" class="btn btn-danger btn-min" ng-click="remove(data.ApartelleRegistration)"><i class="fa fa-trash"></i> DELETE </button>
+              
              
             </div>
           </div>
