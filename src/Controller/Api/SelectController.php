@@ -7499,8 +7499,6 @@ class SelectController extends AppController {
 
       $year_term_id = $this->request->getQuery('year_term_id');
 
-      // var_dump($student_id);
-
       $student = $this->Students->get($student_id);
 
       $attendance = $this->Attendances->find()->where([
@@ -7515,19 +7513,16 @@ class SelectController extends AppController {
 
       ])->count();
 
-        // $datas[] = array(
-
-        //   'month' => $month,
-
-        //   'year' => $currentYear,
-
-        //   'header' => $header,
-
-        //   'days' => $daysInMonth
-
-        // );
-
        $datas = $attendance;
+
+    
+    }else if ($code == 'get-student') {
+
+      $student_id = $this->request->getQuery('student_id');
+
+      $student = $this->Students->get($student_id);
+
+      $datas = $student;
 
     
     } else if ($code == 'get-class-schedule') {

@@ -262,14 +262,9 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
 
   $scope.saveFile = function (files,attendanceData) {
 
-    
-
-    
-
     if(files == undefined){
 
       files = '';
-
 
     }
 
@@ -374,8 +369,6 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
        }
  
       StudentAttendanceFile.save($scope.StudentAttendanceFile, function(e) {
-
-        $scope.count_attendance = '';
 
         Select.get({ code: 'get-student-attendance', student_id : $scope.student_id, year_term_id : $scope.year_term_id },function(q){
 
