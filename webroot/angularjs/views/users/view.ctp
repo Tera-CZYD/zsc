@@ -12,7 +12,6 @@
   }
 
   // INCLUDE ALL PAGE PERMISSION
-  handleAccess('pageView', 'user management/view', currentUser);
   handleAccess('pageEdit', 'user management/edit', currentUser);
   handleAccess('pageDelete', 'user management/delete', currentUser);
 
