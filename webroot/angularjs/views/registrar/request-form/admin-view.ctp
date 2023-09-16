@@ -1,5 +1,26 @@
-<?php if (hasAccess('request form/view', $currentUser)) : ?>
-  <div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'request form/view', currentUser);
+  handleAccess('pageEdit', 'request form/edit', currentUser);
+  handleAccess('pageDelete', 'request form/delete', currentUser);
+  handleAccess('pageApprove', 'request form/approve', currentUser);
+  handleAccess('pagePrintForm', 'request form/print request form', currentUser);
+
+</script>
+
+  <div class="row" id="pageView">
     <div class="col-lg-12 mt-3">
       <div class="card">
         <div class="card-body">
@@ -122,18 +143,10 @@
             </div>
             <div class="col-md-12">
               <div class="pull-right">
-                <?php if (hasAccess('request form/edit', $currentUser)) : ?>
-                  <a href="#/registrar/admin-request-form/edit/{{ data.RequestForm.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
-                <?php endif ?>
-                <?php if (hasAccess('request form/approve', $currentUser)): ?>
-                <button href="javascript:void(0)" ng-click="approve(data.RequestForm)" ng-disabled="data.RequestForm.approve == 1" class="btn btn-warning  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
-              <?php endif ?>
-                <?php if (hasAccess('request form/print request form', $currentUser)) : ?>
-                  <button type="button" class="btn btn-info  btn-min" ng-click="print(data.RequestForm.id )"><i class="fa fa-print"></i> PRINT REQUEST FORM </button>
-                <?php endif ?>
-                <?php if (hasAccess('request form/delete', $currentUser)) : ?>
-                  <button class="btn btn-danger btn-min" ng-click="remove(data.RequestForm)"><i class="fa fa-trash"></i> DELETE </button>
-                <?php endif ?>
+                  <a id="pageEdit" href="#/registrar/admin-request-form/edit/{{ data.RequestForm.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
+                <button id="pageApprove" href="javascript:void(0)" ng-click="approve(data.RequestForm)" ng-disabled="data.RequestForm.approve == 1" class="btn btn-warning  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
+                <button id="pagePrintForm" type="button" class="btn btn-info  btn-min" ng-click="print(data.RequestForm.id )"><i class="fa fa-print"></i> PRINT REQUEST FORM </button>
+                <button id="pageDelete" class="btn btn-danger btn-min" ng-click="remove(data.RequestForm)"><i class="fa fa-trash"></i> DELETE </button>
               </div>
             </div>
           </div>
@@ -143,7 +156,6 @@
   </div>
 
   
-<?php endif ?>
 <style type="text/css">
   th {
     white-space: nowrap;
