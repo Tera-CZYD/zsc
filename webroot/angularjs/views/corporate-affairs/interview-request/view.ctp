@@ -1,5 +1,28 @@
-<?php if (hasAccess('interview request request/view', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'interview request/view', currentUser);
+  handleAccess('pageEdit', 'interview request/edit', currentUser);
+  handleAccess('pageDelete', 'interview request/delete', currentUser);
+  handleAccess('pageApprove', 'interview request/approve', currentUser);
+  handleAccess('pageDisapprove', 'interview request/disapprove', currentUser);
+
+
+</script>
+
+
+<div class="row" id="pageView">
 <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -39,21 +62,13 @@
           <div class="col-md-12">
             <div class="text-right">
 
-              <?php if (hasAccess('interview_request/approve', $currentUser)): ?>
-                <button href="javascript:void(0)" ng-click="approve(data.InterviewRequest)" ng-disabled="data.InterviewRequest.approve == 2" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
-              <?php endif ?>
+                <button id="pageApprove" href="javascript:void(0)" ng-click="approve(data.InterviewRequest)" ng-disabled="data.InterviewRequest.approve == 2" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
 
-              <?php if (hasAccess('interview_request/disapprove', $currentUser)): ?>
-                <button href="javascript:void(0)" ng-click="disapprove(data.InterviewRequest)" ng-disabled="data.MedicalInterviewRequestCertificate.approve == 1 || data.InterviewRequest.approve == 2" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> DISAPPROVE </button>
-              <?php endif ?>
+                <button id="pageDisapprove" href="javascript:void(0)" ng-click="disapprove(data.InterviewRequest)" ng-disabled="data.MedicalInterviewRequestCertificate.approve == 1 || data.InterviewRequest.approve == 2" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> DISAPPROVE </button>
 
-              <?php if (hasAccess('interview request/edit', $currentUser)): ?>
-              <a href="#/corporate-affairs/interview-request/edit/{{ data.InterviewRequest.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
-              <?php endif ?>
+              <a id="pageEdit" href="#/corporate-affairs/interview-request/edit/{{ data.InterviewRequest.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
 
-              <?php if (hasAccess('interview request/delete', $currentUser)): ?>
-              <button class="btn btn-danger btn-min" ng-click="remove(data.InterviewRequest)"><i class="fa fa-trash"></i> DELETE </button>
-              <?php endif ?>
+              <button id="pageDelete" class="btn btn-danger btn-min" ng-click="remove(data.InterviewRequest)"><i class="fa fa-trash"></i> DELETE </button>
 
             </div>
           </div>
@@ -62,7 +77,6 @@
     </div>
   </div>
 </div>
-<?php endif ?>
 <style type="text/css">
 th {
   white-space: nowrap;
