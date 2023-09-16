@@ -8,6 +8,17 @@ use Cake\Log\Log;
 use Cake\Controller\Controller;
 use Cake\View\JsonView;
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+include 'PHPMailer/Exception.php';
+
+include 'PHPMailer/PHPMailer.php';
+
+include 'PHPMailer/SMTP.php';
+
+
 class FacultyStudentAttendancesController extends AppController {
    
   public function initialize(): void{
@@ -21,6 +32,8 @@ class FacultyStudentAttendancesController extends AppController {
     $this->Courses = TableRegistry::getTableLocator()->get('Courses');
 
     $this->Attendances = TableRegistry::getTableLocator()->get('Attendances');
+
+    $this->UserLogs = TableRegistry::getTableLocator()->get('UserLogs');
 
   }
 
@@ -448,7 +461,8 @@ class FacultyStudentAttendancesController extends AppController {
 
       foreach ($datas as $key => $data) {
 
-        $present = [];
+        if($data->student->status != 'DROPPED'){
+          $present = [];
 
           $sid = $data->student_id;
 
@@ -550,6 +564,7 @@ class FacultyStudentAttendancesController extends AppController {
           }
 
            $presentDay[]= $present;
+        }
 
       }
 
@@ -595,5 +610,155 @@ class FacultyStudentAttendancesController extends AppController {
     return $this->response;
 
   }
+
+  public function drop($id = null){
+
+    $this->autoRender = false;
+
+    $app = $this->Students->get($id);
+
+    $app->status = 'DROPPED';
+
+    if ($this->Students->save($app)) {
+
+      //EMAIL VERIFICATION
+
+        $name = @$app['first_name'].' '.@$app['middle_name'].' '.@$app['last_name'];
+
+        $email = @$app['email'];
+
+        if(isset($app['email'])){
+
+          $name = $app['first_name'].' '.substr($app['middle_name'],0,1).'. '.$app['last_name'];
+
+          $app_no = $app['application_no'];
+
+          $email = $app['email'];
+
+          if($email != ''){
+
+            // fix value
+        
+            $mail = new PHPMailer(true);
+
+            //Server settings
+
+            $mail->isSMTP(); // Send using SMTP
+
+            $mail->Host = 'smtp.gmail.com';
+
+            $mail->SMTPAuth = true;
+
+            $mail->Username = 'mycreativepandaii@gmail.com'; // Your Gmail email address
+
+            $mail->Password = 'tkoahowwnzuzqczy'; // Your Gmail password
+
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption
+
+            $mail->Port = 587; // TCP port to connect to
+
+            // Bypass SSL certificate verification
+            $mail->SMTPOptions = [
+
+              'ssl' => [
+
+                'verify_peer' => false,
+
+                'verify_peer_name' => false,
+
+                'allow_self_signed' => true,
+
+              ],
+
+            ];
+
+            //Recipients
+            $mail->setFrom('mycreativepandaii@gmail.com', 'ZAMBOANGA STATE COLLEGE OF MARINE SCIENCES AND TECHNOLOGY'); // Sender's email and name
+
+            $mail->addAddress($email, $name); // Recipient's email and name
+
+            // Content
+            $mail->isHTML(true); // Set email format to HTML
+
+            $mail->Subject = 'Application Status';
+
+            $_SESSION['name'] = @$name; 
+
+            $_SESSION['application_no'] = @$app['application_no'];
+
+            $_SESSION['id'] = $id; 
+
+            ob_start();
+
+            include('Email/admission-application-qualified.ctp');
+
+            $bodyContent = ob_get_contents();
+
+            ob_end_clean();
+
+            $mail->Body = $bodyContent;
+
+            $mail->send();
+
+          }
+
+        }
+
+      //EMAIL VERIFICATION
+
+      $response = array(
+
+        'ok'   => true,
+
+        'data' => $app,       
+
+        'msg'  => 'Examinee has been successfully rated.'
+
+      );
+
+      $userLogEntity = $this->UserLogs->newEntity([
+
+        'action' => 'CAT',
+
+        'description' => 'Qualify'.@$app['StudentApplication']['first_name'].' '.@$app['StudentApplication']['last_name'],
+
+        'created' => date('Y-m-d H:i:s'),
+
+        'modified' => date('Y-m-d H:i:s')
+
+      ]);
+
+      $this->UserLogs->save($userLogEntity);
+
+    } else {
+
+      $response = array(
+
+        'ok'   => false,
+
+        'data' => $data,
+
+        'msg'  =>'Examinee cannot be rated this time.'
+
+      );
+
+    }
+
+    $this->set(array(
+
+      'response'=>$response,
+
+      '_serialize'=>'response'
+
+    ));
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+  } 
+
 
 }
