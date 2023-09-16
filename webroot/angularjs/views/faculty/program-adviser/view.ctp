@@ -1,5 +1,26 @@
-<?php if (hasAccess('faculty management/view', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'program adviser/view', currentUser);
+  handleAccess('pageEdit', 'program adviser/edit', currentUser);
+  handleAccess('pageDelete', 'program adviser/delete', currentUser);
+  handleAccess('pageApprove', 'program adviser/delete', currentUser);
+  handleAccess('pageDisapprove', 'program adviser/delete', currentUser);
+
+</script>
+
+<div class="row" id="pageView">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -45,18 +66,10 @@
           </div>
           <div class="col-md-12">
             <div class="pull-right">
-              <?php if (hasAccess('counseling appointment/approve', $currentUser)): ?>
-                <button href="javascript:void(0)" ng-click="approve(data.ProgramAdviser)" ng-disabled="data.ProgramAdviser.approve == 1 || data.ProgramAdviser.approve == 2 " class="btn btn-warning  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
-              <?php endif ?>
-              <?php if (hasAccess('counseling appointment/disapprove', $currentUser)): ?>
-                <button href="javascript:void(0)" ng-click="disapprove(data.ProgramAdviser)" ng-disabled="data.ProgramAdviser.approve == 1 || data.ProgramAdviser.approve == 2" class="btn btn-danger  btn-min" ><i class="fa fa-close"></i> DISAPPROVE </button>
-              <?php endif ?>
-              <?php if (hasAccess('faculty management/edit', $currentUser)): ?>
-                <a href="#/faculty/program-adviser/edit/{{ data.ProgramAdviser.id }}" class="btn btn-primary btn-min" ng-disabled="data.ProgramAdviser.approve == 1 || data.ProgramAdviser.approve == 2"><i class="fa fa-edit"></i> EDIT </a>
-               <?php endif ?>
-              <?php if (hasAccess('faculty management/delete', $currentUser)): ?> 
-                <button class="btn btn-danger btn-min" ng-click="remove(data.ProgramAdviser)" ng-disabled="data.ProgramAdviser.approve == 1 || data.ProgramAdviser.approve == 2"><i class="fa fa-trash"></i> DELETE </button>
-              <?php endif ?>
+                <button id="pageApprove" href="javascript:void(0)" ng-click="approve(data.ProgramAdviser)" ng-disabled="data.ProgramAdviser.approve == 1 || data.ProgramAdviser.approve == 2 " class="btn btn-warning  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
+                <button id="pageDisapprove" href="javascript:void(0)" ng-click="disapprove(data.ProgramAdviser)" ng-disabled="data.ProgramAdviser.approve == 1 || data.ProgramAdviser.approve == 2" class="btn btn-danger  btn-min" ><i class="fa fa-close"></i> DISAPPROVE </button>
+                <a id="pageEdit" href="#/faculty/program-adviser/edit/{{ data.ProgramAdviser.id }}" class="btn btn-primary btn-min" ng-disabled="data.ProgramAdviser.approve == 1 || data.ProgramAdviser.approve == 2"><i class="fa fa-edit"></i> EDIT </a>
+                <button id="pageDelete" class="btn btn-danger btn-min" ng-click="remove(data.ProgramAdviser)" ng-disabled="data.ProgramAdviser.approve == 1 || data.ProgramAdviser.approve == 2"><i class="fa fa-trash"></i> DELETE </button>
             </div>
           </div>
         </div>
@@ -64,7 +77,6 @@
     </div>
   </div>
 </div>
-<?php endif ?>
 <style type="text/css">
   th {
     white-space: nowrap;
