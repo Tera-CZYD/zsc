@@ -6270,7 +6270,7 @@ class PrintController extends AppController {
 
   public function referralSlip($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Referral/Appointment Slip');
+    $office_reference = $this->Global->OfficeReference('Referral/Appointment Slip');
 
     $data = $this->ReferralSlips->find()
 
