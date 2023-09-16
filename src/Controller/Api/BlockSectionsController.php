@@ -414,7 +414,7 @@ class BlockSectionsController extends AppController {
 
   }
 
-  public function schedule_view($id = null) {
+  public function scheduleView($id = null) {
 
     $this->autoRender = false;
 
@@ -472,7 +472,7 @@ class BlockSectionsController extends AppController {
 
   }
 
-  public function schedule_add($id = null) {
+  public function scheduleAdd($id = null) {
 
     $data = $this->getRequest()->getData();
 
