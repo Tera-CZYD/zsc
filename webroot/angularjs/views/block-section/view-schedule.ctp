@@ -1,5 +1,24 @@
-<?php if (hasAccess('block section/view schedules', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'block section/view schedules/view', currentUser);
+  handleAccess('pageEdit', 'block section/view schedules/edit', currentUser);
+  handleAccess('pageDelete', 'block section/view schedules/delete', currentUser);
+
+</script>
+
+<div class="row" id="pageView">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -34,9 +53,7 @@
             <h5 class="table-top-title mb-2"> SCHEDULES </h5>
           </div>
           <div class="col-md-12">
-            <?php if (hasAccess('block section/add schedule', $currentUser)): ?>
-              <button class="btn btn-min btn-primary" ng-click="addSchedule()"><i class="fa fa-plus"></i> ADD SCHEDULE</button>
-            <?php endif ?> 
+              <button id="pageAdd" class="btn btn-min btn-primary" ng-click="addSchedule()"><i class="fa fa-plus"></i> ADD SCHEDULE</button>
             <div class="table-responsive">
               <table class="table table-bordered table-striped table-hover"> 
                 <thead>
@@ -56,12 +73,8 @@
                     <td class="text-center uppercase">{{ subs.time_end }}</td>
                     <td class="text-center">
                       <div class="btn-group btn-group-xs">
-                        <?php if (hasAccess('block section/edit schedule', $currentUser)): ?>
-                          <a href="javascript:void(0)" ng-click="editSchedule($index, subs)" class="btn btn-success" title="EDIT"><i class="fa fa-edit"></i></a>
-                        <?php endif ?> 
-                        <?php if (hasAccess('block section/delete schedule', $currentUser)): ?>
-                          <a href="javascript:void(0)" ng-click="removeSchedule(subs)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
-                        <?php endif ?> 
+                          <a id="pageEdit" href="javascript:void(0)" ng-click="editSchedule($index, subs)" class="btn btn-success" title="EDIT"><i class="fa fa-edit"></i></a>
+                          <a id="pageDelete" href="javascript:void(0)" ng-click="removeSchedule(subs)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
                       </div>
                     </td> 
                   </tr>
@@ -78,7 +91,7 @@
     </div>
   </div>
 </div>
-<?php endif ?>
+
 <style type="text/css">
   th {
     white-space: nowrap;

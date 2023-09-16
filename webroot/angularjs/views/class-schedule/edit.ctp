@@ -16,7 +16,7 @@
 
 </script>
 
-<div class="row" id="pageIndex">
+<div class="row" id="pageEdit">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -146,8 +146,8 @@
                       </td>
                       <td class="w90px text-center">
                         <div class="btn-group btn-group-xs"></div>
-                        <a href="javascript:void(0)" class="btn btn-xs btn-success" ng-click="editSchedule($index, subs)"><i class="fa fa-edit"></i></a>
-                        <a href="javascript:void(0)" class="btn btn-xs btn-danger" ng-click="removeSchedule($index)"><i class="fa fa-trash"></i></a>
+                        <a id="pageEdit" href="javascript:void(0)" class="btn btn-xs btn-success" ng-click="editSchedule($index, subs)"><i class="fa fa-edit"></i></a>
+                        <a id="pageDelete" href="javascript:void(0)" class="btn btn-xs btn-danger" ng-click="removeSchedule($index)"><i class="fa fa-trash"></i></a>
                       </td>
                     </tr>
                     <tr ng-if="data.ClassScheduleSub == ''">
