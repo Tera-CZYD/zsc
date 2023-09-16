@@ -46,6 +46,8 @@ class SelectController extends AppController {
 
     $this->loadModel('Checkouts');
 
+    $this->loadModel('Attendances');
+
     $this->loadModel("Colleges");
 
     $this->loadModel("AcademicRanks");
@@ -7491,6 +7493,43 @@ class SelectController extends AppController {
 
       $datas = $tmp;
 
+    } else if ($code == 'get-student-attendance') {
+
+      $student_id = $this->request->getQuery('student_id');
+
+      $year_term_id = $this->request->getQuery('year_term_id');
+
+      // var_dump($student_id);
+
+      $student = $this->Students->get($student_id);
+
+      $attendance = $this->Attendances->find()->where([
+
+        'visible' => 1,
+
+        'student_id' => $student_id,
+
+        'year_term_id' => $year_term_id,
+
+        'status' => 'absent'
+
+      ])->count();
+
+        // $datas[] = array(
+
+        //   'month' => $month,
+
+        //   'year' => $currentYear,
+
+        //   'header' => $header,
+
+        //   'days' => $daysInMonth
+
+        // );
+
+       $datas = $attendance;
+
+    
     } else if ($code == 'get-class-schedule') {
 
       $faculty_id = $this->request->query['faculty_id'];

@@ -431,6 +431,7 @@ class FacultyStudentAttendancesController extends AppController {
        $presentDay = [];
 
        $present = [];
+
        $currentMonth = date('n');
 
       $month = date('F');
@@ -444,22 +445,6 @@ class FacultyStudentAttendancesController extends AppController {
       $daysInMonth = date('t', strtotime("$currentYear-$currentMonth-01"));
 
        $header = array();
-
-        // Loop through each day of the month and display day of the week headers
-        // for ($day = 1; $day <= $daysInMonth; $day++) {
-
-        //   $date = strtotime("$currentYear-$currentMonth-$day");
-
-        //   $dayName = date('D', $date);
-
-        //   $header[] = array(
-
-        //     'dayName' => $dayName
-
-        //   );
-
-          
-        // }
 
       foreach ($datas as $key => $data) {
 
