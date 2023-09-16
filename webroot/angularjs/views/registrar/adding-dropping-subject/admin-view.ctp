@@ -1,5 +1,27 @@
-<?php if (hasAccess('adding dropping subject/view', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'adding dropping subject/view', currentUser);
+  handleAccess('pageEdit', 'adding dropping subject/edit', currentUser);
+  handleAccess('pageDelete', 'adding dropping subject/delete', currentUser);
+  handleAccess('pageApprove', 'adding dropping subject/approve', currentUser);
+  handleAccess('pageDisapprove', 'adding dropping subject/disapprove', currentUser);
+  handleAccess('pagePrintForm', 'adding dropping subject/print adding dropping form', currentUser);
+
+</script>
+
+<div class="row" id="pageView">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -76,30 +98,20 @@
 
            <div class="col-md-12">
             <div class="pull-right">
-              <?php if (hasAccess('adding dropping subject/approve', $currentUser)): ?>
-              <button href="javascript:void(0)" ng-click="approve(data.AddingDroppingSubject)" ng-disabled="data.AddingDroppingSubject.approve == 1 || data.AddingDroppingSubject.approve == 2" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
-              <?php endif ?>
+              <button id="pageApprove" href="javascript:void(0)" ng-click="approve(data.AddingDroppingSubject)" ng-disabled="data.AddingDroppingSubject.approve == 1 || data.AddingDroppingSubject.approve == 2" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
 
-              <?php if (hasAccess('adding dropping subject/disapprove', $currentUser)): ?>
-              <button href="javascript:void(0)" ng-click="disapprove(data.AddingDroppingSubject)" ng-disabled="data.AddingDroppingSubject.approve == 1 || data.AddingDroppingSubject.approve == 2" class="btn btn-warning  btn-min" ><i class="fa fa-check"></i> DISAPPROVE </button>
-              <?php endif ?>
+              <button id="pageDisapprove" href="javascript:void(0)" ng-click="disapprove(data.AddingDroppingSubject)" ng-disabled="data.AddingDroppingSubject.approve == 1 || data.AddingDroppingSubject.approve == 2" class="btn btn-warning  btn-min" ><i class="fa fa-check"></i> DISAPPROVE </button>
               
             </div> 
           </div>
 
           <div class="col-md-12">
             <div class="pull-right">
-              <?php if (hasAccess('adding dropping subject/edit', $currentUser)): ?>
-              <a href="#/registrar/admin-adding-dropping-subject/edit/{{ data.AddingDroppingSubject.id }}" ng-disabled="data.AddingDroppingSubject.approve == 1 || data.AddingDroppingSubject.approve == 2" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
-              <?php endif ?>
+              <a id="pageEdit" href="#/registrar/admin-adding-dropping-subject/edit/{{ data.AddingDroppingSubject.id }}" ng-disabled="data.AddingDroppingSubject.approve == 1 || data.AddingDroppingSubject.approve == 2" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
 
-              <?php if (hasAccess('adding dropping subject/print adding dropping form', $currentUser)): ?>
-                <button type="button" class="btn btn-info  btn-min" ng-click="print(data.AddingDroppingSubject.id )"><i class="fa fa-print"></i> PRINT ADDING/DROPPING SUBJECT FORM </button>
-                <?php endif ?>
+              <button id="pagePrintForm" type="button" class="btn btn-info  btn-min" ng-click="print(data.AddingDroppingSubject.id )"><i class="fa fa-print"></i> PRINT ADDING/DROPPING SUBJECT FORM </button>
 
-              <?php if (hasAccess('adding dropping subject/delete', $currentUser)): ?> 
-                <button class="btn btn-danger btn-min" ng-click="remove(data.AddingDroppingSubject)"><i class="fa fa-trash"></i> DELETE </button>
-              <?php endif ?>
+              <button id="pageDelete" class="btn btn-danger btn-min" ng-click="remove(data.AddingDroppingSubject)"><i class="fa fa-trash"></i> DELETE </button>
             </div>
           </div>
         </div>
@@ -108,7 +120,6 @@
   </div>
 </div>
 
-<?php endif ?>
 <style type="text/css">
   th {
     white-space: nowrap;
