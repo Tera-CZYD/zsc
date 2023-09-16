@@ -1,5 +1,23 @@
-<?php if (hasAccess('apartelle/edit', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageEdit', 'apartelle/edit', currentUser);
+
+</script>
+
+
+<div class="row" id="pageEdit">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -78,8 +96,7 @@
     </div>
   </div>
 </div>
-<?php echo $this->element('modals/search/searched-student-modal') ?>
-<?php endif ?>
+
 
 <div class="modal fade" id="edit-upload-image" role="dialog">
   <div class="modal-dialog">

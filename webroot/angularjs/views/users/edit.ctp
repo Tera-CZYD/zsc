@@ -16,7 +16,7 @@
 
 </script>
 
-<div class="row">
+<div class="row" id="pageEdit">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -168,7 +168,7 @@
     </div>
   </div>
 </div>
-<?php } ?> 
+ 
 
 <div class="modal fade" id="searched-employee-modal">
   <div class="modal-dialog">
