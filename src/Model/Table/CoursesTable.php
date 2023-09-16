@@ -8,74 +8,21 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
-/**
- * Courses Model
- *
- * @property \App\Model\Table\AddingDroppingSubjectSubsTable&\Cake\ORM\Association\HasMany $AddingDroppingSubjectSubs
- * @property \App\Model\Table\AwardeeManagementsTable&\Cake\ORM\Association\HasMany $AwardeeManagements
- * @property \App\Model\Table\BlockSectionCoursesTable&\Cake\ORM\Association\HasMany $BlockSectionCourses
- * @property \App\Model\Table\ClassScheduleSubsTable&\Cake\ORM\Association\HasMany $ClassScheduleSubs
- * @property \App\Model\Table\CollegeProgramCorequisitesTable&\Cake\ORM\Association\HasMany $CollegeProgramCorequisites
- * @property \App\Model\Table\CollegeProgramCoursesTable&\Cake\ORM\Association\HasMany $CollegeProgramCourses
- * @property \App\Model\Table\CollegeProgramPrerequisitesTable&\Cake\ORM\Association\HasMany $CollegeProgramPrerequisites
- * @property \App\Model\Table\CounselingIntakesTable&\Cake\ORM\Association\HasMany $CounselingIntakes
- * @property \App\Model\Table\CurriculumCourseCorequisitesTable&\Cake\ORM\Association\HasMany $CurriculumCourseCorequisites
- * @property \App\Model\Table\CurriculumCourseEquivalenciesTable&\Cake\ORM\Association\HasMany $CurriculumCourseEquivalencies
- * @property \App\Model\Table\CurriculumCoursePrerequisitesTable&\Cake\ORM\Association\HasMany $CurriculumCoursePrerequisites
- * @property \App\Model\Table\CurriculumCoursesTable&\Cake\ORM\Association\HasMany $CurriculumCourses
- * @property \App\Model\Table\DentalsTable&\Cake\ORM\Association\HasMany $Dentals
- * @property \App\Model\Table\EvaluationsTable&\Cake\ORM\Association\HasMany $Evaluations
- * @property \App\Model\Table\FacultyEvaluationsTable&\Cake\ORM\Association\HasMany $FacultyEvaluations
- * @property \App\Model\Table\GcoEvaluationsTable&\Cake\ORM\Association\HasMany $GcoEvaluations
- * @property \App\Model\Table\MedicalCertificatesTable&\Cake\ORM\Association\HasMany $MedicalCertificates
- * @property \App\Model\Table\MedicalConsentsTable&\Cake\ORM\Association\HasMany $MedicalConsents
- * @property \App\Model\Table\MedicalStudentProfilesTable&\Cake\ORM\Association\HasMany $MedicalStudentProfiles
- * @property \App\Model\Table\ParticipantEvaluationActivitiesTable&\Cake\ORM\Association\HasMany $ParticipantEvaluationActivities
- * @property \App\Model\Table\QuestionnaireEvaluatedsTable&\Cake\ORM\Association\HasMany $QuestionnaireEvaluateds
- * @property \App\Model\Table\ReferralSlipsTable&\Cake\ORM\Association\HasMany $ReferralSlips
- * @property \App\Model\Table\RequestFormsTable&\Cake\ORM\Association\HasMany $RequestForms
- * @property \App\Model\Table\StudentBehaviorsTable&\Cake\ORM\Association\HasMany $StudentBehaviors
- * @property \App\Model\Table\StudentClearancesTable&\Cake\ORM\Association\HasMany $StudentClearances
- * @property \App\Model\Table\StudentEnrolledCoursesTable&\Cake\ORM\Association\HasMany $StudentEnrolledCourses
- * @property \App\Model\Table\StudentEnrolledSchedulesTable&\Cake\ORM\Association\HasMany $StudentEnrolledSchedules
- * @property \App\Model\Table\StudentExitsTable&\Cake\ORM\Association\HasMany $StudentExits
- *
- * @method \App\Model\Entity\Course newEmptyEntity()
- * @method \App\Model\Entity\Course newEntity(array $data, array $options = [])
- * @method \App\Model\Entity\Course[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Course get($primaryKey, $options = [])
- * @method \App\Model\Entity\Course findOrCreate($search, ?callable $callback = null, $options = [])
- * @method \App\Model\Entity\Course patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Course[] patchEntities(iterable $entities, array $data, array $options = [])
- * @method \App\Model\Entity\Course|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Course saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Course[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\Course[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
- * @method \App\Model\Entity\Course[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\Course[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
- *
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
- */
+
 class CoursesTable extends Table
 {
-    /**
-     * Initialize method
-     *
-     * @param array $config The configuration for the Table.
-     * @return void
-     */
-    public function initialize(array $config): void
-    {
-        parent::initialize($config);
+    
+    public function initialize(array $config): void {
 
-        $this->setTable('courses');
-        $this->setDisplayField('title');
-        $this->setPrimaryKey('id');
+        parent::initialize($config);
 
         $this->addBehavior('Timestamp');
 
         $this->hasMany('AddingDroppingSubjectSubs', [
             'foreignKey' => 'course_id',
+        ]);
+        $this->belongsTo('YearLevelTerms',[
+            'foreignKey' => 'year_term_id',
         ]);
         $this->hasMany('AwardeeManagements', [
             'foreignKey' => 'course_id',
@@ -158,244 +105,194 @@ class CoursesTable extends Table
         $this->hasMany('StudentExits', [
             'foreignKey' => 'course_id',
         ]);
-    }
 
-    /**
-     * Default validation rules.
-     *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
-     */
-    public function validationDefault(Validator $validator): Validator
-    {
-        $validator
-            ->scalar('code')
-            ->maxLength('code', 255)
-            ->allowEmptyString('code');
-
-        $validator
-            ->scalar('code_old')
-            ->maxLength('code_old', 255)
-            ->allowEmptyString('code_old');
-
-        $validator
-            ->scalar('title')
-            ->maxLength('title', 255)
-            ->allowEmptyString('title');
-
-        $validator
-            ->scalar('description')
-            ->maxLength('description', 1000)
-            ->allowEmptyString('description');
-
-        $validator
-            ->scalar('credit_hours')
-            ->maxLength('credit_hours', 10)
-            ->allowEmptyString('credit_hours');
-
-        $validator
-            ->scalar('lecture_hours')
-            ->maxLength('lecture_hours', 10)
-            ->allowEmptyString('lecture_hours');
-
-        $validator
-            ->scalar('laboratory_hours')
-            ->maxLength('laboratory_hours', 10)
-            ->allowEmptyString('laboratory_hours');
-
-        $validator
-            ->scalar('credit_unit')
-            ->maxLength('credit_unit', 10)
-            ->allowEmptyString('credit_unit');
-
-        $validator
-            ->scalar('lecture_unit')
-            ->maxLength('lecture_unit', 10)
-            ->allowEmptyString('lecture_unit');
-
-        $validator
-            ->scalar('laboratory_unit')
-            ->maxLength('laboratory_unit', 10)
-            ->allowEmptyString('laboratory_unit');
-
-        $validator
-            ->notEmptyString('active');
-
-        $validator
-            ->notEmptyString('visible');
-
-        return $validator;
     }
 
     public function getAllCoursePrint($conditions){
 
-    $search = @$conditions['search'];
+        $date = @$conditions['date'];
 
-    $sql = "
+        $search = @$conditions['search'];
 
-      SELECT
+        $course = @$conditions['course'];
 
-        Course.*
+        $sql = "
 
-      FROM
+          SELECT
 
-        courses as Course
+            Course.*
 
-      WHERE
+          FROM
 
-        Course.visible = true AND
+            courses as Course
 
-        (
- 
-          Course.code LIKE '%$search%' OR
+          WHERE
 
-          Course.title     LIKE  '%$search%' OR
+            Course.visible = true $date $course AND
 
-          Course.description    LIKE  '%$search%' 
+            (
+     
+              Course.code LIKE '%$search%' OR
 
-        )
+              Course.title     LIKE  '%$search%' OR
 
-      ORDER BY 
+              Course.description    LIKE  '%$search%' 
 
-        Course.code ASC
+            )
 
-    ";
+          ORDER BY 
 
-    $query = $this->getConnection()->prepare($sql);
+            Course.code ASC
 
-    $query->execute();
+        ";
 
-    return $query;
+        $query = $this->getConnection()->prepare($sql);
 
-  }
+        $query->execute();
+
+        return $query;
+
+    }
 
     public function getAllCourse($conditions, $limit, $page){
 
-    $search = @$conditions['search'];
+        $date = @$conditions['date'];
 
-    // $college_id = @$conditions['college_id'];
+        $search = @$conditions['search'];
 
-    $offset = ($page - 1) * $limit;
+        $year = @$conditions['year'];
 
-    $sql = "
+        // $college_id = @$conditions['college_id'];
 
-      SELECT
+        $offset = ($page - 1) * $limit;
 
-        Course.*
+        $sql = "
 
-      FROM
+          SELECT
 
-        courses as Course
+            Course.*,
 
-      WHERE
+            YearLevelTerm.description as yearDescription
 
-        Course.visible = true AND 
+          FROM
 
-        (
+            courses as Course LEFT JOIN 
+
+            year_level_terms as YearLevelTerm ON YearLevelTerm.id = Course.year_term_id
+
+          WHERE
+
+            Course.visible = true $date $year AND 
+
+            (
 
 
-          Course.code         LIKE  '%$search%' OR
+              Course.code         LIKE  '%$search%' OR
 
-          Course.title         LIKE  '%$search%' OR
+              Course.title         LIKE  '%$search%' OR
 
-          Course.description         LIKE  '%$search%' 
+              Course.description         LIKE  '%$search%' 
 
-        )
+            )
 
-      GROUP BY
+          GROUP BY
 
-        Course.id
+            Course.id
 
-      ORDER BY 
+          ORDER BY 
 
-        Course.code ASC
+            Course.code ASC
 
-      LIMIT
+          LIMIT
 
-        $limit OFFSET $offset
+            $limit OFFSET $offset
 
-    ";
+        ";
 
-    $query = $this->getConnection()->prepare($sql);
+        $query = $this->getConnection()->prepare($sql);
 
-    $query->execute();
+        $query->execute();
 
-    return $query;
+        return $query;
 
-  }
+    }
 
-  public function paginate($query, array $options = []){
+    public function paginate($query, array $options = []){
 
-    $extra = isset($options['extra']) ? $options['extra'] : [];
+        $extra = isset($options['extra']) ? $options['extra'] : [];
 
-    $conditions = isset($extra['conditions']) ? $extra['conditions'] : [];
+        $conditions = isset($extra['conditions']) ? $extra['conditions'] : [];
 
-    $page = $options['page'];
+        $page = $options['page'];
 
-    $limit = $options['limit'];
+        $limit = $options['limit'];
 
-    $result = $this->getAllCourse($conditions, $limit, $page)->fetchAll('assoc');
+        $result = $this->getAllCourse($conditions, $limit, $page)->fetchAll('assoc');
 
-    $paginator = [
+        $paginator = [
 
-      'page' => $page,
+          'page' => $page,
 
-      'limit' => $limit,
+          'limit' => $limit,
 
-      'count' => $this->paginateCount($conditions),
+          'count' => $this->paginateCount($conditions),
 
-      'perPage' => $limit,
+          'perPage' => $limit,
 
-      'pageCount' => ceil($this->paginateCount($conditions) / $limit),
+          'pageCount' => ceil($this->paginateCount($conditions) / $limit),
 
-    ];
+        ];
 
-    return [
+        return [
 
-      'data' => $result,
+          'data' => $result,
 
-      'pagination' => $paginator,
+          'pagination' => $paginator,
 
-    ];
+        ];
 
-  }
+    }
 
-  public function paginateCount($conditions = null){ 
+    public function paginateCount($conditions = null){ 
 
-    $search = @$conditions['search'];
+        $date = @$conditions['date'];
 
-    // $college_id = @$conditions['college_id'];
+        $search = @$conditions['search'];
 
-    $sql = "
+        $course = @$conditions['course'];
 
-      SELECT
+        // $college_id = @$conditions['college_id'];
 
-        count(*) as count
+        $sql = "
 
-       FROM
+          SELECT
 
-        courses as Course 
+            count(*) as count
 
-      WHERE
+           FROM
 
-        Course.visible = true AND 
+            courses as Course 
 
-        (
+          WHERE
 
-          Course.code         LIKE  '%$search%' OR
+            Course.visible = true $date $course AND 
 
-          Course.title         LIKE  '%$search%' OR
+            (
 
-          Course.description         LIKE  '%$search%' 
+              Course.code         LIKE  '%$search%' OR
 
-        )
+              Course.title         LIKE  '%$search%' OR
 
-    ";
+              Course.description         LIKE  '%$search%' 
 
-    $query = $this->getConnection()->execute($sql)->fetch('assoc');
+            )
 
-    return $query['count'];
+        ";
 
-  }
+        $query = $this->getConnection()->execute($sql)->fetch('assoc');
+
+        return $query['count'];
+
+    }
 
 }

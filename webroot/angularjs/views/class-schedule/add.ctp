@@ -16,7 +16,7 @@
 
 </script>
 
-<div class="row" id="pageIndex">
+<div class="row" id="pageAdd">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -100,7 +100,7 @@
               <h5 class="table-top-title mb-2"> SCHEDULE </h5>
             </div>
             <div class="col-md-12" style="margin-bottom: 5px">
-              <button class="btn btn-min btn-primary" ng-click="addSchedule()" ng-disabled="data.ClassSchedule.faculty_id == null"><i class="fa fa-plus"></i>&nbsp;ADD SCHEDULE</button>
+              <button id="pageAdd" class="btn btn-min btn-primary" ng-click="addSchedule()" ng-disabled="data.ClassSchedule.faculty_id == null"><i class="fa fa-plus"></i>&nbsp;ADD SCHEDULE</button>
             </div>
             <div class="col-md-12">
               <div class="table-responsive">
