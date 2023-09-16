@@ -1,5 +1,27 @@
-<?php if (hasAccess('cat/view', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'cat/view', currentUser);
+  handleAccess('pageQualify', 'cat/qualify application', currentUser);
+  handleAccess('pageUnqualify', 'cat/unqualify application', currentUser);
+  handleAccess('pagePrintForm', 'cat/print cat', currentUser);
+
+
+</script>
+
+
+<div class="row" id="pageView">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -153,15 +175,9 @@
           </div>
           <div class="col-md-12">
             <div class="pull-right">
-              <?php if (hasAccess('cat/qualify application', $currentUser)): ?>
-                <button href="javascript:void(0)" ng-click="qualify(data.StudentApplication)" ng-disabled="data.StudentApplication.approve == 4 || data.StudentApplication.approve == 5" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> QUALIFY </button>
-              <?php endif ?>
-              <?php if (hasAccess('cat/unqualify application', $currentUser)): ?>
-                <button href="javascript:void(0)" ng-click="unqualify(data.StudentApplication)" ng-disabled="data.StudentApplication.approve == 4 || data.StudentApplication.approve == 5" class="btn btn-warning  btn-min" ><i class="fa fa-close"></i> UNQUALIFY </button>
-              <?php endif ?>
-              <?php if (hasAccess('cat/print cat', $currentUser)): ?>
-                <button type="button" class="btn btn-info  btn-min" ng-click="print(data.StudentApplication.id )"><i class="fa fa-print"></i> PRINT CAT </button>
-              <?php endif ?>
+                <button id="pageQualify" href="javascript:void(0)" ng-click="qualify(data.StudentApplication)" ng-disabled="data.StudentApplication.approve == 4 || data.StudentApplication.approve == 5" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> QUALIFY </button>
+                <button id="pageUnqualify" href="javascript:void(0)" ng-click="unqualify(data.StudentApplication)" ng-disabled="data.StudentApplication.approve == 4 || data.StudentApplication.approve == 5" class="btn btn-warning  btn-min" ><i class="fa fa-close"></i> UNQUALIFY </button>
+                <button id="pagePrintForm" type="button" class="btn btn-info  btn-min" ng-click="print(data.StudentApplication.id )"><i class="fa fa-print"></i> PRINT CAT </button>
             </div>
           </div>
 
@@ -173,7 +189,6 @@
     </div>
   </div>
 </div>
-<?php endif ?>
 <style type="text/css">
   th {
     white-space: nowrap;

@@ -1,5 +1,32 @@
-<?php if (hasAccess('cat/index', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'cat/index', currentUser);
+  handleAccess('pageAdd', 'cat/add', currentUser);
+  handleAccess('pagePrint', 'cat/print', currentUser);
+  handleAccess('pageView', 'cat/view', currentUser);
+  handleAccess('pageEmail', 'cat/send email', currentUser);
+  handleAccess('pageRate', 'cat/rate', currentUser);
+  handleAccess('pageViewInterview', 'cat/view interview request', currentUser);
+
+  handleAccess('pageStudentApplicationPrint', 'student application/print', currentUser);
+  handleAccess('pageStudentApplicationView', 'student application/view', currentUser);
+
+
+</script>
+
+<div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -61,12 +88,8 @@
                   <div class="row">
                     <div class="col-md-7 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                       <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-                      <?php if (hasAccess('cat/print', $currentUser)): ?>
-                        <button ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
-                      <?php endif ?>
-                      <?php if (hasAccess('cat/send email', $currentUser)): ?>
-                        <button type="button" class="btn btn-info btn-min" ng-click="emailSelected()"><i class="fa fa-check"></i> SEND EMAIL </button>
-                      <?php endif ?>
+                        <button id="pagePrint" ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                        <button id="pageEmail" type="button" class="btn btn-info btn-min" ng-click="emailSelected()"><i class="fa fa-check"></i> SEND EMAIL </button>
 
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
@@ -121,15 +144,9 @@
                           <td class="text-center">{{ data.application_date }}</td>
                           <td>
                             <div class="btn-group btn-group-xs">
-                              <?php if (hasAccess('cat/view', $currentUser)): ?>
-                              <a href="#/admission/cat/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                              <?php endif ?>
-                              <?php if (hasAccess('cat/send email', $currentUser)): ?>
-                              <a href="javascript:void(0)" ng-click="sendMail(data)" class="btn btn-info" title="SEND EMAIL"><i class="fa fa-envelope"></i></a>
-                              <?php endif ?>
-                              <?php if (hasAccess('cat/rate', $currentUser)): ?>
-                                <a href="javascript:void(0)" ng-click="rate(data)" class="btn btn-warning" title="RATE"><i class="fa fa-check"></i></a>
-                              <?php endif ?>
+                              <a id="pageView" href="#/admission/cat/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                              <a id="pageEmail" href="javascript:void(0)" ng-click="sendMail(data)" class="btn btn-info" title="SEND EMAIL"><i class="fa fa-envelope"></i></a>
+                              <a id="pageRate" href="javascript:void(0)" ng-click="rate(data)" class="btn btn-warning" title="RATE"><i class="fa fa-check"></i></a>
                             </div>
                           </td>
                         </tr>
@@ -171,9 +188,7 @@
                   <div class="row">
                     <div class="col-md-7 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                       <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
-                      <?php if (hasAccess('cat/print', $currentUser)): ?>
-                        <button ng-click="printInterview()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
-                      <?php endif ?>
+                        <button id="pagePrint" ng-click="printInterview()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
                     <div class="col-md-1 ">
@@ -225,15 +240,9 @@
                           <td class="text-center">{{ data.status }}</td>
                           <td class="text-center">
                             <div class="btn-group btn-group-xs">
-                              <?php if (hasAccess('cat/view interview request', $currentUser)): ?>
-                              <a href="javascript:void(0)" ng-click="viewInterviewRequest(data)" class="btn btn-info" title="VIEW INTERVIEW REQUEST"><i class="fa fa-envelope"></i></a>
-                              <?php endif ?>
-                              <?php if (hasAccess('cat/email', $currentUser)): ?>
-                              <a href="#/admission/cat/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                              <?php endif ?>
-                              <?php if (hasAccess('cat/print', $currentUser)): ?>
-                                <button ng-click="printData(data.id)" class="btn btn-danger"><i class="fa fa-print"></i></button>
-                              <?php endif ?>
+                              <a id="pageViewInterview" href="javascript:void(0)" ng-click="viewInterviewRequest(data)" class="btn btn-info" title="VIEW INTERVIEW REQUEST"><i class="fa fa-envelope"></i></a>
+                              <a id="pageEmail" href="#/admission/cat/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                              <button id="pagePrint" ng-click="printData(data.id)" class="btn btn-danger"><i class="fa fa-print"></i></button>
                             </div>
                           </td>
                         </tr>
@@ -274,13 +283,9 @@
                 <div class="col-md-12 pt-3">
                   <div class="row">
                     <div class="col-md-7 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                      <?php if (hasAccess('cat/add', $currentUser)): ?>
-                        <a href="#/admission/student-application/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
-                      <?php endif ?>
+                        <a id="pageAdd" href="#/admission/student-application/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
                       <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
-                      <?php if (hasAccess('cat/print', $currentUser)): ?>
-                        <button ng-click="printAssessed()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
-                      <?php endif ?>
+                        <button id="pagePrint" ng-click="printAssessed()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
                     <div class="col-md-1 ">
@@ -330,12 +335,8 @@
                           <td class="text-center">{{ data.rate }}</td>
                           <td class="text-center">
                             <div class="btn-group btn-group-xs">
-                              <?php if (hasAccess('cat/email', $currentUser)): ?>
-                              <a href="#/admission/cat/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                              <?php endif ?>
-                              <?php if (hasAccess('cat/print', $currentUser)): ?>
-                                <button ng-click="printData(data.id)" class="btn btn-danger"><i class="fa fa-print"></i></button>
-                              <?php endif ?>
+                              <a id="pageEmail" href="#/admission/cat/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                                <button id="pagePrint" ng-click="printData(data.id)" class="btn btn-danger"><i class="fa fa-print"></i></button>
                             </div>
                           </td>
                         </tr>
@@ -377,9 +378,7 @@
                   <div class="row">
                     <div class="col-md-7 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                       <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
-                      <?php if (hasAccess('student application/print', $currentUser)): ?>
-                        <button ng-click="printDisapproved()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
-                      <?php endif ?>
+                        <button id="pageStudentApplicationPrint" ng-click="printDisapproved()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
                     <div class="col-md-1 ">
@@ -427,9 +426,7 @@
                           <td class="text-center">{{ data.application_date }}</td>
                           <td>
                             <div class="btn-group btn-group-xs">
-                              <?php if (hasAccess('student application/view', $currentUser)): ?>
-                              <a href="#/admission/cat/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                              <?php endif ?>
+                              <a id="pageStudentApplicationView" href="#/admission/cat/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
                             </div>
                           </td>
                         </tr>
@@ -472,7 +469,6 @@
     </div>
   </div>
 </div>
-<?php endif ?>
 
 <div class="modal fade" id="advance-search-modal">
   <div class="modal-dialog">
