@@ -1,4 +1,23 @@
-<?php if (hasAccess('class schedule/view', $currentUser)): ?>
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'class schedule/view', currentUser);
+  handleAccess('pageEdit', 'class schedule/edit', currentUser);
+  handleAccess('pageDelete', 'class schedule/delete', currentUser);
+
+</script>
+
 <div class="row">
   <div class="col-lg-12 mt-3">
     <div class="card">
@@ -96,12 +115,8 @@
           </div>
           <div class="col-md-12">
             <div class="pull-right">
-              <?php if (hasAccess('class schedule/edit', $currentUser)): ?>
-                <a href="#/class-schedule/edit/{{ data.ClassSchedule.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
-               <?php endif ?>
-              <?php if (hasAccess('class schedule/delete', $currentUser)): ?> 
-                <button class="btn btn-danger btn-min" ng-click="remove(data.ClassSchedule)"><i class="fa fa-trash"></i> DELETE </button>
-              <?php endif ?>
+                <a id="pageEdit" href="#/class-schedule/edit/{{ data.ClassSchedule.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
+                <button id="pageDelete" class="btn btn-danger btn-min" ng-click="remove(data.ClassSchedule)"><i class="fa fa-trash"></i> DELETE </button>
             </div>
           </div>
         </div>
