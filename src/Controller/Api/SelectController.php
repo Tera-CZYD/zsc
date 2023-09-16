@@ -7498,8 +7498,6 @@ class SelectController extends AppController {
       $program_id = $this->request->query['program_id'];
 
       // $year_term_id = $this->request->query['year_term_id'];
-
-     
      
       $tmp = $this->BlockSection->query("
 
