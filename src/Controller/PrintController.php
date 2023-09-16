@@ -37,6 +37,10 @@ class PrintController extends AppController {
 
     $this->ScholarshipApplication = TableRegistry::getTableLocator()->get('ScholarshipApplications');
 
+    $this->StudentEnrolledSchedules = TableRegistry::getTableLocator()->get('StudentEnrolledSchedules');
+
+    $this->AddingDroppingSubjectSubs = TableRegistry::getTableLocator()->get('AddingDroppingSubjectSubs');
+
     $this->Transferees = TableRegistry::getTableLocator()->get('Transferees');
 
     $this->ProgramAdvisers = TableRegistry::getTableLocator()->get('ProgramAdvisers');
@@ -64,6 +68,8 @@ class PrintController extends AppController {
     $this->loadModel('StudentClubs');
 
     $this->loadModel('Bibliographies');
+
+    $this->loadModel('AddingDroppingSubjectSubs');
 
 
     //sir leo 
@@ -12766,7 +12772,7 @@ class PrintController extends AppController {
 
   public function requestFormReceipt($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Request Form');
+    $office_reference = $this->Global->OfficeReference('Request Form');
 
     $data['RequestForm'] = $this->RequestForm->find()
       ->contain(['Students', 'CollegePrograms'])
@@ -12819,11 +12825,11 @@ class PrintController extends AppController {
     $pdf->Ln(2);
     $pdf->SetFont("Times", '', 6);
     $pdf->Cell(123.5, 5, '', 0, 0, 'R');
-    $pdf->Cell(60, 5, 'Revision Status: ' . strtoupper(@$office_reference['OfficeReference']['revision_status']), 0, 0, 'R');
+    $pdf->Cell(60, 5, 'Revision Status: ', 0, 0, 'R');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 6);
     $pdf->Cell(129, 5, '', 0, 0, 'R');
-    $pdf->Cell(59, 5, 'Revision Date: revision_date', 0, 0, 'R');
+    $pdf->Cell(59, 5, 'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']), 0, 0, 'R');
     $pdf->Ln(1);
     $pdf->SetFont("Arial", 'B', 12);
     $pdf->Cell(0, 5, 'REQUEST FORM', 0, 0, 'C');
@@ -13489,7 +13495,7 @@ class PrintController extends AppController {
 
    public function completionForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Completion Form');
+    $office_reference = $this->Global->OfficeReference('Completion Form');
 
     $this->loadModel('Completion');
     $data['Completion'] = $this->Completion->find()
@@ -17203,7 +17209,7 @@ class PrintController extends AppController {
 
   public function scholarshipApplicationForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Scholarship Application');
+    $office_reference = $this->Global->OfficeReference('Scholarship Application');
 
     $data['ScholarshipApplication'] = $this->ScholarshipApplication->find()
 
@@ -17645,7 +17651,7 @@ class PrintController extends AppController {
 
   public function certificateRegistrations($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Registered Student');
+    $office_reference = $this->Global->OfficeReference('Registered Student');
 
     // debug($id);
 
@@ -17769,14 +17775,14 @@ class PrintController extends AppController {
     $pdf->Rect(164, $pdf->GetY()+1, 43, 9);
     $pdf->Ln(1);
     $pdf->SetFont("Arial", '', 8);
-    $pdf->Cell(154, 5, '', 0, 0, 'L');
-    $pdf->Cell(68, 5, 'ZSCMST-' . strtoupper(@$office_reference['OfficeReference']['reference_code']), 0, 0, 'L');
+    $pdf->Cell(164, 5, '', 0, 0, 'L');
+    $pdf->Cell(78, 5, 'ZSCMST-' . strtoupper(@$office_reference['OfficeReference']['reference_code']), 0, 0, 'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Arial", '', 6);
     $pdf->Cell(129, 5, '', 0, 0, 'R');
     $pdf->Cell(68, 5, 'Adopted Date: '. strtoupper(@$office_reference['OfficeReference']['adopted']), 0, 0, 'R');
     $pdf->Ln(2.5);
-    $pdf->SetFont("Times", '', 7);
+    $pdf->SetFont("Times", '', 6);
     $pdf->Cell(137, 5, '', 0, 0, 'R');
     $pdf->Cell(60, 5, 'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']) .' Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']), 0, 0, 'R');
     // $pdf->Ln(2.5);
@@ -22639,7 +22645,7 @@ EQUIVALENT',1,'C',0);
 
   public function catApplicationForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Cat');
+    $office_reference = $this->Global->OfficeReference('Cat');
 
     $data['StudentApplication'] = $this->StudentApplications->find()
     ->contain([
@@ -23378,50 +23384,45 @@ EQUIVALENT',1,'C',0);
 
   }
 
-  public function adding_dropping_subject_form($id = null){
+  public function addingDroppingSubjectForm($id = null){
 
     $office_reference = $this->Global->OfficeReference('Adding/Dropping Subject');
 
-    $this->loadModel('AddingDroppingSubject');
+    $this->loadModel('AddingDroppingSubjects');
 
-    $data = $this->AddingDroppingSubject->find('first', array(
+    $data['AddingDroppingSubject'] = $this->AddingDroppingSubjects->find()
 
-      'contain' => array(
+        ->contain([
 
-        'Student'
+            'Students',
 
+            'AddingDroppingSubjectSubs'
 
-      ),
+        ])
 
-      'conditions' => array(
+        ->where([
 
-        'AddingDroppingSubject.visible' => true,
+            'AddingDroppingSubjects.visible' => 1,
 
-        'AddingDroppingSubject.id' => $id,
+            'AddingDroppingSubjects.id'      => $id,
 
-      )
+        ])
 
-    ));
+        ->first();
 
-    $data['AddingDroppingSubjectSub'] = $this->AddingDroppingSubjectSub->find('all',array(
+    // $data['AddingDroppingSubjectSubs'] = $this->AddingDroppingSubjectSubs->find()
 
-        'conditions' => array(
-  
-          'AddingDroppingSubjectSub.visible' => true,
-  
-          'AddingDroppingSubjectSub.adding_dropping_subject_id' => $id
-  
-        ),
-  
-        'order' => array(
-  
-          'AddingDroppingSubjectSub.id' => 'ASC' 
-  
-        )
-  
-      ));
-      
-     
+    // ->where([
+
+    //     'visible' => 1,
+
+    //     'adding_dropping_subject_id' => $id
+
+    // ])
+
+    // ->orderAsc('id')
+
+    // ->toArray();
 
     $tmpData = $data['AddingDroppingSubjectSub'];
 
