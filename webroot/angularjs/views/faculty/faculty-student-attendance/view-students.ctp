@@ -47,7 +47,7 @@
                       <?php if (hasAccess('course/view', $currentUser)): ?>
                         <span ng-show="record.day != '' && record.day == 1"><i class="fa fa-check"></i></span>
                         <a href="javascript:void(0)" ng-show="record.day != '' && record.day != 1" ng-click="showImage(data.id,record.image,record.imageSrc)" class="btn btn-success" style="color:white !important;" title="Add Attendance"><i class="fa fa-eye"></i></a>
-                        <a href="javascript:void(0)" ng-show="record.day == ''" ng-click="attendance(data.id,$index+1)" class="btn btn-print" style="color:white !important;" title="Add Attendance"><i class="fa fa-user-plus"></i></a>
+                        <a href="javascript:void(0)" ng-show="record.day == ''" ng-click="attendance(data.id,$index+1,data.year_term_id)" class="btn btn-print" style="color:white !important;" title="Add Attendance"><i class="fa fa-user-plus"></i></a>
                       <?php endif ?> 
                     </div>
                   </td> 
@@ -103,7 +103,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a href="{{ imageSrc }}" target="_blank" class="btn btn-print">Download</a>
+        <a href="{{ imageSrc }}" target="_blank" class="btn btn-print">View</a>
       </div>
     </div>
   </div>
