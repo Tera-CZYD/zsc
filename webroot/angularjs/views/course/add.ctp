@@ -26,20 +26,21 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <label> YEAR OF IMPLEMENTATION  <i class="required">*</i></label>
-                <input type="text" class="form-control yearpicker" autocomplete="off" ng-model="data.Course.year_implementation" data-validation-engine="validate[required]">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
                 <label> REFERENCE NUMBER <i class="required">*</i></label>
                 <input type="text" class="form-control" ng-model="data.Course.code" data-validation-engine="validate[required]">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label> SCHOOL YEAR  <i class="required">*</i></label>
-                <input type="text" class="form-control yearpicker" autocomplete="off" ng-model="data.Course.school_year" data-validation-engine="validate[required]">
+                <label> YEAR OF IMPLEMENTATION  <i class="required">*</i></label>
+                <input type="text" class="form-control yearpicker" ng-model="data.Course.year_implementation" data-validation-engine="validate[required]">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> SEMESTER <i class="required">*</i></label>
+                <select selectize ng-options="opt.id as opt.value for opt in year_level_term" ng-model="data.Course.year_term_id" data-validation-engine="validate[required]">
+                <option value=""></option></select>
               </div>
             </div>
             <div class="col-md-6">
@@ -51,9 +52,10 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label> CATEGORY <i class="required">*</i></label>
-                <select class="form-control" ng-model="data.Course.category" style="height: 45px" data-validation-engine="validate[required]" autocomplete="false">
-                  <option value="Laboratory">Laboratory</option>
+                <select class="form-control" ng-model="data.Course.category">
+                  <option value=""></option>
                   <option value="Lecture">Lecture</option>
+                  <option value="Laboratory">Laboratory</option>
                 </select>
               </div>
             </div>
