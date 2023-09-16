@@ -198,6 +198,8 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
 
   $scope.datas = {};
 
+  $scope.count = {};
+
   // load 
   $scope.load = function() {
 
@@ -240,9 +242,11 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
 
   };
 
-  $scope.attendance = function(data,index) {
+  $scope.attendance = function(data,index,year) {
 
     $scope.student_id = data;
+
+    $scope.year_term_id = year;
 
     $scope.day = index;
 
@@ -257,6 +261,10 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
 
 
   $scope.saveFile = function (files,attendanceData) {
+
+    
+
+    
 
     if(files == undefined){
 
@@ -326,6 +334,8 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
 
             faculty_id       : $scope.faculty,
 
+            year_term_id       : $scope.year_term_id,
+
             url              : file.url,
 
             _file            : file._file,
@@ -357,11 +367,25 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
 
             faculty_id       : $scope.faculty,
 
+            year_term_id       : $scope.year_term_id,
+
           });
 
        }
-    
+ 
       StudentAttendanceFile.save($scope.StudentAttendanceFile, function(e) {
+
+        $scope.count_attendance = '';
+
+        Select.get({ code: 'get-student-attendance', student_id : $scope.student_id, year_term_id : $scope.year_term_id },function(q){
+
+          $scope.count = q.data;
+          
+
+        });
+
+console.log($scope.count);
+        
 
         if (e.ok) {
 
