@@ -94,19 +94,19 @@ class GlobalComponent extends Component {
 
   public function OfficeReference($type = null){
 
-    $this->OfficeReference = ClassRegistry::init('OfficeReference');
+    $this->OfficeReferences = TableRegistry::getTableLocator()->get('OfficeReferences');
 
-    $data = $this->OfficeReference->find('first',array(
+    $data['OfficeReference'] = $this->OfficeReferences->find()
 
-      'conditions' => array(
+      ->where([
 
-        'OfficeReference.sub_module' => $type,
+        'visible' => 1,
 
-        'OfficeReference.visible' => true
+        'sub_module' => $type
 
-      ),
+      ])
 
-    ));
+      ->first();
 
     if(count($data) > 0) {
 

@@ -74,6 +74,8 @@
 
       $routes->resources('Bibliographies');
 
+      $routes->resources('Purposes');
+
       $routes->resources('InventoryBibliographies');
 
       $routes->connect('/inventory_bibliographies/manual', ['controller' => 'InventoryBibliographies', 'action' => 'api_manual']);

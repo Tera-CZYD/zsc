@@ -155,7 +155,7 @@
 
     'registrar/prospectus',
 
-    // 'registrar/student-behavior',
+    'registrar/purpose',
 
     'registrar/tor',
 
