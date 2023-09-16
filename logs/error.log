@@ -39017,3 +39017,2592 @@ Request URL: /api/select?code=check-user
 Referer URL: http://localhost/zscmst/main
 Client IP: 127.0.0.1
 >>>>>>> ecea489dae50cc5495e1a620132a4c75e2b6b6a6
+2023-09-16 08:15:49 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/controller.js?version=1694852148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:15:49 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/route.js?version=1694852148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:15:49 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/student-profile/controller.js?version=1694852148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:15:50 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/service.js?version=1694852148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:15:50 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/service.js?version=1694852148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:15:50 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/route.js?version=1694852148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:15:51 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/controller.js?version=1694852148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:15:52 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/service.js?version=1694852148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:15:52 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/route.js?version=1694852148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:15:53 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/controller.js?version=1694852148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:15:53 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/student-profile/controller.js?version=1694852148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:15:53 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/service.js?version=1694852148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:15:54 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/route.js?version=1694852148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:15:54 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/controller.js?version=1694852148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:15:55 error: [Cake\Http\Exception\MissingControllerException] Controller class {{Data.imageSrc}} could not be found. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php on line 348
+Exception Attributes: array (
+  'controller' => '{{Data.imageSrc}}',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+  'class' => '{{Data.imageSrc}}',
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:333
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:72
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:318
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /%7B%7B%20data.imageSrc%20%7D%7D
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:15:55 error: [Cake\View\Exception\MissingTemplateException] Template file `Api\Dashboards\index.php` could not be found.
+
+The following paths were searched:
+
+- `C:\xampp3\htdocs\zscmst\templates\Api\Dashboards\index.php`
+- `C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\templates\Api\Dashboards\index.php`
+ in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\View\View.php on line 1398
+Exception Attributes: array (
+  'file' => 'Api\\Dashboards\\index.php',
+  'paths' => 
+  array (
+    0 => 'C:\\xampp3\\htdocs\\zscmst\\templates\\',
+    1 => 'C:\\xampp3\\htdocs\\zscmst\\vendor\\cakephp\\cakephp\\templates\\',
+  ),
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\View\View.php:805
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php:773
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php:556
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:139
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /api/dashboards
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:15:56 error: [Cake\Datasource\Exception\InvalidPrimaryKeyException] Record not found in table "students" with primary key [NULL] in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\ORM\Table.php on line 1494
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\src\Controller\Api\SelectController.php:2778
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php:547
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:139
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /api/select?code=check-user
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:36 error: [Cake\Http\Exception\MissingControllerException] Controller class Pages could not be found. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php on line 348
+Exception Attributes: array (
+  'controller' => 'Pages',
+  'plugin' => NULL,
+  'prefix' => 'Api',
+  '_ext' => NULL,
+  'class' => 'Pages',
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:74
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:318
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /api/pages/login?redirect=%2Fapi%2Fscholarship_names
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:37 error: [Cake\Http\Exception\MissingControllerException] Controller class Pages could not be found. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php on line 348
+Exception Attributes: array (
+  'controller' => 'Pages',
+  'plugin' => NULL,
+  'prefix' => 'Api',
+  '_ext' => NULL,
+  'class' => 'Pages',
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:74
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:318
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /api/pages/login?redirect=%2Fapi%2Fscholarship-applications%3Fstatus%3D0
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:37 error: [Cake\Http\Exception\MissingControllerException] Controller class Pages could not be found. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php on line 348
+Exception Attributes: array (
+  'controller' => 'Pages',
+  'plugin' => NULL,
+  'prefix' => 'Api',
+  '_ext' => NULL,
+  'class' => 'Pages',
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:74
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:318
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /api/pages/login?redirect=%2Fapi%2Fscholarship-applications%3Fstatus%3D4
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:38 error: [Cake\Http\Exception\MissingControllerException] Controller class Pages could not be found. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php on line 348
+Exception Attributes: array (
+  'controller' => 'Pages',
+  'plugin' => NULL,
+  'prefix' => 'Api',
+  '_ext' => NULL,
+  'class' => 'Pages',
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:74
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:318
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /api/pages/login?redirect=%2Fapi%2Fscholarship-applications%3Fstatus%3D1
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:38 error: [Cake\Http\Exception\MissingControllerException] Controller class Pages could not be found. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php on line 348
+Exception Attributes: array (
+  'controller' => 'Pages',
+  'plugin' => NULL,
+  'prefix' => 'Api',
+  '_ext' => NULL,
+  'class' => 'Pages',
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:74
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:318
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /api/pages/login?redirect=%2Fapi%2Fscholarship-applications%3Fstatus%3D2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:38 error: [Cake\Http\Exception\MissingControllerException] Controller class Pages could not be found. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php on line 348
+Exception Attributes: array (
+  'controller' => 'Pages',
+  'plugin' => NULL,
+  'prefix' => 'Api',
+  '_ext' => NULL,
+  'class' => 'Pages',
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:74
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:318
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /api/pages/login?redirect=%2Fapi%2Fscholarship_names
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:39 error: [Cake\Http\Exception\MissingControllerException] Controller class Pages could not be found. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php on line 348
+Exception Attributes: array (
+  'controller' => 'Pages',
+  'plugin' => NULL,
+  'prefix' => 'Api',
+  '_ext' => NULL,
+  'class' => 'Pages',
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:74
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:318
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /api/pages/login?redirect=%2Fapi%2Fschools
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:50 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/service.js?version=1694854069
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:50 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/controller.js?version=1694854069
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:50 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/route.js?version=1694854069
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:51 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/student-profile/controller.js?version=1694854069
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:51 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/service.js?version=1694854069
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:51 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/route.js?version=1694854069
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:52 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/controller.js?version=1694854069
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:53 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/service.js?version=1694854069
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:53 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/route.js?version=1694854069
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:54 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/controller.js?version=1694854069
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:54 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/student-profile/controller.js?version=1694854069
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:54 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/service.js?version=1694854069
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:55 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/route.js?version=1694854069
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:55 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/controller.js?version=1694854069
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:56 error: [Cake\Http\Exception\MissingControllerException] Controller class {{Data.imageSrc}} could not be found. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php on line 348
+Exception Attributes: array (
+  'controller' => '{{Data.imageSrc}}',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+  'class' => '{{Data.imageSrc}}',
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:333
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:72
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:318
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /%7B%7B%20data.imageSrc%20%7D%7D
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:57 error: [Cake\View\Exception\MissingTemplateException] Template file `Api\Dashboards\index.php` could not be found.
+
+The following paths were searched:
+
+- `C:\xampp3\htdocs\zscmst\templates\Api\Dashboards\index.php`
+- `C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\templates\Api\Dashboards\index.php`
+ in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\View\View.php on line 1398
+Exception Attributes: array (
+  'file' => 'Api\\Dashboards\\index.php',
+  'paths' => 
+  array (
+    0 => 'C:\\xampp3\\htdocs\\zscmst\\templates\\',
+    1 => 'C:\\xampp3\\htdocs\\zscmst\\vendor\\cakephp\\cakephp\\templates\\',
+  ),
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\View\View.php:805
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php:773
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php:556
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:139
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /api/dashboards
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:47:57 error: [Cake\Datasource\Exception\InvalidPrimaryKeyException] Record not found in table "students" with primary key [NULL] in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\ORM\Table.php on line 1494
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\src\Controller\Api\SelectController.php:2778
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php:547
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:139
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /api/select?code=check-user
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:48:36 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/service.js?version=1694854114
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:48:36 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/controller.js?version=1694854114
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:48:36 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/route.js?version=1694854114
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:48:36 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/route.js?version=1694854114
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:48:37 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/service.js?version=1694854114
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:48:37 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/student-profile/controller.js?version=1694854114
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:48:37 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/controller.js?version=1694854114
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:48:38 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/service.js?version=1694854114
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:48:38 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/route.js?version=1694854114
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:48:39 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/controller.js?version=1694854114
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:48:39 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/student-profile/controller.js?version=1694854114
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:48:39 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/service.js?version=1694854114
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:48:40 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/route.js?version=1694854114
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:48:40 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/controller.js?version=1694854114
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:49:10 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/controller.js?version=1694854148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:49:10 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/route.js?version=1694854148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:49:10 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/student-profile/controller.js?version=1694854148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:49:11 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/service.js?version=1694854148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:49:11 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/service.js?version=1694854148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:49:11 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/route.js?version=1694854148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:49:11 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/controller.js?version=1694854148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:49:12 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/service.js?version=1694854148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:49:13 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/route.js?version=1694854148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:49:13 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/controller.js?version=1694854148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:49:13 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/student-profile/controller.js?version=1694854148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:49:14 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/service.js?version=1694854148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:49:14 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/route.js?version=1694854148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:49:14 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/controller.js?version=1694854148
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:49:57 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/route.js?version=1694854195
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:49:57 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/service.js?version=1694854195
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:49:58 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/student-profile/controller.js?version=1694854195
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:49:58 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/controller.js?version=1694854195
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:49:58 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/service.js?version=1694854195
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:49:58 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/route.js?version=1694854195
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:49:59 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/controller.js?version=1694854195
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:50:00 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/service.js?version=1694854195
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:50:00 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/route.js?version=1694854195
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:50:00 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/prospectus/controller.js?version=1694854195
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:50:00 error: [Cake\Controller\Exception\MissingActionException] Action AppController::registrar() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'registrar',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/registrar/student-profile/controller.js?version=1694854195
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:50:01 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/service.js?version=1694854195
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:50:01 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/route.js?version=1694854195
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+2023-09-16 08:50:01 error: [Cake\Controller\Exception\MissingActionException] Action AppController::medicalServices() could not be found, or is not accessible. in C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php on line 526
+Exception Attributes: array (
+  'controller' => 'AppController',
+  'action' => 'medicalServices',
+  'prefix' => '',
+  'plugin' => NULL,
+)
+Stack Trace:
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:134
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:114
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php:320
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:86
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php:174
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:157
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:186
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:77
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:131
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:82
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php:67
+- C:\xampp3\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php:90
+- C:\xampp3\htdocs\zscmst\webroot\index.php:40
+
+Request URL: /app/medical-services/medical-consent/controller.js?version=1694854195
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
