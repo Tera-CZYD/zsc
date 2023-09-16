@@ -15,7 +15,6 @@
   handleAccess('pageView', 'apartelle/view', currentUser);
   handleAccess('pageEdit', 'apartelle/edit', currentUser);
   handleAccess('pageDelete', 'apartelle/delete', currentUser);
-  handleAccess('pagePrintForm', 'apartelle/print promissory note/waiver form', currentUser);
 
 
 </script>

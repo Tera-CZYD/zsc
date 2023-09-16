@@ -173,7 +173,7 @@ app.controller('FacultyStudentAttendanceViewSectionController', function($scope,
 
 });
 
-app.controller('FacultyStudentAttendanceViewStudentsController', function($scope, $routeParams, Select, FacultyStudentAttendanceViewStudents,StudentAttendanceFile) {
+app.controller('FacultyStudentAttendanceViewStudentsController', function($scope, $routeParams, Select, FacultyStudentAttendanceViewStudents,StudentAttendanceFile,StudentAttendanceDrop) {
 
   $scope.id = $routeParams.id;
 
@@ -198,7 +198,7 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
 
   $scope.datas = {};
 
-  $scope.count = {};
+  // $scope.count = {};
 
   // load 
   $scope.load = function() {
@@ -380,38 +380,84 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
         Select.get({ code: 'get-student-attendance', student_id : $scope.student_id, year_term_id : $scope.year_term_id },function(q){
 
           $scope.count = q.data;
+
+          if($scope.count<=5){
+
+            if($scope.count==5){
+
+              $scope.details = {
+
+                course : $scope.course,
+
+                faculty : $scope.faculty
+
+              };
+
+              StudentAttendanceDrop.update({ id:$scope.student_id },$scope.details, function(e){
+
+                if(e.ok){
+
+                  $.gritter.add({
+
+                      title: 'Warning!',
+
+                      text:  'Student Dropped',
+
+                    });
+
+                  $('#add-attendance').modal('hide');
+
+                  $scope.load();
+
+                }
+
+              });
+
+
+            }else{
+
+              if (e.ok) {
+
+                $.gritter.add({
+
+                  title: 'Success!',
+
+                  text:  e.msg,
+
+                });
+
+                $('#add-attendance').modal('hide');
+
+                $scope.load();
+
+              } else {
+
+                $.gritter.add({
+
+                  title: 'Warning!',
+
+                  text:  e.msg,
+
+                });
+
+              }
+
+            }
+
+          }else{
+
+            $.gritter.add({
+
+              title: 'Warning!',
+
+              text:  'Student Dropped',
+
+            });
+
+          }
           
 
         });
-
-console.log($scope.count);
-        
-
-        if (e.ok) {
-
-          $.gritter.add({
-
-            title: 'Success!',
-
-            text:  e.msg,
-
-          });
-
-          $('#add-attendance').modal('hide');
-
-          $scope.load();
-
-        } else {
-
-          $.gritter.add({
-
-            title: 'Warning!',
-
-            text:  e.msg,
-
-          });
-
-        }
 
       });
 

@@ -39,16 +39,6 @@
         StudentAttendance.visible = true $date $status $studentId AND
         
 
-          -- (
-
-          --   Consultation.code LIKE  '%$search%' OR
-
-          --   Consultation.student_no LIKE  '%$search%' OR
-
-          --   Consultation.student_name LIKE  '%$search%' 
-
-          -- )
-
         ORDER BY 
 
         StudentAttendance.id DESC

@@ -52,6 +52,21 @@ app.factory("FacultyStudentAttendanceViewStudents", function($resource, $http) {
 
 });
 
+
+app.factory("StudentAttendanceDrop", function($resource) {
+
+  return $resource( api + "FacultyStudentAttendances/drop/:id", { id: '@id' }, {
+
+    query: { method: 'GET', isArray: false },
+
+    update: { method: 'PUT' },
+
+    search: { method: 'GET' },
+
+  });
+
+});
+
 app.factory("StudentAttendanceFile", function($resource) {
 
   return $resource( api + "student-attendance-files/:id", { id: '@id' }, {

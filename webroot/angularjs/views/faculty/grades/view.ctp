@@ -1,5 +1,25 @@
-<?php if (hasAccess('grades/view', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'grades/view', currentUser);
+  // handleAccess('pageEdit', 'grades/edit', currentUser);
+  // handleAccess('pageDelete', 'grades/delete', currentUser);
+  handleAccess('pageSubmission', 'grades/grade submission', currentUser);
+
+</script>
+
+<div class="row" id="pageView">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -78,15 +98,13 @@
             <div class="clearfix"></div><hr>
           </div>
 
-          <?php if (hasAccess('grades/grade submission', $currentUser)): ?>
-          <div class="col-md-12">
+          <div class="col-md-12" id="pageSubmission">
             <button class="btn btn-danger btn-min" ng-click="print();" ng-disabled="bool"><i class="fa fa-print"></i> PRINT REPORT OF RATING </button>
             <button class="btn btn-warning btn-min" ng-click="submitMidterm();" ng-disabled="boolMidterm"><i class="fa fa-save"></i> SUBMIT MID TERM GRADE </button>
             <button class="btn btn-success btn-min" ng-click="submitFinalterm();" ng-disabled="boolFinalterm"><i class="fa fa-save"></i> SUBMIT FINAL TERM GRADE </button>
             <button class="btn btn-info btn-min" ng-if="button_status == 'edit'" ng-click="editIncomplete();" ng-disabled="boolIncomplete"><i class="fa fa-edit"></i> EDIT INCOMPLETE </button>
             <button class="btn btn-info btn-min" ng-if="button_status == 'save'" ng-click="submitFinalterm();"><i class="fa fa-save"></i> UPDATE INCOMPLETE </button>
           </div>
-          <?php endif ?>
 
 
           <div class="col-md-12">
@@ -127,9 +145,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="pull-right">
-              <?php if (hasAccess('grades/grade submission', $currentUser)): ?>
-              <button class="btn btn-primary btn-min" id = "save" ng-click="save();" ng-disabled="bool"><i class="fa fa-save"></i> SAVE GRADE </button>
-              <?php endif ?>
+              <button id="pageSubmission" class="btn btn-primary btn-min" id = "save" ng-click="save();" ng-disabled="bool"><i class="fa fa-save"></i> SAVE GRADE </button>
             </div>
           </div>
         </div>
@@ -137,7 +153,6 @@
     </div>
   </div>
 </div>
-<?php endif ?>
 <!-- <style type="text/css">
   th {
     white-space: nowrap;

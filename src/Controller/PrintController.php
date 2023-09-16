@@ -17334,7 +17334,7 @@ class PrintController extends AppController {
     $pdf->SetFont("calibri", '', 11);
     $pdf->Cell(7);
     $pdf->Cell(30,5,'Date Applied:',0,0,'L');
-    $pdf->Cell(30,5,$data['ScholarshipApplication']['date']->format('m/d/Y'),0,0,'L');
+    $pdf->Cell(30,5,$data['ScholarshipApplication']['date'] != null ? $data['ScholarshipApplication']['date']->format('m/d/Y') : null,0,0,'L');
     $pdf->Line(40,$pdf->getY()+4,70,$pdf->getY()+4);
 
     $pdf->Ln(12);
@@ -17388,7 +17388,7 @@ class PrintController extends AppController {
     $pdf->Ln(8);
     $pdf->Cell(7);
     $pdf->Cell(20,5,'Birthdate:',0,0,'L');
-    $pdf->Cell(30,5,$data['ScholarshipApplication']['birthdate']->format('m/d/Y'),0,0,'L');
+    $pdf->Cell(30,5,$data['ScholarshipApplication']['birthdate'] != null ? $data['ScholarshipApplication']['birthdate']->format('m/d/Y') : null,0,0,'L');
     $pdf->Line(31,$pdf->getY()+4,60,$pdf->getY()+4);
     $pdf->Cell(30,5,'Place of Birth:',0,0,'L');
     $pdf->Cell(70,5,$data['ScholarshipApplication']['place_of_birth'],0,0,'L');

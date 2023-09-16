@@ -1,5 +1,27 @@
-<?php if (hasAccess('faculty clearance/index', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'faculty clearance/index', currentUser);
+  handleAccess('pageAdd', 'faculty clearance/add', currentUser);
+  handleAccess('pagePrint', 'faculty clearance/print', currentUser);
+  handleAccess('pageView', 'faculty clearance/view', currentUser);
+  handleAccess('pageEdit', 'faculty clearance/edit', currentUser);
+  handleAccess('pageDelete', 'faculty clearance/delete', currentUser);
+
+</script>
+
+<div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -46,13 +68,9 @@
             <div class="col-md-12">
               <div class="row">
                 <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                  <?php if (hasAccess('faculty clearance/add', $currentUser)): ?>
-                    <a href="#/faculty/faculty-clearance/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
-                  <?php endif ?>
+                    <a id="pageAdd" href="#/faculty/faculty-clearance/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
                   <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-                  <?php if (hasAccess('faculty clearance/print', $currentUser)): ?>
-                    <button ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
-                  <?php endif ?>
+                    <button id="pagePrint" ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
                   <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                 </div>
                 <div class="col-md-4 col-xs-12 pull-right">
@@ -87,15 +105,9 @@
                     <td class="text-center">{{ data.request }}</td>
                       <td>
                         <div class="btn-group btn-group-xs">
-                          <?php if (hasAccess('faculty clearance/view', $currentUser)): ?>
-                            <a href="#/faculty/faculty-clearance/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                          <?php endif ?>
-                          <?php if (hasAccess('faculty clearance/edit', $currentUser)): ?>
-                            <a href="#/faculty/faculty-clearance/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
-                          <?php endif ?>
-                          <?php if (hasAccess('faculty clearance/delete', $currentUser)): ?>
-                            <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
-                          <?php endif ?>
+                            <a id="pageView" href="#/faculty/faculty-clearance/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                            <a id="pageEdit" href="#/faculty/faculty-clearance/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
+                            <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
 
                         </div>
                       </td>
@@ -138,7 +150,6 @@
     </div>
   </div>
 </div>
-<?php endif ?>
 
 <div class="modal fade" id="advance-search-modal">
   <div class="modal-dialog">
