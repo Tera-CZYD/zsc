@@ -1,5 +1,27 @@
-<?php if (hasAccess('faculty management/index', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'faculty management/index', currentUser);
+  handleAccess('pageAdd', 'faculty management/add', currentUser);
+  handleAccess('pagePrint', 'faculty management/print', currentUser);
+  handleAccess('pageView', 'faculty management/view', currentUser);
+  handleAccess('pageEdit', 'faculty management/edit', currentUser);
+  handleAccess('pageDelete', 'faculty management/delete', currentUser);
+
+</script>
+
+<div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -16,12 +38,8 @@
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-              <?php if (hasAccess('faculty management/add', $currentUser)): ?>
-                <a href="#/faculty/faculty-management/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD RECORD </a>
-              <?php endif ?> 
-              <?php if (hasAccess('faculty management/print', $currentUser)): ?>
-                <a ng-click="print()" class="btn btn-print btn-sm btn-min"><i class="fa fa-print"></i> PRINT </a>
-              <?php endif ?>
+                <a id="pageAdd" href="#/faculty/faculty-management/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD RECORD </a>
+                <a id="pagePrint" ng-click="print()" class="btn btn-print btn-sm btn-min"><i class="fa fa-print"></i> PRINT </a>
               <button type="button" class="btn btn-warning btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
             </div>
             <div class="col-md-4 col-xs-12 pull-right">
@@ -64,15 +82,9 @@
                   <td class="text-center">{{ data.active }}</td>
                   <td>
                     <div class="btn-group btn-group-xs">
-                      <?php if (hasAccess('faculty management/view', $currentUser)): ?>
-                      	<a href="#/faculty/faculty-management/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
-                      <?php endif ?> 
-                      <?php if (hasAccess('faculty management/edit', $currentUser)): ?>
-                      	<a href="#/faculty/faculty-management/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a>
-                      <?php endif ?> 
-                      <?php if (hasAccess('faculty management/delete', $currentUser)): ?>
-                      <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
-                      <?php endif ?> 
+                      	<a id="pageView" href="#/faculty/faculty-management/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
+                      	<a id="pageEdit" href="#/faculty/faculty-management/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a>
+                      <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
                     </div>
                   </td> 
                 </tr>
@@ -113,6 +125,4 @@
     </div>
   </div>
 </div>
-<?php endif ?>
 
-<?php echo $this->element('modals/advance-search/advance-search-block') ?>

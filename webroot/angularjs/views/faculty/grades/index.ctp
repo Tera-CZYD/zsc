@@ -1,5 +1,27 @@
-<?php if (hasAccess('grades/index', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'grades/index', currentUser);
+  handleAccess('pageView', 'grades/view', currentUser);
+  // handleAccess('pagePrint', 'grades/print', currentUser);
+  // handleAccess('pageView', 'grades/view', currentUser);
+  // handleAccess('pageEdit', 'grades/edit', currentUser);
+  // handleAccess('pageDelete', 'grades/delete', currentUser);
+
+</script>
+
+<div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -49,9 +71,7 @@
                   <td class="text-left">{{ data.college }}</td>
                   <td>
                     <div class="btn-group btn-group-xs">
-                      <?php if (hasAccess('grades/view', $currentUser)): ?>
-                      	<a href="#/faculty/grades/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
-                      <?php endif ?> 
+                      	<a id="pageView" href="#/faculty/grades/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
                     </div>
                   </td> 
                 </tr>
@@ -92,5 +112,4 @@
     </div>
   </div>
 </div>
-<?php endif ?>
 

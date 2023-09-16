@@ -1,5 +1,25 @@
-<?php if (hasAccess('student clearance/view', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'student clearance/view', currentUser);
+  handleAccess('pagePrintForm', 'student clearance/print student clearance', currentUser);
+  handleAccess('pageEdit', 'student clearance/edit', currentUser);
+  handleAccess('pageDelete', 'student clearance/delete', currentUser);
+
+</script>
+
+<div class="row" id="pageView">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -46,15 +66,9 @@
           </div>
           <div class="col-md-12">
             <div class="pull-right">
-              <?php if (hasAccess('studnet clearance/edit', $currentUser)): ?>
-                <a href="#/faculty/student-clearance/edit/{{ data.StudentClearance.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
-              <?php endif ?>
-              <?php if (hasAccess('student clearance/print student clearance', $currentUser)): ?>
-                <button type="button" class="btn btn-info  btn-min" ng-click="print(data.StudentClearance.id )"><i class="fa fa-print"></i> PRINT STUDENT CLEARANCE FORM </button>
-              <?php endif ?>
-              <?php if (hasAccess('student clearance/delete', $currentUser)): ?>
-                <button class="btn btn-danger btn-min" ng-click="remove(data.StudentClearance)"><i class="fa fa-trash"></i> DELETE </button>
-              <?php endif ?>
+                <a id="pageEdit" href="#/faculty/student-clearance/edit/{{ data.StudentClearance.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
+                <button id="pagePrintForm" type="button" class="btn btn-info  btn-min" ng-click="print(data.StudentClearance.id )"><i class="fa fa-print"></i> PRINT STUDENT CLEARANCE FORM </button>
+                <button id="pageDelete" class="btn btn-danger btn-min" ng-click="remove(data.StudentClearance)"><i class="fa fa-trash"></i> DELETE </button>
             </div>
           </div>
         </div>
@@ -62,7 +76,6 @@
     </div>
   </div>
 </div>
-<?php endif ?>
 <style type="text/css">
 th {
     white-space: nowrap;
