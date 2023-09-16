@@ -1,5 +1,22 @@
-<?php if (hasAccess('student club/add', $currentUser)) : ?>
-  <div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageAdd', 'student club/add', currentUser);
+
+</script>
+
+  <div class="row" id="pageAdd">
     <div class="col-lg-12 mt-3">
       <div class="card">
         <div class="card-body">
@@ -151,7 +168,6 @@
     </div>  
   </div><!-- /.modal-content -->
 </div>
-<?php endif ?>
 <style type="text/css">
   th {
     white-space: nowrap;

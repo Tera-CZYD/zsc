@@ -21,97 +21,98 @@ class StudentAttendanceFilesController extends AppController {
   }
 
 
-public function add() {
+  public function add() {
 
-  if ($this->request->is(['post', 'ajax']) && $this->request->is('json')) {
+    if ($this->request->is(['post', 'ajax']) && $this->request->is('json')) {
 
-    $requestData = $this->request->getData('data');
+      $requestData = $this->request->getData('data');
 
-    $requestData = json_decode($requestData, true);
+      $requestData = json_decode($requestData, true);
 
-    $id = @$requestData[0]['student_id'];
+      $id = @$requestData[0]['student_id'];
 
-    // var_dump($requestData);
+      // var_dump($requestData);
 
-    $uploadedFiles = $this->request->getUploadedFiles();
+      $uploadedFiles = $this->request->getUploadedFiles();
 
-    if (!empty($uploadedFiles)) {
+      if (!empty($uploadedFiles)) {
 
-        foreach ($uploadedFiles as $fieldName => $images) {
+          foreach ($uploadedFiles as $fieldName => $images) {
 
-            foreach ($images as $ctr => $image) {
+              foreach ($images as $ctr => $image) {
 
-                $path = "uploads/student-attendance/$id";
-
-
-                if (!file_exists($path)) {
-
-                    mkdir($path, 0777, true);
-
-                }
+                  $path = "uploads/student-attendance/$id";
 
 
-                $filename = $image->getClientFilename(); // Corrected line
+                  if (!file_exists($path)) {
 
-                $image->moveTo($path . '/' . $filename);
+                      mkdir($path, 0777, true);
 
-            }
-        }
+                  }
+
+
+                  $filename = $image->getClientFilename(); // Corrected line
+
+                  $image->moveTo($path . '/' . $filename);
+
+              }
+          }
+      }
+
+      if (!empty($requestData)) {
+
+          foreach ($requestData as $key => $value) {
+
+              $requestData[$key]['images'] = $value['images'];
+
+          }
+
+      }
+
+      $entities = $this->Attendances->newEntities($requestData);
+
+      // var_dump($requestData);
+
+      if ($this->Attendances->saveMany($entities)) {
+
+          $response = [
+
+
+              'ok' => true,
+
+              'msg' => 'Attendance successfully saved.',
+
+              'data' => $requestData,
+
+          ];
+
+      } else {
+
+          $response = [
+
+              'ok' => false,
+
+              'msg' => 'Attendance cannot be saved at this time.',
+
+          ];
+      }
+
+      $this->set([
+
+          'response' => $response,
+
+          '_serialize' => 'response',
+
+      ]);
+
+      $this->response->withType('application/json');
+
+      $this->response->getBody()->write(json_encode($response));
+
+      return $this->response;
+
     }
-
-    if (!empty($requestData)) {
-
-        foreach ($requestData as $key => $value) {
-
-            $requestData[$key]['images'] = $value['images'];
-
-        }
-
-    }
-
-    $entities = $this->Attendances->newEntities($requestData);
-
-    // var_dump($requestData);
-
-    if ($this->Attendances->saveMany($entities)) {
-
-        $response = [
-
-
-            'ok' => true,
-
-            'msg' => 'Attendance successfully saved.',
-
-            'data' => $requestData,
-
-        ];
-
-    } else {
-
-        $response = [
-
-            'ok' => false,
-
-            'msg' => 'Attendance cannot be saved at this time.',
-
-        ];
-    }
-
-    $this->set([
-
-        'response' => $response,
-
-        '_serialize' => 'response',
-
-    ]);
-
-    $this->response->withType('application/json');
-
-    $this->response->getBody()->write(json_encode($response));
-
-    return $this->response;
-
-    }
+    
   }
 
 

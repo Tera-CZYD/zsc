@@ -1,5 +1,26 @@
-<?php if (hasAccess('student club/view', $currentUser)) : ?>
-  <div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'student club/view', currentUser);
+  handleAccess('pageEdit', 'student club/edit', currentUser);
+  handleAccess('pageDelete', 'student club/delete', currentUser);
+  handleAccess('pageApprove', 'student club/approve', currentUser);
+  handleAccess('pageDisapprove', 'student club/disapprove', currentUser);
+
+</script>
+
+  <div class="row" id="pageView">
     <div class="col-lg-12 mt-3">
       <div class="card">
         <div class="card-body">
@@ -46,21 +67,11 @@
             </div>
             <div class="col-md-12">
               <div class="pull-right">
-                <?php if (hasAccess('student club/edit', $currentUser)) : ?>
-                  <a href="#/registrar/admin-student-club/edit/{{ data.StudentClub.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
-                <?php endif ?>
-                <?php if (hasAccess('student club/approve', $currentUser)): ?>
-                <button href="javascript:void(0)" ng-click="approve(data.StudentClub)" ng-disabled="data.StudentClub.approve > 0" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
-              <?php endif ?>
-                <?php if (hasAccess('student club/disapprove', $currentUser)): ?>
-                <button href="javascript:void(0)" ng-click="disapprove(data.StudentClub)" ng-disabled="data.StudentClub.approve > 0 " class="btn btn-warning  btn-min" ><i class="fa fa-times"></i> DISAPPROVE </button>
-              <?php endif ?>
-                <!-- <?php if (hasAccess('student club/print', $currentUser)) : ?>
-                  <button type="button" class="btn btn-info  btn-min" ng-click="print(data.RequestForm.id )"><i class="fa fa-print"></i> PRINT REQUEST FORM </button>
-                <?php endif ?> -->
-                <?php if (hasAccess('student club/delete', $currentUser)) : ?>
-                  <button class="btn btn-danger btn-min" ng-click="remove(data.StudentClub)"><i class="fa fa-trash"></i> DELETE </button>
-                <?php endif ?>
+                  <a id="pageEdit" href="#/registrar/admin-student-club/edit/{{ data.StudentClub.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
+                <button id="pageApprove" href="javascript:void(0)" ng-click="approve(data.StudentClub)" ng-disabled="data.StudentClub.approve > 0" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
+                <button id="pageDisapprove" href="javascript:void(0)" ng-click="disapprove(data.StudentClub)" ng-disabled="data.StudentClub.approve > 0 " class="btn btn-warning  btn-min" ><i class="fa fa-times"></i> DISAPPROVE </button>
+
+                <button id="pageDelete" class="btn btn-danger btn-min" ng-click="remove(data.StudentClub)"><i class="fa fa-trash"></i> DELETE </button>
               </div>
             </div>
           </div>
@@ -68,7 +79,6 @@
       </div>
     </div>
   </div>
-<?php endif ?>
 <style type="text/css">
   th {
     white-space: nowrap;
