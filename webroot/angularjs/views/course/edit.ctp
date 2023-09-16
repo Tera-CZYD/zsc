@@ -9,23 +9,46 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <label> CODE <i class="required">*</i></label>
+                <label> REFERENCE NUMBER <i class="required">*</i></label>
                 <input type="text" class="form-control" ng-model="data.Course.code" data-validation-engine="validate[required]">
               </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> YEAR OF IMPLEMENTATION  <i class="required">*</i></label>
+                <input type="text" class="form-control yearpicker" ng-model="data.Course.year_implementation" data-validation-engine="validate[required]">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> SEMESTER <i class="required">*</i></label>
+                <select selectize ng-options="opt.id as opt.value for opt in year_level_term" ng-model="data.Course.year_term_id" data-validation-engine="validate[required]">
+                <option value=""></option></select>
+              </div>
+            </div>
+            <div class="col-md-6">
               <div class="form-group">
                 <label> TITLE <i class="required">*</i></label>
                 <input type="text" class="form-control" ng-model="data.Course.title" data-validation-engine="validate[required]">
               </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-6">
               <div class="form-group">
-                <label> DESCRIPTION </label>
-                <textarea type="text" class="form-control" ng-model="data.Course.description"></textarea>
+                <label> CATEGORY <i class="required">*</i></label>
+                <select class="form-control" ng-model="data.Course.category">
+                  <option value="Lecture">Lecture</option>
+                  <option value="Laboratory">Laboratory</option>
+                </select>
               </div>
             </div>
             <div class="col-md-12">
+              <div class="form-group">
+                <label> DESCRIPTION </i></label>
+                <textarea type="text" class="form-control" ng-model="data.Course.description"></textarea>
+              </div>
+            </div>
+            </div>
+            <!-- <div class="col-md-12">
               <div class="clearfix"></div><hr>
               <table class="table table-bordered center">
                 <tr>
@@ -61,7 +84,7 @@
                   </td>
                 </tr>
               </table>
-            </div>
+            </div> -->
           </div>  
         </form>
         <div class="clearfix"></div><hr>

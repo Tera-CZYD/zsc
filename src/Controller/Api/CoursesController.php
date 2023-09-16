@@ -14,7 +14,9 @@ class CoursesController extends AppController {
   public function initialize(): void{
 
     parent::initialize();
-    
+
+    $this->loadComponent('Paginator');
+
     $this->loadComponent('RequestHandler');
 
     $this->Courses = TableRegistry::getTableLocator()->get('Courses');
@@ -40,6 +42,34 @@ class CoursesController extends AppController {
       $conditionsPrint .= '&search='.$search;
 
     }
+
+    $conditions['year'] = '';
+
+    if ($this->request->getQuery('year')) {
+
+      $search_date = $this->request->getQuery('year');
+
+      $conditions['year'] = " AND Course.year_implementation = '$search_date'"; 
+
+      $dates['year'] = $search_date;
+
+      $conditionsPrint .= '&year='.$search_date;
+
+    }  
+
+    $conditions['semester'] = '';
+
+    if ($this->request->getQuery('semester') != null) {
+
+      $semester = $this->request->getQuery('semester');
+
+      $conditions['date'] = " AND Course.year_term_id = '$semester'"; 
+
+      $conditionsPrint .= '&semester='.$semester;
+
+    }
+
+    //advance search
 
     $dataTable = TableRegistry::getTableLocator()->get('Courses');
 
@@ -74,6 +104,10 @@ class CoursesController extends AppController {
         'code'         => $course['code'],
 
         'title'         => $course['title'],
+
+        'year_implementation'          =>$course['year_implementation'],
+
+        'semester'      => $course['yearDescription']
 
       );
 
@@ -173,15 +207,25 @@ class CoursesController extends AppController {
 
     $data['Course'] = $this->Courses->find()
 
+      ->contain([
+
+        'YearLevelTerms'
+
+      ])
+
       ->where([
 
-        'visible' => 1,
+        'Courses.visible' => 1,
 
-        'id' => $id
+        'Courses.id' => $id
 
       ])
 
       ->first();
+
+      $data['YearTermLevel'] = $data['Course']['year_level_term'];
+
+      unset($data['Course']['year_level_term']);
 
     $response = [
 
@@ -206,7 +250,6 @@ class CoursesController extends AppController {
     return $this->response;
 
   }
-
 
   public function edit($id){
 
