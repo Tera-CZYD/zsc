@@ -10,12 +10,24 @@
             <div class="table-responsive">
               <table class="table table-striped">
                 <tr>
-                  <th class="text-right" style="width:15%"> CODE : </th>
+                  <th class="text-right" style="width:15%"> YEAR OF IMPLEMENTATION : </th>
+                  <td class="italic">{{ data.Course.year_implementation }}</td>
+                </tr>
+                <tr>
+                  <th class="text-right" style="width:15%"> REFERENCE NUMBER : </th>
                   <td class="italic">{{ data.Course.code }}</td>
+                </tr>
+                <tr>
+                  <th class="text-right" style="width:15%"> SEMESTER : </th>
+                  <td class="italic">{{ data.YearTermLevel.description }}</td>
                 </tr>
                 <tr>
                   <th class="text-right"> TITLE : </th>
                   <td class="italic">{{ data.Course.title }}</td>
+                </tr>
+                 <tr>
+                  <th class="text-right"> CATEGORY : </th>
+                  <td class="italic">{{ data.Course.category }}</td>
                 </tr>
                 <tr>
                   <th class="text-right"> DESCRIPTION : </th>
@@ -24,7 +36,7 @@
               </table>
             </div> 
           </div>
-          <div class="col-md-12">
+          <!-- <div class="col-md-12">
             <div class="clearfix"></div><hr>
             <table class="table table-bordered center">
               <tr>
@@ -48,7 +60,7 @@
                 <td class="text-center">{{ data.Course.credit_unit | number : 2 }}</td>
               </tr>
             </table>
-          </div>
+          </div> -->
           <div class="col-md-12">
             <div class="clearfix"></div><hr>
           </div>
