@@ -385,11 +385,18 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
 
             if($scope.count==5){
 
-              StudentAttendanceDrop.update({id:$scope.student_id},$scope.data, function(e){
+              $scope.details = {
+
+                course : $scope.course,
+
+                faculty : $scope.faculty
+
+              };
+
+              StudentAttendanceDrop.update({ id:$scope.student_id },$scope.details, function(e){
 
                 if(e.ok){
 
-                  
                   $.gritter.add({
 
                       title: 'Warning!',
