@@ -1,4 +1,4 @@
-app.controller('CourseController', function($scope, Course) {
+app.controller('CourseController', function($scope, Course, Select) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -10,6 +10,18 @@ app.controller('CourseController', function($scope, Course) {
    
     todayHighlight: true
   
+  });
+
+  $('.yearpicker').datepicker({
+
+    format: "yyyy",
+
+    autoclose: true,
+
+    minViewMode: "years",
+
+    pickTime: false
+
   });
 
   $scope.load = function(options) {
@@ -72,6 +84,54 @@ app.controller('CourseController', function($scope, Course) {
 
   }
 
+  $scope.selectedFilter = 'year';
+
+  $scope.changeFilter = function(type){
+
+    $scope.search = {};
+
+    $scope.selectedFilter = type;
+
+  }
+
+  Select.get({code: 'year-term-list'}, function(e) {
+
+    $scope.year_level_term = e.data;
+
+  });
+
+  $scope.searchFilter = function(search) {
+   
+    $scope.searchTxt = '';
+
+    $scope.year = null;
+
+    $scope.semester = null;
+
+    if ($scope.selectedFilter == 'year') {
+    
+      date = $('.yearpicker').datepicker('getDate');
+
+      year = date.getFullYear();
+
+      $scope.year = year;
+   
+    } else if($scope.selectedFilter == 'semester'){
+
+      $scope.semester = search.semester;
+
+    }
+
+    $scope.load({
+
+      year : $scope.year,
+
+      semester : $scope.semester
+
+    });
+  
+  } 
+
   $scope.remove = function(data) {
 
     bootbox.confirm('Are you sure you want to delete ' + data.code +' ?', function(c) {
@@ -133,27 +193,51 @@ app.controller('CourseAddController', function($scope, Course, Select) {
 
   });
 
+ $('.yearpicker').datepicker({
+
+    format: "yyyy",
+
+    autoclose: true,
+
+    minViewMode: "years",
+
+    pickTime: false
+
+  });
+
+ $scope.data = {
+
+  Course : {}
+
+ };
+
+ Select.get({code: 'year-term-list'}, function(e) {
+
+    $scope.year_level_term = e.data;
+
+  });
+
   $('#form').validationEngine('attach');
 
-  $scope.getCreditHours = function(){
+  // $scope.getCreditHours = function(){
 
-    if($scope.data.Course.lecture_hours != null && $scope.data.Course.lecture_hours != '' && $scope.data.Course.laboratory_hours != null && $scope.data.Course.laboratory_hours != ''){
+  //   if($scope.data.Course.lecture_hours != null && $scope.data.Course.lecture_hours != '' && $scope.data.Course.laboratory_hours != null && $scope.data.Course.laboratory_hours != ''){
 
-      $scope.data.Course.credit_hours = parseFloat($scope.data.Course.lecture_hours) + parseFloat($scope.data.Course.laboratory_hours);
+  //     $scope.data.Course.credit_hours = parseFloat($scope.data.Course.lecture_hours) + parseFloat($scope.data.Course.laboratory_hours);
 
-    }
+  //   }
 
-  }
+  // }
 
-  $scope.getCreditUnit = function(){
+  // $scope.getCreditUnit = function(){
 
-    if($scope.data.Course.lecture_unit != null && $scope.data.Course.lecture_unit != '' && $scope.data.Course.laboratory_unit != null && $scope.data.Course.laboratory_unit != ''){
+  //   if($scope.data.Course.lecture_unit != null && $scope.data.Course.lecture_unit != '' && $scope.data.Course.laboratory_unit != null && $scope.data.Course.laboratory_unit != ''){
 
-      $scope.data.Course.credit_unit = parseFloat($scope.data.Course.lecture_unit) + parseFloat($scope.data.Course.laboratory_unit);
+  //     $scope.data.Course.credit_unit = parseFloat($scope.data.Course.lecture_unit) + parseFloat($scope.data.Course.laboratory_unit);
 
-    }
+  //   }
 
-  }
+  // }
 
   $scope.save = function() {
 
@@ -188,6 +272,8 @@ app.controller('CourseAddController', function($scope, Course, Select) {
         }
 
       });
+
+      console.log($scope.data.Course);
 
     }  
 
@@ -265,25 +351,43 @@ app.controller('CourseEditController', function($scope, $routeParams, Course, Se
 
   });
 
-  $scope.getCreditHours = function(){
+  $('.yearpicker').datepicker({
 
-    if($scope.data.Course.lecture_hours != null && $scope.data.Course.lecture_hours != '' && $scope.data.Course.laboratory_hours != null && $scope.data.Course.laboratory_hours != ''){
+    format: "yyyy",
 
-      $scope.data.Course.credit_hours = parseFloat($scope.data.Course.lecture_hours) + parseFloat($scope.data.Course.laboratory_hours);
+    autoclose: true,
 
-    }
+    minViewMode: "years",
 
-  }
+    pickTime: false
 
-  $scope.getCreditUnit = function(){
+  });
 
-    if($scope.data.Course.lecture_unit != null && $scope.data.Course.lecture_unit != '' && $scope.data.Course.laboratory_unit != null && $scope.data.Course.laboratory_unit != ''){
+  Select.get({code: 'year-term-list'}, function(e) {
 
-      $scope.data.Course.credit_unit = parseFloat($scope.data.Course.lecture_unit) + parseFloat($scope.data.Course.laboratory_unit);
+    $scope.year_level_term = e.data;
 
-    }
+  });
 
-  }
+  // $scope.getCreditHours = function(){
+
+  //   if($scope.data.Course.lecture_hours != null && $scope.data.Course.lecture_hours != '' && $scope.data.Course.laboratory_hours != null && $scope.data.Course.laboratory_hours != ''){
+
+  //     $scope.data.Course.credit_hours = parseFloat($scope.data.Course.lecture_hours) + parseFloat($scope.data.Course.laboratory_hours);
+
+  //   }
+
+  // }
+
+  // $scope.getCreditUnit = function(){
+
+  //   if($scope.data.Course.lecture_unit != null && $scope.data.Course.lecture_unit != '' && $scope.data.Course.laboratory_unit != null && $scope.data.Course.laboratory_unit != ''){
+
+  //     $scope.data.Course.credit_unit = parseFloat($scope.data.Course.lecture_unit) + parseFloat($scope.data.Course.laboratory_unit);
+
+  //   }
+
+  // }
 
   // load 
   $scope.load = function() {
