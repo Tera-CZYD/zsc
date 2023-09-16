@@ -1,5 +1,27 @@
-<?php if (hasAccess('transferee/index', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'transferee/index', currentUser);
+  handleAccess('pageAdd', 'transferee/add', currentUser);
+  handleAccess('pagePrint', 'transferee/print', currentUser);
+  handleAccess('pageView', 'transferee/view', currentUser);
+  handleAccess('pageEdit', 'transferee/edit', currentUser);
+  handleAccess('pageDelete', 'transferee/delete', currentUser);
+
+</script>
+
+<div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -67,15 +89,9 @@
                           <td class="text-center">{{ data.date }}</td>
                           <td>
                             <div class="btn-group btn-group-xs">
-                              <?php if (hasAccess('transferee/view', $currentUser)): ?>
-                              <a href="#/registrar/transferee/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                              <?php endif ?>
-                              <?php if (hasAccess('transferee/edit', $currentUser)): ?>
-                              <a href="#/registrar/transferee/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
-                              <?php endif ?>
-                              <?php if (hasAccess('transferee/delete', $currentUser)): ?>
-                              <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
-                              <?php endif ?>
+                              <a id="pageView" href="#/registrar/transferee/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                              <a id="pageEdit" href="#/registrar/transferee/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
+                              <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
                             </div>
                           </td>
                         </tr>
@@ -299,7 +315,6 @@
     </div>
   </div>
 </div>
-<?php endif ?>
 
 <div class="modal fade" id="advance-search-modal">
   <div class="modal-dialog">
