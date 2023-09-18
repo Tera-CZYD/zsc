@@ -206,7 +206,7 @@ app.controller('UsersAddController', function($scope, User,$routeParams, Select)
 
   // console.log($scope);
 
-  $scope.url = base;
+  $scope.url = base; 
 
   $scope.$on("fileSelected", function(event, args) {
 
@@ -954,7 +954,7 @@ app.controller('UsersEditController', function($scope, $routeParams, User, Selec
 
       } else {
 
-        User.update($scope.data, function(e) {
+        User.update({id:$scope.id},$scope.data, function(e) {
 
           if (e.ok) {
 
