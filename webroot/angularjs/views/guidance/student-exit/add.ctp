@@ -25,6 +25,13 @@
 
             <div class="col-md-6">
               <div class="form-group">
+                <label> SERIAL NUMBER <i class="required">*</i></label>
+                <input type="text" class="form-control" autocomplete="false" ng-model="data.StudentExit.serial_number" data-validation-engine="validate[required]">
+              </div>
+            </div>
+            
+            <div class="col-md-6">
+              <div class="form-group">
                 <label> SEARCH STUDENT </label><label style="font-size:10px;color:gray;" class="pull-right">Press Enter to search</label>
                 <input type="text" class="form-control search uppercase" placeholder="TYPE STUDENT HERE" ng-model="searchTxt" ng-enter="searchStudent({ search: searchTxt })">
               </div>

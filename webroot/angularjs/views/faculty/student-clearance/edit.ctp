@@ -25,6 +25,12 @@
         <hr>
         <form id="form">
           <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> SERIAL NUMBER <i class="required">*</i></label>
+                <input type="text" class="form-control uppercase" autocomplete="off" ng-model="data.StudentClearance.serial_number" data-validation-engine="validate[required]">
+              </div>
+            </div>
             <div class="col-md-12">
               <div class="form-group">
                 <label> CONTROL NO. </label>

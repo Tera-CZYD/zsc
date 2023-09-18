@@ -8925,98 +8925,55 @@ class PrintController extends AppController {
 
   }
 
-  public function medical_certificate_form($id = null){
+  public function medicalCertificateForm($id = null){
 
     $office_reference = $this->Global->OfficeReference('Medical Certificate Request');
 
-    $data = $this->MedicalCertificate->find('first', array(
+    $data['MedicalCertificate'] = $this->MedicalCertificates->find()
 
-      'contain' => array(
+      ->where([
 
-        'Student',
+        'MedicalCertificates.visible' => 1,
 
-        'Course',
+        'MedicalCertificates.id' => $id
 
-        'YearLevelTerm'
+      ])
 
-      ),
+      ->contain([
 
-      'conditions' => array(
+        'Students',
 
-        'MedicalCertificate.visible' => true,
+        'Employees',
 
-        'MedicalCertificate.id' => $id,
+        'CollegePrograms',
 
-      )
+        'YearLevelTerms'
 
-    ));
-    $conditions = array();
+      ])
 
-    $conditions['search'] = '';
+      ->first();
 
-    if ($this->request->getQuery('search')) {
+    $data['MedicalCertificate']['active_view'] = $data['MedicalCertificate']['active'] ? 'True' : 'False';
 
-      $search = $this->request->getQuery('search');
+    $data['MedicalCertificate']['date'] = $data['MedicalCertificate']['date']->format('m/d/Y');
 
-      $search = strtolower($search);
+    $data['MedicalCertificate']['floors'] = intval($data['MedicalCertificate']['floors']);
 
-      $conditions['search'] = $search;
-    
-    }
+    $data['Student'] = $data['MedicalCertificate']['student'];
 
-    $conditions['date'] = '';
+    $data['Employee'] = $data['MedicalCertificate']['employee'];
 
-    if (isset($this->request->query['date'])) {
+    $data['CollegeProgram'] = $data['MedicalCertificate']['college_program'];
 
-      $search_date = $this->request->query['date'];
+    $data['YearLevelTerm'] = $data['MedicalCertificate']['year_level_term'];
 
-      $conditions['date'] = " AND DATE(MedicalCertificate.date) = '$search_date'"; 
+    unset($data['MedicalCertificate']['year_level_term']);
 
-      $dates['date'] = $search_date;
+    unset($data['MedicalCertificate']['college_program']);
 
-    }  
+    unset($data['MedicalCertificate']['student']);
 
-    //advance search
-
-    if (isset($this->request->query['startDate'])) {
-
-      $start = $this->request->query['startDate']; 
-
-      $end = $this->request->query['endDate'];
-
-      $conditions['date'] = " AND DATE(MedicalCertificate.date) >= '$start' AND DATE(MedicalCertificate.date) <= '$end'";
-
-      $dates['startDate'] = $start;
-
-      $dates['endDate']   = $end;
-
-    }
-
-    $conditions['status'] = '';
-
-    if (isset($this->request->query['status'])) {
-
-      $status = $this->request->query['status'];
-
-      $conditions['status'] = "AND MedicalCertificate.status = $status";
-
-
-      
-    }
-
-
-    $conditions['studentId'] = '';
-
-    if (isset($this->request->query['per_student'])) {
-
-      $per_student = $this->request->query['per_student'];
-      
-      $employee_id = $this->Session->read('Auth.User.studentId');
-
-      $conditions['studentId'] = "AND MedicalCertificate.student_id = $employee_id";
-
-    }
-
+    unset($data['MedicalCertificate']['employee']);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -9088,7 +9045,7 @@ class PrintController extends AppController {
     // $pdf->Cell(60);
     // $pdf->SetY($pdf->getY()+6);
     // $pdf->Cell(19.5);
-    $pdf->Cell(45.5,5,$data['Course']['code'].'/'.$data['YearLevelTerm']['year'],0,0,'L');
+    $pdf->Cell(45.5,5,$data['CollegeProgram']['code'].'/'.$data['YearLevelTerm']['year'],0,0,'L');
     $pdf->Line(135,$pdf->getY()+4.5,170,$pdf->getY()+4.5);
     $pdf->Ln(6);
     $pdf->Cell(19);
@@ -9180,7 +9137,7 @@ class PrintController extends AppController {
     // $pdf->Cell(60);
     // $pdf->SetY($pdf->getY()+6);
     // $pdf->Cell(19.5);
-    $pdf->Cell(45.5,5,$data['Course']['code'].'/'.$data['YearLevelTerm']['year'],0,0,'L');
+    $pdf->Cell(45.5,5,$data['CollegeProgram']['code'].'/'.$data['YearLevelTerm']['year'],0,0,'L');
     $pdf->Line(135,$pdf->getY()+4.5,170,$pdf->getY()+4.5);
     $pdf->Ln(6);
     $pdf->Cell(19);
