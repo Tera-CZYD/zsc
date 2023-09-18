@@ -1,5 +1,26 @@
-<?php if (hasAccess('school graduated/index', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'school graduated/index', currentUser);
+  handleAccess('pageAdd', 'school graduated/add', currentUser);
+  handleAccess('pageView', 'school graduated/view', currentUser);
+  handleAccess('pageEdit', 'school graduated/edit', currentUser);
+  handleAccess('pageDelete', 'school graduated/delete', currentUser);
+
+</script>
+
+<div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -11,9 +32,7 @@
             <div class="col-md-12">
               <div class="row">
                 <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                  <?php if (hasAccess('school graduated/add', $currentUser)): ?>
-                    <a href="#/admission/school/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
-                  <?php endif ?>                      
+                    <a id="pageAdd" href="#/admission/school/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
                   <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                 </div>
                 <div class="col-md-4 col-xs-12 pull-right">
@@ -44,15 +63,9 @@
                       <td class="text-center">{{ data.school_address }}</td>
                       <td>
                         <div class="btn-group btn-group-xs">
-                          <?php if (hasAccess('school graduated/view', $currentUser)): ?>
-                          <a href="#/admission/school/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                          <?php endif ?>
-                          <?php if (hasAccess('school graduated/edit', $currentUser)): ?>
-                          <a href="#/admission/school/edit/{{ data.id }}" class="btn btn-primary"  title="EDIT"><i class="fa fa-edit"></i></a> 
-                          <?php endif ?>
-                          <?php if (hasAccess('school graduated/delete', $currentUser)): ?>
-                          <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger"  title="DELETE"><i class="fa fa-trash"></i></a>
-                          <?php endif ?>
+                          <a id="pageView" href="#/admission/school/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                          <a id="pageEdit" href="#/admission/school/edit/{{ data.id }}" class="btn btn-primary"  title="EDIT"><i class="fa fa-edit"></i></a> 
+                          <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger"  title="DELETE"><i class="fa fa-trash"></i></a>
                         </div>
                       </td>
                     </tr>
@@ -96,5 +109,3 @@
     </div>
   </div>
 </div>
-<?php endif ?>
-<!-- <?php echo $this->element('modals/advance-search/advance-search-date') ?> -->
