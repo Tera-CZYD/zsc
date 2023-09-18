@@ -1,5 +1,27 @@
-<?php if (hasAccess('consultation/view', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'consultation/view', currentUser);
+  handleAccess('pageEdit', 'consultation/edit', currentUser);
+  handleAccess('pageDelete', 'consultation/delete', currentUser);
+  handleAccess('pageApprove', 'consultation/appr', currentUser);
+  handleAccess('pageDisapprove', 'consultation/disappr', currentUser);
+  handleAccess('pageRefer', 'consultation/refer', currentUser);
+
+</script>
+
+<div class="row" id="pageView">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -89,30 +111,17 @@
             <div class="text-right">
 
 
-              <?php if (hasAccess('consultation/appr', $currentUser)): ?>
-                <button href="javascript:void(0)" ng-click="appr(data.Consultation)" ng-disabled=" data.Consultation.status == 3 || data.Consultation.status == 1 || data.Consultation.status == 2" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
-              <?php endif ?>
+                <button id="pageApprove" href="javascript:void(0)" ng-click="appr(data.Consultation)" ng-disabled=" data.Consultation.status == 3 || data.Consultation.status == 1 || data.Consultation.status == 2" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
               
-              <?php if (hasAccess('consultation/disappr', $currentUser)): ?>
                 <button href="javascript:void(0)" ng-click="disappr(data.Consultation)" ng-disabled="data.Consultation.status == 1 || data.Consultation.status == 2 || data.Consultation.status == 4" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> DISAPPROVE </button>
-              <?php endif ?>
            
-              <?php if (hasAccess('consultation/treat', $currentUser)): ?>
-                <button href="javascript:void(0)" ng-click="treat(data.Consultation)" ng-disabled=" data.Consultation.status == 0 || data.Consultation.status == 1 || data.Consultation.status == 2 || data.Consultation.status == 4" class="btn btn-warning  btn-min" ><i class="fa fa-check"></i> TREAT </button>
-              <?php endif ?>
+                <button id="pageDisapprove" href="javascript:void(0)" ng-click="treat(data.Consultation)" ng-disabled=" data.Consultation.status == 0 || data.Consultation.status == 1 || data.Consultation.status == 2 || data.Consultation.status == 4" class="btn btn-warning  btn-min" ><i class="fa fa-check"></i> TREAT </button>
               <br>
-              <?php if (hasAccess('consultation/refer', $currentUser)): ?>
-                <button href="javascript:void(0)" ng-click="refer(data.Consultation)" ng-disabled=" data.Consultation.status == 0 ||  data.Consultation.status == 1 || data.Consultation.status == 2 || data.Consultation.status == 4" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> REFER </button>
-              <?php endif ?>
-              <?php if (hasAccess('consultation/edit', $currentUser)): ?>
-              <a href="#/medical-services/consultation/edit/{{ data.Consultation.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
-              <?php endif ?>
-              <?php if (hasAccess('consultation/print', $currentUser)): ?>
+                <button id="pageRefer" href="javascript:void(0)" ng-click="refer(data.Consultation)" ng-disabled=" data.Consultation.status == 0 ||  data.Consultation.status == 1 || data.Consultation.status == 2 || data.Consultation.status == 4" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> REFER </button>
+
+              <a id="pageEdit" href="#/medical-services/consultation/edit/{{ data.Consultation.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
               <button type="button" class="btn btn-info  btn-min" ng-click="print(data.Consultation.id )"><i class="fa fa-print"></i> PRINT CONSULTATION </button>
-              <?php endif ?>
-              <?php if (hasAccess('consultation/delete', $currentUser)): ?>
-              <button class="btn btn-danger btn-min" ng-click="remove(data.Consultation)"><i class="fa fa-trash"></i> DELETE </button>
-              <?php endif ?>
+              <button id="pageDelete" class="btn btn-danger btn-min" ng-click="remove(data.Consultation)"><i class="fa fa-trash"></i> DELETE </button>
             </div>
             
  
@@ -121,7 +130,7 @@
     </div>
   </div>
 </div>
-<?php endif ?>
+
 <style type="text/css">
 th {
     white-space: nowrap;
