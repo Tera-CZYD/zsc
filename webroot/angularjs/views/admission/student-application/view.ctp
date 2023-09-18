@@ -9,7 +9,10 @@
           <div class="col-md-12">
             <div class="table-responsive">
               <table class="table table-striped">
-
+                <tr>
+                  <th class="text-right"> SERIAL NUMBER : </th>
+                  <td class="italic" colspan="3">{{ data.StudentApplication.serial_number }}</td>
+                </tr>
                 <tr>
                   <th class="text-right" style="width:15%"> FIRST NAME : </th>
                   <td class="italic">{{ data.StudentApplication.first_name }}</td>

@@ -387,7 +387,7 @@ app.controller('StudentApplicationAddController', function($scope, StudentApplic
 
           });
 
-          window.location = '#/admission/cat';
+          window.location = '#/admission/student-application';
 
         } else {
 

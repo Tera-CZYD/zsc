@@ -10,6 +10,10 @@
               <div class="table-responsive">
                 <table class="table table-striped">
                   <tr>
+                    <th class="text-left"> SERIAL NUMBER : </th>
+                    <td class="italic" colspan="3">{{ data.ScholarshipApplication.serial_number }}</td>
+                  </tr>
+                  <tr>
                     <th class="text-left" style="width:15%"> CONTROL NUMBER : </th>
                     <td class="italic">{{ data.ScholarshipApplication.code }}</td>
                     <th class="text-left"> STUDENT NAME : </th>
