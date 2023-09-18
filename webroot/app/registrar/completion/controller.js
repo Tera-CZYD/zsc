@@ -322,8 +322,7 @@ app.controller("CompletionViewController",function ($scope, $routeParams, Comple
         }
       );
     };
-  }
-);
+});
 
 app.controller(
   "CompletionEditController",
