@@ -26,6 +26,12 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
+                <label> SERIAL NUMBER </label>
+                <input  type="text" class="form-control" ng-model="data.AddingDroppingSubject.serial_number"> 
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
                 <label> CONTROL NO. </label>
                 <input disabled type="text" class="form-control" ng-model="data.AddingDroppingSubject.code"> 
               </div>

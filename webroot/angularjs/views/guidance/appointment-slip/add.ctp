@@ -27,6 +27,13 @@
         <form id="form">
           <div class="row">
           	<div class="col-md-12">
+              
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> SERIAL NUMBER </label>
+                <input  type="text" class="form-control" ng-model="data.AppointmentSlip.serial_number"> 
+              </div>
+            </div>
               <div class="form-group">
                 <label> CONTROL NO. <i class="required">*</i></label>
                 <input disabled type="text" class="form-control" ng-model="data.AppointmentSlip.code" data-validation-engine="validate[required]">
