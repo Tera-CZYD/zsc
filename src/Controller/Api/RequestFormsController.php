@@ -460,4 +460,53 @@ class RequestFormsController extends AppController {
 
   }  
 
+  public function paid($id = null){
+
+    $this->autoRender = false;
+
+    $data = $this->RequestForms->get($id);
+
+    $data->approve = 2;
+
+    $data->approve_by_id = $this->currentUser->id;
+
+    if ($this->RequestForms->save($data)) {
+
+      $response = [
+
+        'ok' => true,
+
+        'msg' => 'Request Form has been successfully paid'
+
+      ];
+
+    } else {
+
+      $response = [
+
+        'ok' => false,
+
+        'msg' => 'Request Form cannot be transact at this time.'
+
+      ];
+
+    }
+
+    $this->set([
+
+      'response' => $response,
+
+      '_serialize' => 'response'
+
+    ]);
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+
+  }  
+
 }

@@ -5,15 +5,6 @@ namespace App\Model\Table;
 use Cake\ORM\Query;
 use Cake\ORM\Table;
 
-
-/**
- * CollegeProgramCourses Model
- *
- * @property \App\Model\Table\CollegeProgramCorequisitesTable&\Cake\ORM\Association\HasMany $CollegeProgramCourses
- *
- *
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
- */
 class ReferralSlipsTable extends Table
 {
    public function initialize(array $config): void{

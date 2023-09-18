@@ -24,6 +24,12 @@
         <div class="clearfix"></div><hr>
         <form id="form">
           <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> SERIAL NUMBER <i class="required">*</i></label>
+                <input type="text" class="form-control" autocomplete="false" ng-model="data.StudentApplication.serial_number" data-validation-engine="validate[required]">
+              </div>
+            </div>
             <div class="col-md-12">
               <div class="form-group">
                 <label> STUDENT ID NUMBER <i class="required">*</i></label>

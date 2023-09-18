@@ -734,13 +734,37 @@ app.controller('AdminRequestFormController', function($scope, RequestForm) {
 
   }
 
-  
+  $scope.paid = function(options) {
+
+    options = typeof options !== 'undefined' ?  options : {};
+
+    options['status'] = 2;
+
+    RequestForm.query(options, function(e) {
+
+      if (e.ok) {
+
+        $scope.datasPaid = e.data;
+
+        $scope.conditionsPrint = e.conditionsPrint;
+
+        $scope.paginator = e.paginator;
+
+        $scope.pages = paginator($scope.paginator, 5);
+
+      }
+
+    });
+
+  }
 
   $scope.load = function(options) {
 
     $scope.request(options);
 
     $scope.approved(options);
+
+    $scope.paid(options);
 
 
   }
@@ -1153,7 +1177,7 @@ app.controller('AdminRequestFormAddController', function($scope, RequestForm, Se
 
 });
 
-app.controller('AdminRequestFormViewController', function($scope, $routeParams, RequestForm,RequestFormApprove) {
+app.controller('AdminRequestFormViewController', function($scope, $routeParams, RequestForm,RequestFormApprove, RequestFormPaid) {
 
   $scope.id = $routeParams.id;
 
@@ -1188,6 +1212,38 @@ app.controller('AdminRequestFormViewController', function($scope, $routeParams, 
       if(e) {
 
         RequestFormApprove.get({id:data.id}, function(e){
+
+          if(e.ok){
+
+            $scope.load();
+
+            $.gritter.add({
+
+              title: 'Successful!',
+
+              text: 'Request Form has been approved.'
+
+            });
+
+          }
+
+          window.location = "#/registrar/admin-request-form";
+
+        });
+
+      }
+
+    });
+
+  }
+
+  $scope.paid = function(data){
+
+    bootbox.confirm('Are you sure this ' +  data.code + ' is paid?', function(e){
+
+      if(e) {
+
+        RequestFormPaid.get({id:data.id}, function(e){
 
           if(e.ok){
 
