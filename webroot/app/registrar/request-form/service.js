@@ -30,3 +30,17 @@ app.factory("RequestFormApprove", function($resource) {
 
 });
 
+app.factory("RequestFormPaid", function($resource) {
+
+  return $resource( api + "RequestForms/paid/:id", { id: '@id' }, {
+
+    query: { method: 'GET', isArray: false },
+
+    update: { method: 'PUT' },
+
+    search: { method: 'GET' },
+
+  });
+
+});
+

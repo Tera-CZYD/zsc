@@ -33,6 +33,10 @@
               <table class="table table-striped">
 
                 <tr>
+                  <th class="text-right" style="width:15%"> SERIAL NUMBER : </th>
+                  <td class="italic">{{ data.PromissoryNote.serial_number }}</td>
+                </tr>
+                <tr>
                   <th class="text-right" style="width:15%"> CONTROL NUMBER : </th>
                   <td class="italic">{{ data.PromissoryNote.code }}</td>
                 </tr>

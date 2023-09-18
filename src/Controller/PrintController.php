@@ -145,6 +145,8 @@ class PrintController extends AppController {
 
     $this->UserLogs = TableRegistry::getTableLocator()->get('UserLogs');
 
+    $this->CounselingIntakeSubs = TableRegistry::getTableLocator()->get('CounselingIntakeSubs');
+
     $this->MedicalEmployeeProfiles = TableRegistry::getTableLocator()->get('MedicalEmployeeProfiles');
 
     $this->ReferralRecommendations = TableRegistry::getTableLocator()->get('ReferralRecommendations');
@@ -5406,7 +5408,7 @@ class PrintController extends AppController {
 
   public function informedConsentForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Counseling Appointment');
+    $office_reference = $this->Global->OfficeReference('Counseling Appointment');
 
     $data = $this->CounselingAppointment->find()
     ->contain([
@@ -5446,7 +5448,7 @@ class PrintController extends AppController {
     $pdf->SetLineWidth(0.7);
     $pdf->Line(12.5,$pdf->getY()+2,187,$pdf->getY()+2);
     $pdf->SetLineWidth(0.2);
-    $pdf->Rect(14.5,$pdf->GetY() + 3.5,35,17);
+    $pdf->Rect(15.5,$pdf->GetY() + 3.5,38,17);
     $pdf->Ln(5);
     $pdf->SetFont("Times", '', 7);
     $pdf->Cell(6,5,'',0,0,'L');
@@ -5593,7 +5595,7 @@ class PrintController extends AppController {
 
   public function releaseInfoForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Counseling Appointment');
+    $office_reference = $this->Global->OfficeReference('Counseling Appointment');
 
     $data = $this->CounselingAppointment->find()
       ->contain([
@@ -5741,7 +5743,7 @@ class PrintController extends AppController {
 
   public function noHarmContractForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Counseling Appointment');
+    $office_reference = $this->Global->OfficeReference('Counseling Appointment');
 
     $data = $this->CounselingAppointment->find()
     ->contain([
@@ -6004,7 +6006,7 @@ class PrintController extends AppController {
 
   public function attendanceCounselingForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Attendance to Counseling');
+    $office_reference = $this->Global->OfficeReference('Attendance to Counseling');
 
     $data = $this->AttendanceCounseling->find()
     ->contain([
@@ -6130,23 +6132,23 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST-GTU-3.4.9.8',0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST-'. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
     $pdf->SetFont("Times", 'B', 15);
     $pdf->Cell(45,5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(68,5,'Adopted Date: January 2015',0,0,'L');
+    $pdf->Cell(68,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
     $pdf->SetFont("Arial", 'B', 13.5);
     $pdf->Cell(45,20,'ATTENDANCE TO COUNSELING',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: 0',0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: 0',0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
     $pdf->Ln(12);
     $pdf->SetFont("Arial", '', 9.5);
     $pdf->Cell(2,5,'',0,0,'L');
@@ -6211,23 +6213,23 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST-GTU-3.4.9.8',0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST-'. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
     $pdf->SetFont("Times", 'B', 15);
     $pdf->Cell(45,5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(68,5,'Adopted Date: January 2015',0,0,'L');
+    $pdf->Cell(68,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
     $pdf->SetFont("Arial", 'B', 13.5);
     $pdf->Cell(45,20,'ATTENDANCE TO COUNSELING',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: 0',0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: 0',0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
     $pdf->Ln(12);
     $pdf->SetFont("Arial", '', 9.5);
     $pdf->Cell(2,5,'',0,0,'L');
@@ -6941,8 +6943,7 @@ class PrintController extends AppController {
 
   public function promissoryNoteForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Promissory Note Waiver');
-
+    $office_reference = $this->Global->OfficeReference('Promissory Note Waiver');
 
     $this->loadModel('PromissoryNotes');
 
@@ -7628,7 +7629,7 @@ class PrintController extends AppController {
 
   public function affidavitForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Affidavit for Lost ID/Passbook`');
+    $office_reference = $this->Global->OfficeReference('Affidavit for Lost ID/Passbook');
 
     $data = $this->Affidavits->find()
 
@@ -8924,98 +8925,55 @@ class PrintController extends AppController {
 
   }
 
-  public function medical_certificate_form($id = null){
+  public function medicalCertificateForm($id = null){
 
     $office_reference = $this->Global->OfficeReference('Medical Certificate Request');
 
-    $data = $this->MedicalCertificate->find('first', array(
+    $data['MedicalCertificate'] = $this->MedicalCertificates->find()
 
-      'contain' => array(
+      ->where([
 
-        'Student',
+        'MedicalCertificates.visible' => 1,
 
-        'Course',
+        'MedicalCertificates.id' => $id
 
-        'YearLevelTerm'
+      ])
 
-      ),
+      ->contain([
 
-      'conditions' => array(
+        'Students',
 
-        'MedicalCertificate.visible' => true,
+        'Employees',
 
-        'MedicalCertificate.id' => $id,
+        'CollegePrograms',
 
-      )
+        'YearLevelTerms'
 
-    ));
-    $conditions = array();
+      ])
 
-    $conditions['search'] = '';
+      ->first();
 
-    if ($this->request->getQuery('search')) {
+    $data['MedicalCertificate']['active_view'] = $data['MedicalCertificate']['active'] ? 'True' : 'False';
 
-      $search = $this->request->getQuery('search');
+    $data['MedicalCertificate']['date'] = $data['MedicalCertificate']['date']->format('m/d/Y');
 
-      $search = strtolower($search);
+    $data['MedicalCertificate']['floors'] = intval($data['MedicalCertificate']['floors']);
 
-      $conditions['search'] = $search;
-    
-    }
+    $data['Student'] = $data['MedicalCertificate']['student'];
 
-    $conditions['date'] = '';
+    $data['Employee'] = $data['MedicalCertificate']['employee'];
 
-    if (isset($this->request->query['date'])) {
+    $data['CollegeProgram'] = $data['MedicalCertificate']['college_program'];
 
-      $search_date = $this->request->query['date'];
+    $data['YearLevelTerm'] = $data['MedicalCertificate']['year_level_term'];
 
-      $conditions['date'] = " AND DATE(MedicalCertificate.date) = '$search_date'"; 
+    unset($data['MedicalCertificate']['year_level_term']);
 
-      $dates['date'] = $search_date;
+    unset($data['MedicalCertificate']['college_program']);
 
-    }  
+    unset($data['MedicalCertificate']['student']);
 
-    //advance search
-
-    if (isset($this->request->query['startDate'])) {
-
-      $start = $this->request->query['startDate']; 
-
-      $end = $this->request->query['endDate'];
-
-      $conditions['date'] = " AND DATE(MedicalCertificate.date) >= '$start' AND DATE(MedicalCertificate.date) <= '$end'";
-
-      $dates['startDate'] = $start;
-
-      $dates['endDate']   = $end;
-
-    }
-
-    $conditions['status'] = '';
-
-    if (isset($this->request->query['status'])) {
-
-      $status = $this->request->query['status'];
-
-      $conditions['status'] = "AND MedicalCertificate.status = $status";
-
-
-      
-    }
-
-
-    $conditions['studentId'] = '';
-
-    if (isset($this->request->query['per_student'])) {
-
-      $per_student = $this->request->query['per_student'];
-      
-      $employee_id = $this->Session->read('Auth.User.studentId');
-
-      $conditions['studentId'] = "AND MedicalCertificate.student_id = $employee_id";
-
-    }
-
+    unset($data['MedicalCertificate']['employee']);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -9087,7 +9045,7 @@ class PrintController extends AppController {
     // $pdf->Cell(60);
     // $pdf->SetY($pdf->getY()+6);
     // $pdf->Cell(19.5);
-    $pdf->Cell(45.5,5,$data['Course']['code'].'/'.$data['YearLevelTerm']['year'],0,0,'L');
+    $pdf->Cell(45.5,5,$data['CollegeProgram']['code'].'/'.$data['YearLevelTerm']['year'],0,0,'L');
     $pdf->Line(135,$pdf->getY()+4.5,170,$pdf->getY()+4.5);
     $pdf->Ln(6);
     $pdf->Cell(19);
@@ -9179,7 +9137,7 @@ class PrintController extends AppController {
     // $pdf->Cell(60);
     // $pdf->SetY($pdf->getY()+6);
     // $pdf->Cell(19.5);
-    $pdf->Cell(45.5,5,$data['Course']['code'].'/'.$data['YearLevelTerm']['year'],0,0,'L');
+    $pdf->Cell(45.5,5,$data['CollegeProgram']['code'].'/'.$data['YearLevelTerm']['year'],0,0,'L');
     $pdf->Line(135,$pdf->getY()+4.5,170,$pdf->getY()+4.5);
     $pdf->Ln(6);
     $pdf->Cell(19);
@@ -15605,39 +15563,49 @@ class PrintController extends AppController {
     exit();
   }
 
-  public function counseling_intake_form($id = null){
+  public function counselingIntakeForm($id = null){
 
     $office_reference = $this->Global->OfficeReference('Counseling Intake');
 
-    $data = $this->CounselingIntake->find('first', array( 
+    $data['CounselingIntake'] = $this->CounselingIntakes->find()
+    
+      ->contain([
 
-      'contain' => array (
-     
-        'Student',
-     
-        'CollegeProgram',
-     
-        'CounselingIntakeSub' => array (
+        'CollegePrograms',
 
-          'conditions' => array (
+        'CounselingIntakeSubs' => [
 
-            'CounselingIntakeSub.visible' => true
+          'conditions' => [
 
-          )
+            'CounselingIntakeSubs.visible' => 1
 
-        )
+          ]
 
-      ),
+        ]
 
-      'conditions' => array(
+      ])
 
-        'CounselingIntake.visible' => true ,
+    ->where([
 
-        'CounselingIntake.id'      => $id,
+      'CounselingIntakes.visible' => 1,
 
-      ),
+      'CounselingIntakes.id' => $id
 
-    ));
+    ])
+
+    ->first();
+
+    $data['CounselingIntakeSub'] = $this->CounselingIntakeSubs->find()
+
+    ->where([
+
+        'visible' => 1,
+
+        'counseling_intake_id' => $id
+
+    ])
+
+    ->toArray();
 
     $data['CounselingIntakeSub']['behave'] = explode(',',$data['CounselingIntakeSub']['behavior']);
 
@@ -15732,13 +15700,13 @@ class PrintController extends AppController {
     $pdf->Line(25,$pdf->getY()+4,190,$pdf->getY()+4);
     $pdf->Cell(5,5,'',0,0,'L');
     $pdf->Cell(15,5,'NAME: ',0,0,'L');
-    $pdf->Cell(10,5,$data['Student']['last_name'].", ".$data['Student']['first_name'].", ".$data['Student']['middle_name'],0,0,'L');
+    $pdf->Cell(10,5,$data['CounselingIntake']['last_name'].", ".$data['CounselingIntake']['first_name'].", ".$data['CounselingIntake']['middle_name'],0,0,'L');
     $pdf->Line(36,$pdf->getY()+8,120,$pdf->getY()+8);
     $pdf->Line(140,$pdf->getY()+8,190,$pdf->getY()+8);
     $pdf->Ln(4);
     $pdf->Cell(5,5,'',0,0,'L');
     $pdf->Cell(30,5,'Course and Year: ',0,0,'L');
-    $pdf->Cell(80,5,$data['CollegeProgram']['code']." - ".$data['CounselingIntake']['year_level_term'],0,0,'L');
+    $pdf->Cell(80,5,$data['CounselingIntake']['code']." - ".$data['CounselingIntake']['year_level_term'],0,0,'L');
     $pdf->Cell(20,5,'Contact No.: ',0,0,'L');
     $pdf->Cell(80,5,$data['CounselingIntake']['contact_no'],0,0,'L');
     $pdf->Ln(4);
@@ -26475,7 +26443,7 @@ EQUIVALENT',1,'C',0);
 
   public function studentExitForm($id = null) {
 
-    // $office_reference = $this->Global->OfficeReference('Student Exit Management');
+    $office_reference = $this->Global->OfficeReference('Student Exit Management');
 
     $data['StudentExit'] = $this->StudentExits->find()
 
