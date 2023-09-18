@@ -21,10 +21,16 @@
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
-        <div class="header-title">ADD NEW REFERRAL SLIP </div>
+        <div class="header-title">EDIT REFERRAL SLIP </div>
         <div class="clearfix"></div><hr>
         <form id="form">
           <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> SERIAL NUMBER </label>
+                <input  type="text" class="form-control" ng-model="data.ReferralSlip.serial_number"> 
+              </div>
+            </div>
           	<div class="col-md-12">
               <div class="form-group">
                 <label> CONTROL NO. <i class="required">*</i></label>
@@ -134,7 +140,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="pull-right">
-              <button class="btn btn-primary btn-min" id = "save" ng-click="save();"><i class="fa fa-save"></i> SAVE </button>
+              <button class="btn btn-primary btn-min" id = "save" ng-click="update();"><i class="fa fa-save"></i> UPDATE </button>
             </div>
           </div>
         </div>

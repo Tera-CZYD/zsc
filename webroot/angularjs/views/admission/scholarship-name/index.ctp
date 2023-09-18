@@ -1,5 +1,26 @@
-<?php if (hasAccess('scholarship name/index', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'scholarship name/index', currentUser);
+  handleAccess('pageAdd', 'scholarship name/add', currentUser);
+  handleAccess('pagePrint', 'scholarship name/print', currentUser);
+  handleAccess('pageEdit', 'scholarship name/edit', currentUser);
+  handleAccess('pageDelete', 'scholarship name/delete', currentUser);
+
+</script>
+
+<div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -8,12 +29,8 @@
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-              <?php if (hasAccess('scholarship name/add', $currentUser)): ?>
-                <a href="#/admission/scholarship-name/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD RECORD </a>
-              <?php endif ?> 
-              <?php if (hasAccess('scholarship name/print', $currentUser)): ?>
-                <button ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
-              <?php endif ?>
+                <a id="pageAdd" href="#/admission/scholarship-name/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD RECORD </a>
+                <button id="pagePrint" ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
               <button type="button" class="btn btn-warning btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
             </div>
             <div class="col-md-4 col-xs-12 pull-right">
@@ -42,12 +59,8 @@
                   <td class="text-center">{{ data.name }}</td>
                   <td>
                     <div class="btn-group btn-group-xs">
-                      <?php if (hasAccess('scholarship name/edit', $currentUser)): ?>
-                      	<a href="#/admission/scholarship-name/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a>
-                      <?php endif ?> 
-                      <?php if (hasAccess('scholarship name/delete', $currentUser)): ?>
-                      <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
-                      <?php endif ?> 
+                      	<a id="pageEdit" href="#/admission/scholarship-name/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a>
+                      <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
                     </div>
                   </td> 
                 </tr>
@@ -88,4 +101,3 @@
     </div>
   </div>
 </div>
-<?php endif ?>

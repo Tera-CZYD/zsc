@@ -1,5 +1,23 @@
-<?php if (hasAccess('assessment/view', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'assessment/view', currentUser);
+  handleAccess('pageDelete', 'assessment/delete', currentUser);
+
+</script>
+
+<div class="row" id="pageView">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -102,13 +120,9 @@
           </div>
           <div class="col-md-12">
             <div class="pull-right">
-              <?php if (hasAccess('assessment/approve', $currentUser)): ?>
-                <button href="javascript:void(0)" ng-click="approve(data.Assessment)" ng-disabled="data.Assessment.approve == 1" class="btn btn-warning  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
-              <?php endif ?>
+                <button id="pageApprove" href="javascript:void(0)" ng-click="approve(data.Assessment)" ng-disabled="data.Assessment.approve == 1" class="btn btn-warning  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
               
-              <?php if (hasAccess('assessment/delete', $currentUser)): ?> 
-                <button class="btn btn-danger btn-min" ng-click="remove(data.Assessment)"><i class="fa fa-trash"></i> DELETE </button>
-              <?php endif ?>
+                <button id="pageDelete" class="btn btn-danger btn-min" ng-click="remove(data.Assessment)"><i class="fa fa-trash"></i> DELETE </button>
             </div>
           </div>
         </div>
@@ -116,7 +130,6 @@
     </div>
   </div>
 </div>
-<?php endif ?>
 <style type="text/css">
   th {
     white-space: nowrap;

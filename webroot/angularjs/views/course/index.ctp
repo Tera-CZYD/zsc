@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
   function handleAccess(elementId, permissionCode, currentUser) {
     const element = document.getElementById(elementId);
@@ -19,7 +19,7 @@
   handleAccess('pageEdit', 'course/edit', currentUser);
   handleAccess('pageDelete', 'course/delete', currentUser);
 
-</script>
+</script> -->
 
 <div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
@@ -55,17 +55,12 @@
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-<<<<<<< HEAD
-              <a id="pageAdd" href="#/course/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD RECORD </a>
-              <a id="pagePrint" ng-click="print()" class="btn btn-print btn-sm btn-min"><i class="fa fa-print"></i> PRINT </a>
-=======
               <?php if (hasAccess('course/add', $currentUser)): ?>
                 <a href="#/course/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD RECORD </a>
               <?php endif ?> 
               <?php if (hasAccess('course/print', $currentUser)): ?>
                 <a ng-click="print()" class="btn btn-danger btn-sm btn-min"><i class="fa fa-print"></i> PRINT </a>
               <?php endif ?>
->>>>>>> 8cbfbc19da066f108917b701d38d0d09c2227324
               <button type="button" class="btn btn-warning btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
               <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH </a> -->
             </div>
@@ -149,8 +144,6 @@
     </div>
   </div>
 </div>
-<<<<<<< HEAD
-=======
 <div class="modal fade" id="advance-search-modal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -227,4 +220,3 @@
   </div><!-- modal-dialog -->
 </div>
 <?php endif ?>
->>>>>>> 8cbfbc19da066f108917b701d38d0d09c2227324

@@ -4,18 +4,18 @@ app.config(function($routeProvider) {
 
   .when('/registrar/tor', {
 
-    templateUrl: tmp + 'registrar__tor__index',
+    templateUrl: "angularjs/views/registrar/tor/index.ctp",
 
-    controller: 'TorController',
+    controller: "TorController",
 
   })
 
   .when("/registrar/tor/view/:id", {
  
-    templateUrl: tmp + "registrar__tor__view",
+    templateUrl: "angularjs/views/registrar/tor/view.ctp",
  
     controller: "TorViewController",
  
   });
   
-});
+});x

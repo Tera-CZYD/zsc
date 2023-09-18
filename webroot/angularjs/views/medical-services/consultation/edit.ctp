@@ -1,5 +1,22 @@
-<?php if (hasAccess('consultation/edit', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageEdit', 'consultation/edit', currentUser);
+
+</script>
+
+<div class="row" id="pageEdit">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -8,6 +25,12 @@
         <hr>
           <form id="form">
             <div class="row">
+              <div class="col-md-9">
+                <div class="form-group">
+                  <label> SERIAL NUMBER <i class="required">*</i></label>
+                  <input class="form-control" autocomplete="off" ng-model="data.Consultation.serial_number" data-validation-engine="validate[required]">
+                </div>
+              </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label> CONTROL NO. </label>
@@ -346,7 +369,7 @@
     </div>  
   </div><!-- /.modal-content -->
 </div>
-<?php endif ?>
+
 <style type="text/css">
 th {
     white-space: nowrap;
