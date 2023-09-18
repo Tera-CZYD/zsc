@@ -45,6 +45,8 @@ class PrintController extends AppController {
 
     $this->ProgramAdvisers = TableRegistry::getTableLocator()->get('ProgramAdvisers');
 
+    $this->Tors = TableRegistry::getTableLocator()->get('Tors');
+
     $this->loadModel('Students');
 
     $this->loadModel('InterviewRequests');
@@ -71,6 +73,7 @@ class PrintController extends AppController {
 
     $this->loadModel('AddingDroppingSubjectSubs');
 
+    $this->loadModel('Tors');
 
     //sir leo 
 
@@ -144,6 +147,8 @@ class PrintController extends AppController {
     $this->Prescriptions = TableRegistry::getTableLocator()->get('Prescriptions');
 
     $this->UserLogs = TableRegistry::getTableLocator()->get('UserLogs');
+
+    $this->CounselingIntakeSubs = TableRegistry::getTableLocator()->get('CounselingIntakeSubs');
 
     $this->MedicalEmployeeProfiles = TableRegistry::getTableLocator()->get('MedicalEmployeeProfiles');
 
@@ -5406,7 +5411,7 @@ class PrintController extends AppController {
 
   public function informedConsentForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Counseling Appointment');
+    $office_reference = $this->Global->OfficeReference('Counseling Appointment');
 
     $data = $this->CounselingAppointment->find()
     ->contain([
@@ -5446,7 +5451,7 @@ class PrintController extends AppController {
     $pdf->SetLineWidth(0.7);
     $pdf->Line(12.5,$pdf->getY()+2,187,$pdf->getY()+2);
     $pdf->SetLineWidth(0.2);
-    $pdf->Rect(14.5,$pdf->GetY() + 3.5,35,17);
+    $pdf->Rect(15.5,$pdf->GetY() + 3.5,38,17);
     $pdf->Ln(5);
     $pdf->SetFont("Times", '', 7);
     $pdf->Cell(6,5,'',0,0,'L');
@@ -5593,7 +5598,7 @@ class PrintController extends AppController {
 
   public function releaseInfoForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Counseling Appointment');
+    $office_reference = $this->Global->OfficeReference('Counseling Appointment');
 
     $data = $this->CounselingAppointment->find()
       ->contain([
@@ -5741,7 +5746,7 @@ class PrintController extends AppController {
 
   public function noHarmContractForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Counseling Appointment');
+    $office_reference = $this->Global->OfficeReference('Counseling Appointment');
 
     $data = $this->CounselingAppointment->find()
     ->contain([
@@ -6004,7 +6009,7 @@ class PrintController extends AppController {
 
   public function attendanceCounselingForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Attendance to Counseling');
+    $office_reference = $this->Global->OfficeReference('Attendance to Counseling');
 
     $data = $this->AttendanceCounseling->find()
     ->contain([
@@ -6130,23 +6135,23 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST-GTU-3.4.9.8',0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST-'. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
     $pdf->SetFont("Times", 'B', 15);
     $pdf->Cell(45,5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(68,5,'Adopted Date: January 2015',0,0,'L');
+    $pdf->Cell(68,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
     $pdf->SetFont("Arial", 'B', 13.5);
     $pdf->Cell(45,20,'ATTENDANCE TO COUNSELING',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: 0',0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: 0',0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
     $pdf->Ln(12);
     $pdf->SetFont("Arial", '', 9.5);
     $pdf->Cell(2,5,'',0,0,'L');
@@ -6211,23 +6216,23 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST-GTU-3.4.9.8',0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST-'. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
     $pdf->SetFont("Times", 'B', 15);
     $pdf->Cell(45,5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(68,5,'Adopted Date: January 2015',0,0,'L');
+    $pdf->Cell(68,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
     $pdf->SetFont("Arial", 'B', 13.5);
     $pdf->Cell(45,20,'ATTENDANCE TO COUNSELING',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: 0',0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: 0',0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
     $pdf->Ln(12);
     $pdf->SetFont("Arial", '', 9.5);
     $pdf->Cell(2,5,'',0,0,'L');
@@ -6270,7 +6275,7 @@ class PrintController extends AppController {
 
   public function referralSlip($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Referral/Appointment Slip');
+    $office_reference = $this->Global->OfficeReference('Referral/Appointment Slip');
 
     $data = $this->ReferralSlips->find()
 
@@ -6941,8 +6946,7 @@ class PrintController extends AppController {
 
   public function promissoryNoteForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Promissory Note Waiver');
-
+    $office_reference = $this->Global->OfficeReference('Promissory Note Waiver');
 
     $this->loadModel('PromissoryNotes');
 
@@ -7628,7 +7632,7 @@ class PrintController extends AppController {
 
   public function affidavitForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Affidavit for Lost ID/Passbook`');
+    $office_reference = $this->Global->OfficeReference('Affidavit for Lost ID/Passbook');
 
     $data = $this->Affidavits->find()
 
@@ -8924,98 +8928,55 @@ class PrintController extends AppController {
 
   }
 
-  public function medical_certificate_form($id = null){
+  public function medicalCertificateForm($id = null){
 
     $office_reference = $this->Global->OfficeReference('Medical Certificate Request');
 
-    $data = $this->MedicalCertificate->find('first', array(
+    $data['MedicalCertificate'] = $this->MedicalCertificates->find()
 
-      'contain' => array(
+      ->where([
 
-        'Student',
+        'MedicalCertificates.visible' => 1,
 
-        'Course',
+        'MedicalCertificates.id' => $id
 
-        'YearLevelTerm'
+      ])
 
-      ),
+      ->contain([
 
-      'conditions' => array(
+        'Students',
 
-        'MedicalCertificate.visible' => true,
+        'Employees',
 
-        'MedicalCertificate.id' => $id,
+        'CollegePrograms',
 
-      )
+        'YearLevelTerms'
 
-    ));
-    $conditions = array();
+      ])
 
-    $conditions['search'] = '';
+      ->first();
 
-    if ($this->request->getQuery('search')) {
+    $data['MedicalCertificate']['active_view'] = $data['MedicalCertificate']['active'] ? 'True' : 'False';
 
-      $search = $this->request->getQuery('search');
+    $data['MedicalCertificate']['date'] = $data['MedicalCertificate']['date']->format('m/d/Y');
 
-      $search = strtolower($search);
+    $data['MedicalCertificate']['floors'] = intval($data['MedicalCertificate']['floors']);
 
-      $conditions['search'] = $search;
-    
-    }
+    $data['Student'] = $data['MedicalCertificate']['student'];
 
-    $conditions['date'] = '';
+    $data['Employee'] = $data['MedicalCertificate']['employee'];
 
-    if (isset($this->request->query['date'])) {
+    $data['CollegeProgram'] = $data['MedicalCertificate']['college_program'];
 
-      $search_date = $this->request->query['date'];
+    $data['YearLevelTerm'] = $data['MedicalCertificate']['year_level_term'];
 
-      $conditions['date'] = " AND DATE(MedicalCertificate.date) = '$search_date'"; 
+    unset($data['MedicalCertificate']['year_level_term']);
 
-      $dates['date'] = $search_date;
+    unset($data['MedicalCertificate']['college_program']);
 
-    }  
+    unset($data['MedicalCertificate']['student']);
 
-    //advance search
-
-    if (isset($this->request->query['startDate'])) {
-
-      $start = $this->request->query['startDate']; 
-
-      $end = $this->request->query['endDate'];
-
-      $conditions['date'] = " AND DATE(MedicalCertificate.date) >= '$start' AND DATE(MedicalCertificate.date) <= '$end'";
-
-      $dates['startDate'] = $start;
-
-      $dates['endDate']   = $end;
-
-    }
-
-    $conditions['status'] = '';
-
-    if (isset($this->request->query['status'])) {
-
-      $status = $this->request->query['status'];
-
-      $conditions['status'] = "AND MedicalCertificate.status = $status";
-
-
-      
-    }
-
-
-    $conditions['studentId'] = '';
-
-    if (isset($this->request->query['per_student'])) {
-
-      $per_student = $this->request->query['per_student'];
-      
-      $employee_id = $this->Session->read('Auth.User.studentId');
-
-      $conditions['studentId'] = "AND MedicalCertificate.student_id = $employee_id";
-
-    }
-
+    unset($data['MedicalCertificate']['employee']);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -9087,7 +9048,7 @@ class PrintController extends AppController {
     // $pdf->Cell(60);
     // $pdf->SetY($pdf->getY()+6);
     // $pdf->Cell(19.5);
-    $pdf->Cell(45.5,5,$data['Course']['code'].'/'.$data['YearLevelTerm']['year'],0,0,'L');
+    $pdf->Cell(45.5,5,$data['CollegeProgram']['code'].'/'.$data['YearLevelTerm']['year'],0,0,'L');
     $pdf->Line(135,$pdf->getY()+4.5,170,$pdf->getY()+4.5);
     $pdf->Ln(6);
     $pdf->Cell(19);
@@ -9179,7 +9140,7 @@ class PrintController extends AppController {
     // $pdf->Cell(60);
     // $pdf->SetY($pdf->getY()+6);
     // $pdf->Cell(19.5);
-    $pdf->Cell(45.5,5,$data['Course']['code'].'/'.$data['YearLevelTerm']['year'],0,0,'L');
+    $pdf->Cell(45.5,5,$data['CollegeProgram']['code'].'/'.$data['YearLevelTerm']['year'],0,0,'L');
     $pdf->Line(135,$pdf->getY()+4.5,170,$pdf->getY()+4.5);
     $pdf->Ln(6);
     $pdf->Cell(19);
@@ -15605,39 +15566,49 @@ class PrintController extends AppController {
     exit();
   }
 
-  public function counseling_intake_form($id = null){
+  public function counselingIntakeForm($id = null){
 
     $office_reference = $this->Global->OfficeReference('Counseling Intake');
 
-    $data = $this->CounselingIntake->find('first', array( 
+    $data['CounselingIntake'] = $this->CounselingIntakes->find()
+    
+      ->contain([
 
-      'contain' => array (
-     
-        'Student',
-     
-        'CollegeProgram',
-     
-        'CounselingIntakeSub' => array (
+        'CollegePrograms',
 
-          'conditions' => array (
+        'CounselingIntakeSubs' => [
 
-            'CounselingIntakeSub.visible' => true
+          'conditions' => [
 
-          )
+            'CounselingIntakeSubs.visible' => 1
 
-        )
+          ]
 
-      ),
+        ]
 
-      'conditions' => array(
+      ])
 
-        'CounselingIntake.visible' => true ,
+    ->where([
 
-        'CounselingIntake.id'      => $id,
+      'CounselingIntakes.visible' => 1,
 
-      ),
+      'CounselingIntakes.id' => $id
 
-    ));
+    ])
+
+    ->first();
+
+    $data['CounselingIntakeSub'] = $this->CounselingIntakeSubs->find()
+
+    ->where([
+
+        'visible' => 1,
+
+        'counseling_intake_id' => $id
+
+    ])
+
+    ->toArray();
 
     $data['CounselingIntakeSub']['behave'] = explode(',',$data['CounselingIntakeSub']['behavior']);
 
@@ -15732,13 +15703,13 @@ class PrintController extends AppController {
     $pdf->Line(25,$pdf->getY()+4,190,$pdf->getY()+4);
     $pdf->Cell(5,5,'',0,0,'L');
     $pdf->Cell(15,5,'NAME: ',0,0,'L');
-    $pdf->Cell(10,5,$data['Student']['last_name'].", ".$data['Student']['first_name'].", ".$data['Student']['middle_name'],0,0,'L');
+    $pdf->Cell(10,5,$data['CounselingIntake']['last_name'].", ".$data['CounselingIntake']['first_name'].", ".$data['CounselingIntake']['middle_name'],0,0,'L');
     $pdf->Line(36,$pdf->getY()+8,120,$pdf->getY()+8);
     $pdf->Line(140,$pdf->getY()+8,190,$pdf->getY()+8);
     $pdf->Ln(4);
     $pdf->Cell(5,5,'',0,0,'L');
     $pdf->Cell(30,5,'Course and Year: ',0,0,'L');
-    $pdf->Cell(80,5,$data['CollegeProgram']['code']." - ".$data['CounselingIntake']['year_level_term'],0,0,'L');
+    $pdf->Cell(80,5,$data['CounselingIntake']['code']." - ".$data['CounselingIntake']['year_level_term'],0,0,'L');
     $pdf->Cell(20,5,'Contact No.: ',0,0,'L');
     $pdf->Cell(80,5,$data['CounselingIntake']['contact_no'],0,0,'L');
     $pdf->Ln(4);
@@ -18243,69 +18214,87 @@ class PrintController extends AppController {
 
     // search conditions
 
-    if(isset($this->request->query['search'])){
+    $conditions = [];
 
-      $search = $this->request->query['search'];
+    $conditions['search'] = '';
+
+    $conditionsPrint = '';
+
+    if($this->request->getQuery('search')){
+
+      $search = $this->request->getQuery('search');
 
       $search = strtolower($search);
 
       $conditions['search'] = $search;
 
+      $conditionsPrint .= '&search='.$search;
+
     }
 
     $conditions['date'] = '';
 
-    if (isset($this->request->query['date'])) {
+    if ($this->request->getQuery('date')) {
 
-      $search_date = $this->request->query['date'];
+      $search_date = $this->request->getQuery('date');
 
       $conditions['date'] = " AND DATE(StudentEnrollment.date) = '$search_date'"; 
+
+      $conditionsPrint .= '&date='.$search_date;
 
     }  
 
     //advance search
 
-    if (isset($this->request->query['startDate'])) {
+    if ($this->request->getQuery('startDate')) {
 
-      $start = $this->request->query['startDate']; 
+      $start = $this->request->getQuery('startDate'); 
 
       $end = $this->request->query['endDate'];
 
       $conditions['date'] = " AND DATE(StudentEnrollment.date) >= '$start' AND DATE(StudentEnrollment.date) <= '$end'";
 
+      $conditionsPrint .= '&startDate='.$start.'&endDate='.$end;
+
     }
 
-    $conditions['college_id'] = " AND Student.college_id = null";
+    $conditions['college_id'] = '';
 
-    if (isset($this->request->query['college_id'])) {
+    if ($this->request->getQuery('college_id')) {
 
-      $college_id = $this->request->query['college_id']; 
+      $college_id = $this->request->getQuery('college_id'); 
 
       $conditions['college_id'] = " AND Student.college_id = $college_id";
 
+      $conditionsPrint .= '&college_id='.$college_id;
+
     }
 
-    $conditions['program_id'] = " AND Student.program_id = null";
+    $conditions['program_id'] = '';
 
-    if (isset($this->request->query['program_id'])) {
+    if ($this->request->getQuery('program_id')) {
 
-      $program_id = $this->request->query['program_id']; 
+      $program_id = $this->request->getQuery('program_id'); 
 
       $conditions['program_id'] = " AND Student.program_id = $program_id";
 
+      $conditionsPrint .= '&program_id='.$program_id;
+
     }
 
-    $conditions['year_term_id'] = " AND StudentEnrollment.year_term_id = null";
+    $conditions['year_term_id'] = '';
 
-    if (isset($this->request->query['year_term_id'])) {
+    if ($this->request->getQuery('year_term_id')) {
 
-      $year_term_id = $this->request->query['year_term_id']; 
+      $year_term_id = $this->request->getQuery('year_term_id'); 
 
       $conditions['year_term_id'] = " AND StudentEnrollment.year_term_id = $year_term_id";
 
+      $conditionsPrint .= '&year_term_id='.$year_term_id;
+
     }
 
-    $tmpData = $this->Tor->query($this->Tor->getAllTor($conditions));
+    $tmpData = $this->Tors->getAllTorPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -18316,7 +18305,7 @@ class PrintController extends AppController {
     $pdf->footerSystem = true;
     $pdf->AliasNbPages();
     $pdf->AddPage("P", "legal", 0);
-    $pdf->Image($this->base .'/assets/img/zam.png',6,10,25,25);
+    // $pdf->Image($this->base .'/assets/img/zam.png',6,10,25,25);
     $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
     $pdf->Ln(5);
@@ -18330,7 +18319,7 @@ class PrintController extends AppController {
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
     $pdf->SetFont("Arial", 'B', 12);
-    $pdf->Cell(0,5,'Transcript of Record',0,0,'C');
+    $pdf->Cell(0,5,'TRANSCRIPT OF RECORDS',0,0,'C');
     $pdf->Ln(10);
     $pdf->SetFont("Arial", 'B', 7);
     $pdf->SetFillColor(217,237,247);
@@ -18352,13 +18341,13 @@ class PrintController extends AppController {
 
           $key + 1,
 
-          $data['StudentEnrollment']['student_no'],
+          $data['student_no'],
 
-          $data[0]['full_name'],
+          $data['full_name'],
 
-          $data['College']['college'],
+          $data['college'],
 
-          $data['CollegeProgram']['program'],
+          $data['program'],
 
         ));
 
@@ -19469,121 +19458,156 @@ class PrintController extends AppController {
 
   }
 
-  public function tor_form($id = null){
+  public function torForm($id = null){
 
-    $data = $this->Student->find('first', array(
+    $data['Student'] = $this->Students->find()
+    ->contain([
+        'Colleges' => [
+            'conditions' => [
+                'Colleges.visible' => 1
+            ]
+        ],
+        'CollegePrograms' => [
+            'conditions' => [
+                'CollegePrograms.visible' => 1
+            ]
+        ],
+        'StudentEnrolledCourses' => [
+            'conditions' => [
+                'StudentEnrolledCourses.visible' => 1
+            ]
+        ],
+        'StudentEnrolledUnits' => [
+            'conditions' => [
+                'StudentEnrolledUnits.visible' => 1
+            ]
+        ],
+        'StudentEnrollments' => [
+            'conditions' => [
+                'StudentEnrollments.visible' => 1
+            ]
+        ]
+    ])
+    ->where([
+        'Students.visible' => 1,
+        'Students.id' => $id
+    ])
+    ->first();
 
-      'contain' => array(
+      $data['Student']['date_of_date'] = isset($data['Student']['date_of_date']) ? date('m/d/Y', strtotime($data['Student']['date_of_date'])) : null;
 
-        'StudentApplication' => array(
+      $data['Student']['proper_name'] = $data['Student']['last_name'].', '.$data['Student']['first_name'].' '.$data['Student']['middle_name'];
 
-          'conditions' => array(
+      $data['College'] = $data['Student']['college'];
 
-            'StudentApplication.visible' => true
+      $data['CollegeProgram'] = $data['Student']['college_program'];
 
-          ),
+      $data['StudentEnrolledCourse'] = $data['Student']['student_enrolled_courses'];
 
-        ),
-        
-        'College' => array(
+      $data['StudentEnrolledUnit'] = $data['Student']['student_enrolled_units'];
 
-          'conditions' => array(
+      $data['StudentEnrollment'] = $data['Student']['student_enrollments'];
+      
+      unset($data['Student']['college']);
 
-            'College.visible' => true
+      unset($data['Student']['college_program']);
+      
+      unset($data['Student']['student_enrolled_courses']);
 
-          ),
+      unset($data['Student']['student_enrolled_units']);
 
-        ),
-        
-        'CollegeProgram' => array(
+      unset($data['Student']['student_enrollments']);
 
-          'conditions' => array(
-
-            'CollegeProgram.visible' => true
-
-          ),
-
-        ),
-        
-        'StudentEnrolledCourse' => array(
-
-          'conditions' => array(
-
-            'StudentEnrolledCourse.visible' => true
-
-          )
-
-        ),
-
-        'StudentEnrolledUnit' => array(
-
-          'conditions' => array(
-
-            'StudentEnrolledUnit.visible' => true
-
-          )
-
-        ),
-
-        'StudentEnrollment' => array(
-
-          'conditions' => array(
-
-            'StudentEnrollment.visible' => true
-
-          )
-
-        )
-
-      ),
-
-      'conditions' => array(
-
-        'Student.visible' => true,
-
-        'Student.id'      => $id,
-
-      )
-
-    ));
 
     $tor = array();
 
-    $year_term = $this->YearLevelTerm->find('all', array(
+    $year_term = $this->YearLevelTerms->find()
+    ->where([
+        'YearLevelTerms.visible' => 1,
+        'YearLevelTerms.active_prospectus' => 1
+    ])
+    ->all();
 
-      'conditions' => array(
-
-        'YearLevelTerm.visible' => true,
-
-        'YearLevelTerm.active_prospectus' => true
-
-      )
-
-    ));
-
-    if(!empty($year_term)){
+    if($year_term!=null){
 
       foreach ($year_term as $keys => $values) {
 
         $subs = array();
         
-        if(!empty($data['StudentEnrolledCourse'])){
+        if($data['StudentEnrolledCourse']!=null){
 
           foreach ($data['StudentEnrolledCourse'] as $key => $value) {
             
-            if($values['YearLevelTerm']['id'] == $value['year_term_id']){
+            if($values['id'] == $value['year_term_id']){
+
+              $program_id = $data['Student']['program_id'];
+
+              $course_id = $value['course_id'];
+
+              $year_term_id = $value['year_term_id'];              
+
+              $result = "
+
+                SELECT 
+
+                  CollegeProgramPrerequisite.course_id
+
+                FROM  
+
+                  college_program_courses as CollegeProgramCourse LEFT JOIN 
+
+                  college_program_prerequisites as CollegeProgramPrerequisite ON CollegeProgramPrerequisite.college_program_course_id = CollegeProgramCourse.id 
+
+                WHERE 
+
+                  CollegeProgramCourse.visible = true AND 
+
+                  CollegeProgramCourse.course_id = $course_id AND 
+
+                  CollegeProgramCourse.college_program_id = $program_id AND 
+
+                  CollegeProgramCourse.year_term_id = $year_term_id AND 
+
+                  CollegeProgramPrerequisite.visible = true
+
+              ";
+
+              $course_prerequisites = array();
+
+              $connection = $this->CollegeProgramCourses->getConnection();
+
+              $prerequisites = $connection->execute($result)->fetchAll('assoc');
+
+
+              if($prerequisites!=null){
+
+                foreach ($prerequisites as $index => $datas) {
+
+                  $courses = $this->Courses->get($datas['CollegeProgramPrerequisite']['course_id']);
+                  
+                  $course_prerequisites[] = array(
+
+                    'course'            => $courses['Course']['title'],
+
+                  );
+
+                }
+
+              }
 
               $subs[] = array(
 
-                'final'            => $value['incomplete'] == 1 ? 'INC' : $value['final_grade'],
-
-                're_exam'          => $value['incomplete'] == 1 ? $value['final_grade'] : '',
+                'final'            => $value['final_grade'],
 
                 'course_code'      => $value['course_code'],
 
                 'course'           => $value['course'],
 
+                're_exam'          => $value['re_exam'],
+
                 'credit_unit'      => $value['credit_unit'],
+
+                'course_prerequisites' => $course_prerequisites
 
               );
 
@@ -19595,9 +19619,9 @@ class PrintController extends AppController {
 
         $tor[] = array(
 
-          'semester' => $values['YearLevelTerm']['semester'],
+          'semester' => $values['semester'],
 
-          'year'     => $values['YearLevelTerm']['year'],
+          'year'     => $values['year'],
 
           'subs'     => $subs,
 
@@ -19614,7 +19638,7 @@ class PrintController extends AppController {
     $pdf->SetMargins(5, 9, 5);
     $pdf->AddPage("P", "Legal", 0);
     $pdf->SetAutoPageBreak(false);
-    $pdf->Image($this->base . '/assets/img/zam.png', 6.5, 22,35, 35);
+    // $pdf->Image($this->base . '/assets/img/zam.png', 6.5, 22,35, 35);
     $pdf->SetFont("Times", '', 12);
     $pdf->Cell(0, 5, 'ZSCMST-OCR 3.10.I-I5', 0, 0, 'L');
     // $pdf->Image($this->base . '/assets/img/iso.png', 182, 13, 18, 21);
@@ -19649,7 +19673,7 @@ class PrintController extends AppController {
     $pdf->Cell(90, 5, strtoupper($data['Student']['last_name'].', '.$data['Student']['first_name'].' '.$data['Student']['middle_name']), 0, 0, 'L');
     $pdf->SetFont("Times", '', 11);
     $pdf->Cell(33, 5, 'Date of Admission: ', 0, 0, 'L');
-    $pdf->Cell(80, 5, fdate($data['StudentApplication']['approved_date'],'m/d/Y'), 0, 0, 'L');
+    // $pdf->Cell(80, 5, fdate($data['StudentApplication']['approved_date'],'m/d/Y'), 0, 0, 'L');
     $pdf->Line(38, $pdf->getY() + 11, 80, $pdf->getY() + 11);
     $pdf->Line(93, $pdf->getY() + 11, 110, $pdf->getY() + 11);
     $pdf->Line(148, $pdf->getY() + 11, 200, $pdf->getY() + 11);
@@ -19834,7 +19858,7 @@ class PrintController extends AppController {
     $pdf->Line(45, $pdf->getY(), 150, $pdf->getY());
     $pdf->SetFont("Times", '', 10);
     $pdf->Cell(25, 5, '(NOT VALID WITHOUT COLLEGE SEAL)', 0, 0, 'L');
-    $pdf->Image($this->base . '/assets/img/zscmst-qr.png', 160, 325,25, 25);
+    // $pdf->Image($this->base . '/assets/img/zscmst-qr.png', 160, 325,25, 25);
     $pdf->Ln(13);
     $pdf->SetFont("Times", '', 11);
     $pdf->Line(20, $pdf->getY(),60, $pdf->getY());
@@ -26475,7 +26499,7 @@ EQUIVALENT',1,'C',0);
 
   public function studentExitForm($id = null) {
 
-    // $office_reference = $this->Global->OfficeReference('Student Exit Management');
+    $office_reference = $this->Global->OfficeReference('Student Exit Management');
 
     $data['StudentExit'] = $this->StudentExits->find()
 

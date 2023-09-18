@@ -31,6 +31,10 @@
             <div class="table-responsive">
               <table class="table table-striped">
                 <tr>
+                  <th class="text-right"> SERIAL NUMBER : </th>
+                  <td class="italic">{{ data.StudentClearance.serial_number }}</td>
+                </tr>
+                <tr>
                   <th class="text-right" style="width:15%"> CONTROL NUMBER : </th>
                   <td class="italic">{{ data.StudentClearance.code }}</td>
                 </tr>
