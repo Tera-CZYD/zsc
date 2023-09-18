@@ -267,7 +267,7 @@ class UsersController extends AppController
     // Set image source
     if ($user['User']->image != null) {
 
-      $user['User']->imageSrc = $this->getRequest()->getAttribute('webroot') . '/uploads/users/' . $id . '/' . $user->image;
+      $user['User']->imageSrc = $this->getRequest()->getAttribute('webroot') . '/uploads/users/' . $id . '/' . $user['User']->image;
 
     } else {
 
@@ -336,9 +336,9 @@ class UsersController extends AppController
       }
 
       $save = $this->Users->validSave($user);
-      
+
       $userId = $save['data']['id'];
-      // var_dump($userId);
+
       if ($save['ok']) {
 
         if ($uploadedFile instanceof \Laminas\Diactoros\UploadedFile && $uploadedFile->getError() === UPLOAD_ERR_OK) {
@@ -401,9 +401,9 @@ class UsersController extends AppController
 
           ->first();
 
-        if (!empty($role['RolePermissions'])) {
+        if (!empty($role->role_permissions)) {
 
-          foreach ($role['RolePermissions'] as $key => $value) {
+          foreach ($role->role_permissions as $key => $value) {
 
             $role['RolePermissions'][$key]['id'] = null;
 
@@ -454,7 +454,7 @@ class UsersController extends AppController
 
           'data' => $requestData,
 
-          'msg' => 'User could not be saved at this time.'
+          'msg' => $save['msg']
 
         ];
 
@@ -481,9 +481,9 @@ class UsersController extends AppController
 
   }
 
-  public function edit($id){
+  public function edit(){
 
-    // var_dump($id);
+    $this->request->allowMethod(['post']);
 
     if ($this->request->is(['post', 'ajax']) && $this->request->is('json')) {
 
@@ -496,16 +496,26 @@ class UsersController extends AppController
       $sub = $data['UserPermission'];
 
       $uploadedFile = $this->request->getData('file');
-
+      
       if ($uploadedFile instanceof \Laminas\Diactoros\UploadedFile && $uploadedFile->getError() === UPLOAD_ERR_OK) {
 
         $user['image'] = $uploadedFile->getClientFilename();
 
       }
 
-      $userId = $id;
+      if (isset($user['password'])) {
+
+        if ($user['password'] == '')
+
+          unset($user['password']);
+
+      }
+
+      $userId = $data['User']['id'];
 
       $save = $this->Users->validSave($user);
+      
+      
 
       if ($save['ok']) {
 
@@ -541,8 +551,6 @@ class UsersController extends AppController
 
         }
 
-      }
-
       $disabledPermission = [];
 
       if (!empty($sub)) {
@@ -555,39 +563,40 @@ class UsersController extends AppController
 
       }
 
-      $role = $this->Roles->find()
+      $roleQuery = $this->Roles->find()
 
         ->contain([
 
-          'RolePermissions' => [
+            'RolePermissions' => [
 
-            'conditions' => [
-
-              'RolePermissions.visible' => true,
-
-              'RolePermissions.permission_id NOT IN' => $disabledPermission,
+                'conditions' => ['RolePermissions.visible' => 1],
 
             ],
-
-          ],
 
         ])
 
         ->where([
 
-          'Roles.id' => $user['roleId'],
+            'Roles.id' => $user['roleId'],
 
-          'Roles.visible' => true,
+            'Roles.visible' => 1,
 
-        ])
+        ]);
 
-      ->first();
+      if (!empty($disabledPermission)) {
+          $roleQuery->contain('RolePermissions', function ($q) use ($disabledPermission) {
+              return $q->where(['RolePermissions.permission_id NOT IN' => $disabledPermission]);
+          });
+      }
 
-      if (!empty($role['RolePermissions'])) {
+      $role = $roleQuery->first();
+
+
+      if (!empty($role->role_permissions)) {
 
         $userPermissionEntities = [];
 
-        foreach ($role['RolePermissions'] as $key => $value) {
+        foreach ($role->role_permissions as $key => $value) {
 
           $userPermissionEntities[] = [
 
@@ -602,43 +611,60 @@ class UsersController extends AppController
         $userPermissionEntities = $this->UserPermissions->newEntities($userPermissionEntities);
 
         $this->UserPermissions->saveMany($userPermissionEntities);
-
       }
 
       $response = $save;
 
-      $this->loadModel('UserLog');
+      $userLogTable = TableRegistry::getTableLocator()->get('UserLogs');
+        
+      $userLogEntity = $userLogTable->newEntity([
 
-      $this->UserLog->addLogs('User', 'Update', ' ');
+          'action' => 'Edit',
 
-    } else {
+          'description' => 'User Management',
 
-      $response = [
+          'code' => $user['id'],
 
-        'ok' => false,
+          'created' => date('Y-m-d H:i:s'),
 
-        'data' => $requestData,
+          'modified' => date('Y-m-d H:i:s')
 
-        'msg' => 'User could not be saved at this time.'
+      ]);
+      
+      $userLogTable->save($userLogEntity);
 
-      ];
+      } else {
+
+        $response = [
+
+          'ok' => false,
+
+          'data' => $requestData,
+
+          'msg' => 'User could not be saved at this time.'
+
+        ];
+
+      }
+
+
+      $this->set([
+
+        'response' => $response,
+
+        '_serialize' => 'response'
+
+      ]);
+
+
+
+      $this->response->withType('application/json');
+
+      $this->response->getBody()->write(json_encode($response));
+
+      return $this->response;
 
     }
-
-    $this->set([
-
-      'response' => $response,
-
-      '_serialize' => 'response'
-
-    ]);
-
-    $this->response->withType('application/json');
-
-    $this->response->getBody()->write(json_encode($response));
-
-    return $this->response;
-
   }
   
   public function delete($id)
