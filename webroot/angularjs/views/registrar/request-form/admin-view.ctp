@@ -149,6 +149,7 @@
               <div class="pull-right">
                   <a id="pageEdit" href="#/registrar/admin-request-form/edit/{{ data.RequestForm.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
                 <button id="pageApprove" href="javascript:void(0)" ng-click="approve(data.RequestForm)" ng-disabled="data.RequestForm.approve == 1" class="btn btn-warning  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
+                <button id="pagePaid" href="javascript:void(0)" ng-click="paid(data.RequestForm)" ng-disabled="data.RequestForm.approve == 2" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> PAID </button>
                 <button id="pagePrintForm" type="button" class="btn btn-info  btn-min" ng-click="print(data.RequestForm.id )"><i class="fa fa-print"></i> PRINT REQUEST FORM </button>
                 <button id="pageDelete" class="btn btn-danger btn-min" ng-click="remove(data.RequestForm)"><i class="fa fa-trash"></i> DELETE </button>
               </div>
