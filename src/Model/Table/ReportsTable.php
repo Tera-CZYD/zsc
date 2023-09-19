@@ -2075,8 +2075,8 @@ class ReportsTable extends Table
 
         $search = strtolower(@$conditions['search']);
 
-
         $year = @$conditions['year'];
+
         $program_id = @$conditions['program_id'];
 
         $year_term_id_enrollment = @$conditions['year_term_id_enrollment'];
@@ -2084,7 +2084,7 @@ class ReportsTable extends Table
           // Your SQL query here, make sure to adjust table names and columns
           $sql =  "
 
-           SELECT
+          SELECT
 
             StudentBehavior.*,
 
@@ -2108,9 +2108,12 @@ class ReportsTable extends Table
 
               CollegeProgram.name LIKE '%$search%'
 
-            ) ";
+            )
+           ";
 
           $query = $this->getConnection()->prepare($sql);
+
+          // var_dump($query);
 
           $query->execute();
 
@@ -3936,7 +3939,7 @@ class ReportsTable extends Table
 
         $sql = "
 
-        SELECT 
+          SELECT 
 
           Employee.*,
 
@@ -3948,7 +3951,11 @@ class ReportsTable extends Table
 
           employees as Employee LEFT JOIN
 
-          consultations as Consultation ON Employee.id = Consultation.employee_id AND $date Consultation.visible = true AND Consultation.employee_id IS NOT NULL AND 
+          consultations as Consultation ON Employee.id = Consultation.employee_id
+
+        WHERE 
+
+          Employee.visible = true $date AND Consultation.visible = true AND Consultation.employee_id IS NOT NULL AND 
 
           (
 
@@ -3957,10 +3964,6 @@ class ReportsTable extends Table
             Consultation.employee_name LIKE '%$search%'
 
           )
-
-        WHERE 
-
-          Employee.visible = true 
 
         GROUP BY
 
@@ -4701,7 +4704,7 @@ class ReportsTable extends Table
 
       $search = @$conditions['search'];
 
-      $year_term_id = @$conditions['year_term_id'];
+      $year = @$conditions['year'];
 
       $program_id = @$conditions['program_id'];
 
@@ -4713,7 +4716,11 @@ class ReportsTable extends Table
 
           CONCAT(IFNULL(Student.last_name,''),', ',IFNULL(Student.first_name,''),' ',IFNULL(Student.middle_name,'')) as full_name,
 
-          IFNULL(StudentEnrolledCourse.ave,'') as ave,
+          ROUND(AVG(StudentEnrolledCourse.final_grade),2) as ave,
+
+          -- RANK() OVER(ORDER BY ave) as top,
+
+          College.name as college,
 
           CollegeProgram.name as program
 
@@ -4721,37 +4728,18 @@ class ReportsTable extends Table
 
           students as Student  LEFT JOIN
 
-          college_programs as CollegeProgram ON CollegeProgram.id = Student.program_id LEFT JOIN
+          student_enrolled_courses as StudentEnrolledCourse ON StudentEnrolledCourse.student_id = Student.id LEFT JOIN
 
-          (
+          colleges as College ON College.id = Student.college_id LEFT JOIN 
 
-            SELECT
+          college_programs as CollegeProgram ON CollegeProgram.id = Student.program_id
 
-              StudentEnrolledCourse.student_id,
-
-              ROUND(AVG(StudentEnrolledCourse.final_grade),2) as ave
-
-            FROM  
-
-              student_enrolled_courses as StudentEnrolledCourse
-
-            WHERE 
-
-              StudentEnrolledCourse.year_term_id = $year_term_id AND 
-
-              StudentEnrolledCourse.visible = true
-
-          ) as StudentEnrolledCourse ON StudentEnrolledCourse.student_id = Student.id 
-
+ 
         WHERE
 
-          Student.visible = true AND
+          Student.visible = true $program_id AND
 
-          Student.program_id = $program_id AND 
-
-          Student.year_term_id = $year_term_id AND
-
-          CollegeProgram.visible = true AND 
+          StudentEnrolledCourse.student_id = Student.id  $year AND
 
           (
 
@@ -4763,9 +4751,15 @@ class ReportsTable extends Table
 
             Student.student_no LIKE '%$search%' OR  
 
+            College.name LIKE '%$search%' OR 
+
             CollegeProgram.name LIKE '%$search%'
 
           )
+
+        GROUP BY
+
+          Student.id
 
         ORDER BY
 
@@ -4785,7 +4779,7 @@ class ReportsTable extends Table
 
       $search = @$conditions['search'];
 
-      $year_term_id = @$conditions['year_term_id'];
+      $year = @$conditions['year'];
 
       $program_id = @$conditions['program_id'];
 
@@ -4793,13 +4787,17 @@ class ReportsTable extends Table
 
       $sql =  "
 
-        SELECT
+          SELECT
 
-          Student.*,
+         Student.*,
 
           CONCAT(IFNULL(Student.last_name,''),', ',IFNULL(Student.first_name,''),' ',IFNULL(Student.middle_name,'')) as full_name,
 
-          IFNULL(StudentEnrolledCourse.ave,'') as ave,
+          ROUND(AVG(StudentEnrolledCourse.final_grade),2) as ave,
+
+          -- RANK() OVER(ORDER BY ave) as top,
+
+          College.name as college,
 
           CollegeProgram.name as program
 
@@ -4807,37 +4805,16 @@ class ReportsTable extends Table
 
           students as Student  LEFT JOIN
 
-          college_programs as CollegeProgram ON CollegeProgram.id = Student.program_id LEFT JOIN
+          student_enrolled_courses as StudentEnrolledCourse ON StudentEnrolledCourse.student_id = Student.id LEFT JOIN
 
-          (
+          colleges as College ON College.id = Student.college_id LEFT JOIN 
 
-            SELECT
+          college_programs as CollegeProgram ON CollegeProgram.id = Student.program_id
 
-              StudentEnrolledCourse.student_id,
-
-              ROUND(AVG(StudentEnrolledCourse.final_grade),2) as ave
-
-            FROM  
-
-              student_enrolled_courses as StudentEnrolledCourse
-
-            WHERE 
-
-              StudentEnrolledCourse.year_term_id = $year_term_id AND 
-
-              StudentEnrolledCourse.visible = true
-
-          ) as StudentEnrolledCourse ON StudentEnrolledCourse.student_id = Student.id 
-
+ 
         WHERE
 
-          Student.visible = true AND
-
-          Student.program_id = $program_id AND 
-
-          Student.year_term_id = $year_term_id AND
-
-          CollegeProgram.visible = true AND 
+          Student.visible = true $program_id $year AND
 
           (
 
@@ -4849,9 +4826,15 @@ class ReportsTable extends Table
 
             Student.student_no LIKE '%$search%' OR  
 
+            College.name LIKE '%$search%' OR 
+
             CollegeProgram.name LIKE '%$search%'
 
           )
+
+        GROUP BY
+
+          Student.id
 
         ORDER BY
 
@@ -4865,6 +4848,8 @@ class ReportsTable extends Table
 
       $query = $this->getConnection()->prepare($sql);
 
+      // var_dump($query);
+
       $query->execute();
 
       return $query;
@@ -4875,7 +4860,7 @@ class ReportsTable extends Table
 
       $search = @$conditions['search'];
 
-      $year_term_id = @$conditions['year_term_id'];
+      $year = @$conditions['year'];
 
       $program_id = @$conditions['program_id'];
       
@@ -4889,37 +4874,16 @@ class ReportsTable extends Table
 
           students as Student  LEFT JOIN
 
-          college_programs as CollegeProgram ON CollegeProgram.id = Student.program_id LEFT JOIN
+          student_enrolled_courses as StudentEnrolledCourse ON StudentEnrolledCourse.student_id = Student.id LEFT JOIN
 
-          (
+          colleges as College ON College.id = Student.college_id LEFT JOIN 
 
-            SELECT
+          college_programs as CollegeProgram ON CollegeProgram.id = Student.program_id
 
-              StudentEnrolledCourse.student_id,
-
-              ROUND(AVG(StudentEnrolledCourse.final_grade),2) as ave
-
-            FROM  
-
-              student_enrolled_courses as StudentEnrolledCourse
-
-            WHERE 
-
-              StudentEnrolledCourse.year_term_id = $year_term_id AND 
-
-              StudentEnrolledCourse.visible = true
-
-          ) as StudentEnrolledCourse ON StudentEnrolledCourse.student_id = Student.id 
-
+ 
         WHERE
 
-          Student.visible = true AND
-
-          Student.program_id = $program_id AND 
-
-          Student.year_term_id = $year_term_id AND
-
-          CollegeProgram.visible = true AND 
+          Student.visible = true $program_id $year AND
 
           (
 
@@ -4931,9 +4895,16 @@ class ReportsTable extends Table
 
             Student.student_no LIKE '%$search%' OR  
 
+            College.name LIKE '%$search%' OR 
+
             CollegeProgram.name LIKE '%$search%'
 
           )
+
+        GROUP BY
+
+          Student.id
+
 
       ";
 
@@ -5308,6 +5279,7 @@ class ReportsTable extends Table
           ( 
 
             AwardeeManagement.student_name LIKE '%$search%' OR
+            
             AwardeeManagement.student_no LIKE '%$search%' 
           )
 
