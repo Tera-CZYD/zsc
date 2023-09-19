@@ -107,6 +107,8 @@ class PrintController extends AppController {
 
     $this->loadModel('Employees');
 
+    $this->InventoryProperties = TableRegistry::getTableLocator()->get('InventoryProperties');
+
 
     //sir raymond
 
@@ -20898,12 +20900,12 @@ class PrintController extends AppController {
   public function medicalMonthlyConsumption(){
 
     $conditions = array();
+    
+    $conditionDate = '';
 
     $conditions['search'] = '';
 
-    // search conditions
-
-    if($this->request->getQuery('search')){
+    if ($this->request->getQuery('search')!=null) {
 
       $search = $this->request->getQuery('search');
 
@@ -20913,19 +20915,22 @@ class PrintController extends AppController {
 
     }
 
-    $start = date('Y-m-d');
+    $start = date('Y-m-t');
 
     $end = date('Y-m-t');
 
-    $conditionDate = "AND DATE(ItemIssuance.date) >= '$start' AND DATE(ItemIssuance.date) <= '$end'";
+    $conditions['date'] = "AND DATE(PropertyLog.date) >= '$start' AND DATE(PropertyLog.date) <= '$end'";
 
-    if ($this->request->getQuery('startDate')) {
+    if ($this->request->getQuery('startDate')!=null) {
 
       $start = $this->request->getQuery('startDate'); 
 
       $end = $this->request->getQuery('endDate');
 
+      $conditions['date'] = "AND DATE(PropertyLog.date) >= '$start' AND DATE(PropertyLog.date) <= '$end'";
+
       $conditionDate = "AND DATE(ItemIssuance.date) >= '$start' AND DATE(ItemIssuance.date) <= '$end'";
+
 
     }
 
@@ -20998,7 +21003,7 @@ class PrintController extends AppController {
     $pdf->Cell(18,10,'Total',1,0,'C');
     $pdf->Cell(18,5,'Number','LTR',0,'C');
     $pdf->Cell(18,10,'Balance',1,0,'C');
-    $pdf->Cell(20,10,'Remkars',1,0,'C');
+    $pdf->Cell(20,10,'Remarks',1,0,'C');
     $pdf->Ln(5);
     $pdf->Cell(85,5,'',0,0,'C');
     $pdf->Cell(18,5,'Date','LBR',0,'C');
@@ -21010,7 +21015,7 @@ class PrintController extends AppController {
     $pdf->SetWidths(array(85,18,18,18,18,18,20));
     $pdf->SetAligns(array('L','C','C','C','C','C','C'));
 
-    if(!empty($tmpData)){
+    if(count($tmpData)>0){
 
       foreach ($tmpData as $key => $data){
 
@@ -21044,23 +21049,23 @@ class PrintController extends AppController {
 
         $total_issuances = $issuances[0]['number_issued'];
 
-        if(empty($issuances)){
+        if(count($issuances)>0){
 
           $total_issuances = 0;
 
         }
 
-        $inventory = $this->InventoryProperties->find('all', array(
+        $inventory = $this->InventoryProperties->find()
 
-          'conditions' => array(
+            ->where([
 
-            'InventoryProperty.visible' => true,
+                'visible' => 1,
 
-            'InventoryProperty.property_log_id' => $item_id
+                'property_log_id' => $item_id
 
-          )
+            ])
 
-        ));
+            ->all();
 
         $total_stock = 0;
 
@@ -21068,11 +21073,11 @@ class PrintController extends AppController {
 
         $stocks = '';
 
-        if(!empty($inventory)){
+        if(count($inventory)>0){
 
           foreach ($inventory as $keys => $values) {
             
-            $expiry_date .= fdate($values['expiry_date'],'m/d/Y')."\n";
+            $expiry_date .= $values['expiry_date']->format('m/d/Y')."\n";
 
             $stocks .= $values['stocks']."\n";
 
@@ -21123,7 +21128,7 @@ class PrintController extends AppController {
   
   }
 
-  public function medical_daily_treaments(){
+  public function medicalDailyTreaments(){
 
     $conditions = array();
 
@@ -21131,9 +21136,9 @@ class PrintController extends AppController {
 
     // search conditions
 
-    if(isset($this->request->query['search'])){
+    if($this->request->getQuery('search')){
 
-      $search = $this->request->query['search'];
+      $search = $this->request->getQuery('search');
 
       $search = strtolower($search);
 
@@ -21147,9 +21152,9 @@ class PrintController extends AppController {
 
     $condition = " AND DATE(ConsultationSub.date) = '$today'"; 
 
-    if (isset($this->request->query['date'])) {
+    if ($this->request->getQuery('date')) {
 
-      $search_date = $this->request->query['date'];
+      $search_date = $this->request->getQuery('date');
 
       $conditions['date'] = " AND DATE(ConsultationSub.date) = '$search_date'"; 
 
@@ -21159,11 +21164,11 @@ class PrintController extends AppController {
 
     //advance search
 
-    if (isset($this->request->query['startDate'])) {
+    if ($this->request->getQuery('startDate')) {
 
-      $start = $this->request->query['startDate']; 
+      $start = $this->request->getQuery('startDate'); 
 
-      $end = $this->request->query['endDate'];
+      $end = $this->request->getQuery('endDate');
 
       $conditions['date'] = " AND DATE(ConsultationSub.date) >= '$start' AND DATE(ConsultationSub.date) <= '$end'";
 
@@ -21171,9 +21176,7 @@ class PrintController extends AppController {
 
     }
 
-    $this->loadModel('Report');
-
-    $tmpData = $this->Report->query($this->Report->getAllMedicalDailyTreatment($conditions));
+    $tmpData = $this->Reports->getAllMedicalDailyTreatmentPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -21211,13 +21214,13 @@ class PrintController extends AppController {
     $pdf->SetWidths(array(10,60,45,45,45));
     $pdf->SetAligns(array('C','L','C','C','L'));
 
-    if(!empty($tmpData)){
+    if(count($tmpData)>0){
 
       foreach ($tmpData as $key => $data){
 
-        $consultation_id = $data['Report']['id'];
+        $consultation_id = $data['id'];
 
-        $consultation_sub = $this->ConsultationSub->query("
+        $tmp = "
 
           SELECT 
 
@@ -21233,7 +21236,11 @@ class PrintController extends AppController {
 
             ConsultationSub.consultation_id = $consultation_id
 
-        ");
+        ";
+
+        $connection = $this->ConsultationSubs->getConnection();
+
+        $consultation_sub = $connection->execute($tmp)->fetchAll('assoc');
 
         $ailments = '';
 
@@ -21241,15 +21248,15 @@ class PrintController extends AppController {
 
         $remarks = '';
 
-        if(!empty($consultation_sub)){
+        if(count($consultation_sub)>0){
 
           foreach ($consultation_sub as $keys => $value) {
 
-            $ailments .= $value['ConsultationSub']['chief_complaints']."\n";
+            $ailments .= $value['chief_complaints']."\n";
 
-            $treatments .= $value['ConsultationSub']['treatments']."\n";
+            $treatments .= $value['treatments']."\n";
 
-            $remarks .= $value['ConsultationSub']['remarks']."\n";
+            $remarks .= $value['remarks']."\n";
 
           }
 
@@ -21259,7 +21266,7 @@ class PrintController extends AppController {
 
           $key + 1,
 
-          $data['Report']['student_name'] != null ? $data['Report']['student_name'] : $data['Report']['employee_name'],
+          $data['student_name'] != null ? $data['student_name'] : $data['employee_name'],
 
           $ailments,
 
@@ -24154,6 +24161,105 @@ EQUIVALENT',1,'C',0);
           $data['property_name'],
 
           $data['type'],
+
+          fdate($data['date'],'m/d/Y'),
+
+        ));
+
+      }
+
+    }else{
+
+      $pdf->Cell(205,5,'No data available.',1,1,'C');
+
+    }
+
+    $pdf->output();
+    exit();
+  
+  }
+
+  public function consultationReport(){
+
+    $conditions = array();
+
+    $conditions['search'] = '';
+
+    if($this->request->getQuery('search')){
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+    }
+
+    $conditions['date'] = '';
+
+    if ($this->request->getQuery('date')) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(Consultation.date) = '$search_date'"; 
+
+    }
+
+    if ($this->request->getQuery('startDate')) {
+
+      $start = $this->request->getQuery('startDate'); 
+
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = " AND DATE(Consultation.date) >= '$start' AND DATE(Consultation.date) <= '$end'";
+
+    }
+
+    $tmpData = $this->Reports->getAllConsultationEmployeePrint($conditions);
+
+    $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
+
+    require("wordwrap.php");
+    $pdf = new ConductPDF();
+    $pdf->SetMargins(5,10,5);
+    $pdf->SetFooter(true);
+    $pdf->footerSystem = true;
+    $pdf->AliasNbPages();
+    $pdf->AddPage("P", "legal", 0);
+    $pdf->Image($this->base .'/assets/img/zam.png',6,10,25,25);
+    $pdf->SetFont("Times", 'B', 12);
+    $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,strtoupper($this->Global->Settings('lgu_name')),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->SetFont("Times", '', 12);
+    $pdf->Cell(0,5,$this->Global->Settings('address'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('telephone'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->Cell(0,5,'CONSULTATION REPORT',0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Arial", 'B', 9);
+    $pdf->Cell(10,5,'#',1,0,'C');
+    $pdf->Cell(115,5,'NAME',1,0,'C');
+    $pdf->Cell(80,5,'DATE',1,0,'C');
+    $pdf->Ln();
+    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetWidths(array(10,115,80));
+    $pdf->SetAligns(array('C','L','C'));
+
+    if(count($tmpData)>0){
+
+      foreach ($tmpData as $key => $data){
+
+        $pdf->RowLegalP(array(
+
+          $key + 1,
+
+          $data['student_name'],
 
           fdate($data['date'],'m/d/Y'),
 
