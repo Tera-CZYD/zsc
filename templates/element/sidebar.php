@@ -594,55 +594,55 @@
                 <li class="nav-link-side nav-faculty-masterlists"><a><i></i> Academic Report </a>
                   <ul class="nav child_menu_bot collapse collapse-faculty-masterlists">
                     <?php if (hasAccess('report academic report/faculty masterlists', $currentUser)): ?>
-                      <li class="nav-link-side nav-faculty-masterlists">
+                      <li class="nav-link-side nav-health nav-faculty-masterlists">
                         <a href="#/reports/academic-report/faculty-masterlists" onclick="change('faculty-masterlists')"> Faculty Masterlists </a>
                       </li>
                     <?php endif ?>
                   </ul>
                 </li>
 
-                <li class="nav-link-side nav-medical-services-report "><a><i></i> Health and Medical Services </a>
-                  <ul class="nav child_menu_bot collapse collapse-medical-services-report">
+                <li class="nav-link-side nav-medical-services-report nav-monthly-accomplishment nav-property-equipment nav-report-consumption nav-daily-treatments nav-report-consultation nav-consultation-employee nav-employee-frequency"><a><i></i> Health and Medical Services </a>
+                  <ul class="nav child_menu_bot collapse collapse-medical-services-report collapse-monthly-accomplishment collapse-property-equipment collapse-report-consumption collapse-daily-treatments collapse-report-consultation collapse-consultation-employee collapse-employee-frequency">
                     <?php if (hasAccess('health and medical service/index', $currentUser)): ?>
-                      <li class="nav-link-side nav-health">
+                      <li class="nav-link-side nav-health nav-monthly-accomplishment">
                         <a href="#/reports/medical-services/monthly-accomplishment" onclick="change('monthly-accomplishment')"> Monthly Accomplishments </a>
                       </li>
                     <?php endif ?>
                     <?php if (hasAccess('health and medical service/index', $currentUser)): ?>
-                      <li class="nav-link-side nav-health">
+                      <li class="nav-link-side nav-health nav-property-equipment">
                         <a href="#/reports/medical-services/property-equipment" onclick="change('property-equipment')"> Properties & Equipments </a>
                       </li>
                     <?php endif ?>
                     <?php if (hasAccess('health and medical service/index', $currentUser)): ?>
-                      <li class="nav-link-side nav-health">
-                        <a href="#/reports/medical-services/monthly-consumption" onclick="change('consumption-consumption')"> Consumption Report </a>
+                      <li class="nav-link-side nav-health nav-report-consumption">
+                        <a href="#/reports/medical-services/monthly-consumption" onclick="change('report-consumption')"> Consumption Report </a>
                       </li>
                     <?php endif ?>
                     <?php if (hasAccess('health and medical service/index', $currentUser)): ?>
-                      <li class="nav-link-side nav-health">
+                      <li class="nav-link-side nav-health nav-daily-treatments">
                         <a href="#/reports/medical-services/daily-treatments" onclick="change('daily-treatments')"> Daily Treatments </a>
                       </li>
                     <?php endif ?>
                     <?php if (hasAccess('health and medical service/index', $currentUser)): ?>
-                      <li class="nav-link-side nav-health">
+                      <li class="nav-link-side nav-health nav-report-consultation">
                         <a href="#/reports/medical-services/consultation" onclick="change('report-consultation')"> Consultation Report </a>
                       </li>
                     <?php endif ?>
                     <?php if (hasAccess('health and medical service/index', $currentUser)): ?>
-                      <li class="nav-link-side nav-health">
+                      <li class="nav-link-side nav-health nav-consultation-employee">
                         <a href="#/reports/medical-services/consultation-employee" onclick="change('consultation-employee')"> Employee Statistics Report </a>
                       </li>
                     <?php endif ?>
                     <?php if (hasAccess('health and medical service/index', $currentUser)): ?>
-                      <li class="nav-link-side nav-health">
+                      <li class="nav-link-side nav-health nav-employee-frequency">
                         <a href="#/reports/medical-services/employee-frequency" onclick="change('employee-frequency')"> Employee Consultation Frequency </a>
                       </li>
                     <?php endif ?>
                     </ul>
                 </li>
 
-                <li class="nav-link-side nav-subject-masterlists nav-enrollment-profile nav-enrollment-list nav-student-masterlist nav-academic-failures-list nav-student-club-list nav-student-ranking nav-promoted-student nav-reports-student-behavior nav-transcript-of-records nav-academic-list nav-list-academic-awardees nav-gwa"><a><i></i> Registrar </a>
-                  <ul class="nav child_menu_bot collapse collapse-subject-masterlists collapse-enrollment-profile collapse-enrollment-list collapse-student-masterlist collapse-academic-failures-list collapse-student-club-list collapse-student-ranking collapse-promoted-student collapse-reports-student-behavior collapse-transcript-of-records collapse-academic-list collapse-list-academic-awardees collapse-gwa" >
+                <li class="nav-link-side nav-subject-masterlists nav-enrollment-profile nav-enrollment-list nav-student-masterlist nav-academic-failures-list nav-student-club-list nav-student-ranking nav-promoted-student nav-reports-student-behavior nav-transcript-of-records nav-academic-list nav-list-academic-awardees nav-gwa nav-reports-student-behavior"><a><i></i> Registrar </a>
+                  <ul class="nav child_menu_bot collapse collapse-subject-masterlists collapse-enrollment-profile collapse-enrollment-list collapse-student-masterlist collapse-academic-failures-list collapse-student-club-list collapse-student-ranking collapse-promoted-student collapse-reports-student-behavior collapse-transcript-of-records collapse-academic-list collapse-list-academic-awardees collapse-gwa collapse-reports-student-behavior" >
                     <?php if (hasAccess('registrar /index', $currentUser)): ?>
                       <li class="nav-link-side nav-enrollment-profile">
                         <a href="#/reports/registrar/enrollment-profile" onclick="change('enrollment-profile')"> Enrollment Profile  </a>
@@ -690,7 +690,7 @@
                     <?php endif ?>
 
                     <?php if (hasAccess('report registrar/student behavior', $currentUser)): ?>
-                      <li class="nav-link-side nav-student-behavior">
+                      <li class="nav-link-side nav-reports-student-behavior">
                         <a href="#/reports/registrar/student-behavior" onclick="change('reports-student-behavior')"> Student Behavior </a>
                       </li>
                     <?php endif ?>
@@ -723,8 +723,8 @@
                     </ul>
                 </li>
 
-                <li class="nav-link-side nav-list-students nav-list-scholar-students"><a><i></i> Admission </a>
-                  <ul class="nav child_menu_bot collapse collapse-list-students collapse-list-scholar-students" >
+                <li class="nav-link-side nav-list-students nav-list-scholar-students nav-list-applicants"><a><i></i> Admission </a>
+                  <ul class="nav child_menu_bot collapse collapse-list-students collapse-list-scholar-students collapse-list-applicants" >
                     <?php if (hasAccess('report admission/list of students', $currentUser)): ?>
                       <li class="nav-link-side nav-list-students">
                         <a href="#/reports/admission/list-students" onclick="change('list-students')"> List of Students </a>
@@ -737,14 +737,14 @@
                     <?php endif ?>
 
                     <?php if (hasAccess('report admission/list-applicants', $currentUser)): ?>
-                      <li class="nav-link-side nav-list-scholar-students nav-applicant-list">
+                      <li class="nav-link-side nav-list-applicants">
                         <a href="#/reports/admission/list-applicants" onclick="change('list-applicants')"> List of Applicants </a>
                       </li>
                     <?php endif ?>
                     </ul>
                 </li>
 
-                <li class="nav-link-side nav-list-students nav-list-requested-form nav-list-gco-evaluation"><a><i></i> Guidance </a>
+                <li class="nav-link-side nav-list-requested-form nav-list-gco-evaluation"><a><i></i> Guidance </a>
                   <ul class="nav child_menu_bot collapse collapse-list-requested-form collapse-list-gco-evaluation " >
                     <?php if (hasAccess('report guidance/list of requested forms', $currentUser)): ?>
                       <li class="nav-link-side nav-list-requested-form">
@@ -753,7 +753,7 @@
                     <?php endif ?>
 
                     <?php if (hasAccess('report guidance/list of requested forms', $currentUser)): ?>
-                      <li class="nav-link-side nav-list-gco-evaluation' ">
+                      <li class="nav-link-side nav-list-gco-evaluation ">
                         <a href="#/reports/guidance/gco-evaluation" onclick="change('list-gco-evaluation')"> GCO Evaluation Report </a>
                       </li>
                     <?php endif ?>
@@ -761,20 +761,20 @@
                     </ul>
                 </li>
 
-                <li class="nav-link-side nav-learning-resource-report nav-report-bibliography nav-report-checkout nav-report-checkin"><a><i></i> Learning Resource Center  </a>
+                <li class="nav-link-side nav-learning-resource-report nav-report-bibliography nav-report-check-out nav-report-check-in"><a><i></i> Learning Resource Center  </a>
                   <ul class="nav child_menu_bot collapse collapse-learning-resource-center collapse-report-bibliography collapse-report-checkout collapse-report-checkin" >
                     <?php if (hasAccess('learning resource center/index', $currentUser)): ?>
-                      <li class="nav-link-side nav-bibliography">
+                      <li class="nav-link-side nav-report-bibliography">
                         <a href="#/reports/learning-resource-center/bibliographies" onclick="change('report-bibliography')"> Bibliography </a>
                       </li>
                       <?php endif ?>
                       <?php if (hasAccess('learning resource center/index', $currentUser)): ?>
-                      <li class="nav-link-side nav-check-out">
+                      <li class="nav-link-side nav-report-checkout">
                         <a href="#/reports/learning-resource-center/check-outs" onclick="change('report-checkout')"> Check-Out </a>
                       </li>
                       <?php endif ?>
                       <?php if (hasAccess('learning resource center/index', $currentUser)): ?>
-                      <li class="nav-link-side nav-check-ins">
+                      <li class="nav-link-side nav-report-checkin">
                         <a href="#/reports/learning-resource-center/check-ins" onclick="change('report-checkin')"> Check-In </a>
                       </li>           
 
