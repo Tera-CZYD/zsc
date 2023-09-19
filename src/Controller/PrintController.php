@@ -21445,7 +21445,7 @@ class PrintController extends AppController {
   
   }
 
-  public function requested_forms($id = null){
+  public function requestedForms($id = null){
 
     $data = $this->RequestForm->find('first', array(
 
