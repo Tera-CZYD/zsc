@@ -1756,7 +1756,7 @@ class ReportsTable extends Table
 
           $query = $this->getConnection()->prepare($sql);
 
-          var_dump($query);
+          // var_dump($query);
 
           $query->execute();
 
@@ -1884,6 +1884,8 @@ class ReportsTable extends Table
 
             Employee.*,
 
+            AcademicRank.rank,
+
            CONCAT(Employee.family_name, ', ', IFNULL(Employee.given_name,''),'', IFNULL(CONCAT(' ',Employee.middle_name), '')) as full_name,
 
            CONCAT(College.code,' - ',College.name) as college
@@ -1892,7 +1894,9 @@ class ReportsTable extends Table
 
             employees as Employee LEFT JOIN
 
-            colleges as College ON College.id = Employee.college_id
+            colleges as College ON College.id = Employee.college_id LEFT JOIN 
+
+            academic_ranks as AcademicRank ON Employee.academic_rank_id = AcademicRank.id
 
 
           WHERE 
@@ -2838,11 +2842,9 @@ class ReportsTable extends Table
 
         $date = @$conditions['date'];
         
-        $sql = "SELECT count(*) as count FROM (
+        $sql = " SELECT
 
-        SELECT
-
-          PropertyLog.id
+          count(*) as count
 
         FROM 
 
@@ -2850,7 +2852,7 @@ class ReportsTable extends Table
 
         WHERE
 
-          PropertyLog.visible = true AND 
+          PropertyLog.visible = true $date AND 
 
           (
 
@@ -2858,7 +2860,7 @@ class ReportsTable extends Table
 
           )
 
-      ) as Report ";
+         ";
 
         $query = $this->getConnection()->execute($sql)->fetch('assoc');
 
@@ -3068,7 +3070,7 @@ class ReportsTable extends Table
 
       $query = $this->getConnection()->prepare($sql);
 
-      var_dump($query);
+      // var_dump($query);
 
       $query->execute();
 
@@ -3228,8 +3230,6 @@ class ReportsTable extends Table
 
           (
 
-            Consultation.date LIKE '%$search%' OR 
-
             Consultation.employee_name LIKE '%$search%'
 
           )
@@ -3245,6 +3245,8 @@ class ReportsTable extends Table
       ";
 
       $query = $this->getConnection()->prepare($sql);
+
+      // var_dump($query);
 
       $query->execute();
 
@@ -3394,6 +3396,8 @@ class ReportsTable extends Table
       ";
 
       $query = $this->getConnection()->prepare($sql);
+
+      var_dump($query);
 
       $query->execute();
 

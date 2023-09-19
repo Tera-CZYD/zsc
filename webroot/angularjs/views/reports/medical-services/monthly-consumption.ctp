@@ -62,15 +62,17 @@
                   <td class="text-left uppercase">{{ (paginator.page - 1 ) * paginator.limit + $index + 1 }}</td>
                   <td class="text-left uppercase">{{ data.property_name }}</td>
                   <td class="text-center uppercase">
-                    <div ng-repeat="sub in data.inventory">{{ sub.InventoryProperty.expiry_date }}</div>
+                    <div ng-repeat="sub in data.inventory">{{ sub.expiry_date }}</div>
                   </td>
                   <td class="text-center uppercase">
-                    <div ng-repeat="sub in data.inventory">{{ sub.InventoryProperty.stocks }}</div>
+                    <div ng-repeat="sub in data.inventory">{{ sub.stocks }}</div>
                   </td>
                   <td class="text-center uppercase">{{ data.total_stock }}</td>
                   <td class="text-center uppercase">{{ data.number_issued }}</td>
                   <td class="text-center uppercase">{{ data.balance }}</td>
-                  <td class="text-center uppercase">{{ data.remarks }}</td>
+                  <td class="text-center uppercase">
+                    <div ng-repeat="sub in data.inventory">{{ sub.remarks }}</div>
+                  </td>
                 </tr>
                 <tr ng-show="datas == ''">
                   <td colspan="8" class="text-center">No available data</td>
