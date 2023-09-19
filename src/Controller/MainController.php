@@ -35,43 +35,7 @@ class MainController extends AppController {
     parent::initialize();
 
     $this->loadComponent('Global');
-
-    // $this->loadComponent('Auth', [
-
-    //   'authenticate' => [
-
-    //     'Form' => [
-
-    //       'fields' => [
-
-    //         'username' => 'username', // Replace with your username field
-
-    //         'password' => 'password' // Replace with your password field
-
-    //       ]
-
-    //     ]
-
-    //   ],
-
-    //   'loginAction' => [
-
-    //     'controller' => 'Pages',
-
-    //     'action' => 'login'
-
-    //   ],
-
-    //   'logoutRedirect' => [
-
-    //     'controller' => 'Pages',
-
-    //     'action' => 'login'
-
-    //   ]
-
-    // ]);
-
+    
   }
 
   public function beforeFilter(\Cake\Event\EventInterface $event) {
@@ -96,7 +60,21 @@ class MainController extends AppController {
 
       'continuingStudentLogin',
 
-      'changeProgram'
+      'changeProgram',
+
+      'facultyLogin',
+
+      'guidanceCounselingLogin',
+
+      'healthMedicalServicesLogin',
+
+      'learningResourceCenterLogin',
+
+      'deanLogin',
+
+      'vicePresidentLogin',
+
+      'cashierLogin',
 
     ));
 
@@ -180,7 +158,6 @@ class MainController extends AppController {
 
   }
 
-
   public function continuingStudentLogin() {
 
     $this->viewBuilder()->setLayout('freshmen-layout');
@@ -219,7 +196,145 @@ class MainController extends AppController {
 
     $this->set(compact('base', 'api', 'tmp'));
 
+  }
 
+  public function facultyLogin() {
+
+    $this->viewBuilder()->setLayout('faculty-layout');
+
+    $viewBuilder = new ViewBuilder();
+
+    $view = $viewBuilder->build();
+
+    $urlHelper = new UrlHelper($view);
+
+    $base = $urlHelper->build('/', ['fullBase' => true]);
+
+    $api = $base . 'api/';
+
+    $tmp = $base . 'template/';
+
+    $this->set(compact('base', 'api', 'tmp'));
+
+  }
+
+  public function guidanceCounselingLogin() {
+
+    $this->viewBuilder()->setLayout('guidance-layout');
+
+    $viewBuilder = new ViewBuilder();
+
+    $view = $viewBuilder->build();
+
+    $urlHelper = new UrlHelper($view);
+
+    $base = $urlHelper->build('/', ['fullBase' => true]);
+
+    $api = $base . 'api/';
+
+    $tmp = $base . 'template/';
+
+    $this->set(compact('base', 'api', 'tmp'));
+
+  }
+
+  public function healthMedicalServicesLogin() {
+
+    $this->viewBuilder()->setLayout('health-medical-services-layout');
+
+    $viewBuilder = new ViewBuilder();
+
+    $view = $viewBuilder->build();
+
+    $urlHelper = new UrlHelper($view);
+
+    $base = $urlHelper->build('/', ['fullBase' => true]);
+
+    $api = $base . 'api/';
+
+    $tmp = $base . 'template/';
+
+    $this->set(compact('base', 'api', 'tmp'));
+
+  }
+
+  public function learningResourceCenterLogin() {
+
+    $this->viewBuilder()->setLayout('learning-resource-center-layout');
+
+    $viewBuilder = new ViewBuilder();
+
+    $view = $viewBuilder->build();
+
+    $urlHelper = new UrlHelper($view);
+
+    $base = $urlHelper->build('/', ['fullBase' => true]);
+
+    $api = $base . 'api/';
+
+    $tmp = $base . 'template/';
+
+    $this->set(compact('base', 'api', 'tmp'));
+
+  }
+
+  public function deanLogin() {
+
+    $this->viewBuilder()->setLayout('dean-layout');
+
+    $viewBuilder = new ViewBuilder();
+
+    $view = $viewBuilder->build();
+
+    $urlHelper = new UrlHelper($view);
+
+    $base = $urlHelper->build('/', ['fullBase' => true]);
+
+    $api = $base . 'api/';
+
+    $tmp = $base . 'template/';
+
+    $this->set(compact('base', 'api', 'tmp'));
+
+  }
+
+  public function cashierLogin() {
+
+    $this->viewBuilder()->setLayout('cashier-layout');
+
+    $viewBuilder = new ViewBuilder();
+
+    $view = $viewBuilder->build();
+
+    $urlHelper = new UrlHelper($view);
+
+    $base = $urlHelper->build('/', ['fullBase' => true]);
+
+    $api = $base . 'api/';
+
+    $tmp = $base . 'template/';
+
+    $this->set(compact('base', 'api', 'tmp'));
+
+  }
+
+  public function vicePresidentLogin() {
+
+    $this->viewBuilder()->setLayout('vice-president-layout');
+
+    $viewBuilder = new ViewBuilder();
+
+    $view = $viewBuilder->build();
+
+    $urlHelper = new UrlHelper($view);
+
+    $base = $urlHelper->build('/', ['fullBase' => true]);
+
+    $api = $base . 'api/';
+
+    $tmp = $base . 'template/';
+
+    $this->set(compact('base', 'api', 'tmp'));
 
   }
 
@@ -261,39 +376,39 @@ class MainController extends AppController {
 
         $this->Global->monthlyApartelleBalance();
 
-          $this->Auth->setUser($user);
+        $this->Auth->setUser($user);
 
-          $userLogTable = TableRegistry::getTableLocator()->get('UserLogs');
+        $userLogTable = TableRegistry::getTableLocator()->get('UserLogs');
+      
+        $userLogEntity = $userLogTable->newEntity([
+
+          'userId' => $this->Auth->user('id'),
+
+          'action' => 'Log In',
+
+          'description' => 'logged in - ' . $this->Auth->user('first_name').' '.$this->Auth->user('last_name'),
+
+          'code' => ' ',
+
+          'created' => date('Y-m-d H:i:s'),
+
+          'modified' => date('Y-m-d H:i:s')
+
+        ]);
         
-          $userLogEntity = $userLogTable->newEntity([
+        $userLogTable->save($userLogEntity);
 
-              'userId' => $this->Auth->user('id'),
+        $this->viewBuilder()->setLayout('default');
 
-              'action' => 'Log In',
+        $redirect = $this->request->getQuery('redirect', [
 
-              'description' => 'logged in - ' . $this->Auth->user('name'),
+          'controller' => 'Main',
 
-              'code' => ' ',
+          'action' => 'index',
 
-              'created' => date('Y-m-d H:i:s'),
+        ]);
 
-              'modified' => date('Y-m-d H:i:s')
-
-          ]);
-          
-          $userLogTable->save($userLogEntity);
-
-          $this->viewBuilder()->setLayout('default');
-
-          $redirect = $this->request->getQuery('redirect', [
-
-            'controller' => 'Main',
-
-            'action' => 'index',
-
-          ]);
-
-          return $this->redirect($redirect);
+        return $this->redirect($redirect);
 
       } else {
 
@@ -301,7 +416,7 @@ class MainController extends AppController {
 
       }
 
-    }
+    } 
 
   }
   
