@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
   function handleAccess(elementId, permissionCode, currentUser) {
     const element = document.getElementById(elementId);
@@ -20,7 +20,7 @@
   handleAccess('pageDelete', 'transferee/delete', currentUser);
 
 </script>
-
+ -->
 <div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
@@ -46,9 +46,19 @@
                 <div class="col-md-12">
                   <div class="row">
                     <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
+<<<<<<< HEAD
                         <a id="pageAdd" href="#/registrar/transferee/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
                         <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
                         <button id="pagePrint" ng-click="print()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
+=======
+                      <?php if (hasAccess('transferee/add', $currentUser)): ?>
+                        <a href="#/registrar/admin-transferee/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
+                      <?php endif ?>
+                      <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
+                      <?php if (hasAccess('transferee/print', $currentUser)): ?>
+                        <button ng-click="print()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                      <?php endif ?>
+>>>>>>> ff4a922d572eefc3129fc29bd99e9172c07c3408
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
                     <div class="col-md-4 col-xs-12 pull-right">
@@ -85,8 +95,8 @@
                           <td class="text-center">{{ data.date }}</td>
                           <td>
                             <div class="btn-group btn-group-xs">
-                              <a id="pageView" href="#/registrar/transferee/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                              <a id="pageEdit" href="#/registrar/transferee/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
+                              <a id="pageView" href="#/registrar/admin-transferee/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                              <a id="pageEdit" href="#/registrar/admin-transferee/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
                               <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
                             </div>
                           </td>

@@ -24,6 +24,13 @@
 
           <div class="clearfix"></div><hr>
 
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> SERIAL NUMBER <i class="required">*</i></label>
+                <input type="text" class="form-control" autocomplete="false" ng-model="data.ParticipantEvaluationActivity.serial_number" data-validation-engine="validate[required]">
+              </div>
+            </div>
+
             <div class="col-md-12">
               <div class="form-group">
                 <label> ACTIVITY <i class="required">*</i></label>

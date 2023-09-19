@@ -29,6 +29,10 @@
             <div class="table-responsive">
               <table class="table table-striped">
                 <tr>
+                  <th class="text-right"> SERIAL NUMBER : </th>
+                  <td class="italic">{{ data.MedicalStudentProfile.serial_number }}</td>
+                </tr>
+                <tr>
                   <th class="text-right" style="width:15%"> STUDENT NAME : </th>
                   <td class="italic">{{ data.MedicalStudentProfile.student_name }}</td>
                 </tr>

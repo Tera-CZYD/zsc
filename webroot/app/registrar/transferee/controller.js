@@ -348,7 +348,7 @@ app.controller('TransfereeAddController', function($scope, Transferee, Select) {
 
           });
 
-          window.location = '#/admission/transferee';
+          window.location = '#/registrar/transferee';
 
         } else {
 
@@ -665,7 +665,7 @@ app.controller('TransfereeEditController', function($scope, $routeParams, Transf
 
           });
 
-          window.location = '#/admission/transferee';
+          window.location = '#/registrar/transferee';
 
         } else {
 
@@ -1147,7 +1147,7 @@ app.controller('AdminTransfereeAddController', function($scope, Transferee, Sele
 
           });
 
-          window.location = '#/admission/transferee';
+          window.location = '#/registrar/admin-transferee';
 
         } else {
 
@@ -1288,7 +1288,7 @@ app.controller('AdminTransfereeViewController', function($scope, $routeParams, T
 
             });
 
-            window.location = "#/admission/transferee";
+            window.location = "#/registrar/admin-transferee";
 
           }
 
@@ -1464,7 +1464,7 @@ app.controller('AdminTransfereeEditController', function($scope, $routeParams, T
 
           });
 
-          window.location = '#/admission/transferee';
+          window.location = '#/registrar/admin-transferee';
 
         } else {
 

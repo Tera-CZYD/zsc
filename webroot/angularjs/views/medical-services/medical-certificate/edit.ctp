@@ -25,6 +25,12 @@
         <hr>
         <form id="form">
           <div class="row">
+            <div class="col-md-9">
+              <div class="form-group">
+                <label> SERIAL NUMBER </label>
+                <input type="text" class="form-control"ng-model="data.MedicalCertificate.serial_number">
+              </div> 
+            </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label> CONTROL NO. </label>

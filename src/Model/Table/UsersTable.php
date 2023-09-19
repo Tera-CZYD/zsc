@@ -97,7 +97,7 @@ class UsersTable extends Table{
 
       $result = [
 
-        'data' => $data,
+        'data' => $existing,
 
         'ok' => false,
 
@@ -106,6 +106,10 @@ class UsersTable extends Table{
       ];
 
     } else {
+
+      unset($data['role']);
+      
+      unset($data['user_permissions']);
 
       $entity = $this->newEntity($data);
 

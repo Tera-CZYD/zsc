@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
   function handleAccess(elementId, permissionCode, currentUser) {
     const element = document.getElementById(elementId);
@@ -19,7 +19,7 @@
   handleAccess('pageDelete', 'gco evaluation/delete', currentUser);
 
 </script>
-
+ -->
 <div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
