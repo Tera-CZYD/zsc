@@ -1132,7 +1132,7 @@ class ReportsController extends AppController {
         $item_id = $data['id'];
 
         $issuancesQuery = $this->ItemIssuance->find();
-        
+
       	$issuancesQuery->select([
 
     	    'number_issued' => $issuancesQuery->func()->coalesce([
@@ -3014,7 +3014,7 @@ class ReportsController extends AppController {
 
         'id'                 => $data['id'],
 
-        'name'  =>  $data['student_name'],
+        'name'  =>  $data['employee_name'],
 
         'date' => fdate($data['date'],'m/d/Y')
 

@@ -24259,7 +24259,7 @@ EQUIVALENT',1,'C',0);
 
           $key + 1,
 
-          $data['student_name'],
+          $data['employee_name'],
 
           fdate($data['date'],'m/d/Y'),
 

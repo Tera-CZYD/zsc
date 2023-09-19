@@ -3811,7 +3811,7 @@ class ReportsTable extends Table
 
         FROM 
 
-          consultations as Consultation
+          consultations as Consultation 
 
         WHERE 
 
@@ -3820,8 +3820,6 @@ class ReportsTable extends Table
           Consultation.employee_id IS NOT NULL AND
 
           (
-
-            Consultation.date LIKE '%$search%' OR 
 
             Consultation.employee_name LIKE '%$search%'
 
@@ -3883,7 +3881,7 @@ class ReportsTable extends Table
 
       $query = $this->getConnection()->prepare($sql);
 
-      var_dump($query);
+      // var_dump($query);
 
       $query->execute();
 
