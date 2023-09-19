@@ -4,13 +4,10 @@ app.config(function($routeProvider) {
 
   .when('/dashboard', {
 
-    templateUrl: 'angularjs/views/dashboard/student-dashboard.ctp',
+    templateUrl: 'angularjs/views/dashboard/' + dashboard,
 
     controller: 'DashboardController',
 
   });
 
 });
-
-
-
