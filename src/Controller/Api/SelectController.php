@@ -2775,9 +2775,9 @@ class SelectController extends AppController {
 
       $user = $this->Auth->user();
 
-      $student_data = $this->Students->get($user['studentId']);
-
       if($user['roleId'] == 13){ // STUDENT
+
+        $student_data = $this->Students->get($user['studentId']);
 
         $id='';
 

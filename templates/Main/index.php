@@ -2,28 +2,43 @@
 <div class="container body">
   <div class="main_container">
 
-  
     <?php if($currentUser['role']['code'] == 'Student'){  ?>
+
+      <script>
+        var dashboard = 'student-dashboard.ctp';
+      </script>
         
-      <?php echo $this->element('sidebar-student'); ?>
+      <?php echo $this->element('sidebar-student');
     
-    <?php }elseif($currentUser['role']['code'] == 'Enrollee'){ ?>
+    }elseif($currentUser['role']['code'] == 'Enrollee'){ 
 
-      <?php echo $this->element('sidebar-enrollee') ?>
+      echo $this->element('sidebar-enrollee');
 
-    <?php }else if ($currentUser['role']['code'] == 'Dean') { ?>
+    }else if ($currentUser['role']['code'] == 'Dean') { ?>
 
-      <?php echo $this->element('sidebar-dean') ?>
+      <script>
+        var dashboard = 'dean-dashboard.ctp';
+      </script>
 
-    <?php }else if ($currentUser['role']['code'] == 'Vice President') { ?>
+      <?php echo $this->element('sidebar-dean');
 
-      <?php echo $this->element('sidebar-vice') ?>
+    }else if ($currentUser['role']['code'] == 'Vice President') { 
 
-    <?php }else if ($currentUser['role']['code'] == 'Faculty' && $currentUser['employee']['academic_rank_id'] == 2) { ?>
+      echo $this->element('sidebar-vice'); 
+
+    }else if ($currentUser['role']['code'] == 'Faculty') { ?>
+
+      <script>
+        var dashboard = 'faculty-dashboard.ctp';
+      </script>
 
       <?php echo $this->element('sidebar-faculty') ?>
 
     <?php }else{ ?>
+
+      <script>
+        var dashboard = 'dashboard.ctp';
+      </script>
 
       <?php echo $this->element('sidebar') ?>
 
