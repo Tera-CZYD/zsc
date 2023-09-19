@@ -26,9 +26,11 @@ class ReportsController extends AppController {
 
     $this->CheckOutSub = TableRegistry::getTableLocator()->get('CheckOutSubs');
 
+    $this->CheckInSub = TableRegistry::getTableLocator()->get('CheckInSubs');
+
   }
 
-  public function student_club_list(){
+  public function studentClubList(){
 
     //with pagination
 
@@ -1380,7 +1382,7 @@ class ReportsController extends AppController {
   }
 
 
-  public function enrollment_profile() {
+  public function enrollmentProfile() {
 
     //with pagination
 
@@ -1655,7 +1657,7 @@ class ReportsController extends AppController {
 
   }
 
-  public function academic_failures_list() {
+  public function academicFailuresList() {
 
     //with pagination
 
@@ -2660,6 +2662,131 @@ class ReportsController extends AppController {
         'email'              => $data['email'],
 
         'date_borrowed'      => fdate($data['date_borrowed'],'m/d/Y'),
+
+        'subs'                => $sub
+
+       );
+
+    }
+
+    $response = [
+
+      'ok' => true,
+
+      'data' => $datas,
+
+      'paginator' => $paginator,
+
+      'conditionsPrint' => $conditionsPrint
+
+    ];
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+  }
+
+  public function listCheckins() {
+
+    //with pagination
+
+    $page = $this->request->getQuery('page', 1);
+
+    $conditions = array();
+    
+    $conditionsPrint = '';
+
+    $conditions['search'] = '';
+
+    if($this->request->getQuery('search')){
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+      $conditionsPrint .= '&search='.$search;
+
+    }
+
+    $conditions['date'] = '';
+
+    if ($this->request->getQuery('date')) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(CheckIn.date_borrowed) = '$search_date'"; 
+
+      $conditionsPrint .= '&date='.$search_date;
+
+    }
+
+    if ($this->request->getQuery('startDate')) {
+
+      $start = $this->request->getQuery('startDate'); 
+
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = " AND DATE(CheckIn.date_borrowed) >= '$start' AND DATE(CheckIn.date_borrowed) <= '$end'";
+
+      $conditionsPrint .= '&startDate='.$start.'&endDate='.$end;
+
+    }
+    
+    $limit = 25;
+
+    $tmpData = $this->Reports->paginate($this->Reports->getAllCheckin($conditions, $limit, $page), [
+
+      'extra' => [
+
+        'conditions' => $conditions,
+
+        'type'   => 'check-in'
+
+      ],
+
+      'page' => $page,
+
+      'limit' => $limit
+
+    ]);
+
+    $checkin = $tmpData['data'];
+
+    $paginator = $tmpData['pagination'];
+
+    $datas = [];
+
+    foreach ($checkin as $data) {
+
+        $sub = $this->CheckInSub->find()
+        
+          ->where([
+            
+            'visible' => 1,
+
+            'check_in_id' => $data['id'],
+
+          ])
+        ->all();
+
+        $datas[] = array(
+
+        'id'                 => $data['id'],
+
+        'library_id_number'  => $data['library_id_number'],
+
+        'code'               => $data['code'],
+
+        'member_name'        => $data['member_name'],
+
+        'email'              => $data['email'],
+
+        'date_returned'      => fdate($data['date_returned'],'m/d/Y'),
 
         'subs'                => $sub
 
@@ -3706,6 +3833,12 @@ class ReportsController extends AppController {
 
           'code'      => $data['code'],
 
+          'call_number1'      => $data['call_number1'],
+
+          'call_number2'      => $data['call_number2'],
+
+          'call_number3'      => $data['call_number3'],
+
           'dueback'   => date('m/d/Y',strtotime($data['dueback'])),
 
           'title'      => $data['title'],
@@ -3740,6 +3873,123 @@ class ReportsController extends AppController {
     $this->response->getBody()->write(json_encode($response));
 
     return $this->response;
+
+  }
+
+
+  public function subjectMasterlists() {
+
+    //with pagination
+
+    $page = isset($this->request->query['page'])? $this->request->query['page'] : 1;
+
+    $conditions = array();
+    
+    $conditionsPrint = '';
+
+    $conditions['search'] = '';
+
+    // search conditions
+
+    if($this->request->getQuery('search') != null){
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+      $conditionsPrint .= '&search='.$search;
+
+    }
+
+    $conditions['college_id'] = '';
+
+    if ($this->request->getQuery('college_id') != null) {
+
+      $college_id = $this->request->getQuery('college_id'); 
+
+      $conditions['college_id'] = " AND College.college_id = $college_id";
+
+      $conditionsPrint .= '&college_id='.$college_id;
+
+    }
+
+    $conditions['college_program_id'] = "AND CollegeProgramCourse.college_program_id IS NULL";
+
+    if ($this->request->getQuery('college_program_id') != null) {
+
+      $college_program_id = $this->request->getQuery('college_program_id'); 
+
+      $conditions['college_program_id'] = " AND CollegeProgramCourse.college_program_id = $college_program_id";
+
+      $conditionsPrint .= '&college_program_id='.$college_program_id;
+
+    }
+
+    $limit = 25;
+
+    $tmpData = $this->Reports->paginate($this->Reports->getAllSubjectMasterList($conditions, $limit, $page), [
+
+      'extra' => [
+
+        'conditions' => $conditions,
+
+        'type'   => 'subject-masterlist'
+
+      ],
+
+      'page' => $page,
+
+      'limit' => $limit
+
+    ]);
+
+    $subject_masterlists = $tmpData['data'];
+
+    $paginator = $tmpData['pagination'];
+
+    $datas = array();
+
+    if(!empty($subject_masterlists)){
+
+      foreach ($subject_masterlists as $data) {
+
+        $datas[] = array(
+
+          'course'   => $data['course'],
+
+        );
+
+      }
+
+    }
+
+    $response = [
+
+      'ok' => true,
+
+      'data' => $datas,
+
+      'paginator' => $paginator,
+
+      'conditionsPrint' => $conditionsPrint
+
+    ];
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+    $this->set(array(
+
+      'response'=>$response,
+
+      '_serialize'=>'response'
+
+    ));
 
   }
 

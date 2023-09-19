@@ -315,7 +315,314 @@ class ReportsTable extends Table
     }
 
 
+    public function getAllCheckin($conditions, $limit, $page)
+    {
+
+      $search = strtolower(@$conditions['search']);
+
+      $date = @$conditions['date'];
+
+      $borrower_id = @$conditions['borrower_id'];
+
+      $offset = ($page - 1) * $limit;
+
+      $sql = "
+
+        SELECT 
+
+          CheckIn.*,
+
+          LearningResourceMember.code
+
+        FROM 
+
+          check_ins as CheckIn LEFT JOIN
+
+          learning_resource_members as LearningResourceMember ON CheckIn.learning_resource_member_id = LearningResourceMember.id
+
+        WHERE 
+
+          CheckIn.visible = true $date AND 
+
+          (
+
+            CheckIn.library_id_number LIKE '%$search%' OR 
+
+            CheckIn.member_name LIKE '%$search%' OR 
+
+            CheckIn.email LIKE '%$search%'      
+
+          )
+
+        ORDER BY 
+
+          CheckIn.id DESC
+
+        LIMIT
+
+          $limit OFFSET $offset
+
+      ";
+
+      $query = $this->getConnection()->prepare($sql);
+
+      $query->execute();
+
+      return $query;
+      
+    }
+
+    public function getAllCheckinPrint($conditions)
+    {
+
+       $search = strtolower(@$conditions['search']);
+
+      $date = @$conditions['date'];
+
+      $borrower_id = @$conditions['borrower_id'];
+
+      $sql = "
+
+        SELECT 
+
+          CheckIn.*,
+
+          LearningResourceMember.code
+
+        FROM 
+
+          check_ins as CheckIn LEFT JOIN
+
+          learning_resource_members as LearningResourceMember ON CheckIn.learning_resource_member_id = LearningResourceMember.id
+
+        WHERE 
+
+          CheckIn.visible = true $date AND 
+
+          (
+
+            CheckIn.library_id_number LIKE '%$search%' OR 
+
+            CheckIn.member_name LIKE '%$search%' OR 
+
+            CheckIn.email LIKE '%$search%'      
+
+          )
+
+        ORDER BY 
+
+          CheckIn.id DESC
+
+      ";
+
+      $query = $this->getConnection()->prepare($sql);
+
+      $query->execute();
+
+      return $query;
+    }
+
+    public function countAllCheckin($conditions = []): string
+    {
+
+      $search = strtolower(@$conditions['search']);
+
+      $date = @$conditions['date'];
+
+      $borrower_id = @$conditions['borrower_id'];
+
+      $sql = "
+
+        SELECT 
+
+          count(*) as count
+
+        FROM 
+
+          check_ins as CheckIn LEFT JOIN
+
+          learning_resource_members as LearningResourceMember ON CheckIn.learning_resource_member_id = LearningResourceMember.id
+
+        WHERE 
+
+          CheckIn.visible = true $date AND 
+
+          (
+
+            CheckIn.library_id_number LIKE '%$search%' OR 
+
+            CheckIn.member_name LIKE '%$search%' OR 
+
+            CheckIn.email LIKE '%$search%'      
+
+          )
+
+        ORDER BY 
+
+          CheckIn.id DESC
+
+      ";
+
+      $query = $this->getConnection()->execute($sql)->fetch('assoc');
+
+      return $query['count'];
+
+    }
+
+
     // Registrar
+
+      public function getAllSubjectMasterListPrint($conditions){
+
+        $search = strtolower(@$conditions['search']);
+
+        $date = @$conditions['date'];
+
+        $college_id = @$conditions['college_id'];
+
+        $college_program_id = @$conditions['college_program_id'];
+
+        $sql =  "
+
+          SELECT 
+
+            CollegeProgramCourse.*
+
+          FROM 
+
+            college_program_courses as CollegeProgramCourse LEFT JOIN
+
+            college_programs as CollegeProgram ON CollegeProgram.id = CollegeProgramCourse.college_program_id LEFT JOIN
+
+            courses as Course ON Course.id = CollegeProgramCourse.course_id
+
+
+          WHERE 
+
+            CollegeProgramCourse.visible = true $college_program_id AND
+
+            CollegeProgramCourse.visible = true AND 
+
+            ( 
+
+              CollegeProgramCourse.course LIKE '%$search%'
+
+            )
+
+          ORDER BY 
+
+            CollegeProgramCourse.id ASC
+
+        ";
+
+        $query = $this->getConnection()->prepare($sql);
+
+        $query->execute();
+
+        return $query;
+        
+      }
+
+      public function getAllSubjectMasterList($conditions, $limit, $page){
+
+        $search = strtolower(@$conditions['search']);
+
+        $date = @$conditions['date'];
+
+        $college_id = @$conditions['college_id'];
+
+        $college_program_id = @$conditions['college_program_id'];
+
+        $offset = ($page - 1) * $limit;
+
+        $sql =  "
+
+          SELECT 
+
+            CollegeProgramCourse.*
+
+          FROM 
+
+            college_program_courses as CollegeProgramCourse LEFT JOIN
+
+            college_programs as CollegeProgram ON CollegeProgram.id = CollegeProgramCourse.college_program_id LEFT JOIN
+
+            courses as Course ON Course.id = CollegeProgramCourse.course_id
+
+
+          WHERE 
+
+            CollegeProgramCourse.visible = true $college_program_id AND
+
+            CollegeProgramCourse.visible = true AND 
+
+            ( 
+
+              CollegeProgramCourse.course LIKE '%$search%'
+
+            )
+
+          ORDER BY 
+
+            CollegeProgramCourse.id ASC
+
+          LIMIT
+
+            $limit OFFSET $offset
+
+        ";
+
+        $query = $this->getConnection()->prepare($sql);
+
+        $query->execute();
+
+        return $query;
+        
+      }
+
+      public function countAllSubjectMasterList($conditions = []): string{
+
+        $search = strtolower(@$conditions['search']);
+
+        $date = @$conditions['date'];
+
+        $college_id = @$conditions['college_id'];
+
+        $college_program_id = @$conditions['college_program_id'];
+        
+        $sql = "
+
+          SELECT
+
+            count(*) as count
+
+          FROM 
+
+            college_program_courses as CollegeProgramCourse LEFT JOIN
+
+            college_programs as CollegeProgram ON CollegeProgram.id = CollegeProgramCourse.college_program_id LEFT JOIN
+
+            courses as Course ON Course.id = CollegeProgramCourse.course_id
+
+          WHERE 
+
+            CollegeProgramCourse.visible = true $date $college_program_id AND
+
+            CollegeProgramCourse.visible = true AND 
+
+            ( 
+
+              CollegeProgramCourse.course LIKE '%$search%'
+
+            )
+
+        ";
+
+        $query = $this->getConnection()->execute($sql)->fetch('assoc');
+
+        return $query['count'];
+
+      }
 
       public function getAllStudentRankingPrint($conditions) {
 
@@ -3397,7 +3704,7 @@ class ReportsTable extends Table
 
       $query = $this->getConnection()->prepare($sql);
 
-      var_dump($query);
+      // var_dump($query);
 
       $query->execute();
 
@@ -5217,6 +5524,12 @@ class ReportsTable extends Table
 
       $paginateCount = $this->countAllCheckout($conditions);
 
+    }else if($extra['type'] == 'check-in'){
+
+      $result = $this->getAllCheckin($conditions, $limit, $page)->fetchAll('assoc');
+
+      $paginateCount = $this->countAllCheckin($conditions);
+
     } else if($extra['type'] == 'student-ranking'){
 
       $result = $this->getAllStudentRanking($conditions, $limit, $page)->fetchAll('assoc');
@@ -5318,6 +5631,12 @@ class ReportsTable extends Table
       $result = $this->getAllListInventoryBibliography($conditions, $limit, $page)->fetchAll('assoc');
 
       $paginateCount = $this->countAllListInventoryBibliography($conditions);
+
+    }else if($extra['type'] == 'subject-masterlist'){
+
+      $result = $this->getAllSubjectMasterList($conditions, $limit, $page)->fetchAll('assoc');
+
+      $paginateCount = $this->countAllSubjectMasterList($conditions);
 
     }
 

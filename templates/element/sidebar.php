@@ -641,8 +641,8 @@
                     </ul>
                 </li>
 
-                <li class="nav-link-side nav-subject-masterlists nav-enrollment-profile nav-enrollment-list nav-student-masterlist nav-academic-failures-list nav-student-club-list nav-student-ranking nav-promoted-student nav-student-behavior nav-transcript-of-records nav-academic-list nav-list-academic-awardees nav-gwa"><a><i></i> Registrar </a>
-                  <ul class="nav child_menu_bot collapse collapse-subject-masterlists collapse-enrollment-profile collapse-enrollment-list collapse-student-masterlist collapse-academic-failures-list collapse-student-club-list collapse-student-ranking collapse-promoted-student collapse-student-behavior collapse-transcript-of-records collapse-academic-list collapse-list-academic-awardees collapse-gwa" >
+                <li class="nav-link-side nav-subject-masterlists nav-enrollment-profile nav-enrollment-list nav-student-masterlist nav-academic-failures-list nav-student-club-list nav-student-ranking nav-promoted-student nav-reports-student-behavior nav-transcript-of-records nav-academic-list nav-list-academic-awardees nav-gwa"><a><i></i> Registrar </a>
+                  <ul class="nav child_menu_bot collapse collapse-subject-masterlists collapse-enrollment-profile collapse-enrollment-list collapse-student-masterlist collapse-academic-failures-list collapse-student-club-list collapse-student-ranking collapse-promoted-student collapse-reports-student-behavior collapse-transcript-of-records collapse-academic-list collapse-list-academic-awardees collapse-gwa" >
                     <?php if (hasAccess('registrar /index', $currentUser)): ?>
                       <li class="nav-link-side nav-enrollment-profile">
                         <a href="#/reports/registrar/enrollment-profile" onclick="change('enrollment-profile')"> Enrollment Profile  </a>
@@ -691,7 +691,7 @@
 
                     <?php if (hasAccess('report registrar/student behavior', $currentUser)): ?>
                       <li class="nav-link-side nav-student-behavior">
-                        <a href="#/reports/registrar/student-behavior" onclick="change('student-behavior')"> Student Behavior </a>
+                        <a href="#/reports/registrar/student-behavior" onclick="change('reports-student-behavior')"> Student Behavior </a>
                       </li>
                     <?php endif ?>
 
@@ -765,17 +765,17 @@
                   <ul class="nav child_menu_bot collapse collapse-learning-resource-center collapse-report-bibliography collapse-report-checkout collapse-report-checkin" >
                     <?php if (hasAccess('learning resource center/index', $currentUser)): ?>
                       <li class="nav-link-side nav-bibliography">
-                        <a href="#/reports/learning-resource-center/bibliographies/index" onclick="change('report-bibliography')"> Bibliography </a>
+                        <a href="#/reports/learning-resource-center/bibliographies" onclick="change('report-bibliography')"> Bibliography </a>
                       </li>
                       <?php endif ?>
                       <?php if (hasAccess('learning resource center/index', $currentUser)): ?>
                       <li class="nav-link-side nav-check-out">
-                        <a href="#/reports/learning-resource-center/check-outs/index" onclick="change('report-checkout')"> Check-Out </a>
+                        <a href="#/reports/learning-resource-center/check-outs" onclick="change('report-checkout')"> Check-Out </a>
                       </li>
                       <?php endif ?>
                       <?php if (hasAccess('learning resource center/index', $currentUser)): ?>
                       <li class="nav-link-side nav-check-ins">
-                        <a href="#/reports/learning-resource-center/check-ins/index" onclick="change('report-checkin')"> Check-In </a>
+                        <a href="#/reports/learning-resource-center/check-ins" onclick="change('report-checkin')"> Check-In </a>
                       </li>           
 
                     </ul>
