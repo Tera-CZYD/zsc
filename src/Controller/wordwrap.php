@@ -351,7 +351,7 @@ class ConductPDF extends FPDF {
 
       if($this->footerSystem){
 
-        $this->Image('https://esmiszscmst.mycreativepanda.ph/assets/img/zscmst-qr.png',8,$this->getY()-5,12,12);
+        // $this->Image('https://esmiszscmst.mycreativepanda.ph/assets/img/zscmst-qr.png',8,$this->getY()-5,12,12);
 
         $this->Cell(0,5,'This is a system generated report.',0,1,'C');  
 

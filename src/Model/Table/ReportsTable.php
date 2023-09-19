@@ -2167,6 +2167,84 @@ class ReportsTable extends Table
 
       }
 
+      public function getAllFacultyMasterlistPrint($conditions)
+      {
+
+        $search = strtolower(@$conditions['search']);
+
+        $date = @$conditions['date'];
+
+        $term_id = @$conditions['term_id'];
+
+        $college_id = @$conditions['college_id'];
+
+        $department_id = @$conditions['department_id'];
+
+        $program_id = @$conditions['program_id'];
+
+          // Your SQL query here, make sure to adjust table names and columns
+          $sql =  " 
+
+            SELECT 
+
+            Employee.*,
+
+            AcademicRank.rank,
+
+           CONCAT(Employee.family_name, ', ', IFNULL(Employee.given_name,''),'', IFNULL(CONCAT(' ',Employee.middle_name), '')) as full_name,
+
+           CONCAT(College.code,' - ',College.name) as college
+
+          FROM 
+
+            employees as Employee LEFT JOIN
+
+            colleges as College ON College.id = Employee.college_id LEFT JOIN 
+
+            academic_ranks as AcademicRank ON Employee.academic_rank_id = AcademicRank.id
+
+
+          WHERE 
+
+            Employee.visible = true $college_id AND
+
+            Employee.active = true AND
+
+            College.visible = true AND
+
+          ( 
+
+            Employee.code     LIKE  '%$search%' OR
+
+            Employee.family_name     LIKE  '%$search%' OR
+
+            Employee.given_name     LIKE  '%$search%' OR
+
+            Employee.middle_name     LIKE  '%$search%' OR
+
+            College.code     LIKE  '%$search%' OR
+
+            College.name     LIKE  '%$search%'
+
+          )
+
+        GROUP BY
+
+          Employee.id
+
+        ORDER BY 
+
+          full_name ASC
+
+         ";
+
+          $query = $this->getConnection()->prepare($sql);
+
+          $query->execute();
+
+          return $query;
+      }
+
       public function getAllFacultyMasterlist($conditions, $limit, $page)
       {
 
@@ -2864,6 +2942,165 @@ class ReportsTable extends Table
         return $query;
     }
 
+    public function getAllMedicalMonthlyAccomplishmentPrint($conditions)
+    {
+
+      $search = strtolower(@$conditions['search']);
+
+      $date = @$conditions['date'];
+
+        // Your SQL query here, make sure to adjust table names and columns
+        $sql =  " SELECT * FROM (
+
+        SELECT
+
+          IllnessRecommendation.ailment,
+
+          IFNULL(StudentTreated.count,0) as studentTreated,
+
+          IFNULL(EmployeeTreated.count,0) as employeeTreated,
+
+          IFNULL(StudentTreated.count,0) + IFNULL(EmployeeTreated.count,0) as totalTreated,
+
+          IFNULL(StudentRerred.count,0) as studentReferred,
+
+          IFNULL(EmployeeRerred.count,0) as employeeReferred,
+
+          IFNULL(StudentRerred.count,0) + IFNULL(EmployeeRerred.count,0) as totalReferred,
+
+          IFNULL(StudentTreated.count,0) + IFNULL(EmployeeTreated.count,0) + IFNULL(StudentRerred.count,0) + IFNULL(EmployeeRerred.count,0) as remarks
+
+        FROM 
+
+          illness_recommendations as IllnessRecommendation LEFT JOIN
+
+          (
+
+            SELECT 
+
+              ConsultationSub.chief_complaint_id,
+
+              COUNT(*) as count
+
+            FROM 
+
+              consultation_subs as ConsultationSub LEFT JOIN 
+
+              consultations as Consultation ON ConsultationSub.consultation_id = Consultation.id
+
+            WHERE 
+
+              Consultation.visible = true $date AND
+
+              Consultation.status = 1 AND
+
+              Consultation.student_id IS NOT NULL AND 
+
+              ConsultationSub.visible = true 
+
+          ) AS StudentTreated ON StudentTreated.chief_complaint_id = IllnessRecommendation.id LEFT JOIN
+
+          (
+
+            SELECT 
+
+              ConsultationSub.chief_complaint_id,
+
+              COUNT(*) as count
+
+            FROM 
+
+              consultation_subs as ConsultationSub LEFT JOIN 
+
+              consultations as Consultation ON ConsultationSub.consultation_id = Consultation.id
+
+            WHERE 
+
+              Consultation.visible = true $date AND
+
+              Consultation.status = 1 AND
+
+              Consultation.employee_id IS NOT NULL AND 
+
+              ConsultationSub.visible = true 
+
+          ) AS EmployeeTreated ON EmployeeTreated.chief_complaint_id = IllnessRecommendation.id LEFT JOIN
+
+          (
+
+            SELECT 
+
+              ConsultationSub.chief_complaint_id,
+
+              COUNT(*) as count
+
+            FROM 
+
+              consultation_subs as ConsultationSub LEFT JOIN 
+
+              consultations as Consultation ON ConsultationSub.consultation_id = Consultation.id
+
+            WHERE 
+
+              Consultation.visible = true $date AND
+
+              Consultation.status = 2 AND
+
+              Consultation.student_id IS NOT NULL AND 
+
+              ConsultationSub.visible = true 
+
+          ) AS StudentRerred ON StudentRerred.chief_complaint_id = IllnessRecommendation.id LEFT JOIN
+
+          (
+
+            SELECT 
+
+              ConsultationSub.chief_complaint_id,
+
+              COUNT(*) as count
+
+            FROM 
+
+              consultation_subs as ConsultationSub LEFT JOIN 
+
+              consultations as Consultation ON ConsultationSub.consultation_id = Consultation.id
+
+            WHERE 
+
+              Consultation.visible = true $date AND
+
+              Consultation.status = 2 AND
+
+              Consultation.employee_id IS NOT NULL AND 
+
+              ConsultationSub.visible = true 
+
+          ) AS EmployeeRerred ON EmployeeRerred.chief_complaint_id = IllnessRecommendation.id
+
+        WHERE
+
+          IllnessRecommendation.visible = true AND 
+
+          (
+
+            IllnessRecommendation.ailment LIKE '%$search%'
+
+          )
+
+        GROUP BY
+
+          IllnessRecommendation.id
+
+      ) as Report ";
+
+        $query = $this->getConnection()->prepare($sql);
+
+        $query->execute();
+
+        return $query;
+    }
+
     public function countAllMedicalMonthlyAccomplishment($conditions = []): string
     {
 
@@ -3053,6 +3290,53 @@ class ReportsTable extends Table
         return $query;
     }
 
+    public function getAllMedicalPropertyEquipmentPrint($conditions)
+    {
+
+        $search = strtolower(@$conditions['search']);
+
+        $date = @$conditions['date'];
+
+        // Your SQL query here, make sure to adjust table names and columns
+        $sql =  "
+
+        SELECT
+
+          PropertyLog.*
+
+        FROM
+
+          property_logs as PropertyLog
+
+        WHERE
+
+          PropertyLog.visible = true $date AND
+
+          (
+
+            PropertyLog.property_name LIKE '%$search%' OR 
+
+            PropertyLog.type LIKE '%$search%' 
+
+          )
+
+        GROUP BY
+
+          PropertyLog.id
+
+        ORDER BY
+
+          PropertyLog.property_name ASC
+
+       ";
+
+        $query = $this->getConnection()->prepare($sql);
+
+        $query->execute();
+
+        return $query;
+    }
+
     public function countAllMedicalPropertyEquipment($conditions = []): string
     {
 
@@ -3131,6 +3415,52 @@ class ReportsTable extends Table
           LIMIT
 
           $limit OFFSET $offset
+
+
+       ";
+
+        $query = $this->getConnection()->prepare($sql);
+
+        $query->execute();
+
+        return $query;
+    }
+
+    public function getAllMedicalMonthlyConsumptionPrint($conditions)
+    {
+
+        $search = strtolower(@$conditions['search']);
+
+        $date = @$conditions['date'];
+
+        // Your SQL query here, make sure to adjust table names and columns
+        $sql =  "
+
+        SELECT
+
+          PropertyLog.*
+
+        FROM 
+
+          property_logs as PropertyLog 
+
+        WHERE
+
+          PropertyLog.visible = true $date AND 
+
+          (
+
+            PropertyLog.property_name LIKE '%$search%'
+
+          )
+
+        GROUP BY
+
+          PropertyLog.id
+
+        ORDER BY 
+
+          PropertyLog.property_name
 
 
        ";
