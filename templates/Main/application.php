@@ -36,7 +36,7 @@
   </head>
 
 
-  <body ng-app="ehris" ng-controller="ApplicationController">
+  <body ng-app="esmis" ng-controller="ApplicationController">
     <div id="preloader">
       <div class="loader"></div>
     </div>
@@ -63,7 +63,7 @@
                     </li>
                   </ul>
                 </div>
-
+                <br><br>
                 <div class="login-form-body">
                   <div class="tab-content mt-3" id="myTabContent">
                     <div class="tab-pane fade show active" id="pre_registration">

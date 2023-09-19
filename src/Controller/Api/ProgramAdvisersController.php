@@ -155,6 +155,18 @@ class ProgramAdvisersController extends AppController {
 
       ->all();
 
+      // $available_slot = $this->BlockSectionCourses->find()
+
+      //   ->where([
+
+      //     'visible' => 1,
+
+      //     'block_section_id' => 
+
+      //   ])
+
+      // ->first();
+
       $datas[] = array(
 
         'id'                => $data['student_id'],
@@ -241,6 +253,8 @@ class ProgramAdvisersController extends AppController {
 
           foreach ($block_section_courses as $key => $value) {
 
+            $course = $value['course_association'];
+
             //STUDENT ENROLLED SCHEDULE
 
               $block_section_schedules = $this->BlockSectionSchedules->find()
@@ -269,7 +283,7 @@ class ProgramAdvisersController extends AppController {
 
                     'course_id'                  => $value['course_id'],
 
-                    'course'                     => $value['course'],
+                    'course'                     => $course,
 
                     'block_section_schedule_id'  => $values['id'],
 
@@ -313,7 +327,7 @@ class ProgramAdvisersController extends AppController {
 
               'course_code'  => $value['course_code'],
 
-              'course'       => $value['course'],
+              'course'       => $course,
 
               'year_term_id' => $main['year_term_id'],
 

@@ -108,7 +108,7 @@
                           <th>PROGRAM</th>
                           <th>RATE</th>
                           <th>SECTIONS</th>
-                          <th class="w90px"></th>
+                          <!-- <th class="w90px"></th> -->
                         </tr>
                       </thead>
                       <tbody>
@@ -117,15 +117,16 @@
                           <td class="text-center">{{ data.student_no }}</td>
                           <td class="text-left">{{ data.student_name }}</td>
                           <td class="text-left">{{ data.program}}</td>
-                          <td class="text-left">{{ data.rate}}</td>
+                          <td class="text-center">{{ data.rate}}</td>
                           <td class="text-left">
-                            <select class="form-control" ng-model="data.selected_block_section_id" ng-change="getSection($index,data.block_sections,data.selected_block_section_id)" ng-options="opt.id as opt.section for opt in data.block_sections">
+                            <div ng-repeat="section in data.block_sections"><a id="pageEnlist" href="javascript:void(0)" ng-click="enlist(data,section)">{{ section.section }}</a></div>
+                            <!-- <select class="form-control" ng-model="data.selected_block_section_id" ng-change="getSection($index,data.block_sections,data.selected_block_section_id)" ng-options="opt.id as opt.section for opt in data.block_sections">
                               <option value=""></option>
-                            </select>
+                            </select> -->
                           </td>
-                          <td>
+                         <!--  <td>
                             <a id="pageEnlist" href="javascript:void(0)" ng-click="enlist(data)" class="btn btn-info" title="ENLIST STUDENT"><i class="fa fa-pencil"></i></a>
-                          </td>
+                          </td> -->
                         </tr>
                         <tr ng-show="datas == null || datas == ''">
                           <td colspan="7">No available data</td>
