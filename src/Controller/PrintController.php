@@ -5414,16 +5414,27 @@ class PrintController extends AppController {
     $office_reference = $this->Global->OfficeReference('Counseling Appointment');
 
     $data = $this->CounselingAppointment->find()
+
     ->contain([
+
         'Students',
+
         'CounselingTypes' => [
+
             'conditions' => ['CounselingTypes.visible' => 1]
+
         ]
+
     ])
+
     ->where([
+
         'CounselingAppointments.visible' => 1,
+
         'CounselingAppointments.id' => $id
+
     ])
+
     ->first();
 
     require("wordwrap.php");
@@ -5455,23 +5466,23 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->SetFont("Times", '', 7);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['counselee_informed_consent_reference']),0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST - '. @$office_reference['OfficeReference']['counselee_informed_consent_reference'],0,0,'L');
     $pdf->SetFont("Times", 'B', 15);
     $pdf->Cell(50,5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 7);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(68,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,5,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Arial", 'B', 15);
     $pdf->Cell(50,19,'COUNSELEE INFORMED CONSENT FORM',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 7);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: ' . strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: ' . @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(3.5);
     $pdf->SetFont("Times", '', 7);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(20.5);
     $pdf->SetFont("Arial", 'I', 10.5);
     $pdf->Cell(14,5,'',0,0,'L');
@@ -5601,16 +5612,27 @@ class PrintController extends AppController {
     $office_reference = $this->Global->OfficeReference('Counseling Appointment');
 
     $data = $this->CounselingAppointment->find()
+
       ->contain([
+
           'Students',
+
           'CounselingTypes' => [
+
               'conditions' => ['CounselingTypes.visible' => 1]
+
           ]
+
       ])
+
       ->where([
+
           'CounselingAppointments.visible' => 1,
+
           'CounselingAppointments.id' => $id
+
       ])
+
       ->first();
 
     require("wordwrap.php");
@@ -5642,23 +5664,23 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['release_information_reference']) ,0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST - '. @$office_reference['OfficeReference']['release_information_reference'] ,0,0,'L');
     $pdf->SetFont("Times", 'B', 14);
     $pdf->Cell(50,5.5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(68,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,5,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Times", 'B', 14);
     $pdf->Cell(50,11,'RELEASE INFORMATION FORM',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: ' . strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: ' . @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(14.5);
     $pdf->SetFont("Arial", '', 11.5);
     $pdf->Cell(14,5,'',0,0,'L');
@@ -5749,16 +5771,27 @@ class PrintController extends AppController {
     $office_reference = $this->Global->OfficeReference('Counseling Appointment');
 
     $data = $this->CounselingAppointment->find()
+
     ->contain([
+
         'Students',
+
         'CounselingTypes' => [
+
             'conditions' => ['CounselingTypes.visible' => 1]
+
         ]
+
     ])
+
     ->where([
+
         'CounselingAppointments.visible' => 1,
+
         'CounselingAppointments.id' => $id
+
     ])
+
     ->first();
 
     require("wordwrap.php");
@@ -5790,23 +5823,23 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Times", 'B', 14);
     $pdf->Cell(50,5.5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(68,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,5,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Arial", 'B', 14);
     $pdf->Cell(50,11,'NO-HARM CONTRACT',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: '. @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(20);
     $pdf->SetFont("Arial", '', 10.5);
     $pdf->Line(16.5,$pdf->getY()+4,117,$pdf->getY()+4);
@@ -6012,16 +6045,27 @@ class PrintController extends AppController {
     $office_reference = $this->Global->OfficeReference('Attendance to Counseling');
 
     $data = $this->AttendanceCounseling->find()
+
     ->contain([
+
         'CounselingAppointments' => [
+
             'Students',
+
             'CounselingTypes'
+
         ]
+
     ])
+
     ->where([
+
         'AttendanceCounselings.visible' => 1,
+
         'AttendanceCounselings.id' => $id
+
     ])
+
     ->first();
 
     require("wordwrap.php");
@@ -6054,23 +6098,23 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Times", 'B', 15);
     $pdf->Cell(45,5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(68,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,5,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Arial", 'B', 13.5);
     $pdf->Cell(45,20,'ATTENDANCE TO COUNSELING',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(12);
     $pdf->SetFont("Arial", '', 9.5);
     $pdf->Cell(2,5,'',0,0,'L');
@@ -6135,23 +6179,23 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST-'. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST-'. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Times", 'B', 15);
     $pdf->Cell(45,5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(68,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,5,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Arial", 'B', 13.5);
     $pdf->Cell(45,20,'ATTENDANCE TO COUNSELING',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(12);
     $pdf->SetFont("Arial", '', 9.5);
     $pdf->Cell(2,5,'',0,0,'L');
@@ -6216,23 +6260,23 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST-'. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST-'. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Times", 'B', 15);
     $pdf->Cell(45,5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(68,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,5,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Arial", 'B', 13.5);
     $pdf->Cell(45,20,'ATTENDANCE TO COUNSELING',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(12);
     $pdf->SetFont("Arial", '', 9.5);
     $pdf->Cell(2,5,'',0,0,'L');
@@ -6358,22 +6402,22 @@ class PrintController extends AppController {
     $pdf->Ln(8);
     $pdf->SetFont("Times", '', 6);
     $pdf->Cell(4,5,'',0,0,'L');
-    $pdf->Cell(25,5,'ZSCMST - ' . strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(25,5,'ZSCMST - ' . @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Times", '', 13);
     $pdf->Cell(57,9,'REFERRAL SLIP',0,0,'C');
 
     $pdf->Ln(3.5);
     $pdf->SetFont("Times", '', 6);
     $pdf->Cell(4,5,'',0,0,'L');
-    $pdf->Cell(25,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(25,5,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
 
     $pdf->Ln(3);
     $pdf->Cell(4,5,'',0,0,'L');
-    $pdf->Cell(25,5,'Revision Status: ' . strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(25,5,'Revision Status: ' . @$office_reference['OfficeReference']['revision_status'],0,0,'L');
 
     $pdf->Ln(3);
     $pdf->Cell(4,5,'',0,0,'L');
-    $pdf->Cell(25,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(25,5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
 
     $pdf->Ln(22);
     $pdf->SetFont("Arial", '', 11);
@@ -7024,23 +7068,23 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(68,4,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,4,'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Times", 'B', 14);
     $pdf->Cell(45,5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(68,3,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,3,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Times", 'B', 14.5);
     $pdf->Cell(45,20,'PROMISSORY NOTE/WAIVER',0,0,'C');
     $pdf->Ln(2);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: '. @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(30);
     $pdf->SetFont("Arial", '', 9.5);
     $pdf->Cell(82,5,date('m/d/Y'),0,0,'C');
@@ -7346,6 +7390,7 @@ class PrintController extends AppController {
     $conditions = [];
 
     $conditionsPrint = '';
+
     if ($this->request->getQuery('search')) {
 
       $search = $this->request->getQuery('search');
@@ -7701,23 +7746,23 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(3.5,5,'',0,0,'L');
-    $pdf->Cell(70,5,'ZSCMST - ' . strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(70,5,'ZSCMST - ' . @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Times", 'B', 15);
     $pdf->Cell(45,5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(3.5,5,'',0,0,'L');
-    $pdf->Cell(68,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,5,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Times", 'B', 15);
     $pdf->Cell(45,23,'AFFIDAVIT FOR LOST PASSBOOK/ID',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(3.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: ' . strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: ' . @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(3.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(32);
     
     $pdf->SetFont("Arial", '', 10);
@@ -8151,7 +8196,7 @@ class PrintController extends AppController {
 
   public function gcoEvaluationForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Gco Evaluation');
+    $office_reference = $this->Global->OfficeReference('Gco Evaluation');
 
     $data['GcoEvaluation'] = $this->GcoEvaluations->find()
 
@@ -8241,7 +8286,7 @@ class PrintController extends AppController {
 
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(4,5,'',0,0,'L');
-    $pdf->Cell(27,6,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(27,6,'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Times", '', 11.5);
     $pdf->Cell(52,12,'GCO EVALUATION',0,0,'C');
     $pdf->Cell(22.5,5,'',0,0,'L');
@@ -8249,15 +8294,15 @@ class PrintController extends AppController {
     $pdf->Ln(3.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(4,5,'',0,0,'L');
-    $pdf->Cell(25,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(25,5,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
 
     $pdf->Ln(2.5);
     $pdf->Cell(4,5,'',0,0,'L');
-    $pdf->Cell(25,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(25,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
 
     $pdf->Ln(2.5);
     $pdf->Cell(4,5,'',0,0,'L');
-    $pdf->Cell(25,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(25,5,'Revision Date: '. @$office_reference['OfficeReference']['revision_date'],0,0,'L');
 
 
     $pdf->Ln(6);
@@ -9008,7 +9053,7 @@ class PrintController extends AppController {
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
     $pdf->Cell(154);
-    $pdf->Cell(68,4,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,4,'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Arial", 'B', 12);
     $pdf->Cell(-154);
     $pdf->Cell(45,5,'HEALTH AND MEDICAL SERVICES',0,0,'C');
@@ -9016,7 +9061,7 @@ class PrintController extends AppController {
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(154);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(68,3,'Adopted Date: '. strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,3,'Adopted Date: '. @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Arial", 'B', 10.5);
     $pdf->Cell(-154);
     $pdf->Cell(45,20,'MEDICAL CERTIFICATE',0,0,'C');
@@ -9025,12 +9070,12 @@ class PrintController extends AppController {
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(154);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(154);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: '. @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(18);
     $pdf->SetFont("Arial", '', 10.5);
     $pdf->Cell(82,5,'To whom it may concern: ',0,0,'C');
@@ -9312,7 +9357,8 @@ class PrintController extends AppController {
 
  public function referralRecommendationForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Referral Recommendation');
+    $office_reference = $this->Global->OfficeReference('Referral Recommendation');
+
     $data['ReferralRecommendation'] = $this->ReferralRecommendations->find()
 
         ->contain([
@@ -9370,24 +9416,24 @@ class PrintController extends AppController {
     $pdf->Ln(10);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(162.3,5,'',0,0,'L');
-    $pdf->Cell(65,3.5,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(65,3.5,'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
 
     $pdf->SetFont("Times", 'B', 13);
     $pdf->Cell(-258,3.5,'HEALTH AND MEDICAL SERVICES',0,0,'C');
     $pdf->Ln(3.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(162.3, 4.5,'',0,0,'L');
-    $pdf->Cell(65,2,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(65,2,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Times", 'B', 11);
     $pdf->Cell(-256,17,'MEDICAL-DENTAL REFERRAL/ RECOMMENDATION',0,0,'C');
     $pdf->Ln(2);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(162.3,4.5,'',0,0,'L');
-    $pdf->Cell(65,3.5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,3.5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(162.3,4.5,'',0,0,'L');
-    $pdf->Cell(65,3.5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,3.5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
 
     $pdf->Ln(16.5);
     $pdf->SetFont("Arial", '', 10);
@@ -9467,24 +9513,24 @@ class PrintController extends AppController {
     $pdf->Ln(10);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(162.3,5,'',0,0,'L');
-    $pdf->Cell(65,3.5,'ZSCMST - ' . strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(65,3.5,'ZSCMST - ' . @$office_reference['OfficeReference']['reference_code'],0,0,'L');
 
     $pdf->SetFont("Times", 'B', 13);
     $pdf->Cell(-258,3.5,'HEALTH AND MEDICAL SERVICES',0,0,'C');
     $pdf->Ln(3.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(162.3, 4.5,'',0,0,'L');
-    $pdf->Cell(65,2,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(65,2,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Times", 'B', 11);
     $pdf->Cell(-256,17,'MEDICAL-DENTAL REFERRAL/ RECOMMENDATION',0,0,'C');
     $pdf->Ln(2);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(162.3,4.5,'',0,0,'L');
-    $pdf->Cell(65,3.5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,3.5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(162.3,4.5,'',0,0,'L');
-    $pdf->Cell(65,3.5,'Revision Status: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,3.5,'Revision Status: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
 
     $pdf->Ln(16.5);
     $pdf->SetFont("Arial", '', 10);
@@ -9697,23 +9743,36 @@ class PrintController extends AppController {
 
    public function dentalForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Dental');
+    $office_reference = $this->Global->OfficeReference('Dental');
 
     $data['Dental'] = $this->Dentals
+
       ->find()
+
       ->contain([
+
           'DentalImages' => [
+
               'conditions' => ['DentalImages.visible' => 1]
+
           ],
 
           'CollegePrograms' => [
+
               'conditions' => ['CollegePrograms.visible' => 1]
+
           ]
+
       ])
+
       ->where([
+
           'Dentals.visible' => 1,
+
           'Dentals.id' => $id
+
       ])
+
       ->first();
 
       // var_dump($id);
@@ -9745,19 +9804,19 @@ class PrintController extends AppController {
     $pdf->Ln(8);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(167,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(114,5,'',0,0,'R');
-    $pdf->Cell(68,5,'Adopted Date: '. strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'R');
+    $pdf->Cell(68,5,'Adopted Date: '. @$office_reference['OfficeReference']['adopted'],0,0,'R');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(123,5,'',0,0,'R');
-    $pdf->Cell(59,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'R');
+    $pdf->Cell(59,5,'Revision Date: '. @$office_reference['OfficeReference']['revision_date'],0,0,'R');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(126,5,'',0,0,'R');
-    $pdf->Cell(60,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'R');
+    $pdf->Cell(60,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'R');
     $pdf->Ln(1);
     $pdf->SetFont("Arial", 'U', 10);
     $pdf->Cell(0,5,'DENTAL EXAMINATION RECORD',0,0,'C');
@@ -12372,7 +12431,7 @@ class PrintController extends AppController {
 
   public function consultationForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Consultation');
+    $office_reference = $this->Global->OfficeReference('Consultation');
 
     $data['Consultation'] = $this->Consultations->find()
 
@@ -12433,7 +12492,7 @@ class PrintController extends AppController {
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
     $pdf->Cell(154);
-    $pdf->Cell(68,4,'ZSCMST - ' . strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,4,'ZSCMST - ' . @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Arial", 'B', 12);
     $pdf->Cell(-154);
     $pdf->Cell(45,5,'HEALTH AND MEDICAL SERVICES',0,0,'C');
@@ -12441,7 +12500,7 @@ class PrintController extends AppController {
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(154);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(68,3,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,3,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Arial", 'B', 10.5);
     $pdf->Cell(-154);
     $pdf->Cell(45,20,'CONSULTATION FORM',0,0,'C');
@@ -12450,12 +12509,12 @@ class PrintController extends AppController {
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(154);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(154);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: '. @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(5);
     $pdf->Cell(5);
     $pdf->SetFont("Arial", '', 10);
@@ -12736,14 +12795,23 @@ class PrintController extends AppController {
     $office_reference = $this->Global->OfficeReference('Request Form');
 
     $data['RequestForm'] = $this->RequestForm->find()
+
       ->contain(['Students', 'CollegePrograms'])
+
       ->where([
+
           'RequestForms.visible' => 1,
+
           'RequestForms.id' => $id
+
       ])
+
       ->first();
+
       // print_r($data['student']);
+
       $data['Student'] = $data['RequestForm']['student'];
+
       $data['CollegeProgram'] = $data['RequestForm']['college_program'];
 
     require("wordwrap.php");
@@ -12775,11 +12843,11 @@ class PrintController extends AppController {
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 6);
     $pdf->Cell(166, 5, '', 0, 0, 'L');
-    $pdf->Cell(68, 5, 'ZSCMST- ' . strtoupper(@$office_reference['OfficeReference']['reference_code']), 0, 0, 'L');
+    $pdf->Cell(68, 5, 'ZSCMST- ' . @$office_reference['OfficeReference']['reference_code'], 0, 0, 'L');
     $pdf->Ln(2);
     $pdf->SetFont("Times", '', 6);
     $pdf->Cell(119, 5, '', 0, 0, 'R');
-    $pdf->Cell(68, 5, 'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']), 0, 0, 'R');
+    $pdf->Cell(68, 5, 'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'], 0, 0, 'R');
     $pdf->Ln(1);
     $pdf->SetFont("Times", '', 13);
     $pdf->Cell(0, 5, 'OFFICE OF THE COLLEGE REGISTRAR', 0, 0, 'C');
@@ -12790,7 +12858,7 @@ class PrintController extends AppController {
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 6);
     $pdf->Cell(129, 5, '', 0, 0, 'R');
-    $pdf->Cell(59, 5, 'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']), 0, 0, 'R');
+    $pdf->Cell(59, 5, 'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'], 0, 0, 'R');
     $pdf->Ln(1);
     $pdf->SetFont("Arial", 'B', 12);
     $pdf->Cell(0, 5, 'REQUEST FORM', 0, 0, 'C');
@@ -13459,12 +13527,19 @@ class PrintController extends AppController {
     $office_reference = $this->Global->OfficeReference('Completion Form');
 
     $this->loadModel('Completion');
+
     $data['Completion'] = $this->Completion->find()
+
     ->contain(['Students']) // Assuming you have an association named 'Students'
+
     ->where([
+
         'Completions.visible' => 1,
+
         'Completions.id' => $id,
+
     ])
+
     ->first();
 
     $data['Student'] = $data['Completion']['students'];
@@ -13516,13 +13591,13 @@ class PrintController extends AppController {
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->SetY($pdf->getY()- 2.5);
     $pdf->Cell(171);
-    $pdf->Cell(0,4,'ZSCMST-' . strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(0,4,'ZSCMST-' . @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     
     $pdf->Ln(3);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(162);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(68,3,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,3,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     // $pdf->SetFont("Arial", 'B', 10.5);
     // $pdf->Cell(-154);
     // $pdf->Cell(45,20,'MEDICAL CERTIFICATE',0,0,'C');
@@ -13531,12 +13606,12 @@ class PrintController extends AppController {
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(162);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(162);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: '. @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(4);
     
 
@@ -13874,6 +13949,7 @@ class PrintController extends AppController {
   }
 
   public function studentClearanceForm($id = null){
+
     $this->LoadModel('StudentClearances');
 
     $data['StudentClearance'] = $this->StudentClearances->find()
@@ -14496,14 +14572,19 @@ class PrintController extends AppController {
 
   public function facultyClearanceForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Faculty Clearance');
+    $office_reference = $this->Global->OfficeReference('Faculty Clearance');
 
-    // $data = $this->FacultyClearances->find()
-    // ->where([
-    //     'visible' => 1,
-    //     'id' => $id
-    // ])
-    // ->first();
+    $data['FacultyClearance'] = $this->FacultyClearances->find()
+
+    ->where([
+
+        'visible' => 1,
+
+        'id' => $id
+
+    ])
+
+    ->first();
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -14535,19 +14616,19 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5);
     $pdf->Cell(166.5,2,'',0,0,'L');
-    $pdf->Cell(68,-10,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,-10,'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5);
     $pdf->Cell(166.5,5,'',0,0,'L');
-    $pdf->Cell(68,-12,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,-12,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->Ln(2);
     $pdf->SetFont("Times", '', 5);
     $pdf->Cell(166.5,5,'',0,0,'L');
-    $pdf->Cell(65,-11.5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,-11.5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5);
     $pdf->Cell(166.5,5,'',0,0,'L');
-    $pdf->Cell(65,-12,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,-12,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
 
     $pdf->Ln(-3);
     $pdf->SetFont("TIMES", '', 12);
@@ -15679,21 +15760,21 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6, 5, '', 0, 0, 'L');
-    $pdf->Cell(68, 5, 'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['reference_code']), 0, 0, 'L');
+    $pdf->Cell(68, 5, 'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'], 0, 0, 'L');
     $pdf->SetFont("Times", 'B', 14);
     $pdf->Cell(50, 5.5, 'GUIDANCE   AND   COUNSELING   OFFICE', 0, 0, 'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6, 5, '', 0, 0, 'L');
-    $pdf->Cell(68, 5, 'Adopted Date:  '. strtoupper(@$office_reference['OfficeReference']['adopted']), 0, 0, 'L');
+    $pdf->Cell(68, 5, 'Adopted Date:  '. @$office_reference['OfficeReference']['adopted'], 0, 0, 'L');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6, 5, '', 0, 0, 'L');
-    $pdf->Cell(65, 5, 'Revision Status: ' . strtoupper(@$office_reference['OfficeReference']['revision_status']), 0, 0, 'L');
+    $pdf->Cell(65, 5, 'Revision Status: ' . @$office_reference['OfficeReference']['revision_status'], 0, 0, 'L');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6, 5, '', 0, 0, 'L');
-    $pdf->Cell(65, 5, 'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']), 0, 0, 'L');
+    $pdf->Cell(65, 5, 'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'], 0, 0, 'L');
     $pdf->Ln(1);
     $pdf->SetFont("Arial", 'B', 14);
     $pdf->Cell(0, 5, 'COUNSELING INTAKE FORM', 0, 0, 'C');
@@ -17254,26 +17335,26 @@ class PrintController extends AppController {
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
     $pdf->Cell(154);
-    $pdf->Cell(68,4,'ZSCMST-' . strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,4,'ZSCMST-' . @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Arial", 'B', 12);
     $pdf->Cell(-154);
     $pdf->Ln(3);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(154);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(68,3,'Adopted: '. strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,3,'Adopted: '. @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Arial", 'B', 10.5);
     $pdf->Cell(-154);
     $pdf->Ln(2);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(154);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(154);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: '. @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(1);
 
     $check1 = '';
@@ -17627,28 +17708,51 @@ class PrintController extends AppController {
     // debug($id);
 
     $student = $this->Students->find()
+
     ->contain([
+
         'YearLevelTerms',
+
         'Colleges' => function ($q) {
+
             return $q->where(['Colleges.visible' => 1]);
+
         },
+
         'CollegePrograms' => function ($q) {
+
             return $q->where(['CollegePrograms.visible' => 1]);
+
         },
+
         'StudentEnrolledCourses' => function ($q) {
+
             return $q->where(['StudentEnrolledCourses.visible' => 1]);
+
         },
+
         'StudentEnrolledUnits' => function ($q) {
+
             return $q->where(['StudentEnrolledUnits.visible' => 1]);
+
         },
+
         'StudentEnrollments' => function ($q) {
+
             return $q->where(['StudentEnrollments.visible' => 1]);
+
         },
+
     ])
+
     ->where([
+
         'Students.visible' => 1,
+
         'Students.id' => $id,
+
     ])
+
     ->first();
 
       if ($student) {
@@ -17747,15 +17851,15 @@ class PrintController extends AppController {
     $pdf->Ln(1);
     $pdf->SetFont("Arial", '', 8);
     $pdf->Cell(164, 5, '', 0, 0, 'L');
-    $pdf->Cell(78, 5, 'ZSCMST-' . strtoupper(@$office_reference['OfficeReference']['reference_code']), 0, 0, 'L');
+    $pdf->Cell(78, 5, 'ZSCMST-' . @$office_reference['OfficeReference']['reference_code'], 0, 0, 'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Arial", '', 6);
     $pdf->Cell(129, 5, '', 0, 0, 'R');
-    $pdf->Cell(68, 5, 'Adopted Date: '. strtoupper(@$office_reference['OfficeReference']['adopted']), 0, 0, 'R');
+    $pdf->Cell(68, 5, 'Adopted Date: '. @$office_reference['OfficeReference']['adopted'], 0, 0, 'R');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 6);
     $pdf->Cell(137, 5, '', 0, 0, 'R');
-    $pdf->Cell(60, 5, 'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']) .' Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']), 0, 0, 'R');
+    $pdf->Cell(60, 5, 'Revision Status: '. @$office_reference['OfficeReference']['revision_status'] .' Revision Date: '. @$office_reference['OfficeReference']['revision_date'], 0, 0, 'R');
     // $pdf->Ln(2.5);
     // $pdf->SetFont("Times", '', 6);
     // $pdf->Cell(130.5, 5, '', 0, 0, 'R');
@@ -18892,40 +18996,72 @@ class PrintController extends AppController {
 
   public function prospectusForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Prospectus');
+    $office_reference = $this->Global->OfficeReference('Prospectus');
 
     $data['Student'] = $this->Students->find()
+
     ->contain([
+
         'Colleges' => [
+
             'conditions' => [
+
                 'Colleges.visible' => 1
+
             ]
+
         ],
+
         'CollegePrograms' => [
+
             'conditions' => [
+
                 'CollegePrograms.visible' => 1
+
             ]
+
         ],
+
         'StudentEnrolledCourses' => [
+
             'conditions' => [
+
                 'StudentEnrolledCourses.visible' => 1
+
             ]
+
         ],
+
         'StudentEnrolledUnits' => [
+
             'conditions' => [
+
                 'StudentEnrolledUnits.visible' => 1
+
             ]
+
         ],
+
         'StudentEnrollments' => [
+
             'conditions' => [
+
                 'StudentEnrollments.visible' => 1
+
             ]
+
         ]
+
     ])
+
     ->where([
+
         'Students.visible' => 1,
+
         'Students.id' => $id
+
     ])
+
     ->first();
 
       $data['Student']['proper_name'] = $data['Student']['last_name'].', '.$data['Student']['first_name'].' '.$data['Student']['middle_name'];
@@ -19109,18 +19245,18 @@ class PrintController extends AppController {
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->SetY($pdf->getY()-0.3);
     $pdf->Cell(164);
-    $pdf->Cell(0,4,'ZSCMST- '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(0,4,'ZSCMST- '. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $y = $pdf->GetY();
     $pdf->Ln(3.2);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(156);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(68,3,'Adopted Date: '. strtoupper(@$office_reference['OfficeReference']['adoption']),0,0,'L');
+    $pdf->Cell(68,3,'Adopted Date: '. @$office_reference['OfficeReference']['adoption'],0,0,'L');
     $pdf->Ln(2.2);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(156);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(4);
     $pdf->SetY($y+1.5);
     $pdf->SetFont("Times", '', 11);
@@ -22672,36 +22808,67 @@ EQUIVALENT',1,'C',0);
     $office_reference = $this->Global->OfficeReference('Cat');
 
     $data['StudentApplication'] = $this->StudentApplications->find()
+
     ->contain([
+
         'YearLevelTerms',
+
         'Colleges',
+
         'CollegePrograms',
+
         'SecondaryPrograms',
+
         'StudentApplicationImages' => [
+
             'conditions' => [
+
                 'StudentApplicationImages.visible' => 1
+
             ]
+
         ],
+
         'StudentEnrolledCourses' => [
+
             'conditions' => [
+
                 'StudentEnrolledCourses.visible' => 1
+
             ]
+
         ],
+
         'StudentEnrolledUnits' => [
+
             'conditions' => [
+
                 'StudentEnrolledUnits.visible' => 1
+
             ]
+
         ],
+
         'StudentEnrollments' => [
+
             'conditions' => [
+
                 'StudentEnrollments.visible' => 1
+
             ]
+
         ]
+
     ])
+
     ->where([
+
         'StudentApplications.visible' => 1,
+
         'StudentApplications.id' => $id
+
     ])
+
     ->first();
 
     $data['StudentApplicationImage'] = $data['StudentApplication']['student_application_images'];
@@ -22812,16 +22979,16 @@ EQUIVALENT',1,'C',0);
     $pdf->Rect(174.5,$pdf->GetY(),24.3,10);
     $pdf->SetFont("Arial", '', 5);
     $pdf->Cell(170);
-    $pdf->Cell(5,3.5,'ZSCMST- '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(5,3.5,'ZSCMST- '. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->Cell(170);
-    $pdf->Cell(5,3.5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(5,3.5,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->Ln(2.2);
     $pdf->Cell(170);
-    $pdf->Cell(5,3.5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(5,3.5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(2);
     $pdf->Cell(170);
-    $pdf->Cell(5,3.5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(5,3.5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(4);
     $pdf->Rect(151,$pdf->GetY(),47.6,44.4);
     $pdf->Ln(18);
@@ -23498,23 +23665,23 @@ EQUIVALENT',1,'C',0);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->SetY($pdf->getY()- 2.5);
     $pdf->Cell(171);
-    $pdf->Cell(0,4,'ZSCMST- '. strtoupper(@$office_reference['OfficeReference']['reference_code']) ,0,0,'L');
+    $pdf->Cell(0,4,'ZSCMST- '. @$office_reference['OfficeReference']['reference_code'] ,0,0,'L');
     
     $pdf->Ln(3);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(162);
     $pdf->Cell(9,5,'',0,0,'L');
-    $pdf->Cell(68,4,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,4,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->Ln(2);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(162);
     $pdf->Cell(9,5,'',0,0,'L');
-    $pdf->Cell(65,6,'Revision Status: ' . strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,6,'Revision Status: ' . @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(162);
     $pdf->Cell(9,5,'',0,0,'L');
-    $pdf->Cell(65,7,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,7,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(23);
 
     $pdf->SetFont("TIMES", '', 13);
@@ -24176,23 +24343,23 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(68,4,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,4,'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(45,5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(68,3,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,3,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Times", 'B', 12.5);
     $pdf->Cell(45,20,'CUSTOMER SATISFACTION FORM',0,0,'C');
     $pdf->Ln(2);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: ' . strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: ' . @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(7);
 
     $pdf->SetFont("Arial", '', 8);
@@ -25106,7 +25273,7 @@ EQUIVALENT',1,'C',0);
 
   public function participantEvaluationActivityForm($id = null) {
 
-    // $office_reference = $this->Global->OfficeReference('Participant Evaluation Activity');
+    $office_reference = $this->Global->OfficeReference('Participant Evaluation Activity');
 
     $data['ParticipantEvaluationActivity'] = $this->ParticipantEvaluationActivities->find()
 
@@ -25169,7 +25336,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Rect(60,$pdf->GetY(),30.5,14.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(5,5,'',0,0,'L');
-    $pdf->Cell(27,6,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,'L');
+    $pdf->Cell(27,6,'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'],0,'L');
     $pdf->SetFont("Times", '', 9);
     $pdf->Cell(54,12,'PARTICIPANT EVALUATION ',0,0,'C');
     $pdf->Cell(16.5,5,'',0,0,'L');
@@ -25177,17 +25344,17 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(3.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(5,5,'',0,0,'L');
-    $pdf->Cell(21,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(21,5,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Times", '', 9);
     $pdf->Cell(65,12,'OF ACTIVITY',0,0,'C');
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Ln(2.5);
     $pdf->Cell(5,5,'',0,0,'L');
-    $pdf->Cell(25,5,'Revision Status: ' . strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(25,5,'Revision Status: ' . @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Cell(76.5,5,'',0,0,'L');
     $pdf->Ln(2.5);
     $pdf->Cell(5,5,'',0,0,'L');
-    $pdf->Cell(25,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(25,5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Cell(76.5,5,'',0,0,'L');
 
 
@@ -26559,23 +26726,23 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(68,4,'ZSCMST - ' . strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,4,'ZSCMST - ' . @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(45,5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(68,3,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,3,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Times", 'B', 12.5);
     $pdf->Cell(45,20,'STUDENT EXIT QUESTIONNAIRE',0,0,'C');
     $pdf->Ln(2);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(10);
 
     $pdf->SetFont("Arial", '', 9);
@@ -29642,19 +29809,19 @@ EQUIVALENT',1,'C',0);
     $pdf->Rect(175,40,32,15.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(167,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST-' . strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST-' . @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(114,5,'',0,0,'R');
-    $pdf->Cell(68,5,'Adopted Date: '. strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'R');
+    $pdf->Cell(68,5,'Adopted Date: '. @$office_reference['OfficeReference']['adopted'],0,0,'R');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(123,5,'',0,0,'R');
-    $pdf->Cell(59,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'R');
+    $pdf->Cell(59,5,'Revision Date: '. @$office_reference['OfficeReference']['revision_date'],0,0,'R');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(126,5,'',0,0,'R');
-    $pdf->Cell(60,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'R');
+    $pdf->Cell(60,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'R');
     $pdf->Ln(10);
     $pdf->SetFont("Arial", 'BU', 10);
     $pdf->Cell(0,5,'MEDICAL EXAMINATION FORM',0,0,'C');
@@ -30038,11 +30205,17 @@ EQUIVALENT',1,'C',0);
     $medicalEmployeeProfilesTable = TableRegistry::getTableLocator()->get('MedicalEmployeeProfiles');
 
     $query = $medicalEmployeeProfilesTable->find()
+
         ->contain(['Colleges'])
+
         ->where([
+
             'MedicalEmployeeProfiles.visible' => 1,
+
             'MedicalEmployeeProfiles.id' => $id,
+
         ])
+
         ->first();
 
     $data = $query->toArray();
@@ -30076,19 +30249,19 @@ EQUIVALENT',1,'C',0);
     $pdf->Rect(175,40,32,15.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(167,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST-' . strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST-' . @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(114,5,'',0,0,'R');
-    $pdf->Cell(68,5,'Adopted Date: '. strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'R');
+    $pdf->Cell(68,5,'Adopted Date: '. @$office_reference['OfficeReference']['adopted'],0,0,'R');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(123,5,'',0,0,'R');
-    $pdf->Cell(59,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'R');
+    $pdf->Cell(59,5,'Revision Date: '. @$office_reference['OfficeReference']['revision_date'],0,0,'R');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(126,5,'',0,0,'R');
-    $pdf->Cell(60,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'R');
+    $pdf->Cell(60,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'R');
     $pdf->Ln(10);
     $pdf->SetFont("Arial", 'BU', 10);
     $pdf->Cell(0,5,'MEDICAL EXAMINATION FORM',0,0,'C');
@@ -30736,7 +30909,7 @@ EQUIVALENT',1,'C',0);
 
   public function medicalHistoryForm($id = null) {
 
-    // $office_reference = $this->Global->OfficeReference('Medical Student Profile');
+    $office_reference = $this->Global->OfficeReference('Medical Student Profile');
 
      $data['MedicalStudentProfile'] = $this->MedicalStudentProfiles->find()
 
@@ -30817,19 +30990,19 @@ EQUIVALENT',1,'C',0);
     $pdf->Rect(176,40,32,15.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(167,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST-' . strtoupper(@$office_reference['OfficeReference']['medical_student_history_reference']),0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST-' . @$office_reference['OfficeReference']['medical_student_history_reference'],0,0,'L');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(114,5,'',0,0,'R');
-    $pdf->Cell(68,5,'Adopted Date: '. strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'R');
+    $pdf->Cell(68,5,'Adopted Date: '. @$office_reference['OfficeReference']['adopted'],0,0,'R');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(123,5,'',0,0,'R');
-    $pdf->Cell(59,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'R');
+    $pdf->Cell(59,5,'Revision Date: '. @$office_reference['OfficeReference']['revision_date'],0,0,'R');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(126,5,'',0,0,'R');
-    $pdf->Cell(60,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'R');
+    $pdf->Cell(60,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'R');
     $pdf->Ln(-2);
     $pdf->SetFont("Arial", 'BU', 10);
     $pdf->Cell(0,5,'EXAMINATION FORM',0,0,'C');
@@ -31434,19 +31607,19 @@ EQUIVALENT',1,'C',0);
     $pdf->Rect(177,40,32,15.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(167,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST-' . strtoupper(@$office_reference['OfficeReference']['medical_employee_history_reference']),0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST-' . @$office_reference['OfficeReference']['medical_employee_history_reference'],0,0,'L');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(114,5,'',0,0,'R');
-    $pdf->Cell(68,5,'Adopted Date: '. strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'R');
+    $pdf->Cell(68,5,'Adopted Date: '. @$office_reference['OfficeReference']['adopted'],0,0,'R');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(123,5,'',0,0,'R');
-    $pdf->Cell(59,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'R');
+    $pdf->Cell(59,5,'Revision Date: '. @$office_reference['OfficeReference']['reference_code'],0,0,'R');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(126,5,'',0,0,'R');
-    $pdf->Cell(60,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'R');
+    $pdf->Cell(60,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'R');
     $pdf->Ln(-2);
     $pdf->SetFont("Arial", 'BU', 10);
     $pdf->Cell(0,5,'EXAMINATION FORM',0,0,'C');

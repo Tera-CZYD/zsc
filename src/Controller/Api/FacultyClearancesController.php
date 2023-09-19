@@ -213,10 +213,15 @@ class FacultyClearancesController extends AppController {
   public function view($id = null){
 
     $data['FacultyClearance'] = $this->FacultyClearances->find()
+
       ->contain([
+
           'Employees'=> [
+
               'conditions' => ['Employees.visible' => 1],
+
             ]
+            
         ])
 
       ->where([

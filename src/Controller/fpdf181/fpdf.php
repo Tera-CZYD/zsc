@@ -669,7 +669,17 @@ function MultiCell($w, $h, $txt, $border=0, $align='J', $fill=false)
 	if($w==0)
 		$w = $this->w-$this->rMargin-$this->x;
 	$wmax = ($w-2*$this->cMargin)*1000/$this->FontSize;
-	$s = str_replace("\r",'',$txt);
+
+	if ($txt !== null) {
+
+        $s = str_replace("\r", '', $txt);
+
+    } else {
+
+        $s = ''; // Set a default value if $txt is null or not a string
+
+    }
+
 	$nb = strlen($s);
 	if($nb>0 && $s[$nb-1]=="\n")
 		$nb--;
