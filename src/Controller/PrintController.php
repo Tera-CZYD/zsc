@@ -11409,20 +11409,20 @@ class PrintController extends AppController {
 
   }
 
-  public function listRequestedForm(){
+    public function listRequestedForm(){
 
     $conditions = array();
 
     $conditions['search'] = '';
 
-    if($this->request->getQuery('search')){
+    if ($this->request->getQuery('search')) {
 
       $search = $this->request->getQuery('search');
 
       $search = strtolower($search);
 
       $conditions['search'] = $search;
-
+    
     }
 
     $conditions['date'] = '';
@@ -11441,13 +11441,11 @@ class PrintController extends AppController {
 
       $end = $this->request->getQuery('endDate');
 
-      $conditions['date'] = " AND DATE(RequestForm.date) >= '$start' AND DATE(Consultation.date) <= '$end'";
+      $conditions['date'] = " AND DATE(RequestForm.date) >= '$start' AND DATE(RequestForm.date) <= '$end'";
 
     }
-
+    
     $tmpData = $this->Reports->getAllRequestedFormPrint($conditions);
-
-    $datas = new Collection($tmpData);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -11457,8 +11455,8 @@ class PrintController extends AppController {
     $pdf->SetFooter(true);
     $pdf->footerSystem = true;
     $pdf->AliasNbPages();
-    $pdf->AddPage("L", "legal", 0);
-    $pdf->Image($this->base .'/assets/img/zam.png',75,10,25,25);
+    $pdf->AddPage("P", "legal", 0);
+    $pdf->Image($this->base .'/assets/img/zam.png',5,10,25,25);
     $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
     $pdf->Ln(5);
@@ -11472,65 +11470,89 @@ class PrintController extends AppController {
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
     $pdf->SetFont("Arial", 'B', 12);
-    $pdf->Cell(0,5,'STUDENT APPLICATION',0,0,'C');
+    $pdf->Cell(0,5,'STUDENT CONSULTATION',0,0,'C');
     $pdf->Ln(10);
     $pdf->SetFont("Arial", 'B', 8);
     $pdf->SetFillColor(217,237,247);
+    $pdf->Cell(60);
     $pdf->Cell(10,5,'#',1,0,'C',1);
-    $pdf->Cell(35,5,'STUDENT ID',1,0,'C',1);
-    $pdf->Cell(75,5,'STUDENT NAME',1,0,'C',1);
-    $pdf->Cell(65,5,'YEAR LEVEL',1,0,'C',1);
-    $pdf->Cell(100,5,'EMAIL',1,0,'C',1);
-    $pdf->Cell(60,5,'APPLICATION NOTE',1,0,'C',1);
+    $pdf->Cell(30,5,'STUDENT NUMBER',1,0,'C',1);
+    $pdf->Cell(30,5,'STUDENT NAME',1,0,'C',1);
+    $pdf->Cell(60,5,'REQUESTED FORM',1,0,'C',1);
     $pdf->Ln();
     $pdf->SetFont("Arial", '', 8);
-    $pdf->SetWidths(array(10,35,75,65,100,60));
-    $pdf->SetAligns(array('C','L','L','C','C','C'));
+    $pdf->SetWidths(array(10,30,30,60));
+    $pdf->SetAligns(array('C','C','C','C'));
 
-    if(!$datas->isEmpty()){
+    if(count($tmpData) > 0){
 
-      foreach ($datas as $key => $data){
-        $data['otr'] = ($data['otr'] != null && $data['otr'] == 1) ? "Transcript of Records" : "";
+      foreach ($tmpData as $key => $data){
 
-        $data['cav'] = ($data['cav'] != null && $data['cav'] == 1) ? "Certification Authentication Verification" : "";
+        $forms = [];
 
-        $data['cert'] = ($data['cert'] != null && $data['cert'] == 1) ? "Certification" : "";
+      if ($data['otr'] != null && $data['otr'] == 1) {
+          $forms[] = "Transcript of Records";
+      }
 
-        $data['hon'] = ($data['hon'] != null && $data['hon'] == 1) ? "Honorable Dismissal" : "";
+      if ($data['cav'] != null && $data['cav'] == 1) {
+          $forms[] = "Certification Authentication Verification";
+      }
 
-        $data['authGrad'] = ($data['authGrad'] != null && $data['authGrad'] == 1) ? "Authorization Gradudate" : "";
+      if ($data['cert'] != null && $data['cert'] == 1) {
+          $forms[] = "Certification";
+      }
 
-        $data['authUGrad'] = ($data['authUGrad'] != null && $data['authUGrad'] == 1) ? "Authorization Under Gradudate" : "";
+      if ($data['hon'] != null && $data['hon'] == 1) {
+          $forms[] = "Honorable Dismissal";
+      }
 
-        $data['dip'] = ($data['otr'] != null && $data['dip'] == 1) ? "Diploma" : "";
+      if ($data['authGrad'] != null && $data['authGrad'] == 1) {
+          $forms[] = "Authorization Graduate";
+      }
 
-        $data['rr'] = ($data['rr'] != null && $data['rr'] == 1) ? "Red Ribbon" : "";
+      if ($data['authUGrad'] != null && $data['authUGrad'] == 1) {
+          $forms[] = "Authorization Undergraduate";
+      }
 
-        $data['other'] = ($data['other'] != null && $data['rr'] == 1) ? $data['otherVal'] : "";
+      if ($data['dip'] != null && $data['dip'] == 1) {
+          $forms[] = "Diploma";
+      }
 
-        $pdf->RowLegalL(array(
+      if ($data['rr'] != null && $data['rr'] == 1) {
+          $forms[] = "Red Ribbon";
+      }
+
+      if ($data['other'] != null && $data['rr'] == 1) {
+          $forms[] = $data['otherVal'];
+      }
+
+      $forms = implode(', ', $forms);
+
+        $pdf->Cell(60);
+
+        $pdf->RowLegalP(array(
 
           $key + 1,
 
-          $data['student_name'],
-
           $data['student_no'],
 
-          $data['otr']." ".$data['cert']." ".$data['cav']." ".$data['hon']." ".$data['authGrad']." ".$data['authUGrad']." ".$data['dip']." ".$data['rr']." ".$data['other']
+          $data['student_name'],
+
+          $forms
 
         ));
 
       }
 
     }else{
-
-      $pdf->Cell(345,5,'No data available.',1,1,'C');
+      $pdf->Cell(60);
+      $pdf->Cell(150,5,'No data available.',1,1,'C');
 
     }
 
     $pdf->output();
     exit();
-
+  
   }
 
   public function studentApplication(){
