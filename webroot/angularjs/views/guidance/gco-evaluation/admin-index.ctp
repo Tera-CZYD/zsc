@@ -107,9 +107,8 @@
                         <div class="btn-group btn-group-xs">
                           
                           <a id="pageView" href="#/guidance/admin-gco-evaluation/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
-                          
-                          <!-- <a href="#/guidance/gco-evaluation/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
-                          <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a> -->
+                          <a id="pageEdit" href="#/guidance/gco-evaluation/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
+                          <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
                         </div>
                       </td>
                     </tr>

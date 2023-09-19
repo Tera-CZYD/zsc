@@ -1,6 +1,27 @@
-<?php if (hasAccess('referral_recommendation/index', $currentUser)): ?>
+<script type="text/javascript">
 
-<div class="row">
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'referral recommendation/index', currentUser);
+  handleAccess('pageAdd', 'referral recommendation/add', currentUser);
+  handleAccess('pagePrint', 'referral recommendation/print', currentUser);
+  handleAccess('pageView', 'referral recommendation/view', currentUser);
+  handleAccess('pageEdit', 'referral recommendation/edit', currentUser);
+  handleAccess('pageDelete', 'referral recommendation/delete', currentUser);
+
+</script>
+
+<div class="row" id="pageIndex">
 <div class="col-lg-12 mt-3">
   <div class="card">
     <div class="card-body">
@@ -57,9 +78,9 @@
             <div class="col-md-12">
               <div class="row">
                 <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                  <a href="#/medical-services/referral-recommendation/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
+                  <a id="pageAdd" href="#/medical-services/referral-recommendation/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
                   <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-                  <button ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>
+                  <button id="pagePrint" ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>
                   <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                 </div>
                 <div class="col-md-4 col-xs-12 pull-right">
@@ -99,11 +120,11 @@
                     <td class="text-center">{{ data.nurse_name }}</td>
                     <td>
                       <div class="btn-group btn-group-xs">
-                        <a href="#/medical-services/referral-recommendation/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                        <a id="pageView" href="#/medical-services/referral-recommendation/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
                     
-                        <a href="#/medical-services/referral-recommendation/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
+                        <a id="pageEdit" href="#/medical-services/referral-recommendation/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
                   
-                        <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
+                        <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
                    
                       </div>
                     </td>
@@ -148,10 +169,10 @@
               <div class="row">
                 <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                 
-                  <a href="#/medical-services/referral-recommendation/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
+                  <a id="pageAdd" href="#/medical-services/referral-recommendation/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
              
                   <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-                  <button ng-click="printApprove()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>
+                  <button id="pagePrint" ng-click="printApprove()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>
                   <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                 </div>
                 <div class="col-md-4 col-xs-12 pull-right">
@@ -189,11 +210,11 @@
                     <td class="text-center">{{ data.recommendations }}</td>
                     <td>
                       <div class="btn-group btn-group-xs">
-                        <a href="#/medical-services/referral-recommendation/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                        <a id="pageView" href="#/medical-services/referral-recommendation/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
                     
-                        <a href="#/medical-services/referral-recommendation/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
+                        <a id="pageEdit" href="#/medical-services/referral-recommendation/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
                   
-                        <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
+                        <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
                    
                       </div>
                     </td>
@@ -238,10 +259,10 @@
               <div class="row">
                 <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                
-                  <a href="#/medical-services/referral-recommendation/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
+                  <a id="pageAdd" href="#/medical-services/referral-recommendation/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
             
                   <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-                  <button ng-click="printDisapprove()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>
+                  <button id="pagePrint" ng-click="printDisapprove()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>
                   <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                 </div>
                 <div class="col-md-4 col-xs-12 pull-right">
@@ -279,11 +300,11 @@
                     <td class="text-center">{{ data.recommendations }}</td>
                     <td>
                       <div class="btn-group btn-group-xs">
-                        <a href="#/medical-services/referral-recommendation/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                        <a id="pageView" href="#/medical-services/referral-recommendation/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
                     
-                        <a href="#/medical-services/referral-recommendation/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
+                        <a id="pageEdit" href="#/medical-services/referral-recommendation/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
                   
-                        <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
+                        <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
                    
                       </div>
                     </td>
@@ -328,7 +349,7 @@
               <div class="row">
                 <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                   <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
-                  <button ng-click="printTreated()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i>PRINT</button>
+                  <button id="pagePrint" ng-click="printTreated()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i>PRINT</button>
                   <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                 </div>
                 <div class="col-md-4 col-xs-12 pull-right">
@@ -366,11 +387,11 @@
                     <td class="text-center">{{ data.year }}</td>
                     <td>
                       <div class="btn-group btn-group-xs">
-                        <a href="#/medical-services/referral-recommendation/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                        <a id="pageView" href="#/medical-services/referral-recommendation/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
                     
-                        <a href="#/medical-services/referral-recommendation/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
+                        <a id="pageEdit" href="#/medical-services/referral-recommendation/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
                   
-                        <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
+                        <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
                    
                       </div>
                     </td>
@@ -415,7 +436,7 @@
               <div class="row">
                 <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                   <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
-                  <button ng-click="printReferred()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i>PRINT</button>
+                  <button id="pagePrint" ng-click="printReferred()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i>PRINT</button>
                   <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                 </div>
                 <div class="col-md-4 col-xs-12 pull-right">
@@ -453,11 +474,11 @@
                     <td class="text-center">{{ data.year }}</td>
                     <td>
                       <div class="btn-group btn-group-xs">
-                        <a href="#/medical-services/referral-recommendation/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                        <a id="pageEdit" href="#/medical-services/referral-recommendation/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
                     
-                        <a href="#/medical-services/referral-recommendation/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
+                        <a id="pageEdit" href="#/medical-services/referral-recommendation/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
                   
-                        <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
+                        <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
                    
                       </div>
                     </td>
@@ -495,20 +516,14 @@
               </div>
             </div>
           </div>
-
         </div>
-
       </div>
-
-
     </div>
   </div>
 </div>
 </div>
 
 
-
-<?php endif ?>
 
 <div class="modal fade" id="advance-search-modal">
   <div class="modal-dialog">
