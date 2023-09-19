@@ -621,7 +621,7 @@ class ReportsController extends AppController {
 
           'gender'        => $data['gender'],
 
-          'academic_rank' => $data['academic_rank'],
+          'academic_rank' => $data['rank'],
 
           'college'       => $data['college'],
 
@@ -1130,56 +1130,56 @@ class ReportsController extends AppController {
         $item_id = $data['id'];
 
         $issuancesQuery = $this->ItemIssuance->find();
-    	$issuancesQuery->select([
+      	$issuancesQuery->select([
 
     	    'number_issued' => $issuancesQuery->func()->coalesce([
 
-    	        $issuancesQuery->func()->sum('ItemIssuanceSubs.quantity'),
+  	        $issuancesQuery->func()->sum('ItemIssuanceSubs.quantity'),
 
-    	        0
+  	        0
     	    ])
 
-    	])
+      	])
 
-    ->leftJoinWith('ItemIssuanceSubs')	
+        ->leftJoinWith('ItemIssuanceSubs')	
 
-    ->where([
+        ->where([
 
-        'ItemIssuances.visible' => 1,
+            'ItemIssuances.visible' => 1,
 
-        'ItemIssuances.status' => 1,
+            'ItemIssuances.status' => 1,
 
-        'ItemIssuanceSubs.item_id' => $item_id
+            'ItemIssuanceSubs.item_id' => $item_id
 
-      ])
+          ])
 
-      ->enableAutoFields(true);
+          ->enableAutoFields(true);
 
-      $issuancesResult = $issuancesQuery->firstOrFail();
+          $issuancesResult = $issuancesQuery->firstOrFail();
 
-      $total_issuances = $issuancesResult->number_issued ?? 0;
+          $total_issuances = $issuancesResult->number_issued ?? 0;
 
-      $inventory = $this->InventoryProperty->find()
+          $inventory = $this->InventoryProperty->find()
 
-      ->where([
+          ->where([
 
-          'InventoryProperties.visible' => 1,
+              'InventoryProperties.visible' => 1,
 
-          'InventoryProperties.property_log_id' => $item_id
+              'InventoryProperties.property_log_id' => $item_id
 
-      ])
+          ])
 
-      ->all();
+          ->all();
 
-  		$total_stock = 0;
+      		$total_stock = 0;
 
-  		foreach ($inventory as $entity) {
+      		foreach ($inventory as $entity) {
 
-  		    $entity->expiry_date = $entity->expiry_date->format('m/d/Y');
+      		    $entity->expiry_date = $entity->expiry_date->format('m/d/Y');
 
-  		    $total_stock += $entity->stocks;
+      		    $total_stock += $entity->stocks;
 
-  		}
+      		}
 
           $datas[] = array(
 
@@ -1253,9 +1253,9 @@ class ReportsController extends AppController {
 
       $search_date = $this->request->getQuery('date');
 
-      $conditions['date'] = " AND DATE(ConsultationSub.date) = '$search_date'"; 
+      $conditions['date'] = " AND DATE(ConsultationSub.date) = '$search_date' "; 
 
-      $condition = " AND DATE(ConsultationSub.date) = '$search_date'"; 
+      $condition = " AND DATE(ConsultationSub.date) = '$search_date' "; 
 
       $conditionsPrint .= '&date='.$search_date;
 
@@ -2888,7 +2888,7 @@ class ReportsController extends AppController {
 
         'name'  =>  $data['student_name'],
 
-        'date' => $data['date']
+        'date' => fdate($data['date'],'m/d/Y')
 
        );
 
