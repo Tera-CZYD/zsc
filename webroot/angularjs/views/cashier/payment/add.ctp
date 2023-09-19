@@ -1,5 +1,23 @@
-<?php if (hasAccess('payment/add', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageAdd', 'payment/add', currentUser);
+  handleAccess('pageDelete', 'payment/delete', currentUser);
+
+</script>
+
+<div class="row" id="pageAdd">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -71,11 +89,9 @@
                     <td class="uppercase"> {{ datax.unit }}</td>
                     <td class="text-right">{{ datax.amount | number : 2 }}</td>
                     <td class="w30px">
-                      <?php if (hasAccess('user management/delete permission', $currentUser)): ?>
-                      <div class="btn-group btn-group-xs">
+                      <div id="pageDelete" class="btn-group btn-group-xs">
                         <a class="btn btn-danger no-border-radius" ng-click="removeMiscellaneous($index,data);" ><i class="fa fa-trash"></i></a>
                       </div>
-                      <?php endif ?> 
                     </td>
                     <tr ng-if="data.CashierSub == '' || data.CashierSub == null">
                       <td class="text-center" colspan="10">No available Miscellaneous</td>
@@ -94,9 +110,7 @@
 
             <div class="col-md-12">
               <div class="col-md-3">
-                <?php if (hasAccess('session-attendance/add', $currentUser)): ?>
-                <button type="button" class="btn btn-primary btn-min" data-toggle="modal" ng-click="addMiscellaneous()"><i class="fa fa-plus"></i> ADD MISCELLANEOUS</button>
-                <?php endif ?>
+                <button id="pageAdd" type="button" class="btn btn-primary btn-min" data-toggle="modal" ng-click="addMiscellaneous()"><i class="fa fa-plus"></i> ADD MISCELLANEOUS</button>
               </div>
             </div>
 
@@ -116,9 +130,6 @@
     </div>
   </form>
 </div>
-<?php endif ?>
-<?php echo $this->element('modals/search/searched-approval-enrolled-course-modal') ?>
-<?php echo $this->element('modals/search/searched-miscellaneous-modal') ?>
 <script>
 $('#form').validationEngine('attach');
 </script>

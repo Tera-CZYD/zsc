@@ -257,6 +257,7 @@ class CounselingIntakesController extends AppController {
   public function view($id = null){
 
     $data = $this->CounselingIntakes->find()
+    
       ->contain([
           'CollegePrograms',
 

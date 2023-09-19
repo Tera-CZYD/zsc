@@ -531,7 +531,7 @@ app.controller('ReferralSlipEditController', function($scope, $routeParams, Refe
 
   $scope.load();
 
-  $scope.save = function() {
+  $scope.update = function() {
 
     valid = $("#form").validationEngine('validate');
 

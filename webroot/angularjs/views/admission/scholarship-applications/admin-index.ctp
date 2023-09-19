@@ -1,5 +1,27 @@
-<?php if (hasAccess('scholarship application/index', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'scholarship application/index', currentUser);
+  handleAccess('pageAdd', 'scholarship application/add', currentUser);
+  handleAccess('pagePrint', 'scholarship application/print', currentUser);
+  handleAccess('pageView', 'scholarship application/view', currentUser);
+  handleAccess('pageEdit', 'scholarship application/edit', currentUser);
+  handleAccess('pageDelete', 'scholarship application/delete', currentUser);
+
+</script>
+
+<div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -62,13 +84,9 @@
               <div class="col-md-12">
                 <div class="row">
                   <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                    <?php if (hasAccess('scholarship application/add', $currentUser)): ?>
-                    <a href="#/admission/admin-scholarship-application/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
-                    <?php endif ?>
+                    <a id="pageAdd" href="#/admission/admin-scholarship-application/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
                     <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-                    <?php if (hasAccess('scholarship application/print', $currentUser)): ?>
-                    <button ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>
-                    <?php endif ?>
+                    <button id="pagePrint" ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>
                     <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                   </div>
                   <div class="col-md-4 col-xs-12 pull-right">
@@ -112,18 +130,10 @@
                         <td class="text-center">PENDING</td>
                         <td>
                           <div class="btn-group btn-group-xs">
-                            <?php if (hasAccess('scholarship application/view', $currentUser)): ?>
-                            <a href="#/admission/admin-scholarship-application/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
-                            <?php endif ?>
-                            <?php if (hasAccess('scholarship application/edit', $currentUser)): ?>
-                            <a href="#/admission/admin-scholarship-application/edit/{{ data.id }}" class="btn btn-primary" ng-disabled="data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a>
-                            <?php endif ?>
-                            <?php if (hasAccess('scholarship application/delete', $currentUser)): ?>
-                            <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled="data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
-                            <?php endif ?>
-                            <?php if (hasAccess('scholarship application/view', $currentUser)): ?>
-                            <a href="javascript:void(0)" ng-click="viewGrade(data.id)" class="btn btn-info" ng-disabled="data.status != 0" title="VIEW GRADES"><i class="fa fa-low-vision"></i></a>
-                            <?php endif ?>
+                            <a id="pageView" href="#/admission/admin-scholarship-application/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
+                            <a id="pageEdit" href="#/admission/admin-scholarship-application/edit/{{ data.id }}" class="btn btn-primary" ng-disabled="data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a>
+                            <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled="data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
+                            <a id="pageView" href="javascript:void(0)" ng-click="viewGrade(data.id)" class="btn btn-info" ng-disabled="data.status != 0" title="VIEW GRADES"><i class="fa fa-low-vision"></i></a>
                           </div>
                         </td>
                       </tr>
@@ -166,9 +176,7 @@
                 <div class="row">
                   <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                     <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
-                    <?php if (hasAccess('scholarship application/print', $currentUser)): ?>
-                    <button ng-click="printApproved()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>
-                    <?php endif ?>
+                    <button id="pagePrint" ng-click="printApproved()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>
                     <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                   </div>
                   <div class="col-md-4 col-xs-12 pull-right">
@@ -212,9 +220,7 @@
                         <td class="text-center">FOR PROCESSING</td>
                         <td>
                           <div class="btn-group btn-group-xs">
-                            <?php if (hasAccess('scholarship application/view', $currentUser)): ?>
-                            <a href="#/admission/admin-scholarship-application/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
-                            <?php endif ?>
+                            <a id="pageView" href="#/admission/admin-scholarship-application/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
                           </div>
                         </td>
                       </tr>
@@ -257,9 +263,7 @@
                 <div class="row">
                   <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                     <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
-                    <?php if (hasAccess('scholarship application/print', $currentUser)): ?>
-                    <button ng-click="printConfirmed()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>
-                    <?php endif ?>
+                    <button id="pagePrint" ng-click="printConfirmed()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>
                     <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                   </div>
                   <div class="col-md-4 col-xs-12 pull-right">
@@ -303,9 +307,7 @@
                         <td class="text-center">CONFIRMED</td>
                         <td>
                           <div class="btn-group btn-group-xs">
-                            <?php if (hasAccess('scholarship application/view', $currentUser)): ?>
-                            <a href="#/admission/admin-scholarship-application/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
-                            <?php endif ?>
+                            <a id="pageView" href="#/admission/admin-scholarship-application/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
                           </div>
                         </td>
                       </tr>
@@ -348,9 +350,7 @@
                 <div class="row">
                   <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                     <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
-                    <?php if (hasAccess('scholarship application/print', $currentUser)): ?>
-                    <button ng-click="printDisapproved()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>
-                    <?php endif ?>
+                    <button id="pagePrint" ng-click="printDisapproved()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>
                     <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                   </div>
                   <div class="col-md-4 col-xs-12 pull-right">
@@ -394,9 +394,7 @@
                         <td class="text-center">DISAPPROVED</td>
                         <td>
                           <div class="btn-group btn-group-xs">
-                            <?php if (hasAccess('scholarship application/view', $currentUser)): ?>
-                            <a href="#/admission/admin-scholarship-application/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
-                            <?php endif ?>
+                            <a id="pageView" href="#/admission/admin-scholarship-application/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
                           </div>
                         </td>
                       </tr>
@@ -444,7 +442,6 @@
 
 
 
-<?php endif ?>
 
 <div class="modal fade" id="advance-search-modal">
   <div class="modal-dialog">

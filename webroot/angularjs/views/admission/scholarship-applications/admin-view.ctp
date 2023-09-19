@@ -1,5 +1,28 @@
-<?php if (hasAccess('scholarship application/view', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'scholarship application/view', currentUser);
+  handleAccess('pageEdit', 'scholarship application/edit', currentUser);
+  handleAccess('pageDelete', 'scholarship application/delete', currentUser);
+  // handleAccess('pageApprove', 'scholarship application/delete', currentUser);
+  handleAccess('pageDisapprove', 'scholarship application/disapprove', currentUser);
+  handleAccess('pageConfirm', 'scholarship application/confirm', currentUser);
+  handleAccess('pagePrintForm', 'scholarship application/print application form', currentUser);
+
+</script>
+
+<div class="row" id="pageView">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -9,6 +32,10 @@
             <div class="col-md-12">
               <div class="table-responsive">
                 <table class="table table-striped">
+                  <tr>
+                    <th class="text-left"> SERIAL NUMBER : </th>
+                    <td class="italic" colspan="3">{{ data.ScholarshipApplication.serial_number }}</td>
+                  </tr>
                   <tr>
                     <th class="text-left" style="width:15%"> CONTROL NUMBER : </th>
                     <td class="italic">{{ data.ScholarshipApplication.code }}</td>
@@ -121,24 +148,14 @@
             </div>
             <div class="col-md-12">
               <div class="pull-right">
-<!--                 <?php if (hasAccess('scholarship application/approve', $currentUser)): ?>
-                  <button href="javascript:void(0)" ng-click="approve(data.ScholarshipApplication)" ng-disabled="data.ScholarshipApplication.approve == 1 || data.ScholarshipApplication.approve == 4 || data.ScholarshipApplication.approve == 2" class="btn btn-warning  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
-                <?php endif ?> -->
-                <?php if (hasAccess('scholarship application/confirm', $currentUser)): ?>
-                  <button href="javascript:void(0)" ng-click="confirm(data.ScholarshipApplication)" ng-disabled="data.ScholarshipApplication.approve == 2 || data.ScholarshipApplication.approve == 4" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> QUALIFY </button>
-                <?php endif ?>
-                <?php if (hasAccess('scholarship application/disapprove', $currentUser)): ?>
-                  <button href="javascript:void(0)" ng-click="disapprove(data.ScholarshipApplication)" ng-disabled="data.ScholarshipApplication.approve == 2 || data.ScholarshipApplication.approve == 4" class="btn btn-danger  btn-min" ><i class="fa fa-close"></i> UNQUALIFY </button>
-                <?php endif ?>
-                <?php if (hasAccess('scholarship application/edit', $currentUser)): ?>
-                <a href="#/admission/admin-scholarship-application/edit/{{ data.ScholarshipApplication.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
-                <?php endif ?>
-                <?php if (hasAccess('scholarship application/print application form', $currentUser)): ?>
-                <button type="button" class="btn btn-info  btn-min" ng-click="print(data.ScholarshipApplication.id )"><i class="fa fa-print"></i> PRINT SCHOLARSHIP APPLICATION FORM </button>
-                <?php endif ?>
-                <?php if (hasAccess('scholarship application/delete', $currentUser)): ?>
-                <button class="btn btn-danger btn-min" ng-click="remove(data.ScholarshipApplication)" ng-disabled="data.ScholarshipApplication.approve == 2 || data.ScholarshipApplication.approve == 4"><i class="fa fa-trash"></i> DELETE </button>
-                <?php endif ?>
+<!--                 
+                  <button id="pageApprove" href="javascript:void(0)" ng-click="approve(data.ScholarshipApplication)" ng-disabled="data.ScholarshipApplication.approve == 1 || data.ScholarshipApplication.approve == 4 || data.ScholarshipApplication.approve == 2" class="btn btn-warning  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
+                -->
+                  <button id="pageConfirm" href="javascript:void(0)" ng-click="confirm(data.ScholarshipApplication)" ng-disabled="data.ScholarshipApplication.approve == 2 || data.ScholarshipApplication.approve == 4" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> QUALIFY </button>
+                  <button id="pageDisapprove" href="javascript:void(0)" ng-click="disapprove(data.ScholarshipApplication)" ng-disabled="data.ScholarshipApplication.approve == 2 || data.ScholarshipApplication.approve == 4" class="btn btn-danger  btn-min" ><i class="fa fa-close"></i> UNQUALIFY </button>
+                <a id="pageEdit" href="#/admission/admin-scholarship-application/edit/{{ data.ScholarshipApplication.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
+                <button id="pagePrintForm" type="button" class="btn btn-info  btn-min" ng-click="print(data.ScholarshipApplication.id )"><i class="fa fa-print"></i> PRINT SCHOLARSHIP APPLICATION FORM </button>
+                <button id="pageDelete" class="btn btn-danger btn-min" ng-click="remove(data.ScholarshipApplication)" ng-disabled="data.ScholarshipApplication.approve == 2 || data.ScholarshipApplication.approve == 4"><i class="fa fa-trash"></i> DELETE </button>
               </div>
             </div>
           </div>
@@ -146,7 +163,6 @@
     </div>
   </div>
 </div>
-<?php endif ?>
 <style type="text/css">
 th {
     white-space: nowrap;

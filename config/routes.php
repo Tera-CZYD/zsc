@@ -173,7 +173,7 @@
 
       $routes->resources('BlockSections');
 
-
+      $routes->resources('Tors');
 
 
       //sir leo
@@ -182,35 +182,35 @@
 
       $routes->resources('ScholarshipNames', ['path' => 'scholarship_names']);
 
-	 		$routes->resources('Schools');
+    	$routes->resources('Schools');
 
-	 		$routes->resources('Employees');
+    	$routes->resources('Employees');
 
-	 		$routes->resources('FacultyClearances');
+    	$routes->resources('FacultyClearances');
 
-	 		$routes->resources('StudentClearances');
+    	$routes->resources('StudentClearances');
 
-	 		$routes->resources('CounselingTypes');
+    	$routes->resources('CounselingTypes');
 
-	 		$routes->resources('Affidavits');
+    	$routes->resources('Affidavits');
 
-	 		$routes->resources('PromissoryNotes');
+    	$routes->resources('PromissoryNotes');
 
-	 		$routes->resources('ReferralSlips');
+    	$routes->resources('ReferralSlips');
 
-	 		$routes->resources('AppointmentSlips');
+    	$routes->resources('AppointmentSlips');
 
-	 		$routes->resources('CalendarActivities');
+    	$routes->resources('CalendarActivities');
 
-	 		$routes->resources('CounselingIntakes');
+    	$routes->resources('CounselingIntakes');
 
-	 		$routes->resources('ParticipantEvaluationActivities');
+    	$routes->resources('ParticipantEvaluationActivities');
 
-	 		$routes->resources('StudentExits');
+    	$routes->resources('StudentExits');
 
-	 		$routes->resources('GcoEvaluations');
+    	$routes->resources('GcoEvaluations');
 
-	 		$routes->resources('Sections');
+    	$routes->resources('Sections');
 
 	    $routes->resources('Colleges');
 

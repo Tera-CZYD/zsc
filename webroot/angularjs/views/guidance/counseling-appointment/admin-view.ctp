@@ -36,6 +36,10 @@
             <div class="table-responsive">
               <table class="table table-striped">
                 <tr>
+                  <th class="text-right" style="width: 20%"> SERIAL NUMBER : </th>
+                  <td class="italic">{{ data.CounselingAppointment.serial_number }}</td>
+                </tr>
+                <tr>
                   <th class="text-right" style="width: 20%"> CONTROL NO. : </th>
                   <td class="italic">{{ data.CounselingAppointment.code }}</td>
                 </tr>

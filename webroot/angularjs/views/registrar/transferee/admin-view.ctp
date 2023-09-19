@@ -33,6 +33,10 @@
               <table class="table table-striped">
 
                 <tr>
+                  <th class="text-right"> SERIAL NUMBER : </th>
+                  <td class="italic">{{ data.Transferee.serial_number }}</td>
+                </tr>
+                <tr>
                   <th class="text-right" style="width:15%"> FIRST NAME : </th>
                   <td class="italic">{{ data.Transferee.first_name }}</td>
                 </tr>
