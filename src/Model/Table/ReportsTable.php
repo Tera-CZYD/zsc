@@ -3883,7 +3883,7 @@ class ReportsTable extends Table
 
       $query = $this->getConnection()->prepare($sql);
 
-      // var_dump($query);
+      var_dump($query);
 
       $query->execute();
 

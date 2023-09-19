@@ -1132,6 +1132,7 @@ class ReportsController extends AppController {
         $item_id = $data['id'];
 
         $issuancesQuery = $this->ItemIssuance->find();
+        
       	$issuancesQuery->select([
 
     	    'number_issued' => $issuancesQuery->func()->coalesce([
@@ -2990,7 +2991,7 @@ class ReportsController extends AppController {
 
         'conditions' => $conditions,
 
-        'type'   => 'consultation'
+        'type'   => 'consultation-employee'
 
       ],
 
