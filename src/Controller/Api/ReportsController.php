@@ -164,21 +164,36 @@ class ReportsController extends AppController {
 
       $program_id = $this->request->getQuery('program_id'); 
 
-      $conditions['program_id'] = $program_id;
+      $conditions['program_id'] = " AND Student.program_id = $program_id";
 
       $conditionsPrint .= '&program_id='.$program_id;
 
     }
 
-    $conditions['year_term_id'] = 0;
+    $conditions['year'] = "";
 
-    if ($this->request->getQuery('year_term_id') != null) {
+    if ($this->request->getQuery('year')!=null) {
 
-      $year_term_id = $this->request->getQuery('year_term_id'); 
+      $year = $this->request->getQuery('year'); 
 
-      $conditions['year_term_id'] = $year_term_id;
+      if($year==1){
+        $y1 = '1';
+        $y2 = '2';
+      }else if($year==2){
+        $y1 = '4';
+        $y2 = '5';
+      }else if($year==3){
+        $y1 = '7';
+        $y2 = '8';
+      }else if($year==4){
+        $y1 = '10';
+        $y2 = '11';
+      }else if($year==5){
+        $y1 = '13';
+        $y2 = '14';
+      }
 
-      $conditionsPrint .= '&year_term_id='.$year_term_id;
+      $conditions['year'] = " AND StudentEnrolledCourse.year_term_id = $year";
 
     }
 
@@ -1132,6 +1147,7 @@ class ReportsController extends AppController {
         $item_id = $data['id'];
 
         $issuancesQuery = $this->ItemIssuance->find();
+
       	$issuancesQuery->select([
 
     	    'number_issued' => $issuancesQuery->func()->coalesce([
@@ -2990,7 +3006,7 @@ class ReportsController extends AppController {
 
         'conditions' => $conditions,
 
-        'type'   => 'consultation'
+        'type'   => 'consultation-employee'
 
       ],
 
@@ -3013,7 +3029,7 @@ class ReportsController extends AppController {
 
         'id'                 => $data['id'],
 
-        'name'  =>  $data['student_name'],
+        'name'  =>  $data['employee_name'],
 
         'date' => fdate($data['date'],'m/d/Y')
 
@@ -3147,7 +3163,7 @@ class ReportsController extends AppController {
 
         'status'  =>  $status,
 
-        'date' => $data['date']
+        'date' => fdate($data['date'], 'm/d/Y')
 
        );
 
