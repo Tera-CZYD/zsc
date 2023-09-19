@@ -1,5 +1,25 @@
-<?php if (hasAccess('item issuance/view', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'item issuance/view', currentUser);
+  handleAccess('pageEdit', 'item issuance/edit', currentUser);
+  handleAccess('pageDelete', 'item issuance/delete', currentUser);
+  handleAccess('pageApprove', 'item issuance/approve', currentUser);
+
+</script>
+
+<div class="row" id="pageView">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -64,15 +84,9 @@
           </div>
           <div class="col-md-12">
             <div class="pull-right">
-              <?php if (hasAccess('item issuance/approve', $currentUser)): ?>
-                <button href="javascript:void(0)" ng-click="approve(data.ItemIssuance)" ng-disabled="data.ItemIssuance.status == 1 || data.ItemIssuance.status == 2" class="btn btn-warning  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
-              <?php endif ?>
-              <?php if (hasAccess('item issuance/edit', $currentUser)): ?>
-              <a href="#/medical-services/item-issuance/edit/{{ data.ItemIssuance.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
-              <?php endif ?>
-              <?php if (hasAccess('item issuance/delete', $currentUser)): ?>
-              <button class="btn btn-danger btn-min" ng-click="remove(data.ItemIssuance)"><i class="fa fa-trash"></i> DELETE </button>
-              <?php endif ?>
+              <button id="pageApprove" href="javascript:void(0)" ng-click="approve(data.ItemIssuance)" ng-disabled="data.ItemIssuance.status == 1 || data.ItemIssuance.status == 2" class="btn btn-warning  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
+              <a id="pageEdit" href="#/medical-services/item-issuance/edit/{{ data.ItemIssuance.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
+              <button id="pageDelete" class="btn btn-danger btn-min" ng-click="remove(data.ItemIssuance)"><i class="fa fa-trash"></i> DELETE </button>
             </div>
           </div>
         </div>
@@ -80,7 +94,7 @@
     </div>
   </div>
 </div>
-<?php endif ?>
+
 <style type="text/css">
 th {
     white-space: nowrap;

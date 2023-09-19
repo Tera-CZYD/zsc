@@ -1,4 +1,4 @@
-app.controller('TorController', function($scope, Tor,Select) {
+ app.controller('TorController', function($scope, Tor,Select) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -144,73 +144,125 @@ app.controller('TorController', function($scope, Tor,Select) {
 
   }
 
-  $scope.selectedFilter = 'date';
-
-  $scope.changeFilter = function(type){
+  $scope.advance_search = function() {
 
     $scope.search = {};
 
-    $scope.selectedFilter = type;
+    $scope.advanceSearch = false;
+ 
+    $scope.position_id = null;
+ 
+    $scope.office_id = null;
 
-    $('.monthpicker').datepicker({format: 'MM', autoclose: true, minViewMode: 'months',maxViewMode:'months'});
- 
-    $('.input-daterange').datepicker({
- 
-      format: 'mm/dd/yyyy'
+    $('.monthpicker').datepicker({
+
+      format: 'MM',
+
+      autoclose: true,
+
+      minViewMode: 'months',
+
+      maxViewMode: 'months'
 
     });
+
+    $('.input-daterange').datepicker({
+
+      format: 'yyyy-mm-dd'
+
+    });
+
+    $('.datepicker').datepicker('setDate', '');
+
+    $('.monthpicker').datepicker('setDate', '');
+
+    $('.input-daterange').datepicker('setDate', '');
+
+    $('#advance-search-modal').modal('show');
 
   }
 
   $scope.searchFilter = function(search) {
-   
+
+    $scope.filter = false;
+
+    $scope.advanceSearch = true;
+
     $scope.searchTxt = '';
 
     $scope.dateToday = null;
-   
+
     $scope.startDate = null;
-   
+
     $scope.endDate = null;
 
-    if ($scope.selectedFilter == 'date') {
-    
+    if (search.filterBy == 'today') {
+
+      $scope.dateToday = Date.parse('today').toString('yyyy-MM-dd');
+
+      $scope.today = Date.parse('today').toString('yyyy-MM-dd');
+
+      $scope.dateToday = $scope.today;
+
+    }else if (search.filterBy == 'date') {
+
       $scope.dateToday = Date.parse(search.date).toString('yyyy-MM-dd');
-   
-    }else if ($scope.selectedFilter == 'month') {
-   
+
+    }else if (search.filterBy == 'month') {
+
       date = $('.monthpicker').datepicker('getDate');
-   
+
       year = date.getFullYear();
-   
+
       month = date.getMonth() + 1;
-   
+
       lastDay = new Date(year, month, 0);
 
       if (month < 10) month = '0' + month;
-      
+
       $scope.startDate = year + '-' + month + '-01';
-      
+
       $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
-    
-    }else if ($scope.selectedFilter == 'customRange') {
-    
+
+    }else if (search.filterBy == 'this-month') {
+
+      date = new Date();
+
+      year = date.getFullYear();
+
+      month = date.getMonth() + 1;
+
+      lastDay = new Date(year, month, 0);
+
+      if (month < 10) month = '0' + month;
+
+      $scope.startDate = year + '-' + month + '-01';
+
+      $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
+
+    }else if (search.filterBy == 'custom') {
+
       $scope.startDate = Date.parse(search.startDate).toString('yyyy-MM-dd');
-    
-      $scope.endDate = Date.parse(search.endDate).toString('yyyy-MM-dd');
-    
+
+      $scope.endDate =  Date.parse(search.endDate).toString('yyyy-MM-dd');
+
     }
 
     $scope.load({
 
-      date         : $scope.dateToday,
+      date           : $scope.dateToday,
 
-      startDate    : $scope.startDate,
+      startDate      : $scope.startDate,
 
-      endDate      : $scope.endDate
+      endDate        : $scope.endDate,
+
+      year_term_id   : $scope.year_term_id,
 
     });
-  
-  } 
+
+    $('#advance-search-modal').modal('hide');
+
+  }
 
   $scope.print = function(){
 
