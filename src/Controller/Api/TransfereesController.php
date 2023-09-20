@@ -42,42 +42,48 @@ class TransfereesController extends AppController {
 
     $conditionsPrint = '';
 
-    if($this->request->getQuery('search') != null){
-  
+    if ($this->request->getQuery('search')) {
+
       $search = $this->request->getQuery('search');
-   
+
       $search = strtolower($search);
-   
+
       $conditions['search'] = $search;
-   
+
       $conditionsPrint .= '&search='.$search;
-   
+
     }
 
     $conditions['date'] = '';
 
-    if ($this->request->getQuery('date') != null) {
- 
+    if ($this->request->getQuery('date')) {
+
       $search_date = $this->request->getQuery('date');
- 
+
       $conditions['date'] = " AND DATE(Transferee.date) = '$search_date'"; 
- 
+
+      $dates['date'] = $search_date;
+
       $conditionsPrint .= '&date='.$search_date;
-  
+
     }  
 
     //advance search
 
     if ($this->request->getQuery('startDate')) {
- 
+
       $start = $this->request->getQuery('startDate'); 
- 
+
       $end = $this->request->getQuery('endDate');
- 
+
       $conditions['date'] = " AND DATE(Transferee.date) >= '$start' AND DATE(Transferee.date) <= '$end'";
- 
+
+      $dates['startDate'] = $start;
+
+      $dates['endDate']   = $end;
+
       $conditionsPrint .= '&startDate='.$start.'&endDate='.$end;
- 
+
     }
 
     $limit = 25;

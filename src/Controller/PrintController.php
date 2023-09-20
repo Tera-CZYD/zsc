@@ -19037,7 +19037,7 @@ class PrintController extends AppController {
   
   }
 
-  public function list_bibliographies() {
+  public function listBibliographies() {
 
     $conditions = array();
 
@@ -19055,9 +19055,9 @@ class PrintController extends AppController {
 
     $conditions['date'] = '';
 
-    if (isset($this->request->query['date'])) {
+    if ($this->request->getQuery('date')) {
 
-      $search_date = $this->request->query['date'];
+      $search_date = $this->request->getQuery('date');
 
       $conditions['date'] = " AND DATE(Bibliography.date_of_publication) = '$search_date'"; 
 
@@ -19065,11 +19065,11 @@ class PrintController extends AppController {
 
     } 
 
-    if (isset($this->request->query['startDate'])) {
+    if ($this->request->getQuery('startDate')) {
 
-      $start = $this->request->query['startDate']; 
+      $start = $this->request->getQuery('startDate'); 
 
-      $end = $this->request->query['endDate'];
+      $end = $this->request->getQuery('endDate');
 
       $conditions['date'] = " AND DATE(Bibliography.date_of_publication) >= '$start' AND DATE(Bibliography.date_of_publication) <= '$end'";
 
@@ -19079,7 +19079,7 @@ class PrintController extends AppController {
 
     }
     
-    $tmpData = $this->Bibliography->query($this->Bibliography->getAllBibliography($conditions));
+    $tmpData = $this->Reports->getAllListInventoryBibliographyPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -19125,25 +19125,24 @@ class PrintController extends AppController {
 
       foreach ($tmpData as $key => $data){
 
-        $tmp = $data['Bibliography'];
 
         $pdf->RowLegalL(array(
 
           $key + 1,
 
-          $data['Bibliography']['call_number1'] . ', '. $data['Bibliography']['call_number2'] . ', '. $data['Bibliography']['call_number3'],
+          $data['call_number1'] . ', '. $data['call_number2'] . ', '. $data['call_number3'],
 
-          $data['Bibliography']['code'],
+          $data['code'],
 
-          strtoupper($data['Bibliography']['title']),
+          strtoupper($data['title']),
 
-          strtoupper($data['Bibliography']['author']),
+          strtoupper($data['author']),
 
-          fdate($data['Bibliography']['date_of_publication'],'m/d/Y'),
+          fdate($data['date_of_publication'],'m/d/Y'),
 
-          $data['CollectionType']['collection_type'],
+          $data['collection_type'],
 
-          $data['MaterialType']['material_type'],  
+          $data['material_type'],  
 
         ));
 
