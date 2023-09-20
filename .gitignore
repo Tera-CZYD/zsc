@@ -2,13 +2,9 @@
 ##########################
 !/config/app_local.php
 !/config/.env
-#/logs/*
-#/tmp/*
+/logs/*
+/tmp/*
 !/vendor/*
-<<<<<<< HEAD
-=======
-# tmp/debug_kit.sqlite
->>>>>>> 66b81273bcdeb45ccb2566ff250a7db7b8394497
 
 # OS generated files #
 ######################
