@@ -13,10 +13,8 @@
 
   // INCLUDE ALL PAGE PERMISSION
   handleAccess('pageIndex', 'counseling type/index', currentUser);
-  handleAccess('pageAdd', 'counseling type/add', currentUser);
-  handleAccess('pagePrint', 'counseling type/print', currentUser);
-  handleAccess('pageView', 'counseling type/view', currentUser);
   handleAccess('pageEdit', 'counseling type/edit', currentUser);
+  handleAccess('pageAdd', 'counseling type/add', currentUser);
   handleAccess('pageDelete', 'counseling type/delete', currentUser);
 
 </script>
@@ -32,7 +30,7 @@
           <div class="row">
             <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
               
-                <a id href="#/guidance/counseling-type/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD RECORD </a>
+                <a id="pageAdd" href="#/guidance/counseling-type/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD RECORD </a>
               
               <button type="button" class="btn btn-warning btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
             </div>
