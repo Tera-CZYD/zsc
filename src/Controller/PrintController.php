@@ -11415,14 +11415,14 @@ class PrintController extends AppController {
 
     $conditions['search'] = '';
 
-    if($this->request->getQuery('search')){
+    if ($this->request->getQuery('search')) {
 
       $search = $this->request->getQuery('search');
 
       $search = strtolower($search);
 
       $conditions['search'] = $search;
-
+    
     }
 
     $conditions['date'] = '';
@@ -11441,13 +11441,11 @@ class PrintController extends AppController {
 
       $end = $this->request->getQuery('endDate');
 
-      $conditions['date'] = " AND DATE(RequestForm.date) >= '$start' AND DATE(Consultation.date) <= '$end'";
+      $conditions['date'] = " AND DATE(RequestForm.date) >= '$start' AND DATE(RequestForm.date) <= '$end'";
 
     }
-
+    
     $tmpData = $this->Reports->getAllRequestedFormPrint($conditions);
-
-    $datas = new Collection($tmpData);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -11457,8 +11455,8 @@ class PrintController extends AppController {
     $pdf->SetFooter(true);
     $pdf->footerSystem = true;
     $pdf->AliasNbPages();
-    $pdf->AddPage("L", "legal", 0);
-    $pdf->Image($this->base .'/assets/img/zam.png',75,10,25,25);
+    $pdf->AddPage("P", "legal", 0);
+    $pdf->Image($this->base .'/assets/img/zam.png',5,10,25,25);
     $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
     $pdf->Ln(5);
@@ -11472,65 +11470,89 @@ class PrintController extends AppController {
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
     $pdf->SetFont("Arial", 'B', 12);
-    $pdf->Cell(0,5,'STUDENT APPLICATION',0,0,'C');
+    $pdf->Cell(0,5,'LIST OF REQUESTED FORMS',0,0,'C');
     $pdf->Ln(10);
     $pdf->SetFont("Arial", 'B', 8);
     $pdf->SetFillColor(217,237,247);
+    $pdf->Cell(10);
     $pdf->Cell(10,5,'#',1,0,'C',1);
-    $pdf->Cell(35,5,'STUDENT ID',1,0,'C',1);
-    $pdf->Cell(75,5,'STUDENT NAME',1,0,'C',1);
-    $pdf->Cell(65,5,'YEAR LEVEL',1,0,'C',1);
-    $pdf->Cell(100,5,'EMAIL',1,0,'C',1);
-    $pdf->Cell(60,5,'APPLICATION NOTE',1,0,'C',1);
+    $pdf->Cell(30,5,'STUDENT NUMBER',1,0,'C',1);
+    $pdf->Cell(70,5,'STUDENT NAME',1,0,'C',1);
+    $pdf->Cell(80,5,'REQUESTED FORM',1,0,'C',1);
     $pdf->Ln();
     $pdf->SetFont("Arial", '', 8);
-    $pdf->SetWidths(array(10,35,75,65,100,60));
-    $pdf->SetAligns(array('C','L','L','C','C','C'));
+    $pdf->SetWidths(array(10,30,70,80));
+    $pdf->SetAligns(array('C','C','C','C'));
 
-    if(!$datas->isEmpty()){
+    if(count($tmpData) > 0){
 
-      foreach ($datas as $key => $data){
-        $data['otr'] = ($data['otr'] != null && $data['otr'] == 1) ? "Transcript of Records" : "";
+      foreach ($tmpData as $key => $data){
 
-        $data['cav'] = ($data['cav'] != null && $data['cav'] == 1) ? "Certification Authentication Verification" : "";
+        $forms = [];
 
-        $data['cert'] = ($data['cert'] != null && $data['cert'] == 1) ? "Certification" : "";
+      if ($data['otr'] != null && $data['otr'] == 1) {
+          $forms[] = "Transcript of Records";
+      }
 
-        $data['hon'] = ($data['hon'] != null && $data['hon'] == 1) ? "Honorable Dismissal" : "";
+      if ($data['cav'] != null && $data['cav'] == 1) {
+          $forms[] = "Certification Authentication Verification";
+      }
 
-        $data['authGrad'] = ($data['authGrad'] != null && $data['authGrad'] == 1) ? "Authorization Gradudate" : "";
+      if ($data['cert'] != null && $data['cert'] == 1) {
+          $forms[] = "Certification";
+      }
 
-        $data['authUGrad'] = ($data['authUGrad'] != null && $data['authUGrad'] == 1) ? "Authorization Under Gradudate" : "";
+      if ($data['hon'] != null && $data['hon'] == 1) {
+          $forms[] = "Honorable Dismissal";
+      }
 
-        $data['dip'] = ($data['otr'] != null && $data['dip'] == 1) ? "Diploma" : "";
+      if ($data['authGrad'] != null && $data['authGrad'] == 1) {
+          $forms[] = "Authorization Graduate";
+      }
 
-        $data['rr'] = ($data['rr'] != null && $data['rr'] == 1) ? "Red Ribbon" : "";
+      if ($data['authUGrad'] != null && $data['authUGrad'] == 1) {
+          $forms[] = "Authorization Undergraduate";
+      }
 
-        $data['other'] = ($data['other'] != null && $data['rr'] == 1) ? $data['otherVal'] : "";
+      if ($data['dip'] != null && $data['dip'] == 1) {
+          $forms[] = "Diploma";
+      }
 
-        $pdf->RowLegalL(array(
+      if ($data['rr'] != null && $data['rr'] == 1) {
+          $forms[] = "Red Ribbon";
+      }
+
+      if ($data['other'] != null && $data['rr'] == 1) {
+          $forms[] = $data['otherVal'];
+      }
+
+      $forms = implode(', ', $forms);
+
+        $pdf->Cell(10);
+
+        $pdf->RowLegalP(array(
 
           $key + 1,
 
-          $data['student_name'],
-
           $data['student_no'],
 
-          $data['otr']." ".$data['cert']." ".$data['cav']." ".$data['hon']." ".$data['authGrad']." ".$data['authUGrad']." ".$data['dip']." ".$data['rr']." ".$data['other']
+          $data['student_name'],
+
+          $forms
 
         ));
 
       }
 
     }else{
-
-      $pdf->Cell(345,5,'No data available.',1,1,'C');
+      $pdf->Cell(60);
+      $pdf->Cell(150,5,'No data available.',1,1,'C');
 
     }
 
     $pdf->output();
     exit();
-
+  
   }
 
   public function studentApplication(){
@@ -30536,6 +30558,161 @@ EQUIVALENT',1,'C',0);
     else{
 
       $pdf->Cell(345,5,'No data available.',1,1,'C');
+
+    }
+
+
+
+    $pdf->output();
+
+    exit();
+
+  }
+
+  public function gcoEvaluationList(){
+
+    $conditions = array();
+
+    $conditions['search'] = '';
+
+    if($this->request->getQuery('search')){
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+    }
+
+    $conditions['date'] = '';
+
+    if ($this->request->getQuery('date')) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(GcoEvaluation.date) = '$search_date'"; 
+
+    }
+
+    if ($this->request->getQuery('startDate')) {
+
+      $start = $this->request->getQuery('startDate'); 
+
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = " AND DATE(GcoEvaluation.date) >= '$start' AND DATE(GcoEvaluation.date) <= '$end'";
+
+    }
+
+    $conditions['year_term_id'] = "";
+
+
+    if ($this->request->getQuery('year_term_id')!=null) {
+
+      $year_term_id = $this->request->getQuery('year_term_id'); 
+
+      $conditions['year_term_id'] = " AND Student.year_term_id = '$year_term_id' ";
+
+    }
+
+    $conditions['college_id'] = "AND Student.college_id IS NULL";
+
+
+    if ($this->request->getQuery('college_id')!=null) {
+
+      $college_id = $this->request->getQuery('college_id'); 
+
+      $conditions['college_id'] = " AND Student.college_id = '$college_id' ";
+
+    }
+
+    $conditions['program_id'] = "AND Student.program_id IS NULL";
+
+
+    if ($this->request->getQuery('program_id')!=null) {
+
+      $program_id = $this->request->getQuery('program_id'); 
+
+      $conditions['program_id'] = " AND Student.program_id = '$program_id' ";
+
+    }
+
+    $conditions['employee_id'] = "";
+
+
+    if ($this->request->getQuery('employee_id')!=null) {
+
+      $employee_id = $this->request->getQuery('employee_id'); 
+
+      $conditions['employee_id'] = " AND CounselingAppointment.employee_id = '$employee_id' ";
+
+    }
+    
+    $tmpData = $this->Reports->getAllGcoEvaluationPrint($conditions);
+
+    $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
+
+    require("wordwrap.php");
+    $pdf = new ConductPDF();
+    $pdf->SetMargins(5,10,5);
+    $pdf->SetFooter(true);
+    $pdf->footerSystem = true;
+    $pdf->AliasNbPages();
+    $pdf->AddPage("L", "legal", 0);
+    $pdf->Image($this->base .'/assets/img/zam.png',5,10,25,25);
+    $pdf->SetFont("Times", 'B', 12);
+    $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,strtoupper($this->Global->Settings('lgu_name')),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->SetFont("Times", '', 12);
+    $pdf->Cell(0,5,$this->Global->Settings('address'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('telephone'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->Cell(0,5,'ENROLLMENT PROFILE',0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFillColor(217,237,247);
+    $pdf->Cell(10,5,'#',1,0,'C',1);
+    $pdf->Cell(50,5,'STUDENT NO.',1,0,'C',1);
+    $pdf->Cell(100,5,'STUDENT NAME',1,0,'C',1);
+    $pdf->Cell(120,5,'COMMENTS',1,0,'C',1);
+    $pdf->Cell(60,5,'DATE',1,0,'C',1);
+    $pdf->Ln();
+    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetWidths(array(10,50,100,120,60));
+    $pdf->SetAligns(array('C','C','C','C','C'));
+
+    if (count($tmpData)>0) {
+
+      foreach ($tmpData as $key => $data) {
+    
+        $pdf->RowLegalP(array(
+
+          $key + 1,
+
+          $data['student_no'],
+
+          $data['student_name'],
+
+          $data['comments'],
+
+          $data['date'],
+
+        ));
+
+      }
+
+    }
+
+    else{
+
+      $pdf->Cell(340,5,'No data available.',1,1,'C');
 
     }
 

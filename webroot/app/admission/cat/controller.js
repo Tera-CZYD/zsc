@@ -765,6 +765,78 @@ app.controller("CatViewController", function ($scope, $routeParams, StudentAppli
 
   };
 
+    $scope.updatePsa = function (data) {
+
+    bootbox.confirm('Confirm Action', function(b){
+
+      if (b) {
+
+        StudentApplicationCheckForm.update({id:data.id},$scope.data, function(e){
+
+          if(e.ok){
+
+            $.gritter.add({
+
+              title : 'Successful!',
+
+              text: e.msg
+
+            });
+
+          }
+
+        });
+
+      } else {
+
+        $scope.$apply(function () {
+
+          $scope.data.StudentApplication.psa = ($scope.data.StudentApplication.psa) ? false : true;
+
+        });
+
+      }
+
+    });
+
+  };
+
+  $scope.updateForm = function (data) {
+
+    bootbox.confirm('Confirm Action', function(b){
+
+      if (b) {
+
+        StudentApplicationCheckForm.update({id:data.id},$scope.data, function(e){
+
+          if(e.ok){
+
+            $.gritter.add({
+
+              title : 'Successful!',
+
+              text: e.msg
+
+            });
+
+          }
+
+        });
+
+      } else {
+
+        $scope.$apply(function () {
+
+          $scope.data.StudentApplication.form_137 = ($scope.data.StudentApplication.form_137) ? false : true;
+
+        });
+
+      }
+
+    });
+    
+  };
+
   $scope.load();
 
   $scope.qualify = function(data){  

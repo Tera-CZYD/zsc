@@ -15,9 +15,6 @@
   handleAccess('pageView', 'transferee/view', currentUser);
   handleAccess('pageEdit', 'transferee/edit', currentUser);
   handleAccess('pageDelete', 'transferee/delete', currentUser);
-  handleAccess('pageApprove', 'transferee/approve', currentUser);
-  handleAccess('pageDisapprove', 'transferee/disapprove', currentUser);
-  handleAccess('pagePrintForm', 'transferee/print adding dropping form', currentUser);
 
 </script>
 
