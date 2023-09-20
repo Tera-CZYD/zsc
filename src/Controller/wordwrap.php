@@ -29,6 +29,9 @@ function txtentities($html){
 
 class ConductPDF extends FPDF {
 
+    public $footerBool = false; 
+    public $footerSystem = false; 
+
   function Circle($x, $y, $r, $style='D')
   {
       $this->Ellipse($x,$y,$r,$r,$style);
@@ -348,7 +351,7 @@ class ConductPDF extends FPDF {
 
       if($this->footerSystem){
 
-        $this->Image('https://esmiszscmst.mycreativepanda.ph/assets/img/zscmst-qr.png',8,$this->getY()-5,12,12);
+        // $this->Image('https://esmiszscmst.mycreativepanda.ph/assets/img/zscmst-qr.png',8,$this->getY()-5,12,12);
 
         $this->Cell(0,5,'This is a system generated report.',0,1,'C');  
 
@@ -358,76 +361,6 @@ class ConductPDF extends FPDF {
 
     }
 
-    if($this->footerDtr){
-
-      $this->SetY(-46.5);
-
-      $this->Line(3,$this->getY()-1,105,$this->getY()-1);
-
-      $this->Line(110,$this->getY()-1,212,$this->getY()-1);
-
-      $this->SetFont('Arial','',8);
-
-      $y = $this->getY();
-
-      $this->Cell(8,5,'',0,0,'L');
-
-      $this->MultiCell(90,3.5,'I certify on my honor that the above is a true and correct report of the hours of work performed, record of which was made daily at the time of arrival and departure from office.',0,'C');
-
-      $this->SetXY(115,$y);
-
-      $this->MultiCell(90,3.5,'I certify on my honor that the above is a true and correct report of the hours of work performed, record of which was made daily at the time of arrival and departure from office.',0,'C');
-
-      $this->Image('http://ehrmiszscmst.ednc.solutions/assets/img/dtr_qr.png',-1,$this->getY()-3,32,32);
-      $this->Image('http://ehrmiszscmst.ednc.solutions/assets/img/dtr_qr.png',105,$this->getY()-3,32,32);
-
-      $this->Ln(6.5);
-      $this->Line(32,$this->getY(),90,$this->getY());
-      $this->Line(140,$this->getY(),197,$this->getY());
-      $this->SetFont('Arial','BI',7.5);
-      $this->Cell(8,5,'',0,0,'L');
-      $this->Cell(102.5,5,'VERIFIED as to the prescribed office hours',0,0,'C');
-      $this->Cell(5,5,'',0,0,'L');
-      $this->Cell(102.5,5,'VERIFIED as to the prescribed office hours',0,0,'C');
-      $this->Ln(10.5);
-      $this->Line(32,$this->getY(),90,$this->getY());
-      $this->Line(140,$this->getY(),197,$this->getY());
-      $this->Cell(8,5,'',0,0,'L');
-      $this->Cell(102.5,5,'In-Charge',0,0,'C');
-      $this->Cell(5,5,'',0,0,'L');
-      $this->Cell(102.5,5,'In-Charge',0,0,'C');
-      $this->Ln(8.5);
-      $this->SetFont('Arial','',8);
-      $this->Cell(3.5,5,'',0,0,'L');
-      $this->Cell(20.5,5,'11751476812',0,0,'L');
-      $this->Cell(3.5,5,'',0,0,'L');
-      $this->Cell(102.5,5,'11751476812',0,0,'R');
-
-    }
-
-    if($this->footerSaln){
-
-      // Position at 1.5 cm from bottom
-
-      $this->SetY(-27);
-
-      // Arial italic 8
-
-      if(!$this->isFinished){
-        $this->SetFont('bookman','I',10);
-        $this->Cell(-1,5,'',0,0,'L');  
-        $this->Cell(0,5,'* Additional sheet/s may be used, if necessary.',0,1,'L');     
-      }else{
-        $this->SetFont('bookman','I',10);
-        $this->Ln(5);
-      }
-      // Page number=
-
-
-      $this->Cell(0,5,'Page '.$this->PageNo().' of {nb}',0,1,'C');    
-      $this->Line(113,$this->GetY() - 1,121,$this->GetY() - 1);  
-
-    }
 
   }
 
@@ -2376,7 +2309,17 @@ function NbLines($w,$txt)
     if($w==0)
         $w=$this->w-$this->rMargin-$this->x;
     $wmax=($w-2*$this->cMargin)*1000/$this->FontSize;
-    $s=str_replace("\r",'',$txt);
+
+    if ($txt !== null) {
+
+        $s = str_replace("\r", '', $txt);
+
+    } else {
+
+        $s = ''; // Set a default value if $txt is null or not a string
+
+    }
+
     $nb=strlen($s);
     if($nb>0 and $s[$nb-1]=="\n")
         $nb--;
