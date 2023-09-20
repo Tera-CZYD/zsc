@@ -1,5 +1,7 @@
 app.config(function($routeProvider) {
 
+  dashboard = typeof dashboard !== 'undefined' ?  dashboard : '';
+
   $routeProvider
 
   .when('/dashboard', {
