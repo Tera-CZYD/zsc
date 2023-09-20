@@ -79,10 +79,10 @@
                   <td class="text-left uppercase">{{ (paginator.page - 1 ) * paginator.limit + $index + 1 }}</td>
                   <td class="text-center uppercase">{{ data.code }}</td>
                   <td class="text-left uppercase">{{ data.member_name }}</td>
-                  <td class="text-left uppercase">{{ data.title }}</td>
-                  <td class="text-center uppercase">{{ data.author }}</td>
-                  <td class="text-center uppercase">{{ data.barcode_no }}</td>
-                  <td class="text-center uppercase">{{ data.status_dt }}</td>
+                  <td class="text-left uppercase"><div ng-repeat='sub in data.subs'>{{ sub.title }}</div></td>
+                  <td class="text-center uppercase"><div ng-repeat='sub in data.subs'>{{ sub.author }}</div></td>
+                  <td class="text-center uppercase"><div ng-repeat='sub in data.subs'>{{ sub.barcode_no }}</div></td>
+                  <td class="text-center uppercase">{{ data.date_returned }}</td>
                 </tr>
                 <tr ng-show="datas == ''">
                   <td colspan="9" class="text-center">No available data</td>

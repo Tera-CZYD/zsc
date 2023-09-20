@@ -15,7 +15,7 @@ class FacultyClearancesTable extends Table
 
     $this->belongsTo('Employees', [
 
-      'foreignKey' => 'employee_id'
+      'foreignKey' => 'faculty_id'
 
     ]);
 

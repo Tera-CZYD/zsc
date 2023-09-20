@@ -9,7 +9,6 @@
   <script type="text/javascript" src="<?php echo $base ?>/assets/js/svg-icon.js"></script>
   <link rel="icon" href = "<?php echo $base ?>/assets/img/zam.png">
 </head>
-<?= $this->Flash->render() ?>
 <?= $this->fetch('content') ?>
 </html>
 

@@ -57,9 +57,8 @@
             
             <div class="tab-content mt-3" id="myTabContent">
               <div class="tab-pane fade show active" id="for_assessment">
-                <div class="clearfix"></div><hr>
                 <div class="col-md-12">
-                  <div class="row">
+                  <div class="row mt-3">
                     <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                       <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
                       <?php if (hasAccess('cat/print', $currentUser)): ?>
@@ -137,11 +136,10 @@
                 </div>
               </div>
               <div class="tab-pane fade show" id="for_interview">
-                <div class="clearfix"></div><hr>
                 <div class="col-md-12">
-                  <div class="row">
+                  <div class="row mt-3">
                     <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                      <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
+                      <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
                       <?php if (hasAccess('cat/print', $currentUser)): ?>
                         <button ng-click="printInterview()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
                       <?php endif ?>
@@ -219,11 +217,10 @@
                 </div>
               </div>
               <div class="tab-pane fade show" id="qualified">
-                <div class="clearfix"></div><hr>
                 <div class="col-md-12">
-                  <div class="row">
+                  <div class="row mt-3">
                     <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                      <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
+                      <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
                       <?php if (hasAccess('cat/print', $currentUser)): ?>
                         <button ng-click="printAssessed()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
                       <?php endif ?>
@@ -299,11 +296,10 @@
                 </div>
               </div>
               <div class="tab-pane fade show" id="unqualified">
-                <div class="clearfix"></div><hr>
                 <div class="col-md-12">
-                  <div class="row">
+                  <div class="row mt-3">
                     <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                      <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
+                      <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
                       <?php if (hasAccess('student application/print', $currentUser)): ?>
                         <button ng-click="printDisapproved()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
                       <?php endif ?>
