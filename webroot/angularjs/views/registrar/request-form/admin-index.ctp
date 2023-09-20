@@ -74,9 +74,9 @@
             <div class="tab-content mt-3" id="myTabContent">
 
 
-            <div class="tab-pane fade show active" id="request">
-                <div class="clearfix"></div><hr>
-            <div class="col-md-12">
+             <div class="tab-pane fade show active" id="request">
+              <div class="clearfix"></div><hr>
+              <div class="col-md-12">
               <div class="row">
                 <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                   <a id="pageAdd" href="#/registrar/admin-request-form/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
@@ -308,6 +308,10 @@
                       <th class="text-center"> STUDENT NAME </th>
                       <th class="text-center"> DATE </th>
                       <th class="text-center"> COURSE </th>
+                      <th class="text-center"> DATE RETRIEVED </th>
+                      <th class="text-center"> DATE COMPLETED </th>
+                      <th class="text-center"> DATE RELEASED </th>
+                      <th class="text-center"> DATE RETURNED </th>
                       <th class="w90px"></th>
                     </tr>
                   </thread>
@@ -318,16 +322,51 @@
                       <td class="text-left">{{ data.student_name }}</td>
                       <td class="text-center">{{ data.date }}</td>
                       <td class="text-center">{{ data.course }}</td>
+
+                      <td class="text-right" ng-hide = "data.editmode">{{ data.date_retrieved }}</td>
+                      <td class="text-right" ng-show="data.editmode">
+                        <input type="date" class="form-control" value="{{ data.date_retrieved }}" ng-model="data.date_retrieved">
+                      </td>
+
+                      <td class="text-right" ng-hide = "data.editmode">{{ data.date_completed }}</td>
+                      <td class="text-right" ng-show="data.editmode">
+                        <input type="date" class="form-control" value="" ng-model="data.date_completed">
+                      </td>
+
+                      <td class="text-right" ng-hide = "data.editmode">{{ data.date_released }}</td>
+                      <td class="text-right" ng-show="data.editmode">
+                        <input type="date" class="form-control" value="" ng-model="data.date_released">
+                      </td>
+
+                      <td class="text-right" ng-hide = "data.editmode">{{ data.date_returned }}</td>
+                      <td class="text-right" ng-show="data.editmode">
+                        <input type="date" class="form-control" value="" ng-model="data.date_returned">
+                      </td>
                       <td>
                         <div class="btn-group btn-group-xs">
-                          <a id="pageView" href="#/registrar/admin-request-form/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                          <a id="pageEdit" href="#/registrar/admin-request-form/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
-                          <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
+                          <?php if (hasAccess('request form/view', $currentUser)): ?>
+                          
+                          <!-- <button type="submit" ng-hide="data.editmode" ng-click="data.editmode = true" class="btn btn-primary  btn-xs no-border-radius" title="EDIT VALUE"><i class="fa fa-pencil"></i></button> -->
+                          <a href="javascript:void(0)" class="btn btn-warning" ng-hide="data.editmode" ng-click="data.editmode = true" title="EDIT DOCUMENT DATE"><i class="fa fa-pencil"></i></a> 
+                       
+                          <!-- <button type="submit" ng-show="data.editmode" ng-click="data.editmode = false;updateValue(data)" title="SAVE VALUE" class="btn btn-success no-border-radius btn-xs"><i class="fa fa-save"></i></button> -->
+                          <a href="javascript:void(0)" class="btn btn-warning" ng-show="data.editmode" ng-click="data.editmode = false;updateValue(data)" title="UPDATE DOCUMENT DATE"><i class="fa fa-save"></i></a> 
+                        
+                          <?php endif ?>
+                          <?php if (hasAccess('request form/view', $currentUser)): ?>
+                          <a href="#/registrar/admin-request-form/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                          <?php endif ?>
+                          <?php if (hasAccess('request form/edit', $currentUser)): ?>
+                          <a href="#/registrar/admin-request-form/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
+                          <?php endif ?>
+                          <?php if (hasAccess('request form/delete', $currentUser)): ?>
+                          <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
+                          <?php endif ?>
                         </div>
                       </td>
                     </tr>
                     <tr ng-show="datasApproved == null || datasApproved == ''">
-                      <td colspan="8">No available data</td>
+                      <td colspan="12">No available data</td>
                     </tr>
                   </tbody>
                 </table>

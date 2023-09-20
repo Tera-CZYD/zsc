@@ -670,7 +670,7 @@ app.controller('RequestFormEditController', function($scope, $routeParams, Reque
 
 });
 
-app.controller('AdminRequestFormController', function($scope, RequestForm) {
+app.controller('AdminRequestFormController', function($scope, RequestForm, RequestFormUpdate) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -873,6 +873,48 @@ app.controller('AdminRequestFormController', function($scope, RequestForm) {
 
     });
   
+  }
+
+  $scope.updateValue = function(data){ 
+
+    data.date_retrieved = Date.parse(data.date_retrieved).toString('MM/dd/yyyy');
+
+    bootbox.confirm('Are you sure you want to save this record ' + data.code + '?', function(res){
+
+      if(res) {
+
+        RequestFormUpdate.save(data , function(e) {
+
+          if (e.ok) {
+
+            $.gritter.add({
+
+              title : 'Successful!',
+
+              text : e.msg
+
+            });
+
+            $scope.load();
+
+          }else {
+
+            $.gritter.add({
+
+              title : 'Warning!',
+
+              text : e.msg
+
+            });
+
+          }
+
+        });
+
+      }
+
+    });
+
   }
 
   $scope.remove = function(data) {
@@ -1098,6 +1140,24 @@ app.controller('AdminRequestFormAddController', function($scope, RequestForm, Se
     $scope.data.RequestForm.counselor_id = $scope.employee.id;
 
     $scope.data.RequestForm.counselor_name = $scope.employee.name;
+
+  }
+
+  $scope.selectTorDiploma = function(data){
+
+    if(data){
+
+      $scope.data.RequestForm.dip = true;
+
+      $scope.data.RequestForm.otr = true;
+
+    }else{
+
+      $scope.data.RequestForm.dip = false;
+
+      $scope.data.RequestForm.otr = false;
+
+    }
 
   }
 

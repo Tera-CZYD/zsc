@@ -126,6 +126,8 @@ class BibliographiesController extends AppController {
 
          'date_of_publication'   => fdate($bibliography['date_of_publication'],'m/d/Y'),
 
+         'no_of_copy'            => $bibliography['noOfCopy'],
+
        );
 
     }

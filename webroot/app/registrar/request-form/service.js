@@ -44,3 +44,17 @@ app.factory("RequestFormPaid", function($resource) {
 
 });
 
+app.factory("RequestFormUpdate", function($resource) {
+
+  return $resource( api + "RequestForms/update_document/:id", { id: '@id' }, {
+
+    query: { method: 'GET', isArray: false },
+
+    update: { method: 'PUT' },
+
+    search: { method: 'GET' },
+
+  });
+
+});
+
