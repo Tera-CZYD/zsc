@@ -68,7 +68,7 @@
                   <div class="row">
                     <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                         <a id="pageAdd" href="#/registrar/admin-transferee/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
-                        <button id="pagePrint" ng-click="print()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                        <button id="pagePrint" ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
                     <div class="col-md-4 col-xs-12 pull-right">
