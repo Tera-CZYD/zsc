@@ -4673,9 +4673,6 @@ class ReportsTable extends Table
 
           employees as Employee ON CounselingAppointment.counselor_id = Employee.id 
 
-
-
-
         WHERE 
 
           Student.visible = true $date $employee $program $college $year_term AND 
