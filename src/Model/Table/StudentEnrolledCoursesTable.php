@@ -16,22 +16,16 @@ class StudentEnrolledCoursesTable extends Table{
 
       'foreignKey' => 'course_id', 
 
-<<<<<<< HEAD
-=======
       'propertyName' => 'course_association'
 
->>>>>>> 66b81273bcdeb45ccb2566ff250a7db7b8394497
     ]);
 
     $this->belongsTo('Sections', [
 
       'foreignKey' => 'section_id', 
 
-<<<<<<< HEAD
-=======
       'propertyName' => 'section_association'
 
->>>>>>> 66b81273bcdeb45ccb2566ff250a7db7b8394497
     ]);
 
     $this->belongsTo('Students', [
