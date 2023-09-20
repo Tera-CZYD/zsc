@@ -65,6 +65,7 @@
             <table class="table table-bordered text-center">
               <thead>
                 <tr class="bg-info">
+<<<<<<< HEAD
                       <th class="text-center w30px">#</th>
                       <th class="text-center"> LIBRARY ID NUMBER</th>
                       <th class="text-center"> MEMBER NAME </th>
@@ -80,6 +81,27 @@
                       <td class="text-center uppercase">{{ data.email }}</td>
                       <td class="text-center uppercase">{{ data.date_returned }}</td>
                     </tr>
+=======
+                  <th class="w30px"> # </th>
+                  <th class="text-center"> CONTROL NO. </th>
+                  <th class="text-center"> MEMBER NAME </th>
+                  <th class="text-center"> TITLE </th>
+                  <th class="text-center"> AUTHOR </th>
+                  <th class="text-center"> BARCODE NO. </th>
+                  <th class="text-center"> DATE RETURNED </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="data in datas">
+                  <td class="text-left uppercase">{{ (paginator.page - 1 ) * paginator.limit + $index + 1 }}</td>
+                  <td class="text-center uppercase">{{ data.code }}</td>
+                  <td class="text-left uppercase">{{ data.member_name }}</td>
+                  <td class="text-left uppercase"><div ng-repeat='sub in data.subs'>{{ sub.title }}</div></td>
+                  <td class="text-center uppercase"><div ng-repeat='sub in data.subs'>{{ sub.author }}</div></td>
+                  <td class="text-center uppercase"><div ng-repeat='sub in data.subs'>{{ sub.barcode_no }}</div></td>
+                  <td class="text-center uppercase">{{ data.date_returned }}</td>
+                </tr>
+>>>>>>> 7574afc8d8968ae80fbe6273528cc571377dd3fe
                 <tr ng-show="datas == ''">
                   <td colspan="9" class="text-center">No available data</td>
                 </tr>

@@ -81,6 +81,8 @@ class DashboardsController extends AppController {
 
     $base = $urlHelper->build('/', ['fullBase' => true]);
 
+    $roleId = $user["roleId"];
+
     if($user["roleId"] == 1){ //ADMIN DASHBOARD
 
       $student_logs_count = $this->StudentLogs->find()->where([
@@ -307,7 +309,21 @@ class DashboardsController extends AppController {
 
       );
 
-      $this->set(compact("datas"));
+      $response = [
+
+        'ok' => true,
+
+        'data' => $datas,
+
+        'roleId' => $roleId
+
+      ];
+
+      $this->response->withType('application/json');
+
+      $this->response->getBody()->write(json_encode($response));
+
+      return $this->response;
 
     }elseif($user['roleId'] == 13) { //STUDENT DASHBOARD
 
@@ -315,26 +331,35 @@ class DashboardsController extends AppController {
 
 
       $studentData = $this->Students->find()
-          ->contain([
+        ->contain([
 
-            'StudentEnrolledCourses' => [
-                'conditions'=>[ 
-                  'StudentEnrolledCourses.visible' => 1,
-                  'StudentEnrolledCourses.final_grade >' => 3,
+          'StudentEnrolledCourses' => [
 
-                ],
+            'conditions'=>[ 
+
+              'StudentEnrolledCourses.visible' => 1,
+
+              'StudentEnrolledCourses.final_grade >' => 3,
+
             ],
-          ])
-          ->where([
-              'Students.visible' => 1,
-              'Students.id' => $student_id
-          ])
-          ->first();
+
+          ],
+
+        ])
+
+        ->where([
+
+          'Students.visible' => 1,
+
+          'Students.id' => $student_id
+
+        ])
+
+      ->first();
 
         $student_subjects = $studentData['student_enrolled_courses'];
 
         unset($studentData['student_enrolled_courses']);
-        
 
         $tmp = "
 
@@ -413,15 +438,6 @@ class DashboardsController extends AppController {
         ])
 
         ->all();
-
-        // var_dump($datas);
-
-        // $studentClearances['Clearance']['Employee'] = $studentClearances['Clearance']['employee'];
-
-        // unset($studentClearances['Clearance']['employee']);
-
-        // var_dump($studentClearances['Clearance']);
-
         
         $response = [
 
@@ -431,7 +447,9 @@ class DashboardsController extends AppController {
 
           'clearance' => $studentClearances,
 
-          'student_subjects' => $student_subjects
+          'student_subjects' => $student_subjects,
+
+          'roleId' => $roleId
 
         ];
 

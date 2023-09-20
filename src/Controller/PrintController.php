@@ -107,6 +107,8 @@ class PrintController extends AppController {
 
     $this->loadModel('Employees');
 
+    $this->InventoryProperties = TableRegistry::getTableLocator()->get('InventoryProperties');
+
 
     //sir raymond
 
@@ -5414,16 +5416,27 @@ class PrintController extends AppController {
     $office_reference = $this->Global->OfficeReference('Counseling Appointment');
 
     $data = $this->CounselingAppointment->find()
+
     ->contain([
+
         'Students',
+
         'CounselingTypes' => [
+
             'conditions' => ['CounselingTypes.visible' => 1]
+
         ]
+
     ])
+
     ->where([
+
         'CounselingAppointments.visible' => 1,
+
         'CounselingAppointments.id' => $id
+
     ])
+
     ->first();
 
     require("wordwrap.php");
@@ -5455,23 +5468,23 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->SetFont("Times", '', 7);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['counselee_informed_consent_reference']),0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST - '. @$office_reference['OfficeReference']['counselee_informed_consent_reference'],0,0,'L');
     $pdf->SetFont("Times", 'B', 15);
     $pdf->Cell(50,5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 7);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(68,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,5,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Arial", 'B', 15);
     $pdf->Cell(50,19,'COUNSELEE INFORMED CONSENT FORM',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 7);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: ' . strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: ' . @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(3.5);
     $pdf->SetFont("Times", '', 7);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(20.5);
     $pdf->SetFont("Arial", 'I', 10.5);
     $pdf->Cell(14,5,'',0,0,'L');
@@ -5601,16 +5614,27 @@ class PrintController extends AppController {
     $office_reference = $this->Global->OfficeReference('Counseling Appointment');
 
     $data = $this->CounselingAppointment->find()
+
       ->contain([
+
           'Students',
+
           'CounselingTypes' => [
+
               'conditions' => ['CounselingTypes.visible' => 1]
+
           ]
+
       ])
+
       ->where([
+
           'CounselingAppointments.visible' => 1,
+
           'CounselingAppointments.id' => $id
+
       ])
+
       ->first();
 
     require("wordwrap.php");
@@ -5642,23 +5666,23 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['release_information_reference']) ,0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST - '. @$office_reference['OfficeReference']['release_information_reference'] ,0,0,'L');
     $pdf->SetFont("Times", 'B', 14);
     $pdf->Cell(50,5.5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(68,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,5,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Times", 'B', 14);
     $pdf->Cell(50,11,'RELEASE INFORMATION FORM',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: ' . strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: ' . @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(14.5);
     $pdf->SetFont("Arial", '', 11.5);
     $pdf->Cell(14,5,'',0,0,'L');
@@ -5749,16 +5773,27 @@ class PrintController extends AppController {
     $office_reference = $this->Global->OfficeReference('Counseling Appointment');
 
     $data = $this->CounselingAppointment->find()
+
     ->contain([
+
         'Students',
+
         'CounselingTypes' => [
+
             'conditions' => ['CounselingTypes.visible' => 1]
+
         ]
+
     ])
+
     ->where([
+
         'CounselingAppointments.visible' => 1,
+
         'CounselingAppointments.id' => $id
+
     ])
+
     ->first();
 
     require("wordwrap.php");
@@ -5790,23 +5825,23 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Times", 'B', 14);
     $pdf->Cell(50,5.5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(68,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,5,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Arial", 'B', 14);
     $pdf->Cell(50,11,'NO-HARM CONTRACT',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: '. @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(20);
     $pdf->SetFont("Arial", '', 10.5);
     $pdf->Line(16.5,$pdf->getY()+4,117,$pdf->getY()+4);
@@ -6012,16 +6047,27 @@ class PrintController extends AppController {
     $office_reference = $this->Global->OfficeReference('Attendance to Counseling');
 
     $data = $this->AttendanceCounseling->find()
+
     ->contain([
+
         'CounselingAppointments' => [
+
             'Students',
+
             'CounselingTypes'
+
         ]
+
     ])
+
     ->where([
+
         'AttendanceCounselings.visible' => 1,
+
         'AttendanceCounselings.id' => $id
+
     ])
+
     ->first();
 
     require("wordwrap.php");
@@ -6054,23 +6100,23 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Times", 'B', 15);
     $pdf->Cell(45,5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(68,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,5,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Arial", 'B', 13.5);
     $pdf->Cell(45,20,'ATTENDANCE TO COUNSELING',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(12);
     $pdf->SetFont("Arial", '', 9.5);
     $pdf->Cell(2,5,'',0,0,'L');
@@ -6135,23 +6181,23 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST-'. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST-'. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Times", 'B', 15);
     $pdf->Cell(45,5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(68,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,5,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Arial", 'B', 13.5);
     $pdf->Cell(45,20,'ATTENDANCE TO COUNSELING',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(12);
     $pdf->SetFont("Arial", '', 9.5);
     $pdf->Cell(2,5,'',0,0,'L');
@@ -6216,23 +6262,23 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST-'. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST-'. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Times", 'B', 15);
     $pdf->Cell(45,5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(68,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,5,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Arial", 'B', 13.5);
     $pdf->Cell(45,20,'ATTENDANCE TO COUNSELING',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(7.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(12);
     $pdf->SetFont("Arial", '', 9.5);
     $pdf->Cell(2,5,'',0,0,'L');
@@ -6358,22 +6404,22 @@ class PrintController extends AppController {
     $pdf->Ln(8);
     $pdf->SetFont("Times", '', 6);
     $pdf->Cell(4,5,'',0,0,'L');
-    $pdf->Cell(25,5,'ZSCMST - ' . strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(25,5,'ZSCMST - ' . @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Times", '', 13);
     $pdf->Cell(57,9,'REFERRAL SLIP',0,0,'C');
 
     $pdf->Ln(3.5);
     $pdf->SetFont("Times", '', 6);
     $pdf->Cell(4,5,'',0,0,'L');
-    $pdf->Cell(25,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(25,5,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
 
     $pdf->Ln(3);
     $pdf->Cell(4,5,'',0,0,'L');
-    $pdf->Cell(25,5,'Revision Status: ' . strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(25,5,'Revision Status: ' . @$office_reference['OfficeReference']['revision_status'],0,0,'L');
 
     $pdf->Ln(3);
     $pdf->Cell(4,5,'',0,0,'L');
-    $pdf->Cell(25,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(25,5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
 
     $pdf->Ln(22);
     $pdf->SetFont("Arial", '', 11);
@@ -7024,23 +7070,23 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(68,4,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,4,'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Times", 'B', 14);
     $pdf->Cell(45,5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(68,3,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,3,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Times", 'B', 14.5);
     $pdf->Cell(45,20,'PROMISSORY NOTE/WAIVER',0,0,'C');
     $pdf->Ln(2);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: '. @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(30);
     $pdf->SetFont("Arial", '', 9.5);
     $pdf->Cell(82,5,date('m/d/Y'),0,0,'C');
@@ -7346,6 +7392,7 @@ class PrintController extends AppController {
     $conditions = [];
 
     $conditionsPrint = '';
+
     if ($this->request->getQuery('search')) {
 
       $search = $this->request->getQuery('search');
@@ -7701,23 +7748,23 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(3.5,5,'',0,0,'L');
-    $pdf->Cell(70,5,'ZSCMST - ' . strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(70,5,'ZSCMST - ' . @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Times", 'B', 15);
     $pdf->Cell(45,5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(3.5,5,'',0,0,'L');
-    $pdf->Cell(68,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,5,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Times", 'B', 15);
     $pdf->Cell(45,23,'AFFIDAVIT FOR LOST PASSBOOK/ID',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(3.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: ' . strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: ' . @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(3.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(32);
     
     $pdf->SetFont("Arial", '', 10);
@@ -8151,7 +8198,7 @@ class PrintController extends AppController {
 
   public function gcoEvaluationForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Gco Evaluation');
+    $office_reference = $this->Global->OfficeReference('Gco Evaluation');
 
     $data['GcoEvaluation'] = $this->GcoEvaluations->find()
 
@@ -8241,7 +8288,7 @@ class PrintController extends AppController {
 
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(4,5,'',0,0,'L');
-    $pdf->Cell(27,6,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(27,6,'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Times", '', 11.5);
     $pdf->Cell(52,12,'GCO EVALUATION',0,0,'C');
     $pdf->Cell(22.5,5,'',0,0,'L');
@@ -8249,15 +8296,15 @@ class PrintController extends AppController {
     $pdf->Ln(3.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(4,5,'',0,0,'L');
-    $pdf->Cell(25,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(25,5,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
 
     $pdf->Ln(2.5);
     $pdf->Cell(4,5,'',0,0,'L');
-    $pdf->Cell(25,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(25,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
 
     $pdf->Ln(2.5);
     $pdf->Cell(4,5,'',0,0,'L');
-    $pdf->Cell(25,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(25,5,'Revision Date: '. @$office_reference['OfficeReference']['revision_date'],0,0,'L');
 
 
     $pdf->Ln(6);
@@ -9008,7 +9055,7 @@ class PrintController extends AppController {
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
     $pdf->Cell(154);
-    $pdf->Cell(68,4,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,4,'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Arial", 'B', 12);
     $pdf->Cell(-154);
     $pdf->Cell(45,5,'HEALTH AND MEDICAL SERVICES',0,0,'C');
@@ -9016,7 +9063,7 @@ class PrintController extends AppController {
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(154);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(68,3,'Adopted Date: '. strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,3,'Adopted Date: '. @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Arial", 'B', 10.5);
     $pdf->Cell(-154);
     $pdf->Cell(45,20,'MEDICAL CERTIFICATE',0,0,'C');
@@ -9025,12 +9072,12 @@ class PrintController extends AppController {
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(154);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(154);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: '. @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(18);
     $pdf->SetFont("Arial", '', 10.5);
     $pdf->Cell(82,5,'To whom it may concern: ',0,0,'C');
@@ -9312,7 +9359,8 @@ class PrintController extends AppController {
 
  public function referralRecommendationForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Referral Recommendation');
+    $office_reference = $this->Global->OfficeReference('Referral Recommendation');
+
     $data['ReferralRecommendation'] = $this->ReferralRecommendations->find()
 
         ->contain([
@@ -9370,24 +9418,24 @@ class PrintController extends AppController {
     $pdf->Ln(10);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(162.3,5,'',0,0,'L');
-    $pdf->Cell(65,3.5,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(65,3.5,'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
 
     $pdf->SetFont("Times", 'B', 13);
     $pdf->Cell(-258,3.5,'HEALTH AND MEDICAL SERVICES',0,0,'C');
     $pdf->Ln(3.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(162.3, 4.5,'',0,0,'L');
-    $pdf->Cell(65,2,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(65,2,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Times", 'B', 11);
     $pdf->Cell(-256,17,'MEDICAL-DENTAL REFERRAL/ RECOMMENDATION',0,0,'C');
     $pdf->Ln(2);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(162.3,4.5,'',0,0,'L');
-    $pdf->Cell(65,3.5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,3.5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(162.3,4.5,'',0,0,'L');
-    $pdf->Cell(65,3.5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,3.5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
 
     $pdf->Ln(16.5);
     $pdf->SetFont("Arial", '', 10);
@@ -9467,24 +9515,24 @@ class PrintController extends AppController {
     $pdf->Ln(10);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(162.3,5,'',0,0,'L');
-    $pdf->Cell(65,3.5,'ZSCMST - ' . strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(65,3.5,'ZSCMST - ' . @$office_reference['OfficeReference']['reference_code'],0,0,'L');
 
     $pdf->SetFont("Times", 'B', 13);
     $pdf->Cell(-258,3.5,'HEALTH AND MEDICAL SERVICES',0,0,'C');
     $pdf->Ln(3.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(162.3, 4.5,'',0,0,'L');
-    $pdf->Cell(65,2,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(65,2,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Times", 'B', 11);
     $pdf->Cell(-256,17,'MEDICAL-DENTAL REFERRAL/ RECOMMENDATION',0,0,'C');
     $pdf->Ln(2);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(162.3,4.5,'',0,0,'L');
-    $pdf->Cell(65,3.5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,3.5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(162.3,4.5,'',0,0,'L');
-    $pdf->Cell(65,3.5,'Revision Status: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,3.5,'Revision Status: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
 
     $pdf->Ln(16.5);
     $pdf->SetFont("Arial", '', 10);
@@ -9697,23 +9745,36 @@ class PrintController extends AppController {
 
    public function dentalForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Dental');
+    $office_reference = $this->Global->OfficeReference('Dental');
 
     $data['Dental'] = $this->Dentals
+
       ->find()
+
       ->contain([
+
           'DentalImages' => [
+
               'conditions' => ['DentalImages.visible' => 1]
+
           ],
 
           'CollegePrograms' => [
+
               'conditions' => ['CollegePrograms.visible' => 1]
+
           ]
+
       ])
+
       ->where([
+
           'Dentals.visible' => 1,
+
           'Dentals.id' => $id
+
       ])
+
       ->first();
 
       // var_dump($id);
@@ -9745,19 +9806,19 @@ class PrintController extends AppController {
     $pdf->Ln(8);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(167,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(114,5,'',0,0,'R');
-    $pdf->Cell(68,5,'Adopted Date: '. strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'R');
+    $pdf->Cell(68,5,'Adopted Date: '. @$office_reference['OfficeReference']['adopted'],0,0,'R');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(123,5,'',0,0,'R');
-    $pdf->Cell(59,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'R');
+    $pdf->Cell(59,5,'Revision Date: '. @$office_reference['OfficeReference']['revision_date'],0,0,'R');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(126,5,'',0,0,'R');
-    $pdf->Cell(60,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'R');
+    $pdf->Cell(60,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'R');
     $pdf->Ln(1);
     $pdf->SetFont("Arial", 'U', 10);
     $pdf->Cell(0,5,'DENTAL EXAMINATION RECORD',0,0,'C');
@@ -11348,7 +11409,7 @@ class PrintController extends AppController {
 
   }
 
-  public function studentApplication(){
+    public function listRequestedForm(){
 
     $conditions = array();
 
@@ -11370,11 +11431,9 @@ class PrintController extends AppController {
 
       $search_date = $this->request->getQuery('date');
 
-      $conditions['date'] = " AND DATE(StudentApplication.application_date) = '$search_date'"; 
+      $conditions['date'] = " AND DATE(RequestForm.date) = '$search_date'"; 
 
-      $dates['date'] = $search_date;
-
-    } 
+    }
 
     if ($this->request->getQuery('startDate')) {
 
@@ -11382,27 +11441,176 @@ class PrintController extends AppController {
 
       $end = $this->request->getQuery('endDate');
 
+      $conditions['date'] = " AND DATE(RequestForm.date) >= '$start' AND DATE(RequestForm.date) <= '$end'";
+
+    }
+    
+    $tmpData = $this->Reports->getAllRequestedFormPrint($conditions);
+
+    $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
+
+    require("wordwrap.php");
+    $pdf = new ConductPDF();
+    $pdf->SetMargins(5,10,5);
+    $pdf->SetFooter(true);
+    $pdf->footerSystem = true;
+    $pdf->AliasNbPages();
+    $pdf->AddPage("P", "legal", 0);
+    $pdf->Image($this->base .'/assets/img/zam.png',5,10,25,25);
+    $pdf->SetFont("Times", 'B', 12);
+    $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,strtoupper($this->Global->Settings('lgu_name')),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->SetFont("Times", '', 12);
+    $pdf->Cell(0,5,$this->Global->Settings('address'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('telephone'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->Cell(0,5,'STUDENT CONSULTATION',0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFillColor(217,237,247);
+    $pdf->Cell(60);
+    $pdf->Cell(10,5,'#',1,0,'C',1);
+    $pdf->Cell(30,5,'STUDENT NUMBER',1,0,'C',1);
+    $pdf->Cell(30,5,'STUDENT NAME',1,0,'C',1);
+    $pdf->Cell(60,5,'REQUESTED FORM',1,0,'C',1);
+    $pdf->Ln();
+    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetWidths(array(10,30,30,60));
+    $pdf->SetAligns(array('C','C','C','C'));
+
+    if(count($tmpData) > 0){
+
+      foreach ($tmpData as $key => $data){
+
+        $forms = [];
+
+      if ($data['otr'] != null && $data['otr'] == 1) {
+          $forms[] = "Transcript of Records";
+      }
+
+      if ($data['cav'] != null && $data['cav'] == 1) {
+          $forms[] = "Certification Authentication Verification";
+      }
+
+      if ($data['cert'] != null && $data['cert'] == 1) {
+          $forms[] = "Certification";
+      }
+
+      if ($data['hon'] != null && $data['hon'] == 1) {
+          $forms[] = "Honorable Dismissal";
+      }
+
+      if ($data['authGrad'] != null && $data['authGrad'] == 1) {
+          $forms[] = "Authorization Graduate";
+      }
+
+      if ($data['authUGrad'] != null && $data['authUGrad'] == 1) {
+          $forms[] = "Authorization Undergraduate";
+      }
+
+      if ($data['dip'] != null && $data['dip'] == 1) {
+          $forms[] = "Diploma";
+      }
+
+      if ($data['rr'] != null && $data['rr'] == 1) {
+          $forms[] = "Red Ribbon";
+      }
+
+      if ($data['other'] != null && $data['rr'] == 1) {
+          $forms[] = $data['otherVal'];
+      }
+
+      $forms = implode(', ', $forms);
+
+        $pdf->Cell(60);
+
+        $pdf->RowLegalP(array(
+
+          $key + 1,
+
+          $data['student_no'],
+
+          $data['student_name'],
+
+          $forms
+
+        ));
+
+      }
+
+    }else{
+      $pdf->Cell(60);
+      $pdf->Cell(150,5,'No data available.',1,1,'C');
+
+    }
+
+    $pdf->output();
+    exit();
+  
+  }
+
+  public function studentApplication(){
+
+    $conditions = [];
+
+    if($this->request->getQuery('search') != null){
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+    }
+
+    $conditions['date'] = '';
+
+    if ($this->request->getQuery('date') != null) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(StudentApplication.application_date) = '$search_date'"; 
+    }  
+
+    //advance search
+
+    if ($this->request->getQuery('startDate') != null) {
+
+      $start = $this->request->getQuery('startDate'); 
+
+      $end = $this->request->getQuery('endDate');
+
       $conditions['date'] = " AND DATE(StudentApplication.application_date) >= '$start' AND DATE(StudentApplication.application_date) <= '$end'";
-
-      $dates['startDate'] = $start;
-
-      $dates['endDate']   = $end;
 
     }
 
     $conditions['status'] = '';
 
-    if ($this->request->getQuery('status')) {
+    if ($this->request->getQuery('status') != null) {
 
       $status = $this->request->getQuery('status');
 
-      $conditions['status'] = "AND StudentApplication.approve = $status";
+      if($status == 'assessed'){
+
+        $conditions['status'] = "AND StudentApplication.approve != 3";
+
+      }else{
+
+        $conditions['status'] = "AND StudentApplication.approve = $status";
+
+      }
 
     }
 
     $conditions['rate'] = '';
 
-    if ($this->request->getQuery('rate')) {
+    if ($this->request->getQuery('rate') != null) {
 
       $rate = $this->request->getQuery('rate');
 
@@ -11416,6 +11624,19 @@ class PrintController extends AppController {
 
       }
 
+    }
+
+
+    $conditions['order'] = '';
+
+    if ($this->request->getQuery('order') != null){
+
+      $order = $this->request->getQuery('order');
+
+      $conditions['order'] = $order;
+
+      $conditionsPrint .= '&order='.$order;
+      
     }
     
     $tmpData = $this->StudentApplications->getAllStudentApplicationPrint($conditions);
@@ -12372,7 +12593,7 @@ class PrintController extends AppController {
 
   public function consultationForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Consultation');
+    $office_reference = $this->Global->OfficeReference('Consultation');
 
     $data['Consultation'] = $this->Consultations->find()
 
@@ -12433,7 +12654,7 @@ class PrintController extends AppController {
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
     $pdf->Cell(154);
-    $pdf->Cell(68,4,'ZSCMST - ' . strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,4,'ZSCMST - ' . @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Arial", 'B', 12);
     $pdf->Cell(-154);
     $pdf->Cell(45,5,'HEALTH AND MEDICAL SERVICES',0,0,'C');
@@ -12441,7 +12662,7 @@ class PrintController extends AppController {
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(154);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(68,3,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,3,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Arial", 'B', 10.5);
     $pdf->Cell(-154);
     $pdf->Cell(45,20,'CONSULTATION FORM',0,0,'C');
@@ -12450,12 +12671,12 @@ class PrintController extends AppController {
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(154);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(154);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: '. @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(5);
     $pdf->Cell(5);
     $pdf->SetFont("Arial", '', 10);
@@ -12736,14 +12957,23 @@ class PrintController extends AppController {
     $office_reference = $this->Global->OfficeReference('Request Form');
 
     $data['RequestForm'] = $this->RequestForm->find()
+
       ->contain(['Students', 'CollegePrograms'])
+
       ->where([
+
           'RequestForms.visible' => 1,
+
           'RequestForms.id' => $id
+
       ])
+
       ->first();
+
       // print_r($data['student']);
+
       $data['Student'] = $data['RequestForm']['student'];
+
       $data['CollegeProgram'] = $data['RequestForm']['college_program'];
 
     require("wordwrap.php");
@@ -12775,11 +13005,11 @@ class PrintController extends AppController {
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 6);
     $pdf->Cell(166, 5, '', 0, 0, 'L');
-    $pdf->Cell(68, 5, 'ZSCMST- ' . strtoupper(@$office_reference['OfficeReference']['reference_code']), 0, 0, 'L');
+    $pdf->Cell(68, 5, 'ZSCMST- ' . @$office_reference['OfficeReference']['reference_code'], 0, 0, 'L');
     $pdf->Ln(2);
     $pdf->SetFont("Times", '', 6);
     $pdf->Cell(119, 5, '', 0, 0, 'R');
-    $pdf->Cell(68, 5, 'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']), 0, 0, 'R');
+    $pdf->Cell(68, 5, 'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'], 0, 0, 'R');
     $pdf->Ln(1);
     $pdf->SetFont("Times", '', 13);
     $pdf->Cell(0, 5, 'OFFICE OF THE COLLEGE REGISTRAR', 0, 0, 'C');
@@ -12790,7 +13020,7 @@ class PrintController extends AppController {
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 6);
     $pdf->Cell(129, 5, '', 0, 0, 'R');
-    $pdf->Cell(59, 5, 'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']), 0, 0, 'R');
+    $pdf->Cell(59, 5, 'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'], 0, 0, 'R');
     $pdf->Ln(1);
     $pdf->SetFont("Arial", 'B', 12);
     $pdf->Cell(0, 5, 'REQUEST FORM', 0, 0, 'C');
@@ -13459,12 +13689,19 @@ class PrintController extends AppController {
     $office_reference = $this->Global->OfficeReference('Completion Form');
 
     $this->loadModel('Completion');
+
     $data['Completion'] = $this->Completion->find()
+
     ->contain(['Students']) // Assuming you have an association named 'Students'
+
     ->where([
+
         'Completions.visible' => 1,
+
         'Completions.id' => $id,
+
     ])
+
     ->first();
 
     $data['Student'] = $data['Completion']['students'];
@@ -13516,13 +13753,13 @@ class PrintController extends AppController {
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->SetY($pdf->getY()- 2.5);
     $pdf->Cell(171);
-    $pdf->Cell(0,4,'ZSCMST-' . strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(0,4,'ZSCMST-' . @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     
     $pdf->Ln(3);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(162);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(68,3,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,3,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     // $pdf->SetFont("Arial", 'B', 10.5);
     // $pdf->Cell(-154);
     // $pdf->Cell(45,20,'MEDICAL CERTIFICATE',0,0,'C');
@@ -13531,12 +13768,12 @@ class PrintController extends AppController {
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(162);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(162);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: '. @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(4);
     
 
@@ -13874,6 +14111,7 @@ class PrintController extends AppController {
   }
 
   public function studentClearanceForm($id = null){
+
     $this->LoadModel('StudentClearances');
 
     $data['StudentClearance'] = $this->StudentClearances->find()
@@ -14496,14 +14734,19 @@ class PrintController extends AppController {
 
   public function facultyClearanceForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Faculty Clearance');
+    $office_reference = $this->Global->OfficeReference('Faculty Clearance');
 
-    // $data = $this->FacultyClearances->find()
-    // ->where([
-    //     'visible' => 1,
-    //     'id' => $id
-    // ])
-    // ->first();
+    $data['FacultyClearance'] = $this->FacultyClearances->find()
+
+    ->where([
+
+        'visible' => 1,
+
+        'id' => $id
+
+    ])
+
+    ->first();
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -14535,19 +14778,19 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5);
     $pdf->Cell(166.5,2,'',0,0,'L');
-    $pdf->Cell(68,-10,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,-10,'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5);
     $pdf->Cell(166.5,5,'',0,0,'L');
-    $pdf->Cell(68,-12,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,-12,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->Ln(2);
     $pdf->SetFont("Times", '', 5);
     $pdf->Cell(166.5,5,'',0,0,'L');
-    $pdf->Cell(65,-11.5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,-11.5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5);
     $pdf->Cell(166.5,5,'',0,0,'L');
-    $pdf->Cell(65,-12,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,-12,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
 
     $pdf->Ln(-3);
     $pdf->SetFont("TIMES", '', 12);
@@ -15679,21 +15922,21 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6, 5, '', 0, 0, 'L');
-    $pdf->Cell(68, 5, 'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['reference_code']), 0, 0, 'L');
+    $pdf->Cell(68, 5, 'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'], 0, 0, 'L');
     $pdf->SetFont("Times", 'B', 14);
     $pdf->Cell(50, 5.5, 'GUIDANCE   AND   COUNSELING   OFFICE', 0, 0, 'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6, 5, '', 0, 0, 'L');
-    $pdf->Cell(68, 5, 'Adopted Date:  '. strtoupper(@$office_reference['OfficeReference']['adopted']), 0, 0, 'L');
+    $pdf->Cell(68, 5, 'Adopted Date:  '. @$office_reference['OfficeReference']['adopted'], 0, 0, 'L');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6, 5, '', 0, 0, 'L');
-    $pdf->Cell(65, 5, 'Revision Status: ' . strtoupper(@$office_reference['OfficeReference']['revision_status']), 0, 0, 'L');
+    $pdf->Cell(65, 5, 'Revision Status: ' . @$office_reference['OfficeReference']['revision_status'], 0, 0, 'L');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(6, 5, '', 0, 0, 'L');
-    $pdf->Cell(65, 5, 'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']), 0, 0, 'L');
+    $pdf->Cell(65, 5, 'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'], 0, 0, 'L');
     $pdf->Ln(1);
     $pdf->SetFont("Arial", 'B', 14);
     $pdf->Cell(0, 5, 'COUNSELING INTAKE FORM', 0, 0, 'C');
@@ -16869,7 +17112,123 @@ class PrintController extends AppController {
 
   }
 
-  public function list_students(){
+  public function apartelleMonthlyPayments(){
+
+    $conditions = array();
+
+    $conditions['search'] = '';
+
+    if ($this->request->getQuery('search') != null) {
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+    }
+
+    $start = date('Y-m-').'01'; 
+
+    $end = date('Y-m-t');
+
+    $conditions['date'] = " AND DATE(Payment.date) >= '$start' AND DATE(Payment.date) <= '$end'";
+
+    if ($this->request->getQuery('date') != null) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(Payment.date) = '$search_date'";
+
+    }  
+
+    if ($this->request->getQuery('startDate') != null) {
+
+      $start = fdate($this->request->getQuery('startDate'),'Y-m-d'); 
+
+      $end = fdate($this->request->getQuery('endDate'),'Y-m-d');
+
+      $conditions['date'] = " AND DATE(Payment.date) >= '$start' AND DATE(Payment.date) <= '$end'";
+
+    }
+
+    $tmpData = $this->Reports->getAllMonthlyPaymentPrint($conditions);
+
+    $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
+
+    require("wordwrap.php");
+    $pdf = new ConductPDF();
+    $pdf->SetMargins(5,10,5);
+    $pdf->SetFooter(true);
+    $pdf->footerSystem = true;
+    $pdf->AliasNbPages();
+    $pdf->AddPage("L", "legal", 0);
+    $pdf->Image($this->base .'/assets/img/zam.png',75,10,25,25);
+    $pdf->SetFont("Times", 'B', 12);
+    $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,strtoupper($this->Global->Settings('lgu_name')),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->SetFont("Times", '', 12);
+    $pdf->Cell(0,5,$this->Global->Settings('address'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('telephone'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->Cell(0,5,'APARTELLE/DORMITORY MONTHLY PAYMENT REPORT',0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFillColor(217,237,247);
+    $pdf->Cell(10,5,'#',1,0,'C',1);
+    $pdf->Cell(70,5,'REFERENCE NUMBER',1,0,'C',1);
+    $pdf->Cell(70,5,'STUDENT NAME ',1,0,'C',1);
+    $pdf->Cell(60,5,'STUDENT NO. ',1,0,'C',1);
+    $pdf->Cell(60,5,'COLLEGE PROGRAM ',1,0,'C',1);
+    $pdf->Cell(35,5,'DATE',1,0,'C',1);
+    $pdf->Cell(35,5,'AMOUNT ',1,0,'C',1);
+    $pdf->Ln();
+    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetWidths(array(10,70,70,60,60,35,35));
+    $pdf->SetAligns(array('C','C','C','C','C','C'));
+
+    if(count($tmpData)>0){
+
+      foreach ($tmpData as $key => $data){ 
+
+        $pdf->RowLegalL(array(
+
+          $key + 1,
+
+          $data['or_no'],
+
+          $data['student_name'],
+
+          $data['student_no'],
+
+          $data['program'],
+
+          fdate($data['date'],'m/d/Y'),
+
+          $data['amount']
+
+        ));
+
+      }
+
+    }else{
+
+      $pdf->Cell(345,5,'No data available.',1,1,'C');
+
+    }
+
+    $pdf->output();
+    exit();
+
+  }
+
+  public function listStudents(){
 
     $conditions = array();
 
@@ -16877,9 +17236,9 @@ class PrintController extends AppController {
 
     // search conditions
 
-    if(isset($this->request->query['search'])){
+    if($this->request->getQuery('search')){
 
-      $search = $this->request->query['search'];
+      $search = $this->request->getQuery('search');
 
       $search = strtolower($search);
 
@@ -16889,9 +17248,9 @@ class PrintController extends AppController {
 
     $conditions['date'] = '';
 
-    if (isset($this->request->query['date'])) {
+    if ($this->request->getQuery('date')) {
 
-      $search_date = $this->request->query['date'];
+      $search_date = $this->request->getQuery('date');
 
       $conditions['date'] = " AND DATE(StudentEnrollment.date) = '$search_date'"; 
 
@@ -16899,11 +17258,11 @@ class PrintController extends AppController {
 
     //advance search
 
-    if (isset($this->request->query['startDate'])) {
+    if ($this->request->getQuery('startDate')) {
 
-      $start = $this->request->query['startDate']; 
+      $start = $this->request->getQuery('startDate'); 
 
-      $end = $this->request->query['endDate'];
+      $end = $this->request->getQuery('endDate');
 
       $conditions['date'] = " AND DATE(StudentEnrollment.date) >= '$start' AND DATE(StudentEnrollment.date) <= '$end'";
 
@@ -16913,9 +17272,9 @@ class PrintController extends AppController {
 
     $conditions['year_term_id_enrollment'] = '';
 
-    if (isset($this->request->query['year_term_id'])) {
+    if ($this->request->getQuery('year_term_id')) {
 
-      $year_term_id = $this->request->query['year_term_id']; 
+      $year_term_id = $this->request->getQuery('year_term_id'); 
 
       $conditions['year_term_id'] = " AND Student.year_term_id = $year_term_id";
 
@@ -16923,9 +17282,7 @@ class PrintController extends AppController {
 
     }
 
-    $this->loadModel('Report');
-
-    $tmpData = $this->Report->query($this->Report->getAllListStudent($conditions));
+    $tmpData = $this->Reports->getAllListStudentPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -16969,7 +17326,7 @@ class PrintController extends AppController {
     $pdf->SetWidths(array(8,22,45,58,50,22));
     $pdf->SetAligns(array('C','C','L','C','C','C'));
 
-    if(!empty($tmpData)){
+    if(count($tmpData)>0){
 
       foreach ($tmpData as $key => $data){
 
@@ -16977,15 +17334,15 @@ class PrintController extends AppController {
 
           $key + 1,
 
-          $data['Report']['student_no'],
+          $data['student_no'],
 
-          $data['Report']['full_name'],
+          $data['full_name'],
 
-          $data['Report']['college'],
+          $data['college'],
 
-          $data['Report']['program'],
+          $data['program'],
 
-          fdate($data['Report']['date'],'m/d/Y'),
+          fdate($data['date'],'m/d/Y'),
 
         ));
 
@@ -17079,7 +17436,7 @@ class PrintController extends AppController {
 
     }
     
-    $tmpData = $this->ScholarshipApplication->getAllScholarshipApplicationPrint($conditions);
+    $tmpData = $this->StudentApplications->getAllScholarshipApplicationPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -17121,7 +17478,7 @@ class PrintController extends AppController {
     $pdf->SetWidths(array(8,25,50,25,37,12,17,31));
     $pdf->SetAligns(array('C','C','L','C','L','C','C','C'));
 
-    if(!empty($tmpData)){
+    if(count($tmpData)>0){
 
       foreach ($tmpData as $key => $data){
 
@@ -17254,26 +17611,26 @@ class PrintController extends AppController {
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
     $pdf->Cell(154);
-    $pdf->Cell(68,4,'ZSCMST-' . strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,4,'ZSCMST-' . @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Arial", 'B', 12);
     $pdf->Cell(-154);
     $pdf->Ln(3);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(154);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(68,3,'Adopted: '. strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,3,'Adopted: '. @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Arial", 'B', 10.5);
     $pdf->Cell(-154);
     $pdf->Ln(2);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(154);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(154);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: '. @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(1);
 
     $check1 = '';
@@ -17627,28 +17984,51 @@ class PrintController extends AppController {
     // debug($id);
 
     $student = $this->Students->find()
+
     ->contain([
+
         'YearLevelTerms',
+
         'Colleges' => function ($q) {
+
             return $q->where(['Colleges.visible' => 1]);
+
         },
+
         'CollegePrograms' => function ($q) {
+
             return $q->where(['CollegePrograms.visible' => 1]);
+
         },
+
         'StudentEnrolledCourses' => function ($q) {
+
             return $q->where(['StudentEnrolledCourses.visible' => 1]);
+
         },
+
         'StudentEnrolledUnits' => function ($q) {
+
             return $q->where(['StudentEnrolledUnits.visible' => 1]);
+
         },
+
         'StudentEnrollments' => function ($q) {
+
             return $q->where(['StudentEnrollments.visible' => 1]);
+
         },
+
     ])
+
     ->where([
+
         'Students.visible' => 1,
+
         'Students.id' => $id,
+
     ])
+
     ->first();
 
       if ($student) {
@@ -17747,15 +18127,15 @@ class PrintController extends AppController {
     $pdf->Ln(1);
     $pdf->SetFont("Arial", '', 8);
     $pdf->Cell(164, 5, '', 0, 0, 'L');
-    $pdf->Cell(78, 5, 'ZSCMST-' . strtoupper(@$office_reference['OfficeReference']['reference_code']), 0, 0, 'L');
+    $pdf->Cell(78, 5, 'ZSCMST-' . @$office_reference['OfficeReference']['reference_code'], 0, 0, 'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Arial", '', 6);
     $pdf->Cell(129, 5, '', 0, 0, 'R');
-    $pdf->Cell(68, 5, 'Adopted Date: '. strtoupper(@$office_reference['OfficeReference']['adopted']), 0, 0, 'R');
+    $pdf->Cell(68, 5, 'Adopted Date: '. @$office_reference['OfficeReference']['adopted'], 0, 0, 'R');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 6);
     $pdf->Cell(137, 5, '', 0, 0, 'R');
-    $pdf->Cell(60, 5, 'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']) .' Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']), 0, 0, 'R');
+    $pdf->Cell(60, 5, 'Revision Status: '. @$office_reference['OfficeReference']['revision_status'] .' Revision Date: '. @$office_reference['OfficeReference']['revision_date'], 0, 0, 'R');
     // $pdf->Ln(2.5);
     // $pdf->SetFont("Times", '', 6);
     // $pdf->Cell(130.5, 5, '', 0, 0, 'R');
@@ -18892,40 +19272,72 @@ class PrintController extends AppController {
 
   public function prospectusForm($id = null){
 
-    // $office_reference = $this->Global->OfficeReference('Prospectus');
+    $office_reference = $this->Global->OfficeReference('Prospectus');
 
     $data['Student'] = $this->Students->find()
+
     ->contain([
+
         'Colleges' => [
+
             'conditions' => [
+
                 'Colleges.visible' => 1
+
             ]
+
         ],
+
         'CollegePrograms' => [
+
             'conditions' => [
+
                 'CollegePrograms.visible' => 1
+
             ]
+
         ],
+
         'StudentEnrolledCourses' => [
+
             'conditions' => [
+
                 'StudentEnrolledCourses.visible' => 1
+
             ]
+
         ],
+
         'StudentEnrolledUnits' => [
+
             'conditions' => [
+
                 'StudentEnrolledUnits.visible' => 1
+
             ]
+
         ],
+
         'StudentEnrollments' => [
+
             'conditions' => [
+
                 'StudentEnrollments.visible' => 1
+
             ]
+
         ]
+
     ])
+
     ->where([
+
         'Students.visible' => 1,
+
         'Students.id' => $id
+
     ])
+
     ->first();
 
       $data['Student']['proper_name'] = $data['Student']['last_name'].', '.$data['Student']['first_name'].' '.$data['Student']['middle_name'];
@@ -19109,18 +19521,18 @@ class PrintController extends AppController {
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->SetY($pdf->getY()-0.3);
     $pdf->Cell(164);
-    $pdf->Cell(0,4,'ZSCMST- '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(0,4,'ZSCMST- '. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $y = $pdf->GetY();
     $pdf->Ln(3.2);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(156);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(68,3,'Adopted Date: '. strtoupper(@$office_reference['OfficeReference']['adoption']),0,0,'L');
+    $pdf->Cell(68,3,'Adopted Date: '. @$office_reference['OfficeReference']['adoption'],0,0,'L');
     $pdf->Ln(2.2);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(156);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(4);
     $pdf->SetY($y+1.5);
     $pdf->SetFont("Times", '', 11);
@@ -19892,7 +20304,7 @@ class PrintController extends AppController {
     
   }
 
-  public function medical_monthly_accomplishment(){
+  public function medicalMonthlyAccomplishment(){
 
     $conditions = array();
 
@@ -19900,9 +20312,9 @@ class PrintController extends AppController {
 
     // search conditions
 
-    if(isset($this->request->query['search'])){
+    if($this->request->getQuery('search')){
 
-      $search = $this->request->query['search'];
+      $search = $this->request->getQuery('search');
 
       $search = strtolower($search);
 
@@ -19916,19 +20328,17 @@ class PrintController extends AppController {
 
     $conditions['date'] = "AND DATE(ConsultationSub.date) >= '$start' AND DATE(ConsultationSub.date) <= '$end'";
 
-    if (isset($this->request->query['startDate'])) {
+    if ($this->request->getQuery('startDate')) {
 
-      $start = $this->request->query['startDate']; 
+      $start = $this->request->getQuery('startDate'); 
 
-      $end = $this->request->query['endDate'];
+      $end = $this->request->getQuery('endDate');
 
       $conditions['date'] = "AND DATE(ConsultationSub.date) >= '$start' AND DATE(ConsultationSub.date) <= '$end'";
 
     }
 
-    $this->loadModel('Report');
-
-    $tmpData = $this->Report->query($this->Report->getAllMedicalMonthlyAccmplishment($conditions));
+    $tmpData = $this->Reports->getAllMedicalMonthlyAccomplishmentPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -20008,7 +20418,7 @@ class PrintController extends AppController {
     $pdf->SetWidths(array(45,20,20,20,20,20,20,30));
     $pdf->SetAligns(array('L','C','C','C','C','C','C','C'));
 
-    if(!empty($tmpData)){
+    if(count($tmpData)>0){
 
       $grandTotal = 0;
 
@@ -20016,25 +20426,25 @@ class PrintController extends AppController {
 
         $pdf->RowLegalP(array(
 
-          ($key + 1).'. '.$data['Report']['ailment'],
+          ($key + 1).'. '.$data['ailment'],
 
-          $data['Report']['studentTreated'],
+          $data['studentTreated'],
 
-          $data['Report']['employeeTreated'],
+          $data['employeeTreated'],
 
-          $data['Report']['totalTreated'],
+          $data['totalTreated'],
 
-          $data['Report']['studentReferred'],
+          $data['studentReferred'],
 
-          $data['Report']['employeeReferred'],
+          $data['employeeReferred'],
 
-          $data['Report']['totalReferred'],
+          $data['totalReferred'],
 
-          $data['Report']['remarks'],
+          $data['remarks'],
 
         ));
 
-        $grandTotal += $data['Report']['remarks'] > 0 ? $data['Report']['remarks'] : 0;
+        $grandTotal += $data['remarks'] > 0 ? $data['remarks'] : 0;
 
       }
 
@@ -20043,7 +20453,7 @@ class PrintController extends AppController {
 
     }else{
 
-      $pdf->Cell(205,5,'No data available.',1,1,'C');
+      $pdf->Cell(195,5,'No data available.',1,1,'C');
 
     }
 
@@ -20064,13 +20474,10 @@ class PrintController extends AppController {
 
   public function cats(){
 
-    $conditions = array();
+    $conditions = [];
 
-    $conditions['search'] = '';
 
-    // search conditions
-
-    if($this->request->getQuery('search')){
+    if($this->request->getQuery('search') != null){
 
       $search = $this->request->getQuery('search');
 
@@ -20082,19 +20489,17 @@ class PrintController extends AppController {
 
     $conditions['date'] = '';
 
-    if ($this->request->getQuery('date')) {
+    if ($this->request->getQuery('date') != null) {
 
       $search_date = $this->request->getQuery('date');
 
       $conditions['date'] = " AND DATE(StudentApplication.application_date) = '$search_date'"; 
 
-      $dates['date'] = $search_date;
-
     }  
 
     //advance search
 
-    if ($this->request->getQuery('startDate')) {
+    if ($this->request->getQuery('startDate') != null) {
 
       $start = $this->request->getQuery('startDate'); 
 
@@ -20102,15 +20507,29 @@ class PrintController extends AppController {
 
       $conditions['date'] = " AND DATE(StudentApplication.application_date) >= '$start' AND DATE(StudentApplication.application_date) <= '$end'";
 
-      $dates['startDate'] = $start;
+    }
 
-      $dates['endDate']   = $end;
+    $conditions['status'] = '';
+
+    if ($this->request->getQuery('status') != null) {
+
+      $status = $this->request->getQuery('status');
+
+      if($status == 'assessed'){
+
+        $conditions['status'] = "AND StudentApplication.approve != 3";
+
+      }else{
+
+        $conditions['status'] = "AND StudentApplication.approve = $status";
+
+      }
 
     }
 
     $conditions['rate'] = '';
 
-    if ($this->request->getQuery('rate')) {
+    if ($this->request->getQuery('rate') != null) {
 
       $rate = $this->request->getQuery('rate');
 
@@ -20124,6 +20543,17 @@ class PrintController extends AppController {
 
       }
 
+    }
+
+
+    $conditions['order'] = '';
+
+    if ($this->request->getQuery('order') != null){
+
+      $order = $this->request->getQuery('order');
+
+      $conditions['order'] = $order;
+      
     }
 
     $tmpData = $this->StudentApplications->getAllStudentApplicationPrint($conditions);
@@ -20202,7 +20632,7 @@ class PrintController extends AppController {
   
   }
 
-  public function cats_assessed(){
+  public function catsAssessed(){
 
     $conditions = array();
 
@@ -20210,9 +20640,9 @@ class PrintController extends AppController {
 
     // search conditions
 
-    if(isset($this->request->query['search'])){
+    if($this->request->getQuery('search')){
 
-      $search = $this->request->query['search'];
+      $search = $this->request->getQuery('search');
 
       $search = strtolower($search);
 
@@ -20222,9 +20652,9 @@ class PrintController extends AppController {
 
     $conditions['date'] = '';
 
-    if (isset($this->request->query['date'])) {
+    if ($this->request->getQuery('date')) {
 
-      $search_date = $this->request->query['date'];
+      $search_date = $this->request->getQuery('date');
 
       $conditions['date'] = " AND DATE(StudentApplication.application_date) = '$search_date'"; 
 
@@ -20234,11 +20664,11 @@ class PrintController extends AppController {
 
     //advance search
 
-    if (isset($this->request->query['startDate'])) {
+    if ($this->request->getQuery('startDate')) {
 
-      $start = $this->request->query['startDate']; 
+      $start = $this->request->getQuery('startDate'); 
 
-      $end = $this->request->query['endDate'];
+      $end = $this->request->getQuery('endDate');
 
       $conditions['date'] = " AND DATE(StudentApplication.application_date) >= '$start' AND DATE(StudentApplication.application_date) <= '$end'";
 
@@ -20250,9 +20680,9 @@ class PrintController extends AppController {
 
     $conditions['rate'] = '';
 
-    if (isset($this->request->query['rate'])) {
+    if ($this->request->getQuery('rate')) {
 
-      $rate = $this->request->query['rate'];
+      $rate = $this->request->getQuery('rate');
 
       if($rate == 0){
 
@@ -20268,9 +20698,9 @@ class PrintController extends AppController {
 
     $conditions['status'] = '';
 
-    if (isset($this->request->query['status'])) {
+    if ($this->request->getQuery('status')) {
 
-      $status = $this->request->query['status'];
+      $status = $this->request->getQuery('status');
 
       if($status == 'assessed'){
         $conditions['status'] = "AND StudentApplication.approve != 3";
@@ -20284,16 +20714,16 @@ class PrintController extends AppController {
 
     $conditions['order'] = '';
 
-    if (isset($this->request->query['order'])){
+    if ($this->request->getQuery('order')){
 
-      $order = $this->request->query['order'];
+      $order = $this->request->getQuery('order');
 
       $conditions['order'] = $order;
 
       
     }
 
-    $tmpData = $this->StudentApplication->query($this->StudentApplication->getAllStudentApplication($conditions));
+    $tmpData = $this->StudentApplications->getAllStudentApplicationPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -20343,19 +20773,19 @@ class PrintController extends AppController {
 
           $key + 1,
 
-          strtoupper($data[0]['full_name']),
+          strtoupper($data['full_name']),
 
-          $data['StudentApplication']['email'],
+          $data['email'],
 
-          $data['StudentApplication']['address'],
+          $data['address'],
 
-          $data['StudentApplication']['contact_no'],
+          $data['contact_no'],
 
-          $data['StudentApplication']['gender'],
+          $data['gender'],
 
-          fdate($data['StudentApplication']['application_date'],'m/d/Y'),
+          fdate($data['application_date'],'m/d/Y'),
 
-          $data['StudentApplication']['rate'],
+          $data['rate'],
 
         ));
 
@@ -20645,17 +21075,17 @@ class PrintController extends AppController {
 
   }
 
-  public function medical_monthly_consumption(){
+  public function medicalMonthlyConsumption(){
 
     $conditions = array();
+    
+    $conditionDate = '';
 
     $conditions['search'] = '';
 
-    // search conditions
+    if ($this->request->getQuery('search')!=null) {
 
-    if(isset($this->request->query['search'])){
-
-      $search = $this->request->query['search'];
+      $search = $this->request->getQuery('search');
 
       $search = strtolower($search);
 
@@ -20663,25 +21093,26 @@ class PrintController extends AppController {
 
     }
 
-    $start = date('Y-m-d');
+    $start = date('Y-m-t');
 
     $end = date('Y-m-t');
 
-    $conditionDate = "AND DATE(ItemIssuance.date) >= '$start' AND DATE(ItemIssuance.date) <= '$end'";
+    $conditions['date'] = "AND DATE(PropertyLog.date) >= '$start' AND DATE(PropertyLog.date) <= '$end'";
 
-    if (isset($this->request->query['startDate'])) {
+    if ($this->request->getQuery('startDate')!=null) {
 
-      $start = $this->request->query['startDate']; 
+      $start = $this->request->getQuery('startDate'); 
 
-      $end = $this->request->query['endDate'];
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = "AND DATE(PropertyLog.date) >= '$start' AND DATE(PropertyLog.date) <= '$end'";
 
       $conditionDate = "AND DATE(ItemIssuance.date) >= '$start' AND DATE(ItemIssuance.date) <= '$end'";
 
+
     }
 
-    $this->loadModel('Report');
-
-    $tmpData = $this->Report->query($this->Report->getAllMedicalMonthlyConsumption($conditions));
+    $tmpData = $this->Reports->getAllMedicalMonthlyConsumptionPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -20750,7 +21181,7 @@ class PrintController extends AppController {
     $pdf->Cell(18,10,'Total',1,0,'C');
     $pdf->Cell(18,5,'Number','LTR',0,'C');
     $pdf->Cell(18,10,'Balance',1,0,'C');
-    $pdf->Cell(20,10,'Remkars',1,0,'C');
+    $pdf->Cell(20,10,'Remarks',1,0,'C');
     $pdf->Ln(5);
     $pdf->Cell(85,5,'',0,0,'C');
     $pdf->Cell(18,5,'Date','LBR',0,'C');
@@ -20762,13 +21193,13 @@ class PrintController extends AppController {
     $pdf->SetWidths(array(85,18,18,18,18,18,20));
     $pdf->SetAligns(array('L','C','C','C','C','C','C'));
 
-    if(!empty($tmpData)){
+    if(count($tmpData)>0){
 
       foreach ($tmpData as $key => $data){
 
-        $item_id = $data['Report']['id'];
+        $item_id = $data['id'];
 
-        $issuances = $this->ItemIssuance->query("
+        $result = "
 
           SELECT 
 
@@ -20788,27 +21219,31 @@ class PrintController extends AppController {
 
             ItemIssuanceSub.item_id = $item_id
 
-        ");
+        ";
 
-        $total_issuances = $issuances[0][0]['number_issued'];
+         $connection = $this->ItemIssuances->getConnection();
 
-        if(empty($issuances)){
+          $issuances = $connection->execute($result)->fetchAll('assoc');
+
+        $total_issuances = $issuances[0]['number_issued'];
+
+        if(count($issuances)>0){
 
           $total_issuances = 0;
 
         }
 
-        $inventory = $this->InventoryProperty->find('all', array(
+        $inventory = $this->InventoryProperties->find()
 
-          'conditions' => array(
+            ->where([
 
-            'InventoryProperty.visible' => true,
+                'visible' => 1,
 
-            'InventoryProperty.property_log_id' => $item_id
+                'property_log_id' => $item_id
 
-          )
+            ])
 
-        ));
+            ->all();
 
         $total_stock = 0;
 
@@ -20816,15 +21251,15 @@ class PrintController extends AppController {
 
         $stocks = '';
 
-        if(!empty($inventory)){
+        if(count($inventory)>0){
 
           foreach ($inventory as $keys => $values) {
             
-            $expiry_date .= fdate($values['InventoryProperty']['expiry_date'],'m/d/Y')."\n";
+            $expiry_date .= $values['expiry_date']->format('m/d/Y')."\n";
 
-            $stocks .= $values['InventoryProperty']['stocks']."\n";
+            $stocks .= $values['stocks']."\n";
 
-            $total_stock += $values['InventoryProperty']['stocks'];
+            $total_stock += $values['stocks'];
 
           }
 
@@ -20832,7 +21267,7 @@ class PrintController extends AppController {
 
         $pdf->RowLegalP(array(
 
-          ($key + 1).'. '.$data['Report']['property_name'],
+          ($key + 1).'. '.$data['property_name'],
 
           $expiry_date,
 
@@ -20871,7 +21306,7 @@ class PrintController extends AppController {
   
   }
 
-  public function medical_daily_treaments(){
+  public function medicalDailyTreaments(){
 
     $conditions = array();
 
@@ -20879,9 +21314,9 @@ class PrintController extends AppController {
 
     // search conditions
 
-    if(isset($this->request->query['search'])){
+    if($this->request->getQuery('search')){
 
-      $search = $this->request->query['search'];
+      $search = $this->request->getQuery('search');
 
       $search = strtolower($search);
 
@@ -20895,9 +21330,9 @@ class PrintController extends AppController {
 
     $condition = " AND DATE(ConsultationSub.date) = '$today'"; 
 
-    if (isset($this->request->query['date'])) {
+    if ($this->request->getQuery('date')) {
 
-      $search_date = $this->request->query['date'];
+      $search_date = $this->request->getQuery('date');
 
       $conditions['date'] = " AND DATE(ConsultationSub.date) = '$search_date'"; 
 
@@ -20907,11 +21342,11 @@ class PrintController extends AppController {
 
     //advance search
 
-    if (isset($this->request->query['startDate'])) {
+    if ($this->request->getQuery('startDate')) {
 
-      $start = $this->request->query['startDate']; 
+      $start = $this->request->getQuery('startDate'); 
 
-      $end = $this->request->query['endDate'];
+      $end = $this->request->getQuery('endDate');
 
       $conditions['date'] = " AND DATE(ConsultationSub.date) >= '$start' AND DATE(ConsultationSub.date) <= '$end'";
 
@@ -20919,9 +21354,7 @@ class PrintController extends AppController {
 
     }
 
-    $this->loadModel('Report');
-
-    $tmpData = $this->Report->query($this->Report->getAllMedicalDailyTreatment($conditions));
+    $tmpData = $this->Reports->getAllMedicalDailyTreatmentPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -20959,13 +21392,13 @@ class PrintController extends AppController {
     $pdf->SetWidths(array(10,60,45,45,45));
     $pdf->SetAligns(array('C','L','C','C','L'));
 
-    if(!empty($tmpData)){
+    if(count($tmpData)>0){
 
       foreach ($tmpData as $key => $data){
 
-        $consultation_id = $data['Report']['id'];
+        $consultation_id = $data['id'];
 
-        $consultation_sub = $this->ConsultationSub->query("
+        $tmp = "
 
           SELECT 
 
@@ -20981,7 +21414,11 @@ class PrintController extends AppController {
 
             ConsultationSub.consultation_id = $consultation_id
 
-        ");
+        ";
+
+        $connection = $this->ConsultationSubs->getConnection();
+
+        $consultation_sub = $connection->execute($tmp)->fetchAll('assoc');
 
         $ailments = '';
 
@@ -20989,15 +21426,15 @@ class PrintController extends AppController {
 
         $remarks = '';
 
-        if(!empty($consultation_sub)){
+        if(count($consultation_sub)>0){
 
           foreach ($consultation_sub as $keys => $value) {
 
-            $ailments .= $value['ConsultationSub']['chief_complaints']."\n";
+            $ailments .= $value['chief_complaints']."\n";
 
-            $treatments .= $value['ConsultationSub']['treatments']."\n";
+            $treatments .= $value['treatments']."\n";
 
-            $remarks .= $value['ConsultationSub']['remarks']."\n";
+            $remarks .= $value['remarks']."\n";
 
           }
 
@@ -21007,7 +21444,7 @@ class PrintController extends AppController {
 
           $key + 1,
 
-          $data['Report']['student_name'] != null ? $data['Report']['student_name'] : $data['Report']['employee_name'],
+          $data['student_name'] != null ? $data['student_name'] : $data['employee_name'],
 
           $ailments,
 
@@ -21030,7 +21467,7 @@ class PrintController extends AppController {
   
   }
 
-  public function requested_forms($id = null){
+  public function requestedForms($id = null){
 
     $data = $this->RequestForm->find('first', array(
 
@@ -22672,36 +23109,67 @@ EQUIVALENT',1,'C',0);
     $office_reference = $this->Global->OfficeReference('Cat');
 
     $data['StudentApplication'] = $this->StudentApplications->find()
+
     ->contain([
+
         'YearLevelTerms',
+
         'Colleges',
+
         'CollegePrograms',
+
         'SecondaryPrograms',
+
         'StudentApplicationImages' => [
+
             'conditions' => [
+
                 'StudentApplicationImages.visible' => 1
+
             ]
+
         ],
+
         'StudentEnrolledCourses' => [
+
             'conditions' => [
+
                 'StudentEnrolledCourses.visible' => 1
+
             ]
+
         ],
+
         'StudentEnrolledUnits' => [
+
             'conditions' => [
+
                 'StudentEnrolledUnits.visible' => 1
+
             ]
+
         ],
+
         'StudentEnrollments' => [
+
             'conditions' => [
+
                 'StudentEnrollments.visible' => 1
+
             ]
+
         ]
+
     ])
+
     ->where([
+
         'StudentApplications.visible' => 1,
+
         'StudentApplications.id' => $id
+
     ])
+
     ->first();
 
     $data['StudentApplicationImage'] = $data['StudentApplication']['student_application_images'];
@@ -22812,16 +23280,16 @@ EQUIVALENT',1,'C',0);
     $pdf->Rect(174.5,$pdf->GetY(),24.3,10);
     $pdf->SetFont("Arial", '', 5);
     $pdf->Cell(170);
-    $pdf->Cell(5,3.5,'ZSCMST- '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(5,3.5,'ZSCMST- '. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->Cell(170);
-    $pdf->Cell(5,3.5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(5,3.5,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->Ln(2.2);
     $pdf->Cell(170);
-    $pdf->Cell(5,3.5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(5,3.5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(2);
     $pdf->Cell(170);
-    $pdf->Cell(5,3.5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(5,3.5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(4);
     $pdf->Rect(151,$pdf->GetY(),47.6,44.4);
     $pdf->Ln(18);
@@ -23498,23 +23966,23 @@ EQUIVALENT',1,'C',0);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->SetY($pdf->getY()- 2.5);
     $pdf->Cell(171);
-    $pdf->Cell(0,4,'ZSCMST- '. strtoupper(@$office_reference['OfficeReference']['reference_code']) ,0,0,'L');
+    $pdf->Cell(0,4,'ZSCMST- '. @$office_reference['OfficeReference']['reference_code'] ,0,0,'L');
     
     $pdf->Ln(3);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(162);
     $pdf->Cell(9,5,'',0,0,'L');
-    $pdf->Cell(68,4,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,4,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->Ln(2);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(162);
     $pdf->Cell(9,5,'',0,0,'L');
-    $pdf->Cell(65,6,'Revision Status: ' . strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,6,'Revision Status: ' . @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Arial", '', 5.5);
     $pdf->Cell(162);
     $pdf->Cell(9,5,'',0,0,'L');
-    $pdf->Cell(65,7,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,7,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(23);
 
     $pdf->SetFont("TIMES", '', 13);
@@ -23783,7 +24251,7 @@ EQUIVALENT',1,'C',0);
 
   }
 
-  public function medical_property_equipments(){
+  public function medicalPropertyEquipments(){
 
     $conditions = array();
 
@@ -23791,9 +24259,9 @@ EQUIVALENT',1,'C',0);
 
     // search conditions
 
-    if(isset($this->request->query['search'])){
+    if($this->request->getQuery('search')){
 
-      $search = $this->request->query['search'];
+      $search = $this->request->getQuery('search');
 
       $search = strtolower($search);
 
@@ -23803,9 +24271,9 @@ EQUIVALENT',1,'C',0);
 
     $conditions['date'] = '';
 
-    if (isset($this->request->query['date'])) {
+    if ($this->request->getQuery('date')) {
 
-      $search_date = $this->request->query['date'];
+      $search_date = $this->request->getQuery('date');
 
       $conditions['date'] = " AND DATE(PropertyLog.date) = '$search_date'"; 
 
@@ -23813,19 +24281,17 @@ EQUIVALENT',1,'C',0);
 
     //advance search
 
-    if (isset($this->request->query['startDate'])) {
+    if ($this->request->getQuery('startDate')) {
 
-      $start = $this->request->query['startDate']; 
+      $start = $this->request->getQuery('startDate'); 
 
-      $end = $this->request->query['endDate'];
+      $end = $this->request->getQuery('endDate');
 
       $conditions['date'] = " AND DATE(PropertyLog.date) >= '$start' AND DATE(PropertyLog.date) <= '$end'";
 
     }
 
-    $this->loadModel('Report');
-
-    $tmpData = $this->Report->query($this->Report->getAllMedicalPropertyEquipment($conditions));
+    $tmpData = $this->Reports->getAllMedicalPropertyEquipmentPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -23870,11 +24336,11 @@ EQUIVALENT',1,'C',0);
 
           $key + 1,
 
-          $data['Report']['property_name'],
+          $data['property_name'],
 
-          $data['Report']['type'],
+          $data['type'],
 
-          fdate($data['Report']['date'],'m/d/Y'),
+          fdate($data['date'],'m/d/Y'),
 
         ));
 
@@ -23891,7 +24357,332 @@ EQUIVALENT',1,'C',0);
   
   }
 
-  public function subject_masterlists(){
+  public function consultationReport(){
+
+    $conditions = array();
+
+    $conditions['search'] = '';
+
+    if($this->request->getQuery('search')){
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+    }
+
+    $conditions['date'] = '';
+
+    if ($this->request->getQuery('date')) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(Consultation.date) = '$search_date'"; 
+
+    }
+
+    if ($this->request->getQuery('startDate')) {
+
+      $start = $this->request->getQuery('startDate'); 
+
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = " AND DATE(Consultation.date) >= '$start' AND DATE(Consultation.date) <= '$end'";
+
+    }
+
+    $tmpData = $this->Reports->getAllConsultationEmployeePrint($conditions);
+
+    $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
+
+    require("wordwrap.php");
+    $pdf = new ConductPDF();
+    $pdf->SetMargins(5,10,5);
+    $pdf->SetFooter(true);
+    $pdf->footerSystem = true;
+    $pdf->AliasNbPages();
+    $pdf->AddPage("P", "legal", 0);
+    $pdf->Image($this->base .'/assets/img/zam.png',6,10,25,25);
+    $pdf->SetFont("Times", 'B', 12);
+    $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,strtoupper($this->Global->Settings('lgu_name')),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->SetFont("Times", '', 12);
+    $pdf->Cell(0,5,$this->Global->Settings('address'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('telephone'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->Cell(0,5,'CONSULTATION REPORT',0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Arial", 'B', 9);
+    $pdf->Cell(10,5,'#',1,0,'C');
+    $pdf->Cell(115,5,'NAME',1,0,'C');
+    $pdf->Cell(80,5,'DATE',1,0,'C');
+    $pdf->Ln();
+    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetWidths(array(10,115,80));
+    $pdf->SetAligns(array('C','L','C'));
+
+    if(count($tmpData)>0){
+
+      foreach ($tmpData as $key => $data){
+
+        $pdf->RowLegalP(array(
+
+          $key + 1,
+
+          $data['employee_name'],
+
+          fdate($data['date'],'m/d/Y'),
+
+        ));
+
+      }
+
+    }else{
+
+      $pdf->Cell(205,5,'No data available.',1,1,'C');
+
+    }
+
+    $pdf->output();
+    exit();
+  
+  }
+
+  public function consultationEmployeeReport(){
+
+    $conditions = array();
+
+    $conditions['search'] = '';
+
+    if($this->request->getQuery('search')){
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+    }
+
+    $conditions['date'] = '';
+
+    if ($this->request->getQuery('date')) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(Consultation.date) = '$search_date'"; 
+
+    }
+
+    if ($this->request->getQuery('startDate')) {
+
+      $start = $this->request->getQuery('startDate'); 
+
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = " AND DATE(Consultation.date) >= '$start' AND DATE(Consultation.date) <= '$end'";
+
+    }
+
+    $tmpData = $this->Reports->getAllConsultationEmployeePrint($conditions);
+
+    $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
+
+    require("wordwrap.php");
+    $pdf = new ConductPDF();
+    $pdf->SetMargins(5,10,5);
+    $pdf->SetFooter(true);
+    $pdf->footerSystem = true;
+    $pdf->AliasNbPages();
+    $pdf->AddPage("P", "legal", 0);
+    $pdf->Image($this->base .'/assets/img/zam.png',6,10,25,25);
+    $pdf->SetFont("Times", 'B', 12);
+    $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,strtoupper($this->Global->Settings('lgu_name')),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->SetFont("Times", '', 12);
+    $pdf->Cell(0,5,$this->Global->Settings('address'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('telephone'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->Cell(0,5,'CONSULTATION REPORT',0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Arial", 'B', 9);
+    $pdf->Cell(10,5,'#',1,0,'C');
+    $pdf->Cell(90,5,'NAME',1,0,'C');
+    $pdf->Cell(30,5,'DATE',1,0,'C');
+    $pdf->Cell(45,5,'REMARKS',1,0,'C');
+    $pdf->Cell(30,5,'STATUS',1,0,'C');
+    $pdf->Ln();
+    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetWidths(array(10,90,30,45,30));
+    $pdf->SetAligns(array('C','L','C','C','C'));
+
+    if(count($tmpData)>0){
+
+      foreach ($tmpData as $key => $data){
+
+        if($data['status'] == 0){
+
+          $status = 'PENDING';
+
+        }else if($data['status'] == 3){
+
+          $status = 'APPROVED';
+
+        }else if($data['status'] == 4){
+
+          $status = 'DISAPPROVED';
+
+        }else if($data['status'] == 1){
+
+          $status = 'TREATED';
+
+        }else if($data['status'] == 2){
+
+          $status = 'REFERRED';
+
+        }
+
+        $pdf->RowLegalP(array(
+
+          $key + 1,
+
+          $data['employee_name'],
+
+          fdate($data['date'],'m/d/Y'),
+
+          $data['nurse_remarks'],
+
+          $status,
+
+        ));
+
+      }
+
+    }else{
+
+      $pdf->Cell(205,5,'No data available.',1,1,'C');
+
+    }
+
+    $pdf->output();
+    exit();
+  
+  }
+
+  public function employeeFrequencyReport(){
+
+    $conditions = array();
+
+    $conditions['search'] = '';
+
+    if($this->request->getQuery('search')){
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+    }
+
+    $conditions['date'] = '';
+
+    if ($this->request->getQuery('date')) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(Consultation.date) = '$search_date'"; 
+
+    }
+
+    if ($this->request->getQuery('startDate')) {
+
+      $start = $this->request->getQuery('startDate'); 
+
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = " AND DATE(Consultation.date) >= '$start' AND DATE(Consultation.date) <= '$end'";
+
+    }
+
+    $tmpData = $this->Reports->getAllEmployeeFrequencyPrint($conditions);
+
+    $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
+
+    require("wordwrap.php");
+    $pdf = new ConductPDF();
+    $pdf->SetMargins(5,10,5);
+    $pdf->SetFooter(true);
+    $pdf->footerSystem = true;
+    $pdf->AliasNbPages();
+    $pdf->AddPage("P", "legal", 0);
+    $pdf->Image($this->base .'/assets/img/zam.png',6,10,25,25);
+    $pdf->SetFont("Times", 'B', 12);
+    $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,strtoupper($this->Global->Settings('lgu_name')),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->SetFont("Times", '', 12);
+    $pdf->Cell(0,5,$this->Global->Settings('address'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('telephone'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->Cell(0,5,'CONSULTATION REPORT',0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Arial", 'B', 9);
+    $pdf->Cell(10,5,'#',1,0,'C');
+    $pdf->Cell(115,5,'NAME',1,0,'C');
+    $pdf->Cell(80,5,'NO. OF TIMES',1,0,'C');
+    $pdf->Ln();
+    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetWidths(array(10,115,80));
+    $pdf->SetAligns(array('C','L','C'));
+
+    if(count($tmpData)>0){
+
+      foreach ($tmpData as $key => $data){
+
+        $pdf->RowLegalP(array(
+
+          $key + 1,
+
+          $data['employee_name'],
+
+          $data['frequency'],
+
+        ));
+
+      }
+
+    }else{
+
+      $pdf->Cell(205,5,'No data available.',1,1,'C');
+
+    }
+
+    $pdf->output();
+    exit();
+  
+  }
+
+  public function subjectMasterlists(){
 
     $conditions = array();
 
@@ -23909,17 +24700,15 @@ EQUIVALENT',1,'C',0);
 
     $conditions['college_program_id'] = " AND CollegeProgramCourse.college_program_id IS NULL";
 
-    if (isset($this->request->query['college_program_id'])) {
+    if ($this->request->getQuery('college_program_id')) {
 
-      $college_program_id = $this->request->query['college_program_id']; 
+      $college_program_id = $this->request->getQuery('college_program_id'); 
 
       $conditions['college_program_id'] = " AND CollegeProgramCourse.college_program_id = $college_program_id";
 
     }
 
-     $this->loadModel('Report');
-
-    $tmpData = $this->Report->query($this->Report->getAllSubjectMasterList($conditions));
+    $tmpData = $this->Reports->getAllSubjectMasterListPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -23979,7 +24768,7 @@ EQUIVALENT',1,'C',0);
 
           $key + 1,
 
-          $data['Report']['course'], 
+          $data['course'], 
 
         ));
 
@@ -24176,23 +24965,23 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(68,4,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,4,'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(45,5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(68,3,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,3,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Times", 'B', 12.5);
     $pdf->Cell(45,20,'CUSTOMER SATISFACTION FORM',0,0,'C');
     $pdf->Ln(2);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: ' . strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: ' . @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(7);
 
     $pdf->SetFont("Arial", '', 8);
@@ -25106,7 +25895,7 @@ EQUIVALENT',1,'C',0);
 
   public function participantEvaluationActivityForm($id = null) {
 
-    // $office_reference = $this->Global->OfficeReference('Participant Evaluation Activity');
+    $office_reference = $this->Global->OfficeReference('Participant Evaluation Activity');
 
     $data['ParticipantEvaluationActivity'] = $this->ParticipantEvaluationActivities->find()
 
@@ -25169,7 +25958,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Rect(60,$pdf->GetY(),30.5,14.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(5,5,'',0,0,'L');
-    $pdf->Cell(27,6,'ZSCMST - '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,'L');
+    $pdf->Cell(27,6,'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'],0,'L');
     $pdf->SetFont("Times", '', 9);
     $pdf->Cell(54,12,'PARTICIPANT EVALUATION ',0,0,'C');
     $pdf->Cell(16.5,5,'',0,0,'L');
@@ -25177,17 +25966,17 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(3.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(5,5,'',0,0,'L');
-    $pdf->Cell(21,5,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(21,5,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Times", '', 9);
     $pdf->Cell(65,12,'OF ACTIVITY',0,0,'C');
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Ln(2.5);
     $pdf->Cell(5,5,'',0,0,'L');
-    $pdf->Cell(25,5,'Revision Status: ' . strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(25,5,'Revision Status: ' . @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Cell(76.5,5,'',0,0,'L');
     $pdf->Ln(2.5);
     $pdf->Cell(5,5,'',0,0,'L');
-    $pdf->Cell(25,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(25,5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Cell(76.5,5,'',0,0,'L');
 
 
@@ -26559,23 +27348,23 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(4);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(68,4,'ZSCMST - ' . strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,4,'ZSCMST - ' . @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(45,5,'GUIDANCE   AND   COUNSELING   OFFICE',0,0,'C');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(68,3,'Adopted Date: ' . strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'L');
+    $pdf->Cell(68,3,'Adopted Date: ' . @$office_reference['OfficeReference']['adopted'],0,0,'L');
     $pdf->SetFont("Times", 'B', 12.5);
     $pdf->Cell(45,20,'STUDENT EXIT QUESTIONNAIRE',0,0,'C');
     $pdf->Ln(2);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'L');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(8.5,5,'',0,0,'L');
-    $pdf->Cell(65,5,'Revision Date: ' . strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'L');
+    $pdf->Cell(65,5,'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'],0,0,'L');
     $pdf->Ln(10);
 
     $pdf->SetFont("Arial", '', 9);
@@ -27364,7 +28153,7 @@ EQUIVALENT',1,'C',0);
   
   }
 
-  public function promoted_student(){
+  public function promotedStudent(){
 
     $conditions = array();
 
@@ -27372,9 +28161,9 @@ EQUIVALENT',1,'C',0);
 
     // search conditions
 
-    if(isset($this->request->query['search'])){
+    if($this->request->getQuery('search')){
 
-      $search = $this->request->query['search'];
+      $search = $this->request->getQuery('search');
 
       $search = strtolower($search);
 
@@ -27385,9 +28174,9 @@ EQUIVALENT',1,'C',0);
 
     $conditions['program_id'] = '';
 
-    if (isset($this->request->query['program_id'])) {
+    if ($this->request->getQuery('program_id')) {
 
-      $program_id = $this->request->query['program_id']; 
+      $program_id = $this->request->getQuery('program_id'); 
 
       $conditions['program_id'] = " AND Student.program_id = $program_id";
 
@@ -27395,9 +28184,9 @@ EQUIVALENT',1,'C',0);
 
     $conditions['year'] = "";
 
-    if (isset($this->request->query['year'])) {
+    if ($this->request->getQuery('year')) {
 
-      $year = $this->request->query['year']; 
+      $year = $this->request->getQuery('year'); 
 
       if($year==1){
         $y1 = '1';
@@ -27420,10 +28209,7 @@ EQUIVALENT',1,'C',0);
 
     }
 
-
-    $this->loadModel('Report');
-
-    $tmpData = $this->Report->query($this->Report->getAllPromotedStudent($conditions));
+    $tmpData = $this->Reports->getAllPromotedStudentPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -27468,11 +28254,11 @@ EQUIVALENT',1,'C',0);
 
           $key + 1,
 
-          $data['Report']['student_no'],
+          $data['student_no'],
 
-          $data['Report']['full_name'],
+          $data['full_name'],
 
-          $data['Report']['program'],
+          $data['program'],
 
 
         ));
@@ -27695,9 +28481,9 @@ EQUIVALENT',1,'C',0);
       $dates['endDate']   = $end;
 
     }
-    $conditions['program_id'] = '';
+     $conditions['program_id'] = '';
 
-    if ($this->request->getQuery('program_id')) {
+    if ($this->request->getQuery('program_id')!=null) {
 
       $program_id = $this->request->getQuery('program_id'); 
 
@@ -27708,13 +28494,15 @@ EQUIVALENT',1,'C',0);
     $conditions['year'] = "";
 
 
-    if ($this->request->getQuery('year_term_id')) {
+    if ($this->request->getQuery('year')!=null) {
 
-      $year = $this->request->getQuery('year_term_id'); 
+      $year = $this->request->getQuery('year'); 
 
       $conditions['year'] = " AND StudentBehavior.year_term_id = '$year' ";
 
     }
+
+    // debug($conditions);
 
     $this->loadModel('Reports');
 
@@ -27756,7 +28544,7 @@ EQUIVALENT',1,'C',0);
     $pdf->SetWidths(array(8,30,60,57,50));
     $pdf->SetAligns(array('C','C','L','C','C'));
 
-    if(!empty($tmpData)){
+    if(count($tmpData)>0){
 
       foreach ($tmpData as $key => $data){
 
@@ -27772,6 +28560,313 @@ EQUIVALENT',1,'C',0);
 
           $data['behavior'],
 
+
+        ));
+
+      }
+
+    }else{
+
+      $pdf->Cell(205,5,'No data available.',1,1,'C');
+
+    }
+
+    $pdf->output();
+    exit();
+  
+  }
+
+  public function transcriptOfRecords(){
+
+    $conditions = array();
+
+    $conditions['search'] = '';
+
+    // search conditions
+
+    if($this->request->getQuery('search') != null){
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+    }
+
+    $conditions['date'] = '';
+
+    if ($this->request->getQuery('date') != null) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(StudentEnrollment.date) = '$search_date'"; 
+
+    }  
+
+    //advance search
+
+    if ($this->request->getQuery('startDate') != null) {
+
+      $start = $this->request->getQuery('startDate'); 
+
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = " AND DATE(StudentEnrollment.date) >= '$start' AND DATE(StudentEnrollment.date) <= '$end'";
+
+    }
+
+    $conditions['college_id'] = " AND Student.college_id = 0";
+
+    if ($this->request->getQuery('college_id') != null) {
+
+      $college_id = $this->request->getQuery('college_id'); 
+
+      $conditions['college_id'] = " AND Student.college_id = $college_id";
+
+    }
+
+    $conditions['program_id'] = '';
+
+    if ($this->request->getQuery('program_id') != null) {
+
+      $program_id = $this->request->getQuery('program_id'); 
+
+      $conditions['program_id'] = " AND Student.program_id = $program_id";
+
+    }
+
+    $conditions['year_term_id'] = '';
+
+    if ($this->request->getQuery('year_term_id')) {
+
+      $year_term_id = $this->request->getQuery('year_term_id'); 
+
+      $conditions['year_term_id'] = " AND StudentEnrollment.year_term_id = $year_term_id";
+
+    }
+
+    $tmpData = $this->Reports->getAllTranscriptofRecordPrint($conditions);
+
+    $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
+
+    require("wordwrap.php");
+    $pdf = new ConductPDF();
+    $pdf->SetMargins(5,10,5);
+    $pdf->SetFooter(true);
+    $pdf->footerSystem = true;
+    $pdf->AliasNbPages();
+    $pdf->AddPage("P", "legal", 0);
+    $pdf->Image($this->base .'/assets/img/zam.png',6,10,25,25);
+    $pdf->SetFont("Times", 'B', 12);
+    $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,strtoupper($this->Global->Settings('lgu_name')),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->SetFont("Times", '', 12);
+    $pdf->Cell(0,5,$this->Global->Settings('address'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('telephone'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->Cell(0,5,'STUDENT BEHAVIOR',0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Arial", 'B', 7);
+    $pdf->Cell(8,5,'#',1,0,'C');
+    $pdf->Cell(60,5,'STUDENT NAME',1,0,'C');
+    $pdf->Cell(30,5,'STUDENT NUMBER',1,0,'C');
+    $pdf->Cell(57,5,'COLLEGE',1,0,'C');
+    $pdf->Cell(50,5,'PROGRAM',1,0,'C');
+    $pdf->Ln(5);
+    $pdf->SetFont("Arial", '', 7);
+    $pdf->SetWidths(array(8,30,60,57,50));
+    $pdf->SetAligns(array('C','C','L','C','C'));
+
+    if(count($tmpData)>0){
+
+      foreach ($tmpData as $key => $data){
+
+        $pdf->RowLegalP(array(
+
+          $key + 1,
+
+          $data['full_name'],
+
+          $data['student_no'],
+
+          $data['college'],
+
+          $data['program'],
+
+
+        ));
+
+      }
+
+    }else{
+
+      $pdf->Cell(205,5,'No data available.',1,1,'C');
+
+    }
+
+    $pdf->output();
+    exit();
+  
+  }
+
+  public function academicList(){
+
+    
+    $conditionsPrint = '';
+
+    $conditions = array();
+
+    $conditions['search'] = '';
+
+    // search conditions
+
+    if($this->request->getQuery('search')!=null){
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+    }
+
+    $conditions['date'] = '';
+
+    if ($this->request->getQuery('date')!=null) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(AwardeeManagement.date) = '$search_date'"; 
+
+      $dates['date'] = $search_date;
+
+    }  
+
+    //advance search
+
+    if ($this->request->getQuery('startDate')!=null) {
+
+      $start = $this->request->getQuery('startDate'); 
+
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = " AND DATE(AwardeeManagement.date) >= '$start' AND DATE(AwardeeManagement.date) <= '$end'";
+
+      $dates['startDate'] = $start;
+
+      $dates['endDate']   = $end;
+
+    }
+
+    $conditions['college_id'] = '';
+
+    if ($this->request->getQuery('college_id')!=null) {
+
+      $college_id = $this->request->getQuery('college_id'); 
+
+      $conditions['college_id'] = " AND AwardeeManagement.college_id = $college_id";
+    }
+
+    $conditions['program_id'] = '';
+
+    if ($this->request->getQuery('program_id')!=null) {
+
+      $program_id = $this->request->getQuery('program_id'); 
+
+      $conditions['program_id'] = " AND AwardeeManagement.program_id = $program_id";
+
+    }
+
+    $conditions['semester'] = '';
+
+    if ($this->request->getQuery('semester')!=null) {
+
+      $semester = $this->request->getQuery('semester'); 
+
+      $conditions['semester'] = " AND AwardeeManagement.semester = $semester";
+
+    }
+
+    $conditions['year'] = '';
+
+    if ($this->request->getQuery('year')!=null) {
+
+      $year = $this->request->getQuery('year'); 
+
+      $conditions['year'] = " AND AwardeeManagement.year = $year";
+
+    }
+
+    $conditions['section_id'] = " AND AwardeeManagement.section_id IS NULL";
+
+    if ($this->request->getQuery('section_id')!=null) {
+
+      $section_id = $this->request->getQuery('section_id'); 
+
+      $conditions['section_id'] = " AND AwardeeManagement.section_id = $section_id";
+
+    }
+
+    $tmpData = $this->Reports->getAllAcademicListPrint($conditions);
+
+    $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
+
+    require("wordwrap.php");
+    $pdf = new ConductPDF();
+    $pdf->SetMargins(5,10,5);
+    $pdf->SetFooter(true);
+    $pdf->footerSystem = true;
+    $pdf->AliasNbPages();
+    $pdf->AddPage("P", "legal", 0);
+    $pdf->Image($this->base .'/assets/img/zam.png',6,10,25,25);
+    $pdf->SetFont("Times", 'B', 12);
+    $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,strtoupper($this->Global->Settings('lgu_name')),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->SetFont("Times", '', 12);
+    $pdf->Cell(0,5,$this->Global->Settings('address'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('telephone'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->Cell(0,5,'ACADEMIC LIST',0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Arial", 'B', 7);
+    $pdf->Cell(8,5,'#',1,0,'C');
+    $pdf->Cell(30,5,'STUDENT NUMBER',1,0,'C');
+    $pdf->Cell(60,5,'STUDENT NAME',1,0,'C');
+    $pdf->Cell(57,5,'AWARD',1,0,'C');
+    $pdf->Cell(50,5,'REGISTRATION DATE ',1,0,'C');
+    $pdf->Ln(5);
+    $pdf->SetFont("Arial", '', 7);
+    $pdf->SetWidths(array(8,30,60,57,50));
+    $pdf->SetAligns(array('C','C','L','C','C'));
+
+    if(count($tmpData)>0){
+
+      foreach ($tmpData as $key => $data){
+
+        $pdf->RowLegalP(array(
+
+          $key + 1,
+
+          $data['student_name'],
+
+          $data['student_no'],
+
+          $data['award_id'],
+
+          fdate($data['date'],'m/d/Y')
 
         ));
 
@@ -28759,9 +29854,9 @@ EQUIVALENT',1,'C',0);
 
     $conditions['section_id'] = '';
 
-    if (isset($this->request->query['section_id'])) {
+    if ($this->request->getQuery('section_id')) {
 
-      $section_id = $this->request->query['section_id']; 
+      $section_id = $this->request->getQuery('section_id'); 
 
       $conditions['section_id'] = " AND StudentEnrolledCourse.section_id = $section_id";
 
@@ -28771,9 +29866,9 @@ EQUIVALENT',1,'C',0);
 
     $conditions['college_id'] = " AND Student.college_id IS NULL";
 
-    if (isset($this->request->query['college_id'])) {
+    if ($this->request->getQuery('college_id')) {
 
-      $college_id = $this->request->query['college_id']; 
+      $college_id = $this->request->getQuery('college_id'); 
 
       $conditions['college_id'] = " AND Student.college_id = $college_id";
 
@@ -28781,24 +29876,17 @@ EQUIVALENT',1,'C',0);
 
      $conditions['program_id'] = '';
 
-    if (isset($this->request->query['program_id'])) {
+    if ($this->request->getQuery('program_id')) {
 
-      $program_id = $this->request->query['program_id']; 
+      $program_id = $this->request->getQuery('program_id'); 
 
       $conditions['program_id'] = " AND Student.program_id = $program_id";
 
 
     }
 
-
     
-
-
-
- 
-    $this->loadModel('Report');
-    
-    $tmpData = $this->Report->query($this->Report->getAllListAcademicAwardee($conditions));
+    $tmpData = $this->Reports->getAllGwaPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -28838,16 +29926,21 @@ EQUIVALENT',1,'C',0);
     $pdf->SetWidths(array(10,50,150,68,68,));
     $pdf->SetAligns(array('C','C','C','C','C'));
 
-    if (!empty($tmpData)) {
+    if (count($tmpData)>0) {
       foreach ($tmpData as $key => $data) {
 
     
         $pdf->RowLegalP(array(
+
           $key + 1,
-          $data['Report']['full_name'],
-          $data['Report']['college'],
-          $data['Report']['program'],
-          $data['Report']['ave'],
+
+          $data['full_name'],
+
+          $data['college'],
+
+          $data['program'],
+
+          $data['ave'],
      
         ));
       }
@@ -29127,7 +30220,7 @@ EQUIVALENT',1,'C',0);
 
   }
 
-  public function faculty_masterlists(){
+  public function facultyMasterlists(){
 
     $conditions = array();
 
@@ -29145,17 +30238,15 @@ EQUIVALENT',1,'C',0);
 
     $conditions['college_id'] = " AND Employee.college_id IS NULL";
 
-    if (isset($this->request->query['college_id'])) {
+    if ($this->request->getQuery('college_id')) {
 
-      $college_id = $this->request->query['college_id']; 
+      $college_id = $this->request->getQuery('college_id'); 
 
       $conditions['college_id'] = " AND Employee.college_id = $college_id";
 
     }
-
-    $this->loadModel('Report');
     
-    $tmpData = $this->Report->query($this->Report->getAllFacultyMasterlist($conditions));
+    $tmpData = $this->Reports->getAllFacultyMasterlistPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -29195,7 +30286,7 @@ EQUIVALENT',1,'C',0);
     $pdf->SetWidths(array(10,50,100,60,60,65));
     $pdf->SetAligns(array('C','C','C','C','C','C'));
 
-    if(!empty($tmpData)){
+    if(count($tmpData)>0){
 
       foreach ($tmpData as $key => $data){
 
@@ -29203,15 +30294,15 @@ EQUIVALENT',1,'C',0);
 
           $key + 1,
 
-          $data['Report']['code'],
+          $data['code'],
 
-          $data['Report']['full_name'],
+          $data['full_name'],
 
-          $data['Report']['gender'],
+          $data['gender'],
 
-          $data['Report']['academic_rank'],
+          $data['rank'],
 
-          $data['Report']['college'],
+          $data['college'],
 
         ));
 
@@ -29219,7 +30310,7 @@ EQUIVALENT',1,'C',0);
 
     }else{
 
-      $pdf->Cell(205,5,'No data available.',1,1,'C');
+      $pdf->Cell(345,5,'No data available.',1,1,'C');
 
     }
 
@@ -29642,19 +30733,19 @@ EQUIVALENT',1,'C',0);
     $pdf->Rect(175,40,32,15.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(167,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST-' . strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST-' . @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(114,5,'',0,0,'R');
-    $pdf->Cell(68,5,'Adopted Date: '. strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'R');
+    $pdf->Cell(68,5,'Adopted Date: '. @$office_reference['OfficeReference']['adopted'],0,0,'R');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(123,5,'',0,0,'R');
-    $pdf->Cell(59,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'R');
+    $pdf->Cell(59,5,'Revision Date: '. @$office_reference['OfficeReference']['revision_date'],0,0,'R');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(126,5,'',0,0,'R');
-    $pdf->Cell(60,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'R');
+    $pdf->Cell(60,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'R');
     $pdf->Ln(10);
     $pdf->SetFont("Arial", 'BU', 10);
     $pdf->Cell(0,5,'MEDICAL EXAMINATION FORM',0,0,'C');
@@ -30038,11 +31129,17 @@ EQUIVALENT',1,'C',0);
     $medicalEmployeeProfilesTable = TableRegistry::getTableLocator()->get('MedicalEmployeeProfiles');
 
     $query = $medicalEmployeeProfilesTable->find()
+
         ->contain(['Colleges'])
+
         ->where([
+
             'MedicalEmployeeProfiles.visible' => 1,
+
             'MedicalEmployeeProfiles.id' => $id,
+
         ])
+
         ->first();
 
     $data = $query->toArray();
@@ -30076,19 +31173,19 @@ EQUIVALENT',1,'C',0);
     $pdf->Rect(175,40,32,15.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(167,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST-' . strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST-' . @$office_reference['OfficeReference']['reference_code'],0,0,'L');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(114,5,'',0,0,'R');
-    $pdf->Cell(68,5,'Adopted Date: '. strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'R');
+    $pdf->Cell(68,5,'Adopted Date: '. @$office_reference['OfficeReference']['adopted'],0,0,'R');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(123,5,'',0,0,'R');
-    $pdf->Cell(59,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'R');
+    $pdf->Cell(59,5,'Revision Date: '. @$office_reference['OfficeReference']['revision_date'],0,0,'R');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(126,5,'',0,0,'R');
-    $pdf->Cell(60,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'R');
+    $pdf->Cell(60,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'R');
     $pdf->Ln(10);
     $pdf->SetFont("Arial", 'BU', 10);
     $pdf->Cell(0,5,'MEDICAL EXAMINATION FORM',0,0,'C');
@@ -30736,7 +31833,7 @@ EQUIVALENT',1,'C',0);
 
   public function medicalHistoryForm($id = null) {
 
-    // $office_reference = $this->Global->OfficeReference('Medical Student Profile');
+    $office_reference = $this->Global->OfficeReference('Medical Student Profile');
 
      $data['MedicalStudentProfile'] = $this->MedicalStudentProfiles->find()
 
@@ -30817,19 +31914,19 @@ EQUIVALENT',1,'C',0);
     $pdf->Rect(176,40,32,15.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(167,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST-' . strtoupper(@$office_reference['OfficeReference']['medical_student_history_reference']),0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST-' . @$office_reference['OfficeReference']['medical_student_history_reference'],0,0,'L');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(114,5,'',0,0,'R');
-    $pdf->Cell(68,5,'Adopted Date: '. strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'R');
+    $pdf->Cell(68,5,'Adopted Date: '. @$office_reference['OfficeReference']['adopted'],0,0,'R');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(123,5,'',0,0,'R');
-    $pdf->Cell(59,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['revision_date']),0,0,'R');
+    $pdf->Cell(59,5,'Revision Date: '. @$office_reference['OfficeReference']['revision_date'],0,0,'R');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(126,5,'',0,0,'R');
-    $pdf->Cell(60,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'R');
+    $pdf->Cell(60,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'R');
     $pdf->Ln(-2);
     $pdf->SetFont("Arial", 'BU', 10);
     $pdf->Cell(0,5,'EXAMINATION FORM',0,0,'C');
@@ -31434,19 +32531,19 @@ EQUIVALENT',1,'C',0);
     $pdf->Rect(177,40,32,15.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(167,5,'',0,0,'L');
-    $pdf->Cell(68,5,'ZSCMST-' . strtoupper(@$office_reference['OfficeReference']['medical_employee_history_reference']),0,0,'L');
+    $pdf->Cell(68,5,'ZSCMST-' . @$office_reference['OfficeReference']['medical_employee_history_reference'],0,0,'L');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(114,5,'',0,0,'R');
-    $pdf->Cell(68,5,'Adopted Date: '. strtoupper(@$office_reference['OfficeReference']['adopted']),0,0,'R');
+    $pdf->Cell(68,5,'Adopted Date: '. @$office_reference['OfficeReference']['adopted'],0,0,'R');
     $pdf->Ln(2.5);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(123,5,'',0,0,'R');
-    $pdf->Cell(59,5,'Revision Date: '. strtoupper(@$office_reference['OfficeReference']['reference_code']),0,0,'R');
+    $pdf->Cell(59,5,'Revision Date: '. @$office_reference['OfficeReference']['reference_code'],0,0,'R');
     $pdf->Ln(3);
     $pdf->SetFont("Times", '', 5.5);
     $pdf->Cell(126,5,'',0,0,'R');
-    $pdf->Cell(60,5,'Revision Status: '. strtoupper(@$office_reference['OfficeReference']['revision_status']),0,0,'R');
+    $pdf->Cell(60,5,'Revision Status: '. @$office_reference['OfficeReference']['revision_status'],0,0,'R');
     $pdf->Ln(-2);
     $pdf->SetFont("Arial", 'BU', 10);
     $pdf->Cell(0,5,'EXAMINATION FORM',0,0,'C');

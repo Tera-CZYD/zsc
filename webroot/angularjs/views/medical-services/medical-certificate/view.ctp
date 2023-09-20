@@ -1,5 +1,27 @@
-<?php if (hasAccess('medical certificate request/view', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'medical certificate request/view', currentUser);
+  handleAccess('pageEdit', 'medical certificate request/edit', currentUser);
+  handleAccess('pageDelete', 'medical certificate request/delete', currentUser);
+  handleAccess('pagePrintMedicalCert', 'medical certificate request/print medical certificate', currentUser);
+  handleAccess('pageApprove', 'medical certificate request/appr', currentUser);
+  handleAccess('pageDisapprove', 'medical certificate request/disappr', currentUser);
+
+</script>
+
+<div class="row" id="pageView">
 <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -61,24 +83,12 @@
 
             
 
-            <?php if (hasAccess('medical_certificate/appr', $currentUser)): ?>
-                <button href="javascript:void(0)" ng-click="appr(data.MedicalCertificate)" ng-disabled=" data.MedicalCertificate.status == 3 || data.MedicalCertificate.status == 1 || data.MedicalCertificate.status == 2" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
-              <?php endif ?>
-              <?php if (hasAccess('medical_certificate/disappr', $currentUser)): ?>
-                <button href="javascript:void(0)" ng-click="disappr(data.MedicalCertificate)" ng-disabled="data.MedicalCertificate.status == 1 || data.MedicalCertificate.status == 2 || data.MedicalCertificate.status == 4" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> DISAPPROVE </button>
-              <?php endif ?>
+                <button id="pageApprove" href="javascript:void(0)" ng-click="appr(data.MedicalCertificate)" ng-disabled=" data.MedicalCertificate.status == 3 || data.MedicalCertificate.status == 1 || data.MedicalCertificate.status == 2" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
+                <button id="pageDisapprove" href="javascript:void(0)" ng-click="disappr(data.MedicalCertificate)" ng-disabled="data.MedicalCertificate.status == 1 || data.MedicalCertificate.status == 2 || data.MedicalCertificate.status == 4" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> DISAPPROVE </button>
 
-
-
-              <?php if (hasAccess('medical certificate request/edit', $currentUser)): ?>
-              <a href="#/medical-services/medical-certificate/edit/{{ data.MedicalCertificate.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
-              <?php endif ?>
-              <?php if (hasAccess('medical certificate request/print medical certificate', $currentUser)): ?>
-              <button type="button" class="btn btn-info  btn-min" ng-click="print(data.MedicalCertificate.id )"><i class="fa fa-print"></i> PRINT MEDICAL CERTIFICATE </button>
-              <?php endif ?>
-              <?php if (hasAccess('medical certificate request/delete', $currentUser)): ?>
-              <button class="btn btn-danger btn-min" ng-click="remove(data.MedicalCertificate)"><i class="fa fa-trash"></i> DELETE </button>
-              <?php endif ?>
+              <a id="pageEdit" href="#/medical-services/medical-certificate/edit/{{ data.MedicalCertificate.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
+              <button id="pagePrintMedicalCert" type="button" class="btn btn-info  btn-min" ng-click="print(data.MedicalCertificate.id )"><i class="fa fa-print"></i> PRINT MEDICAL CERTIFICATE </button>
+              <button id="pageDelete" class="btn btn-danger btn-min" ng-click="remove(data.MedicalCertificate)"><i class="fa fa-trash"></i> DELETE </button>
             </div>
           </div>
         </div>
@@ -86,7 +96,7 @@
     </div>
   </div>
 </div>
-<?php endif ?>
+
 <style type="text/css">
 th {
   white-space: nowrap;

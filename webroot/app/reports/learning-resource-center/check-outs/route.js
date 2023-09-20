@@ -2,7 +2,7 @@ app.config(function($routeProvider) {
 
   $routeProvider
 
-  .when('/reports/learning-resource-center/check-outs/index', {
+  .when('/reports/learning-resource-center/check-outs/', {
 
     templateUrl: 'angularjs/views/reports/learning-resource-center/check-outs/index.ctp',
 
