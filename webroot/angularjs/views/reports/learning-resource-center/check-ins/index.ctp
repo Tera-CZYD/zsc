@@ -65,25 +65,21 @@
             <table class="table table-bordered text-center">
               <thead>
                 <tr class="bg-info">
-                  <th class="w30px"> # </th>
-                  <th class="text-center"> CONTROL NO. </th>
-                  <th class="text-center"> MEMBER NAME </th>
-                  <th class="text-center"> TITLE </th>
-                  <th class="text-center"> AUTHOR </th>
-                  <th class="text-center"> BARCODE NO. </th>
-                  <th class="text-center"> DATE RETURNED </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat="data in datas">
-                  <td class="text-left uppercase">{{ (paginator.page - 1 ) * paginator.limit + $index + 1 }}</td>
-                  <td class="text-center uppercase">{{ data.code }}</td>
-                  <td class="text-left uppercase">{{ data.member_name }}</td>
-                  <td class="text-left uppercase">{{ data.title }}</td>
-                  <td class="text-center uppercase">{{ data.author }}</td>
-                  <td class="text-center uppercase">{{ data.barcode_no }}</td>
-                  <td class="text-center uppercase">{{ data.status_dt }}</td>
-                </tr>
+                      <th class="text-center w30px">#</th>
+                      <th class="text-center"> LIBRARY ID NUMBER</th>
+                      <th class="text-center"> MEMBER NAME </th>
+                      <th class="text-center"> EMAIL </th>
+                      <th class="text-center"> DATE RETURNED </th>
+                    </tr>
+                  </thread>
+                  <tbody>
+                    <tr ng-repeat="data in datas">
+                      <td class="text-center">{{ (paginator.page - 1 ) * paginator.limit + $index + 1 }}</td>
+                      <td class="text-center">{{data.library_id_number}}</td>
+                      <td class="text-left uppercase">{{ data.member_name }}</td>
+                      <td class="text-center uppercase">{{ data.email }}</td>
+                      <td class="text-center uppercase">{{ data.date_returned }}</td>
+                    </tr>
                 <tr ng-show="datas == ''">
                   <td colspan="9" class="text-center">No available data</td>
                 </tr>
