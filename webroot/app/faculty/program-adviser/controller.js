@@ -230,63 +230,69 @@ app.controller('ProgramAdviserController', function($scope, ProgramAdviser,Progr
 
   }
 
-  // $scope.getSection = function(index,data,id){
-
-  //   if(data.length > 0){
-
-  //     $.each(data, function(i,val){
-
-  //       if(val.id == id){
-
-  //         $scope.datas[index].selected_section_id = val.section_id;
-
-  //         $scope.datas[index].selected_section = val.section;
-
-  //       }
-
-  //     });
-
-  //   }
-
-  // }
-
   $scope.enlist = function(data,section){
 
-    data.selected_block_section_id = section.id;
+    if(section.available_slot > 0){
 
-    data.selected_section_id = section.section_id;
+      data.selected_block_section_id = section.id;
 
-    data.selected_section = section.section;
+      data.selected_section_id = section.section_id;
 
-    bootbox.confirm('Are you sure you want to enlist student number ' + data.student_no + ' to section ' +  section.section + '?', function(c) {
+      data.selected_section = section.section;
 
-      if (c) {
+      if(section.available_slot == 5){
 
-        ProgramAdviserEnlist.save(data, function(e) {
+        $.gritter.add({
 
-          if (e.ok) {
+          title: 'Warning!',
 
-            $.gritter.add({
-
-              title: 'Successful!',
-
-              text:  e.msg,
-
-            });
-
-            $scope.load({
-
-              year_term_id: $scope.year_term_id
-
-            });
-
-          }
+          text:  'Remaining 5 slots available.',
 
         });
 
       }
 
-    });
+      bootbox.confirm('Are you sure you want to enlist student number ' + data.student_no + ' to section ' +  section.section + '?', function(c) {
+
+        if (c) {
+
+          ProgramAdviserEnlist.save(data, function(e) {
+
+            if (e.ok) {
+
+              $.gritter.add({
+
+                title: 'Successful!',
+
+                text:  e.msg,
+
+              });
+
+              $scope.load({
+
+                year_term_id: $scope.year_term_id
+
+              });
+
+            }
+
+          });
+
+        }
+
+      });
+
+    }else{
+
+      $.gritter.add({
+
+        title: 'Warning!',
+
+        text:  'There is no available slots left to this section.',
+
+      });
+
+    }
 
   }
 

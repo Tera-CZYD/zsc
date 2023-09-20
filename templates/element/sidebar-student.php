@@ -51,9 +51,13 @@
 
           <li class="nav-link-side nav-request-form"><a><i class="fa fa-briefcase"></i> Registrar </a>
             <ul class="nav child_menu collapse collapse-request-form ">
+
+              <li class="nav-link-side nav-transferee">
+                <a href="#/registrar/transferee" onclick="change('transferee')">School Transfer Request</a>
+              </li>
               
               <li class="nav-link-side nav-request-form">
-                  <a href="#/registrar/request-form" onclick="change('request-form')">Request Form</a>
+                <a href="#/registrar/request-form" onclick="change('request-form')">Request Form</a>
               </li>
 
               <li class="nav-link-side nav-adding-dropping-subject">
