@@ -83,7 +83,7 @@
                     <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                     
                       <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-                        <button id="pagePrint" ng-click="printForEnlistment()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                      <button id="pagePrint" ng-click="printForEnlistment()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
                       <button type="button" class="btn btn-warning btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                      
                     </div>
@@ -107,8 +107,7 @@
                           <th>STUDENT NAME</th>
                           <th>PROGRAM</th>
                           <th>RATE</th>
-                          <th>SECTIONS</th>
-                          <!-- <th class="w90px"></th> -->
+                          <th>SECTIONS - AVAILABLE SLOTS</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -118,25 +117,14 @@
                           <td class="text-left">{{ data.student_name }}</td>
                           <td class="text-left">{{ data.program}}</td>
                           <td class="text-center">{{ data.rate}}</td>
-                          <td class="text-left">
-                            <div ng-repeat="section in data.block_sections"><a id="pageEnlist" href="javascript:void(0)" ng-click="enlist(data,section)">{{ section.section }}</a></div>
-                            <!-- <select class="form-control" ng-model="data.selected_block_section_id" ng-change="getSection($index,data.block_sections,data.selected_block_section_id)" ng-options="opt.id as opt.section for opt in data.block_sections">
-                              <option value=""></option>
-<<<<<<< HEAD
-                            </select>
-                          </td>
+
                           <td>
-                            <a id="pageEnlist" href="javascript:void(0)" ng-click="enlist(data)" class="btn btn-info" title="ENLIST STUDENT"><i class="fa fa-pencil"></i></a>
-=======
-                            </select> -->
->>>>>>> 66b81273bcdeb45ccb2566ff250a7db7b8394497
-                          </td>
-                         <!--  <td>
-                            <a id="pageEnlist" href="javascript:void(0)" ng-click="enlist(data)" class="btn btn-info" title="ENLIST STUDENT"><i class="fa fa-pencil"></i></a>
-                          </td> -->
+                            <div class="btn-group btn-group-xs">
+                              <div ng-repeat="section in data.block_sections"><a id="pageEnlist" class="btn btn-success" href="javascript:void(0)" ng-click="enlist(data,section)">{{ section.section }} - {{ section.available_slot }}</a></div>
+                            </div>
                         </tr>
                         <tr ng-show="datas == null || datas == ''">
-                          <td colspan="7">No available data</td>
+                          <td colspan="6">No available data</td>
                         </tr>
                       </tbody>
                     </table>

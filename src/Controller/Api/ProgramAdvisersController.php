@@ -141,39 +141,39 @@ class ProgramAdvisersController extends AppController {
 
     foreach ($main as $data) {
 
-      $tmp_block_sections = $this->BlockSections->find()
-
-        ->where([
-
-          'visible' => 1,
-
-          'college_id' => $data['college_id'],
-
-          'program_id' => $data['program_id'],
-
-        ])
-
-      ->all();
-
       $block_sections = array();
 
-      if(!empty($tmp_block_sections)){
+      if($status == 0){
 
-        foreach ($tmp_block_sections as $key => $value) {
-          
-          $available_slot = $this->BlockSectionCourses->find()
+        $tmp_block_sections = $this->BlockSections->find()
 
-            ->where([
+          ->where([
 
-              'visible' => 1,
+            'visible' => 1,
 
-              'block_section_id' => $value['id']
+            'college_id' => $data['college_id'],
 
-            ])
+            'program_id' => $data['program_id'],
 
-          ->first();
+          ])
 
-          if($available_slot['slot'] > 0){
+        ->all();
+
+        if(!empty($tmp_block_sections)){
+
+          foreach ($tmp_block_sections as $key => $value) {
+            
+            $slot = $this->BlockSectionCourses->find()
+
+              ->where([
+
+                'visible' => 1,
+
+                'block_section_id' => $value['id']
+
+              ])
+
+            ->first();
 
             $block_sections[] = array(
 
@@ -183,7 +183,7 @@ class ProgramAdvisersController extends AppController {
 
               'section'    => $value['section'],
 
-              'available_slot' => $available_slot['slot']
+              'available_slot' => $slot['slot'] - $slot['enrolled_students']
 
             );
 
@@ -279,7 +279,7 @@ class ProgramAdvisersController extends AppController {
 
           foreach ($block_section_courses as $key => $value) {
 
-            $course = $value['course_association'];
+            $course = $value['course'];
 
             //STUDENT ENROLLED SCHEDULE
 

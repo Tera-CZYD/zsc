@@ -54,7 +54,7 @@ endif;
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        CakePHP: the rapid development PHP framework:
+        CakePHP: the rapid development PHP framework:asdasd
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
@@ -168,7 +168,7 @@ endif;
                         <?php endif; ?>
                         </ul>
                     </div>
-                    <div class="column">
+                    <!-- <div class="column">
                         <h4>DebugKit</h4>
                         <ul>
                         <?php if (Plugin::isLoaded('DebugKit')) : ?>
@@ -185,7 +185,7 @@ endif;
                             <li class="bullet problem">DebugKit is <strong>not</strong> loaded.</li>
                         <?php endif; ?>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
                 <hr>
                 <div class="row">
