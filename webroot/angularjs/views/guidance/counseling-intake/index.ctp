@@ -78,7 +78,7 @@
                       	<a id="pageEdit" href="#/guidance/counseling-intake/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a>
                                     
                       <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
-                      <
+                      
                     </div>
                   </td> 
                 </tr>
