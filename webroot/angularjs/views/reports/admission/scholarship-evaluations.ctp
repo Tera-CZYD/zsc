@@ -1,5 +1,22 @@
-<?php if (hasAccess('report admission/scholarship evaluation', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'report admission/scholarship evaluation', currentUser);
+
+</script>
+
+<div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -10,9 +27,7 @@
             <div class="row">
               <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                 <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
-                <?php if (hasAccess('report admission/scholarship evaluation', $currentUser)): ?>
-                <button ng-click="printConfirmed()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>
-                <?php endif ?>
+                <button id="pageIndex" ng-click="printConfirmed()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>
                 <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
               </div>
               <div class="col-md-4 col-xs-12 pull-right">
@@ -91,5 +106,3 @@
     </div>
   </div>
 </div>
-<?php endif ?>
-<?php echo $this->element('modals/advance-search/advance-search-date') ?>

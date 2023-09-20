@@ -18,6 +18,8 @@ app.controller('TransfereeController', function($scope, Transferee) {
 
     options['status'] = 0;
 
+    options['per_student'] = 1;
+
     Transferee.query(options, function(e) {
 
       if (e.ok) {
@@ -41,6 +43,8 @@ app.controller('TransfereeController', function($scope, Transferee) {
     options = typeof options !== 'undefined' ?  options : {};
 
     options['status'] = 1;
+
+    options['per_student'] = 1;
 
     Transferee.query(options, function(e) {
 
@@ -67,6 +71,8 @@ app.controller('TransfereeController', function($scope, Transferee) {
     options = typeof options !== 'undefined' ?  options : {};
 
     options['status'] = 2;
+
+    options['per_student'] = 1;
 
     Transferee.query(options, function(e) {
 
@@ -248,37 +254,9 @@ app.controller('TransfereeController', function($scope, Transferee) {
 
   }
 
-  // $scope.printApproved = function(){
-
-  //   if ($scope.conditionsPrintApproved !== '') {
-    
-  //     printTable(base + 'print/student_application?print=1' + $scope.conditionsPrintApproved);
-
-  //   }else{
-
-  //     printTable(base + 'print/student_application?print=1');
-
-  //   }
-
-  // }
-
-  // $scope.printDisapproved = function(){
-
-  //   if ($scope.conditionsPrintDisapproved !== '') {
-    
-  //     printTable(base + 'print/student_application?print=1' + $scope.conditionsPrintDisapproved);
-
-  //   }else{
-
-  //     printTable(base + 'print/student_application?print=1');
-
-  //   }
-
-  // }
-
 });
 
-app.controller('TransfereeAddController', function($scope, Transferee, Select) {
+app.controller('TransfereeAddController', function($scope, Transferee, Select, Student) {
 
  $('#form').validationEngine('attach');
 
@@ -330,33 +308,73 @@ app.controller('TransfereeAddController', function($scope, Transferee, Select) {
 
   }
 
+  Select.get({code: ''}, function(e) {
+
+    Student.get({ id: e.studentId }, function(response) {
+
+      $scope.data.Transferee.student_id = response.data.Student.id;
+
+      $scope.data.Transferee.student_name = response.data.Student.full_name;
+
+      $scope.data.Transferee.student_no = response.data.Student.student_no;
+
+      $scope.data.Transferee.first_name = response.data.Student.first_name;
+
+      $scope.data.Transferee.middle_name = response.data.Student.middle_name;
+
+      $scope.data.Transferee.last_name = response.data.Student.last_name;
+
+      $scope.data.Transferee.type = 'Transfer Out';
+
+    });
+
+  });
+
   $scope.save = function() {
 
     valid = $("#form").validationEngine('validate');
     
     if (valid) {
 
-      Transferee.save($scope.data, function(e) {
+      Select.get({code: 'check-honorable-dismissal', student_id : $scope.data.Transferee.student_id}, function(q) {
 
-        if (e.ok) {
+        if(q.data){
 
-          $.gritter.add({
+          Transferee.save($scope.data, function(e) {
 
-            title: 'Successful!',
+            if (e.ok) {
 
-            text:  e.msg,
+              $.gritter.add({
+
+                title: 'Successful!',
+
+                text:  e.msg,
+
+              });
+
+              window.location = '#/registrar/transferee';
+
+            } else {
+
+              $.gritter.add({
+
+                title: 'Warning!',
+
+                text:  e.msg,
+
+              });
+
+            }
 
           });
 
-          window.location = '#/registrar/transferee';
-
-        } else {
+        }else{
 
           $.gritter.add({
 
             title: 'Warning!',
 
-            text:  e.msg,
+            text:  'Please apply for Honorable Dismissal to proceed.',
 
           });
 
@@ -651,35 +669,51 @@ app.controller('TransfereeEditController', function($scope, $routeParams, Transf
 
     if (valid) {
 
-      // console.log($scope.data);
+      Select.get({code: 'check-honorable-dismissal', student_id : $scope.data.Transferee.student_id}, function(q) {
 
-      Transferee.update({id:$scope.id}, $scope.data, function(e) {
+        if(q.data){
 
-        if (e.ok) {
+          Transferee.update({id:$scope.id}, $scope.data, function(e) {
 
-          $.gritter.add({
+            if (e.ok) {
 
-            title: 'Successful!',
+              $.gritter.add({
 
-            text:  e.msg,
+                title: 'Successful!',
 
-          });
+                text:  e.msg,
 
-          window.location = '#/registrar/transferee';
+              });
 
-        } else {
+              window.location = '#/registrar/transferee';
+
+            } else {
+
+              $.gritter.add({
+
+                title: 'Warning!',
+
+                text:  e.msg,
+                
+              });
+
+            }
+            
+          }); 
+
+        }else{
 
           $.gritter.add({
 
             title: 'Warning!',
 
-            text:  e.msg,
-            
+            text:  'Please apply for Honorable Dismissal to proceed.',
+
           });
 
         }
-        
-      }); 
+
+      });
 
     }
 
@@ -999,6 +1033,82 @@ app.controller('AdminTransfereeAddController', function($scope, Transferee, Sele
 
   }
 
+  $scope.searchStudent = function(options) {
+
+    options = typeof options !== 'undefined' ?  options : {};
+
+    options['code'] = 'search-student';
+
+    Select.query(options, function(e) {
+
+      $scope.students = e.data.result;
+
+      $scope.student = {};
+      
+      // paginator
+
+      $scope.paginator  = e.data.paginator;
+
+      $scope.pages = paginator($scope.paginator, 10);
+
+      $("#searched-student-modal").modal('show');
+
+    });
+
+  }
+
+  $scope.selectedStudent = function(student) { 
+
+    $scope.student = {
+
+      id   : student.id,
+
+      code : student.code,
+
+      name : student.name,
+
+      first_name : student.first_name,
+
+      middle_name : student.middle_name,
+
+      last_name : student.last_name,
+
+    }; 
+
+  }
+
+  $scope.studentData = function(id) {
+
+    $scope.data.Transferee.student_id = $scope.student.id;
+
+    $scope.data.Transferee.student_no = $scope.student.code;
+
+    $scope.data.Transferee.student_name = $scope.student.name;
+
+    $scope.data.Transferee.first_name = $scope.student.first_name;
+
+    $scope.data.Transferee.middle_name = $scope.student.middle_name;
+
+    $scope.data.Transferee.last_name = $scope.student.last_name;
+
+  }
+
+  $scope.clearData = function(){
+
+    $scope.data.Transferee.student_id = null;
+
+    $scope.data.Transferee.student_no = null;
+
+    $scope.data.Transferee.student_name = null;
+
+    $scope.data.Transferee.first_name = null;
+
+    $scope.data.Transferee.middle_name = null;
+
+    $scope.data.Transferee.last_name = null;
+
+  }
+
   $scope.saveImages = function (files) {
 
     if(files == undefined){
@@ -1025,33 +1135,85 @@ app.controller('AdminTransfereeAddController', function($scope, Transferee, Sele
     
     if (valid) {
 
-      Transferee.save($scope.data, function(e) {
+      if($scope.data.Transferee.type == 'Transfer Out'){
 
-        if (e.ok) {
+        Select.get({code: 'check-honorable-dismissal', student_id : $scope.data.Transferee.student_id}, function(q) {
 
-          $.gritter.add({
+          if(q.data){
 
-            title: 'Successful!',
+            Transferee.save($scope.data, function(e) {
 
-            text:  e.msg,
+              if (e.ok) {
 
-          });
+                $.gritter.add({
 
-          window.location = '#/registrar/admin-transferee';
+                  title: 'Successful!',
 
-        } else {
+                  text:  e.msg,
 
-          $.gritter.add({
+                });
 
-            title: 'Warning!',
+                window.location = '#/registrar/admin-transferee';
 
-            text:  e.msg,
+              } else {
 
-          });
+                $.gritter.add({
 
-        }
+                  title: 'Warning!',
 
-      });
+                  text:  e.msg,
+
+                });
+
+              }
+
+            });
+
+          }else{
+
+            $.gritter.add({
+
+              title: 'Warning!',
+
+              text:  'Please apply for Honorable Dismissal to proceed.',
+
+            });
+
+          }
+
+        });
+
+      }else{
+
+        Transferee.save($scope.data, function(e) {
+
+          if (e.ok) {
+
+            $.gritter.add({
+
+              title: 'Successful!',
+
+              text:  e.msg,
+
+            });
+
+            window.location = '#/registrar/admin-transferee';
+
+          } else {
+
+            $.gritter.add({
+
+              title: 'Warning!',
+
+              text:  e.msg,
+
+            });
+
+          }
+
+        });
+
+      }
 
     }  
 
@@ -1242,6 +1404,82 @@ app.controller('AdminTransfereeEditController', function($scope, $routeParams, T
 
   $scope.load();
 
+  $scope.searchStudent = function(options) {
+
+    options = typeof options !== 'undefined' ?  options : {};
+
+    options['code'] = 'search-student';
+
+    Select.query(options, function(e) {
+
+      $scope.students = e.data.result;
+
+      $scope.student = {};
+      
+      // paginator
+
+      $scope.paginator  = e.data.paginator;
+
+      $scope.pages = paginator($scope.paginator, 10);
+
+      $("#searched-student-modal").modal('show');
+
+    });
+
+  }
+
+  $scope.selectedStudent = function(student) { 
+
+    $scope.student = {
+
+      id   : student.id,
+
+      code : student.code,
+
+      name : student.name,
+
+      first_name : student.first_name,
+
+      middle_name : student.middle_name,
+
+      last_name : student.last_name,
+
+    }; 
+
+  }
+
+  $scope.studentData = function(id) {
+
+    $scope.data.Transferee.student_id = $scope.student.id;
+
+    $scope.data.Transferee.student_no = $scope.student.code;
+
+    $scope.data.Transferee.student_name = $scope.student.name;
+
+    $scope.data.Transferee.first_name = $scope.student.first_name;
+
+    $scope.data.Transferee.middle_name = $scope.student.middle_name;
+
+    $scope.data.Transferee.last_name = $scope.student.last_name;
+
+  }
+
+  $scope.clearData = function(){
+
+    $scope.data.Transferee.student_id = null;
+
+    $scope.data.Transferee.student_no = null;
+
+    $scope.data.Transferee.student_name = null;
+
+    $scope.data.Transferee.first_name = null;
+
+    $scope.data.Transferee.middle_name = null;
+
+    $scope.data.Transferee.last_name = null;
+
+  }
+
   $scope.addImage = function() {
 
     var x = document.getElementById("upload_prev").innerHTML = " ";
@@ -1337,40 +1575,90 @@ app.controller('AdminTransfereeEditController', function($scope, $routeParams, T
   $scope.save = function() {
 
     valid = $("#form").validationEngine('validate');
-
+    
     if (valid) {
 
-      // console.log($scope.data);
+      if($scope.data.Transferee.type == 'Transfer Out'){
 
-      Transferee.update({id:$scope.id}, $scope.data, function(e) {
+        Select.get({code: 'check-honorable-dismissal', student_id : $scope.data.Transferee.student_id}, function(q) {
 
-        if (e.ok) {
+          if(q.data){
 
-          $.gritter.add({
+            Transferee.update({id:$scope.id}, $scope.data, function(e) {
 
-            title: 'Successful!',
+              if (e.ok) {
 
-            text:  e.msg,
+                $.gritter.add({
 
-          });
+                  title: 'Successful!',
 
-          window.location = '#/registrar/admin-transferee';
+                  text:  e.msg,
 
-        } else {
+                });
 
-          $.gritter.add({
+                window.location = '#/registrar/admin-transferee';
 
-            title: 'Warning!',
+              } else {
 
-            text:  e.msg,
-            
-          });
+                $.gritter.add({
 
-        }
-        
-      }); 
+                  title: 'Warning!',
 
-    }
+                  text:  e.msg,
+                  
+                });
+
+              }
+              
+            }); 
+
+          }else{
+
+            $.gritter.add({
+
+              title: 'Warning!',
+
+              text:  'Please apply for Honorable Dismissal to proceed.',
+
+            });
+
+          }
+
+        });
+
+      }else{
+
+        Transferee.update({id:$scope.id}, $scope.data, function(e) {
+
+          if (e.ok) {
+
+            $.gritter.add({
+
+              title: 'Successful!',
+
+              text:  e.msg,
+
+            });
+
+            window.location = '#/registrar/admin-transferee';
+
+          } else {
+
+            $.gritter.add({
+
+              title: 'Warning!',
+
+              text:  e.msg,
+              
+            });
+
+          }
+          
+        }); 
+
+      }
+
+    }  
 
   }
 

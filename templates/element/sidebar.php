@@ -55,14 +55,6 @@
                   </li>
                 <?php endif ?>
 
-                
-
-                <!-- <?php if (hasAccess('transferee/index', $currentUser)): ?>
-                  <li class="nav-link-side nav-transferee">
-                    <a href="#/admission/transferee" onclick="change('transferee')">School Transfer Request</a>
-                  </li>
-                <?php endif ?> -->
-
                 <?php if (hasAccess('registered students/index', $currentUser)): ?>
                   <li class="nav-link-side nav-registered-students">
                     <a href="#/admission/registered-students" onclick="change('registered-students')">Registered Students</a>

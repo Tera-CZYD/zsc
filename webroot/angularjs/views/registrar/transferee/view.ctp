@@ -10,6 +10,10 @@
               <table class="table table-striped">
 
                 <tr>
+                  <th class="text-right"> SERIAL NUMBER : </th>
+                  <td class="italic">{{ data.Transferee.serial_number }}</td>
+                </tr>
+                <tr>
                   <th class="text-right" style="width:15%"> FIRST NAME : </th>
                   <td class="italic">{{ data.Transferee.first_name }}</td>
                 </tr>
@@ -45,25 +49,6 @@
                   <th class="text-right"> DATE : </th>
                   <td class="italic">{{ data.Transferee.date }}</td>
                 </tr>
-                <!-- <tr>
-                  <th class="text-right"> STATUS : </th>
-                  <td class="italic" ng-if="data.StudentApplication.approve == 0">PENDING</td>
-                  <td class="italic" ng-if="data.StudentApplication.approve == 1">APPROVED</td>
-                  <td class="italic" ng-if="data.StudentApplication.approve == 2">DISAPPROVED</td>
-                </tr> -->
-                <!-- <tr ng-if="data.StudentApplication.approve == 1">
-                  <th class="text-right"> APPROVED DATE : </th>
-                  <td class="italic">{{ data.StudentApplication.approved_date }}</td>
-                </tr>
-                <tr ng-if="data.StudentApplication.approve == 2">
-                  <th class="text-right"> DISAPPROVED DATE : </th>
-                  <td class="italic">{{ data.StudentApplication.disapproved_date }}</td>
-                </tr>
-                <tr ng-if="data.StudentApplication.approve == 2">
-                  <th class="text-right"> REASON : </th>
-                  <td class="italic">{{ data.StudentApplication.disapproved_reason }}</td>
-                </tr>
-                <tr> -->
               </table>
             </div> 
 
