@@ -12,8 +12,8 @@
   }
 
   // INCLUDE ALL PAGE PERMISSION
-  handleAccess('pageIndex', 'health and medical service/index', currentUser);
-  handleAccess('pagePrint', 'health and medical service/print', currentUser);
+  handleAccess('pageIndex', 'health and medical service/property equipment', currentUser);
+
 
 </script>
 
@@ -131,7 +131,6 @@
     </div>
   </div>
 </div>
-<?php endif ?>
 
 <div class="modal fade" id="advance-search-modal">
   <div class="modal-dialog">
