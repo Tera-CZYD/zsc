@@ -48,9 +48,9 @@
 
       $search = @$conditions['search'];
 
-      $date = @$conditions['date'];
+      $year = @$conditions['year'];
 
-      $advSearch = @$conditions['advSearch'];
+      $semester = @$conditions['semester'];
 
       $sql = "SELECT * FROM (
 
@@ -72,7 +72,7 @@
 
         WHERE
 
-          ClassSchedule.visible = true $date $advSearch AND
+          ClassSchedule.visible = true $year $semester AND
 
 
 
@@ -108,9 +108,9 @@
 
       $search = @$conditions['search'];
 
-      $date = @$conditions['date'];
+      $year = @$conditions['year'];
 
-      $advSearch = @$conditions['advSearch'];
+      $semester = @$conditions['semester'];
 
       $sql = "SELECT * FROM (
 
@@ -118,7 +118,9 @@
 
           ClassSchedule.*,
 
-          YearLevelTerm.description
+          YearLevelTerm.description,
+
+          College.name
 
         FROM
 
@@ -130,7 +132,7 @@
 
         WHERE
 
-          ClassSchedule.visible = true $date $advSearch AND
+          ClassSchedule.visible = true $year $semester AND
 
 
 
@@ -202,9 +204,9 @@
 
       $search = @$conditions['search'];
 
-      $date = @$conditions['date'];
+      $year = @$conditions['year'];
 
-      $advSearch = @$conditions['advSearch'];
+      $semester = @$conditions['semester'];
 
       $sql = "
 
@@ -226,7 +228,7 @@
 
         WHERE
 
-          ClassSchedule.visible = true $date $advSearch AND
+          ClassSchedule.visible = true $year $semester AND
 
 
 

@@ -14,8 +14,6 @@ app.controller('DashboardController', function($scope,Select,StudentApplicationM
 
     }else if($scope.data.for_schedule == 1){
 
-      
-
       $("#notifModal").modal('show');
 
     }
@@ -42,7 +40,33 @@ app.controller('DashboardController', function($scope,Select,StudentApplicationM
 
         $scope.student_subjects = e.student_subjects;
 
-        // console.log($scope.clearance[0].employee.given_name);
+        if(e.roleId == 1){
+
+          var chart = anychart.pie3d([
+
+            {x : 'Pending', value : $scope.datas.counseling_apppointment_pending_count},
+
+            {x : 'Approved', value : $scope.datas.counseling_apppointment_approved_count},
+
+            {x : 'Disapproved', value : $scope.datas.counseling_apppointment_disapproved_count},
+
+            {x : 'Cancelled', value : $scope.datas.counseling_apppointment_cancelled_count},
+
+            {x : 'Confirmed', value : $scope.datas.counseling_apppointment_confirmed_count},
+
+          ]);
+
+          chart.title('Counseling Appointment');
+
+          chart.radius('50%');
+
+          chart.sort('desc');
+
+          chart.container('chartdiv');
+
+          chart.draw();
+
+        }
 
       }
 
