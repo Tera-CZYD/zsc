@@ -16,11 +16,15 @@ class StudentEnrolledCoursesTable extends Table{
 
       'foreignKey' => 'course_id', 
 
+      'propertyName' => 'course_association'
+
     ]);
 
     $this->belongsTo('Sections', [
 
       'foreignKey' => 'section_id', 
+
+      'propertyName' => 'section_association'
 
     ]);
 

@@ -230,57 +230,69 @@ app.controller('ProgramAdviserController', function($scope, ProgramAdviser,Progr
 
   }
 
-  $scope.getSection = function(index,data,id){
+  $scope.enlist = function(data,section){
 
-    if(data.length > 0){
+    if(section.available_slot > 0){
 
-      $.each(data, function(i,val){
+      data.selected_block_section_id = section.id;
 
-        if(val.id == id){
+      data.selected_section_id = section.section_id;
 
-          $scope.datas[index].selected_section_id = val.section_id;
+      data.selected_section = section.section;
 
-          $scope.datas[index].selected_section = val.section;
+      if(section.available_slot == 5){
 
-        }
+        $.gritter.add({
 
-      });
+          title: 'Warning!',
 
-    }
-
-  }
-
-  $scope.enlist = function(data){
-
-    bootbox.confirm('Are you sure you want to enlist student number ' + data.student_no + ' ?', function(c) {
-
-      if (c) {
-
-        ProgramAdviserEnlist.save(data, function(e) {
-
-          if (e.ok) {
-
-            $.gritter.add({
-
-              title: 'Successful!',
-
-              text:  e.msg,
-
-            });
-
-            $scope.load({
-
-              year_term_id: $scope.year_term_id
-
-            });
-
-          }
+          text:  'Remaining 5 slots available.',
 
         });
 
       }
 
-    });
+      bootbox.confirm('Are you sure you want to enlist student number ' + data.student_no + ' to section ' +  section.section + '?', function(c) {
+
+        if (c) {
+
+          ProgramAdviserEnlist.save(data, function(e) {
+
+            if (e.ok) {
+
+              $.gritter.add({
+
+                title: 'Successful!',
+
+                text:  e.msg,
+
+              });
+
+              $scope.load({
+
+                year_term_id: $scope.year_term_id
+
+              });
+
+            }
+
+          });
+
+        }
+
+      });
+
+    }else{
+
+      $.gritter.add({
+
+        title: 'Warning!',
+
+        text:  'There is no available slots left to this section.',
+
+      });
+
+    }
 
   }
 

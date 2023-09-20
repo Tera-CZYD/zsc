@@ -739,7 +739,7 @@ app.controller('CatController', function($scope, Select, StudentApplication, Stu
 
 });
 
-app.controller("CatViewController", function ($scope, $routeParams, StudentApplication,StudentApplicationQualify,StudentApplicationUnqualify) {
+app.controller("CatViewController", function ($scope, $routeParams, StudentApplication,StudentApplicationQualify,StudentApplicationUnqualify, StudentApplicationCheckForm) {
 
   $scope.id = $routeParams.id;
 
