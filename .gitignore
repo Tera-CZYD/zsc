@@ -2,10 +2,9 @@
 ##########################
 !/config/app_local.php
 !/config/.env
-#/logs/*
-#/tmp/*
+/logs/*
+/tmp/*
 !/vendor/*
-# tmp/debug_kit.sqlite
 
 # OS generated files #
 ######################

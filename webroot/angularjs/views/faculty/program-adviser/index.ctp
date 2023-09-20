@@ -117,10 +117,25 @@
                           <td class="text-left">{{ data.student_name }}</td>
                           <td class="text-left">{{ data.program}}</td>
                           <td class="text-center">{{ data.rate}}</td>
+<<<<<<< HEAD
                           <td>
                             <div class="btn-group btn-group-xs">
                               <div ng-repeat="section in data.block_sections"><a id="pageEnlist" class="btn btn-success" href="javascript:void(0)" ng-click="enlist(data,section)">{{ section.section }} - {{ section.available_slot }}</a></div>
                             </div>
+=======
+                          <td class="text-left">
+                            <div ng-repeat="section in data.block_sections"><a id="pageEnlist" href="javascript:void(0)" ng-click="enlist(data,section)">{{ section.section }}</a></div>
+                            <!-- <select class="form-control" ng-model="data.selected_block_section_id" ng-change="getSection($index,data.block_sections,data.selected_block_section_id)" ng-options="opt.id as opt.section for opt in data.block_sections">
+                              <option value=""></option>
+<<<<<<< HEAD
+                            </select>
+                          </td>
+                          <td>
+                            <a id="pageEnlist" href="javascript:void(0)" ng-click="enlist(data)" class="btn btn-info" title="ENLIST STUDENT"><i class="fa fa-pencil"></i></a>
+=======
+                            </select> -->
+>>>>>>> 66b81273bcdeb45ccb2566ff250a7db7b8394497
+>>>>>>> c183ec37b0704eacd34f4f51e8a507c85c270a48
                           </td>
                         </tr>
                         <tr ng-show="datas == null || datas == ''">

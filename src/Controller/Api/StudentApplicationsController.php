@@ -2233,4 +2233,78 @@ class StudentApplicationsController extends AppController {
     
   }
 
+  public function checkForm($id = null) {
+
+    $this->autoRender = false;
+
+    $data = $this->StudentApplications->get($id);
+
+    $requestData = $this->request->getData('StudentApplication');
+
+    $psa = (isset($requestData['psa']) && $requestData['psa'] == true) ? 1 : 0 ;
+
+    $data->psa =  $psa;
+
+    $form_137 = (isset($requestData['form_137']) && $requestData['form_137'] == true) ? 1 : 0 ;
+
+    $data->form_137 =  $form_137;
+
+    if ($this->StudentApplications->save($data)) {
+
+      $response = [
+
+        'ok' => true,
+
+        'msg' => 'Students Application has been successfully modified'
+
+      ];
+
+      $userLogTable = TableRegistry::getTableLocator()->get('UserLogs');
+        
+      $userLogEntity = $userLogTable->newEntity([
+
+          'action' => 'Delete',
+
+          'userId' => $this->Auth->user('id'),
+
+          'description' => 'Students Application Management',
+
+          'code' => $data->student_no,
+
+          'created' => date('Y-m-d H:i:s'),
+
+          'modified' => date('Y-m-d H:i:s')
+
+      ]);
+      
+      $userLogTable->save($userLogEntity);
+
+    } else {
+
+      $response = [
+
+        'ok' => false,
+
+        'msg' => 'Students Application cannot be modified at this time.'
+
+      ];
+
+    }
+
+    $this->set([
+
+      'response' => $response,
+
+      '_serialize' => 'response'
+
+    ]);
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+  }
+
 }
