@@ -5,6 +5,7 @@
 #/logs/*
 #/tmp/*
 !/vendor/*
+tmp/debu_kit.sqlite
 
 # OS generated files #
 ######################
