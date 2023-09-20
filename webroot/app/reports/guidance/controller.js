@@ -216,11 +216,11 @@ app.controller('GcoEvaluationListController', function($scope,Select, GcoEvaluat
 
   $scope.getProgram = function(id){
 
-      Select.get({ code: 'application-program-list', college_id : id},function(e){
+    Select.get({ code: 'application-program-list', college_id : id},function(e){
 
-        $scope.programs = e.data;
+      $scope.programs = e.data;
 
-      });
+    });
 
   }
   

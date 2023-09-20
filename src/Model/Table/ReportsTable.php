@@ -4497,20 +4497,19 @@ class ReportsTable extends Table
 
     public function getAllGcoEvaluationPrint($conditions){
 
-        $search = @$conditions['search'];
+      $search = @$conditions['search'];
 
-        $date = @$conditions['date'];
+      $date = @$conditions['date'];
 
-        $employee = @$conditions['employee_id'];
+      $employee = @$conditions['employee_id'];
 
-        $program = @$conditions['program_id'];
+      $program = @$conditions['program_id'];
 
-        $college = @$conditions['college_id'];
+      $college = @$conditions['college_id'];
 
-        $year_term = @$conditions['year_term_id'];
+      $year_term = @$conditions['year_term_id'];
 
-
-        $sql = "
+      $sql = "
 
         SELECT 
 
