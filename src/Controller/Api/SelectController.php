@@ -671,6 +671,12 @@ class SelectController extends AppController {
           'id' => $student['id'],
        
           'code' => $student['student_no'],
+
+          'first_name' => $student['first_name'],
+
+          'middle_name' => $student['middle_name'],
+
+          'last_name' => $student['last_name'],
        
           'name' => $student['full_name'],
        
@@ -2638,6 +2644,36 @@ class SelectController extends AppController {
           );
 
         }
+
+      }
+
+    }else if ($code == 'check-honorable-dismissal') {
+
+      $student_id = $this->request->getQuery('student_id');
+     
+      $tmp = $this->RequestForms->find()
+
+        ->where([
+
+          'visible' => 1,
+
+          'approve' => 1,
+
+          'hon' => 1,
+
+          'student_id' => $student_id
+
+        ])
+
+      ->count();
+
+      if($tmp > 0){
+
+        $datas = 1;
+
+      }else{
+
+        $datas = 0;
 
       }
 
