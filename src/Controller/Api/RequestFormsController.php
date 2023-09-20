@@ -148,6 +148,14 @@ class RequestFormsController extends AppController {
   
           'status'        => $data['approve'],
 
+          'date_retrieved'   => fdate($data['date_retrieved'],'m/d/Y'),
+
+          'date_completed'   => fdate($data['date_completed'],'m/d/Y'),
+
+          'date_released'    => fdate($data['date_released'],'m/d/Y'),
+
+          'date_returned'    => fdate($data['date_returned'],'m/d/Y'),
+
       );
 
     }
@@ -508,5 +516,61 @@ class RequestFormsController extends AppController {
 
 
   }  
+
+  public function updateDocument($id = null){
+
+    $data = $this->request->getData();
+
+    $tmp['id'] = $data['id'];
+
+    $tmp['date_retrieved'] = isset($data['date_retrieved']) ? fdate($data['date_retrieved'],'Y-m-d') : null;
+
+    $tmp['date_completed'] = isset($data['date_completed']) ? fdate($data['date_completed'],'Y-m-d') : null;
+
+    $tmp['date_released'] = isset($data['date_released']) ? fdate($data['date_released'],'Y-m-d') : null;
+
+    $tmp['date_returned'] = isset($data['date_returned']) ? fdate($data['date_returned'],'Y-m-d') : null;
+
+    $data = $this->RequestForms->newEmptyEntity();
+   
+    $data = $this->RequestForms->patchEntity($data, $tmp); 
+
+    if ($this->RequestForms->save($data)) {
+
+      $response = [
+
+        'ok' => true,
+
+        'msg' => 'Document data has been successfully update'
+
+      ];
+
+    } else {
+
+      $response = [
+
+        'ok' => false,
+
+        'msg' => 'Document data cannot be deleted at this time.'
+
+      ];
+
+    }
+
+    $this->set(array(
+
+      'response'=>$response,
+
+      '_serialize'=>'response'
+
+    ));
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+  }
 
 }
