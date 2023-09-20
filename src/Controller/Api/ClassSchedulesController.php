@@ -28,97 +28,43 @@ class  ClassSchedulesController extends AppController {
 
     $conditions = [];
 
-    $conditions['search'] = '';
-
     $conditionsPrint = '';
 
     if ($this->request->getQuery('search')) {
 
-        $search = strtolower($this->request->getQuery('search'));
+      $search = $this->request->getQuery('search');
 
-        $conditions['search'] = $search;
+      $search = strtolower($search);
 
-    }
+      $conditions['search'] = $search;
 
-    $conditions['date'] = '';
-
-    if ($this->request->getQuery('date')) {
-
-        $search_date = $this->request->getQuery('date');
-
-        $conditions['date'] = " AND DATE(ClassSchedule.created) = '$search_date'";
-
-        $dates['date'] = $search_date;
-
-        $conditionsPrint .= '&date=' . $search_date;
+      $conditionsPrint .= '&search='.$search;
 
     }
 
-    $conditions['advSearch'] = '';
+    $conditions['year'] = '';
 
-    if ($this->request->getQuery('faculty')) {
+    if ($this->request->getQuery('year')) {
 
-        $faculty_id = $this->request->getQuery('faculty');
+      $search_date = $this->request->getQuery('year');
 
-        $conditions['advSearch'] .= " AND ClassSchedule.faculty_id = $faculty_id";
+      $conditions['year'] = " AND ClassSchedule.school_year_start = '$search_date'"; 
 
-        $conditionsPrint .= '&faculty=' . $faculty_id;
+      $dates['year'] = $search_date;
 
-    }
+      $conditionsPrint .= '&year='.$search_date;
 
-    if ($this->request->getQuery('college')) {
+    }  
 
-        $college_id = $this->request->getQuery('college');
+    $conditions['semester'] = '';
 
-        $conditions['advSearch'] .= " AND ClassSchedule.college_id = $college_id";
+    if ($this->request->getQuery('semester') != null) {
 
-        $conditionsPrint .= '&college=' . $college_id;
+      $semester = $this->request->getQuery('semester');
 
-    }
+      $conditions['semester'] = " AND ClassSchedule.year_term_id = '$semester'"; 
 
-    if ($this->request->getQuery('program')) {
-
-        $program_id = $this->request->getQuery('program');
-
-        $conditions['advSearch'] .= " AND ClassSchedule.program_id = $program_id";
-
-        $conditionsPrint .= '&program=' . $program_id;
-
-    }
-
-    if ($this->request->getQuery('year_term')) {
-
-        $year_term_id = $this->request->getQuery('year_term');
-
-        $conditions['advSearch'] .= " AND ClassSchedule.year_term_id = $year_term_id";
-
-        $conditionsPrint .= '&year_term=' . $year_term_id;
-
-    }
-
-    if ($this->request->getQuery('school_year')) {
-
-        $school_year = $this->request->getQuery('school_year');
-
-        $conditions['advSearch'] .= " AND ClassSchedule.school_year_start = $school_year";
-
-        $conditionsPrint .= '&school_year=' . $school_year;
-
-    }
-
-    if ($this->request->getQuery('startDate') && $this->request->getQuery('endDate')) {
-
-        $start = $this->request->getQuery('startDate');
-
-        $end = $this->request->getQuery('endDate');
-
-        $conditions['date'] = " AND DATE(ClassSchedule.created) >= '$start' AND DATE(ClassSchedule.created) <= '$end'";
-
-        $dates['startDate'] = $start;
-
-        $dates['endDate'] = $end;
-
-        $conditionsPrint .= '&startDate=' . $start . '&endDate=' . $end;
+      $conditionsPrint .= '&semester='.$semester;
 
     }
 
@@ -149,6 +95,20 @@ class  ClassSchedulesController extends AppController {
 
     foreach ($classSchedules as $classSchedule) {
 
+      $classScheduleDays = TableRegistry::getTableLocator()->get('classScheduleDays');
+
+      $days = $classScheduleDays->find()
+        
+        ->where([
+          
+          'visible' => 1,
+
+          'class_schedule_id' => $classSchedule['id'],
+
+        ])
+
+        ->toArray();
+
       $datas[] = array(
 
         'id'            => $classSchedule['id'],
@@ -164,6 +124,8 @@ class  ClassSchedulesController extends AppController {
         'year_term'     => $classSchedule['description'],    
 
         'school_year'   => $classSchedule['school_year_start'].' - '.$classSchedule['school_year_end'],  
+
+        'days'          => $days
 
       );
 

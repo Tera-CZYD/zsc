@@ -12,13 +12,44 @@
                 </header>
               </section>
               <div class="myContainer2">
-                <div class="card">
+                <div class="card" id="myCard">
                   <div class="card-header">
                     <img src="<?php echo $base ?>/assets/img/mcp-zam.png" width="100%" style="float: left; margin-left: 0;">
                     <h3 style="font-family: 'Times New Roman'; color: black;">SIGN IN</h3>
                   </div>
                   <div class="card-body" style="padding: 10px">
-                    <br>
+                   
+                    <?php 
+
+                      $flasMessage = $this->Flash->render(); 
+
+                      if($flasMessage !== null){ ?>
+
+                        <div class="alert">
+                          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                          <strong onclick="this.parentElement.style.display='none'; resetDefault();"><?php echo $flasMessage; ?></strong>
+                        </div>
+
+                        <script type="text/javascript">
+                          var element = document.getElementById("myCard");
+                          element.style.height = "600px";
+                          function resetDefault(){
+
+                            var element = document.getElementById("myCard");
+                            element.style.height = "528px";
+
+                          }
+                        </script>
+
+                <?php }
+                 
+                     
+
+                    ?>
+
+                 
+
+
                     <?php echo $this->Form->create(
                       array(),
                       array(
@@ -42,10 +73,15 @@
                         <?php echo $this->Form->input('password', array('type' => 'password', 'required' => true, 'placeholder' => 'PASSWORD', 'class' => 'form-control input-form')) ?>
                       </div>
                     </div>
-                    <button class="btn btn-primary pull-right btn-min">SIGN IN</button>
-                    <div class="card-header" style="color: white;padding:0; margin: 0;">
-                      <a href="https://play.google.com/store/apps/details?id=com.zscmst.smisv1&hl=en-PH"><img src="<?php echo $base ?>/assets/img/google_play.png" width="25%" style="float:left;margin-left:0;"></a>
+
+                    <div class="form-group">
+                      <button class="btn btn-primary pull-right btn-min">SIGN IN</button>
+                      <div class="card-header" style="color: white;padding:0; margin: 0;">
+                        <a href="https://play.google.com/store/apps/details?id=com.zscmst.smisv1&hl=en-PH"><img src="<?php echo $base ?>/assets/img/google_play.png" width="25%" style="float:left;margin-left:0;"></a>
+                      </div>
                     </div>
+
+                    
                     <?php echo $this->Form->end() ?>
                   </div>
                 </div>
@@ -62,3 +98,27 @@
     </div>
   </div>
 </body>
+
+<style>
+.alert {
+  padding: 20px;
+  background: #fcebea;
+    color: #cc1f1a;
+    border-color: #ef5753;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: cc1f1a;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+</style>
