@@ -230,29 +230,35 @@ app.controller('ProgramAdviserController', function($scope, ProgramAdviser,Progr
 
   }
 
-  $scope.getSection = function(index,data,id){
+  // $scope.getSection = function(index,data,id){
 
-    if(data.length > 0){
+  //   if(data.length > 0){
 
-      $.each(data, function(i,val){
+  //     $.each(data, function(i,val){
 
-        if(val.id == id){
+  //       if(val.id == id){
 
-          $scope.datas[index].selected_section_id = val.section_id;
+  //         $scope.datas[index].selected_section_id = val.section_id;
 
-          $scope.datas[index].selected_section = val.section;
+  //         $scope.datas[index].selected_section = val.section;
 
-        }
+  //       }
 
-      });
+  //     });
 
-    }
+  //   }
 
-  }
+  // }
 
-  $scope.enlist = function(data){
+  $scope.enlist = function(data,section){
 
-    bootbox.confirm('Are you sure you want to enlist student number ' + data.student_no + ' ?', function(c) {
+    data.selected_block_section_id = section.id;
+
+    data.selected_section_id = section.section_id;
+
+    data.selected_section = section.section;
+
+    bootbox.confirm('Are you sure you want to enlist student number ' + data.student_no + ' to section ' +  section.section + '?', function(c) {
 
       if (c) {
 
