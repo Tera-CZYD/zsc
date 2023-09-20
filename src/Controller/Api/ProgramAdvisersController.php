@@ -141,7 +141,7 @@ class ProgramAdvisersController extends AppController {
 
     foreach ($main as $data) {
 
-      $block_sections = $this->BlockSections->find()
+      $tmp_block_sections = $this->BlockSections->find()
 
         ->where([
 
@@ -155,17 +155,43 @@ class ProgramAdvisersController extends AppController {
 
       ->all();
 
-      // $available_slot = $this->BlockSectionCourses->find()
+      $block_sections = array();
 
-      //   ->where([
+      if(!empty($tmp_block_sections)){
 
-      //     'visible' => 1,
+        foreach ($tmp_block_sections as $key => $value) {
+          
+          $available_slot = $this->BlockSectionCourses->find()
 
-      //     'block_section_id' => 
+            ->where([
 
-      //   ])
+              'visible' => 1,
 
-      // ->first();
+              'block_section_id' => $value['id']
+
+            ])
+
+          ->first();
+
+          if($available_slot['slot'] > 0){
+
+            $block_sections[] = array(
+
+              'id'         => $value['id'],
+
+              'section_id' => $value['section_id'],
+
+              'section'    => $value['section'],
+
+              'available_slot' => $available_slot['slot']
+
+            );
+
+          }
+
+        }
+
+      }
 
       $datas[] = array(
 
