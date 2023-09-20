@@ -262,7 +262,7 @@
 
       //REPORTS LEARNING RESOURCE
 
-      $routes->connect('/reports/list_bibliographies', ['controller' => 'Reports', 'action' => 'list_inventory_bibliographies']);
+      $routes->connect('/reports/list_bibliographies', ['controller' => 'Reports', 'action' => 'listInventoryBibliographies']);
 
 
 

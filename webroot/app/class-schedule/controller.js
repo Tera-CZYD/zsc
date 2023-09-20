@@ -12,6 +12,18 @@ app.controller('ClassScheduleController', function($scope, ClassSchedule, Select
   
   });
 
+  $('.yearpicker').datepicker({
+
+    format: "yyyy",
+
+    autoclose: true,
+
+    minViewMode: "years",
+
+    pickTime: false
+
+  });
+
   $scope.load = function(options) {
 
     options = typeof options !== 'undefined' ?  options : {};
@@ -72,35 +84,41 @@ app.controller('ClassScheduleController', function($scope, ClassSchedule, Select
 
   }
 
-  $scope.loadSelect = function () {
-    Select.get({ code: 'faculty-list-all' },function(e) {
+  // $scope.loadSelect = function () {
 
-          $scope.faculties = e.data;
-          
-            });
+  //   Select.get({ code: 'faculty-list-all' },function(e) {
 
-    Select.get({ code: 'college-list-all' },function(e) {
+  //     $scope.faculties = e.data;
+      
+  //   });
 
-          $scope.colleges = e.data;
-          
-            });
+  //   Select.get({ code: 'college-list-all' },function(e) {
 
-    Select.get({ code: 'college-program-list-all' },function(e) {
+  //     $scope.colleges = e.data;
+      
+  //   });
 
-          $scope.programs = e.data;
-          
-            });
+  //   Select.get({ code: 'college-program-list-all' },function(e) {
 
-    Select.get({ code: 'year-term-list' },function(e) {
+  //     $scope.programs = e.data;
+    
+  //   });
 
-          $scope.year_terms = e.data;
-          
-            });
+  //   Select.get({ code: 'year-term-list' },function(e) {
 
+  //     $scope.year_terms = e.data;
+      
+  //   });
 
-  }
+  // }
 
-  $scope.selectedFilter = 'date';
+  Select.get({ code: 'year-term-list' },function(e) {
+
+      $scope.year_terms = e.data;
+      
+    });
+
+  $scope.selectedFilter = 'year';
 
   $scope.changeFilter = function(type){
 
@@ -108,64 +126,41 @@ app.controller('ClassScheduleController', function($scope, ClassSchedule, Select
 
     $scope.selectedFilter = type;
 
-    $('.monthpicker').datepicker({format: 'MM', autoclose: true, minViewMode: 'months',maxViewMode:'months'});
- 
-    $('.input-daterange').datepicker({
- 
-      format: 'mm/dd/yyyy'
-
-    });
-
   }
+
+  Select.get({code: 'year-term-list'}, function(e) {
+
+    $scope.year_level_term = e.data;
+
+  });
 
   $scope.searchFilter = function(search) {
    
     $scope.searchTxt = '';
 
-    $scope.dateToday = null;
-   
-    $scope.startDate = null;
-   
-    $scope.endDate = null;
+    $scope.year = null;
 
-    if ($scope.selectedFilter == 'date') {
+    $scope.semester = null;
+
+    if ($scope.selectedFilter == 'year') {
     
-      $scope.dateToday = Date.parse(search.date).toString('yyyy-MM-dd');
-   
-    }else if ($scope.selectedFilter == 'month') {
-   
-      date = $('.monthpicker').datepicker('getDate');
-   
+      date = $('.yearpicker').datepicker('getDate');
+
       year = date.getFullYear();
-   
-      month = date.getMonth() + 1;
-   
-      lastDay = new Date(year, month, 0);
 
-      if (month < 10) month = '0' + month;
-      
-      $scope.startDate = year + '-' + month + '-01';
-      
-      $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
-    
-    }else if ($scope.selectedFilter == 'customRange') {
-    
-      $scope.startDate = Date.parse(search.startDate).toString('yyyy-MM-dd');
-    
-      $scope.endDate = Date.parse(search.endDate).toString('yyyy-MM-dd');
+      $scope.year = year;
+   
+    } else if($scope.selectedFilter == 'semester'){
 
-    
+      $scope.semester = search.semester;
+
     }
 
     $scope.load({
 
-      date         : $scope.dateToday,
+      year : $scope.year,
 
-      startDate    : $scope.startDate,
-
-      endDate      : $scope.endDate,
-
-      year_term_id : $scope.year_term_id
+      semester : $scope.semester
 
     });
   

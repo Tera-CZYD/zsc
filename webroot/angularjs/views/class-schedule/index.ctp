@@ -25,7 +25,32 @@
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
-        <h4 class="header-title">CLASS SCHEDULE MANAGEMENT</h4>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-8 col-xs-12">
+              <h4 class="header-title">CLASS SCHEDULE MANAGEMENT</h4>
+            </div>
+            <div class="col-md-4 col-xs-12 pull-right">
+              <div class="input-group-prepend">
+
+                <span class="dropleft float-right input-group-text" style="padding : 0;">
+                  <a class="fa fa-filter" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 15px;"></a>
+                  <div class="dropdown-menu">
+                    <div ng-show="!data.CourseActivity.disable_admin_quiz_button">
+                      <a class="dropdown-item text-dark" href="javascript:void(0)" ng-click="changeFilter('year')">YEAR</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item text-dark" href="javascript:void(0)" ng-click="changeFilter('semester')">SEMESTER</a>
+                    </div>
+                  </div>
+                </span>
+                <input ng-show="selectedFilter == 'year'" type="text" class="form-control yearpicker input-sm uppercase" ng-model="search.year" ng-change="searchFilter(search)" placeholder="FILTER BY YEAR">
+                <select class="form-control input-sm uppercase" ng-model="search.semester" ng-change="searchFilter(search)" data-validation-engine="validate[required]" ng-options="opt.id as opt.value for opt in year_level_term" placeholder="FILTER BY SEMESTER" ng-show="selectedFilter == 'semester'">
+                  <option value=""></option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="clearfix"></div><hr>
         <div class="col-md-12">
           <div class="row">
@@ -57,6 +82,7 @@
                   <th>PROGRAM</th>
                   <th>YEAR TERM</th>
                   <th>SCHOOL YEAR</th>
+                  <th>STATUS</th>
                   <th class="w90px"></th>
                 </tr>
               </thead>
@@ -69,6 +95,9 @@
                   <td class="text-left">{{ data.program }}</td>
                   <td class="text-center">{{ data.year_term }}</td>
                   <td class="text-center">{{ data.school_year }}</td>
+                  <td class="text-center" style="width: 250px">
+                    <div ng-repeat="days in data.days">{{ days.slot }} remaining slots</div>
+                  </td>
                   <td>
                     <div class="btn-group btn-group-xs">
                     	<a id="pageView" href="#/class-schedule/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
@@ -78,7 +107,7 @@
                   </td> 
                 </tr>
                 <tr ng-show="datas == null || datas == ''">
-                  <td colspan="8">No available data</td>
+                  <td colspan="10">No available data</td>
                 </tr>
               </tbody>
             </table>

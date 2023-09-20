@@ -38,8 +38,6 @@ class BibliographiesTable extends Table{
 
     $date = @$conditions['date'];
 
-    $material_type = @$conditions['material_type'];
-
     $sql = "
 
       SELECT
@@ -48,7 +46,9 @@ class BibliographiesTable extends Table{
 
         MaterialType.name as material_type,
 
-        CollectionType.name as collection_type
+        CollectionType.name as collection_type,
+
+        IFNULL(InventoryBibliography.noOfCopy,0) as noOfCopy
 
       FROM
 
@@ -56,11 +56,27 @@ class BibliographiesTable extends Table{
 
         material_types as MaterialType ON MaterialType.id = Bibliography.material_type_id LEFT JOIN
 
-        collection_types as CollectionType ON CollectionType.id = Bibliography.collection_type_id
+        collection_types as CollectionType ON CollectionType.id = Bibliography.collection_type_id LEFT JOIN
+
+        (
+
+          SELECT InventoryBibliography.bibliography_id,
+
+            COUNT(*) as noOfCopy
+
+            FROM
+
+            inventory_bibliographies as InventoryBibliography 
+
+            WHERE InventoryBibliography.visible = true
+
+            group by InventoryBibliography.bibliography_id
+
+        ) as InventoryBibliography ON InventoryBibliography.bibliography_id = Bibliography.id 
 
       WHERE
 
-        Bibliography.visible = true $date $material_type AND
+        Bibliography.visible = true $date AND
 
         MaterialType.visible = true AND
 
@@ -150,9 +166,6 @@ class BibliographiesTable extends Table{
 
     $date = @$conditions['date'];
 
-    $material_type = @$conditions['material_type'];
-
-
     $offset = ($page - 1) * $limit;
 
     $sql = "
@@ -163,7 +176,9 @@ class BibliographiesTable extends Table{
 
         MaterialType.name as material_type,
 
-        CollectionType.name as collection_type
+        CollectionType.name as collection_type,
+
+        IFNULL(InventoryBibliography.noOfCopy,0) as noOfCopy
 
       FROM
 
@@ -171,11 +186,27 @@ class BibliographiesTable extends Table{
 
         material_types as MaterialType ON MaterialType.id = Bibliography.material_type_id LEFT JOIN
 
-        collection_types as CollectionType ON CollectionType.id = Bibliography.collection_type_id
+        collection_types as CollectionType ON CollectionType.id = Bibliography.collection_type_id LEFT JOIN
+
+        (
+
+          SELECT InventoryBibliography.bibliography_id,
+
+            COUNT(*) as noOfCopy
+
+            FROM
+
+            inventory_bibliographies as InventoryBibliography 
+
+            WHERE InventoryBibliography.visible = true
+
+            group by InventoryBibliography.bibliography_id
+
+        ) as InventoryBibliography ON InventoryBibliography.bibliography_id = Bibliography.id 
 
       WHERE
 
-        Bibliography.visible = true $date $material_type AND
+        Bibliography.visible = true $date AND
 
         MaterialType.visible = true AND
 
