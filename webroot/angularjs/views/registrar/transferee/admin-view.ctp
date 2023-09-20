@@ -30,15 +30,23 @@
               <table class="table table-striped">
 
                 <tr>
-                  <th class="text-right"> SERIAL NUMBER : </th>
+                  <th class="text-right" style="width:15%"> SERIAL NUMBER : </th>
                   <td class="italic">{{ data.Transferee.serial_number }}</td>
                 </tr>
                 <tr>
-                  <th class="text-right" style="width:15%"> FIRST NAME : </th>
+                  <th class="text-right"> TYPE : </th>
+                  <td class="italic">{{ data.Transferee.type }}</td>
+                </tr>
+                <tr>
+                  <th class="text-right"> STUDENT NO. : </th>
+                  <td class="italic">{{ data.Transferee.student_no }}</td>
+                </tr>
+                <tr>
+                  <th class="text-right"> FIRST NAME : </th>
                   <td class="italic">{{ data.Transferee.first_name }}</td>
                 </tr>
-                 <tr>
-                  <th class="text-right" style="width:15%"> MIDDLE NAME : </th>
+                <tr>
+                  <th class="text-right"> MIDDLE NAME : </th>
                   <td class="italic">{{ data.Transferee.middle_name }}</td>
                 </tr>
                 <tr>
@@ -69,25 +77,6 @@
                   <th class="text-right"> DATE : </th>
                   <td class="italic">{{ data.Transferee.date }}</td>
                 </tr>
-                <!-- <tr>
-                  <th class="text-right"> STATUS : </th>
-                  <td class="italic" ng-if="data.StudentApplication.approve == 0">PENDING</td>
-                  <td class="italic" ng-if="data.StudentApplication.approve == 1">APPROVED</td>
-                  <td class="italic" ng-if="data.StudentApplication.approve == 2">DISAPPROVED</td>
-                </tr> -->
-                <!-- <tr ng-if="data.StudentApplication.approve == 1">
-                  <th class="text-right"> APPROVED DATE : </th>
-                  <td class="italic">{{ data.StudentApplication.approved_date }}</td>
-                </tr>
-                <tr ng-if="data.StudentApplication.approve == 2">
-                  <th class="text-right"> DISAPPROVED DATE : </th>
-                  <td class="italic">{{ data.StudentApplication.disapproved_date }}</td>
-                </tr>
-                <tr ng-if="data.StudentApplication.approve == 2">
-                  <th class="text-right"> REASON : </th>
-                  <td class="italic">{{ data.StudentApplication.disapproved_reason }}</td>
-                </tr>
-                <tr> -->
               </table>
             </div> 
 
@@ -125,8 +114,7 @@
           </div>
           <div class="col-md-12">
             <div class="pull-right">
-                <a id="pageEdit" href="#/registrar/transferee/edit/{{ data.Transferee.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
-              
+                <a id="pageEdit" href="#/registrar/admin-transferee/edit/{{ data.Transferee.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
                 <button id="pageDelete" class="btn btn-danger btn-min" ng-click="remove(data.Transferee)"><i class="fa fa-trash"></i> DELETE </button>
             </div>
           </div>
