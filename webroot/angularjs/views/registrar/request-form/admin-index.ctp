@@ -226,8 +226,8 @@
                       <td>
                         <div class="btn-group btn-group-xs">
                           <a id="pageView" href="#/registrar/admin-request-form/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                          <a id="pageEdit" href="#/registrar/admin-request-form/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
-                          <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
+                          <!-- <a id="pageEdit" href="#/registrar/admin-request-form/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
+                          <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a> -->
                         </div>
                       </td>
                     </tr>
@@ -356,12 +356,12 @@
                           <?php if (hasAccess('request form/view', $currentUser)): ?>
                           <a href="#/registrar/admin-request-form/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
                           <?php endif ?>
-                          <?php if (hasAccess('request form/edit', $currentUser)): ?>
+                          <!-- <?php if (hasAccess('request form/edit', $currentUser)): ?>
                           <a href="#/registrar/admin-request-form/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
                           <?php endif ?>
                           <?php if (hasAccess('request form/delete', $currentUser)): ?>
                           <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
-                          <?php endif ?>
+                          <?php endif ?> -->
                         </div>
                       </td>
                     </tr>
