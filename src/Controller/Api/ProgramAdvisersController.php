@@ -141,7 +141,7 @@ class ProgramAdvisersController extends AppController {
 
     foreach ($main as $data) {
 
-      $block_sections = $this->BlockSections->find()
+      $tmp_block_sections = $this->BlockSections->find()
 
         ->where([
 
@@ -154,6 +154,44 @@ class ProgramAdvisersController extends AppController {
         ])
 
       ->all();
+
+      $block_sections = array();
+
+      if(!empty($tmp_block_sections)){
+
+        foreach ($tmp_block_sections as $key => $value) {
+          
+          $available_slot = $this->BlockSectionCourses->find()
+
+            ->where([
+
+              'visible' => 1,
+
+              'block_section_id' => $value['id']
+
+            ])
+
+          ->first();
+
+          if($available_slot['slot'] > 0){
+
+            $block_sections[] = array(
+
+              'id'         => $value['id'],
+
+              'section_id' => $value['section_id'],
+
+              'section'    => $value['section'],
+
+              'available_slot' => $available_slot['slot']
+
+            );
+
+          }
+
+        }
+
+      }
 
       $datas[] = array(
 
@@ -241,6 +279,8 @@ class ProgramAdvisersController extends AppController {
 
           foreach ($block_section_courses as $key => $value) {
 
+            $course = $value['course_association'];
+
             //STUDENT ENROLLED SCHEDULE
 
               $block_section_schedules = $this->BlockSectionSchedules->find()
@@ -269,7 +309,7 @@ class ProgramAdvisersController extends AppController {
 
                     'course_id'                  => $value['course_id'],
 
-                    'course'                     => $value['course'],
+                    'course'                     => $course,
 
                     'block_section_schedule_id'  => $values['id'],
 
@@ -313,7 +353,7 @@ class ProgramAdvisersController extends AppController {
 
               'course_code'  => $value['course_code'],
 
-              'course'       => $value['course'],
+              'course'       => $course,
 
               'year_term_id' => $main['year_term_id'],
 
