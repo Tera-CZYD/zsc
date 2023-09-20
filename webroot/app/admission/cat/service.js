@@ -30,6 +30,20 @@ app.factory("StudentApplicationEmail", function($resource) {
 
 });
 
+app.factory("StudentApplicationCheckForm", function($resource) {
+
+  return $resource( api + "StudentApplications/check_form/:id", { id: '@id' }, {
+
+    query: { method: 'GET', isArray: false },
+
+    update: { method: 'PUT' },
+
+    search: { method: 'GET' },
+
+  });
+
+});
+
 app.factory("StudentApplicationSchedule", function($resource) {
 
   return $resource( api + "StudentApplications/sendSchedule/:id", { id: '@id' }, {
