@@ -1,4 +1,4 @@
-app.controller('ReportCheckInController', function($scope,Select, CheckIn) {
+app.controller('ReportCheckInController', function($scope,Select, ListCheckIn) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -20,7 +20,7 @@ app.controller('ReportCheckInController', function($scope,Select, CheckIn) {
 
     options = typeof options !== 'undefined' ?  options : {};
 
-    CheckIn.query(options, function(e) {
+    ListCheckIn.query(options, function(e) {
 
       if (e.ok) {
 

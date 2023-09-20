@@ -75,7 +75,7 @@ class AppController extends Controller
 
           'loginAction' => [
 
-            'controller' => 'Pages',
+            'controller' => 'Main',
 
             'action' => 'login'
 
@@ -83,7 +83,7 @@ class AppController extends Controller
 
           'logoutRedirect' => [
 
-            'controller' => 'Pages',
+            'controller' => 'Main',
 
             'action' => 'login'
 

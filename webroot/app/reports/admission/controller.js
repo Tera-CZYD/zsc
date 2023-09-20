@@ -880,11 +880,11 @@ app.controller('ListApplicantsController', function($scope, Select, ListApplican
 
     if ($scope.conditionsPrintDisapproved !== '') {
     
-      printTable(base + 'print/student_application?print=1' + $scope.conditionsPrintDisapproved);
+      printTable(base + 'print/cats?print=1' + $scope.conditionsPrintDisapproved);
 
     }else{
 
-      printTable(base + 'print/student_application?print=1');
+      printTable(base + 'print/cats?print=1');
 
     }
 

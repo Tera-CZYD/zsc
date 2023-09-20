@@ -25,7 +25,7 @@
           <div class="row">
             <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
               <!-- <a href="javascript:void(0)" class="btn btn-success btn-sm btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-              <button type="button" class="btn btn-danger btn-sm btn-min" ng-click="print()"><i class="fa fa-print"></i> PRINT </button>
+              <button type="button" class="btn btn-print btn-sm btn-min" ng-click="print()"><i class="fa fa-print"></i> PRINT </button>
               <button type="button" class="btn btn-warning btn-sm btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
             </div>
             <div class="col-md-4 col-xs-12 pull-right">
@@ -62,15 +62,17 @@
                   <td class="text-left uppercase">{{ (paginator.page - 1 ) * paginator.limit + $index + 1 }}</td>
                   <td class="text-left uppercase">{{ data.property_name }}</td>
                   <td class="text-center uppercase">
-                    <div ng-repeat="sub in data.inventory">{{ sub.InventoryProperty.expiry_date }}</div>
+                    <div ng-repeat="sub in data.inventory">{{ sub.expiry_date }}</div>
                   </td>
                   <td class="text-center uppercase">
-                    <div ng-repeat="sub in data.inventory">{{ sub.InventoryProperty.stocks }}</div>
+                    <div ng-repeat="sub in data.inventory">{{ sub.stocks }}</div>
                   </td>
                   <td class="text-center uppercase">{{ data.total_stock }}</td>
                   <td class="text-center uppercase">{{ data.number_issued }}</td>
                   <td class="text-center uppercase">{{ data.balance }}</td>
-                  <td class="text-center uppercase">{{ data.remarks }}</td>
+                  <td class="text-center uppercase">
+                    <div ng-repeat="sub in data.inventory">{{ sub.remarks }}</div>
+                  </td>
                 </tr>
                 <tr ng-show="datas == ''">
                   <td colspan="8" class="text-center">No available data</td>
