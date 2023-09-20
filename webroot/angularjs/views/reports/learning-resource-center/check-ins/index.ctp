@@ -65,7 +65,7 @@
             <table class="table table-bordered text-center">
               <thead>
                 <tr class="bg-info">
-<<<<<<< HEAD
+<!-- <<<<<<< HEAD
                       <th class="text-center w30px">#</th>
                       <th class="text-center"> LIBRARY ID NUMBER</th>
                       <th class="text-center"> MEMBER NAME </th>
@@ -81,7 +81,7 @@
                       <td class="text-center uppercase">{{ data.email }}</td>
                       <td class="text-center uppercase">{{ data.date_returned }}</td>
                     </tr>
-=======
+======= -->
                   <th class="w30px"> # </th>
                   <th class="text-center"> CONTROL NO. </th>
                   <th class="text-center"> MEMBER NAME </th>
@@ -101,9 +101,8 @@
                   <td class="text-center uppercase"><div ng-repeat='sub in data.subs'>{{ sub.barcode_no }}</div></td>
                   <td class="text-center uppercase">{{ data.date_returned }}</td>
                 </tr>
->>>>>>> 7574afc8d8968ae80fbe6273528cc571377dd3fe
                 <tr ng-show="datas == ''">
-                  <td colspan="9" class="text-center">No available data</td>
+                  <td colspan="7" class="text-center">No available data</td>
                 </tr>
               </tbody>
             </table>
