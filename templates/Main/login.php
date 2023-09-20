@@ -102,13 +102,14 @@
 <style>
 .alert {
   padding: 20px;
-  background-color: #f44336;
-  color: white;
+  background: #fcebea;
+    color: #cc1f1a;
+    border-color: #ef5753;
 }
 
 .closebtn {
   margin-left: 15px;
-  color: white;
+  color: cc1f1a;
   font-weight: bold;
   float: right;
   font-size: 22px;
