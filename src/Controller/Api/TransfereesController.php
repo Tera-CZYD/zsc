@@ -42,7 +42,7 @@ class TransfereesController extends AppController {
 
     $conditionsPrint = '';
 
-    if ($this->request->getQuery('search')) {
+    if ($this->request->getQuery('search') != null) {
 
       $search = $this->request->getQuery('search');
 
@@ -56,7 +56,7 @@ class TransfereesController extends AppController {
 
     $conditions['date'] = '';
 
-    if ($this->request->getQuery('date')) {
+    if ($this->request->getQuery('date') != null) {
 
       $search_date = $this->request->getQuery('date');
 
@@ -70,7 +70,7 @@ class TransfereesController extends AppController {
 
     //advance search
 
-    if ($this->request->getQuery('startDate')) {
+    if ($this->request->getQuery('startDate') != null) {
 
       $start = $this->request->getQuery('startDate'); 
 
@@ -83,6 +83,24 @@ class TransfereesController extends AppController {
       $dates['endDate']   = $end;
 
       $conditionsPrint .= '&startDate='.$start.'&endDate='.$end;
+
+    }
+
+    $conditions['studentId'] = '';
+
+    if ($this->request->getQuery('per_student') != null) {
+
+      $per_student = $this->request->getQuery('per_student');
+
+      $employee_id = $this->Auth->user('studentId');
+
+      if ($employee_id!='') {
+
+        $conditions['studentId'] = "AND Transferee.student_id = $employee_id AND Transferee.type = 'Transfer Out'";
+
+      }
+
+      $conditionsPrint .= '&per_student='.$per_student;
 
     }
 

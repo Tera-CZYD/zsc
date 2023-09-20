@@ -6,28 +6,32 @@
         <div class="clearfix"></div><hr>
         <form id="form">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
               <div class="form-group">
-                <label> STUDENT NO. <i class="required">*</i></label>
-                <input type="text" class="form-control" autocomplete="false" ng-model="data.Transferee.student_no" data-validation-engine="validate[required]">
+                <label> SERIAL NUMBER <i class="required">*</i></label>
+                <input type="text" class="form-control" autocomplete="false" ng-model="data.Transferee.serial_number" data-validation-engine="validate[required]">
               </div>
             </div>
+            
             <div class="col-md-12">
-              <div class="form-group">
-                <label> FIRST NAME <i class="required">*</i></label>
-                <input type="text" class="form-control" autocomplete="false" ng-model="data.Transferee.first_name" data-validation-engine="validate[required]">
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <label> MIDDLE NAME </label>
-                <input type="text" class="form-control" autocomplete="false" ng-model="data.Transferee.middle_name">
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <label> LAST NAME <i class="required">*</i></label>
-                <input type="text" class="form-control" autocomplete="false" ng-model="data.Transferee.last_name" data-validation-engine="validate[required]">
+              <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover">
+                  <thead>
+                    <tr class="bg-info">
+                      <th class = "text-center" colspan="2">STUDENT INFORMATION </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th class="text-left" style="width: 15%"> STUDENT NUMBER </th>
+                      <td class="text-left uppercase">{{ data.Transferee.student_no }}</td>   
+                    </tr>
+                    <tr>
+                      <th class="text-left"> STUDENT NAME </th>
+                      <td class="text-left uppercase">{{ data.Transferee.student_name }}</td>   
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
 
