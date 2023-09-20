@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
   function handleAccess(elementId, permissionCode, currentUser) {
     const element = document.getElementById(elementId);
@@ -22,7 +22,7 @@
   handleAccess('pageEdit', 'bibliography/edit', currentUser);
   handleAccess('pageDelete', 'bibliography/delete', currentUser);
 
-</script>
+</script> -->
 
 
 <div class="row" id="pageIndex">
@@ -141,18 +141,18 @@
                       <td class="text-center">{{ data.collection_type }}</td>
                       <td class="text-center">{{ data.date_of_publication }}</td>
                       <td class="text-center">{{ data.copyright }}</td>
-                      <td class="text-center"></td>
+                      <td class="text-center">{{ data.no_of_copy }}</td>
                       <td>
                         <div class="btn-group btn-group-xs">
-                          
-                          <a id="pageView" href="#/learning-resource-center/admin-bibliography/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                          
-                          
-                          <a id="pageEdit" href="#/learning-resource-center/admin-bibliography/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
-                          
-                          
-                          <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
-                          
+                          <?php if (hasAccess('bibliography/view', $currentUser)): ?>
+                          <a href="#/learning-resource-center/admin-bibliography/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                          <?php endif ?>
+                          <?php if (hasAccess('bibliography/edit', $currentUser)): ?>
+                          <a href="#/learning-resource-center/admin-bibliography/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
+                          <?php endif ?>
+                          <?php if (hasAccess('bibliography/delete', $currentUser)): ?>
+                          <a href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
+                          <?php endif ?>
                         </div>
                       </td>
                     </tr>
