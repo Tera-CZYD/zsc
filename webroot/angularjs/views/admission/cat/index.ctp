@@ -187,8 +187,8 @@
                 <div class="col-md-12 pt-3">
                   <div class="row">
                     <div class="col-md-7 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                      <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
-                        <button id="pagePrint" ng-click="printInterview()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                      <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
+                        <button id="pagePrint" ng-click="printInterview()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
                     <div class="col-md-1 ">
@@ -284,8 +284,8 @@
                   <div class="row">
                     <div class="col-md-7 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                         <a id="pageAdd" href="#/admission/student-application/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
-                      <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
-                        <button id="pagePrint" ng-click="printAssessed()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                      <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
+                        <button id="pagePrint" ng-click="printAssessed()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
                     <div class="col-md-1 ">
@@ -377,8 +377,8 @@
                 <div class="col-md-12 pt-3">
                   <div class="row">
                     <div class="col-md-7 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                      <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
-                        <button id="pageStudentApplicationPrint" ng-click="printDisapproved()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                      <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
+                        <button id="pageStudentApplicationPrint" ng-click="printDisapproved()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
                     <div class="col-md-1 ">

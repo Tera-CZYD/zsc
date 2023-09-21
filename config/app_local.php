@@ -58,6 +58,9 @@ return [
              * You can use a DSN string to set the entire configuration
              */
             'url' => env('DATABASE_URL', null),
+            'init' => [
+                'SET sql_mode=(SELECT REPLACE(@@sql_mode,"ONLY_FULL_GROUP_BY",""))',
+            ],
         ],
 
         /*

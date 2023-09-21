@@ -106,41 +106,33 @@
 
   }
 
-  $scope.searchy = function(search) {
+  $scope.searchy = function (search) {
+    search = typeof search !== "undefined" ? search : "";
 
-    search = typeof search !== 'undefined' ? search : '';
-
-    if (search.length > 0){
-
+    if (search.length > 0) {
       $scope.load({
-
-        search        : search,
-
-        date          : $scope.dateToday,
-
-        startDate     : $scope.startDate,
-
-        endDate       : $scope.endDate,
-
-        year_term_id  : $scope.year_term_id,
-
+        search: search,
       });
-
-    }else{
-
-      $scope.load({
-
-        date          : $scope.dateToday,
-
-        startDate     : $scope.startDate,
-
-        endDate       : $scope.endDate,
-
-        year_term_id  : $scope.year_term_id,
-
-      });
-    
+    } else {
+      $scope.load();
     }
+  };
+
+    $scope.selectedFilter = 'date';
+
+  $scope.changeFilter = function(type){ 
+
+    $scope.search = {};
+
+    $scope.selectedFilter = type;
+
+    $('.monthpicker').datepicker({format: 'MM', autoclose: true, minViewMode: 'months',maxViewMode:'months'});
+ 
+    $('.input-daterange').datepicker({
+ 
+      format: 'mm/dd/yyyy'
+
+    });
 
   }
 
