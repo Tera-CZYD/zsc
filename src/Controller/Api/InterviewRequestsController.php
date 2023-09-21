@@ -14,8 +14,6 @@ class InterviewRequestsController extends AppController {
 
     parent::initialize();
 
-    $this->loadComponent('Paginator');
-
     $this->loadComponent('RequestHandler');
 
     $this->InterviewRequests = TableRegistry::getTableLocator()->get('InterviewRequests');
