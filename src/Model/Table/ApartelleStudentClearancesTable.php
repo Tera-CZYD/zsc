@@ -32,7 +32,7 @@
 
     public function getAllApartelleStudentClearance($conditions, $limit, $page){
 
-      $search = strtolower(@$conditions['search']);
+      $search = @$conditions['search'];
 
       $date = @$conditions['date'];
 
@@ -89,7 +89,7 @@
 
     public function getAllApartelleStudentClearancePrint($conditions){
 
-      $search = strtolower(@$conditions['search']);
+      $search = @$conditions['search'];
 
       $date = @$conditions['date'];
 
@@ -181,7 +181,7 @@
 
     public function paginateCount($conditions = null){ 
 
-      $search = strtolower(@$conditions['search']);
+      $search = @$conditions['search'];
 
       $date = @$conditions['date'];
 

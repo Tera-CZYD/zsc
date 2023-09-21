@@ -28,7 +28,7 @@ class CheckOutsTable extends Table{
 
   public function getAllCheckOutPrint($conditions){
 
-    $search = strtolower(@$conditions['search']);
+    $search = @$conditions['search'];
 
     $date = @$conditions['date'];
 
@@ -74,7 +74,7 @@ class CheckOutsTable extends Table{
 
   public function getAllCheckOut($conditions, $limit, $page){
 
-    $search = strtolower(@$conditions['search']);
+    $search = @$conditions['search'];
 
     $date = @$conditions['date'];
 
@@ -162,7 +162,7 @@ class CheckOutsTable extends Table{
 
   public function paginateCount($conditions = null){ 
 
-    $search = strtolower(@$conditions['search']);
+    $search = @$conditions['search'];
 
     $date = @$conditions['date'];
 
