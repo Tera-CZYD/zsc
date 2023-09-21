@@ -14,8 +14,6 @@ class  ClassSchedulesController extends AppController {
 
     parent::initialize();
 
-    $this->loadComponent('Paginator');
-
     $this->loadComponent('RequestHandler');
 
     $this->ClassSchedules = TableRegistry::getTableLocator()->get('ClassSchedules');

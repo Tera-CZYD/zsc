@@ -38,7 +38,7 @@
 
     public function getAllApartelleRegistration($conditions, $limit, $page){
 
-      $search = strtolower(@$conditions['search']);
+      $search = @$conditions['search'];
 
       $date = @$conditions['date'];
 
@@ -99,7 +99,7 @@
 
     public function getAllApartelleRegistrationPrint($conditions){
 
-      $search = strtolower(@$conditions['search']);
+      $search = @$conditions['search'];
 
       $date = @$conditions['date'];
 
@@ -196,7 +196,7 @@
 
     public function paginateCount($conditions = null){ 
 
-      $search = strtolower(@$conditions['search']);
+      $search = @$conditions['search'];
 
       $date = @$conditions['date'];
 

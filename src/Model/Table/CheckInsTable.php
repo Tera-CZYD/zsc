@@ -22,7 +22,7 @@ class CheckInsTable extends Table{
 
   public function getAllCheckInPrint($conditions){
 
-    $search = strtolower(@$conditions['search']);
+    $search = @$conditions['search'];
 
     $date = @$conditions['date'];
 
@@ -68,7 +68,7 @@ class CheckInsTable extends Table{
 
   public function getAllCheckIn($conditions, $limit, $page){
 
-    $search = strtolower(@$conditions['search']);
+    $search = @$conditions['search'];
 
     $date = @$conditions['date'];
 
@@ -156,7 +156,7 @@ class CheckInsTable extends Table{
 
   public function paginateCount($conditions = null){ 
 
-    $search = strtolower(@$conditions['search']);
+    $search = @$conditions['search'];
 
     $date = @$conditions['date'];
 
