@@ -10,7 +10,15 @@ app.config(function($routeProvider) {
 
   })
 
- .when('/faculty/program-adviser/view/:id', {
+  .when('/faculty/program-adviser/add', {
+
+    templateUrl: 'angularjs/views/faculty/program-adviser/add.ctp',
+
+    controller: 'ProgramAdviserAddController',
+
+  })
+
+  .when('/faculty/program-adviser/view/:id', {
 
     templateUrl: 'angularjs/views/faculty/program-adviser/view.ctp',
 

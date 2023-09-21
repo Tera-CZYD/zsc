@@ -14,8 +14,6 @@ class StudentProfilesController extends AppController {
 
     parent::initialize();
 
-    $this->loadComponent('Paginator');
-
     $this->loadComponent('RequestHandler');
 
     $this->StudentProfiles = TableRegistry::getTableLocator()->get('StudentProfiles');

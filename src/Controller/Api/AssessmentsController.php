@@ -14,8 +14,6 @@ class AssessmentsController extends AppController {
 
     parent::initialize();
 
-    $this->loadComponent('Paginator');
-
     $this->loadComponent('RequestHandler');
 
     $this->loadComponent('Global');

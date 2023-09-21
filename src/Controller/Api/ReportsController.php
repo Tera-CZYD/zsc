@@ -3855,7 +3855,7 @@ class ReportsController extends AppController {
 
           'call_number3'      => $data['call_number3'],
 
-          'dueback'   => date('m/d/Y',strtotime($data['dueback'])),
+          'dueback'   => fdate($data['dueback'],'m/d/Y'),
 
           'title'      => $data['title'],
 

@@ -1,4 +1,4 @@
-app.controller('ProgramAdviserController', function($scope, ProgramAdviser,ProgramAdviserEnlist, Select) {
+app.controller('ProgramAdviserController', function($scope, ProgramAdviser,ProgramAdviserEnlist, Ptc, Select) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -28,8 +28,6 @@ app.controller('ProgramAdviserController', function($scope, ProgramAdviser,Progr
 
     options = typeof options !== 'undefined' ?  options : {};
 
-    // options['per_student'] = 1;
-
     options['status'] = 0;
 
     ProgramAdviser.query(options, function(e) {
@@ -56,8 +54,6 @@ app.controller('ProgramAdviserController', function($scope, ProgramAdviser,Progr
 
     options = typeof options !== 'undefined' ?  options : {};
 
-    // options['per_student'] = 1;
-
     options['status'] = 1;
 
     ProgramAdviser.query(options, function(e) {
@@ -80,11 +76,37 @@ app.controller('ProgramAdviserController', function($scope, ProgramAdviser,Progr
 
   }
 
+  $scope.ptc = function(options) {
+
+    options = typeof options !== 'undefined' ?  options : {};
+
+    Ptc.query(options, function(e) {
+
+      if (e.ok) {
+
+        $scope.datasPtc = e.data;
+
+        $scope.conditionsPrintPtc = e.conditionsPrint;
+
+        // paginator
+
+        $scope.paginatorPtc  = e.paginator;
+
+        $scope.pagesPtc = paginator($scope.paginatorPtc, 5);
+
+      }
+
+    });
+
+  }
+
   $scope.load = function(options) {
 
     $scope.forEnlistment(options);
 
     $scope.enlisted(options);
+
+    $scope.ptc(options);
 
   }
 
@@ -332,7 +354,212 @@ app.controller('ProgramAdviserController', function($scope, ProgramAdviser,Progr
 
 });
 
-app.controller('ProgramAdviserViewController', function($scope, $routeParams, DeleteSelected, ProgramAdviser, ProgramAdviserApproved, ProgramAdviserDisapproved, Select) {
+app.controller('ProgramAdviserAddController', function($scope, ProgramAdviser, Ptc, Select) {
+
+  $('#form').validationEngine('attach');
+
+  $('.datepicker').datepicker({
+
+    format:'mm/dd/yyyy',
+
+    autoclose: true,
+
+    todayHighlight: true,
+
+  });
+
+  $scope.data = {
+
+    Ptc : {},
+
+    PtcSub : []
+
+  };
+
+  Select.get({ code: 'ptc-code' },function(e){
+
+    $scope.data.Ptc.code = e.data;
+
+  });
+
+  Select.get({ code: 'ptc-block-section' },function(e){
+
+    $scope.block_sections = e.data;
+
+  });
+
+  $scope.getSection = function(id){
+
+    if($scope.block_sections.length > 0){
+
+      $.each($scope.block_sections, function(i,val){
+
+        if(val.id == id){
+
+          $scope.data.Ptc.section = val.section;
+
+          $scope.data.Ptc.section_id = val.section_id;
+
+        }
+
+      });
+
+    }
+
+  }
+
+  $scope.searchStudent = function(options) {
+
+    options = typeof options !== 'undefined' ?  options : {};
+
+    options['code'] = 'search-student';
+
+    Select.query(options, function(e) {
+
+      $scope.students = e.data.result;
+
+      $scope.student = {};
+      
+      // paginator
+
+      $scope.paginator  = e.data.paginator;
+
+      $scope.pages = paginator($scope.paginator, 10);
+
+      $("#searched-student-modal").modal('show');
+
+    });
+
+  }
+
+  $scope.selectedStudent = function(student) { 
+
+    $scope.student = {
+
+      id   : student.id,
+
+      code : student.code,
+
+      name : student.name
+
+    }; 
+
+  }
+
+  $scope.studentData = function(id) {
+
+    $scope.sub.student_id = $scope.student.id;
+
+    $scope.sub.student_no = $scope.student.code;
+
+    $scope.sub.student_name = $scope.student.name;
+
+  }
+
+  $scope.addStudent = function() {
+
+    $('#student_form').validationEngine('attach');
+    
+    $scope.sub = {};
+
+    $('#add-student-modal').modal('show');
+
+  }
+  
+  $scope.saveStudent = function(data) {
+
+    data.student_id = $scope.sub.student_id;
+
+    valid = $("#student_form").validationEngine('validate'); 
+
+    if(valid){
+
+      $scope.data.PtcSub.push(data); 
+
+      $('#add-student-modal').modal('hide');
+
+    }
+
+  }
+
+  $scope.editStudent = function(index,data) {
+
+    $('#edit_student_form').validationEngine('attach');
+
+    $scope.index = index;
+
+    data.index = index;
+
+    $scope.sub = data;
+
+
+    $('#edit-student-modal').modal('show');
+
+  }
+  
+  $scope.updateStudent = function(data) {
+
+    valid = $("#edit_student_form").validationEngine('validate');
+
+    if(valid){
+
+      data.student_id = $scope.sub.student_id;
+
+      $scope.data.PtcSub[data.index] = data; 
+
+      $('#edit-student-modal').modal('hide');
+
+    }
+
+  }
+  
+  $scope.removeStudent = function(index) {
+
+    $scope.data.PtcSub.splice(index,1);
+
+  }
+
+  $scope.save = function() {
+
+    valid = $("#form").validationEngine('validate');
+
+    if (valid) {
+
+      Ptc.save($scope.data, function(e) {
+
+        if (e.ok) {
+
+          $.gritter.add({
+
+            title: 'Successful!',
+
+            text:  e.msg,
+
+          });
+
+          window.location = '#/faculty/program-adviser';
+
+        } else {
+
+          $.gritter.add({
+
+            title: 'Warning!',
+
+            text:  e.msg,
+
+          });
+
+        }
+
+      });
+
+    }  
+
+  }
+
+});
+
+app.controller('ProgramAdviserViewController', function($scope, $routeParams, DeleteSelected, ProgramAdviser, Ptc, Select) {
 
   $scope.id = $routeParams.id;
 
@@ -341,7 +568,7 @@ app.controller('ProgramAdviserViewController', function($scope, $routeParams, De
   // load 
   $scope.load = function() {
 
-    ProgramAdviser.get({ id: $scope.id }, function(e) {
+    Ptc.get({ id: $scope.id }, function(e) {
 
       $scope.data = e.data;
 
@@ -350,115 +577,6 @@ app.controller('ProgramAdviserViewController', function($scope, $routeParams, De
   }
 
   $scope.load();  
-
-  $scope.approve = function(data){
-
-    bootbox.confirm('Are you sure you want to approve this adviser ' +  data.code + '?', function(e){
-
-      if(e) {
-
-        ProgramAdviserApproved.get({id:data.id}, function(e){
-
-          if(e.ok){
-
-            $scope.load();
-
-            $.gritter.add({
-
-              title: 'Successful!',
-
-              text: 'Program Adviser has been approved.'
-
-            });
-
-          }
-
-          window.location = "#/faculty/program-adviser";
-
-        });
-
-      }
-
-    });
-
-  }
-
-  $scope.disapprove = function(data){  
-
-    bootbox.confirm('Are you sure you want to disapprove this adviser ' +  data.code + '?', function(b){
-
-      if(b) {
-
-        bootbox.prompt('REASON ?', function(result){
-
-          if(result){
-
-            $scope.data = {
-
-              explanation : result
-
-            };
-
-            ProgramAdviserDisapproved.update({id:data.id},$scope.data, function(e){
-
-              if(e.ok){
-
-                $.gritter.add({
-
-                  title : 'Successful!',
-
-                  text : 'Program Adviser has been disapproved.'
-
-                });
-
-                $scope.load();
-
-                window.location = "#/faculty/program-adviser";
-
-              }
-
-            });
-
-          }
-
-        });
-
-      }
-
-    });
-
-  }
-
-  // remove 
-  $scope.remove = function(data) {
-
-    bootbox.confirm('Are you sure you want to remove '+ data.code +' ?', function(c) {
-
-      if (c) {
-
-        ProgramAdviser.remove({ id: data.id }, function(e) {
-
-          if (e.ok) {
-
-            $.gritter.add({
-
-              title: 'Successful!',
-
-              text:  e.msg,
-
-            });
-
-            window.location = "#/faculty/program-adviser";
-
-          }
-
-        });
-
-      }
-
-    });
-
-  } 
 
 });
 
