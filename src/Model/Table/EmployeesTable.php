@@ -54,7 +54,7 @@ class EmployeesTable extends Table{
 
         CONCAT(College.code,' - ',College.name) as college,
 
-        LEFT(Employee.gender,1) as gender_tmp
+        AcademicRank.rank as academic_rank
 
       FROM
 
@@ -62,7 +62,9 @@ class EmployeesTable extends Table{
 
         colleges as College ON Employee.college_id =  College.id LEFT JOIN 
 
-        specializations as Specialization ON Employee.specialization_id = Specialization.id
+        specializations as Specialization ON Employee.specialization_id = Specialization.id LEFT JOIN 
+
+        academic_ranks AcademicRank ON Employee.academic_rank_id = AcademicRank.id
 
       WHERE
 
@@ -128,7 +130,7 @@ class EmployeesTable extends Table{
 
         CONCAT(College.code,' - ',College.name) as college,
 
-        LEFT(Employee.gender,1) as gender_tmp
+        AcademicRank.rank as academic_rank
 
       FROM
 
@@ -136,7 +138,9 @@ class EmployeesTable extends Table{
 
         colleges as College ON Employee.college_id =  College.id LEFT JOIN 
 
-        specializations as Specialization ON Employee.specialization_id = Specialization.id
+        specializations as Specialization ON Employee.specialization_id = Specialization.id LEFT JOIN 
+
+        academic_ranks AcademicRank ON Employee.academic_rank_id = AcademicRank.id
 
       WHERE
 

@@ -164,9 +164,6 @@ class RegisteredStudentsTable extends Table {
 
         )
 
-      GROUP BY 
-
-        Student.id
 
       ORDER BY 
 

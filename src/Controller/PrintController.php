@@ -49,7 +49,17 @@ class PrintController extends AppController {
 
     $this->loadModel('Students');
 
+    $this->loadModel('Assessments');
+
+    $this->loadModel('ParticipantEvaluationActivities');
+
+    $this->loadModel('Payments');
+
+    $this->loadModel('AddingDroppingSubjects');
+
     $this->loadModel('InterviewRequests');
+
+    $this->loadModel('ScholarshipApplications');
 
     $this->loadModel('StudentProfiles');
 
@@ -2958,7 +2968,7 @@ class PrintController extends AppController {
 
           $data['middle_name'],
 
-          $data['gender_tmp'],
+          $data['gender'],
 
           $data['academic_rank'],
 
@@ -6019,7 +6029,9 @@ class PrintController extends AppController {
 
           $data['name'],
 
-          utf8_decode($data['student_name']),
+          mb_convert_encoding($data['student_name'], 'UTF-8', 'ISO-8859-1'),
+
+          // utf8_decode($data['student_name']),
 
           fdate($data['date'],'m/d/Y'),
 
@@ -14522,7 +14534,7 @@ class PrintController extends AppController {
 
   }
 
-    public function studentClearance(){
+  public function studentClearance(){
 
     $conditions = array();
 
@@ -14587,6 +14599,7 @@ class PrintController extends AppController {
     if(count($tmpData) > 0){
 
       foreach ($tmpData as $key => $data){
+
         $pdf->Cell(18);
 
         $pdf->RowLegalL(array(
@@ -14601,9 +14614,13 @@ class PrintController extends AppController {
           $data['name'],  
 
           $data['major'],
-          $data['year'],
+
+          $data['year_level_term'],
+
           $data['school_year'],
+
           $data['sa_number'],
+
           $data['semester'],
 
         ));
@@ -15387,7 +15404,7 @@ class PrintController extends AppController {
     $pdf->footerSystem = true;
     $pdf->AliasNbPages();
     $pdf->AddPage("P", "legal", 0);
-    $pdf->Image($this->base .'/assets/img/zam.png',70,10,25,25);
+    $pdf->Image($this->base .'/assets/img/zam.png',10,10,20,20);
     $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
     $pdf->Ln(5);
@@ -17436,7 +17453,7 @@ class PrintController extends AppController {
 
     }
     
-    $tmpData = $this->StudentApplications->getAllScholarshipApplicationPrint($conditions);
+    $tmpData = $this->ScholarshipApplications->getAllScholarshipApplicationPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -23719,7 +23736,7 @@ EQUIVALENT',1,'C',0);
 
   }
 
-  public function add_drop(){
+  public function addDrop(){
 
     $conditions = array();
 
@@ -23737,9 +23754,9 @@ EQUIVALENT',1,'C',0);
 
     $conditions['date'] = '';
 
-    if (isset($this->request->query['date'])) {
+    if ($this->request->getQuery('date')) {
 
-      $search_date = $this->request->query['date'];
+      $search_date = $this->request->getQuery('date');
 
       $conditions['date'] = " AND DATE(AddingDroppingSubject.date) = '$search_date'"; 
 
@@ -23747,11 +23764,11 @@ EQUIVALENT',1,'C',0);
 
     } 
 
-    if (isset($this->request->query['startDate'])) {
+    if ($this->request->getQuery('startDate')) {
 
-      $start = $this->request->query['startDate']; 
+      $start = $this->request->getQuery('startDate'); 
 
-      $end = $this->request->query['endDate'];
+      $end = $this->request->getQuery('endDate');
 
       $conditions['date'] = " AND DATE(AddingDroppingSubject.date) >= '$start' AND DATE(AddingDroppingSubject.date) <= '$end'";
 
@@ -23763,9 +23780,9 @@ EQUIVALENT',1,'C',0);
 
     $conditions['status'] = '';
 
-    if (isset($this->request->query['status'])) {
+    if ($this->request->getQuery('status')) {
 
-      $status = $this->request->query['status'];
+      $status = $this->request->getQuery('status');
 
       $conditions['status'] = "AND AddingDroppingSubject.approve = $status";
 
@@ -23773,17 +23790,17 @@ EQUIVALENT',1,'C',0);
 
     $conditions['studentId'] = '';
 
-    if (isset($this->request->query['per_student'])) {
+    if ($this->request->getQuery('per_student')) {
 
-      $per_student = $this->request->query['per_student'];
+      $per_student = $this->request->getQuery('per_student');
       
-      $employee_id = $this->Session->read('Auth.User.studentId');
+      $employee_id = $this->Auth->user('studentId');
 
       $conditions['studentId'] = "AND AddingDroppingSubject.student_id = $employee_id";
 
     }
 
-    $tmpData = $this->AddingDroppingSubject->query($this->AddingDroppingSubject->getAllAddingDroppingSubject($conditions));
+    $tmpData = $this->AddingDroppingSubjects->getAllAddingDroppingSubjectPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -23823,23 +23840,21 @@ EQUIVALENT',1,'C',0);
     $pdf->SetWidths(array(10,50,50,170,30,30));
     $pdf->SetAligns(array('C','C','C','C','C','C'));
 
-    if(!empty($tmpData)){
+    if(count($tmpData)>0){
 
       foreach ($tmpData as $key => $data){
 
-        $tmp = $data['AddingDroppingSubject'];
-
         $status = '';
 
-        if($data['AddingDroppingSubject']['approve'] == 0){
+        if($data['approve'] == 0){
 
           $status = 'PENDING';
 
-        }elseif($data['AddingDroppingSubject']['approve'] == 1){
+        }elseif($data['approve'] == 1){
 
           $status = 'APPROVED';
 
-        }elseif($data['AddingDroppingSubject']['approve'] == 2){
+        }elseif($data['approve'] == 2){
 
           $status = 'DISAPPROVED';
 
@@ -23850,13 +23865,13 @@ EQUIVALENT',1,'C',0);
 
           $key + 1,
 
-          $tmp['code'],
+          $data['code'],
 
-          $tmp['student_name'],
+          $data['student_name'],
 
-          $tmp['program'],
+          $data['program'],
 
-          fdate($tmp['date'],'m/d/Y'),
+          fdate($data['date'],'m/d/Y'),
 
            $status,
 
@@ -27007,7 +27022,7 @@ EQUIVALENT',1,'C',0);
 
   }
 
-  public function participant_evaluation_activity() {
+  public function participantEvaluationActivity() {
 
     $conditions = array();
 
@@ -27015,9 +27030,9 @@ EQUIVALENT',1,'C',0);
 
     // search conditions
 
-    if(isset($this->request->query['search'])){
+    if($this->request->getQuery('search')){
 
-      $search = $this->request->query['search'];
+      $search = $this->request->getQuery('search');
 
       $search = strtolower($search);
 
@@ -27027,9 +27042,9 @@ EQUIVALENT',1,'C',0);
 
     $conditions['date'] = '';
 
-    if (isset($this->request->query['date'])) {
+    if ($this->request->getQuery('date')) {
 
-      $search_date = $this->request->query['date'];
+      $search_date = $this->request->getQuery('date');
 
       $conditions['date'] = " AND DATE(StudentApplication.application_date) = '$search_date'"; 
 
@@ -27039,11 +27054,11 @@ EQUIVALENT',1,'C',0);
 
     //advance search
 
-    if (isset($this->request->query['startDate'])) {
+    if ($this->request->getQuery('startDate')) {
 
-      $start = $this->request->query['startDate']; 
+      $start = $this->request->getQuery('startDate'); 
 
-      $end = $this->request->query['endDate'];
+      $end = $this->request->getQuery('endDate');
 
       $conditions['date'] = " AND DATE(StudentApplication.application_date) >= '$start' AND DATE(StudentApplication.application_date) <= '$end'";
 
@@ -27055,9 +27070,9 @@ EQUIVALENT',1,'C',0);
 
     $conditions['rate'] = '';
 
-    if (isset($this->request->query['rate'])) {
+    if ($this->request->getQuery('rate')) {
 
-      $rate = $this->request->query['rate'];
+      $rate = $this->request->getQuery('rate');
 
       if($rate == 0){
 
@@ -27071,7 +27086,7 @@ EQUIVALENT',1,'C',0);
 
     }
 
-    $tmpData = $this->ParticipantEvaluationActivity->query($this->ParticipantEvaluationActivity->getAllParticipantEvaluationActivity($conditions));
+    $tmpData = $this->ParticipantEvaluationActivities->getAllParticipantEvaluationActivityPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -27111,7 +27126,7 @@ EQUIVALENT',1,'C',0);
     $pdf->SetWidths(array(5,50,50,150,40,40));
     $pdf->SetAligns(array('C','L','C','L','C','C','C','C'));
 
-    if(!empty($tmpData)){
+    if(count($tmpData)>0){
 
       foreach ($tmpData as $key => $data){
 
@@ -27119,15 +27134,15 @@ EQUIVALENT',1,'C',0);
 
           $key + 1,
 
-          $data['ParticipantEvaluationActivity']['activity'],
+          $data['activity'],
 
-          $data['ParticipantEvaluationActivity']['venue'],
+          $data['venue'],
 
-          $data['CollegeProgram']['name'],
+          $data['program_name'],
 
-          fdate($data['ParticipantEvaluationActivity']['date'],'m/d/Y'),
+          fdate($data['date'],'m/d/Y'),
 
-          $data['ParticipantEvaluationActivity']['year'],
+          $data['year'],
 
           
 
@@ -27893,9 +27908,9 @@ EQUIVALENT',1,'C',0);
 
     // search conditions
 
-    if(isset($this->request->query['search'])){
+    if($this->request->getQuery('search')){
 
-      $search = $this->request->query['search'];
+      $search = $this->request->getQuery('search');
 
       $search = strtolower($search);
 
@@ -27905,9 +27920,9 @@ EQUIVALENT',1,'C',0);
 
     $conditions['date'] = '';
 
-    if (isset($this->request->query['date'])) {
+    if ($this->request->getQuery('date')) {
 
-      $search_date = $this->request->query['date'];
+      $search_date = $this->request->getQuery('date');
 
       $conditions['date'] = " AND DATE(Payment.application_date) = '$search_date'"; 
 
@@ -27917,11 +27932,11 @@ EQUIVALENT',1,'C',0);
 
     //advance search
 
-    if (isset($this->request->query['startDate'])) {
+    if ($this->request->getQuery('startDate')) {
 
-      $start = $this->request->query['startDate']; 
+      $start = $this->request->getQuery('startDate'); 
 
-      $end = $this->request->query['endDate'];
+      $end = $this->request->getQuery('endDate');
 
       $conditions['date'] = " AND DATE(Payment.application_date) >= '$start' AND DATE(Payment.application_date) <= '$end'";
 
@@ -27933,15 +27948,15 @@ EQUIVALENT',1,'C',0);
 
     $conditions['status'] = '';
 
-    if (isset($this->request->query['status'])) {
+    if ($this->request->getQuery('status')) {
 
-      $status = $this->request->query['status'];
+      $status = $this->request->getQuery('status');
 
       $conditions['status'] = "AND Payment.approve = $status";
 
     }
 
-    $tmpData = $this->Payment->query($this->Payment->getAllPayment($conditions));
+    $tmpData = $this->Payments->getAllPaymentPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -27981,7 +27996,7 @@ EQUIVALENT',1,'C',0);
     $pdf->SetWidths(array(15,30,70,130,45,40));
     $pdf->SetAligns(array('C','C','L','C','L','C','C','C'));
 
-    if(!empty($tmpData)){
+    if(count($tmpData)>0){
 
       foreach ($tmpData as $key => $data){ 
 
@@ -27989,15 +28004,15 @@ EQUIVALENT',1,'C',0);
 
           $key + 1,
 
-          $data['Payment']['code'],
+          $data['code'],
 
-          $data['Payment']['student_name'],
+          $data['student_name'],
 
-          $data['Payment']['program'],
+          $data['program'],
 
-          $data['Payment']['email'],
+          $data['email'],
 
-          $data['Payment']['contact_no'],
+          $data['contact_no'],
 
         ));
 
@@ -28006,6 +28021,141 @@ EQUIVALENT',1,'C',0);
     }else{
 
       $pdf->Cell(330,5,'No data available.',1,1,'C');
+
+    }
+
+    $pdf->output();
+    exit();
+
+  }
+
+  public function assessment() {
+
+    $conditions = array();
+
+    $conditions['search'] = '';
+
+    if($this->request->getQuery('search')){
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+    }
+
+    $conditions['date'] = '';
+
+    if ($this->request->getQuery('date')) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(Assessment.created) = '$search_date'"; 
+
+    }  
+
+    //advance search
+
+    if ($this->request->getQuery('startDate')) {
+
+      $start = $this->request->getQuery('startDate'); 
+
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = " AND DATE(Assessment.created) >= '$start' AND DATE(Assessment.created) <= '$end'";
+
+    }
+
+    $conditions['status'] = '';
+
+    if ($this->request->getQuery('status') != null) {
+
+      $status = $this->request->getQuery('status');
+
+      $conditions['status'] = "AND Assessment.approve = $status";
+
+    }
+ 
+    $conditions['studentId'] = '';
+
+    if ($this->request->getQuery('per_student') != null) {
+
+      $per_student = $this->request->getQuery('per_student');
+      
+      $studentId = $this->Auth->user('studentId');
+
+      $conditions['studentId'] = "AND Assessment.student_id = $studentId";
+
+    }
+
+    $tmpData = $this->Assessments->getAllAssessmentPrint($conditions);
+
+    $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
+
+    require("wordwrap.php");
+    $pdf = new ConductPDF();
+    $pdf->SetMargins(10,10,10);
+    $pdf->SetFooter(true);
+    $pdf->footerSystem = true;
+    $pdf->AliasNbPages();
+    $pdf->AddPage("L", "legal", 0);
+    $pdf->Image($this->base .'/assets/img/zam.png',70,10,25,25);
+    $pdf->SetFont("Times", 'B', 12);
+    $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,strtoupper($this->Global->Settings('lgu_name')),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->SetFont("Times", '', 12);
+    $pdf->Cell(0,5,$this->Global->Settings('address'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('telephone'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->Cell(0,5,'PAYMENT MANAGEMENT',0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFillColor(217,237,247);
+    $pdf->Cell(15,5,'#',1,0,'C',1);
+    $pdf->Cell(30,5,'CONTROL NO.',1,0,'C',1);
+    $pdf->Cell(30,5,'STUDENT NO',1,0,'C',1);
+    $pdf->Cell(70,5,'STUDENT NAME',1,0,'C',1);
+    $pdf->Cell(45,5,'EMAIL',1,0,'C',1);
+    $pdf->Cell(40,5,'CONTACT NO.',1,0,'C',1);
+    $pdf->Cell(105,5,'PROGRAM',1,0,'C',1);
+    $pdf->Ln();
+    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetWidths(array(15,30,30,70,45,40,105));
+    $pdf->SetAligns(array('C','C','C','L','C','C','L'));
+
+    if(count($tmpData)>0){
+
+      foreach ($tmpData as $key => $data){ 
+
+        $pdf->RowLegalL(array(
+
+          $key + 1,
+
+          $data['code'],
+
+          $data['student_no'],
+
+          $data['student_name'],
+
+          $data['email'],
+
+          $data['contact_no'],
+
+          $data['program']
+        ));
+
+      }
+
+    }else{
+
+      $pdf->Cell(335,5,'No data available.',1,1,'C');
 
     }
 

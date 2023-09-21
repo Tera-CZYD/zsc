@@ -90,6 +90,10 @@ class StudentClearancesTable extends Table
 
         )
 
+      GROUP BY 
+
+        StudentClearance.code
+
       ORDER BY 
 
       StudentClearance.code DESC
@@ -164,7 +168,7 @@ class StudentClearancesTable extends Table
 
       GROUP BY 
 
-        StudentClearance.id
+        StudentClearance.code
 
       ORDER BY 
 
