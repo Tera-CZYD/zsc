@@ -1,5 +1,23 @@
-<?php if (hasAccess('course/index', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageViewSection', 'faculty student attendance/view section', currentUser);
+  handleAccess('pageViewStudent', 'faculty student attendance/view student', currentUser);
+
+</script>
+
+<div class="row" id="pageViewSection">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -33,7 +51,7 @@
               <tbody>
                 <tr ng-repeat="data in datas">
                   <td class="text-center">{{ $index + 1 }}</td>
-                  <td class="text-center"><a href="#/faculty/faculty-student-attendance/view-students/{{ data.section_id }}/{{data.course_id}}/{{data.faculty_id}}" class="mydata" style="color:black;">{{ data.section }} </a></td>
+                  <td id="pageViewStudent" class="text-center"><a href="#/faculty/faculty-student-attendance/view-students/{{ data.section_id }}/{{data.course_id}}/{{data.faculty_id}}" class="mydata" style="color:black;">{{ data.section }} </a></td>
                   <!-- <td>
                     <div class="btn-group btn-group-xs">
                       <?php if (hasAccess('course/view', $currentUser)): ?>
