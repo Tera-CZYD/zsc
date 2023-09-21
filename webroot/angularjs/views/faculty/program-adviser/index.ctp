@@ -273,7 +273,7 @@
                           </td> 
                         </tr>
                         <tr ng-show="datasPtc == null || datasPtc == ''">
-                          <td colspan="3">No available data</td>
+                          <td colspan="4">No available data</td>
                         </tr>
                       </tbody>
                     </table>
