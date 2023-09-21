@@ -35,7 +35,7 @@ class PrintController extends AppController {
 
     $this->ScholarshipName = TableRegistry::getTableLocator()->get('ScholarshipNames');
 
-    $this->ScholarshipApplication = TableRegistry::getTableLocator()->get('ScholarshipApplications');
+    $this->ScholarshipApplications = TableRegistry::getTableLocator()->get('ScholarshipApplications');
 
     $this->StudentEnrolledSchedules = TableRegistry::getTableLocator()->get('StudentEnrolledSchedules');
 
@@ -5212,45 +5212,45 @@ class PrintController extends AppController {
   
     // default page 1
 
-    $page = isset($this->request->query['page'])? $this->request->query['page'] : 1;
+    // $page = isset($this->request->query['page'])? $this->request->query['page'] : 1;
 
     // default conditions
 
-    $this->UserLog->recursive = 0;
+    $this->UserLogs->recursive = 0;
 
     $conditions = array();
 
     $conditions['search'] = '';
 
-    if (isset($this->request->query['search'])){
+    if ($this->request->getQuery('search')){
 
-      $search = $this->request->query['search'];
+      $search = $this->request->getQuery('search');
 
       $conditions['search'] = $search;
 
     }
 
-    $conditions['date'] = '';
+    // $conditions['date'] = '';
 
-    if (isset($this->request->query['date'])) {
+    // if (isset($this->request->query['date'])) {
 
-      $date = date('Y-m-d', strtotime($this->request->query['date']));
+    //   $date = date('Y-m-d', strtotime($this->request->query['date']));
 
-      $conditions['date'] = "AND DATE(UserLog.created) = '$date'"; 
+    //   $conditions['date'] = "AND DATE(UserLog.created) = '$date'"; 
 
-    }  
+    // }  
 
-    if (isset($this->request->query['startDate'])) {
+    // if (isset($this->request->query['startDate'])) {
 
-      $start = date('Y-m-d', strtotime($this->request->query['startDate'])); 
+    //   $start = date('Y-m-d', strtotime($this->request->query['startDate'])); 
 
-      $end = date('Y-m-d', strtotime($this->request->query['endDate']));
+    //   $end = date('Y-m-d', strtotime($this->request->query['endDate']));
 
-      $conditions['date'] = "AND DATE(UserLog.created) >= '$start' AND DATE(UserLog.created) <= '$end'";
+    //   $conditions['date'] = "AND DATE(UserLog.created) >= '$start' AND DATE(UserLog.created) <= '$end'";
 
-    }
+    // }
 
-    $tmpData = $this->UserLog->query($this->UserLog->getAllLogs($conditions));
+    $tmpData = $this->UserLogs->getAllUserLogPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -5291,29 +5291,25 @@ class PrintController extends AppController {
     $pdf->SetWidths(array(10,35,35,30,25,60));
     $pdf->SetAligns(array('C','C','C','C','C','L'));
 
-    if(!empty($tmpData)){
+    if(count($tmpData) > 0){
 
       $count = 0;
 
       foreach ($tmpData as $key => $data){
 
-        $tmp = $data['UserLog'];
-
-        $user = $data['User'];
-
         $pdf->Row2(array(
 
           $key + 1,
 
-          date('M d, Y h:i:s A', strtotime($tmp['created'])),
+          date('M d, Y h:i:s A', strtotime($data['created'])),
 
-          strtoupper($user['first_name'].' '.$user['middle_name'].' '.$user['last_name']),
+          strtoupper($data['full_name']),
 
-          strtoupper($tmp['action']),
+          strtoupper($data['action']),
 
-          strtoupper($tmp['code']),
+          strtoupper($data['code']),
 
-          strtoupper($tmp['description']),
+          strtoupper($data['description']),
 
         ));
 
@@ -5328,7 +5324,7 @@ class PrintController extends AppController {
     $pdf->Ln(10);
     $pdf->SetFont("Times", 'B', 10);
     $pdf->Cell(23,5,'Prepared By:',0,0,'L');
-    $pdf->Cell(165,5,$this->Session->read('Auth.User.name'),0,0,'L');
+    // $pdf->Cell(165,5,$this->Session->read('Auth.User.name'),0,0,'L');
 
     $pdf->output();
     exit();
@@ -15404,8 +15400,13 @@ class PrintController extends AppController {
     $pdf->footerSystem = true;
     $pdf->AliasNbPages();
     $pdf->AddPage("P", "legal", 0);
+<<<<<<< HEAD
     $pdf->Image($this->base .'/assets/img/zam.png',10,10,20,20);
     $pdf->SetFont("Times", 'B', 12);
+=======
+    $pdf->Image($this->base .'/assets/img/zam.png',15,10,25,25);
+    $pdf->SetFont("Times", 'B', 10);
+>>>>>>> fc3e8e3c3419d372f0d38482c2ff28ea416ade1d
     $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
     $pdf->Ln(5);
     $pdf->Cell(0,5,strtoupper($this->Global->Settings('lgu_name')),0,0,'C');
@@ -15443,8 +15444,8 @@ class PrintController extends AppController {
           $data['student_no'],
 
           $data['full_name'],
-
-          $data['application_date'],
+          
+          fdate($data['application_date'],'m/d/Y'), 
 
           $data['email']
 
@@ -17556,7 +17557,7 @@ class PrintController extends AppController {
 
     $office_reference = $this->Global->OfficeReference('Scholarship Application');
 
-    $data['ScholarshipApplication'] = $this->ScholarshipApplication->find()
+    $data['ScholarshipApplication'] = $this->ScholarshipApplications->find()
 
     ->contain([
 
@@ -18702,7 +18703,7 @@ class PrintController extends AppController {
     $pdf->footerSystem = true;
     $pdf->AliasNbPages();
     $pdf->AddPage("P", "legal", 0);
-    // $pdf->Image($this->base .'/assets/img/zam.png',6,10,25,25);
+    $pdf->Image($this->base .'/assets/img/zam.png',6,10,25,25);
     $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
     $pdf->Ln(5);
@@ -20066,10 +20067,10 @@ class PrintController extends AppController {
     $pdf->SetMargins(5, 9, 5);
     $pdf->AddPage("P", "Legal", 0);
     $pdf->SetAutoPageBreak(false);
-    // $pdf->Image($this->base . '/assets/img/zam.png', 6.5, 22,35, 35);
+    $pdf->Image($this->base . '/assets/img/zam.png', 6.5, 22,35, 35);
     $pdf->SetFont("Times", '', 12);
     $pdf->Cell(0, 5, 'ZSCMST-OCR 3.10.I-I5', 0, 0, 'L');
-    // $pdf->Image($this->base . '/assets/img/iso.png', 182, 13, 18, 21);
+    $pdf->Image($this->base . '/assets/img/iso.png', 182, 13, 18, 21);
     $pdf->SetFont("Times", '', 10);
     $pdf->Ln(5);
     $pdf->Cell(-7);
@@ -20286,7 +20287,7 @@ class PrintController extends AppController {
     $pdf->Line(45, $pdf->getY(), 150, $pdf->getY());
     $pdf->SetFont("Times", '', 10);
     $pdf->Cell(25, 5, '(NOT VALID WITHOUT COLLEGE SEAL)', 0, 0, 'L');
-    // $pdf->Image($this->base . '/assets/img/zscmst-qr.png', 160, 325,25, 25);
+    $pdf->Image($this->base . '/assets/img/zscmst-qr.png', 160, 325,25, 25);
     $pdf->Ln(13);
     $pdf->SetFont("Times", '', 11);
     $pdf->Line(20, $pdf->getY(),60, $pdf->getY());

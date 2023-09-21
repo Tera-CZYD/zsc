@@ -17,7 +17,7 @@ class UserLogsController extends AppController {
     
     $this->loadComponent('RequestHandler');
 
-    $this->UserLogs = TableRegistry::getTableLocator()->get('UserLogs');
+    $this->UserLogs = TableRegistry::getTableLocator()->get('UserLogs'); 
 
   }
 
@@ -38,6 +38,8 @@ class UserLogsController extends AppController {
       $search = strtolower($search);
 
       $conditions['search'] = $search;
+
+      $conditionsPrint .= '&search='.$search;
 
     }
 
@@ -111,12 +113,6 @@ class UserLogsController extends AppController {
 
           'description' => $userLog['description'],
 
-          'remarks'     => $userLog['remarks'],
-
-          'accounting_entry_id' => $userLog['accounting_entry_id'],
-
-          'member_id'    => $userLog['member_id'],
-
           'created_tmp'  => date('M d, Y h:i:s A', strtotime($userLog['created']))
 
         );
@@ -130,6 +126,8 @@ class UserLogsController extends AppController {
       'data' => $datas,
 
       'paginator' => $paginator,
+
+      'conditionsPrint' => $conditionsPrint
 
     ];
 
