@@ -15,8 +15,6 @@ class CoursesController extends AppController {
 
     parent::initialize();
 
-    $this->loadComponent('Paginator');
-
     $this->loadComponent('RequestHandler');
 
     $this->Courses = TableRegistry::getTableLocator()->get('Courses');

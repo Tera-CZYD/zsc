@@ -49,6 +49,10 @@ class PrintController extends AppController {
 
     $this->loadModel('Students');
 
+    $this->loadModel('ClassSchedules');
+
+    $this->loadModel('BlockSections');
+
     $this->loadModel('ApartelleStudentClearances');
 
     $this->loadModel('Assessments');
@@ -11855,15 +11859,15 @@ class PrintController extends AppController {
 
   }
 
-  public function class_schedule(){
+  public function classSchedule(){
     
     $conditions = array();
   
     $conditions['search'] = '';
   
-    if(isset($this->request->query['search'])){
+    if($this->request->getQuery('search')){
   
-      $search = $this->request->query['search'];
+      $search = $this->request->getQuery('search');
   
       $search = strtolower($search);
   
@@ -11873,9 +11877,9 @@ class PrintController extends AppController {
 
     $conditions['date'] = '';
 
-    if (isset($this->request->query['date'])) {
+    if ($this->request->getQuery('date')) {
 
-      $search_date = $this->request->query['date'];
+      $search_date = $this->request->getQuery('date');
 
       $conditions['date'] = " AND DATE(ClassSchedule.created) = '$search_date'"; 
 
@@ -11885,11 +11889,11 @@ class PrintController extends AppController {
 
     //advance search
 
-    if (isset($this->request->query['startDate'])) {
+    if ($this->request->getQuery('startDate')) {
 
-      $start = $this->request->query['startDate']; 
+      $start = $this->request->getQuery('startDate'); 
 
-      $end = $this->request->query['endDate'];
+      $end = $this->request->getQuery('endDate');
 
       $conditions['date'] = " AND DATE(ClassSchedule.created) >= '$start' AND DATE(ClassSchedule.created) <= '$end'";
 
@@ -11899,7 +11903,7 @@ class PrintController extends AppController {
 
     }
   
-    $tmpData = $this->ClassSchedule->query($this->ClassSchedule->getAllClassSchedule($conditions));
+    $tmpData = $this->ClassSchedules->getAllClassSchedulePrint($conditions);
   
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
     require("wordwrap.php");
@@ -11939,27 +11943,25 @@ class PrintController extends AppController {
     $pdf->SetWidths(array(10,25,70,80,80,40,40));
     $pdf->SetAligns(array('C','C','L','L','L','C','C'));
     $conditions = array();
-    if(!empty($tmpData)){
+    if(count($tmpData)>0){
   
       foreach ($tmpData as $key => $data){
-    
-        $tmp = $data['ClassSchedule'];
     
         $pdf->RowLegalL(array(
     
           $key + 1,
     
-          $tmp['code'],
+          $data['code'],
     
-          strtoupper($tmp['faculty_name']),
+          strtoupper($data['faculty_name']),
     
-          $tmp['college'],
+          $data['college'],
 
-          $tmp['program'],
+          $data['program'],
   
-          $tmp['description'],
+          $data['description'],
 
-          $tmp['school_year_start'].' - '.$tmp['school_year_end'],
+          $data['school_year_start'].' - '.$data['school_year_end'],
 
         ));
   
@@ -29993,15 +29995,15 @@ EQUIVALENT',1,'C',0);
 
   }
 
-  public function block_sections(){
+  public function blockSections(){
     
     $conditions = array();
   
     $conditions['search'] = '';
   
-    if(isset($this->request->query['search'])){
+    if($this->request->getQuery('search')){
 
-      $search = $this->request->query['search'];
+      $search = $this->request->getQuery('search');
 
       $search = strtolower($search);
 
@@ -30011,9 +30013,9 @@ EQUIVALENT',1,'C',0);
 
     $conditions['college_id'] = '';
 
-    if (isset($this->request->query['college_id'])) {
+    if ($this->request->getQuery('college_id')) {
 
-      $college_id = $this->request->query['college_id'];
+      $college_id = $this->request->getQuery('college_id');
 
       $conditions['college_id'] = "AND BlockSection.college_id = $college_id";
 
@@ -30021,9 +30023,9 @@ EQUIVALENT',1,'C',0);
 
     $conditions['program_id'] = '';
 
-    if (isset($this->request->query['program_id'])) {
+    if ($this->request->getQuery('program_id')) {
 
-      $program_id = $this->request->query['program_id'];
+      $program_id = $this->request->getQuery('program_id');
 
       $conditions['program_id'] = "AND BlockSection.program_id = $program_id"; 
 
@@ -30031,15 +30033,15 @@ EQUIVALENT',1,'C',0);
 
     $conditions['year_term_id'] = '';
 
-    if (isset($this->request->query['year_term_id'])) {
+    if ($this->request->getQuery('year_term_id')) {
 
-      $year_term_id = $this->request->query['year_term_id'];
+      $year_term_id = $this->request->getQuery('year_term_id');
 
       $conditions['year_term_id'] = "AND BlockSection.year_term_id = $year_term_id";
 
     }
   
-    $tmpData = $this->BlockSection->query($this->BlockSection->getAllBlockSection($conditions));
+    $tmpData = $this->BlockSections->getAllBlockSectionPrint($conditions);
   
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
     require("wordwrap.php");
@@ -30082,21 +30084,19 @@ EQUIVALENT',1,'C',0);
   
       foreach ($tmpData as $key => $data){
     
-        $tmp = $data['BlockSection'];
-    
         $pdf->RowLegalL(array(
     
           $key + 1,
     
-          $tmp['code'],
+          $data['code'],
     
-          $tmp['college'],
+          $data['college'],
 
-          $tmp['program'],
+          $data['program'],
   
-          $tmp['description'],
+          $data['description'],
 
-          $tmp['school_year_start'].' - '.$tmp['school_year_end'],
+          $data['school_year_start'].' - '.$data['school_year_end'],
 
         ));
   
