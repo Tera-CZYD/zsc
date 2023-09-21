@@ -57,78 +57,58 @@ app.controller('UserLogController', function($scope, UserLog, Select) {
   }
 
   $scope.searchy = function(search) {
-    
-    search = typeof search !== 'undefined' ?  search : '';
 
-    $scope.searchTxts = search;
+    search = typeof search !== 'undefined' ? search : '';
 
     if (search.length > 0){
 
       $scope.load({
 
-        search    : search,
-
-        date      : $scope.dateToday,
-
-        startDate : $scope.startDate,
-
-        endDate   : $scope.endDate
+        search: search
 
       });
 
     }else{
 
-      $scope.load({
-
-        date      : $scope.dateToday,
-
-        startDate : $scope.startDate,
-
-        endDate   : $scope.endDate
-
-      });
+      $scope.load();
     
     }
-  
+
   }
 
-  $scope.advanceSearch = false;
-  
-  $scope.advance_search = function() {
-  
+  $scope.selectedFilter = 'date';
+
+  $scope.changeFilter = function(type){
+
     $scope.search = {};
- 
-    $scope.advanceSearch = false;
- 
+
+    $scope.selectedFilter = type;
+
     $('.monthpicker').datepicker({format: 'MM', autoclose: true, minViewMode: 'months',maxViewMode:'months'});
  
-    $('.input-daterange').datepicker({format: 'mm/dd/yyyy'});
+    $('.input-daterange').datepicker({
+ 
+      format: 'mm/dd/yyyy'
 
-    $('#advance-search-modal').modal('show');
+    });
 
   }
 
   $scope.searchFilter = function(search) {
-  
-    $scope.filter = false;
    
-    $scope.advanceSearch = true;
-   
+    $scope.searchTxt = '';
+
     $scope.dateToday = null;
    
     $scope.startDate = null;
    
     $scope.endDate = null;
 
-    if (search.filterBy == 'today') {
-     
-      $scope.dateToday = Date.parse($scope.today).toString('yyyy-MM-dd');
-  
-    }else if (search.filterBy == 'date') {
+    if ($scope.selectedFilter == 'date') {
     
       $scope.dateToday = Date.parse(search.date).toString('yyyy-MM-dd');
-
-    }else if (search.filterBy == 'month') {
+   
+    }else if ($scope.selectedFilter == 'month') {
    
       date = $('.monthpicker').datepicker('getDate');
    
@@ -144,41 +124,23 @@ app.controller('UserLogController', function($scope, UserLog, Select) {
       
       $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
     
-    }else if (search.filterBy == 'this-month') {
-      
-      date = new Date();
-      
-      year = date.getFullYear();
-      
-      month = date.getMonth() + 1;
-      
-      lastDay = new Date(year, month, 0);
-
-      if (month < 10) month = '0' + month;
-      
-      $scope.startDate = year + '-' + month + '-01';
-      
-      $scope.endDate = year + '-' + month + '-' + lastDay.getDate();
-   
-    }else if (search.filterBy == 'custom-range') { 
+    }else if ($scope.selectedFilter == 'customRange') {
     
       $scope.startDate = Date.parse(search.startDate).toString('yyyy-MM-dd');
-
+    
       $scope.endDate = Date.parse(search.endDate).toString('yyyy-MM-dd');
     
     }
 
     $scope.load({
 
-      date : $scope.dateToday,
+      date         : $scope.dateToday,
 
-      startDate : $scope.startDate,
+      startDate    : $scope.startDate,
 
-      endDate : $scope.endDate
+      endDate      : $scope.endDate
 
     });
-
-    $('#advance-search-modal').modal('hide');
   
   } 
 
