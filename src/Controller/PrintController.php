@@ -35,7 +35,7 @@ class PrintController extends AppController {
 
     $this->ScholarshipName = TableRegistry::getTableLocator()->get('ScholarshipNames');
 
-    $this->ScholarshipApplication = TableRegistry::getTableLocator()->get('ScholarshipApplications');
+    $this->ScholarshipApplications = TableRegistry::getTableLocator()->get('ScholarshipApplications');
 
     $this->StudentEnrolledSchedules = TableRegistry::getTableLocator()->get('StudentEnrolledSchedules');
 
@@ -15387,8 +15387,8 @@ class PrintController extends AppController {
     $pdf->footerSystem = true;
     $pdf->AliasNbPages();
     $pdf->AddPage("P", "legal", 0);
-    $pdf->Image($this->base .'/assets/img/zam.png',70,10,25,25);
-    $pdf->SetFont("Times", 'B', 12);
+    $pdf->Image($this->base .'/assets/img/zam.png',15,10,25,25);
+    $pdf->SetFont("Times", 'B', 10);
     $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
     $pdf->Ln(5);
     $pdf->Cell(0,5,strtoupper($this->Global->Settings('lgu_name')),0,0,'C');
@@ -15426,8 +15426,8 @@ class PrintController extends AppController {
           $data['student_no'],
 
           $data['full_name'],
-
-          $data['application_date'],
+          
+          fdate($data['application_date'],'m/d/Y'), 
 
           $data['email']
 
@@ -17436,7 +17436,7 @@ class PrintController extends AppController {
 
     }
     
-    $tmpData = $this->StudentApplications->getAllScholarshipApplicationPrint($conditions);
+    $tmpData = $this->ScholarshipApplications->getAllScholarshipApplicationPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -17539,7 +17539,7 @@ class PrintController extends AppController {
 
     $office_reference = $this->Global->OfficeReference('Scholarship Application');
 
-    $data['ScholarshipApplication'] = $this->ScholarshipApplication->find()
+    $data['ScholarshipApplication'] = $this->ScholarshipApplications->find()
 
     ->contain([
 
@@ -18685,7 +18685,7 @@ class PrintController extends AppController {
     $pdf->footerSystem = true;
     $pdf->AliasNbPages();
     $pdf->AddPage("P", "legal", 0);
-    // $pdf->Image($this->base .'/assets/img/zam.png',6,10,25,25);
+    $pdf->Image($this->base .'/assets/img/zam.png',6,10,25,25);
     $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
     $pdf->Ln(5);
@@ -20049,10 +20049,10 @@ class PrintController extends AppController {
     $pdf->SetMargins(5, 9, 5);
     $pdf->AddPage("P", "Legal", 0);
     $pdf->SetAutoPageBreak(false);
-    // $pdf->Image($this->base . '/assets/img/zam.png', 6.5, 22,35, 35);
+    $pdf->Image($this->base . '/assets/img/zam.png', 6.5, 22,35, 35);
     $pdf->SetFont("Times", '', 12);
     $pdf->Cell(0, 5, 'ZSCMST-OCR 3.10.I-I5', 0, 0, 'L');
-    // $pdf->Image($this->base . '/assets/img/iso.png', 182, 13, 18, 21);
+    $pdf->Image($this->base . '/assets/img/iso.png', 182, 13, 18, 21);
     $pdf->SetFont("Times", '', 10);
     $pdf->Ln(5);
     $pdf->Cell(-7);
@@ -20269,7 +20269,7 @@ class PrintController extends AppController {
     $pdf->Line(45, $pdf->getY(), 150, $pdf->getY());
     $pdf->SetFont("Times", '', 10);
     $pdf->Cell(25, 5, '(NOT VALID WITHOUT COLLEGE SEAL)', 0, 0, 'L');
-    // $pdf->Image($this->base . '/assets/img/zscmst-qr.png', 160, 325,25, 25);
+    $pdf->Image($this->base . '/assets/img/zscmst-qr.png', 160, 325,25, 25);
     $pdf->Ln(13);
     $pdf->SetFont("Times", '', 11);
     $pdf->Line(20, $pdf->getY(),60, $pdf->getY());

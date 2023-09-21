@@ -31,18 +31,18 @@
               </div>
             </div>
             
-            <div class="col-md-6">
-              <div class="form-group"> 
+            <div class="col-md-6" ng-show="data.ClassSchedule.faculty_check != true">
+              <div class="form-group">
                 <label> SEARCH FACULTY </label><label style="font-size:10px;color:gray;" class="pull-right">Press Enter to search</label>
                 <input type="text" class="form-control search uppercase" placeholder="TYPE EMPLOYEE HERE" ng-model="searchTxtFaculty" ng-enter="searchEmployee({ search: searchTxtFaculty })">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label> FACULTY </label>
-                <label style="font-size:10px;color:gray;" class="pull-right"><input icheck type="checkbox" id="checkbox" class="form-control" autocomplete="false" ng-model="data.ClassSchedule.faculty_check">  No assigned faculty as for now </label>
+                <label ng-show="data.ClassSchedule.faculty_check != true"> FACULTY </label>
+                <label style="font-size:10px;color:gray;" class="pull-right"><input icheck type="checkbox" id="checkbox" class="form-control pull-right" autocomplete="false" ng-model="data.ClassSchedule.faculty_check">  No assigned faculty as for now </label>
                 <table class="table table-bordered">
-                  <tr>
+                  <tr ng-show="data.ClassSchedule.faculty_check != true">
                     <td style="{{ data.ClassSchedule.faculty_name == undefined ? 'padding:15px':'padding:5px !important'}}" class="uppercase">{{ data.ClassSchedule.faculty_name }}</td>
                     <td style="{{ data.ClassSchedule.faculty_name == undefined ? 'padding:15px':'padding:5px !important'}}" class="w30px" ng-hide="data.ClassSchedule.faculty_name == undefined">
                       <button class="btn btn-xs btn-sm  btn-danger" ng-click="data.ClassSchedule.faculty_name = null; data.ClassSchedule.faculty_id = null;" ng-init="data.ClassSchedule.faculty_id = null"><i class="fa fa-times"></i></button>
