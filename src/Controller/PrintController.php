@@ -5202,45 +5202,45 @@ class PrintController extends AppController {
   
     // default page 1
 
-    $page = isset($this->request->query['page'])? $this->request->query['page'] : 1;
+    // $page = isset($this->request->query['page'])? $this->request->query['page'] : 1;
 
     // default conditions
 
-    $this->UserLog->recursive = 0;
+    $this->UserLogs->recursive = 0;
 
     $conditions = array();
 
     $conditions['search'] = '';
 
-    if (isset($this->request->query['search'])){
+    if ($this->request->getQuery('search')){
 
-      $search = $this->request->query['search'];
+      $search = $this->request->getQuery('search');
 
       $conditions['search'] = $search;
 
     }
 
-    $conditions['date'] = '';
+    // $conditions['date'] = '';
 
-    if (isset($this->request->query['date'])) {
+    // if (isset($this->request->query['date'])) {
 
-      $date = date('Y-m-d', strtotime($this->request->query['date']));
+    //   $date = date('Y-m-d', strtotime($this->request->query['date']));
 
-      $conditions['date'] = "AND DATE(UserLog.created) = '$date'"; 
+    //   $conditions['date'] = "AND DATE(UserLog.created) = '$date'"; 
 
-    }  
+    // }  
 
-    if (isset($this->request->query['startDate'])) {
+    // if (isset($this->request->query['startDate'])) {
 
-      $start = date('Y-m-d', strtotime($this->request->query['startDate'])); 
+    //   $start = date('Y-m-d', strtotime($this->request->query['startDate'])); 
 
-      $end = date('Y-m-d', strtotime($this->request->query['endDate']));
+    //   $end = date('Y-m-d', strtotime($this->request->query['endDate']));
 
-      $conditions['date'] = "AND DATE(UserLog.created) >= '$start' AND DATE(UserLog.created) <= '$end'";
+    //   $conditions['date'] = "AND DATE(UserLog.created) >= '$start' AND DATE(UserLog.created) <= '$end'";
 
-    }
+    // }
 
-    $tmpData = $this->UserLog->query($this->UserLog->getAllLogs($conditions));
+    $tmpData = $this->UserLogs->getAllUserLogPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -5281,29 +5281,25 @@ class PrintController extends AppController {
     $pdf->SetWidths(array(10,35,35,30,25,60));
     $pdf->SetAligns(array('C','C','C','C','C','L'));
 
-    if(!empty($tmpData)){
+    if(count($tmpData) > 0){
 
       $count = 0;
 
       foreach ($tmpData as $key => $data){
 
-        $tmp = $data['UserLog'];
-
-        $user = $data['User'];
-
         $pdf->Row2(array(
 
           $key + 1,
 
-          date('M d, Y h:i:s A', strtotime($tmp['created'])),
+          date('M d, Y h:i:s A', strtotime($data['created'])),
 
-          strtoupper($user['first_name'].' '.$user['middle_name'].' '.$user['last_name']),
+          strtoupper($data['full_name']),
 
-          strtoupper($tmp['action']),
+          strtoupper($data['action']),
 
-          strtoupper($tmp['code']),
+          strtoupper($data['code']),
 
-          strtoupper($tmp['description']),
+          strtoupper($data['description']),
 
         ));
 
@@ -5318,7 +5314,7 @@ class PrintController extends AppController {
     $pdf->Ln(10);
     $pdf->SetFont("Times", 'B', 10);
     $pdf->Cell(23,5,'Prepared By:',0,0,'L');
-    $pdf->Cell(165,5,$this->Session->read('Auth.User.name'),0,0,'L');
+    // $pdf->Cell(165,5,$this->Session->read('Auth.User.name'),0,0,'L');
 
     $pdf->output();
     exit();
