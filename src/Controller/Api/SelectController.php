@@ -2860,7 +2860,9 @@ class SelectController extends AppController {
 
           BlockSection.program_id = $program_id AND           
 
-          BlockSectionCourse.visible = true AND 
+          BlockSectionCourse.visible = true AND
+
+          BlockSectionCourse.ptc = false AND 
 
           BlockSectionCourse.slot - IFNULL(BlockSectionCourse.enrolled_students,0) > 0
 
