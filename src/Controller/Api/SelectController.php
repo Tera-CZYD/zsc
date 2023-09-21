@@ -148,6 +148,13 @@ class SelectController extends AppController {
 
     $this->IllnessRecommendationSubs = TableRegistry::getTableLocator()->get('IllnessRecommendationSubs');
 
+    $this->BlockSections = TableRegistry::getTableLocator()->get('BlockSections');
+
+    $this->BlockSectionCourses = TableRegistry::getTableLocator()->get('BlockSectionCourses');
+
+    $this->BlockSectionSchedules = TableRegistry::getTableLocator()->get('BlockSectionSchedules');
+
+    $this->Ptcs = TableRegistry::getTableLocator()->get('Ptcs');
 
     //sir leo
 
@@ -2794,6 +2801,222 @@ class SelectController extends AppController {
       }else{
 
         $datas = 1;
+
+      }
+
+    } else if ($code == 'list-available-courses') {
+
+      $user = $this->Auth->user();
+
+      $student_data = $this->Students->get($user['studentId']);
+
+      $year_term_id = $student_data['year_term_id'];
+
+      $college_id = $student_data['college_id'];
+
+      $program_id = $student_data['program_id'];
+
+      $tmp = "
+
+        SELECT 
+
+          BlockSection.id,
+
+          BlockSection.section_id,
+
+          BlockSection.section,
+
+          BlockSectionCourse.id as block_section_course_id,
+
+          BlockSectionCourse.course_id,
+
+          BlockSectionCourse.course_code,
+
+          BlockSectionCourse.faculty_id,
+
+          BlockSectionCourse.faculty_name,
+
+          BlockSectionCourse.course,
+
+          BlockSectionCourse.slot - IFNULL(BlockSectionCourse.enrolled_students,0) as slot,
+
+          BlockSectionCourse.room,
+
+          BlockSectionCourse.room_id
+
+        FROM  
+       
+          block_sections as BlockSection LEFT JOIN
+
+          block_section_courses as BlockSectionCourse ON BlockSectionCourse.block_section_id = BlockSection.id
+
+        WHERE 
+
+          BlockSection.visible = true AND 
+
+          BlockSection.year_term_id = $year_term_id AND 
+
+          BlockSection.college_id = $college_id AND 
+
+          BlockSection.program_id = $program_id AND           
+
+          BlockSectionCourse.visible = true AND
+
+          BlockSectionCourse.ptc = false AND 
+
+          BlockSectionCourse.slot - IFNULL(BlockSectionCourse.enrolled_students,0) > 0
+
+        ORDER BY 
+
+          BlockSection.section ASC,
+
+          BlockSectionCourse.course DESC
+
+      ";
+
+      $connection = $this->BlockSections->getConnection();
+
+      $result = $connection->execute($tmp)->fetchAll('assoc');
+
+      if(!empty($result)){
+
+        foreach ($result as $k => $data) {
+
+          $schedules = $this->BlockSectionSchedules->find()
+
+            ->where([
+
+              'visible' => 1,
+
+              'block_section_course_id' => $data['block_section_course_id'],
+
+            ])
+
+            // ->order([
+
+            //   $this->BlockSectionSchedules->func()->field('DAY', 'day') => 'ASC',
+
+            // ])
+
+          ->all();
+
+          if(count($schedules) > 0){
+
+            $course = $this->Courses->find()
+
+              ->where([
+
+                'id' => $data['course_id'],
+
+                'visible' => 1
+
+              ])
+
+            ->first();
+
+            $datas[] = array(
+
+              'id'                       => $data['id'],
+
+              'section_id'               => $data['section_id'],
+
+              'section'                  => $data['section'],
+
+              'block_section_course_id'  => $data['block_section_course_id'],
+
+              'course_id'                => $data['course_id'],
+
+              'course_code'              => $data['course_code'],
+
+              'course'                   => $data['course'],
+
+              'slot'                     => $data['slot'],
+
+              'faculty_id'               => $data['faculty_id'],
+
+              'faculty_name'             => $data['faculty_name'],
+
+              'room_id'                  => $data['room_id'],
+
+              'room'                     => $data['room'],
+
+              'lecture_unit'             => $course['lecture_unit'],
+
+              'lecture_hours'            => $course['lecture_hours'],
+
+              'laboratory_unit'          => $course['laboratory_unit'],
+
+              'laboratory_hours'         => $course['laboratory_hours'],
+
+              'credit_unit'              => $course['credit_unit'],
+
+              'schedules'                => $schedules
+
+            );
+
+          }
+
+        }
+
+      }
+
+    } else if ($code == 'ptc-code'){
+
+      $tmp = $this->Ptcs->find()->where([
+
+        "visible" => 1,
+
+      ])->count();
+   
+      $datas = 'PTC-' . str_pad($tmp + 1, 5, "0", STR_PAD_LEFT);
+
+    } else if ($code == 'ptc-block-section') {
+
+      $ptc_block_section = $this->BlockSections->find()
+
+        ->where([
+
+          'visible' => 1
+
+        ])
+
+      ->all();
+
+      if(count($ptc_block_section) > 0){
+
+        foreach ($ptc_block_section as $k => $data) {
+
+          $ptc_count = $this->BlockSectionCourses->find()
+
+            ->where([
+
+              'visible' => 1,
+
+              'block_section_id' => $data['id'],
+
+              'ptc' => 1
+
+            ])
+
+          ->count();
+
+          if($ptc_count > 0){
+
+            $datas[] = array(
+
+              'id'     => $data['id'],
+
+              'value'  => $data['code'].' - '.$data['section'],
+
+              'section_id'  => $data['section_id'],
+
+              'section'  => $data['section'],
+
+            );
+
+          }
+
+        }
 
       }
 

@@ -74,6 +74,10 @@
               <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
               
                 <button id="pagePrint" ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
+<<<<<<< HEAD
+              
+=======
+>>>>>>> fc3e8e3c3419d372f0d38482c2ff28ea416ade1d
               <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
               <button type="button" class="btn btn-primary  btn-min" ng-click="export()"><i class="fa fa-refresh"></i> EXPORT </button>
             </div>

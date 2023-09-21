@@ -148,7 +148,7 @@
                       <?php if (hasAccess('adding dropping subject management/print', $currentUser)): ?>
                         <button ng-click="printApproved()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
                       <?php endif ?>
-                      <button ng-click="printApproved()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                      <button ng-click="printApproved()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
                     <div class="col-md-4 col-xs-12 pull-right">

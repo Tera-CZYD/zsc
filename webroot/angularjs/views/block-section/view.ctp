@@ -70,6 +70,7 @@
                     <th class="text-center"> FACULTY </th>
                     <th class="text-center"> ROOM </th>
                     <th class="text-center"> SLOT </th>
+                    <th class="text-center"> PTC </th>
                     <th class="text-center"></th>
                   </tr>
                 </thead>
@@ -80,6 +81,7 @@
                     <td class="text-left uppercase">{{ subs.faculty_name }}</td>
                     <td class="text-center uppercase">{{ subs.room }}</td>
                     <td class="text-center uppercase">{{ subs.slot }}</td>
+                    <td class="text-center uppercase">{{ subs.ptc == 1 ? 'YES' : 'NO' }}</td>
                     <td class="text-center uppercase">
                       <button class="btn btn-primary btn-min" ng-click="addCourse()"><i class="fa fa-plus"></i> ADD FACULTY </button>
                     </td>
