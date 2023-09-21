@@ -6,15 +6,9 @@ app.config(function($routeProvider) {
 
     templateUrl: tmp + 'enrollment__index',
 
+    templateUrl: 'angularjs/views/enrollment/index.ctp',
+
     controller: 'EnrollmentController',
-
-  })
-
-  .when('/enrollment/add/:id', {
-
-    templateUrl: tmp + 'enrollment__add',
-
-    controller: 'EnrollmentAddController',
 
   });
 

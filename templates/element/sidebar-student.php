@@ -144,3 +144,28 @@
     <!-- /sidebar menu -->
   </div>
 </div>
+
+<script type="text/javascript">
+  function showModal(){
+    $("#promptModal").modal('show');
+  }
+</script>
+
+<div class="modal fade" id="promptModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title uppercase"> Come back later </h5>
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12">
+          <img src="<?php echo $base ?>/assets/img/come_back_later.png" width="100%">
+        </div>
+        <div class="col-md-12">
+          <p>You have already enrolled for this semester.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

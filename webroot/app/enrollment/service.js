@@ -1,6 +1,10 @@
- app.factory("StudentEnrollment", function($resource) {
+ app.factory("StudentEnrollment", function($resource, $http) {
 
-  return $resource( api + "student_enrollments/:id", { id: '@id', search: '@search' }, {
+  var csrfToken = angular.element(document.querySelector('meta[name="csrf-token"]')).attr('content');
+  
+  $http.defaults.headers.common['X-CSRF-Token'] = csrfToken;
+
+  return $resource( api + "student-enrollments/:id", { id: '@id', search: '@search' }, {
 
     query: { method: 'GET', isArray: false },
 

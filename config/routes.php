@@ -175,6 +175,7 @@
 
       $routes->resources('Tors');
 
+      $routes->resources('Ptcs');
 
       //sir leo
 
