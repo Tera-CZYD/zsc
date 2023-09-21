@@ -26,9 +26,15 @@
 
       SELECT
 
-        UserLog.*,
+        UserLog.action,
 
-        User.*,
+        UserLog.description,
+
+        UserLog.code,
+
+        UserLog.id,
+
+        UserLog.created,
 
         CONCAT(User.last_name, ', ', User.first_name,'', IFNULL(CONCAT(' ',User.middle_name), '')) as full_name
 
@@ -63,6 +69,14 @@
       ORDER BY 
 
         UserLog.created DESC
+
+      LIMIT
+
+        $limit
+        
+      OFFSET
+
+       $offset 
         
     ";
 
@@ -84,33 +98,49 @@
 
       SELECT
 
-        Apartelle.*
+        UserLog.action,
+
+        UserLog.description,
+
+        UserLog.code,
+
+        UserLog.id,
+
+        UserLog.created,
+
+        CONCAT(User.last_name, ', ', User.first_name,'', IFNULL(CONCAT(' ',User.middle_name), '')) as full_name
 
       FROM
 
-        apartelles as Apartelle 
+        user_logs as UserLog LEFT JOIN
+
+        users as User ON User.id = UserLog.userId
 
       WHERE
 
-        Apartelle.visible = true $date AND
+        User.visible = true $date AND
+
+        UserLog.visible = true AND
 
         (
- 
-          Apartelle.code LIKE  '%$search%' OR
 
-          Apartelle.building_no LIKE  '%$search%' OR
+          User.last_name          LIKE  '%$search%' OR 
 
-          Apartelle.room_no LIKE  '%$search%' OR
+          User.first_name         LIKE  '%$search%' OR 
 
-          Apartelle.description LIKE  '%$search%' OR
+          UserLog.action      LIKE  '%$search%' OR 
 
-          Apartelle.capacity LIKE  '%$search%' 
+          UserLog.description LIKE  '%$search%' OR 
+
+          UserLog.code        LIKE  '%$search%' OR 
+
+          UserLog.created     LIKE  '%$search%'
 
         )
 
       ORDER BY 
 
-        Apartelle.code DESC
+        UserLog.created DESC
         
     ";
 
