@@ -1,5 +1,25 @@
-<?php if (hasAccess('transcript of records/view', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'transcript of records/view', currentUser);
+  handleAccess('pageEdit', 'transcript of records/edit', currentUser);
+  handleAccess('pageDelete', 'transcript of records/delete', currentUser);
+  handleAccess('pagePrintForm', 'transcript of records/print tor', currentUser);
+
+</script>
+
+<div class="row" id="pageView">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -30,9 +50,7 @@
           </div>
 
           <div class="col-md-12">
-            <?php if (hasAccess('transcript of records/print tor', $currentUser)): ?>
-              <button type="button" class="btn btn-info  btn-min" ng-click="print(data.Student.id )"><i class="fa fa-print"></i> PRINT TOR </button>
-             <?php endif ?>
+              <button id="pagePrintForm" type="button" class="btn btn-info  btn-min" ng-click="print(data.Student.id )"><i class="fa fa-print"></i> PRINT TOR </button>
           </div>
 
           <div class="col-md-12">
@@ -87,7 +105,6 @@
     </div>
   </div>
 </div>
-<?php endif ?>
 <style type="text/css">
   th {
     white-space: nowrap;
