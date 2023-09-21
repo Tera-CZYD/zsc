@@ -14,8 +14,6 @@ class RegisteredStudentsController extends AppController {
 
     parent::initialize();
 
-    $this->loadComponent('Paginator');
-
     $this->loadComponent('RequestHandler');
 
     $this->RegisteredStudents = TableRegistry::getTableLocator()->get('RegisteredStudents');

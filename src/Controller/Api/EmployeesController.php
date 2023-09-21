@@ -102,13 +102,13 @@ class EmployeesController extends AppController {
 
         'middle_name'         => $employee['middle_name'],
 
-        'gender'         => $employee['family_name'],
+        'gender'         => $employee['gender'],
 
         'birthdate'         => $employee['family_name'],
 
-        'academic_rank'         => $employee['family_name'],
+        'academic_rank'         => $employee['academic_rank'],
 
-        'college'         => $employee['college_id'],
+        'college'         => $employee['college'],
 
         'specialization'         => $employee['specialization_id'],
 
