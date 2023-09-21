@@ -1,5 +1,23 @@
-<?php if (hasAccess('student attendance/view attendance', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageViewAttendance', 'student attendance/view attendance', currentUser);
+  handleAccess('pageView', 'student attendance/view', currentUser);
+
+</script>
+
+<div class="row" id="pageViewAttendance">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -43,9 +61,7 @@
                     <td class="text-center">{{ subs.time_start }} - {{ subs.time_end }}</td>
                     <td>
                     <div class="btn-group btn-group-xs">
-                      <?php if (hasAccess('student attendance/view', $currentUser)): ?>
-                        <a href="javascript:void(0)" ng-click="viewAttendance($index, subs)" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
-                      <?php endif ?> 
+                        <a id="pageView" href="javascript:void(0)" ng-click="viewAttendance($index, subs)" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
                     </div>
                   </td>
                   </tr>
@@ -67,7 +83,6 @@
     </div>
   </div>
 </div>
-<?php endif ?>
 
 <div class="modal fade" id="view-attendance-modal" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-lg">
