@@ -51,7 +51,7 @@ class UsersController extends AppController
 
     $conditions['User'] = '';
 
-    if ($this->request->getQuery('User')) {
+    if ($this->request->getQuery('User') != null) {
 
       if ($this->request->getQuery('User') == 'user') {
 
@@ -399,19 +399,19 @@ class UsersController extends AppController
 
           ])
 
-          ->first();
+        ->first();
 
-        if (!empty($role->role_permissions)) {
+        if (!empty($role['role_permissions'])) {
 
-          foreach ($role->role_permissions as $key => $value) {
+          foreach ($role['role_permissions'] as $key => $value) {
 
-            $role['RolePermissions'][$key]['id'] = null;
+            // $role['role_permissions'][$key]['id'] = null;
 
-            $role['RolePermissions'][$key]['user_id'] = $userId;
+            $role['role_permissions'][$key]['user_id'] = $userId;
 
           }
 
-          $this->UserPermissions->saveMany($role['RolePermissions']);
+          $this->UserPermissions->saveMany($role['role_permissions']);
 
         }
 

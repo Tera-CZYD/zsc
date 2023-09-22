@@ -49,7 +49,7 @@ class UserLogsController extends AppController {
 
       $search_date = $this->request->getQuery('date');
 
-      $conditions['date'] = " AND DATE(UserLogs.created) = '$search_date'"; 
+      $conditions['date'] = " AND DATE(UserLog.created) = '$search_date'"; 
 
       $dates['date'] = $search_date;
 
@@ -65,7 +65,7 @@ class UserLogsController extends AppController {
 
       $end = $this->request->getQuery('endDate');
 
-      $conditions['date'] = " AND DATE(UserLogs.created) >= '$start' AND DATE(UserLogs.created) <= '$end'";
+      $conditions['date'] = " AND DATE(UserLog.created) >= '$start' AND DATE(UserLog.created) <= '$end'";
 
       $dates['startDate'] = $start;
 
