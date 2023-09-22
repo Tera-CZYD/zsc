@@ -16,7 +16,7 @@
 
     $search = @$conditions['search'];
 
-    $college_id = @$conditions['college_id'];
+    // $college_id = @$conditions['college_id'];
 
     $date = @$conditions['date'];
 
