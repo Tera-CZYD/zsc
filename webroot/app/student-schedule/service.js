@@ -4,7 +4,7 @@ app.factory("StudentSchedule", function($resource, $http) {
   
   $http.defaults.headers.common['X-CSRF-Token'] = csrfToken; 
 
-  return $resource( api + "student-schedule/:id", { id: '@id', search: '@search' }, {
+  return $resource( api + "student-schedules/:id", { id: '@id', search: '@search' }, {
 
     query: { method: 'GET', isArray: false },
 
