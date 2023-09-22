@@ -96,6 +96,8 @@ class SelectController extends AppController {
 
     $this->loadModel("RoomTypes");
 
+    $this->loadModel("SubModules");
+
     $this->loadModel("StudentLogs");
 
     $this->loadModel("Prescriptions");
@@ -273,7 +275,33 @@ class SelectController extends AppController {
 
       }
 
-    }else if ($code == 'roles') {
+    }else if($code == 'get-all-subModules'){
+
+      $tmp = $this->SubModules->find()
+
+        ->where(['SubModules.visible' => 1])
+
+        ->order(['SubModules.name' => 'ASC'])
+
+      ->all();
+
+      if(!empty($tmp)){
+
+        foreach ($tmp as $k => $data) {
+
+          $datas[] = array(
+
+            'id'   => $data['id'],
+
+            'value' =>  $data['name'],
+
+          );
+
+        }
+
+      }
+
+    } else if ($code == 'roles') {
      
       $tmp = $this->Roles->find()->where([
 
