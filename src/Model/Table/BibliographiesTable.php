@@ -34,7 +34,7 @@ class BibliographiesTable extends Table{
 
   public function getAllBibliographyPrint($conditions){
 
-    $search = strtolower(@$conditions['search']);
+    $search = @$conditions['search'];
 
     $date = @$conditions['date'];
 
@@ -162,7 +162,7 @@ class BibliographiesTable extends Table{
 
   public function getAllBibliography($conditions, $limit, $page){
 
-    $search = strtolower(@$conditions['search']);
+    $search = @$conditions['search'];
 
     $date = @$conditions['date'];
 
@@ -332,7 +332,7 @@ class BibliographiesTable extends Table{
 
   public function paginateCount($conditions = null){ 
 
-    $search = strtolower(@$conditions['search']);
+    $search = @$conditions['search'];
 
     $date = @$conditions['date'];
 

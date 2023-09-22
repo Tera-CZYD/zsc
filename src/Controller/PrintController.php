@@ -35,7 +35,7 @@ class PrintController extends AppController {
 
     $this->ScholarshipName = TableRegistry::getTableLocator()->get('ScholarshipNames');
 
-    $this->ScholarshipApplications = TableRegistry::getTableLocator()->get('ScholarshipApplications');
+    $this->ScholarshipApplication = TableRegistry::getTableLocator()->get('ScholarshipApplications');
 
     $this->StudentEnrolledSchedules = TableRegistry::getTableLocator()->get('StudentEnrolledSchedules');
 
@@ -48,6 +48,12 @@ class PrintController extends AppController {
     $this->Tors = TableRegistry::getTableLocator()->get('Tors');
 
     $this->loadModel('Students');
+
+    $this->loadModel('ClassSchedules');
+
+    $this->loadModel('BlockSections');
+
+    $this->loadModel('ApartelleStudentClearances');
 
     $this->loadModel('Assessments');
 
@@ -5212,45 +5218,45 @@ class PrintController extends AppController {
   
     // default page 1
 
-    // $page = isset($this->request->query['page'])? $this->request->query['page'] : 1;
+    $page = isset($this->request->query['page'])? $this->request->query['page'] : 1;
 
     // default conditions
 
-    $this->UserLogs->recursive = 0;
+    $this->UserLog->recursive = 0;
 
     $conditions = array();
 
     $conditions['search'] = '';
 
-    if ($this->request->getQuery('search')){
+    if (isset($this->request->query['search'])){
 
-      $search = $this->request->getQuery('search');
+      $search = $this->request->query['search'];
 
       $conditions['search'] = $search;
 
     }
 
-    // $conditions['date'] = '';
+    $conditions['date'] = '';
 
-    // if (isset($this->request->query['date'])) {
+    if (isset($this->request->query['date'])) {
 
-    //   $date = date('Y-m-d', strtotime($this->request->query['date']));
+      $date = date('Y-m-d', strtotime($this->request->query['date']));
 
-    //   $conditions['date'] = "AND DATE(UserLog.created) = '$date'"; 
+      $conditions['date'] = "AND DATE(UserLog.created) = '$date'"; 
 
-    // }  
+    }  
 
-    // if (isset($this->request->query['startDate'])) {
+    if (isset($this->request->query['startDate'])) {
 
-    //   $start = date('Y-m-d', strtotime($this->request->query['startDate'])); 
+      $start = date('Y-m-d', strtotime($this->request->query['startDate'])); 
 
-    //   $end = date('Y-m-d', strtotime($this->request->query['endDate']));
+      $end = date('Y-m-d', strtotime($this->request->query['endDate']));
 
-    //   $conditions['date'] = "AND DATE(UserLog.created) >= '$start' AND DATE(UserLog.created) <= '$end'";
+      $conditions['date'] = "AND DATE(UserLog.created) >= '$start' AND DATE(UserLog.created) <= '$end'";
 
-    // }
+    }
 
-    $tmpData = $this->UserLogs->getAllUserLogPrint($conditions);
+    $tmpData = $this->UserLog->query($this->UserLog->getAllLogs($conditions));
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -5291,25 +5297,29 @@ class PrintController extends AppController {
     $pdf->SetWidths(array(10,35,35,30,25,60));
     $pdf->SetAligns(array('C','C','C','C','C','L'));
 
-    if(count($tmpData) > 0){
+    if(!empty($tmpData)){
 
       $count = 0;
 
       foreach ($tmpData as $key => $data){
 
+        $tmp = $data['UserLog'];
+
+        $user = $data['User'];
+
         $pdf->Row2(array(
 
           $key + 1,
 
-          date('M d, Y h:i:s A', strtotime($data['created'])),
+          date('M d, Y h:i:s A', strtotime($tmp['created'])),
 
-          strtoupper($data['full_name']),
+          strtoupper($user['first_name'].' '.$user['middle_name'].' '.$user['last_name']),
 
-          strtoupper($data['action']),
+          strtoupper($tmp['action']),
 
-          strtoupper($data['code']),
+          strtoupper($tmp['code']),
 
-          strtoupper($data['description']),
+          strtoupper($tmp['description']),
 
         ));
 
@@ -5324,7 +5334,7 @@ class PrintController extends AppController {
     $pdf->Ln(10);
     $pdf->SetFont("Times", 'B', 10);
     $pdf->Cell(23,5,'Prepared By:',0,0,'L');
-    // $pdf->Cell(165,5,$this->Session->read('Auth.User.name'),0,0,'L');
+    $pdf->Cell(165,5,$this->Session->read('Auth.User.name'),0,0,'L');
 
     $pdf->output();
     exit();
@@ -10256,7 +10266,7 @@ class PrintController extends AppController {
 
   }
 
-  public function property_log(){
+  public function propertyLog(){
 
     $conditions = array();
 
@@ -10274,9 +10284,9 @@ class PrintController extends AppController {
 
     $conditions['date'] = '';
 
-    if (isset($this->request->query['date'])) {
+    if (isset($this->request->getQuery['date'])) {
 
-      $search_date = $this->request->query['date'];
+      $search_date = $this->request->getQuery['date'];
 
       $conditions['date'] = " AND DATE(PropertyLog.date) = '$search_date'"; 
 
@@ -10284,11 +10294,11 @@ class PrintController extends AppController {
 
     } 
 
-    if (isset($this->request->query['startDate'])) {
+    if (isset($this->request->getQuery['startDate'])) {
 
-      $start = $this->request->query['startDate']; 
+      $start = $this->request->getQuery['startDate']; 
 
-      $end = $this->request->query['endDate'];
+      $end = $this->request->getQuery['endDate'];
 
       $conditions['date'] = " AND DATE(PropertyLog.date) >= '$start' AND DATE(PropertyLog.date) <= '$end'";
 
@@ -10299,15 +10309,15 @@ class PrintController extends AppController {
     }
     $conditions['type'] = '';
 
-    if (isset($this->request->query['type'])) {
+    if (isset($this->request->getQuery['type'])) {
 
-      $type = $this->request->query['type'];
+      $type = $this->request->getQuery['type'];
 
       $conditions['type'] = "AND PropertyLog.type = '$type'";
 
     }
 
-    $tmpData = $this->PropertyLog->query($this->PropertyLog->getAllPropertyLog($conditions));
+    $tmpData = $this->PropertyLogs->getAllPropertyLogPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -10353,21 +10363,19 @@ class PrintController extends AppController {
 
       foreach ($tmpData as $key => $data){
 
-        $tmp = $data['PropertyLog'];
-
         $pdf->RowLegalP(array(
 
           $key + 1,
 
-          strtoupper($tmp['property_name']),
+          strtoupper($data['property_name']),
 
-          fdate($data['PropertyLog']['date'],'m/d/Y'),
+          fdate($data['date'],'m/d/Y'),
 
-          fdate($tmp['manufacturing_date'],'m/d/Y'),
+          fdate($data['manufacturing_date'],'m/d/Y'),
 
-          strtoupper($tmp['batch_no']),
+          strtoupper($data['batch_no']),
 
-          fdate($tmp['expiration_date'],'m/d/Y'),
+          fdate($data['expiration_date'],'m/d/Y'),
 
         ));
 
@@ -11851,15 +11859,15 @@ class PrintController extends AppController {
 
   }
 
-  public function class_schedule(){
+  public function classSchedule(){
     
     $conditions = array();
   
     $conditions['search'] = '';
   
-    if(isset($this->request->query['search'])){
+    if($this->request->getQuery('search')){
   
-      $search = $this->request->query['search'];
+      $search = $this->request->getQuery('search');
   
       $search = strtolower($search);
   
@@ -11869,9 +11877,9 @@ class PrintController extends AppController {
 
     $conditions['date'] = '';
 
-    if (isset($this->request->query['date'])) {
+    if ($this->request->getQuery('date')) {
 
-      $search_date = $this->request->query['date'];
+      $search_date = $this->request->getQuery('date');
 
       $conditions['date'] = " AND DATE(ClassSchedule.created) = '$search_date'"; 
 
@@ -11881,11 +11889,11 @@ class PrintController extends AppController {
 
     //advance search
 
-    if (isset($this->request->query['startDate'])) {
+    if ($this->request->getQuery('startDate')) {
 
-      $start = $this->request->query['startDate']; 
+      $start = $this->request->getQuery('startDate'); 
 
-      $end = $this->request->query['endDate'];
+      $end = $this->request->getQuery('endDate');
 
       $conditions['date'] = " AND DATE(ClassSchedule.created) >= '$start' AND DATE(ClassSchedule.created) <= '$end'";
 
@@ -11895,7 +11903,7 @@ class PrintController extends AppController {
 
     }
   
-    $tmpData = $this->ClassSchedule->query($this->ClassSchedule->getAllClassSchedule($conditions));
+    $tmpData = $this->ClassSchedules->getAllClassSchedulePrint($conditions);
   
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
     require("wordwrap.php");
@@ -11935,27 +11943,25 @@ class PrintController extends AppController {
     $pdf->SetWidths(array(10,25,70,80,80,40,40));
     $pdf->SetAligns(array('C','C','L','L','L','C','C'));
     $conditions = array();
-    if(!empty($tmpData)){
+    if(count($tmpData)>0){
   
       foreach ($tmpData as $key => $data){
-    
-        $tmp = $data['ClassSchedule'];
     
         $pdf->RowLegalL(array(
     
           $key + 1,
     
-          $tmp['code'],
+          $data['code'],
     
-          strtoupper($tmp['faculty_name']),
+          strtoupper($data['faculty_name']),
     
-          $tmp['college'],
+          $data['college'],
 
-          $tmp['program'],
+          $data['program'],
   
-          $tmp['description'],
+          $data['description'],
 
-          $tmp['school_year_start'].' - '.$tmp['school_year_end'],
+          $data['school_year_start'].' - '.$data['school_year_end'],
 
         ));
   
@@ -12072,9 +12078,9 @@ class PrintController extends AppController {
     
     $conditions['date'] = '';
 
-    if (isset($this->request->query['date'])) {
+    if ($this->request->getQuery('date')) {
 
-      $search_date = $this->request->query['date'];
+      $search_date = $this->request->getQuery('date');
 
       $conditions['date'] = " AND DATE(Prescription.date_added) = '$search_date'"; 
 
@@ -12082,11 +12088,11 @@ class PrintController extends AppController {
 
     } 
 
-    if (isset($this->request->query['startDate'])) {
+    if ($this->request->getQuery('startDate')) {
 
-      $start = $this->request->query['startDate']; 
+      $start = $this->request->getQuery('startDate'); 
 
-      $end = $this->request->query['endDate'];
+      $end = $this->request->getQuery('endDate');
 
       $conditions['date'] = " AND DATE(Prescription.date) >= '$start' AND DATE(Prescription.date) <= '$end'";
 
@@ -12096,7 +12102,7 @@ class PrintController extends AppController {
 
     }
 
-    $tmpData = $this->Prescription->query($this->Prescription->getAllPrescription($conditions));
+    $tmpData = $this->Prescriptions->getAllPrescriptionPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -12153,16 +12159,14 @@ class PrintController extends AppController {
 
       foreach ($tmpData as $key => $data){
 
-        $tmp = $data['Prescription'];
-
 
         $pdf->RowLegalL(array(
 
           $key + 1,
 
-          $tmp['name'],
+          $data['name'],
 
-          fdate($tmp['date'],'m/d/Y'),
+          fdate($data['date'],'m/d/Y'),
 
     
         ));
@@ -14606,7 +14610,6 @@ class PrintController extends AppController {
 
           $data['student_name'],
 
-
           $data['name'],  
 
           $data['major'],
@@ -15400,13 +15403,8 @@ class PrintController extends AppController {
     $pdf->footerSystem = true;
     $pdf->AliasNbPages();
     $pdf->AddPage("P", "legal", 0);
-<<<<<<< HEAD
     $pdf->Image($this->base .'/assets/img/zam.png',10,10,20,20);
     $pdf->SetFont("Times", 'B', 12);
-=======
-    $pdf->Image($this->base .'/assets/img/zam.png',15,10,25,25);
-    $pdf->SetFont("Times", 'B', 10);
->>>>>>> fc3e8e3c3419d372f0d38482c2ff28ea416ade1d
     $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
     $pdf->Ln(5);
     $pdf->Cell(0,5,strtoupper($this->Global->Settings('lgu_name')),0,0,'C');
@@ -15444,8 +15442,8 @@ class PrintController extends AppController {
           $data['student_no'],
 
           $data['full_name'],
-          
-          fdate($data['application_date'],'m/d/Y'), 
+
+          $data['application_date'],
 
           $data['email']
 
@@ -16992,6 +16990,139 @@ class PrintController extends AppController {
 
   }
 
+  public function apartelleStudentClearance(){
+
+    $conditions = [];
+
+    $conditionsPrint = '';
+
+    $condition['search'] = '';
+
+    if ($this->request->getQuery('search')) {
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+    }
+
+    $conditions['status'] = '';
+
+    if ($this->request->getQuery('status')!=null) {
+
+      $status = $this->request->getQuery('status');
+
+      $conditions['status'] = "AND ApartelleStudentClearance.approve = $status";
+ 
+      $conditionsPrint .= '&status='.$this->request->getQuery('status');
+
+    }
+
+    $conditions['studentId'] = '';
+
+    if ($this->request->getQuery('per_student')!=null) {
+
+      $per_student = $this->request->getQuery('per_student');
+      
+      $studentId = $this->Auth->user('studentId');
+
+      $conditions['studentId'] = "AND ApartelleStudentClearance.student_id = $studentId";
+
+      $conditionsPrint .= '&per_student='.$per_student;
+
+    }
+
+    $tmpData = $this->ApartelleStudentClearances->getAllApartelleStudentClearancePrint($conditions);
+
+    $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
+
+    require("wordwrap.php");
+    $pdf = new ConductPDF();
+    $pdf->SetMargins(5,10,5);
+    $pdf->SetFooter(true);
+    $pdf->footerSystem = true;
+    $pdf->AliasNbPages();
+    $pdf->AddPage("L", "legal", 0);
+    $pdf->Image($this->base .'/assets/img/zam.png',75,10,25,25);
+    $pdf->SetFont("Times", 'B', 12);
+    $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,strtoupper($this->Global->Settings('lgu_name')),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->SetFont("Times", '', 12);
+    $pdf->Cell(0,5,$this->Global->Settings('address'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('telephone'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->Cell(0,5,'APARTELLE/DORMITORY REGISTRATION',0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFillColor(217,237,247);
+    $pdf->Cell(10,5,'#',1,0,'C',1);
+    $pdf->Cell(35,5,'CONTROL NO.',1,0,'C',1);
+    $pdf->Cell(90,5,'STUDENT NAME',1,0,'C',1);
+    $pdf->Cell(105,5,'COLLEGE PROGRAM',1,0,'C',1);
+    $pdf->Cell(70,5,'YEAR LEVEL',1,0,'C',1);
+    $pdf->Cell(35,5,'STATUS',1,0,'C',1);
+    $pdf->Ln();
+    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetWidths(array(10,35,90,105,70,35));
+    $pdf->SetAligns(array('C','C','C','C','C','C'));
+
+    if(count($tmpData)>0){
+
+      $approve = '';
+
+      foreach ($tmpData as $key => $data){ 
+
+        if($data['approve'] == 0){
+
+          $approve = 'PENDING';
+
+        }else if($data['approve'] == 2){
+
+          $approve = 'DISAPPROVED';
+
+        }else if($data['approve'] == 1){
+
+          $approve = 'APPROVED';
+
+        }
+
+        $pdf->RowLegalL(array(
+
+          $key + 1,
+
+          $data['code'],
+
+          $data['student_name'],
+
+          $data['name'],
+
+          $data['description'],  
+
+          $approve
+
+        ));
+
+      }
+
+    }else{
+
+      $pdf->Cell(345,5,'No data available.',1,1,'C');
+
+    }
+
+    $pdf->output();
+    exit();
+
+  }
+
   public function listApartelle(){
 
     $conditions = array();
@@ -17557,7 +17688,7 @@ class PrintController extends AppController {
 
     $office_reference = $this->Global->OfficeReference('Scholarship Application');
 
-    $data['ScholarshipApplication'] = $this->ScholarshipApplications->find()
+    $data['ScholarshipApplication'] = $this->ScholarshipApplication->find()
 
     ->contain([
 
@@ -18703,7 +18834,7 @@ class PrintController extends AppController {
     $pdf->footerSystem = true;
     $pdf->AliasNbPages();
     $pdf->AddPage("P", "legal", 0);
-    $pdf->Image($this->base .'/assets/img/zam.png',6,10,25,25);
+    // $pdf->Image($this->base .'/assets/img/zam.png',6,10,25,25);
     $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
     $pdf->Ln(5);
@@ -20067,10 +20198,10 @@ class PrintController extends AppController {
     $pdf->SetMargins(5, 9, 5);
     $pdf->AddPage("P", "Legal", 0);
     $pdf->SetAutoPageBreak(false);
-    $pdf->Image($this->base . '/assets/img/zam.png', 6.5, 22,35, 35);
+    // $pdf->Image($this->base . '/assets/img/zam.png', 6.5, 22,35, 35);
     $pdf->SetFont("Times", '', 12);
     $pdf->Cell(0, 5, 'ZSCMST-OCR 3.10.I-I5', 0, 0, 'L');
-    $pdf->Image($this->base . '/assets/img/iso.png', 182, 13, 18, 21);
+    // $pdf->Image($this->base . '/assets/img/iso.png', 182, 13, 18, 21);
     $pdf->SetFont("Times", '', 10);
     $pdf->Ln(5);
     $pdf->Cell(-7);
@@ -20287,7 +20418,7 @@ class PrintController extends AppController {
     $pdf->Line(45, $pdf->getY(), 150, $pdf->getY());
     $pdf->SetFont("Times", '', 10);
     $pdf->Cell(25, 5, '(NOT VALID WITHOUT COLLEGE SEAL)', 0, 0, 'L');
-    $pdf->Image($this->base . '/assets/img/zscmst-qr.png', 160, 325,25, 25);
+    // $pdf->Image($this->base . '/assets/img/zscmst-qr.png', 160, 325,25, 25);
     $pdf->Ln(13);
     $pdf->SetFont("Times", '', 11);
     $pdf->Line(20, $pdf->getY(),60, $pdf->getY());
@@ -21925,7 +22056,7 @@ class PrintController extends AppController {
     
   }
 
-  public function item_issuances() {
+  public function itemIssuances() {
 
     $conditions = array();
 
@@ -21943,9 +22074,9 @@ class PrintController extends AppController {
 
     $conditions['date'] = '';
 
-    if (isset($this->request->query['date'])) {
+    if ($this->request->getQuery('date')) {
 
-      $search_date = $this->request->query['date'];
+      $search_date = $this->request->getQuery('date');
 
       $conditions['date'] = " AND DATE(Bibliography.date_of_publication) = '$search_date'"; 
 
@@ -21953,11 +22084,11 @@ class PrintController extends AppController {
 
     } 
 
-    if (isset($this->request->query['startDate'])) {
+    if ($this->request->getQuery('startDate')) {
 
-      $start = $this->request->query['startDate']; 
+      $start = $this->request->getQuery('startDate'); 
 
-      $end = $this->request->query['endDate'];
+      $end = $this->request->getQuery('endDate');
 
       $conditions['date'] = " AND DATE(Bibliography.date_of_publication) >= '$start' AND DATE(Bibliography.date_of_publication) <= '$end'";
 
@@ -21967,7 +22098,7 @@ class PrintController extends AppController {
 
     }
     
-    $tmpData = $this->ItemIssuance->query($this->ItemIssuance->getAllItemIssuance($conditions));
+    $tmpData = $this->ItemIssuances->getAllItemIssuancePrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -22009,17 +22140,15 @@ class PrintController extends AppController {
 
       foreach ($tmpData as $key => $data){
 
-        $tmp = $data['ItemIssuance'];
-
         $pdf->RowLegalL(array(
 
           $key + 1,
 
-          $data['ItemIssuance']['code'],
+          $data['code'],
 
-          strtoupper($data['ItemIssuance']['type']),
+          strtoupper($data['type']),
 
-          fdate($data['ItemIssuance']['date'],'m/d/Y'),  
+          fdate($data['date'],'m/d/Y'),  
 
         ));
 
@@ -29866,15 +29995,15 @@ EQUIVALENT',1,'C',0);
 
   }
 
-  public function block_sections(){
+  public function blockSections(){
     
     $conditions = array();
   
     $conditions['search'] = '';
   
-    if(isset($this->request->query['search'])){
+    if($this->request->getQuery('search')){
 
-      $search = $this->request->query['search'];
+      $search = $this->request->getQuery('search');
 
       $search = strtolower($search);
 
@@ -29884,9 +30013,9 @@ EQUIVALENT',1,'C',0);
 
     $conditions['college_id'] = '';
 
-    if (isset($this->request->query['college_id'])) {
+    if ($this->request->getQuery('college_id')) {
 
-      $college_id = $this->request->query['college_id'];
+      $college_id = $this->request->getQuery('college_id');
 
       $conditions['college_id'] = "AND BlockSection.college_id = $college_id";
 
@@ -29894,9 +30023,9 @@ EQUIVALENT',1,'C',0);
 
     $conditions['program_id'] = '';
 
-    if (isset($this->request->query['program_id'])) {
+    if ($this->request->getQuery('program_id')) {
 
-      $program_id = $this->request->query['program_id'];
+      $program_id = $this->request->getQuery('program_id');
 
       $conditions['program_id'] = "AND BlockSection.program_id = $program_id"; 
 
@@ -29904,15 +30033,15 @@ EQUIVALENT',1,'C',0);
 
     $conditions['year_term_id'] = '';
 
-    if (isset($this->request->query['year_term_id'])) {
+    if ($this->request->getQuery('year_term_id')) {
 
-      $year_term_id = $this->request->query['year_term_id'];
+      $year_term_id = $this->request->getQuery('year_term_id');
 
       $conditions['year_term_id'] = "AND BlockSection.year_term_id = $year_term_id";
 
     }
   
-    $tmpData = $this->BlockSection->query($this->BlockSection->getAllBlockSection($conditions));
+    $tmpData = $this->BlockSections->getAllBlockSectionPrint($conditions);
   
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
     require("wordwrap.php");
@@ -29955,21 +30084,19 @@ EQUIVALENT',1,'C',0);
   
       foreach ($tmpData as $key => $data){
     
-        $tmp = $data['BlockSection'];
-    
         $pdf->RowLegalL(array(
     
           $key + 1,
     
-          $tmp['code'],
+          $data['code'],
     
-          $tmp['college'],
+          $data['college'],
 
-          $tmp['program'],
+          $data['program'],
   
-          $tmp['description'],
+          $data['description'],
 
-          $tmp['school_year_start'].' - '.$tmp['school_year_end'],
+          $data['school_year_start'].' - '.$data['school_year_end'],
 
         ));
   
