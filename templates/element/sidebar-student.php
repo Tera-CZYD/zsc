@@ -49,6 +49,8 @@
 
           <li class="nav-link-side nav-scholarship-application"><a href="#/admission/scholarship-application" onclick="change('scholarship-application')"><i class="ti ti-write"></i> Scholarship Application </a></li>
 
+          <li class="nav-link-side nav-schedule"><a href="#/student/schedule" onclick="change('schedule')"><i class="fa fa-table"></i> Schedule </a></li>
+
           <li class="nav-link-side nav-request-form"><a><i class="fa fa-briefcase"></i> Registrar </a>
             <ul class="nav child_menu collapse collapse-request-form ">
 
@@ -116,10 +118,6 @@
 
             </ul>
           </li>
-          
-          <li class="nav-link-side nav-bibliography">
-            <a href="#/learning-resource-center/bibliography" onclick="change('bibliography')"><i class="ti ti-book"></i> Bibliography</a>
-          </li>
 
           <li class="nav-link-side nav-request-form"><a><i class="fa fa-building"></i> Corporate Affairs </a>
             <ul class="nav child_menu collapse collapse-request-form ">
@@ -136,6 +134,12 @@
 
             </ul>
           </li> 
+          
+          <li class="nav-link-side nav-bibliography">
+            <a href="#/learning-resource-center/bibliography" onclick="change('bibliography')"><i class="ti ti-book"></i> Bibliography</a>
+          </li>
+
+          
         
   
         </ul>
