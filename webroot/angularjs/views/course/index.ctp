@@ -59,7 +59,7 @@
                 <a href="#/course/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD RECORD </a>
               <?php endif ?> 
               <?php if (hasAccess('course/print', $currentUser)): ?>
-                <a ng-click="print()" class="btn btn-danger btn-sm btn-min"><i class="fa fa-print"></i> PRINT </a>
+                <a ng-click="print()" class="btn btn-print btn-sm btn-min"><i class="fa fa-print"></i> PRINT </a>
               <?php endif ?>
               <button type="button" class="btn btn-warning btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
               <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH </a> -->

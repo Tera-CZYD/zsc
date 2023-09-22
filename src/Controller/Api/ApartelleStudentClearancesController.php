@@ -14,8 +14,6 @@ class ApartelleStudentClearancesController extends AppController {
 
     parent::initialize();
 
-    $this->loadComponent('Paginator');
-
     $this->loadComponent('RequestHandler');
 
     $this->ApartelleStudentClearances = TableRegistry::getTableLocator()->get('ApartelleStudentClearances');
