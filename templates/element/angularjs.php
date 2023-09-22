@@ -336,6 +336,8 @@
 
     'faculty-qce',
 
+    'student-schedule',
+
     //REPORTS
 
     'reports/registrar',

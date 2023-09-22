@@ -7,7 +7,7 @@
   <section class="row">
     <div class="col-12 col-lg-12">
       <div class="row">
-        <div class="col-6 col-lg-3 col-md-6">
+        <div class="col-6 col-lg-4 col-md-6">
           <a href="#/medical-services/student-log">
             <div class="card">
               <div class="card-body px-0">
@@ -31,7 +31,7 @@
             </div>
           </a>
         </div>
-        <div class="col-6 col-lg-3 col-md-6">
+        <div class="col-6 col-lg-4 col-md-6">
           <a href="#/medical-services/consultation">
             <div class="card">
               <div class="card-body px-0">
@@ -55,7 +55,7 @@
             </div>
           </a>
         </div>
-        <div class="col-6 col-lg-3 col-md-6">
+        <div class="col-6 col-lg-4 col-md-6">
           <a href="#/medical-services/prescription">
             <div class="card">
               <div class="card-body px-0">
@@ -79,7 +79,7 @@
             </div>
           </a>
         </div>
-        <div class="col-6 col-lg-3 col-md-6">
+        <div class="col-6 col-lg-4 col-md-6">
           <a href="#/medical-services/dental">
             <div class="card">
               <div class="card-body px-0">
@@ -103,7 +103,7 @@
             </div>
           </a>
         </div>
-        <div class="col-6 col-lg-3 col-md-6">
+        <div class="col-6 col-lg-4 col-md-6">
           <a href="#/medical-services/medical-certificate">
             <div class="card">
               <div class="card-body px-0">
@@ -127,7 +127,7 @@
             </div>
           </a>
         </div>
-        <div class="col-6 col-lg-3 col-md-6">
+        <div class="col-6 col-lg-4 col-md-6">
           <a href="#/medical-services/referral-recommendation">
             <div class="card">
               <div class="card-body px-0">
@@ -151,7 +151,7 @@
             </div>
           </a>
         </div>
-        <div class="col-6 col-lg-3 col-md-6">
+        <div class="col-6 col-lg-4 col-md-6">
           <a href="#/medical-services/property-log">
             <div class="card">
               <div class="card-body px-0">
@@ -175,7 +175,7 @@
             </div>
           </a>
         </div>
-        <div class="col-6 col-lg-3 col-md-6">
+        <div class="col-6 col-lg-4 col-md-6">
           <a href="#/medical-services/illness-recommendation">
             <div class="card">
               <div class="card-body px-0">
@@ -213,7 +213,7 @@
   <section class="row">
     <div class="col-12 col-lg-12">
       <div class="row">
-        <div class="col-6 col-lg-3 col-md-6">
+        <div class="col-6 col-lg-4 col-xl-4 col-md-6">
           <a href="#/guidance/referral-slip" onclick="topFunction()">
             <div class="card">
               <div class="card-body px-0">
@@ -237,7 +237,7 @@
             </div>
           </a>
         </div>
-        <div class="col-6 col-lg-3 col-md-6">
+        <div class="col-6 col-lg-4 col-xl-4 col-md-6">
           <a href="#/guidance/admin-counseling-appointment" onclick="topFunction()">
             <div class="card">
               <div class="card-body px-0">
@@ -261,7 +261,7 @@
             </div>
           </a>
         </div>
-        <div class="col-6 col-lg-3 col-md-6">
+        <div class="col-6 col-lg-4 col-xl-4 col-md-6">
           <a href="#/guidance/attendance-counseling" onclick="topFunction()">
             <div class="card">
               <div class="card-body px-0">
@@ -285,7 +285,7 @@
             </div>
           </a>
         </div>
-        <div class="col-6 col-lg-3 col-md-6">
+        <div class="col-6 col-lg-4 col-xl-4 col-md-6">
           <a href="#/guidance/affidavit" onclick="topFunction()">
             <div class="card">
               <div class="card-body px-0">
@@ -309,7 +309,7 @@
             </div>
           </a>
         </div>
-        <div class="col-6 col-lg-3 col-md-6">
+        <div class="col-6 col-lg-4 col-xl-4 col-md-6">
           <a href="#/guidance/promissory-note" onclick="topFunction()">
             <div class="card">
               <div class="card-body px-0">
@@ -333,7 +333,7 @@
             </div>
           </a>
         </div>
-        <div class="col-6 col-lg-3 col-md-6">
+        <div class="col-6 col-lg-4 col-xl-4 col-md-6">
           <a href="#/guidance/good-moral" onclick="topFunction()">
             <div class="card">
               <div class="card-body px-0">
@@ -357,7 +357,7 @@
             </div>
           </a>
         </div>
-        <div class="col-6 col-lg-3 col-md-6">
+        <div class="col-6 col-lg-4 col-xl-4 col-md-6">
           <a href="#/guidance/admin-gco-evaluation" onclick="topFunction()">
             <div class="card">
               <div class="card-body px-0">
@@ -381,7 +381,7 @@
             </div>
           </a>
         </div>
-        <div class="col-6 col-lg-3 col-md-6">
+        <div class="col-6 col-lg-4 col-xl-4 col-md-6">
           <a href="#/guidance/calendar-activities" onclick="topFunction()">
             <div class="card">
               <div class="card-body px-0">
@@ -405,7 +405,7 @@
             </div>
           </a>
         </div>
-        <div class="col-6 col-lg-3 col-md-6">
+        <div class="col-6 col-lg-4 col-xl-4 col-md-6">
           <a href="#/guidance/counseling-type" onclick="topFunction()">
             <div class="card">
               <div class="card-body px-0">
@@ -429,7 +429,7 @@
             </div>
           </a>
         </div>
-        <div class="col-6 col-lg-3 col-md-6">
+        <div class="col-6 col-lg-4 col-xl-4 col-md-6">
           <a href="#/guidance/counseling-intake" onclick="topFunction()">
             <div class="card">
               <div class="card-body px-0">
@@ -453,7 +453,7 @@
             </div>
           </a>
         </div>
-        <div class="col-6 col-lg-3 col-md-6">
+        <div class="col-6 col-lg-4 col-xl-4 col-md-6">
           <a href="#/guidance/participant-evaluation" onclick="topFunction()">
             <div class="card">
               <div class="card-body px-0">
@@ -477,7 +477,7 @@
             </div>
           </a>
         </div>
-        <div class="col-6 col-lg-3 col-md-6">
+        <div class="col-6 col-lg-4 col-xl-4 col-md-6">
           <a href="#/guidance/student-exit" onclick="topFunction()">
             <div class="card">
               <div class="card-body px-0">
