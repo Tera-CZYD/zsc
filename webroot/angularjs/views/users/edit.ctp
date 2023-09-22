@@ -1,22 +1,5 @@
-<script type="text/javascript">
-
-  function handleAccess(elementId, permissionCode, currentUser) {
-    const element = document.getElementById(elementId);
-    const accessGranted = hasAccess(permissionCode, currentUser);
-    
-    if (accessGranted) {
-      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
-    } else {
-      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
-    }
-  }
-
-  // INCLUDE ALL PAGE PERMISSION
-  handleAccess('pageEdit', 'user management/edit', currentUser);
-
-</script>
-
-<div class="row" id="pageEdit">
+<?php if (hasAccess('user management/edit', $currentUser)){ ?>
+<div class="row">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -90,14 +73,7 @@
                     </div>
                   </div>
                 <?php } ?>
-                <div class="col-md-4" ng-show="role == 'Office Admin'">
-                  <div class="form-group">
-                    <label> OFFICE <i class="required">*</i></label>
-                    <select class="form-control" ng-model="data.User.officeId" ng-options="opt.id as opt.value for opt in offices" data-validation-engine="validate[required]">
-                    <option value=""></option>
-                    </select>
-                  </div>
-                </div>
+              
                 <div class="col-md-4" ng-show="role == 'Faculty'">
                   <div class="form-group">
                     <label> SEARCH FACULTY </label><label style="font-size:10px;color:gray;" class="pull-right">Press Enter to search</label>
@@ -111,7 +87,7 @@
                       <tr>
                         <td style="{{ data.User.employee_name == undefined ? 'padding:15px':'padding:5px !important'}}" class="uppercase">{{ data.User.employee_name }}</td>
                         <td style="{{ data.User.employee_name == undefined ? 'padding:15px':'padding:5px !important'}}" class="w30px" ng-hide="data.User.employee_name == undefined">
-                          <button class="btn btn-xs btn-sm  btn-danger" ng-click="data.User.employee_name = null; data.User.employee_id = null;" ng-init="data.User.employee_id = null"><i class="fa fa-times"></i></button>
+                          <button class="btn btn-xs btn-sm  btn-danger" ng-click="data.User.employee_name = null; data.User.employeeId = null;" ng-init="data.User.employeeId = null"><i class="fa fa-times"></i></button>
                         </td>
                       </tr>  
                     </table>  
@@ -130,12 +106,33 @@
                       <tr>
                         <td style="{{ data.User.student_name == undefined ? 'padding:15px':'padding:5px !important'}}" class="uppercase">{{ data.User.student_name }}</td>
                         <td style="{{ data.User.student_name == undefined ? 'padding:15px':'padding:5px !important'}}" class="w30px" ng-hide="data.User.student_name == undefined">
-                          <button type="button" class="btn btn-xs btn-sm  btn-danger" ng-click="data.User.student_name = null; data.User.student_id = null;" ng-init="data.User.student_id = null"><i class="fa fa-times"></i></button>
+                          <button type="button" class="btn btn-xs btn-sm  btn-danger" ng-click="data.User.student_name = null; data.User.studentId = null;" ng-init="data.User.studentId = null"><i class="fa fa-times"></i></button>
                         </td>
                       </tr>  
                     </table>  
                   </div>
                 </div>
+
+                <div class="col-md-4" ng-show="role == 'Guidance And Couseling Admin' || role == 'Learning Resource Center Admin' || role == 'Corporate Affairs Admin' || role == 'Health And Medical Services Admin' || role == 'Cashier' || role == 'Dean' || role == 'Program Adviser'">
+                  <div class="form-group">
+                    <label> SEARCH EMPLOYEE </label><label style="font-size:10px;color:gray;" class="pull-right">Press Enter to search</label>
+                    <input type="text" class="form-control search uppercase" placeholder="TYPE EMPLOYEE HERE" ng-model="searchTxtAdmin" ng-enter="searchAdmin({ search: searchTxtAdmin })"/>
+                  </div>
+                </div>
+                <div class="col-md-4" ng-show="role == 'Guidance And Couseling Admin' || role == 'Learning Resource Center Admin' || role == 'Corporate Affairs Admin' || role == 'Health And Medical Services Admin' || role == 'Cashier' || role == 'Dean' || role == 'Program Adviser'">
+                  <div class="form-group">
+                    <label> EMPLOYEE <i class="required">*</i></label>
+                    <table class="table table-bordered">
+                      <tr>
+                        <td style="{{ data.User.admin_name == undefined ? 'padding:15px':'padding:5px !important'}}" class="uppercase">{{ data.User.admin_name }}</td>
+                        <td style="{{ data.User.admin_name == undefined ? 'padding:15px':'padding:5px !important'}}" class="w30px" ng-hide="data.User.admin_name == undefined">
+                          <button type="button" class="btn btn-xs btn-sm  btn-danger" ng-click="data.User.admin_name = null; data.User.adminId = null;" ng-init="data.User.adminId = null"><i class="fa fa-times"></i></button>
+                        </td>
+                      </tr>  
+                    </table>  
+                  </div>
+                </div>
+                
               </div>
             </div>
             <div class="col-md-2">
@@ -168,7 +165,7 @@
     </div>
   </div>
 </div>
- 
+<?php } ?> 
 
 <div class="modal fade" id="searched-employee-modal">
   <div class="modal-dialog">
@@ -317,6 +314,83 @@
         <div class="pull-right">
           <button type="button" class="btn btn-danger btn-sm btn-min" data-dismiss="modal"><i class="fa fa-close"></i> CLOSE</button>
           <button type="button" class="btn btn-primary btn-sm btn-min" ng-click="studentData(employee.id)" data-dismiss="modal"><i class="fa fa-check"></i> OK</button>
+        </div> 
+        
+      </div>
+    </div>  
+  </div><!-- /.modal-content -->
+</div>
+
+<div class="modal fade" id="searched-admin-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">ADVANCE SEARCH</h5>
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-bordered vcenter table-striped table-condensed">
+              <thead>
+                <tr>
+                  <th class="w30px">#</th>
+                  <th class="text-center">EMPLOYEE NUMBER</th>
+                  <th class="text-center">NAME</th>
+                  <th class="w30px"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="admin in admins">
+                  <td>{{ (paginator.page - 1) * paginator.limit + $index + 1 }}</td>
+                  <td class="uppercase text-center">{{ admin.code }}</td>
+                  <td class="uppercase text-center">{{ admin.name }}</td>
+                  <td>
+                    <input icheck type="radio" ng-init="admin.selected = false" ng-model="admin.selected" name="iCheck" ng-selected="admin.selected = true" ng-change="selectedAdmin(admin)"/>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot ng-show="paginator.pageCount > 0">
+                <tr>
+                  <td colspan="4" class="text-center">
+                    <div class="clearfix"></div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <ul class="pagination justify-content-center">
+                          <li class="page-item">
+                            <a class="page-link" href="javascript:void(0)" ng-click="searchAdmin({ page: 1 ,search: searchTxtAdmin})"><sub>&laquo;&laquo;</sub></a>
+                          </li>
+                          <li class="page-item prevPage {{ !paginator.prevPage? 'disabled':'' }}">
+                            <a class="page-link" href="javascript:void(0)" ng-click="searchAdmin({ page: 1 ,search: searchTxtAdmin})">&laquo;</a>
+                          </li>
+                          <li ng-repeat="page in pages" class="page-item {{ paginator.page == page.number ? 'active':''}}" >
+                            <a class="page-link" href="javascript:void(0)" class="text-center" ng-click="searchAdmin({ page: 1 ,search: searchTxtAdmin})">{{ page.number }}</a>
+                          </li>
+                          <li class="page-item nextPage {{ !paginator.nextPage? 'disabled':'' }}">
+                            <a class="page-link" href="javascript:void(0)" ng-click="searchAdmin({ page: 1 ,search: searchTxtAdmin})">&raquo;</a>
+                          </li>
+                          <li class="page-item">
+                            <a class="page-link" href="javascript:void(0)" ng-click="searchAdmin({ page: 1 ,search: searchTxtAdmin})"><sub>&raquo;&raquo;</sub> </a>
+                          </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                        <div class="text-center" ng-show="paginator.pageCount > 0">
+                          <sup class="text-primary">Page {{ paginator.pageCount > 0 ? paginator.page : 0 }} out of {{ paginator.pageCount }}</sup>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>  
+      </div> 
+
+      <div class="modal-footer">
+        <div class="pull-right">
+          <button type="button" class="btn btn-danger btn-sm btn-min" data-dismiss="modal"><i class="fa fa-close"></i> CLOSE</button>
+          <button type="button" class="btn btn-primary btn-sm btn-min" ng-click="adminData(admin.id)" data-dismiss="modal"><i class="fa fa-check"></i> OK</button>
         </div> 
         
       </div>
