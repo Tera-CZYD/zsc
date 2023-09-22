@@ -739,17 +739,13 @@ class SelectController extends AppController {
 
     } else if ($code == 'search-admin') {
 
-      $page = isset($this->request->query['page'])? $this->request->query['page'] : 1;
+      $page = $this->request->getQuery('page', 1);
 
-      $conditions = array();
+      $conditions = [];
 
-      $conditions['search'] = '';
+      if ($this->request->getQuery('search') != null) {
 
-      // search conditions
-
-      if(isset($this->request->query['search'])){
-
-        $search = $this->request->query['search'];
+        $search = $this->request->getQuery('search');
 
         $search = strtolower($search);
 
@@ -757,37 +753,40 @@ class SelectController extends AppController {
 
       }
 
-      // Setting up paging parameters
+      $adminsTable = TableRegistry::getTableLocator()->get('Admins');
 
-      $this->paginate = array('Admin'=>array(
+      $limit = 25;
 
-        'limit'      => 25,
+      $employeesData = $adminsTable->paginate($adminsTable->getAllAdmin($conditions, $limit, $page), [
 
-        'page'       => $page,
+        'extra' => [
 
-        'extra'      => array('conditions'=>$conditions)
+          'conditions' => $conditions
 
-      ));
+        ],
 
-      $tmpData = $this->paginate('Admin');
+        'page' => $page,
 
-      $datas = array();
+        'limit' => $limit
 
-      if(!empty($tmpData)){
+      ]);
 
-        foreach ($tmpData as $key => $value) {
+      $employeess = $employeesData['data'];
 
-          $datas[] = array(
+      $paginator = $employeesData['pagination'];
 
-            'id'     => $value['Admin']['id'],
+      $datas = [];
 
-            'code'   =>  $value['Admin']['employee_no'],
+      foreach ($employeess as $employee) {
 
-            'name'   =>  $value[0]['full_name'],
+        $datas[] = array(
 
-          );
-
-        }
+          'id' => $employee['id'],
+       
+          'code' => $employee['employee_no'],
+       
+          'name' => $employee['full_name'],
+        );
 
       }
 
@@ -795,7 +794,7 @@ class SelectController extends AppController {
 
         'result'     => $datas,
 
-        'paginator'  => $this->request->params['paging']['Admin']
+        'paginator' => $paginator
 
       );
 

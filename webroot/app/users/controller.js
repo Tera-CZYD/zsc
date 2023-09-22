@@ -354,6 +354,52 @@ app.controller('UsersAddController', function($scope, User,$routeParams, Select)
 
   }
 
+  $scope.searchAdmin = function(options) {
+
+    options = typeof options !== 'undefined' ?  options : {};
+
+    options['code'] = 'search-admin';
+
+    Select.query(options, function(e) {
+
+      $scope.admins = e.data.result;
+
+      $scope.admin = {};
+      
+      // paginator
+
+      $scope.paginator  = e.data.paginator;
+
+      $scope.pages = paginator($scope.paginator, 10);
+
+      $("#searched-admin-modal").modal('show');
+
+    });
+
+  }
+
+  $scope.selectedAdmin = function(admin) { 
+
+    $scope.admin = {
+
+      id   : admin.id,
+
+      code : admin.code,
+
+      name : admin.name
+
+    }; 
+
+  }
+
+  $scope.adminData = function(id) {
+
+    $scope.data.User.adminId = $scope.admin.id;
+
+    $scope.data.User.admin_name = $scope.admin.name;
+
+  }
+
   $scope.save = function () {
 
     valid = $("#form").validationEngine('validate');
@@ -964,6 +1010,52 @@ app.controller('UsersEditController', function($scope, $routeParams, User, Selec
     });
 
   });
+
+  $scope.searchAdmin = function(options) {
+
+    options = typeof options !== 'undefined' ?  options : {};
+
+    options['code'] = 'search-admin';
+
+    Select.query(options, function(e) {
+
+      $scope.admins = e.data.result;
+
+      $scope.admin = {};
+      
+      // paginator
+
+      $scope.paginator  = e.data.paginator;
+
+      $scope.pages = paginator($scope.paginator, 10);
+
+      $("#searched-admin-modal").modal('show');
+
+    });
+
+  }
+
+  $scope.selectedAdmin = function(admin) { 
+
+    $scope.admin = {
+
+      id   : admin.id,
+
+      code : admin.code,
+
+      name : admin.name
+
+    }; 
+
+  }
+
+  $scope.adminData = function(id) {
+
+    $scope.data.User.adminId = $scope.admin.id;
+
+    $scope.data.User.admin_name = $scope.admin.name;
+
+  }
 
   $scope.update = function() {
 
