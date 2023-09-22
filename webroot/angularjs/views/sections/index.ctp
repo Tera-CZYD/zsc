@@ -15,7 +15,7 @@
   handleAccess('pageIndex', 'section management/index', currentUser);
   handleAccess('pageAdd', 'section management/add', currentUser);
   handleAccess('pageEdit', 'section management/edit', currentUser);
-  handleAccess('pagePrint', 'section management/print', currentUser);
+  // handleAccess('pagePrint', 'section management/print', currentUser);
 
 </script>
 
