@@ -214,7 +214,7 @@ class PrintController extends AppController {
     
     }
 
-    $tmpData = $this->Course->query($this->Course->getAllCourse($conditions));
+    $tmpData = $this->Courses->getAllCoursePrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -255,15 +255,13 @@ class PrintController extends AppController {
 
       foreach ($tmpData as $key => $data){
 
-        $tmp = $data['Course'];
-
         $pdf->RowLegalP(array(
 
           $key + 1,
 
-          $tmp['code'],
+          $data['code'],
 
-          $tmp['title'],
+          $data['title'],
 
         ));
 
@@ -397,7 +395,7 @@ class PrintController extends AppController {
     
     }
 
-    $tmpData = $this->Course->query($this->College->getAllCollege($conditions));
+    $tmpData = $this->Colleges->getAllCollegePrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -440,19 +438,17 @@ class PrintController extends AppController {
 
       foreach ($tmpData as $key => $data){
 
-        $tmp = $data['College'];
-
         $pdf->RowLegalP(array(
 
           $key + 1,
 
-          $tmp['code'],
+          $data['code'],
 
-          $tmp['name'],
+          $data['name'],
 
-          $tmp['acronym'],
+          $data['acronym'],
 
-          $tmp['year_established'],
+          $data['year_established'],
 
         ));
 
@@ -1084,7 +1080,7 @@ class PrintController extends AppController {
   
   }
 
-  public function college_programs(){
+  public function collegePrograms(){
 
     $conditions = array();
 
@@ -1102,15 +1098,15 @@ class PrintController extends AppController {
 
     $conditions['college_id'] = '';
 
-    if(isset($this->request->query['college_id'])){
+    if($this->request->getQuery('college_id')){
 
-      $college_id = $this->request->query['college_id'];
+      $college_id = $this->request->getQuery('college_id');
 
       $conditions['college_id'] = "AND College.id = $college_id";
 
     }
 
-    $tmpData = $this->CollegeProgram->query($this->CollegeProgram->getAllCollegeProgram($conditions));
+    $tmpData = $this->CollegePrograms->getAllCollegeProgramPrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -1155,21 +1151,19 @@ class PrintController extends AppController {
 
       foreach ($tmpData as $key => $data){
 
-        $tmp = $data['CollegeProgram'];
-
         $pdf->RowLegalL(array(
 
           $key + 1,
 
-          strtoupper($tmp['code']),
+          $data['code'],
 
-          strtoupper($tmp['name']),
+          $data['name'],
 
-          strtoupper($tmp['program_name']),
+          $data['program_name'],
 
-          strtoupper($tmp['acronym']),
+          $data['acronym'],
 
-          strtoupper($tmp['capacity']),
+          $data['capacity'],
 
           // strtoupper($tmp['term']),
 
@@ -9615,20 +9609,20 @@ class PrintController extends AppController {
 
   }
 
-    public function dental(){
+  public function dental(){
     
     $conditions = array();
 
     $conditions['search'] = '';
 
-    if ($this->request->getQuery('search')) {
+    if($this->request->getQuery('search')){
 
       $search = $this->request->getQuery('search');
 
       $search = strtolower($search);
 
       $conditions['search'] = $search;
-    
+
     }
 
     $conditions['date'] = '';
@@ -9662,26 +9656,31 @@ class PrintController extends AppController {
 
     $conditions['status'] = '';
 
-    if ($this->request->getQuery('status')) {
+    if ($this->request->getQuery('status')!=null) {
 
       $status = $this->request->getQuery('status');
 
+      // var_dump($status);
+
       $conditions['status'] = "AND Dental.status = $status";
 
-
-      
     }
 
+    
 
     $conditions['studentId'] = '';
 
     if ($this->request->getQuery('per_student')) {
 
-      $per_student = $this->request->getQuery('per_student');
-      
-      $employee_id = $this->Auth->user('studentId');
+        $per_student = $this->request->getQuery('per_student');
 
-      $conditions['studentId'] = "AND Dental.student_id = $employee_id";
+        $employee_id = $this->Auth->user('studentId');
+
+        if (!empty($employee_id)) {
+
+            $conditions['studentId'] = "AND Dental.student_id = $employee_id";
+
+        }
 
     }
 
@@ -22062,6 +22061,8 @@ class PrintController extends AppController {
 
     $conditions['search'] = '';
 
+    // search conditions
+
     if ($this->request->getQuery('search')) {
 
       $search = $this->request->getQuery('search');
@@ -22069,7 +22070,7 @@ class PrintController extends AppController {
       $search = strtolower($search);
 
       $conditions['search'] = $search;
-    
+
     }
 
     $conditions['date'] = '';
@@ -22078,11 +22079,29 @@ class PrintController extends AppController {
 
       $search_date = $this->request->getQuery('date');
 
-      $conditions['date'] = " AND DATE(Bibliography.date_of_publication) = '$search_date'"; 
+      $conditions['date'] = " AND DATE(ItemIssuance.date) = '$search_date'"; 
 
       $dates['date'] = $search_date;
 
-    } 
+    }  
+
+    //advance search
+
+    if ($this->request->getQuery('startdate')) {
+
+      $start = $this->request->getQuery('startdate'); 
+
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = " AND DATE(ItemIssuance.date) >= '$start' AND DATE(ItemIssuance.date) <= '$end'";
+
+      $dates['startDate'] = $start;
+
+      $dates['endDate']   = $end;
+
+    }
+
+    //advance search
 
     if ($this->request->getQuery('startDate')) {
 
@@ -22090,11 +22109,21 @@ class PrintController extends AppController {
 
       $end = $this->request->getQuery('endDate');
 
-      $conditions['date'] = " AND DATE(Bibliography.date_of_publication) >= '$start' AND DATE(Bibliography.date_of_publication) <= '$end'";
+      $conditions['date'] = " AND DATE(ItemIssuance.date) >= '$start' AND DATE(ItemIssuance.date) <= '$end'";
 
       $dates['startDate'] = $start;
 
       $dates['endDate']   = $end;
+
+    }
+
+    $conditions['status'] = '';
+
+    if ($this->request->getQuery('status')!=null) {
+
+      $status = $this->request->getQuery('status');
+
+      $conditions['status'] = "AND ItemIssuance.status = $status";
 
     }
     
@@ -32193,7 +32222,7 @@ EQUIVALENT',1,'C',0);
     
     }
 
-    $tmpData = $this->NurseProfiles->query($this->NurseProfiles->getAllNurseProfilePrint($conditions));
+    $tmpData = $this->NurseProfiles->getAllNurseProfilePrint($conditions);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -32232,7 +32261,7 @@ EQUIVALENT',1,'C',0);
     $pdf->SetWidths(array(15,70,50,35,35));
     $pdf->SetAligns(array('C','C','C','C','C'));
 
-    if(!empty($tmpData)){
+    if(count($tmpData)>0){
 
       foreach ($tmpData as $key => $data){
 
@@ -32246,7 +32275,7 @@ EQUIVALENT',1,'C',0);
 
           $data['age'],
 
-          $data['birthdate']->format('m/d/Y')
+          fdate($data['birthdate'],'m/d/Y')
 
         ));
 
@@ -33569,7 +33598,7 @@ EQUIVALENT',1,'C',0);
 
   }
 
-   public function barcode() {
+  public function barcode() {
 
     $conditions = [];
 
