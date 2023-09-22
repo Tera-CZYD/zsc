@@ -160,29 +160,34 @@
                 <label>FILTER BY</label>
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-list-ul"></i></span>
-                  <select class="form-control input-sm" ng-model="search.filterBy">
-                    <option value="module">MODULE</option>
+                  <select class="form-control input-sm" ng-model="search.filterBy" ng-change="clearSearch()">
+                    <option value="module">SUB MODULE</option>
                     <option value="action">ACTION</option>
                   </select>
                 </div>
               </div>
             </div>
-            <div ng-show="search.filterBy == 'module'">
+            <div class="col-md-12" ng-show="search.filterBy == 'module'">
               <div class="col-md-12">
                 <div class="form-group">
-                  <label>MODULE</label>
-                  <select class="form-control uppercase" ng-model="search.module" ng-options="opt for opt in data.PermissionModules" ng-change="filterPermission(search)">
+                  <label>SUB MODULE</label>
+                  <select class="form-control" ng-model="search.module" ng-options="opt.value as opt.value for opt in sub_modules"  >
                     <option value=""></option>
                   </select>
                 </div>
               </div>
             </div>
-            <div ng-show="search.filterBy == 'action'">
+            <div class="col-md-12" ng-show="search.filterBy == 'action'">
               <div class="col-md-12">
                 <div class="form-group">
-                  <label>MODULE</label>
-                  <select class="form-control uppercase" ng-model="search.action" ng-options="opt for opt in data.PermissionActions" ng-change="filterPermission(search)">
-                    <option value=""></option>
+                  <label>ACTION</label>
+                  <select class="form-control uppercase" ng-model="search.action">
+                    <option value="add">ADD</option>
+                    <option value="edit">EDIT</option>
+                    <option value="delete">DELETE</option>
+                    <option value="index">INDEX</option>
+                    <option value="print">PRINT</option>
+                    <option value="menu">MENU</option>
                   </select>
                 </div>
               </div>
@@ -191,7 +196,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary btn-sm btn-min" data-dismiss="modal"> <i class="fa fa-check"></i> OK</button>
+        <button type="button" ng-click="filterPermission(search)" class="btn btn-primary btn-sm btn-min" data-dismiss="modal"> <i class="fa fa-check"></i> OK</button>
       </div>
     </div>
   </div>
