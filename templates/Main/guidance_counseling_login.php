@@ -1,70 +1,124 @@
-<section id="login">
-    <div class="row">
-      <div class="col-md-3 col-md-offset-3" style="padding-top:-30px;">
-        <img src="<?php echo $base ?>/assets/img/mcp-zam.png" width="100%" style="float:left;margin-left:0;"> 
-        <div class="clearfix"></div>
-      </div>
-      <div class="col-md-6">
-        <header>
-          <p style="font-size:3rem;text-align: left;margin-top: 10%;margin-bottom: -5px"><font face="Times New Roman"></font></p>
-          <h1 style="font-size:75px;text-align: left;"><font face="Times New Roman">ESMIS</font></h1>
-          <p style="font-size:2rem;text-align: left;"><font face="Times New Roman">Electronic Student Management Information System</font></p>
-        </header>
+<body>
+  <div class="login-area login-bg">
+    <div class="container-fluid p-0">
+      <div class="row no-gutters">
+        <div class="col-xl-5 offset-xl-7 col-lg-5 offset-lg-7" style="padding-left: 0px; padding-right: 0px;">
+          <div class="login-box-s2">
+            <div class="myContainer">
+              <section id="login" style="margin-top: -240px;">
+                <header>
+                  <h2 style="font-size: 35px; text-align: center; color: white;"><font face="Times New Roman">Zamboanga State College of Marine Sciences and Technology</font></h2>
+                  <p style="font-size: 20px; text-align: center;"><font face="Times New Roman">Student Management System</font></p>
+                </header>
+              </section>
+              <div class="myContainer2">
+                <div class="card" id="myCard">
+                  <div class="card-header">
+                    <img src="<?php echo $base ?>/assets/img/mcp-zam.png" width="100%" style="float: left; margin-left: 0;">
+                    <h3 style="font-family: 'Times New Roman'; color: black;">SIGN IN</h3>
+                  </div>
+                  <div class="card-body" style="padding: 10px">
+                   
+                    <?php 
+
+                      $flasMessage = $this->Flash->render(); 
+
+                      if($flasMessage !== null){ ?>
+
+                        <div class="alert">
+                          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                          <strong onclick="this.parentElement.style.display='none'; resetDefault();"><?php echo $flasMessage; ?></strong>
+                        </div>
+
+                        <script type="text/javascript">
+                          var element = document.getElementById("myCard");
+                          element.style.height = "600px";
+                          function resetDefault(){
+
+                            var element = document.getElementById("myCard");
+                            element.style.height = "528px";
+
+                          }
+                        </script>
+
+                <?php }
+                 
+                     
+
+                    ?>
+
+                 
+
+
+                    <?php echo $this->Form->create(
+                      array(),
+                      array(
+                        'url' => array('controller' => 'Main', 'action' => 'login'),
+                        'class' => '',
+                        'id' => '',
+                        'inputDefaults' => array('label' => false, 'div' => false, 'class' => 'form-control')
+                      )
+                    ) ?>
+                    <div class="form-group">
+                      <label for="username" class="sr-only">Username</label>
+                      <div class="input-group">
+                        <span class="input-group-addon" style="color: black"><i class="fa fa-user"></i></span>
+                        <?php echo $this->Form->input('username', array('required' => true, 'placeholder' => 'USERNAME', 'autofocus' => true, 'class' => 'form-control input-form')) ?>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="password" class="sr-only">Password</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                        <?php echo $this->Form->input('password', array('type' => 'password', 'required' => true, 'placeholder' => 'PASSWORD', 'class' => 'form-control input-form')) ?>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <button class="btn btn-primary pull-right btn-min">SIGN IN</button>
+                      <div class="card-header" style="color: white;padding:0; margin: 0;">
+                        <a href="https://play.google.com/store/apps/details?id=com.zscmst.smisv1&hl=en-PH"><img src="<?php echo $base ?>/assets/img/google_play.png" width="25%" style="float:left;margin-left:0;"></a>
+                      </div>
+                    </div>
+
+                    
+                    <?php echo $this->Form->end() ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="color: #FFF; font-size: 12px; width: 100%; position: fixed; margin-top: 130px; bottom: 0px; padding: 0px; background: rgba(0, 0, 0, 0.15);">
+          <div class="copyright">COPYRIGHT &copy <script>document.write(/\d{4}/.exec(Date())[0])</script> | ALL RIGHTS RESERVED</div>
+          <div class="poweredby">POWERED BY: <a href="http://mycreativepanda.com"> My Creative Panda Web Design and Development Consultancy Services</a></div>
+        </div>
       </div>
     </div>
-    <div class="clearfix"></div>
-  </section>
-  <div class="col-md-12" style="margin:auto;padding:0px 0px 20px 0px">
-  <div class="col-md-4" style="margin-top: 2%">
   </div>
-  <div class="col-md-4" style="margin-top: 2%">
+</body>
 
-    <div class="card">
-      <div class="card-header"> 
-        <h3 style="font-family: 'Times New Roman';">SIGN IN</h3>
-      </div>
-      <div class="card-body" style="padding: 10px">
-        <br>
-  <?php echo $this->Form->create(array(),array('url'=>array('controller'=>'Main', 'action'=>'login'), 'class'=>'', 'id'=>'', 'inputDefaults'=>array('label'=>false, 'div'=>false, 'class'=>'form-control' )))?>
-      <div class="input-group">
-        <span class="input-group-addon" style="color: black"><i class="fa fa-user"></i></span>
-        <?php echo $this->Form->input('username', array('required'=>true, 'placeholder'=>'USERNAME', 'autofocus'=>true, 'class'=>'form-control input-form')) ?>
-      </div>
-      <br>
-      <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-key"></i></span>
-        <?php echo $this->Form->input('password', array('type'=>'password', 'required'=>true, 'placeholder'=>'PASSWORD', 'class'=>'form-control input-form')) ?>
-      </div>
-      <br>
-      <button class="btn btn-primary pull-right btn-min">
-        SIGN IN
-      </button>
-      <div class="clearfix"></div>
-      <!-- <a class="pull-right" href="forgot-password" style="margin-top: 10px">Forgot password ?</a> -->
-    <?php echo $this->Form->end() ?>
-      </div>
-   
+<style>
+.alert {
+  padding: 20px;
+  background: #fcebea;
+    color: #cc1f1a;
+    border-color: #ef5753;
+}
 
-    </div>
+.closebtn {
+  margin-left: 15px;
+  color: cc1f1a;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-  </div>
-
-  <div class="col-md-4" style="margin-top: 2%">
-
-  </div>
-</div>
-
-    
-  <div style="  color: #FFF;
-    font-size:12px;
-    width: 100%;
-    position:fixed;
-    margin-top:130px;
-
-    bottom: 0px;
-    padding: 0px;
-    background: rgba(0,0,0,0.15);
-">
-        <div class="copyright">COPYRIGHT &copy <script>document.write(new Date().getFullYear())</script> | ALL RIGHTS RESERVED</div>
-        <div class="poweredby">POWERED BY: <a href="http://mycreativepanda.com"> My Creative Panda Web Design and Development Consultancy Services</a></div>
-    </div>
+.closebtn:hover {
+  color: black;
+}
+</style>
