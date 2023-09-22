@@ -17,7 +17,7 @@ class StudentSchedulesController extends AppController {
     
     $this->loadComponent('RequestHandler');
 
-    $this->Sections = TableRegistry::getTableLocator()->get('Sections');
+    $this->StudentEnrolledSchedules = TableRegistry::getTableLocator()->get('StudentEnrolledSchedules');
 
   }
 
@@ -25,9 +25,11 @@ class StudentSchedulesController extends AppController {
 
     $page = $this->request->getQuery('page', 1);
 
+    $conditionsPrint = '';
+
     $conditions = [];
 
-    if ($this->request->getQuery('search')) {
+    if ($this->request->getQuery('search')!=null) {
 
       $search = $this->request->getQuery('search');
 
@@ -35,13 +37,31 @@ class StudentSchedulesController extends AppController {
 
       $conditions['search'] = $search;
 
+      $conditionsPrint .= '&search='.$search;
+
     }
 
-    $dataTable = TableRegistry::getTableLocator()->get('Sections');
+    $conditions['student_id'] = '';
+
+    if ($this->Auth->user('studentId')!=null) {
+
+      $student_id = $this->Auth->user('studentId');
+
+      if ($student_id!='') {
+
+        $conditions['student_id'] = "AND StudentEnrolledSchedule.student_id = $student_id";
+
+      }
+
+      $conditionsPrint .= '&per_student='.$student_id;
+
+    }
+
+    // var_dump($conditions);
 
     $limit = 25;
 
-    $tmpData = $dataTable->paginate($dataTable->getAllSection($conditions, $limit, $page), [
+    $tmpData = $this->StudentEnrolledSchedules->paginate($this->StudentEnrolledSchedules->getAllStudentEnrolledSchedule($conditions, $limit, $page), [
 
       'extra' => [
 
@@ -55,19 +75,31 @@ class StudentSchedulesController extends AppController {
 
     ]);
 
-    $sections = $tmpData['data'];
+    $tmp = $tmpData['data'];
 
     $paginator = $tmpData['pagination'];
 
     $datas = [];
 
-    foreach ($sections as $section) {
+    foreach ($tmp as $data) {
 
       $datas[] = array(
 
-        'id'           => $section['id'],
+        'id'            => $data['id'],
 
-        'name'         => $section['name'],
+        'code'     => $data['code'],
+
+        'faculty_name'   => $data['faculty_name'],
+
+        'day'   => $data['day'],
+
+        'course'        => $data['course'],
+
+        'room'        => $data['room'],
+
+        'time_start'        => $data['time_start'],
+
+        'time_end'        => $data['time_end'],
 
       );
 
@@ -80,6 +112,8 @@ class StudentSchedulesController extends AppController {
       'data' => $datas,
 
       'paginator' => $paginator,
+
+      'conditionsPrint' => $conditionsPrint,
 
     ];
 
