@@ -570,14 +570,6 @@
           </div>
           <div class="col-md-12">
             <div class="form-group">
-              <label> ROOM <i class="required">*</i></label>
-              <select id="r" class="form-control" ng-model="mail.room" ng-options="opt.id as opt.value for opt in rooms" data-validation-engine="validate[required]">
-                <option value=""></option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="form-group">
               <label> PLACE </label>
               <textarea type="text" class="form-control" ng-model="mail.place" data-validation-engine="validate[required]"></textarea>
             </div>
@@ -611,14 +603,6 @@
             <div class="form-group">
               <label> TIME </label>
               <input type="text" class="form-control clockpicker" ng-model="mail.time" data-validation-engine="validate[required]">
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="form-group">
-              <label> ROOM <i class="required">*</i></label>
-              <select id="r" class="form-control" ng-model="mail.room" ng-options="opt.id as opt.value for opt in rooms" data-validation-engine="validate[required]">
-                <option value=""></option>
-              </select>
             </div>
           </div>
           <div class="col-md-12">
