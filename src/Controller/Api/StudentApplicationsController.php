@@ -1098,8 +1098,6 @@ class StudentApplicationsController extends AppController {
 
                 $_SESSION['place'] = $value['place']; 
 
-                $_SESSION['room'] = $value['room'];
-
                 $_SESSION['id'] = $value['student_id'];
 
                 ob_start();
@@ -1135,8 +1133,6 @@ class StudentApplicationsController extends AppController {
             'time' => $value['time'],
 
             'place' => $value['place'],
-
-            'room' => $value['room']
 
           ]);
           
@@ -1276,8 +1272,6 @@ class StudentApplicationsController extends AppController {
 
             $_SESSION['place'] = $request['place']; 
 
-            $_SESSION['room'] = $request['room'];
-
             $_SESSION['id'] = $request['reference_id'];
 
             ob_start();
@@ -1316,8 +1310,6 @@ class StudentApplicationsController extends AppController {
         'time' => $request['time'],
 
         'place' => $request['place'],
-
-        'room' => $request['room']
 
       ]);
 
