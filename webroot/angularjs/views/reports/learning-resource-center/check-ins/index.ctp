@@ -1,5 +1,22 @@
-<?php if (hasAccess('report admission/list of students', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageIndex', 'report learning resource/check ins', currentUser);
+
+</script>
+
+<div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -65,7 +82,7 @@
             <table class="table table-bordered text-center">
               <thead>
                 <tr class="bg-info">
-<<<<<<< HEAD
+<!-- <<<<<<< HEAD
                       <th class="text-center w30px">#</th>
                       <th class="text-center"> LIBRARY ID NUMBER</th>
                       <th class="text-center"> MEMBER NAME </th>
@@ -81,7 +98,7 @@
                       <td class="text-center uppercase">{{ data.email }}</td>
                       <td class="text-center uppercase">{{ data.date_returned }}</td>
                     </tr>
-=======
+======= -->
                   <th class="w30px"> # </th>
                   <th class="text-center"> CONTROL NO. </th>
                   <th class="text-center"> MEMBER NAME </th>
@@ -101,9 +118,8 @@
                   <td class="text-center uppercase"><div ng-repeat='sub in data.subs'>{{ sub.barcode_no }}</div></td>
                   <td class="text-center uppercase">{{ data.date_returned }}</td>
                 </tr>
->>>>>>> 7574afc8d8968ae80fbe6273528cc571377dd3fe
                 <tr ng-show="datas == ''">
-                  <td colspan="9" class="text-center">No available data</td>
+                  <td colspan="7" class="text-center">No available data</td>
                 </tr>
               </tbody>
             </table>
@@ -139,7 +155,7 @@
     </div>
   </div>
 </div>
-<?php endif ?>
+
 
 <div class="modal fade" id="advance-search-modal">
   <div class="modal-dialog">

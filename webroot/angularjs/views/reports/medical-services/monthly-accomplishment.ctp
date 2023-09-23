@@ -12,8 +12,8 @@
   }
 
   // INCLUDE ALL PAGE PERMISSION
-  handleAccess('pageIndex', 'report admission/list of students/index', currentUser);
-  handleAccess('pagePrint', 'report admission/list of students/print', currentUser);
+  handleAccess('pageIndex', 'health and medical service/monthly accomplishments', currentUser);
+  handleAccess('pagePrint', 'health and medical service/monthly accomplishments print', currentUser);
 </script>
 
 <div class="row" id="pageIndex">

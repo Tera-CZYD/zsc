@@ -14,8 +14,6 @@ class BlockSectionsController extends AppController {
 
     parent::initialize();
 
-    $this->loadComponent('Paginator');
-
     $this->loadComponent('RequestHandler');
 
     $this->BlockSections = TableRegistry::getTableLocator()->get('BlockSections');

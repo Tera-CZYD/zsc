@@ -354,6 +354,52 @@ app.controller('UsersAddController', function($scope, User,$routeParams, Select)
 
   }
 
+  $scope.searchAdmin = function(options) {
+
+    options = typeof options !== 'undefined' ?  options : {};
+
+    options['code'] = 'search-admin';
+
+    Select.query(options, function(e) {
+
+      $scope.admins = e.data.result;
+
+      $scope.admin = {};
+      
+      // paginator
+
+      $scope.paginator  = e.data.paginator;
+
+      $scope.pages = paginator($scope.paginator, 10);
+
+      $("#searched-admin-modal").modal('show');
+
+    });
+
+  }
+
+  $scope.selectedAdmin = function(admin) { 
+
+    $scope.admin = {
+
+      id   : admin.id,
+
+      code : admin.code,
+
+      name : admin.name
+
+    }; 
+
+  }
+
+  $scope.adminData = function(id) {
+
+    $scope.data.User.adminId = $scope.admin.id;
+
+    $scope.data.User.admin_name = $scope.admin.name;
+
+  }
+
   $scope.save = function () {
 
     valid = $("#form").validationEngine('validate');
@@ -419,6 +465,8 @@ app.controller('UsersViewController', function($scope, $routeParams, DeleteSelec
   $scope.data = {};
 
   $scope.data.PermissionSelection = [];
+
+  // $scope.data.PermissionSubModules = [];
 
   $scope.data.UserPermission = [];
 
@@ -555,6 +603,15 @@ app.controller('UsersViewController', function($scope, $routeParams, DeleteSelec
   // add permission
 
   $scope.addPermission = function() {
+
+    Select.get({ code: 'get-all-subModules' },function(e){
+
+
+      $scope.sub_modules = e.data;
+
+    });
+
+    $scope.default = $scope.data.PermissionSelection;
 
     $('.savePermission').attr('disabled',false);
 
@@ -704,6 +761,16 @@ app.controller('UsersViewController', function($scope, $routeParams, DeleteSelec
 
   };
 
+  $scope.clearSearch = function () {
+
+    $scope.data.PermissionSelection = $scope.default
+
+    $scope.search.module = null;
+
+    $scope.search.action = null;
+
+  }
+
   $scope.filterPermission = function (search) {
 
     temp = [];
@@ -712,7 +779,11 @@ app.controller('UsersViewController', function($scope, $routeParams, DeleteSelec
 
       angular.forEach($scope.permissions_temp, function(value, key) {
 
-        if (value.module == search.module) {
+        let text = String(value.module);
+
+        let searchString = String(search.module);
+
+        if (text.includes(searchString)) {
 
           temp.push(value);
 
@@ -726,7 +797,11 @@ app.controller('UsersViewController', function($scope, $routeParams, DeleteSelec
 
       angular.forEach($scope.permissions_temp, function(value, key) {
 
-        if (value.action == search.action) {
+        let text = String(value.action);
+        
+        let searchString = String(search.action);
+
+        if (text.includes(searchString)) {
 
           temp.push(value);
 
@@ -935,6 +1010,52 @@ app.controller('UsersEditController', function($scope, $routeParams, User, Selec
     });
 
   });
+
+  $scope.searchAdmin = function(options) {
+
+    options = typeof options !== 'undefined' ?  options : {};
+
+    options['code'] = 'search-admin';
+
+    Select.query(options, function(e) {
+
+      $scope.admins = e.data.result;
+
+      $scope.admin = {};
+      
+      // paginator
+
+      $scope.paginator  = e.data.paginator;
+
+      $scope.pages = paginator($scope.paginator, 10);
+
+      $("#searched-admin-modal").modal('show');
+
+    });
+
+  }
+
+  $scope.selectedAdmin = function(admin) { 
+
+    $scope.admin = {
+
+      id   : admin.id,
+
+      code : admin.code,
+
+      name : admin.name
+
+    }; 
+
+  }
+
+  $scope.adminData = function(id) {
+
+    $scope.data.User.adminId = $scope.admin.id;
+
+    $scope.data.User.admin_name = $scope.admin.name;
+
+  }
 
   $scope.update = function() {
 

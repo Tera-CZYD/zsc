@@ -15,8 +15,6 @@
   handleAccess('pageView', 'completion form/view', currentUser);
   handleAccess('pageEdit', 'completion form/edit', currentUser);
   handleAccess('pageDelete', 'completion form/delete', currentUser);
-  handleAccess('pageApprove', 'completion form/approve', currentUser);
-  handleAccess('pageDisapprove', 'completion form/disapprove', currentUser);
   handleAccess('pagePrint', 'completion form/print', currentUser);
 
 </script>

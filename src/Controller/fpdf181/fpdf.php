@@ -104,9 +104,6 @@ function __construct($orientation='P', $unit='mm', $size='A4')
 	$this->ws = 0;
 	$this->footerBool = false;
 	$this->footerSystem = false;
-	$this->footerDtr = false;
-	$this->footerSaln = false;
-	$this->isFinished = false;
 	
 	// Font path
 	if(defined('FPDF_FONTPATH'))

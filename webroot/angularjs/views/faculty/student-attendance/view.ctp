@@ -1,5 +1,25 @@
-<?php if (hasAccess('student attendance/view', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'student attendance/view', currentUser);
+  handleAccess('pageSchedule', 'student attendance/registrar', currentUser);
+  handleAccess('pageViewAttendance', 'student attendance/view attendance', currentUser);
+  handleAccess('pageAdd', 'student attendance/add', currentUser);
+
+</script>
+
+<div class="row" id="pageView">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -90,12 +110,10 @@
           </div>
 
 
-          <?php if (hasAccess('student attendance/registrar', $currentUser)): ?>
-          <div class="col-md-12">
+          <div id="pageSchedule" class="col-md-12">
              <div class="header-title">CLASS SCHEDULES {{datas }}</div><br>
             <!-- <button class="btn btn-danger btn-min" ng-click="print();" ng-disabled="bool"><i class="fa fa-print"></i> PRINT REPORT OF RATING </button> -->
           </div>
-          <?php endif ?>
 
 
           <div class="col-md-12">
@@ -118,12 +136,8 @@
                     <td class="text-center">{{ sub.year_term }}</td>
                     <td>
                     <div class="btn-group btn-group-xs">
-                      <?php if (hasAccess('student attendance/add', $currentUser)): ?>
-                        <a href="#/faculty/student-attendance/add/{{ sub.faculty_id }}/{{ sub.block_section_course_id }}/{{ sub.course_id }}" class="btn btn-success" title="ADD"><i class="fa fa-plus"></i></a>
-                      <?php endif ?>
-                      <?php if (hasAccess('student attendance/view attendance', $currentUser)): ?>
-                        <a href="#/faculty/student-attendance/view-attendance/{{ sub.block_section_id }}/{{ sub.block_section_course_id }}/{{ sub.course_id }}" class="btn btn-primary" title="VIEW ATTENDACE"><i class="fa fa-eye"></i></a>
-                      <?php endif ?> 
+                        <a id="pageAdd" id="pageAdd" href="#/faculty/student-attendance/add/{{ sub.faculty_id }}/{{ sub.block_section_course_id }}/{{ sub.course_id }}" class="btn btn-success" title="ADD"><i class="fa fa-plus"></i></a>
+                        <a id="pageViewAttendance" href="#/faculty/student-attendance/view-attendance/{{ sub.block_section_id }}/{{ sub.block_section_course_id }}/{{ sub.course_id }}" class="btn btn-primary" title="VIEW ATTENDACE"><i class="fa fa-eye"></i></a>
                     </div>
                   </td> 
                   </tr>

@@ -141,19 +141,57 @@ class ProgramAdvisersController extends AppController {
 
     foreach ($main as $data) {
 
-      $block_sections = $this->BlockSections->find()
+      $block_sections = array();
 
-        ->where([
+      if($status == 0){
 
-          'visible' => 1,
+        $tmp_block_sections = $this->BlockSections->find()
 
-          'college_id' => $data['college_id'],
+          ->where([
 
-          'program_id' => $data['program_id'],
+            'visible' => 1,
 
-        ])
+            'college_id' => $data['college_id'],
 
-      ->all();
+            'program_id' => $data['program_id'],
+
+          ])
+
+        ->all();
+
+        if(!empty($tmp_block_sections)){
+
+          foreach ($tmp_block_sections as $key => $value) {
+            
+            $slot = $this->BlockSectionCourses->find()
+
+              ->where([
+
+                'visible' => 1,
+
+                'block_section_id' => $value['id']
+
+              ])
+
+            ->first();
+
+            $block_sections[] = array(
+
+              'id'         => $value['id'],
+
+              'section_id' => $value['section_id'],
+
+              'section'    => $value['section'],
+
+              'available_slot' => $slot['slot'] - $slot['enrolled_students']
+
+            );
+
+          }
+
+        }
+
+      }
 
       $datas[] = array(
 
@@ -241,6 +279,8 @@ class ProgramAdvisersController extends AppController {
 
           foreach ($block_section_courses as $key => $value) {
 
+            $course = $value['course'];
+
             //STUDENT ENROLLED SCHEDULE
 
               $block_section_schedules = $this->BlockSectionSchedules->find()
@@ -269,7 +309,7 @@ class ProgramAdvisersController extends AppController {
 
                     'course_id'                  => $value['course_id'],
 
-                    'course'                     => $value['course'],
+                    'course'                     => $course,
 
                     'block_section_schedule_id'  => $values['id'],
 
@@ -313,7 +353,7 @@ class ProgramAdvisersController extends AppController {
 
               'course_code'  => $value['course_code'],
 
-              'course'       => $value['course'],
+              'course'       => $course,
 
               'year_term_id' => $main['year_term_id'],
 
