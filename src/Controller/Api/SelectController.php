@@ -11319,6 +11319,47 @@ class SelectController extends AppController {
 
       }
 
+    } else if ($code == 'students-per-campus') {
+
+      $colleges = $this->Colleges->find()
+
+        ->where([
+
+          'visible' => 1
+
+        ])
+
+      ->all();
+
+
+      if(!empty($colleges)){
+
+        foreach ($colleges as $k => $data) {
+
+          $student_count = $this->Students->find()
+
+            ->where([
+
+              'visible' => 1,
+
+              'college_id' => $data['id']
+
+            ])
+
+          ->count();
+
+          $datas[] = array(
+
+            'college' => $data['acronym'],
+
+            'student_count'  => $student_count,
+
+          );
+
+        }
+
+      }
+
     } else {
 
       $datas = array();

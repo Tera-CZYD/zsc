@@ -51,7 +51,28 @@ app.controller('StudentScheduleController', function($scope, StudentSchedule) {
 
         // }
 
+        $scope.timeSlots = [];
+
+        // Define the start and end times for the time slots
+        var startTime = new Date(0, 0, 0, 7, 0); // 7:00 AM
+        var endTime = new Date(0, 0, 0, 17, 0);  // 5:00 PM
+
+        // Generate the time slots in 15-minute intervals
+        while (startTime <= endTime) {
+
+            var formattedTime = startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            $scope.timeSlots.push(formattedTime);
+
+            startTime.setMinutes(startTime.getMinutes() + 30); // Increment by 15 minutes
+
+        }
+
+        console.log($scope.timeSlots);
+
         createClassSchedule();
+
+
 
       }
 
@@ -60,39 +81,39 @@ app.controller('StudentScheduleController', function($scope, StudentSchedule) {
   }
 
 
-//   function createClassSchedule() {
-//     // Initialize an empty schedule structure
-//     var classSchedule = {};
+  function createClassSchedule() {
+    // Initialize an empty schedule structure
+    var classSchedule = {};
 
-//     // Loop through the data and organize it by day and time slot
-//     for (var i = 0; i < $scope.datas.length; i++) {
-//         var classItem = $scope.datas[i];
+    // Loop through the data and organize it by day and time slot
+    for (var i = 0; i < $scope.datas.length; i++) {
+        var classItem = $scope.datas[i];
 
-//         // Extract day and time information
-//         var day = classItem.day;
-//         var timeStart = classItem.time_start;
-//         var timeEnd = classItem.time_end;
+        // Extract day and time information
+        var day = classItem.day;
+        var timeStart = classItem.time_start;
+        var timeEnd = classItem.time_end;
 
-//         // Create a time slot string (e.g., "8:00 AM - 9:00 AM")
-//         var timeSlot = timeStart + " - " + timeEnd;
+        // Create a time slot string (e.g., "8:00 AM - 9:00 AM")
+        var timeSlot = timeStart + " - " + timeEnd;
 
-//         // Initialize the schedule entry for the day if it doesn't exist
-//         if (!classSchedule[day]) {
-//             classSchedule[day] = [];
-//         }
+        // Initialize the schedule entry for the day if it doesn't exist
+        if (!classSchedule[day]) {
+            classSchedule[day] = [];
+        }
 
-//         // Add the class to the schedule for the specified time slot
-//         classSchedule[day].push({
-//             course: classItem.course,
-//             faculty_name: classItem.faculty_name,
-//             room: classItem.room,
-//             timeSlot: timeSlot
-//         });
-//     }
+        // Add the class to the schedule for the specified time slot
+        classSchedule[day].push({
+            course: classItem.course,
+            faculty_name: classItem.faculty_name,
+            room: classItem.room,
+            timeSlot: timeSlot
+        });
+    }
 
-//     // Assign the result to the $scope variable (if needed)
-//     $scope.classSchedule = classSchedule;
-// }
+    // Assign the result to the $scope variable (if needed)
+    $scope.classSchedule = classSchedule;
+}
 
 
   $scope.load();
