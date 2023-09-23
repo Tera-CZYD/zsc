@@ -3,6 +3,9 @@
 <script type="text/javascript" src="<?php echo $base ?>/assets/plugins/amCharts/charts.js"></script>
 <script type="text/javascript" src="<?php echo $base ?>/assets/plugins/amCharts/animated.js"></script>
 
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 <!-- jquery latest version -->
 <script type="text/javascript" src="<?php echo $base ?>/assets/js/vendor/jquery-2.2.4.min.js"></script>
 
