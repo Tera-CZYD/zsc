@@ -11665,7 +11665,7 @@ class PrintController extends AppController {
     $pdf->footerSystem = true;
     $pdf->AliasNbPages();
     $pdf->AddPage("L", "legal", 0);
-    $pdf->Image($this->base .'/assets/img/zam.png',75,10,25,25);
+    $pdf->Image($this->base .'/assets/img/zam2.png',75,10,25,25);
     $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
     $pdf->Ln(5);
@@ -11678,24 +11678,40 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
+
+
+    if($this->request->getQuery('status') == 0){
+
+      $status = 'PENDING';
+
+    }else if($this->request->getQuery('status') == 1){
+
+      $status = 'APPROVED';
+
+    }else{
+
+      $status = 'DISAPPROVED';
+
+    }
+
     $pdf->SetFont("Arial", 'B', 12);
-    $pdf->Cell(0,5,'STUDENT APPLICATION',0,0,'C');
+    $pdf->Cell(0,5,$status.' STUDENT APPLICATION',0,0,'C');
     $pdf->Ln(10);
     $pdf->SetFont("Arial", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
-    $pdf->Cell(105,5,'APPLICANT NAME',1,0,'C',1);
+    $pdf->Cell(105,5,' APPLICANT NAME',1,0,'C',1);
     $pdf->Cell(65,5,'EMAIL',1,0,'C',1);
     $pdf->Cell(65,5,'ADDRESS',1,0,'C',1);
     $pdf->Cell(35,5,'CONTACT NO.',1,0,'C',1);
     $pdf->Cell(30,5,'GENDER',1,0,'C',1);
     $pdf->Cell(35,5,'APPLICATION DATE',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,105,65,65,35,30,35));
     $pdf->SetAligns(array('C','L','L','L','C','C','C'));
 
-    if(!empty($tmpData)){
+    if(count($tmpData) > 0){
 
       foreach ($tmpData as $key => $data){
 
@@ -12154,7 +12170,7 @@ class PrintController extends AppController {
 
       // Resetting the left margin to default
       
-    if(!empty($tmpData)){
+    if(count($tmpData) > 0){
 
       foreach ($tmpData as $key => $data){
 
@@ -16934,7 +16950,7 @@ class PrintController extends AppController {
     $pdf->SetWidths(array(10,35,60,35,35,65,35,35,35));
     $pdf->SetAligns(array('C','C','C','C','C','C','C','C','C'));
 
-    if(!empty($tmpData)){
+    if(count($tmpData) > 0){
 
       $approve = '';
 
@@ -17227,7 +17243,7 @@ class PrintController extends AppController {
     $pdf->SetWidths(array(10,70,70,60,60,70));
     $pdf->SetAligns(array('C','C','C','C','C','C'));
 
-    if(!empty($tmpData)){
+    if(count($tmpData) > 0){
 
       foreach ($tmpData as $key => $data){ 
 
