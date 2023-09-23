@@ -1,4 +1,3 @@
-
 <style>
   .codyhouse {
     text-align: center;
@@ -71,6 +70,7 @@
   a {
     color: #A2B9B2;
     text-decoration: none;
+    pointer-events: none;
   }
 
   /* -------------------------------- 
@@ -696,19 +696,19 @@
                   <div class="top-info"><span>Monday</span></div>
                   <ul>
                     <li class="single-event" data-start="09:30" data-end="10:30"  data-event="event-1">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Abs Circuit</em>
                       </a>
                     </li>
 
                     <li class="single-event" data-start="11:00" data-end="12:30" data-content="event-rowing-workout" data-event="event-2">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Rowing Workout</em>
                       </a>
                     </li>
 
                     <li class="single-event" data-start="14:00" data-end="15:15"  data-content="event-yoga-1" data-event="event-3">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Yoga Level 1</em>
                       </a>
                     </li>
@@ -720,25 +720,25 @@
 
                   <ul>
                     <li class="single-event" data-start="10:00" data-end="11:00"  data-content="event-rowing-workout" data-event="event-2">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Rowing Workout</em>
                       </a>
                     </li>
 
                     <li class="single-event" data-start="11:30" data-end="13:00"  data-content="event-restorative-yoga" data-event="event-4">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Restorative Yoga</em>
                       </a>
                     </li>
 
                     <li class="single-event" data-start="13:30" data-end="15:00" data-content="event-abs-circuit" data-event="event-1">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Abs Circuit</em>
                       </a>
                     </li>
 
                     <li class="single-event" data-start="15:45" data-end="16:45"  data-content="event-yoga-1" data-event="event-3">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Yoga Level 1</em>
                       </a>
                     </li>
@@ -750,25 +750,25 @@
 
                   <ul>
                     <li class="single-event" data-start="09:00" data-end="10:15" data-content="event-restorative-yoga" data-event="event-4">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Restorative Yoga</em>
                       </a>
                     </li>
 
                     <li class="single-event" data-start="10:45" data-end="11:45" data-content="event-yoga-1" data-event="event-3">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Yoga Level 1</em>
                       </a>
                     </li>
 
                     <li class="single-event" data-start="12:00" data-end="13:45"  data-content="event-rowing-workout" data-event="event-2">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Rowing Workout</em>
                       </a>
                     </li>
 
                     <li class="single-event" data-start="13:45" data-end="15:00" data-content="event-yoga-1" data-event="event-3">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Yoga Level 1</em>
                       </a>
                     </li>
@@ -780,25 +780,25 @@
 
                   <ul>
                     <li class="single-event" data-start="09:30" data-end="10:30" data-content="event-abs-circuit" data-event="event-1">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Abs Circuit</em>
                       </a>
                     </li>
 
                     <li class="single-event" data-start="12:00" data-end="13:45" data-content="event-restorative-yoga" data-event="event-4">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Restorative Yoga</em>
                       </a>
                     </li>
 
                     <li class="single-event" data-start="15:30" data-end="16:30" data-content="event-abs-circuit" data-event="event-1">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Abs Circuit</em>
                       </a>
                     </li>
 
                     <li class="single-event" data-start="17:00" data-end="18:30"  data-content="event-rowing-workout" data-event="event-2">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Rowing Workout</em>
                       </a>
                     </li>
@@ -810,19 +810,19 @@
 
                   <ul>
                     <li class="single-event" data-start="10:00" data-end="11:00"  data-content="event-rowing-workout" data-event="event-2">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Rowing Workout</em>
                       </a>
                     </li>
 
                     <li class="single-event" data-start="12:30" data-end="14:00" data-content="event-abs-circuit" data-event="event-1">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Abs Circuit</em>
                       </a>
                     </li>
 
                     <li class="single-event" data-start="15:45" data-end="16:45"  data-content="event-yoga-1" data-event="event-3">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Yoga Level 1</em>
                       </a>
                     </li>
@@ -833,19 +833,19 @@
                   <div class="top-info"><span>Saturday</span></div>
                   <ul>
                     <li class="single-event" data-start="09:30" data-end="10:30" data-content="event-abs-circuit" data-event="event-1">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Abs Circuit</em>
                       </a>
                     </li>
 
                     <li class="single-event" data-start="11:00" data-end="12:30" data-content="event-rowing-workout" data-event="event-2">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Rowing Workout</em>
                       </a>
                     </li>
 
                     <li class="single-event" data-start="14:00" data-end="15:15"  data-content="event-yoga-1" data-event="event-3">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Yoga Level 1</em>
                       </a>
                     </li>
@@ -856,19 +856,19 @@
                   <div class="top-info"><span>Sunday</span></div>
                   <ul>
                     <li class="single-event" data-start="09:30" data-end="10:30" data-content="event-abs-circuit" data-event="event-1">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Abs Circuit</em>
                       </a>
                     </li>
 
                     <li class="single-event" data-start="11:00" data-end="12:30" data-content="event-rowing-workout" data-event="event-2">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Rowing Workout</em>
                       </a>
                     </li>
 
                     <li class="single-event" data-start="14:00" data-end="15:15"  data-content="event-yoga-1" data-event="event-3">
-                      <a href="#0">
+                      <a href="#">
                         <em class="event-name">Yoga Level 1</em>
                       </a>
                     </li>
@@ -1023,10 +1023,10 @@
       $(this).children('a').prepend($(durationLabel));
 
       //detect click on the event and open the modal
-      $(this).on('click', 'a', function(event){
-        event.preventDefault();
-        if( !self.animating ) self.openModal($(this));
-      });
+      // $(this).on('click', 'a', function(event){
+      //   event.preventDefault();
+      //   if( !self.animating ) self.openModal($(this));
+      // });
     });
 
     //close modal window
