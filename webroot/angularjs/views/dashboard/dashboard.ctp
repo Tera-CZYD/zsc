@@ -544,6 +544,10 @@
         </div>
       </div>
     </div>
+
+    <div class="col-md-6">
+      <div id="chartdiv2"></div>
+    </div>
     
   </section>
 </div>
@@ -554,3 +558,11 @@ function topFunction() {
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 </script>
+
+<style>
+#chartdiv2 {
+  width: 100%;
+  height: 500px;
+}
+
+</style>
