@@ -311,6 +311,7 @@ app.controller('StudentApplicationAddController', function($scope, StudentApplic
 
   }
 
+
   Select.get({ code: 'college-list' }, function(e) {
 
     $scope.colleges = e.data;
@@ -348,6 +349,48 @@ app.controller('StudentApplicationAddController', function($scope, StudentApplic
   }
 
   $scope.generateRandomString();
+
+  // $scope.isValidFileType = function (file) {
+    
+  //   var allowedExtensions = ["png", "jpeg", "jpg", "pdf"];
+
+    
+  //   var fileExtension = file.name.split('.').pop().toLowerCase();
+
+    
+  //   return allowedExtensions.indexOf(fileExtension) !== -1;
+
+  // };
+
+  // $scope.validateFiles = function () {
+
+  //   console.log('sheesh')
+
+  //   var validFiles = [];
+  //   var invalidFiles = [];
+
+  //   // Loop through the selected files
+  //   for (var i = 0; i < $scope.data.StudentApplicationImage.length; i++) {
+  //     var file = $scope.data.StudentApplicationImage[i];
+
+  //     // Check if the file is of an allowed type
+  //     if ($scope.isValidFileType(file)) {
+  //       validFiles.push(file);
+  //     } else {
+  //       invalidFiles.push(file);
+  //     }
+  //   }
+
+    
+  //   $scope.data.StudentApplicationImage = validFiles;
+
+
+  //   if (invalidFiles.length > 0) {
+  //     alert("Invalid file types. Allowed types: PNG, JPEG, PDF");
+      
+  //   }
+
+  // };
 
   $scope.saveImages = function (files) {
 
@@ -453,6 +496,18 @@ app.controller('StudentApplicationViewController', function($scope, $routeParams
 
             window.location = '#/admission/student-application';
 
+          }else{
+
+
+              $.gritter.add({
+
+              title: 'Warning!',
+
+              text:  e.msg,
+
+            });
+
+
           }
 
         });
@@ -463,6 +518,8 @@ app.controller('StudentApplicationViewController', function($scope, $routeParams
 
   }
 
+  $scope.adata = {}
+
   $scope.disapprove = function(data){  
 
     bootbox.confirm('Are you sure you want to disapprove application?', function(b){
@@ -472,6 +529,8 @@ app.controller('StudentApplicationViewController', function($scope, $routeParams
         bootbox.prompt('REASON ?', function(result){
 
           if(result){
+
+            $scope.adata = $scope.data;
 
             $scope.data = {
 
@@ -492,6 +551,18 @@ app.controller('StudentApplicationViewController', function($scope, $routeParams
                 });
 
                 window.location = "#/admission/student-application";
+
+              }else{
+
+                $.gritter.add({
+
+                  title : 'Warning!',
+
+                  text: e.msg
+
+                });
+
+                $scope.data = $scope.adata;
 
               }
 
@@ -527,6 +598,16 @@ app.controller('StudentApplicationViewController', function($scope, $routeParams
             });
 
             window.location = "#/admission/student-application";
+
+          }else{
+
+            $.gritter.add({
+
+              title: 'Warning!',
+
+              text:  e.msg,
+
+            });
 
           }
 

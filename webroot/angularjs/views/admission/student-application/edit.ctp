@@ -222,7 +222,7 @@
 
             <div class="col-md-6">
               <div class="form-group">
-                <label> HIGHSCHOOL CURRICULUMN  <i class="required">*</i></label>
+                <label> HIGHSCHOOL CURRICULUM  <i class="required">*</i></label>
                 <select class="form-control" ng-model="data.StudentApplication.curriculumn" style="height: 45px" data-validation-engine="validate[required]" autocomplete="false">
                   <option></option>
                   <option value="ALS">ALS</option>
