@@ -66,6 +66,108 @@ app.controller('DashboardController', function($scope,Select,StudentApplicationM
 
           chart.draw();
 
+
+
+          // Themes begin
+          am4core.useTheme(am4themes_animated);
+          // Themes end
+
+          // Create chart instance
+          var tmp = [];
+
+          var chart2 = am4core.create("chartdiv2", am4charts.XYChart3D);
+
+          Select.get({ code: 'students-per-campus' },function(e){
+
+            if(e.data.length > 0){
+
+              $.each(e.data, function(i,val){
+
+                // Add data
+                tmp.push({
+
+                  "college": val.college,
+
+                  "students": val.student_count
+
+                });
+
+              });
+
+              chart2.data = tmp;
+
+
+              // Create axes
+
+              let categoryAxis = chart2.xAxes.push(new am4charts.CategoryAxis());
+              
+              categoryAxis.dataFields.category = "college";
+              
+              categoryAxis.renderer.labels.template.rotation = 270;
+              
+              categoryAxis.renderer.labels.template.hideOversized = false;
+              
+              categoryAxis.renderer.minGridDistance = 20;
+              
+              categoryAxis.renderer.labels.template.horizontalCenter = "right";
+              
+              categoryAxis.renderer.labels.template.verticalCenter = "middle";
+              
+              categoryAxis.tooltip.label.rotation = 270;
+              
+              categoryAxis.tooltip.label.horizontalCenter = "right";
+              
+              categoryAxis.tooltip.label.verticalCenter = "middle";
+
+              let valueAxis = chart2.yAxes.push(new am4charts.ValueAxis());
+             
+              valueAxis.title.text = "Students per college";
+              
+              valueAxis.title.fontWeight = "bold";
+
+              // Create series
+              var series = chart2.series.push(new am4charts.ColumnSeries3D());
+             
+              series.dataFields.valueY = "students";
+             
+              series.dataFields.categoryX = "college";
+             
+              series.name = "Visits";
+             
+              series.tooltipText = "{categoryX}: [bold]{valueY}[/]";
+             
+              series.columns.template.fillOpacity = .8;
+
+              var columnTemplate = series.columns.template;
+             
+              columnTemplate.strokeWidth = 2;
+             
+              columnTemplate.strokeOpacity = 1;
+             
+              columnTemplate.stroke = am4core.color("#FFFFFF");
+
+              columnTemplate.adapter.add("fill", function(fill, target) {
+             
+                return chart2.colors.getIndex(target.dataItem.index);
+             
+              })
+
+              columnTemplate.adapter.add("stroke", function(stroke, target) {
+              
+                return chart2.colors.getIndex(target.dataItem.index);
+              
+              })
+
+              chart2.cursor = new am4charts.XYCursor();
+             
+              chart2.cursor.lineX.strokeOpacity = 0;
+             
+              chart2.cursor.lineY.strokeOpacity = 0;
+
+            }
+
+          });
+
         }
 
       }

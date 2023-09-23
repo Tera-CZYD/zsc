@@ -39,9 +39,7 @@
    <tr>
     <td style="text-align: left;"><strong> PLACE :</strong><i> <?php echo $_SESSION['place'];?> </i></td>
   </tr>
-<!--   <tr>
-    <td style="text-align: left;"><strong> ROOM :</strong><i> <?php echo $_SESSION['room'];?> </i></td>
-  </tr> -->
+
   <tr>
     <td></td>
   </tr>
