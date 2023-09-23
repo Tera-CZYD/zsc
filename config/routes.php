@@ -45,6 +45,18 @@
 
       $builder->connect('/continuing-student-login', ['controller' => 'Main', 'action' => 'continuing_student_login']);
 
+      $builder->connect('/faculty-login', ['controller' => 'Main', 'action' => 'faculty_login']);
+
+      $builder->connect('/dean-login', ['controller' => 'Main', 'action' => 'dean_login']);
+
+      $builder->connect('/guidance-counseling-login', ['controller' => 'Main', 'action' => 'guidance_counseling_login']);
+
+      $builder->connect('/learning-resource-center-login', ['controller' => 'Main', 'action' => 'learning_resource_center_login']);
+
+      $builder->connect('/vice-president-login', ['controller' => 'Main', 'action' => 'vice_president_login']);
+
+      $builder->connect('/cashier-login', ['controller' => 'Main', 'action' => 'cashier_login']);
+
       $builder->connect('/change-program/:id', ['controller' => 'Main', 'action' => 'change_program']);
 
 	    $builder->fallbacks();
