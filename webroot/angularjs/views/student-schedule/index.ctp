@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <style>
   .codyhouse {
     text-align: center;
@@ -1364,5 +1364,4 @@
     });
   }
 });</script>
-=======
->>>>>>> 44ce222202dd8bb5c53ab0277b82b8d3f5e3cb55
+
