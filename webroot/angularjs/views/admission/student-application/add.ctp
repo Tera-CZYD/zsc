@@ -222,7 +222,7 @@
 
             <div class="col-md-6">
               <div class="form-group">
-                <label> HIGHSCHOOL CURRICULUMN  <i class="required">*</i></label>
+                <label> HIGHSCHOOL CURRICULUM  <i class="required">*</i></label>
                 <select class="form-control" ng-model="data.StudentApplication.curriculumn" style="height: 45px" data-validation-engine="validate[required]" autocomplete="false">
                   <option></option>
                   <option value="ALS">ALS</option>
@@ -289,6 +289,20 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="alertModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p id="alertMessage"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <style type="text/css">
   th {
     white-space: nowrap;
@@ -349,32 +363,55 @@
 </style>
 
 <script>
-  $(document).on('click','#close',function(){
+  $(document).on('click', '#close', function () {
     $(this).parents('span').remove();
+  });
 
-  })
+  // Get the alert modal element
+  var alertModal = document.getElementById('alertModal');
+
+  // Get the alert message element
+  var alertMessage = document.getElementById('alertMessage');
+
+  // Get the input element
+  var input = document.getElementById('myInput');
+
+  // Function to show the alert modal
+  function showAlertModal(message) {
+    alertMessage.textContent = message;
+    $(alertModal).modal('show');
+  }
+
+  var errorMessage = 'Files should be 10MB or Less';
 
   document.getElementById('applicationImage').onchange = uploadOnChange;
 
   function uploadOnChange() {
-
     var filename = this.value;
-
     var lastIndex = filename.lastIndexOf("\\");
-
+    
     if (lastIndex >= 0) {
-
       filename = filename.substring(lastIndex + 1);
-
     }
-
+    
     var files = $('#applicationImage')[0].files;
+    var validExtensions = ['jpg', 'jpeg', 'png', 'pdf'];
 
     for (var i = 0; i < files.length; i++) {
+      var file = files[i];
+      var fileExtension = file.name.split('.').pop().toLowerCase();
 
-      $("#upload_prev").append('<span><u>'+'<div class="filenameupload">'+files[i].name+'</u></div>'+'<p id = "close" class="btn btn-danger xbutton fa fa-times" style "background-color :red !important"></p></span>');
-    
+      if (file.size >= 1.25 * 1024 * 1024) {
+        showAlertModal(errorMessage);
+        return; // Stop processing if any file exceeds the size limit
+      }
+
+      if (validExtensions.indexOf(fileExtension) === -1) {
+        showAlertModal('Invalid file type. Allowed types: JPEG, PNG, PDF');
+        return; // Stop processing if any file has an invalid extension
+      }
+
+      $("#upload_prev").append('<span><u>' + '<div class="filenameupload">' + file.name + '</u></div>' + '<p id="close" class="btn btn-danger xbutton fa fa-times" style="background-color: red !important"></p></span>');
     }
   }
-  
 </script>

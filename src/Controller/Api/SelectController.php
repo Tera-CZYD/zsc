@@ -96,6 +96,8 @@ class SelectController extends AppController {
 
     $this->loadModel("RoomTypes");
 
+    $this->loadModel("SubModules");
+
     $this->loadModel("StudentLogs");
 
     $this->loadModel("Prescriptions");
@@ -148,6 +150,13 @@ class SelectController extends AppController {
 
     $this->IllnessRecommendationSubs = TableRegistry::getTableLocator()->get('IllnessRecommendationSubs');
 
+    $this->BlockSections = TableRegistry::getTableLocator()->get('BlockSections');
+
+    $this->BlockSectionCourses = TableRegistry::getTableLocator()->get('BlockSectionCourses');
+
+    $this->BlockSectionSchedules = TableRegistry::getTableLocator()->get('BlockSectionSchedules');
+
+    $this->Ptcs = TableRegistry::getTableLocator()->get('Ptcs');
 
     //sir leo
 
@@ -266,7 +275,33 @@ class SelectController extends AppController {
 
       }
 
-    }else if ($code == 'roles') {
+    }else if($code == 'get-all-subModules'){
+
+      $tmp = $this->SubModules->find()
+
+        ->where(['SubModules.visible' => 1])
+
+        ->order(['SubModules.name' => 'ASC'])
+
+      ->all();
+
+      if(!empty($tmp)){
+
+        foreach ($tmp as $k => $data) {
+
+          $datas[] = array(
+
+            'id'   => $data['id'],
+
+            'value' =>  $data['name'],
+
+          );
+
+        }
+
+      }
+
+    } else if ($code == 'roles') {
      
       $tmp = $this->Roles->find()->where([
 
@@ -671,6 +706,12 @@ class SelectController extends AppController {
           'id' => $student['id'],
        
           'code' => $student['student_no'],
+
+          'first_name' => $student['first_name'],
+
+          'middle_name' => $student['middle_name'],
+
+          'last_name' => $student['last_name'],
        
           'name' => $student['full_name'],
        
@@ -698,17 +739,13 @@ class SelectController extends AppController {
 
     } else if ($code == 'search-admin') {
 
-      $page = isset($this->request->query['page'])? $this->request->query['page'] : 1;
+      $page = $this->request->getQuery('page', 1);
 
-      $conditions = array();
+      $conditions = [];
 
-      $conditions['search'] = '';
+      if ($this->request->getQuery('search') != null) {
 
-      // search conditions
-
-      if(isset($this->request->query['search'])){
-
-        $search = $this->request->query['search'];
+        $search = $this->request->getQuery('search');
 
         $search = strtolower($search);
 
@@ -716,37 +753,40 @@ class SelectController extends AppController {
 
       }
 
-      // Setting up paging parameters
+      $adminsTable = TableRegistry::getTableLocator()->get('Admins');
 
-      $this->paginate = array('Admin'=>array(
+      $limit = 25;
 
-        'limit'      => 25,
+      $employeesData = $adminsTable->paginate($adminsTable->getAllAdmin($conditions, $limit, $page), [
 
-        'page'       => $page,
+        'extra' => [
 
-        'extra'      => array('conditions'=>$conditions)
+          'conditions' => $conditions
 
-      ));
+        ],
 
-      $tmpData = $this->paginate('Admin');
+        'page' => $page,
 
-      $datas = array();
+        'limit' => $limit
 
-      if(!empty($tmpData)){
+      ]);
 
-        foreach ($tmpData as $key => $value) {
+      $employeess = $employeesData['data'];
 
-          $datas[] = array(
+      $paginator = $employeesData['pagination'];
 
-            'id'     => $value['Admin']['id'],
+      $datas = [];
 
-            'code'   =>  $value['Admin']['employee_no'],
+      foreach ($employeess as $employee) {
 
-            'name'   =>  $value[0]['full_name'],
+        $datas[] = array(
 
-          );
-
-        }
+          'id' => $employee['id'],
+       
+          'code' => $employee['employee_no'],
+       
+          'name' => $employee['full_name'],
+        );
 
       }
 
@@ -754,7 +794,7 @@ class SelectController extends AppController {
 
         'result'     => $datas,
 
-        'paginator'  => $this->request->params['paging']['Admin']
+        'paginator' => $paginator
 
       );
 
@@ -2641,6 +2681,36 @@ class SelectController extends AppController {
 
       }
 
+    }else if ($code == 'check-honorable-dismissal') {
+
+      $student_id = $this->request->getQuery('student_id');
+     
+      $tmp = $this->RequestForms->find()
+
+        ->where([
+
+          'visible' => 1,
+
+          'approve' => 1,
+
+          'hon' => 1,
+
+          'student_id' => $student_id
+
+        ])
+
+      ->count();
+
+      if($tmp > 0){
+
+        $datas = 1;
+
+      }else{
+
+        $datas = 0;
+
+      }
+
     }else if ($code == 'check-transaction') {
 
       $purpose = $this->request->getQuery('purpose');
@@ -2758,6 +2828,222 @@ class SelectController extends AppController {
       }else{
 
         $datas = 1;
+
+      }
+
+    } else if ($code == 'list-available-courses') {
+
+      $user = $this->Auth->user();
+
+      $student_data = $this->Students->get($user['studentId']);
+
+      $year_term_id = $student_data['year_term_id'];
+
+      $college_id = $student_data['college_id'];
+
+      $program_id = $student_data['program_id'];
+
+      $tmp = "
+
+        SELECT 
+
+          BlockSection.id,
+
+          BlockSection.section_id,
+
+          BlockSection.section,
+
+          BlockSectionCourse.id as block_section_course_id,
+
+          BlockSectionCourse.course_id,
+
+          BlockSectionCourse.course_code,
+
+          BlockSectionCourse.faculty_id,
+
+          BlockSectionCourse.faculty_name,
+
+          BlockSectionCourse.course,
+
+          BlockSectionCourse.slot - IFNULL(BlockSectionCourse.enrolled_students,0) as slot,
+
+          BlockSectionCourse.room,
+
+          BlockSectionCourse.room_id
+
+        FROM  
+       
+          block_sections as BlockSection LEFT JOIN
+
+          block_section_courses as BlockSectionCourse ON BlockSectionCourse.block_section_id = BlockSection.id
+
+        WHERE 
+
+          BlockSection.visible = true AND 
+
+          BlockSection.year_term_id = $year_term_id AND 
+
+          BlockSection.college_id = $college_id AND 
+
+          BlockSection.program_id = $program_id AND           
+
+          BlockSectionCourse.visible = true AND
+
+          BlockSectionCourse.ptc = false AND 
+
+          BlockSectionCourse.slot - IFNULL(BlockSectionCourse.enrolled_students,0) > 0
+
+        ORDER BY 
+
+          BlockSection.section ASC,
+
+          BlockSectionCourse.course DESC
+
+      ";
+
+      $connection = $this->BlockSections->getConnection();
+
+      $result = $connection->execute($tmp)->fetchAll('assoc');
+
+      if(!empty($result)){
+
+        foreach ($result as $k => $data) {
+
+          $schedules = $this->BlockSectionSchedules->find()
+
+            ->where([
+
+              'visible' => 1,
+
+              'block_section_course_id' => $data['block_section_course_id'],
+
+            ])
+
+            // ->order([
+
+            //   $this->BlockSectionSchedules->func()->field('DAY', 'day') => 'ASC',
+
+            // ])
+
+          ->all();
+
+          if(count($schedules) > 0){
+
+            $course = $this->Courses->find()
+
+              ->where([
+
+                'id' => $data['course_id'],
+
+                'visible' => 1
+
+              ])
+
+            ->first();
+
+            $datas[] = array(
+
+              'id'                       => $data['id'],
+
+              'section_id'               => $data['section_id'],
+
+              'section'                  => $data['section'],
+
+              'block_section_course_id'  => $data['block_section_course_id'],
+
+              'course_id'                => $data['course_id'],
+
+              'course_code'              => $data['course_code'],
+
+              'course'                   => $data['course'],
+
+              'slot'                     => $data['slot'],
+
+              'faculty_id'               => $data['faculty_id'],
+
+              'faculty_name'             => $data['faculty_name'],
+
+              'room_id'                  => $data['room_id'],
+
+              'room'                     => $data['room'],
+
+              'lecture_unit'             => $course['lecture_unit'],
+
+              'lecture_hours'            => $course['lecture_hours'],
+
+              'laboratory_unit'          => $course['laboratory_unit'],
+
+              'laboratory_hours'         => $course['laboratory_hours'],
+
+              'credit_unit'              => $course['credit_unit'],
+
+              'schedules'                => $schedules
+
+            );
+
+          }
+
+        }
+
+      }
+
+    } else if ($code == 'ptc-code'){
+
+      $tmp = $this->Ptcs->find()->where([
+
+        "visible" => 1,
+
+      ])->count();
+   
+      $datas = 'PTC-' . str_pad($tmp + 1, 5, "0", STR_PAD_LEFT);
+
+    } else if ($code == 'ptc-block-section') {
+
+      $ptc_block_section = $this->BlockSections->find()
+
+        ->where([
+
+          'visible' => 1
+
+        ])
+
+      ->all();
+
+      if(count($ptc_block_section) > 0){
+
+        foreach ($ptc_block_section as $k => $data) {
+
+          $ptc_count = $this->BlockSectionCourses->find()
+
+            ->where([
+
+              'visible' => 1,
+
+              'block_section_id' => $data['id'],
+
+              'ptc' => 1
+
+            ])
+
+          ->count();
+
+          if($ptc_count > 0){
+
+            $datas[] = array(
+
+              'id'     => $data['id'],
+
+              'value'  => $data['code'].' - '.$data['section'],
+
+              'section_id'  => $data['section_id'],
+
+              'section'  => $data['section'],
+
+            );
+
+          }
+
+        }
 
       }
 

@@ -14,7 +14,7 @@
   // INCLUDE ALL PAGE PERMISSION
   handleAccess('pageIndex', 'program adviser/index', currentUser);
   handleAccess('pagePrint', 'program adviser/print', currentUser);
-  // handleAccess('pageView', 'program adviser/view', currentUser);
+  handleAccess('pageView', 'program adviser/view', currentUser);
   handleAccess('pageEnlist', 'program adviser/enlist studentt', currentUser);
 
 </script>
@@ -73,6 +73,9 @@
               <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" data-target ="#enlisted" role="tab">ENLISTED</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" data-target ="#ptc" role="tab">PTC</a>
+              </li>
             </ul>
             <div class="tab-content mt-3" id="myTabContent">
 
@@ -82,8 +85,7 @@
                   <div class="row">
                     <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                     
-                      <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-                        <button id="pagePrint" ng-click="printForEnlistment()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                      <button id="pagePrint" ng-click="printForEnlistment()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
                       <button type="button" class="btn btn-warning btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                      
                     </div>
@@ -107,8 +109,7 @@
                           <th>STUDENT NAME</th>
                           <th>PROGRAM</th>
                           <th>RATE</th>
-                          <th>SECTIONS</th>
-                          <th class="w90px"></th>
+                          <th>SECTIONS - AVAILABLE SLOTS</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -117,18 +118,15 @@
                           <td class="text-center">{{ data.student_no }}</td>
                           <td class="text-left">{{ data.student_name }}</td>
                           <td class="text-left">{{ data.program}}</td>
-                          <td class="text-left">{{ data.rate}}</td>
-                          <td class="text-left">
-                            <select class="form-control" ng-model="data.selected_block_section_id" ng-change="getSection($index,data.block_sections,data.selected_block_section_id)" ng-options="opt.id as opt.section for opt in data.block_sections">
-                              <option value=""></option>
-                            </select>
-                          </td>
+                          <td class="text-center">{{ data.rate}}</td>
+
                           <td>
-                            <a id="pageEnlist" href="javascript:void(0)" ng-click="enlist(data)" class="btn btn-info" title="ENLIST STUDENT"><i class="fa fa-pencil"></i></a>
-                          </td>
+                            <div class="btn-group btn-group-xs">
+                              <div ng-repeat="section in data.block_sections"><a id="pageEnlist" class="btn btn-success" href="javascript:void(0)" ng-click="enlist(data,section)">{{ section.section }} - {{ section.available_slot }}</a></div>
+                            </div>
                         </tr>
                         <tr ng-show="datas == null || datas == ''">
-                          <td colspan="7">No available data</td>
+                          <td colspan="6">No available data</td>
                         </tr>
                       </tbody>
                     </table>
@@ -166,7 +164,6 @@
                 <div class="col-md-12">
                   <div class="row">
                     <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                      <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
                         <button id="pagePrint" ng-click="printEnlisted()" class="btn btn-print  btn-min" ><i class="fa fa-print"></i> PRINT</button>
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
@@ -234,6 +231,80 @@
                 </div>
               </div>
 
+              <div class="tab-pane fade show" id="ptc">
+                <div class="clearfix"></div><hr>
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
+                      <a id="pageAdd" href="#/faculty/program-adviser/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD </a>
+                      <button id="pagePrint" ng-click="printEnlisted()" class="btn btn-print  btn-min" ><i class="fa fa-print"></i> PRINT</button>
+                      <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
+                    </div>
+                    <div class="col-md-4 col-xs-12 pull-right">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-search"></i></span>
+                        <input type="text" class="form-control search" ng-enter="searchy(searchTxt)" placeholder="SEARCH HERE" ng-model="searchTxt">
+                      </div>
+                      <sup style="font-color:gray">Press Enter to search</sup> 
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div><hr>
+                <div class="single-table mb-5">
+                  <div class="table-responsive">
+                    <table class="table table-bordered text-center">
+                      <thead>
+                        <tr class="bg-info">
+                          <th class="w10px" style="width: 50px">#</th>
+                          <th>CODE</th>
+                          <th>SECTION</th>
+                          <th class="w90px"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="data in datasPtc">
+                          <td class="text-center">{{ (paginatorEnlisted.page - 1 ) * paginatorEnlisted.limit + $index + 1 }}</td>
+                          <td class="text-center">{{ data.code }}</td>
+                          <td class="text-center">{{ data.section }}</td>
+                          <td>
+                            <div class="btn-group btn-group-xs">
+                              <a id="pageView" href="#/faculty/program-adviser/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                            </div>
+                          </td> 
+                        </tr>
+                        <tr ng-show="datasPtc == null || datasPtc == ''">
+                          <td colspan="4">No available data</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <ul class="pagination justify-content-center">
+                      <li class="page-item">
+                        <a class="page-link" href="javascript:void(0)" ng-click="ptc({ page: 1, search: searchTxt,date:dateToday,startDate: startDate,endDate: endDate })"><sub>&laquo;&laquo;</sub></a>
+                      </li>
+                      <li class="page-item prevPage {{ !paginatorEnlisted.prevPage? 'disabled':'' }}">
+                        <a class="page-link" href="javascript:void(0)" ng-click="ptc({ page: paginatorEnlisted.page - 1, search: searchTxt,date:dateToday,startDate: startDate,endDate: endDate, office_id: office_id, position_id: position_id,employmentStatusId : employmentStatusId })">&laquo;</a>
+                      </li>
+                      <li ng-repeat="page in pagesPtc" class="page-item {{ paginatorEnlisted.page == page.number ? 'active':''}}" >
+                        <a class="page-link" href="javascript:void(0)" class="text-center" ng-click="ptc({ page: page.number, search: searchTxt,date:dateToday,startDate: startDate,endDate: endDate, office_id: office_id, position_id: position_id,employmentStatusId : employmentStatusId })">{{ page.number }}</a>
+                      </li>
+                      <li class="page-item nextPage {{ !paginatorEnlisted.nextPage? 'disabled':'' }}">
+                        <a class="page-link" href="javascript:void(0)" ng-click="ptc({ page: paginatorEnlisted.page + 1, search: searchTxt,date:dateToday,startDate: startDate,endDate: endDate, office_id: office_id, position_id: position_id,employmentStatusId : employmentStatusId })">&raquo;</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="javascript:void(0)" ng-click="ptc({ page: paginatorEnlisted.pageCount, search: searchTxt,date:dateToday,startDate: startDate,endDate: endDate, office_id: office_id, position_id: position_id,employmentStatusId : employmentStatusId })"><sub>&raquo;&raquo;</sub> </a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                    <div class="text-center" ng-show="paginatorEnlisted.pageCount > 0">
+                      <sup class="text-primary">Page {{ paginatorEnlisted.pageCount > 0 ? paginatorEnlisted.page : 0 }} out of {{ paginatorEnlisted.pageCount }}</sup>
+                    </div>
+                  </div>
+                </div>
+              </div>
            
             </div>
           </div>

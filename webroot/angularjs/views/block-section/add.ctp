@@ -95,9 +95,9 @@
                     <tr class="bg-info">
                       <th style="width: 15px;">#</th>
                       <th class="text-center"> COURSE </th>
-                      <!-- <th class="text-center"> FACULTY </th> -->
                       <th class="text-center"> ROOM </th>
                       <th class="text-center"> SLOT </th>
+                      <th class="text-center"> PTC </th>
                       <th style="width: 100px"></th>
                     </tr>
                   </thead>
@@ -105,9 +105,9 @@
                     <tr ng-repeat="subs in data.BlockSectionCourse">
                       <td style="width: 15px;"> {{ $index + 1 }} </td>
                       <td class="text-left">{{ subs.course }}</td>
-                      <!-- <td class="text-left">{{ subs.faculty_name }}</td> -->
                       <td class="text-center">{{ subs.room }}</td>
                       <td class="text-center">{{ subs.slot }}</td>
+                      <td class="text-center">{{ subs.ptc == 1 ? 'YES' : 'NO' }}</td>
                       <td class="w90px text-center">
                         <div class="btn-group btn-group-xs"></div>
                         <a href="javascript:void(0)" class="btn btn-xs btn-success" ng-click="editCourse($index, subs)"><i class="fa fa-edit"></i></a>
@@ -165,15 +165,6 @@ $('#form').validationEngine('attach');
               </select>
             </div>
           </div>
-          
-          <!-- <div class="col-md-12" >
-            <div class="form-group">
-              <label> FACULTY <i class="required">*</i></label>
-              <select selectize style="height: 100px" ng-model="sub.faculty_id" ng-options="opt.id as opt.value for opt in faculties" ng-change="getFaculty(sub.faculty_id)" data-validation-engine="validate[required]">
-                <option value=""></option>
-              </select>
-            </div>
-          </div> -->
 
           <div class="col-md-12">
             <div class="form-group">
@@ -188,6 +179,17 @@ $('#form').validationEngine('attach');
             <div class="form-group">
               <label> SLOTS <i class="required">*</i></label>
               <input type="text" class="form-control" autocomplete="off" ng-model="sub.slot" data-validation-engine="validate[required]">
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="form-group">
+              <label> PTC <i class="required">*</i></label>
+              <select class="form-control" ng-model="sub.ptc">
+                <option value=""></option>
+                <option value="0">NO</option>
+                <option value="1">YES</option>
+              </select>
             </div>
           </div>
 
@@ -218,15 +220,6 @@ $('#form').validationEngine('attach');
               </select>
             </div>
           </div>
-          <!-- 
-          <div class="col-md-12" >
-            <div class="form-group">
-              <label> FACULTY <i class="required">*</i></label>
-              <select selectize style="height: 100px" ng-model="sub.faculty_id" ng-options="opt.id as opt.value for opt in faculties" ng-change="getFaculty(sub.faculty_id)" data-validation-engine="validate[required]">
-                <option value=""></option>
-              </select>
-            </div>
-          </div> -->
 
           <div class="col-md-12">
             <div class="form-group">
@@ -241,6 +234,17 @@ $('#form').validationEngine('attach');
             <div class="form-group">
               <label> SLOTS <i class="required">*</i></label>
               <input type="text" class="form-control" autocomplete="off" ng-model="sub.slot" data-validation-engine="validate[required]">
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="form-group">
+              <label> PTC <i class="required">*</i></label>
+              <select class="form-control" ng-model="sub.ptc">
+                <option value=""></option>
+                <option value="0">NO</option>
+                <option value="1">YES</option>
+              </select>
             </div>
           </div>
        

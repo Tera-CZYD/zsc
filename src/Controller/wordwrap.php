@@ -2384,17 +2384,17 @@ function __construct($orientation='P', $unit='mm', $format='A4')
     $this->U=0;
     $this->HREF='';
 
-    $this->tableborder=0;
-    $this->tdbegin=false;
-    $this->tdwidth=0;
-    $this->tdheight=0;
-    $this->tdalign="L";
-    $this->tdbgcolor=false;
+    // $this->tableborder=0;
+    // $this->tdbegin=false;
+    // $this->tdwidth=0;
+    // $this->tdheight=0;
+    // $this->tdalign="L";
+    // $this->tdbgcolor=false;
 
-    $this->oldx=0;
-    $this->oldy=0;
+    // $this->oldx=0;
+    // $this->oldy=0;
 
-    $this->fontlist=array("arial","times","courier","helvetica","symbol");
+    // $this->fontlist=array("arial","times","courier","helvetica","symbol");
     $this->issetfont=false;
     $this->issetcolor=false;
 }

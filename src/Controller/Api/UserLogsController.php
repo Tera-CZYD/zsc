@@ -17,7 +17,7 @@ class UserLogsController extends AppController {
     
     $this->loadComponent('RequestHandler');
 
-    $this->UserLogs = TableRegistry::getTableLocator()->get('UserLogs');
+    $this->UserLogs = TableRegistry::getTableLocator()->get('UserLogs'); 
 
   }
 
@@ -39,6 +39,8 @@ class UserLogsController extends AppController {
 
       $conditions['search'] = $search;
 
+      $conditionsPrint .= '&search='.$search;
+
     }
 
     $conditions['date'] = '';
@@ -47,7 +49,7 @@ class UserLogsController extends AppController {
 
       $search_date = $this->request->getQuery('date');
 
-      $conditions['date'] = " AND DATE(UserLogs.created) = '$search_date'"; 
+      $conditions['date'] = " AND DATE(UserLog.created) = '$search_date'"; 
 
       $dates['date'] = $search_date;
 
@@ -63,7 +65,7 @@ class UserLogsController extends AppController {
 
       $end = $this->request->getQuery('endDate');
 
-      $conditions['date'] = " AND DATE(UserLogs.created) >= '$start' AND DATE(UserLogs.created) <= '$end'";
+      $conditions['date'] = " AND DATE(UserLog.created) >= '$start' AND DATE(UserLog.created) <= '$end'";
 
       $dates['startDate'] = $start;
 
@@ -111,12 +113,6 @@ class UserLogsController extends AppController {
 
           'description' => $userLog['description'],
 
-          'remarks'     => $userLog['remarks'],
-
-          'accounting_entry_id' => $userLog['accounting_entry_id'],
-
-          'member_id'    => $userLog['member_id'],
-
           'created_tmp'  => date('M d, Y h:i:s A', strtotime($userLog['created']))
 
         );
@@ -130,6 +126,8 @@ class UserLogsController extends AppController {
       'data' => $datas,
 
       'paginator' => $paginator,
+
+      'conditionsPrint' => $conditionsPrint
 
     ];
 

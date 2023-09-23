@@ -170,6 +170,35 @@
                 </table>
               </div>
             </div>
+
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-1">
+                  <div class="form-group">
+                    <label>PSA</label>
+                  </div>
+                </div>
+                <div class="col-md-11">
+                  <div class="form-group">
+                    <input icheck type="checkbox" class="form-control" autocomplete="false" ng-model="data.StudentApplication.psa" ng-change="updatePsa(data.StudentApplication)">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-1">
+                  <div class="form-group">
+                    <label>FORM 137</label>
+                  </div>
+                </div>
+                <div class="col-md-11">
+                  <div class="form-group">
+                    <input icheck type="checkbox" class="form-control" autocomplete="false" ng-change="updateForm(data.StudentApplication)" ng-model="data.StudentApplication.form_137">
+                  </div>
+                </div>
+              </div>
+            </div>
+
           <div class="col-md-12">
             <div class="clearfix"></div><hr>
           </div>

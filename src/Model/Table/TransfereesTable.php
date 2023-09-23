@@ -26,6 +26,8 @@ class TransfereesTable extends Table{
 
     $date = @$conditions['date'];
 
+    $studentId = @$conditions['studentId'];
+
     $sql = "
 
       SELECT
@@ -40,7 +42,7 @@ class TransfereesTable extends Table{
 
       WHERE
 
-        Transferee.visible = true $date AND
+        Transferee.visible = true $date $studentId AND
 
         (
  
@@ -78,6 +80,8 @@ class TransfereesTable extends Table{
 
     $date = @$conditions['date'];
 
+    $studentId = @$conditions['studentId'];
+
     $offset = ($page - 1) * $limit;
 
     $sql = "
@@ -94,7 +98,7 @@ class TransfereesTable extends Table{
 
       WHERE
 
-        Transferee.visible = true $date AND
+        Transferee.visible = true $date $studentId AND
 
         (
  
@@ -172,6 +176,8 @@ class TransfereesTable extends Table{
 
     $date = @$conditions['date'];
 
+    $studentId = @$conditions['studentId'];
+
     $sql = "
 
       SELECT
@@ -184,7 +190,7 @@ class TransfereesTable extends Table{
 
       WHERE
 
-        Transferee.visible = true $date AND
+        Transferee.visible = true $date $studentId AND
 
         (
  

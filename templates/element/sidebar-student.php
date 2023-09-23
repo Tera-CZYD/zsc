@@ -49,11 +49,17 @@
 
           <li class="nav-link-side nav-scholarship-application"><a href="#/admission/scholarship-application" onclick="change('scholarship-application')"><i class="ti ti-write"></i> Scholarship Application </a></li>
 
+          <li class="nav-link-side nav-schedule"><a href="#/student/schedule" onclick="change('schedule')"><i class="fa fa-table"></i> Schedule </a></li>
+
           <li class="nav-link-side nav-request-form"><a><i class="fa fa-briefcase"></i> Registrar </a>
             <ul class="nav child_menu collapse collapse-request-form ">
+
+              <li class="nav-link-side nav-transferee">
+                <a href="#/registrar/transferee" onclick="change('transferee')">School Transfer Request</a>
+              </li>
               
               <li class="nav-link-side nav-request-form">
-                  <a href="#/registrar/request-form" onclick="change('request-form')">Request Form</a>
+                <a href="#/registrar/request-form" onclick="change('request-form')">Request Form</a>
               </li>
 
               <li class="nav-link-side nav-adding-dropping-subject">
@@ -112,10 +118,6 @@
 
             </ul>
           </li>
-          
-          <li class="nav-link-side nav-bibliography">
-            <a href="#/learning-resource-center/bibliography" onclick="change('bibliography')"><i class="ti ti-book"></i> Bibliography</a>
-          </li>
 
           <li class="nav-link-side nav-request-form"><a><i class="fa fa-building"></i> Corporate Affairs </a>
             <ul class="nav child_menu collapse collapse-request-form ">
@@ -132,11 +134,42 @@
 
             </ul>
           </li> 
+          
+          <li class="nav-link-side nav-bibliography">
+            <a href="#/learning-resource-center/bibliography" onclick="change('bibliography')"><i class="ti ti-book"></i> Bibliography</a>
+          </li>
+
+          
         
   
         </ul>
       </div>
     </div>
     <!-- /sidebar menu -->
+  </div>
+</div>
+
+<script type="text/javascript">
+  function showModal(){
+    $("#promptModal").modal('show');
+  }
+</script>
+
+<div class="modal fade" id="promptModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title uppercase"> Come back later </h5>
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12">
+          <img src="<?php echo $base ?>/assets/img/come_back_later.png" width="100%">
+        </div>
+        <div class="col-md-12">
+          <p>You have already enrolled for this semester.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

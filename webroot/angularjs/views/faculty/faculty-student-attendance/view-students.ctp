@@ -1,5 +1,24 @@
-<?php if (hasAccess('course/index', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageViewStudent', 'faculty student attendance/view student', currentUser);
+  handleAccess('pageAdd', 'student attendance/add', currentUser);
+
+</script>
+
+
+<div class="row" id="pageViewStudent">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
@@ -44,11 +63,11 @@
                   <td class="text-center" style="white-space: nowrap;">{{ data.last_name }}, {{data.first_name}} {{data.middle_name}}</td>
                   <td ng-repeat="record in records[$index]">
                     <div class="btn-group btn-group-xs" ng-show="record.dayName != 'Sat' && record.dayName != 'Sun'">
-                      <?php if (hasAccess('course/view', $currentUser)): ?>
+                      
                         <span ng-show="record.day != '' && record.day == 1"><i class="fa fa-check"></i></span>
-                        <a href="javascript:void(0)" ng-show="record.day != '' && record.day != 1" ng-click="showImage(data.id,record.image,record.imageSrc)" class="btn btn-success" style="color:white !important;" title="Add Attendance"><i class="fa fa-eye"></i></a>
-                        <a href="javascript:void(0)" ng-show="record.day == ''" ng-click="attendance(data.id,$index+1,data.year_term_id)" class="btn btn-print" style="color:white !important;" title="Add Attendance"><i class="fa fa-user-plus"></i></a>
-                      <?php endif ?> 
+                        <a id="pageAdd" href="javascript:void(0)" ng-show="record.day != '' && record.day != 1" ng-click="showImage(data.id,record.image,record.imageSrc)" class="btn btn-success" style="color:white !important;" title="Add Attendance"><i class="fa fa-eye"></i></a>
+                        <a id="pageAdd" href="javascript:void(0)" ng-show="record.day == ''" ng-click="attendance(data.id,$index+1,data.year_term_id)" class="btn btn-print" style="color:white !important;" title="Add Attendance"><i class="fa fa-user-plus"></i></a>
+                       
                     </div>
                   </td> 
                 </tr>
@@ -239,4 +258,3 @@
 <style>
   .imagewrap {display:inline-block;position:relative;}
 </style>
-<?php endif ?>

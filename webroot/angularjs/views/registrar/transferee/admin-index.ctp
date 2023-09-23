@@ -1,4 +1,4 @@
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 
   function handleAccess(elementId, permissionCode, currentUser) {
     const element = document.getElementById(elementId);
@@ -20,35 +20,55 @@
   handleAccess('pageDelete', 'transferee/delete', currentUser);
 
 </script>
- -->
+
 <div class="row" id="pageIndex">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
-        <h4 class="header-title">SCHOOL TRANSFER REQUEST</h4>
-        <!-- <div class="clearfix"></div><hr> -->
-        <!-- nav tab start --><!-- 
-          <div class="col-lg-12">
-            <ul class="nav nav-tabs" id="myTab" role="tablist" style="cursor: pointer;">
-              <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" data-target ="#pending" role="tab">PENDING</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" data-target ="#approved" role="tab">APPROVED</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" data-target ="#disapproved" role="tab">DISAPPROVED</a>
-              </li>
-            </ul> -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-8 col-xs-12">
+              <h4 class="header-title">SCHOOL TRANSFER REQUEST</h4>
+            </div>
+            <div class="col-md-4 col-xs-12 pull-right">
+              <div class="input-group-prepend">
+
+                <span class="dropleft float-right input-group-text" style="padding : 0;">
+                  <a class="fa fa-filter" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 15px;"></a>
+                  <div class="dropdown-menu">
+                    <div ng-show="!data.CourseActivity.disable_admin_quiz_button">
+                      <a class="dropdown-item text-dark" href="javascript:void(0)" ng-click="changeFilter('date')">DATE</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item text-dark" href="javascript:void(0)" ng-click="changeFilter('month')">MONTH</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item text-dark" href="javascript:void(0)" ng-click="changeFilter('customRange')">CUSTOM RANGE</a>
+                    </div>
+                  </div>
+                </span>
+                <input ng-show="selectedFilter == 'date'" type="text" class="form-control datepicker input-sm uppercase" ng-model="search.date" ng-change="searchFilter(search)" placeholder="FILTER BY DATE">
+                <input ng-show="selectedFilter == 'month'" type="text" class="form-control monthpicker input-sm uppercase" ng-model="search.month" ng-change="searchFilter(search)" placeholder="FILTER BY MONTH">
+                <div class="input-group input-daterange" style="margin-bottom: 0;" ng-show="selectedFilter == 'customRange'">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                  </div>
+                  <input type="text" class="form-control input-sm uppercase" ng-model="search.startDate" ng-change="searchFilter(search)" placeholder="START DATE">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                  </div>
+                  <input type="text" class="form-control input-sm uppercase" ng-model="search.endDate" ng-change="searchFilter(search)" placeholder="END DATE">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
             <div class="tab-content mt-3" id="myTabContent">
               <div class="tab-pane fade show active" id="pending">
                 <div class="clearfix"></div><hr>
                 <div class="col-md-12">
                   <div class="row">
                     <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                        <a id="pageAdd" href="#/registrar/transferee/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
-                        <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
-                        <button id="pagePrint" ng-click="print()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                        <a id="pageAdd" href="#/registrar/admin-transferee/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
+                        <button id="pagePrint" ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
                     <div class="col-md-4 col-xs-12 pull-right">
@@ -125,185 +145,6 @@
                 </div>
               </div>
 
-              <!-- <div class="tab-pane fade show" id="approved">
-                <div class="clearfix"></div><hr>
-                <div class="col-md-12">
-                  <div class="row">
-                    <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                      <?php if (hasAccess('transferee/add', $currentUser)): ?>
-                        <a href="#/transferee/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
-                      <?php endif ?>
-                      <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
-                      <?php if (hasAccess('transferee/print', $currentUser)): ?>
-                        <button ng-click="printApproved()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
-                      <?php endif ?>
-                      <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
-                    </div>
-                    <div class="col-md-4 col-xs-12 pull-right">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-search"></i></span>
-                        <input type="text" class="form-control search" ng-enter="searchy(searchTxt)" placeholder="SEARCH HERE" ng-model="searchTxt">
-                      </div>
-                      <sup style="font-color:gray">Press Enter to search</sup> 
-                    </div>
-                  </div>
-                </div>
-                <div class="clearfix"></div><hr>
-                <div class="single-table mb-5">
-                  <div class="table-responsive">
-                    <table class="table table-bordered text-center">
-                      <thread>
-                        <tr class="bg-info">
-                          <th class="text-center w30px">#</th>
-                          <th class="text-center"> APPLICANT NAME </th>
-                          <th class="text-center"> EMAIL </th>
-                          <th class="text-center"> ADDRESS </th>
-                          <th class="text-center"> CONTACT NO. </th>
-                          <th class="text-center"> GENDER </th>
-                          <th class="text-center"> APPLICATION DATE </th>
-                          <th class="w90px"></th>
-                        </tr>
-                      </thread>
-                      <tbody>
-                        <tr ng-repeat="data in datasApproved">
-                          <td class="text-center">{{ (paginatorApproved.page - 1 ) * paginatorApproved.limit + $index + 1 }}</td>
-                          <td class="text-left">{{ data.full_name }}</td>
-                          <td class="text-center">{{ data.email }}</td>
-                          <td class="text-center">{{ data.address }}</td>
-                          <td class="text-center">{{ data.contact_no }}</td>
-                          <td class="text-center">{{ data.gender }}</td>
-                          <td class="text-center">{{ data.application_date }}</td>
-                          <td>
-                            <div class="btn-group btn-group-xs">
-                              <?php if (hasAccess('transferee/view', $currentUser)): ?>
-                              <a href="#/admission/transferee/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                              <?php endif ?>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr ng-show="datasApproved == null || datasApproved == ''">
-                          <td colspan="8">No available data</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <ul class="pagination justify-content-center">
-                      <li class="page-item">
-                        <a class="page-link" href="javascript:void(0)" ng-click="load({ page: 1, search: searchTxt })"><sub>&laquo;&laquo;</sub></a>
-                      </li>
-                      <li class="page-item prevPage {{ !paginatorApproved.prevPage? 'disabled':'' }}">
-                        <a class="page-link" href="javascript:void(0)" ng-click="load({ page: paginatorApproved.page - 1, search: searchTxt })">&laquo;</a>
-                      </li>
-                      <li ng-repeat="page in pagesApproved" class="page-item {{ paginatorApproved.page == page.number ? 'active':''}}" >
-                        <a class="page-link" href="javascript:void(0)" class="text-center" ng-click="load({ page: page.number, search: searchTxt })">{{ page.number }}</a>
-                      </li>
-                      <li class="page-item nextPage {{ !paginatorApproved.nextPage? 'disabled':'' }}">
-                        <a class="page-link" href="javascript:void(0)" ng-click="load({ page: paginatorApproved.page + 1, search: searchTxt })">&raquo;</a>
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link" href="javascript:void(0)" ng-click="load({ page: paginatorApproved.pageCount, search: searchTxt })"><sub>&raquo;&raquo;</sub> </a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                    <div class="text-center" ng-show="paginatorApproved.pageCount > 0">
-                      <sup class="text-primary">Page {{ paginatorApproved.pageCount > 0 ? paginatorApproved.page : 0 }} out of {{ paginatorApproved.pageCount }}</sup>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="tab-pane fade show" id="disapproved">
-                <div class="clearfix"></div><hr>
-                <div class="col-md-12">
-                  <div class="row">
-                    <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                      <?php if (hasAccess('transferee/add', $currentUser)): ?>
-                        <a href="#/admission/transferee/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
-                      <?php endif ?>
-                      <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
-                      <?php if (hasAccess('transferee/print', $currentUser)): ?>
-                        <button ng-click="printDisapproved()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
-                      <?php endif ?>
-                      <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
-                    </div>
-                    <div class="col-md-4 col-xs-12 pull-right">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-search"></i></span>
-                        <input type="text" class="form-control search" ng-enter="searchy(searchTxt)" placeholder="SEARCH HERE" ng-model="searchTxt">
-                      </div>
-                      <sup style="font-color:gray">Press Enter to search</sup> 
-                    </div>
-                  </div>
-                </div>
-                <div class="clearfix"></div><hr>
-                <div class="single-table mb-5">
-                  <div class="table-responsive">
-                    <table class="table table-bordered text-center">
-                      <thread>
-                        <tr class="bg-info">
-                          <th class="text-center w30px">#</th>
-                          <th class="text-center"> APPLICANT NAME </th>
-                          <th class="text-center"> EMAIL </th>
-                          <th class="text-center"> ADDRESS </th>
-                          <th class="text-center"> CONTACT NO. </th>
-                          <th class="text-center"> GENDER </th>
-                          <th class="text-center"> APPLICATION DATE </th>
-                          <th class="w90px"></th>
-                        </tr>
-                      </thread>
-                      <tbody>
-                        <tr ng-repeat="data in datasDisapproved">
-                          <td class="text-center">{{ (paginatorApproved.page - 1 ) * paginatorApproved.limit + $index + 1 }}</td>
-                          <td class="text-left">{{ data.full_name }}</td>
-                          <td class="text-center">{{ data.email }}</td>
-                          <td class="text-center">{{ data.address }}</td>
-                          <td class="text-center">{{ data.contact_no }}</td>
-                          <td class="text-center">{{ data.gender }}</td>
-                          <td class="text-center">{{ data.application_date }}</td>
-                          <td>
-                            <div class="btn-group btn-group-xs">
-                              <?php if (hasAccess('transferee/view', $currentUser)): ?>
-                              <a href="#/admission/stransferee/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                              <?php endif ?>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr ng-show="datasDisapproved == null || datasDisapproved == ''">
-                          <td colspan="8">No available data</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <ul class="pagination justify-content-center">
-                      <li class="page-item">
-                        <a class="page-link" href="javascript:void(0)" ng-click="load({ page: 1, search: searchTxt })"><sub>&laquo;&laquo;</sub></a>
-                      </li>
-                      <li class="page-item prevPage {{ !paginatorDisapproved.prevPage? 'disabled':'' }}">
-                        <a class="page-link" href="javascript:void(0)" ng-click="load({ page: paginatorDisapproved.page - 1, search: searchTxt })">&laquo;</a>
-                      </li>
-                      <li ng-repeat="page in pagesDisapproved" class="page-item {{ paginatorDisapproved.page == page.number ? 'active':''}}" >
-                        <a class="page-link" href="javascript:void(0)" class="text-center" ng-click="load({ page: page.number, search: searchTxt })">{{ page.number }}</a>
-                      </li>
-                      <li class="page-item nextPage {{ !paginatorDisapproved.nextPage? 'disabled':'' }}">
-                        <a class="page-link" href="javascript:void(0)" ng-click="load({ page: paginatorDisapproved.page + 1, search: searchTxt })">&raquo;</a>
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link" href="javascript:void(0)" ng-click="load({ page: paginatorDisapproved.pageCount, search: searchTxt })"><sub>&raquo;&raquo;</sub> </a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                    <div class="text-center" ng-show="paginatorDisapproved.pageCount > 0">
-                      <sup class="text-primary">Page {{ paginatorDisapproved.pageCount > 0 ? paginatorDisapproved.page : 0 }} out of {{ paginatorDisapproved.pageCount }}</sup>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
 
             </div>
           </div>  

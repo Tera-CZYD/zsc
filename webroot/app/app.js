@@ -11,18 +11,3 @@ var app = angular.module('esmis', ['ngRoute', 'ngResource', 'chieffancypants.loa
     });
     
   });
-
-  // dashboard
-//   app.config(function($routeProvider) {
-
-//     $routeProvider
-    
-//     .when('/dashboard', {
-    
-//       templateUrl: 'dashboard',
-    
-//       controller: 'DashboardController'
-    
-//     });
-
-// });
