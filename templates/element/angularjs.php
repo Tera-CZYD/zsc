@@ -153,7 +153,7 @@
 
     'registrar/request-form',
 
-    'registrar/prospectus',
+    // 'registrar/prospectus',
 
     'registrar/purpose',
 

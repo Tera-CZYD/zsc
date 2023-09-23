@@ -110,8 +110,8 @@
                 <tr>
                   <th class="text-right"> GENDER : </th>
                   <td class="italic">{{ data.StudentApplication.gender }}</td>
-                  <th class="text-right"> CURRICULUMN : </th>
-                  <td class="italic">{{ data.StudentApplication.curriculumn }}</td>
+                  <th class="text-right"> CURRICULUM : </th>
+                  <td class="italic">{{ data.StudentApplication.curriculum }}</td>
                 </tr>
                 <tr>
                   <th class="text-right"> MEMBERSHIP SCHOOL CLUBS : </th>
