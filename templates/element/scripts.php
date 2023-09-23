@@ -1,3 +1,8 @@
+<!-- AmChart -->
+<script type="text/javascript" src="<?php echo $base ?>/assets/plugins/amCharts/core.js"></script>
+<script type="text/javascript" src="<?php echo $base ?>/assets/plugins/amCharts/charts.js"></script>
+<script type="text/javascript" src="<?php echo $base ?>/assets/plugins/amCharts/animated.js"></script>
+
 <!-- jquery latest version -->
 <script type="text/javascript" src="<?php echo $base ?>/assets/js/vendor/jquery-2.2.4.min.js"></script>
 
@@ -65,11 +70,15 @@
 <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 
 
+
+
 <!--AnyChart-->
 <script type="text/javascript" src="<?php echo $base ?>/assets/plugins/anychart/anychart-base.min.js"></script>
-<script type="text/javascript" src="<?php echo $base ?>/assets/plugins/anychart/anychart-ui.min.js"></script>
+<!-- <script type="text/javascript" src="<?php echo $base ?>/assets/plugins/anychart/anychart-ui.min.js"></script>
 <script type="text/javascript" src="<?php echo $base ?>/assets/plugins/anychart/anychart-exports.min.js"></script>
-<script type="text/javascript" src="<?php echo $base ?>/assets/plugins/anychart/sea.min.js"></script>
+<script type="text/javascript" src="<?php echo $base ?>/assets/plugins/anychart/sea.min.js"></script> -->
+
+
 
 
 <script>
