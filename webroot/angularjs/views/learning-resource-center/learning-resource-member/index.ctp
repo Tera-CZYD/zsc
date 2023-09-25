@@ -181,7 +181,7 @@
                   
                   <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
                   
-                    <button id="pagePrint" ng-click="printFaculty()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                    <button id="pagePrint" ng-click="printFaculty()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
                   
                   <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                   
@@ -278,7 +278,7 @@
                   
                   <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
                   
-                    <button id="pagePrint" ng-click="printAdmin()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                    <button id="pagePrint" ng-click="printAdmin()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
                   
                   <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                   
