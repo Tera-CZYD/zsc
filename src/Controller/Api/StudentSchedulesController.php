@@ -129,6 +129,8 @@ class StudentSchedulesController extends AppController {
 
       'data' => $datas,
 
+      'days' => $daysOfWeek,
+
       'paginator' => $paginator,
 
       'conditionsPrint' => $conditionsPrint,
