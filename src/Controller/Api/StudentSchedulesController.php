@@ -79,30 +79,48 @@ class StudentSchedulesController extends AppController {
 
     $paginator = $tmpData['pagination'];
 
+    $daysOfWeek = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday');
+
     $datas = [];
 
-    foreach ($tmp as $data) {
+    foreach ($daysOfWeek as $key => $value) {
 
-      $datas[] = array(
+      $perDay = [];
 
-        'id'            => $data['id'],
+      foreach ($tmp as $data) {
 
-        'code'     => $data['code'],
+        if($value==$data['day']){
 
-        'faculty_name'   => $data['faculty_name'],
+            $start = date("H:i", strtotime($data['time_start']));
 
-        'day'   => $data['day'],
+            $end = date("H:i", strtotime($data['time_end']));
 
-        'course'        => $data['course'],
+            $perDay[] = array(
 
-        'room'        => $data['room'],
+            'id'            => $data['id'],
 
-        'time_start'        => $data['time_start'],
+            'code'     => $data['code'],
 
-        'time_end'        => $data['time_end'],
+            'faculty_name'   => $data['faculty_name'],
 
-      );
+            'day'   => $data['day'],
 
+            'course'        => $data['course'],
+
+            'room'        => $data['room'],
+
+            'time_start'        => $start,
+
+            'time_end'        => $end,
+
+          );
+
+        }
+
+      }
+
+      $datas[] = $perDay;
+      
     }
 
     $response = [
