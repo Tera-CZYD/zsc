@@ -56,10 +56,6 @@
     box-sizing: border-box;
   }
 
-  html {
-  /*    font-size: 62.5%;*/
-  }
-
   body {
   /*    font-size: 1.6rem;*/
   /*    font-family: "Source Sans Pro", sans-serif;*/
@@ -167,8 +163,8 @@
   .cd-schedule .events .top-info {
     width: 100%;
     padding: 0 5%;
-    background-color: #2A3F54;
-    color: white;
+    background-color: #BDC4CB;
+    color: #2A3F54;
   }
 
   .cd-schedule .events .top-info > span {
@@ -213,7 +209,7 @@
     flex-direction: column;
     justify-content: center;
     height: 100%;
-    background-color: #2A3F54;
+/*    background-color: #C6DEF1;*/
   }
 
   .cd-schedule .events .single-event:last-of-type {
@@ -225,11 +221,11 @@
     height: 100%;
     padding: .8em;
     text-align: center; /* Center the content horizontally */
-  height: 100%; /* Ensure the anchor takes the full height */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    height: 100%; /* Ensure the anchor takes the full height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   @media only screen and (min-width: 550px) {
@@ -335,6 +331,7 @@
     font-weight: bold;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+        color: #2A3F54 !important;
   }
 
   .cd-schedule .event-name {
@@ -404,7 +401,7 @@
                   <div class="top-info"><span>{{days[$index]}}</span></div>
                   <ul>
                     <div ng-repeat="sched in data">
-                      <li class="single-event" data-start="{{sched.time_start}}" data-end="{{sched.time_end}}">
+                      <li class="single-event" data-start="{{sched.time_start}}" data-end="{{sched.time_end}}" style="background-color: {{sched.color}};">
                         <a href="#" style="pointer-events: none;">
                           <em class="event-name">{{sched.course}}</em>
                           <span class="event-date">{{sched.faculty_name}}</span>

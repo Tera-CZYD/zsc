@@ -13,7 +13,7 @@
 
   // INCLUDE ALL PAGE PERMISSION
   handleAccess('pageIndex', 'apartelle student clearance/index', currentUser);
-  handleAccess('pageAdd', 'apartelle student clearance/add', currentUser);
+  // handleAccess('pageAdd', 'apartelle student clearance/add', currentUser);
   handleAccess('pagePrint', 'apartelle student clearance/print', currentUser);
   // handleAccess('pageEmail', 'apartelle student clearance/email', currentUser);
   handleAccess('pageView', 'apartelle student clearance/view', currentUser);
@@ -28,10 +28,10 @@
 	    <div class="card">
 	      <div class="card-body">
 	        <h4 class="header-title">APARTELLE STUDENT CLEARANCE APPLICATION</h4>
-	        <div class="clearfix"></div><hr>
+	        <!-- <div class="clearfix"></div><hr> -->
 	        <!-- nav tab start -->
 	          <div class="col-lg-12">
-	            <ul class="nav nav-tabs" id="myTab" role="tablist" style="cursor: pointer;">
+<!-- 	            <ul class="nav nav-tabs" id="myTab" role="tablist" style="cursor: pointer;">
 	              <li class="nav-item">
 	                <a class="nav-link active" data-toggle="tab" data-target ="#pending" role="tab">PENDING</a>
 	              </li>
@@ -41,7 +41,7 @@
 	              <li class="nav-item">
 	                <a class="nav-link" data-toggle="tab" data-target ="#disapproved" role="tab">DISAPPROVED</a>
 	              </li>
-	            </ul>
+	            </ul> -->
 	            <div class="tab-content mt-3" id="myTabContent">
 
 	              <div class="tab-pane fade show active" id="pending">
@@ -50,7 +50,7 @@
 	                  <div class="row">
 	                    <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
 	                      
-	                        <a id="pageAdd" href="#/corporate-affairs/admin-apartelle-student-clearance/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
+	                        <!-- <a id="pageAdd" href="#/corporate-affairs/admin-apartelle-student-clearance/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a> -->
 	                      
 	                      <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
 	                      
