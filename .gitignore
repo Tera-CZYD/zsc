@@ -3,7 +3,7 @@
 !/config/app_local.php
 !/config/.env
 /logs/*
-/tmp/*
+!/tmp/*
 !/vendor/*
 
 # OS generated files #
