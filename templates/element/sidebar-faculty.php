@@ -92,11 +92,23 @@
             <li class="nav-link-side nav-faculty-clearance nav-student-clearance nav-faculty-management nav-grades nav-faculty-student-attendance"><a><i class="fa fa-user"></i> Faculty </a>
               <ul class="nav child_menu collapse collapse-faculty-clearance collapse-student-clearance collapse-faculty-management collapse-grades collapse-faculty-student-attendance">
 
-                <?php if (hasAccess('student clearance/index', $currentUser)): ?>
-                  <li class="nav-link-side nav-student-clearance">
-                    <a href="#/faculty/student-clearance/faculty-index" onclick="change('student-clearance')"> Student Clearance </a>
-                  </li>
-                <?php endif ?>
+                <?php
+                  if($currentUser->employee->academic_rank->id==2){
+
+                    if (hasAccess('student clearance/index', $currentUser)): ?>
+                      <li class="nav-link-side nav-student-clearance">
+                        <a href="#/faculty/student-clearance/faculty-index" onclick="change('student-clearance')"> Student Clearance </a>
+                      </li>                    
+                    <?php endif ?>
+                  <?php }else{
+
+                    if (hasAccess('student clearance/index', $currentUser)): ?>
+                      <li class="nav-link-side nav-student-clearance">
+                        <a href="#/faculty/student-clearance/head-index" onclick="change('student-clearance')"> Student Clearance </a>
+                      </li>                    
+                    <?php endif ?>
+
+                  <?php } ?>
 
                 <?php if (hasAccess('faculty management/index', $currentUser)): ?>
                   <li class="nav-link-side nav-grades">
