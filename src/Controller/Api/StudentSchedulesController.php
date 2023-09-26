@@ -81,11 +81,16 @@ class StudentSchedulesController extends AppController {
 
     $daysOfWeek = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday');
 
+    
+
     $datas = [];
 
     foreach ($daysOfWeek as $key => $value) {
 
+      $colors = array("#FAEDCB","#C9E4DE","#C6DEF1","#DBCDF0","#F2C6DE","#F7D9C4");
+
       $perDay = [];
+      shuffle($colors);
 
       foreach ($tmp as $data) {
 
@@ -94,6 +99,11 @@ class StudentSchedulesController extends AppController {
             $start = date("H:i", strtotime($data['time_start']));
 
             $end = date("H:i", strtotime($data['time_end']));
+
+            $randomIndex = array_rand($colors);
+
+            // Use the random index to access the randomly selected color
+            $randomColor = $colors[$randomIndex];
 
             $perDay[] = array(
 
@@ -113,8 +123,16 @@ class StudentSchedulesController extends AppController {
 
             'time_end'        => $end,
 
+            'color' => $randomColor
+
           );
 
+            $indexToRemove = array_search($randomColor, $colors);
+
+            if ($indexToRemove !== false) {
+                // Unset the element with the found index
+                unset($colors[$indexToRemove]);
+            }
         }
 
       }
@@ -128,6 +146,8 @@ class StudentSchedulesController extends AppController {
       'ok' => true,
 
       'data' => $datas,
+
+      'days' => $daysOfWeek,
 
       'paginator' => $paginator,
 
