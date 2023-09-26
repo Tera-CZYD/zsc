@@ -377,8 +377,6 @@ app.controller('AssessmentViewController', function($scope, $routeParams, Assess
 
           if(e.ok){
 
-            $scope.load();
-
             $.gritter.add({
 
               title: 'Successful!',
