@@ -12,7 +12,7 @@ app.controller('StudentScheduleController', function($scope, StudentSchedule) {
   
   });
 
-  $scope.days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+  
 
   $scope.timeSlots = [];
 
@@ -36,6 +36,8 @@ app.controller('StudentScheduleController', function($scope, StudentSchedule) {
         $scope.conditionsPrint = e.conditionsPrint;
 
         $scope.pages = paginator($scope.paginator, 5);
+
+        $scope.days = e.days;
 
         $scope.timeSlots = [];
 
