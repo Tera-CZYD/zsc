@@ -3014,8 +3014,8 @@ class PrintController extends AppController {
     $pdf->SetDash(2.5,1.5);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
-    $pdf->Line($pdf->getX()+10,$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
-    $pdf->Line($pdf->getX()+190,$pdf->getY()+2,$pdf->getX()+330,$pdf->getY()+2);
+    $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
+    $pdf->Line($pdf->getX()+190,$pdf->getY()+2,$pdf->getX()+343,$pdf->getY()+2);
     $pdf->SetDash();
 
     $pdf->output();
@@ -5356,7 +5356,7 @@ class PrintController extends AppController {
     $pdf->Ln(10);
     $pdf->SetFont("Times", 'B', 10);
     $pdf->Cell(23,5,'Prepared By:',0,0,'L');
-    $pdf->Cell(165,5,$this->Session->read('Auth.User.name'),0,0,'L');
+    $pdf->Cell(165,5,$full_name,0,0,'L');
 
     $pdf->output();
     exit();
@@ -6081,9 +6081,17 @@ class PrintController extends AppController {
 
     }else{
 
-      $pdf->Cell(205,5,'No data available.',1,1,'C');
+      $pdf->Cell(345,5,'No data available.',1,1,'C');
 
     }
+
+    $pdf->Ln(5);
+    $pdf->SetDash(2.5,1.5);
+    $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
+    $pdf->Ln(0.1);
+    $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
+    $pdf->Line($pdf->getX()+187,$pdf->getY()+2,$pdf->getX()+345,$pdf->getY()+2);
+    $pdf->SetDash();
 
     $pdf->output();
     exit();
@@ -9078,8 +9086,8 @@ class PrintController extends AppController {
     $pdf->SetDash(2.5,1.5);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
-    $pdf->Line($pdf->getX()+10,$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
-    $pdf->Line($pdf->getX()+190,$pdf->getY()+2,$pdf->getX()+330,$pdf->getY()+2);
+    $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
+    $pdf->Line($pdf->getX()+190,$pdf->getY()+2,$pdf->getX()+345,$pdf->getY()+2);
     $pdf->SetDash();
 
     $pdf->output();
@@ -9468,8 +9476,8 @@ class PrintController extends AppController {
     $pdf->SetDash(2.5,1.5);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
-    $pdf->Line($pdf->getX()+10,$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
-    $pdf->Line($pdf->getX()+190,$pdf->getY()+2,$pdf->getX()+330,$pdf->getY()+2);
+    $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
+    $pdf->Line($pdf->getX()+190,$pdf->getY()+2,$pdf->getX()+345,$pdf->getY()+2);
     $pdf->SetDash();
 
     $pdf->output();
@@ -9866,8 +9874,8 @@ class PrintController extends AppController {
     $pdf->SetDash(2.5,1.5);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
-    $pdf->Line($pdf->getX()+10,$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
-    $pdf->Line($pdf->getX()+190,$pdf->getY()+2,$pdf->getX()+330,$pdf->getY()+2);
+    $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
+    $pdf->Line($pdf->getX()+190,$pdf->getY()+2,$pdf->getX()+340,$pdf->getY()+2);
     $pdf->SetDash();
 
     $pdf->output();
@@ -10509,7 +10517,7 @@ class PrintController extends AppController {
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+85,$pdf->getY()+2);
-    $pdf->Line($pdf->getX()+117,$pdf->getY()+2,$pdf->getX()+205,$pdf->getY()+2);
+    $pdf->Line($pdf->getX()+111,$pdf->getY()+2,$pdf->getX()+195,$pdf->getY()+2);
 
     $pdf->output();
     exit();
@@ -12246,7 +12254,7 @@ class PrintController extends AppController {
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+85,$pdf->getY()+2);
-    $pdf->Line($pdf->getX()+117,$pdf->getY()+2,$pdf->getX()+205,$pdf->getY()+2);
+    $pdf->Line($pdf->getX()+111,$pdf->getY()+2,$pdf->getX()+195,$pdf->getY()+2);
   
     $pdf->output();
     exit();
@@ -12385,8 +12393,8 @@ class PrintController extends AppController {
     $pdf->SetDash(2.5,1.5);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
-    $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+85,$pdf->getY()+2);
-    $pdf->Line($pdf->getX()+117,$pdf->getY()+2,$pdf->getX()+205,$pdf->getY()+2);
+    $pdf->Line($pdf->getX()+10,$pdf->getY()+2,$pdf->getX()+94,$pdf->getY()+2);
+    $pdf->Line($pdf->getX()+118,$pdf->getY()+2,$pdf->getX()+205,$pdf->getY()+2);
 
     $pdf->output();
     exit();
@@ -12803,8 +12811,8 @@ class PrintController extends AppController {
     $pdf->SetDash(2.5,1.5);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
-    $pdf->Line($pdf->getX()+10,$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
-    $pdf->Line($pdf->getX()+190,$pdf->getY()+2,$pdf->getX()+330,$pdf->getY()+2);
+    $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
+    $pdf->Line($pdf->getX()+190,$pdf->getY()+2,$pdf->getX()+340,$pdf->getY()+2);
     $pdf->SetDash();
 
     $pdf->output();
@@ -22593,8 +22601,8 @@ class PrintController extends AppController {
     $pdf->SetDash(2.5,1.5);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
-    $pdf->Line($pdf->getX()+10,$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
-    $pdf->Line($pdf->getX()+190,$pdf->getY()+2,$pdf->getX()+330,$pdf->getY()+2);
+    $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
+    $pdf->Line($pdf->getX()+190,$pdf->getY()+2,$pdf->getX()+345,$pdf->getY()+2);
     $pdf->SetDash();
 
     $pdf->output();
@@ -28405,7 +28413,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+85,$pdf->getY()+2);
-    $pdf->Line($pdf->getX()+117,$pdf->getY()+2,$pdf->getX()+205,$pdf->getY()+2);
+    $pdf->Line($pdf->getX()+111,$pdf->getY()+2,$pdf->getX()+195,$pdf->getY()+2);
 
     $pdf->output();
     exit();
@@ -31765,7 +31773,7 @@ EQUIVALENT',1,'C',0);
 
     }else{
 
-      $pdf->Cell(330,5,'No data available.',1,1,'C');
+      $pdf->Cell(340,5,'No data available.',1,1,'C');
 
     }
 
@@ -31773,8 +31781,8 @@ EQUIVALENT',1,'C',0);
     $pdf->SetDash(2.5,1.5);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
-    $pdf->Line($pdf->getX()+10,$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
-    $pdf->Line($pdf->getX()+190,$pdf->getY()+2,$pdf->getX()+330,$pdf->getY()+2);
+    $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
+    $pdf->Line($pdf->getX()+190,$pdf->getY()+2,$pdf->getX()+340,$pdf->getY()+2);
     $pdf->SetDash();
 
     $pdf->output();
@@ -32860,7 +32868,7 @@ EQUIVALENT',1,'C',0);
 
     }else{
 
-      $pdf->Cell(330,5,'No data available.',1,1,'C');
+      $pdf->Cell(341,5,'No data available.',1,1,'C');
 
     }
 
@@ -32868,8 +32876,8 @@ EQUIVALENT',1,'C',0);
     $pdf->SetDash(2.5,1.5);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
-    $pdf->Line($pdf->getX()+10,$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
-    $pdf->Line($pdf->getX()+190,$pdf->getY()+2,$pdf->getX()+330,$pdf->getY()+2);
+    $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
+    $pdf->Line($pdf->getX()+190,$pdf->getY()+2,$pdf->getX()+341,$pdf->getY()+2);
     $pdf->SetDash();
 
     $pdf->output();
