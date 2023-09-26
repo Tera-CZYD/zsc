@@ -127,15 +127,15 @@ class StudentClearancesController extends AppController {
       $employee_id = $this->Auth->user('employeeId');
 
       $employees = $this->Employees->find()
-      
+
       ->contain([
-        
+
           'AcademicRanks'=> [
-            
+
               'conditions' => ['AcademicRanks.visible' => 1],
-              
+
             ]
-            
+
         ])
 
       ->where([
@@ -1013,15 +1013,40 @@ class StudentClearancesController extends AppController {
             $mail->isHTML(true); // Set email format to HTML
             $mail->Subject = 'STUDENT CLEARANCE';
 
-            if($this->Auth->user('roleId')==12){
-              
+            if($this->Auth->user('roleId')==12 && $employees['academic_rank_id'] != 1){
+
               $_SESSION['status'] = @$app['status_faculty'] == 1 ? 'CLEARED' : '';
 
             }else if($this->Auth->user('roleId')==8){
 
               $_SESSION['status'] = @$app['status_cashier'] == 1 ? 'CLEARED' : '';
 
+            }else if($this->Auth->user('roleId')==23){
+
+              $_SESSION['status'] = @$app['status_librarian'] == 1 ? 'CLEARED' : '';
+
+            }else if($this->Auth->user('roleId')==41){
+
+              $_SESSION['status'] = @$app['status_apartelle'] == 1 ? 'CLEARED' : '';
+
+            }else if($this->Auth->user('roleId')==0){
+
+              $_SESSION['status'] = @$app['status_laboratory'] == 1 ? 'CLEARED' : '';
+
+            }else if($this->Auth->user('roleId')==25){
+
+              $_SESSION['status'] = @$app['status_affairs'] == 1 ? 'CLEARED' : '';
+
+            }else if($this->Auth->user('roleId')==12 && $employees['academic_rank_id'] == 1){
+
+              $_SESSION['status'] = @$app['status_head'] == 1 ? 'CLEARED' : '';
+
+            }else if($this->Auth->user('roleId')==39){
+
+              $_SESSION['status'] = @$app['status_dean'] == 1 ? 'CLEARED' : '';
+
             }
+
 
             $_SESSION['name'] = @$name; 
 
