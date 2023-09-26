@@ -8,7 +8,7 @@
 
     public function initialize(array $config): void {
 
-     
+     $this->addBehavior('Timestamp');
 
     }
 

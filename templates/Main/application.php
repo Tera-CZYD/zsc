@@ -382,7 +382,7 @@
                         <div class="col-md-3">
                           <div class="form-group">
                             <label> Highschool Curriculum  <i class="required">*</i></label>
-                            <select class="form-control" ng-model="data.StudentApplication.curriculumn" style="height: 45px" data-validation-engine="validate[required]" autocomplete="false">
+                            <select class="form-control" ng-model="data.StudentApplication.curriculum" style="height: 45px" data-validation-engine="validate[required]" autocomplete="false">
                               <option></option>
                               <option value="ALS">ALS</option>
                               <option value="BEC">BEC</option>
