@@ -1,4 +1,3 @@
-
 <style>
   .codyhouse {
     text-align: center;
