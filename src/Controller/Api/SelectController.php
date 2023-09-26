@@ -10292,6 +10292,60 @@ class SelectController extends AppController {
 
       }
 
+    }else if ($code == 'block-sections') {
+
+      $tmp = $this->BlockSections->find()
+
+          ->where(['visible' => 1])
+
+          ->order(['code' => 'ASC'])
+
+          ->all();
+
+
+
+      if(!empty($tmp)){
+
+        $datas = $tmp;
+
+      }
+
+    }else if ($code == 'block-section-courses') {
+
+      $tmp = $this->BlockSectionCourses->find()
+
+          ->where(['visible' => 1])
+
+          ->order(['course' => 'ASC'])
+
+          ->all();
+
+
+
+      if(!empty($tmp)){
+
+        $datas = $tmp;
+
+      }
+
+    }else if ($code == 'block-section-schedules') {
+
+      $tmp = $this->BlockSectionSchedules->find()
+
+          ->where(['visible' => 1])
+
+          ->order(['day' => 'ASC'])
+
+          ->all();
+
+
+
+      if(!empty($tmp)){
+
+        $datas = $tmp;
+
+      }
+
     } else if ($code == 'student-enrollment-course') {
 
       $college_id = $this->request->query['college_id'];
