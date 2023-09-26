@@ -191,29 +191,35 @@ class StudentClearancesController extends AppController {
 
         $step = 3;
 
-      }else if ($role_id==0){
+      }else if ($role_id==41){
 
         $conditions['step'] = " AND StudentClearance.step = 4 ";
 
         $step = 4;
 
-      }else if ($role_id==25){
+      }else if ($role_id==0){
 
         $conditions['step'] = " AND StudentClearance.step = 5 ";
 
         $step = 5;
 
-      }else if ($role_id==12 && $employees['academic_rank_id'] == 1){
+      }else if ($role_id==25){
 
         $conditions['step'] = " AND StudentClearance.step = 6 ";
 
         $step = 6;
 
-      }else if ($role_id==39){
+      }else if ($role_id==12 && $employees['academic_rank_id'] == 1){
 
         $conditions['step'] = " AND StudentClearance.step = 7 ";
 
         $step = 7;
+
+      }else if ($role_id==39){
+
+        $conditions['step'] = " AND StudentClearance.step = 8 ";
+
+        $step = 8;
 
       }
 
@@ -847,11 +853,19 @@ class StudentClearancesController extends AppController {
 
       $save = $this->StudentClearances->save($app);
 
+    }else if($this->Auth->user('roleId')==41){
+
+      $app->status_apartelle = 1;
+
+      $app->step = 5;
+
+      $save = $this->StudentClearances->save($app);
+
     }else if($this->Auth->user('roleId')==0){
 
       $app->status_laboratory = 1;
 
-      $app->step = 5;
+      $app->step = 6;
 
       $save = $this->StudentClearances->save($app);
 
@@ -859,7 +873,7 @@ class StudentClearancesController extends AppController {
 
       $app->status_affairs = 1;
 
-      $app->step = 6;
+      $app->step = 7;
 
       $save = $this->StudentClearances->save($app);
 
@@ -867,7 +881,7 @@ class StudentClearancesController extends AppController {
 
       $app->status_head = 1;
 
-      $app->step = 7;
+      $app->step = 8;
 
       $save = $this->StudentClearances->save($app);
 
@@ -875,7 +889,7 @@ class StudentClearancesController extends AppController {
 
       $app->status_dean = 1;
 
-      $app->step = 8;
+      $app->step = 9;
 
       $save = $this->StudentClearances->save($app);
 

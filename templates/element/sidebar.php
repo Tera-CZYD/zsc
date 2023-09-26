@@ -469,8 +469,8 @@
           <?php endif ?>
 
           <?php if (hasAccess('corporate affairs/menu', $currentUser)): ?>
-            <li class="nav-link-side nav-apartelle nav-apartelle-registration nav-student-list nav-corporate-affairs-student-profile"><a><i class="fa fa-building-o"></i> Corporate Affairs </a>
-              <ul class="nav child_menu collapse collapse-apartelle collapse-student-list collapse-apartelle-registration collapse-corporate-affairs-student-profile">
+            <li class="nav-link-side nav-apartelle nav-apartelle-registration nav-student-list nav-corporate-affairs-student-profile nav-apartelle-student-clearance"><a><i class="fa fa-building-o"></i> Corporate Affairs </a>
+              <ul class="nav child_menu collapse collapse-apartelle collapse-student-list collapse-apartelle-registration collapse-corporate-affairs-student-profile collapse-apartelle-student-clearance">
 
                 <?php if (hasAccess('corporate affairs student profile/index', $currentUser)): ?>
                 <li class="nav-link-side nav-corporate-affairs-student-profile">
