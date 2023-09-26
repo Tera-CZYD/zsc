@@ -38,6 +38,8 @@ class StudentClearancesController extends AppController {
 
     $this->Employees = TableRegistry::getTableLocator()->get('Employees');
 
+    $this->ApartelleRegistrations = TableRegistry::getTableLocator()->get('ApartelleRegistrations');
+
   }
 
   public function index(){   
@@ -125,10 +127,15 @@ class StudentClearancesController extends AppController {
       $employee_id = $this->Auth->user('employeeId');
 
       $employees = $this->Employees->find()
+
       ->contain([
+
           'AcademicRanks'=> [
+
               'conditions' => ['AcademicRanks.visible' => 1],
+
             ]
+
         ])
 
       ->where([
@@ -191,29 +198,35 @@ class StudentClearancesController extends AppController {
 
         $step = 3;
 
-      }else if ($role_id==0){
+      }else if ($role_id==41){
 
         $conditions['step'] = " AND StudentClearance.step = 4 ";
 
         $step = 4;
 
-      }else if ($role_id==25){
+      }else if ($role_id==0){
 
         $conditions['step'] = " AND StudentClearance.step = 5 ";
 
         $step = 5;
 
-      }else if ($role_id==12 && $employees['academic_rank_id'] == 1){
+      }else if ($role_id==25){
 
         $conditions['step'] = " AND StudentClearance.step = 6 ";
 
         $step = 6;
 
-      }else if ($role_id==39){
+      }else if ($role_id==12 && $employees['academic_rank_id'] == 1){
 
         $conditions['step'] = " AND StudentClearance.step = 7 ";
 
         $step = 7;
+
+      }else if ($role_id==39){
+
+        $conditions['step'] = " AND StudentClearance.step = 8 ";
+
+        $step = 8;
 
       }
 
@@ -809,6 +822,8 @@ class StudentClearancesController extends AppController {
         ->first();
     }
 
+    // var_dump($this->Auth->user('roleId'));
+
     if($this->Auth->user('roleId')==12 && $employees['academic_rank_id'] != 1){
 
       $courses = $this->StudentEnrolledCourses->find()
@@ -841,9 +856,58 @@ class StudentClearancesController extends AppController {
 
     }else if($this->Auth->user('roleId')==23){
 
-      $app->status_librarian = 1;
+      $student_year = $student['year_term_id'];
 
-      $app->step = 4;
+      $apartelle = $this->ApartelleRegistrations->find()
+
+        ->where([
+
+          'student_id' => $studentId,
+
+          'year_term_id' => $student_year,
+
+          'visible'   => 1,
+
+          'active' => 1
+
+        ])
+
+        ->count();
+      // var_dump($apartelle);
+
+      if($apartelle>0){
+
+        $app->status_librarian = 1;
+
+        $app->step = 4;
+
+      }else{
+
+        $app->status_librarian = 1;
+
+        $tmp = "UPDATE student_clearances SET status_apartelle = 1 WHERE id = " . $id;
+
+        $connection = $this->StudentClearances->getConnection();
+
+        $connection->execute($tmp)->fetchAll('assoc');
+
+        $app->step = 5;
+
+      }
+      
+      $save = $this->StudentClearances->save($app);
+
+    }else if($this->Auth->user('roleId')==41){
+
+      $app->status_apartelle = 1;
+
+      $app->step = 5;
+
+      $tmp = "UPDATE student_clearances SET status_apartelle = 1 WHERE id = " . $id;
+
+      $connection = $this->StudentClearances->getConnection();
+
+      $connection->execute($tmp)->fetchAll('assoc');
 
       $save = $this->StudentClearances->save($app);
 
@@ -851,7 +915,7 @@ class StudentClearancesController extends AppController {
 
       $app->status_laboratory = 1;
 
-      $app->step = 5;
+      $app->step = 6;
 
       $save = $this->StudentClearances->save($app);
 
@@ -859,7 +923,7 @@ class StudentClearancesController extends AppController {
 
       $app->status_affairs = 1;
 
-      $app->step = 6;
+      $app->step = 7;
 
       $save = $this->StudentClearances->save($app);
 
@@ -867,7 +931,7 @@ class StudentClearancesController extends AppController {
 
       $app->status_head = 1;
 
-      $app->step = 7;
+      $app->step = 8;
 
       $save = $this->StudentClearances->save($app);
 
@@ -875,7 +939,7 @@ class StudentClearancesController extends AppController {
 
       $app->status_dean = 1;
 
-      $app->step = 8;
+      $app->step = 9;
 
       $save = $this->StudentClearances->save($app);
 
@@ -949,15 +1013,40 @@ class StudentClearancesController extends AppController {
             $mail->isHTML(true); // Set email format to HTML
             $mail->Subject = 'STUDENT CLEARANCE';
 
-            if($this->Auth->user('roleId')==12){
-              
+            if($this->Auth->user('roleId')==12 && $employees['academic_rank_id'] != 1){
+
               $_SESSION['status'] = @$app['status_faculty'] == 1 ? 'CLEARED' : '';
 
             }else if($this->Auth->user('roleId')==8){
 
               $_SESSION['status'] = @$app['status_cashier'] == 1 ? 'CLEARED' : '';
 
+            }else if($this->Auth->user('roleId')==23){
+
+              $_SESSION['status'] = @$app['status_librarian'] == 1 ? 'CLEARED' : '';
+
+            }else if($this->Auth->user('roleId')==41){
+
+              $_SESSION['status'] = @$app['status_apartelle'] == 1 ? 'CLEARED' : '';
+
+            }else if($this->Auth->user('roleId')==0){
+
+              $_SESSION['status'] = @$app['status_laboratory'] == 1 ? 'CLEARED' : '';
+
+            }else if($this->Auth->user('roleId')==25){
+
+              $_SESSION['status'] = @$app['status_affairs'] == 1 ? 'CLEARED' : '';
+
+            }else if($this->Auth->user('roleId')==12 && $employees['academic_rank_id'] == 1){
+
+              $_SESSION['status'] = @$app['status_head'] == 1 ? 'CLEARED' : '';
+
+            }else if($this->Auth->user('roleId')==39){
+
+              $_SESSION['status'] = @$app['status_dean'] == 1 ? 'CLEARED' : '';
+
             }
+
 
             $_SESSION['name'] = @$name; 
 

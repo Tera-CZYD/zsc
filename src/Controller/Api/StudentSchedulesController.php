@@ -79,30 +79,66 @@ class StudentSchedulesController extends AppController {
 
     $paginator = $tmpData['pagination'];
 
+    $daysOfWeek = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday');
+
+    
+
     $datas = [];
 
-    foreach ($tmp as $data) {
+    foreach ($daysOfWeek as $key => $value) {
 
-      $datas[] = array(
+      $colors = array("#FAEDCB","#C9E4DE","#C6DEF1","#DBCDF0","#F2C6DE","#F7D9C4");
 
-        'id'            => $data['id'],
+      $perDay = [];
+      shuffle($colors);
 
-        'code'     => $data['code'],
+      foreach ($tmp as $data) {
 
-        'faculty_name'   => $data['faculty_name'],
+        if($value==$data['day']){
 
-        'day'   => $data['day'],
+            $start = date("H:i", strtotime($data['time_start']));
 
-        'course'        => $data['course'],
+            $end = date("H:i", strtotime($data['time_end']));
 
-        'room'        => $data['room'],
+            $randomIndex = array_rand($colors);
 
-        'time_start'        => $data['time_start'],
+            // Use the random index to access the randomly selected color
+            $randomColor = $colors[$randomIndex];
 
-        'time_end'        => $data['time_end'],
+            $perDay[] = array(
 
-      );
+            'id'            => $data['id'],
 
+            'code'     => $data['code'],
+
+            'faculty_name'   => $data['faculty_name'],
+
+            'day'   => $data['day'],
+
+            'course'        => $data['course'],
+
+            'room'        => $data['room'],
+
+            'time_start'        => $start,
+
+            'time_end'        => $end,
+
+            'color' => $randomColor
+
+          );
+
+            $indexToRemove = array_search($randomColor, $colors);
+
+            if ($indexToRemove !== false) {
+                // Unset the element with the found index
+                unset($colors[$indexToRemove]);
+            }
+        }
+
+      }
+
+      $datas[] = $perDay;
+      
     }
 
     $response = [
@@ -110,6 +146,8 @@ class StudentSchedulesController extends AppController {
       'ok' => true,
 
       'data' => $datas,
+
+      'days' => $daysOfWeek,
 
       'paginator' => $paginator,
 
