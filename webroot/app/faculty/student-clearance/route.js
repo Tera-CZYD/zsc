@@ -42,6 +42,14 @@ app.config(function ($routeProvider) {
 
   })
 
+  .when("/faculty/student-clearance/head-index", {
+
+    templateUrl: 'angularjs/views/faculty/student-clearance/head-index.ctp',
+
+    controller: "StudentClearanceController",
+
+  })
+
   .when("/faculty/student-clearance/faculty-add", {
 
     templateUrl: 'angularjs/views/faculty/student-clearance/faculty-add.ctp',
