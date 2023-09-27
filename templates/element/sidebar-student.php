@@ -51,8 +51,8 @@
 
           <li class="nav-link-side nav-schedule"><a href="#/student/schedule" onclick="change('schedule')"><i class="fa fa-table"></i> Schedule </a></li>
 
-          <li class="nav-link-side nav-request-form"><a><i class="fa fa-briefcase"></i> Registrar </a>
-            <ul class="nav child_menu collapse collapse-request-form ">
+          <li class="nav-link-side nav-request-form nav-club nav-transferee nav-adding-dropping-subject nav-student-club"><a><i class="fa fa-briefcase"></i> Registrar </a>
+            <ul class="nav child_menu collapse collapse-request-form collapse-club collapse-student-club collapse-transferee collapse-adding-dropping-subject">
 
               <li class="nav-link-side nav-transferee">
                 <a href="#/registrar/transferee" onclick="change('transferee')">School Transfer Request</a>
@@ -70,9 +70,9 @@
                 <a href="#/registrar/student-club" onclick="change('student-club')">Student Clubs Application</a>
               </li>
 
-              <li class="nav-link-side nav-club">
+              <!-- <li class="nav-link-side nav-club">
                 <a href="#/registrar/club" onclick="change('club')">Club Management</a>
-              </li>
+              </li> -->
 
             </ul>
           </li>
@@ -88,8 +88,8 @@
             </ul>
           </li> 
 
-          <li class="nav-link-side nav-medical-consent"><a><i class="fa fa-medkit"></i> Health & Medical Services </a>
-            <ul class="nav child_menu collaps collapse-medical-consent">
+          <li class="nav-link-side nav-medical-consent nav-consultation nav-dental nav-referral-recommendation nav-medical-certificate"><a><i class="fa fa-medkit"></i> Health & Medical Services </a>
+            <ul class="nav child_menu collaps collapse-medical-consent collapse-dental collapse-referral-recommendation collapse-dental collapse-medical-certificate collapse-consultation">
 
              <!--  <li class="nav-link-side nav-medical-student-log">
                 <a href="#/medical-services/student-log/student-index" onclick="change('student-log')">Log</a>
@@ -107,10 +107,10 @@
                 <a href="#/medical-services/dental/student-index" onclick="change('dental')">Dental</a>
               </li>
 
-              
-              <li class="nav-link-side nav-medical-certificate">
+              <!-- <li class="nav-link-side nav-medical-certificate">
                 <a href="#/medical-services/medical-certificate/student-index" onclick="change('medical-certificate')">Medical Certificate Request</a>
-              </li>
+              </li> -->
+
               <li class="nav-link-side nav-referral-recommendation">
                 <a href="#/medical-services/referral-recommendation/student-index" onclick="change('referral-recommendation')">Referral Recommendation</a>
               </li>

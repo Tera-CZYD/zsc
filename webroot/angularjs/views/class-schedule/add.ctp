@@ -151,7 +151,7 @@
                       </td>
                     </tr>
                     <tr ng-if="data.ClassScheduleSub == ''">
-                      <td class="text-center" colspan="9">No data available.</td>
+                      <td class="text-center" colspan="10">No data available.</td>
                     </tr>
                   </tbody>
                 </table>
