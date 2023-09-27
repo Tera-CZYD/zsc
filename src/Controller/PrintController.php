@@ -14426,17 +14426,17 @@ class PrintController extends AppController {
     $pdf->Image($this->base.'/assets/img/zam.png',115,22,13,13);
     $pdf->Image($this->base.'/assets/img/iso.png',194,22,11,13);
     
-    $pdf->Image($this->base.'/assets/img/zam.png',6,172,13,13);
-    $pdf->Image($this->base.'/assets/img/iso.png',85,172,11,13);
-    $pdf->Image($this->base.'/assets/img/zam.png',115,172,13,13);
-    $pdf->Image($this->base.'/assets/img/iso.png',194,172,11,13);
+    $pdf->Image($this->base.'/assets/img/zam.png',6,176,13,13);
+    $pdf->Image($this->base.'/assets/img/iso.png',85,176,11,13);
+    $pdf->Image($this->base.'/assets/img/zam.png',115,176,13,13);
+    $pdf->Image($this->base.'/assets/img/iso.png',194,176,11,13);
     
     $pdf->Rect(3.3,$pdf->GetY() + 2,96.5,135);
     $pdf->Rect(112.5,$pdf->GetY() + 2,96.5,135);
 
 
-    $pdf->Rect(3.3,$pdf->GetY() + 152,96.5,135);
-    $pdf->Rect(112.5,$pdf->GetY() + 152,96.5,135);
+    $pdf->Rect(3.3,$pdf->GetY() + 158,96.5,135);
+    $pdf->Rect(112.5,$pdf->GetY() + 158,96.5,135);
     $pdf->Ln(4);
     $pdf->Cell(23.5,5,'',0,0,'L');
     $pdf->Cell(50,5,'Republic of the Philippines',0,0,'C');
@@ -14542,6 +14542,7 @@ class PrintController extends AppController {
 
     $cash = $data['StudentClearance']['status_cashier'] ==1? 'CLEARED':'';
     $lib = $data['StudentClearance']['status_librarian'] ==1? 'CLEARED':'';
+    $ap = $data['StudentClearance']['status_apartelle'] ==1? 'CLEARED':'';
     $lab = $data['StudentClearance']['status_laboratory'] ==1? 'CLEARED':'';
     $aff = $data['StudentClearance']['status_affairs'] ==1? 'CLEARED':'';
     $head = $data['StudentClearance']['status_head'] ==1? 'CLEARED':'';
@@ -14556,6 +14557,9 @@ class PrintController extends AppController {
     $pdf->Ln(4);
     $pdf->Cell(15,5,'Librarian: ' . $lib,0,0,'L');
     $pdf->Line(20,$pdf->getY()+4,95,$pdf->getY()+4);
+    $pdf->Ln(4);
+    $pdf->Cell(15,5,'Apartelle Admin: ' . $ap,0,0,'L');
+    $pdf->Line(30,$pdf->getY()+4,95,$pdf->getY()+4);
     $pdf->Ln(4);
     $pdf->Cell(15,5,'In-Charge, Laboratory Supplies: ' . $lab,0,0,'L');
     $pdf->Line(50,$pdf->getY()+4,95,$pdf->getY()+4);
@@ -14582,6 +14586,10 @@ class PrintController extends AppController {
     $pdf->Cell(109);
     $pdf->Cell(15,5,'Librarian: ' . $lib,0,0,'L');
     $pdf->Line(130,$pdf->getY()+4,205,$pdf->getY()+4);
+    $pdf->Ln(4);
+    $pdf->Cell(109);
+    $pdf->Cell(15,5,'Apartelle Admin: ' . $ap,0,0,'L');
+    $pdf->Line(137,$pdf->getY()+4,205,$pdf->getY()+4);
     $pdf->Ln(4);
     $pdf->Cell(109);
     $pdf->Cell(15,5,'In-Charge, Laboratory Supplies: ' . $lab,0,0,'L');
@@ -14719,6 +14727,9 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'Librarian: ' . $lib,0,0,'L');
     $pdf->Line(21,$pdf->getY()+4,95,$pdf->getY()+4);
     $pdf->Ln(4);
+    $pdf->Cell(15,5,'Apartelle Admin: ' . $ap,0,0,'L');
+    $pdf->Line(30,$pdf->getY()+4,95,$pdf->getY()+4);
+    $pdf->Ln(4);
     $pdf->Cell(15,5,'In-Charge, Laboratory Supplies: ' . $lab,0,0,'L');
     $pdf->Line(50,$pdf->getY()+4,95,$pdf->getY()+4);
     $pdf->Ln(4);
@@ -14744,6 +14755,10 @@ class PrintController extends AppController {
     $pdf->Cell(109);
     $pdf->Cell(15,5,'Librarian: ' . $lib,0,0,'L');
     $pdf->Line(130,$pdf->getY()+4,205,$pdf->getY()+4);
+    $pdf->Ln(4);
+    $pdf->Cell(109);
+    $pdf->Cell(15,5,'Apartelle Admin: ' . $ap,0,0,'L');
+    $pdf->Line(137,$pdf->getY()+4,205,$pdf->getY()+4);
     $pdf->Ln(4);
     $pdf->Cell(109);
     $pdf->Cell(15,5,'In-Charge, Laboratory Supplies: ' . $lab,0,0,'L');

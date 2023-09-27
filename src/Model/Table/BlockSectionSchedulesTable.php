@@ -8,7 +8,13 @@
 
     public function initialize(array $config): void {
 
-     
+     $this->addBehavior('Timestamp');
+
+     $this->belongsTo('BlockSections', [
+
+        'foreignKey' => 'block_section_id', 
+
+      ]);
 
     }
 
