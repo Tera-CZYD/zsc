@@ -810,9 +810,15 @@ class StudentClearancesController extends AppController {
 
             'AcademicRanks'=> [
 
+<<<<<<< HEAD
+                'conditions' => ['AcademicRanks.visible' => 1],
+
+              ]
+=======
               'conditions' => ['AcademicRanks.visible' => 1],
 
             ]
+>>>>>>> 5c1d594b650079f3b04bdac912a72dd0b114bdfe
 
           ])
 
@@ -844,7 +850,7 @@ class StudentClearancesController extends AppController {
 
       ->first();
 
-      $courses->clearance_remarks = null;
+      $courses->clearance_remarks = 'CLEARED';
 
       $courses->clearance_status = 1;
 
