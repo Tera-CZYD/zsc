@@ -12,6 +12,12 @@ class StudentEnrolledSchedulesTable extends Table{
 
     $this->addBehavior('Timestamp');
 
+    $this->belongsTo('BlockSectionSchedules', [
+
+        'foreignKey' => 'block_section_schedule_id', 
+
+      ]);
+
   }
 
   public function getAllStudentEnrolledSchedule($conditions=array()){
