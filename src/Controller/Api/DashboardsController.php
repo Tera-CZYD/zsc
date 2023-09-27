@@ -337,6 +337,7 @@ class DashboardsController extends AppController {
 
 
       $studentData = $this->Students->find()
+      
         ->contain([
 
           'StudentEnrolledCourses' => [
@@ -476,7 +477,7 @@ class DashboardsController extends AppController {
 
           $total_sub+=1;
 
-          if($value['final_grade']>=3.00){
+          if($value['final_grade']<=3.00){
 
             $passed+=1;
 
@@ -574,9 +575,42 @@ class DashboardsController extends AppController {
 
       $year_term = $settings['value'];
 
-        $dayToday = date("l");
+      $dayToday = date("l");
 
       $sched = $this->StudentEnrolledSchedules->find()
+
+        ->contain([
+
+          'BlockSectionSchedules' =>[
+
+            'BlockSections'
+
+          ]
+
+        ])
+
+        ->where([
+
+          'StudentEnrolledSchedules.faculty_id' => $employeeId,
+
+          'StudentEnrolledSchedules.year_term_id' => $year_term,
+
+          'StudentEnrolledSchedules.visible' => 1,
+
+          'StudentEnrolledSchedules.day' => $dayToday,
+
+          'StudentEnrolledSchedules.year_term_id' => $year_term
+
+        ])
+
+        ->order(['StudentEnrolledSchedules.time_start' => 'DESC'])
+
+        ->all();
+
+
+      $datas = array();
+
+      $clearance = $this->StudentEnrolledCourses->find()
 
         ->where([
 
@@ -584,15 +618,138 @@ class DashboardsController extends AppController {
 
           'year_term_id' => $year_term,
 
-          'visible' => 1,
-
-          'day' => $dayToday
+          'visible' => 1
 
         ])
 
-        ->order(['time_start' => 'DESC'])
+        ->all();
+
+        $subjects = $this->StudentEnrolledCourses->find()
+
+        ->where([
+
+          'faculty_id' => $employeeId,
+
+          'year_term_id' => $year_term,
+
+          'visible' => 1
+
+        ])
+
+        ->group(['course_id'])
 
         ->all();
+
+        // var_dump($subjects);
+
+        // $pending = $this->StudentEnrolledCourses->find()
+
+        //   ->select(['course_id', 'count' => 'COUNT(*)'])
+
+        //   ->where([
+
+        //       'clearance_status' => 0,
+
+        //       'faculty_id' => $employeeId,
+
+        //   ])
+
+        //   ->group(['course_id'])
+
+        //   ->toArray();
+
+        // $cleared = $this->StudentEnrolledCourses->find()
+
+        //   ->select(['course_id', 'count' => 'COUNT(*)'])
+
+        //   ->where([
+
+        //       'clearance_remarks' => 'CLEARED',
+
+        //       'clearance_status' => 1,
+
+        //       'faculty_id' => $employeeId,
+
+        //   ])
+
+        //   ->group(['course_id'])
+
+        //   ->toArray();
+
+        // $inc = $this->StudentEnrolledCourses->find()
+
+          // ->select(['course_id', 'count' => 'COUNT(*)'])
+
+          // ->where([
+
+          //     'clearance_remarks !=' => 'CLEARED',
+
+          //     'clearance_remarks IS NOT NULL',
+
+          //     'faculty_id' => $employeeId,
+
+          // ])
+
+          // ->group(['course_id'])
+
+          // ->toArray();
+
+        $pending = 0;
+
+        $cleared = 0;
+
+        $inc = 0;
+
+        $counts = [];
+
+        foreach ($subjects as $k => $data) {
+
+          $pending = 0;
+
+          $cleared = 0;
+
+          $inc = 0;
+            
+          foreach ($clearance as $key => $value) {
+
+            if($data['course_id']==$value['course_id']){
+
+              if($value['clearance_remarks'] == 'CLEARED' || $value['clearance_remarks'] == 1){
+
+              $cleared += 1;
+
+              }else if($value['clearance_remarks'] != 'CLEARED' && $value['clearance_remarks'] != null){
+
+                $inc += 1;
+
+              }else if($value['clearance_remarks'] == 0){
+
+                $pending += 1;
+
+              }
+
+            }
+
+          }
+
+          $counts[] = array(
+
+            'subject' => $data['course'],
+
+            'pending' => $pending,
+
+            'inc' =>$inc,
+
+            'cleared' => $cleared 
+
+          );
+
+        }
+
+        
+
+
+        // var_dump($pending);
 
       
 
@@ -600,7 +757,9 @@ class DashboardsController extends AppController {
 
           'ok' => true,
 
-          'scheds' => $sched
+          'scheds' => $sched,
+
+          'counts' => $counts
 
         ];
 

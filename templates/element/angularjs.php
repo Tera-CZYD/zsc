@@ -109,6 +109,8 @@
 
     'settings/awardee-management',
 
+    'settings/announcement-management',
+
     'settings/office-reference',
 
     'settings/admin-management',

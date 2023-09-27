@@ -779,8 +779,8 @@
           <?php endif ?>
 
           <?php if (hasAccess('settings/menu', $currentUser)): ?>
-            <li class="nav-link-side nav-permissions nav-accounts nav-roles nav-users nav-user-logs nav-backup nav-settings nav-office-reference nav-admin-management nav-award-management nav-awardee-management"><a><i class="fa fa-cog"></i> Settings </a>
-              <ul class="nav child_menu_bot collapse collapse-permissions collapse-accounts collapse-roles collapse-users collapse-user-logs collapse-backup collapse-settings collapse-office-reference collapse-admin-management collapse-award-management collapse-awardee-management">
+            <li class="nav-link-side nav-permissions nav-accounts nav-roles nav-users nav-user-logs nav-backup nav-settings nav-office-reference nav-admin-management nav-award-management nav-awardee-management nav-announcement-management"><a><i class="fa fa-cog"></i> Settings </a>
+              <ul class="nav child_menu_bot collapse collapse-permissions collapse-accounts collapse-roles collapse-users collapse-user-logs collapse-backup collapse-settings collapse-office-reference collapse-admin-management collapse-award-management collapse-awardee-management collapse-announcement-management">
                 <?php if (hasAccess('organization information/index', $currentUser)): ?>
                   <li class="nav-link-side nav-settings">
                     <a href="#/settings" onclick="change('settings')"> Organization Information </a>
@@ -810,6 +810,12 @@
                 <?php if (hasAccess('awardee management/index', $currentUser)): ?>
                   <li class="nav-link-side nav-awardee-management">
                     <a href="#/settings/awardee-management" onclick="change('awardee-management')"> Awardee Management </a>
+                  </li>
+                <?php endif ?>
+
+                <?php if (hasAccess('announcement management/index', $currentUser)): ?>
+                  <li class="nav-link-side nav-announcement-management">
+                    <a href="#/settings/announcement-management" onclick="change('announcement-management')"> Announcement Management </a>
                   </li>
                 <?php endif ?>
 

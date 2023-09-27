@@ -805,10 +805,15 @@ class StudentClearancesController extends AppController {
       $employee_id = $this->Auth->user('employeeId');
 
       $employees = $this->Employees->find()
+
         ->contain([
+
             'AcademicRanks'=> [
+
                 'conditions' => ['AcademicRanks.visible' => 1],
+
               ]
+
           ])
 
         ->where([
@@ -840,7 +845,7 @@ class StudentClearancesController extends AppController {
 
         ->first();
 
-      $courses->clearance_remarks = null;
+      $courses->clearance_remarks = 'CLEARED';
 
       $courses->clearance_status = 1;
 
