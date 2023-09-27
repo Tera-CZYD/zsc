@@ -69,6 +69,20 @@ app.controller('AnnouncementManagementController', function($scope, Announcement
     }
 
   }
+  $scope.view = function (id) {
+
+    
+    AnnouncementManagement.get({id:id}, function(e){
+      // console.log(e.data.grade);
+
+      if(e.ok){
+        $scope.views = e.data.AnnouncementManagement;
+        
+        $("#view-announcement").modal("show");
+      }
+    });
+        $scope.load();
+  };
 
   $scope.remove = function(data) {
 
