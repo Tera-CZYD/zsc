@@ -288,6 +288,12 @@ app.controller('TransfereeAddController', function($scope, Transferee, Select, S
 
   }
 
+  Select.get({ code: 'year-term-list' },function(e){
+
+    $scope.year_terms = e.data;
+
+  });
+
   $scope.saveImages = function (files) {
 
     if(files == undefined){
@@ -1032,6 +1038,12 @@ app.controller('AdminTransfereeAddController', function($scope, Transferee, Sele
     TransfereeImage : []
 
   }
+
+  Select.get({ code: 'year-term-list' },function(e){
+
+    $scope.year_terms = e.data;
+
+  });
 
   $scope.searchStudent = function(options) {
 
