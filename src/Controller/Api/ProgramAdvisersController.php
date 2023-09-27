@@ -427,23 +427,23 @@ class ProgramAdvisersController extends AppController {
 
           $query4 = $this->Courses->find()
 
-              ->where([
+            ->where([
 
-                  'Courses.is_jeep' => 1,
+                'Courses.is_jeep' => 1,
 
-              ])
+            ])
 
-              ->matching('BlockSectionCourses', function ($q) use ($main) {
+          ->matching('BlockSectionCourses', function ($q) use ($main) {
 
-                  return $q->where([
+            return $q->where([
 
-                      'BlockSectionCourses.visible' => 1,
+                'BlockSectionCourses.visible' => 1,
 
-                      'BlockSectionCourses.block_section_id' => $main['selected_block_section_id'],
+                'BlockSectionCourses.block_section_id' => $main['selected_block_section_id'],
 
-                  ]);
+            ]);
 
-              });
+          });
 
           $query4->select(['total' => $query->func()->count('*')]);
 
@@ -568,6 +568,8 @@ class ProgramAdvisersController extends AppController {
               'course_code'  => $value['course_code'],
 
               'course'       => $course,
+
+              'block_section_course_id' => $value['id'],
 
               'year_term_id' => $main['year_term_id'],
 
