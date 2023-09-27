@@ -63,6 +63,10 @@ class DashboardsController extends AppController {
 
     $this->StudentClearances = TableRegistry::getTableLocator()->get('StudentClearances');
 
+    $this->StudentEnrolledSchedules = TableRegistry::getTableLocator()->get('StudentEnrolledSchedules');
+
+    $this->Settings = TableRegistry::getTableLocator()->get('Settings');
+
   }
 
   // public $components = array("Global");
@@ -82,6 +86,8 @@ class DashboardsController extends AppController {
     $base = $urlHelper->build('/', ['fullBase' => true]);
 
     $roleId = $user["roleId"];
+
+    // var_dump($user);
 
     if($user["roleId"] == 1){ //ADMIN DASHBOARD
 
@@ -357,6 +363,8 @@ class DashboardsController extends AppController {
 
       ->first();
 
+      $year_term = $studentData['year_term_id'];
+
         $student_subjects = $studentData['student_enrolled_courses'];
 
         unset($studentData['student_enrolled_courses']);
@@ -438,7 +446,80 @@ class DashboardsController extends AppController {
         ])
 
         ->all();
+
+      $enrolled_sub = $this->StudentEnrolledCourses->find()
+
+        ->where([
+
+          'student_id' => $student_id,
+
+          'year_term_id' => $year_term,
+
+          'visible' => 1
+
+        ])
+
+        ->all();
+
+        // var_dump($enrolled_sub);
+        $total_sub = 0;
+
+        $passed = 0;
+
+        $failed =0;
+
+        $credited = 0; 
         
+        $incomplete = 0;
+
+        foreach ($enrolled_sub as $key => $value) {
+
+          $total_sub+=1;
+
+          if($value['final_grade']>=3.00){
+
+            $passed+=1;
+
+          }else{
+
+            $failed+=1;
+
+          }
+
+          if($value['remarks']=='PASSED'){
+
+            $credited+=1;
+
+          }
+
+          if($value['incomplete']){
+
+            $incomplete=+1;
+
+          }  
+
+        }
+
+        $dayToday = date("l");
+
+        $sched = $this->StudentEnrolledSchedules->find()
+
+          ->where([
+
+            'student_id' => $student_id,
+
+            'year_term_id' => $year_term,
+
+            'visible' => 1,
+
+            'day' => $dayToday
+
+          ])
+
+          ->order(['time_start' => 'DESC'])
+
+          ->all();
+
         $response = [
 
           'ok' => true,
@@ -449,7 +530,77 @@ class DashboardsController extends AppController {
 
           'student_subjects' => $student_subjects,
 
-          'roleId' => $roleId
+          'roleId' => $roleId,
+
+          'total_sub' => $total_sub,
+
+          'passed' => $passed,
+
+          'failed' => $failed,
+
+          'credited' => $credited,
+
+          'incomplete' => $incomplete,
+
+          'scheds' => $sched
+
+        ];
+
+        $this->response->withType('application/json');
+
+        $this->response->getBody()->write(json_encode($response));
+
+        return $this->response;
+      
+    }elseif($user['roleId'] == 12) { //FACULTY DASHBOARD
+
+      $employeeId = $user['employeeId'];
+
+
+      $employees = $this->Employees->find()
+
+        ->where([
+
+          'id' => $employeeId,
+
+          'visible' => 1
+
+        ])
+
+        ->first();
+
+      $settings = $this->Settings->find()->offset(9)->first();
+
+
+      $year_term = $settings['value'];
+
+        $dayToday = date("l");
+
+      $sched = $this->StudentEnrolledSchedules->find()
+
+        ->where([
+
+          'faculty_id' => $employeeId,
+
+          'year_term_id' => $year_term,
+
+          'visible' => 1,
+
+          'day' => $dayToday
+
+        ])
+
+        ->order(['time_start' => 'DESC'])
+
+        ->all();
+
+      
+
+        $response = [
+
+          'ok' => true,
+
+          'scheds' => $sched
 
         ];
 
