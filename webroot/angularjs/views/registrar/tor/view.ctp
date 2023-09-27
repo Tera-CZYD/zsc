@@ -13,8 +13,6 @@
 
   // INCLUDE ALL PAGE PERMISSION
   handleAccess('pageView', 'transcript of records/view', currentUser);
-  handleAccess('pageEdit', 'transcript of records/edit', currentUser);
-  handleAccess('pageDelete', 'transcript of records/delete', currentUser);
   handleAccess('pagePrintForm', 'transcript of records/print tor', currentUser);
 
 </script>

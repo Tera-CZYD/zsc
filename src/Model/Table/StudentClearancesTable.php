@@ -73,6 +73,7 @@ class StudentClearancesTable extends Table
         student_enrolled_courses as StudentEnrolledCourse ON StudentEnrolledCourse.student_id = StudentClearance.student_id LEFT JOIN 
 
         year_level_terms as YearLevelTerm ON YearLevelTerm.id = StudentClearance.year_term_id
+        
       WHERE
 
       StudentClearance.visible = true $college_program AND
