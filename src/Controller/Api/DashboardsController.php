@@ -477,7 +477,7 @@ class DashboardsController extends AppController {
 
           $total_sub+=1;
 
-          if($value['final_grade']<=3.00){
+          if($value['final_grade']<=3.00 && $value['final_grade']!=null){
 
             $passed+=1;
 
