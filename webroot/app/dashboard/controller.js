@@ -27,10 +27,11 @@ app.controller('DashboardController', function($scope,Select,StudentApplicationM
   });
 
   $scope.load = function(options) {
-
+   
     options = typeof options !== 'undefined' ?  options : {};
 
     Dashboard.query(options, function(e) {
+ console.log(e.roleId);
 
       if (e.ok) {
 
@@ -39,6 +40,16 @@ app.controller('DashboardController', function($scope,Select,StudentApplicationM
         $scope.clearance = e.clearance;
 
         $scope.student_subjects = e.student_subjects;
+
+        $scope.total_sub = e.total_sub;
+
+        $scope.passed = e.passed;
+
+        $scope.failed = e.failed;
+
+        $scope.credited = e.credited;
+
+        $scope.incomplete = e.incomplete;
 
         if(e.roleId == 1){
 
@@ -168,6 +179,91 @@ app.controller('DashboardController', function($scope,Select,StudentApplicationM
 
           });
 
+        }else if(e.roleId == 13){
+
+          $scope.scheds = e.scheds;
+
+          anychart.onDocumentReady(function () {
+            
+            // create pie chart with passed data
+            
+            var chart = anychart.pie([
+              
+              ['Passed', $scope.passed],
+              
+              ['Failed', $scope.failed],
+              
+              ['Credited', $scope.credited],
+              
+              ['Incomplete', $scope.incomplete]
+              
+            ]);
+
+            // create range color palette with color ranged between light blue and dark blue
+            
+            var palette = anychart.palettes.rangeColors();
+            
+            palette.items([{ color: '#64b5f6' }, { color: '#455a64' }]);
+            
+
+            // set chart title text settings
+            chart
+            
+              // set chart radius
+              .innerRadius('40%')
+              
+              // set palette to the chart
+              .palette(palette);
+
+            // set container id for the chart
+            chart.container('container');
+            
+            // initiate chart drawing
+            chart.draw();
+          });
+        }else if(e.roleId == 12){
+
+          $scope.scheds = e.scheds;
+          console.log(e.scheds);
+
+          anychart.onDocumentReady(function () {
+            
+            // create pie chart with passed data
+            
+            var chart = anychart.pie([
+              
+              ['Passed', $scope.passed],
+              
+              ['Failed', $scope.failed],
+              
+              ['Credited', $scope.credited],
+              
+              ['Incomplete', $scope.incomplete]
+              
+            ]);
+
+            // create range color palette with color ranged between light blue and dark blue
+            
+            var palette = anychart.palettes.rangeColors();
+            
+            palette.items([{ color: '#64b5f6' }, { color: '#455a64' }]);
+            
+
+            // set chart title text settings
+            chart
+            
+              // set chart radius
+              .innerRadius('40%')
+              
+              // set palette to the chart
+              .palette(palette);
+
+            // set container id for the chart
+            chart.container('container');
+            
+            // initiate chart drawing
+            chart.draw();
+          });
         }
 
       }
