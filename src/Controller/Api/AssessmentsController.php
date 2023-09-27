@@ -24,6 +24,10 @@ class AssessmentsController extends AppController {
 
     $this->StudentEnrollments = TableRegistry::getTableLocator()->get('StudentEnrollments');
 
+    $this->StudentEnrolledCourses = TableRegistry::getTableLocator()->get('StudentEnrolledCourses');
+
+    $this->BlockSectionCourses = TableRegistry::getTableLocator()->get('BlockSectionCourses');
+
     $this->UserLogs = TableRegistry::getTableLocator()->get('UserLogs');
 
   }
@@ -329,6 +333,41 @@ class AssessmentsController extends AppController {
       $connection = $this->StudentEnrollments->getConnection();
 
       $connection->execute($tmp)->fetchAll('assoc');
+
+
+      //UPDATE NUMBER OF ENROLLED STUDENTS
+
+        $student_enrolled_courses = $this->StudentEnrolledCourses->find()
+
+          ->where([
+
+            'visible' => 1,
+
+            'student_id' => $data->student_id,
+
+            'year_term_id' => $data->year_term_id,
+
+          ])
+
+        ->all();
+
+        if(!empty($student_enrolled_courses)){
+
+          foreach ($student_enrolled_courses as $key => $value) {
+
+            $block_section_course_id = $value['id'];
+          
+            $tmp = "UPDATE block_section_courses SET enrolled_students = IFNULL(enrolled_students,0) + 1 WHERE id = $block_section_course_id";
+
+            $connection = $this->BlockSectionCourses->getConnection();
+
+            $connection->execute($tmp)->fetchAll('assoc');
+
+          }
+
+        }
+
+      //END 
 
       $response = [
 
