@@ -10,6 +10,12 @@
 
      $this->addBehavior('Timestamp');
 
+     $this->belongsTo('BlockSections', [
+
+        'foreignKey' => 'block_section_id', 
+
+      ]);
+
     }
 
   }
