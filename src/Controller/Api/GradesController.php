@@ -401,89 +401,13 @@ class GradesController extends AppController {
         
         $this->StudentEnrolledCourses->save($entity);
 
-        //UPDATIG STUDENT YEAR TERM LEVEL
+        $student['id'] = $value['student_id'];
 
-          $count_graded = $this->StudentEnrolledCourses->find()
+        $student['status'] = $value['remarks'];
 
-            ->where([
-
-              'StudentEnrolledCourses.visible' => 1,
-
-              'StudentEnrolledCourses.student_id' => $value['student_id'],
-
-              'StudentEnrolledCourses.year_term_id' => $value['year_term_id'],
-
-              'StudentEnrolledCourses.remarks !=' => 'NULL'
-
-            ])
-
-          ->count();
-
-          $count_enrolled_course = $this->StudentEnrolledCourses->find()
-
-            ->where([
-
-              'StudentEnrolledCourses.visible' => 1,
-
-              'StudentEnrolledCourses.student_id' => $value['student_id'],
-
-              'StudentEnrolledCourses.year_term_id' => $value['year_term_id']
-
-            ])
-
-          ->count();
-
-          if($count_graded == $count_enrolled_course){ // COMPARE GRADED COURSE TO ENROLLED COURSE
-
-            $year_term_id = $value['year_term_id'];
-
-            $year_term = "
-
-              SELECT 
-
-                YearLevelTerm.*
-
-              FROM  
-
-                year_level_terms as YearLevelTerm
-
-              WHERE 
-
-                YearLevelTerm.visible = true AND 
-
-                YearLevelTerm.id > $year_term_id
-
-              ORDER BY 
-
-                YearLevelTerm.id ASC 
-
-              LIMIT 1
-
-            ";
-
-            $connection = $this->YearLevelTerms->getConnection();
-
-            $result = $connection->execute($year_term)->fetchAll('assoc');
-
-            // var_dump($result);
-
-            if(!empty($result)){
-
-              $student['year_term_id'] = $result[0]['id'];
-
-            }
-
-            $student['id'] = $value['student_id'];
-
-            $student['status'] = $value['remarks'];
-
-            $entity = $this->Students->newEntity($student);
-            
-            $this->Students->save($entity);
-
-          }
-
-        //END
+        $entity = $this->Students->newEntity($student);
+        
+        $this->Students->save($entity);
 
       }
 

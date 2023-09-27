@@ -21,10 +21,10 @@
                   <td class="italic">{{ data.College.name }}</td>
                 </tr>
                 <tr>
-                  <th class="text-right"> YEAR : </th>
-                  <td class="italic">{{ data.YearLevelTerm.year }}</td>
-                  <th class="text-right"> COLLEGE : </th>
-                  <td class="italic">{{ data.YearLevelTerm.semester }}</td>
+                  <th class="text-right"> YEAR TERM LEVEL : </th>
+                  <td class="italic">{{ data.YearLevelTerm.description }}</td>
+                  <th class="text-right">  </th>
+                  <td class="italic"></td>
                 </tr>
               </table>
             </div> 

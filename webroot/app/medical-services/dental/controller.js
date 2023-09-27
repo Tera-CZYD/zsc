@@ -403,6 +403,12 @@ app.controller('DentalAddController', function($scope, Dental, Select) {
 
   });
 
+  Select.get({ code: 'year-term-list' },function(e){
+
+    $scope.year_terms = e.data;
+
+  });
+
   Select.get({code: 'program-list'}, function(e) {
 
     $scope.course = e.data;
@@ -832,6 +838,12 @@ app.controller('DentalEditController', function($scope, $routeParams, Dental, De
    DentalImage : []
 
   }
+
+  Select.get({ code: 'year-term-list' },function(e){
+
+    $scope.year_terms = e.data;
+
+  });
 
   Select.get({code: 'program-list'}, function(e) {
 
@@ -1521,6 +1533,12 @@ app.controller( "StudentDentalAddController", function ($scope, Dental, Select,S
 
   };
 
+  Select.get({ code: 'year-term-list' },function(e){
+
+    $scope.year_terms = e.data;
+
+  });
+
   Select.get({ code: "ailment-list" }, function (e) {
 
     $scope.ailments = e.data;
@@ -2061,6 +2079,12 @@ app.controller("StudentDentalEditController", function ($scope, $routeParams, De
   Select.get({ code: "ailment-list" }, function (e) {
 
     $scope.ailments = e.data;
+
+  });
+
+  Select.get({ code: 'year-term-list' },function(e){
+
+    $scope.year_terms = e.data;
 
   });
 
