@@ -169,7 +169,7 @@
       font-size: .85em;
       margin-top: 2px;
       min-width: 100px;
-      max-width: 200px
+      max-width: 100%
   }
 
   .avatar {
@@ -207,38 +207,45 @@
 <div class="row">
   <div class="col-md-4">
     <div class="card" style="height:400px;">
+      <div class="card-body" style="overflow-y:scroll;">
+        <p class="card-title font-weight-bold" style="font-size:15px;">Schedule For Today</p>
+
+          <div class="tl-item" ng-repeat = "sched in scheds">
+            <div class="tl-dot b-primary"></div>
+            <div class="tl-content">
+              <div class="">{{sched.course}}</div>
+              <div class="tl-date text-muted mt-1">{{sched.block_section_schedule.block_section.program}} - {{sched.section}}</div>
+              <div class="tl-date text-muted mt-1">{{sched.room}} - {{sched.time_start}} - {{sched.time_end}}</div>
+
+            </div>
+          </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card" style="height:400px;">
       <div class="card-body">
-        <p class="card-title font-weight-bold" style="font-size:15px;">Enrolled Subject Statistics</p>
+        <p class="card-title font-weight-bold" style="font-size:15px;">CLEARANCE STATUS OF STUDENTS</p>
         <div class="single-table">
           <div class="table-responsive">
             <table class="table table-hover text-center">
               <thead>
                 <tr class="table-secondary">
                   <th class="text-left" style="font-size:12px;font-weight: normal;"> REMARKS </th>
-                  <th class="text-center" style="font-size:12px;font-weight: normal;"> TOTAL </th>
+                  <th class="text-center" style="font-size:12px;font-weight: normal;"> PENDING </th>
+                  <th class="text-center" style="font-size:12px;font-weight: normal;"> INCOMPLETE </th>
+                  <th class="text-center" style="font-size:12px;font-weight: normal;"> CLEARED </th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="text-left">Enrolled Subjects</td>
-                  <td class="text-center">{{ total_sub }}</td>
+                <tr ng-repeat="count in counts">
+                  <td class="text-left">{{count.subject}}</td>
+                  <td class="text-center">{{ count.pending }}</td>
+                  <td class="text-center">{{ count.inc }}</td>
+                  <td class="text-center">{{ count.cleared }}</td>
                 </tr>
-                <tr>
-                  <td class="text-left">Passed</td>
-                  <td class="text-center">{{ passed }}</td>
-                </tr>
-                <tr>
-                  <td class="text-left">Failed</td>
-                  <td class="text-center">{{ failed }}</td>
-                </tr>
-                <tr>
-                  <td class="text-left">Credited</td>
-                  <td class="text-center">{{ credited }}</td>
-                </tr>
-                <tr>
-                  <td class="text-left">Incomplete</td>
-                  <td class="text-center">{{ incomplete }}</td>
-                </tr>
+              
               </tbody>
             </table>
           </div>
@@ -256,24 +263,7 @@
     </div>
     
   </div>
-  <div class="col-md-4">
-    <div class="card" style="height:400px;">
-      <div class="card-body" style="overflow-y:scroll;">
-        <p class="card-title font-weight-bold" style="font-size:15px;">Schedule For Today</p>
-
-          <div class="tl-item" ng-repeat = "sched in scheds">
-            <div class="tl-dot b-primary"></div>
-            <div class="tl-content">
-              <div class="">{{sched.course}}</div>
-              <div class="tl-date text-muted mt-1">{{sched.faculty_name}}</div>
-              <div class="tl-date text-muted mt-1">{{sched.room}} - {{sched.time_start}} - {{sched.time_end}}</div>
-
-            </div>
-          </div>
-        <div class="clearfix"></div>
-      </div>
-    </div>
-  </div>
+  
 </div>
 
 
