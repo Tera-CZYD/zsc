@@ -227,7 +227,9 @@ class ProspectusesController extends AppController {
 
           ]
 
-        ]
+        ],
+
+        'YearLevelTerms'
 
       ])
 
@@ -255,6 +257,8 @@ class ProspectusesController extends AppController {
 
     $data['StudentEnrollment'] = $data['Student']['student_enrollments'];
 
+    $data['YearLevelTerm'] = $data['Student']['year_level_term'];
+
     unset($data['Student']['college']);
 
     unset($data['Student']['college_program']);
@@ -264,6 +268,8 @@ class ProspectusesController extends AppController {
     unset($data['Student']['student_enrolled_units']);
 
     unset($data['Student']['student_enrollments']);
+
+    unset($data['Student']['year_level_term']);
 
     $prospectus = array();
 
