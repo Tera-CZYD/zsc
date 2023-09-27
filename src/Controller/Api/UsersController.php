@@ -68,7 +68,7 @@ class UsersController extends AppController
       }
       else if ($this->request->getQuery('User') == 'dean') {
 
-        $conditions['User'] = "AND User.roleId = 24";
+        $conditions['User'] = "AND User.roleId = 39";
 
       }else if($this->request->getQuery('User') == 'vice') {
 
