@@ -881,7 +881,7 @@ app.controller('UsersEditController', function($scope, $routeParams, User, Selec
 
       $scope.confirmPassword = '';   
 
-      // $scope.role = e.data.Role.name;
+      $scope.role = e.data.User.role.name;
 
     });
 
