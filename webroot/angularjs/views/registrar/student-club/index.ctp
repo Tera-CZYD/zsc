@@ -344,4 +344,4 @@
   </div>
 </div>
 
-<?php echo $this->element('modals/advance-search/advance-search-date') ?>
+<!-- <?php echo $this->element('modals/advance-search/advance-search-date') ?> -->

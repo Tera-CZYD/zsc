@@ -39,19 +39,14 @@
               </div>
             </div>
 
-            <div class="col-md-3">
-              <div class="form-group">
-                <label> YEAR LEVEL <i class="required">*</i></label>
-                <select class="form-control" ng-model="data.Dental.year" autocomplete="false" data-validation-engine="validate[required]" style="height: 44px">
-                  <option value=""></option>
-                  <option value="First Year">First Year</option>
-                  <option value="Second Year">Second Year</option>
-                  </option>
-                  <option value="Third Year">Third Year</option>
-                  <option value="Fourth Year">Fourth Year</option>
-                </select>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label> YEAR TERM </label>
+                  <select selectize ng-model="data.Dental.year_term_id" ng-options="opt.id as opt.value for opt in year_terms">
+                    <option value=""></option>
+                  </select>
+                </div>
               </div>
-            </div>
 
             <div class="col-md-9">
               <div class="form-group">
