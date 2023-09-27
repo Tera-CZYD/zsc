@@ -805,10 +805,15 @@ class StudentClearancesController extends AppController {
       $employee_id = $this->Auth->user('employeeId');
 
       $employees = $this->Employees->find()
+
         ->contain([
+
             'AcademicRanks'=> [
-                'conditions' => ['AcademicRanks.visible' => 1],
-              ]
+
+              'conditions' => ['AcademicRanks.visible' => 1],
+
+            ]
+
           ])
 
         ->where([
@@ -819,10 +824,9 @@ class StudentClearancesController extends AppController {
 
         ])
 
-        ->first();
-    }
+      ->first();
 
-    // var_dump($this->Auth->user('roleId'));
+    }
 
     if($this->Auth->user('roleId')==12 && $employees['academic_rank_id'] != 1){
 
@@ -838,7 +842,7 @@ class StudentClearancesController extends AppController {
 
         ])
 
-        ->first();
+      ->first();
 
       $courses->clearance_remarks = null;
 
@@ -872,8 +876,7 @@ class StudentClearancesController extends AppController {
 
         ])
 
-        ->count();
-      // var_dump($apartelle);
+      ->count();
 
       if($apartelle>0){
 
@@ -945,8 +948,6 @@ class StudentClearancesController extends AppController {
 
     }
 
-    
-
     if ($save) {
 
       if($this->Auth->user('roleId')==12 && $employees['academic_rank_id'] != 1){
@@ -973,7 +974,6 @@ class StudentClearancesController extends AppController {
 
       }
 
-
       //EMAIL VERIFICATION
 
         $name = @$student['first_name'].' '.@$student['middle_name'].' '.@$student['last_name'];
@@ -981,8 +981,6 @@ class StudentClearancesController extends AppController {
         $email = @$student['email'];
 
         $faculty = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
-
-        // var_dump($faculty);
 
       if(isset($student['email'])){
 
@@ -1047,7 +1045,6 @@ class StudentClearancesController extends AppController {
 
             }
 
-
             $_SESSION['name'] = @$name; 
 
             $_SESSION['faculty'] =  $faculty;
@@ -1063,7 +1060,6 @@ class StudentClearancesController extends AppController {
             ob_end_clean();
 
             $mail->Body = $bodyContent;
-                
 
             $mail->send();
 
@@ -1084,19 +1080,20 @@ class StudentClearancesController extends AppController {
         'msg'  => 'Email successfully sent.'
 
       );
-          $userLogEntity = $this->UserLogs->newEntity([
 
-          'action' => 'Student Clearances',
+      $userLogEntity = $this->UserLogs->newEntity([
 
-          'description' => 'Send Email'.@$app['StudentApplication']['first_name'].' '.@$app['StudentApplication']['last_name'],
+        'action' => 'Student Clearances',
 
-          'created' => date('Y-m-d H:i:s'),
+        'description' => 'Send Email'.@$app['StudentApplication']['first_name'].' '.@$app['StudentApplication']['last_name'],
 
-          'modified' => date('Y-m-d H:i:s')
+        'created' => date('Y-m-d H:i:s'),
 
-        ]);
+        'modified' => date('Y-m-d H:i:s')
 
-        $this->UserLogs->save($userLogEntity);
+      ]);
+
+      $this->UserLogs->save($userLogEntity);
 
     } else {
 
@@ -1119,7 +1116,6 @@ class StudentClearancesController extends AppController {
       '_serialize'=>'response'
 
     ));
-
 
     $this->response->withType('application/json');
 
