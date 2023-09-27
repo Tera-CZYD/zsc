@@ -16,12 +16,6 @@ class StudentApplicationsTable extends Table{
 
     ]);
 
-    $this->belongsTo('Curriculums', [
-
-      'foreignKey' => 'curriculum_id'
-
-    ]);
-
     $this->belongsTo('Colleges', [
 
       'foreignKey' => 'college_id'

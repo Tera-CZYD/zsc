@@ -175,78 +175,111 @@ class ProspectusesController extends AppController {
 
   public function view($id = null){
 
-     $data['Student'] = $this->Students->find()
-    ->contain([
+    $data['Student'] = $this->Students->find()
+
+      ->contain([
+
         'Colleges' => [
-            'conditions' => [
-                'Colleges.visible' => 1
-            ]
+
+          'conditions' => [
+
+            'Colleges.visible' => 1
+
+          ]
+
         ],
+
         'CollegePrograms' => [
-            'conditions' => [
-                'CollegePrograms.visible' => 1
-            ]
+
+          'conditions' => [
+
+            'CollegePrograms.visible' => 1
+
+          ]
+
         ],
+
         'StudentEnrolledCourses' => [
-            'conditions' => [
-                'StudentEnrolledCourses.visible' => 1
-            ]
+
+          'conditions' => [
+
+            'StudentEnrolledCourses.visible' => 1
+
+          ]
+
         ],
+
         'StudentEnrolledUnits' => [
-            'conditions' => [
-                'StudentEnrolledUnits.visible' => 1
-            ]
+
+          'conditions' => [
+
+            'StudentEnrolledUnits.visible' => 1
+
+          ]
+
         ],
+
         'StudentEnrollments' => [
-            'conditions' => [
-                'StudentEnrollments.visible' => 1
-            ]
+
+          'conditions' => [
+
+            'StudentEnrollments.visible' => 1
+
+          ]
+
         ]
-    ])
-    ->where([
+
+      ])
+
+      ->where([
+
         'Students.visible' => 1,
+
         'Students.id' => $id
-    ])
+
+      ])
+
     ->first();
 
-      $data['Student']['date_of_date'] = isset($data['Student']['date_of_date']) ? date('m/d/Y', strtotime($data['Student']['date_of_date'])) : null;
+    $data['Student']['date_of_date'] = isset($data['Student']['date_of_date']) ? date('m/d/Y', strtotime($data['Student']['date_of_date'])) : null;
 
-      $data['Student']['proper_name'] = $data['Student']['last_name'].', '.$data['Student']['first_name'].' '.$data['Student']['middle_name'];
+    $data['Student']['proper_name'] = $data['Student']['last_name'].', '.$data['Student']['first_name'].' '.$data['Student']['middle_name'];
 
-      $data['College'] = $data['Student']['college'];
+    $data['College'] = $data['Student']['college'];
 
-      $data['CollegeProgram'] = $data['Student']['college_program'];
+    $data['CollegeProgram'] = $data['Student']['college_program'];
 
-      $data['StudentEnrolledCourse'] = $data['Student']['student_enrolled_courses'];
+    $data['StudentEnrolledCourse'] = $data['Student']['student_enrolled_courses'];
 
-      $data['StudentEnrolledUnit'] = $data['Student']['student_enrolled_units'];
+    $data['StudentEnrolledUnit'] = $data['Student']['student_enrolled_units'];
 
-      $data['StudentEnrollment'] = $data['Student']['student_enrollments'];
+    $data['StudentEnrollment'] = $data['Student']['student_enrollments'];
 
-      
-      unset($data['Student']['college']);
+    unset($data['Student']['college']);
 
-      unset($data['Student']['college_program']);
-      
-      unset($data['Student']['student_enrolled_courses']);
+    unset($data['Student']['college_program']);
+    
+    unset($data['Student']['student_enrolled_courses']);
 
-      unset($data['Student']['student_enrolled_units']);
+    unset($data['Student']['student_enrolled_units']);
 
-      unset($data['Student']['student_enrollments']);
-
+    unset($data['Student']['student_enrollments']);
 
     $prospectus = array();
 
     $year_term = $this->YearLevelTerms->find()
-    ->where([
+
+      ->where([
+
         'YearLevelTerms.visible' => 1,
+
         'YearLevelTerms.active_prospectus' => 1
-    ])
+
+      ])
+
     ->all();
 
-
-
-    if($year_term!=null){
+    if($year_term != null){
 
       foreach ($year_term as $keys => $values) {
 

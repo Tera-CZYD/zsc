@@ -20,8 +20,11 @@
 									<td class="text-left uppercase">{{ data.name }}</td>
 									<td class="text-left uppercase">
 										<span ng-hide="editmode">{{ data.value }}</span>
-										<input type="text" class="form-control input-sm" ng-show="editmode" ng-model="data.value" />
-									</td>
+										<input type="text" class="form-control input-sm" ng-show="editmode && data.id != 25" ng-model="data.value" />
+		                <select selectize ng-model="data.value" ng-if="editmode && data.id == 25" ng-options="opt.id as opt.value for opt in year_terms" ng-change = "getYear(data.value)">
+		                  <option value=""></option>
+		                </select>
+		              </td>
 									<td>
 										<div class="btn-group btn-group-xs">
 											<span>
