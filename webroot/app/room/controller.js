@@ -230,6 +230,12 @@ app.controller('RoomAddController', function($scope, Room, Select) {
 
   }
 
+  Select.get({ code: 'college-list' }, function(e) {
+
+    $scope.colleges = e.data;
+
+  });
+
   Select.get({code: 'building-list'}, function(e) {
 
     $scope.building = e.data;
@@ -420,7 +426,15 @@ app.controller('RoomEditController', function($scope, $routeParams, Room, Select
 
   });
 
+  Select.get({ code: 'college-list' }, function(e) {
 
+
+
+    $scope.colleges = e.data;
+
+    
+
+  });
 
   Select.get({code: 'building-list'}, function(e) {
 

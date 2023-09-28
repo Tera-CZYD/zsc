@@ -194,7 +194,9 @@ class RoomsController extends AppController {
 
         'Buildings',
 
-        'RoomTypes'
+        'RoomTypes',
+
+        'Colleges'
 
       ])
 
@@ -203,10 +205,14 @@ class RoomsController extends AppController {
     // var_dump($data['Room']);
       $data['Building'] = $data['Room']['building'];
       $data['RoomType'] = $data['Room']['room_type'];
+      $data['College'] = $data['Room']['college'];
 
       unset($data['Room']['building']);
 
       unset($data['Room']['room_type']);
+
+      unset($data['Room']['college']);
+
     $response = [
 
       'ok' => true,
