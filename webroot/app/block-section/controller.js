@@ -913,11 +913,13 @@ app.controller('BlockSectionViewController', function($scope, $routeParams, Bloc
 
   }
 
-  $scope.addCourse = function() {
+  $scope.addFaculty = function(index) {
 
     $('#faculty_form').validationEngine('attach');
     
     $scope.sub = {};
+
+    $scope.index = index
 
     $('#add-faculty-modal').modal('show');
 
@@ -941,27 +943,32 @@ app.controller('BlockSectionViewController', function($scope, $routeParams, Bloc
 
   }
 
-  $scope.saveCourse = function(data) {
+  $scope.saveFaculty = function(data) {
 
     valid = $("#faculty_form").validationEngine('validate'); 
 
     if(valid){
 
-      $scope.data.BlockSectionCourse.push({
+      // $scope.data.BlockSectionCourse.push({
 
-        course_id : $scope.data.BlockSectionCourse.course_id,
+      //   course_id : $scope.data.BlockSectionCourse.course_id,
 
-        faculty_id : $scope.faculties.id,
+      //   faculty_id : data.faculty_id,
 
-        faculty_name : $scope.faculties.family_name
+      //   faculty_name : data.faculty_name
 
-      }); 
+      // }); 
+
 
       bootbox.confirm('Are you sure with the selected faculty member?' , function(c){
 
         if(c) {
 
-          BlockSectionCourse.save($scope.data, function(e){
+          $scope.data.BlockSectionCourse[$scope.index].faculty_id = data.faculty_id
+
+          $scope.data.BlockSectionCourse[$scope.index].faculty_name = data.faculty_name
+
+          BlockSectionCourse.update($scope.data.BlockSectionCourse[$scope.index], function(e){
 
             if (e.ok) {
 
@@ -972,6 +979,8 @@ app.controller('BlockSectionViewController', function($scope, $routeParams, Bloc
                 text: e.msg
 
               });
+
+              $scope.load();
 
             }
 
@@ -1050,24 +1059,11 @@ app.controller('BlockSectionScheduleViewController', function($scope, $routePara
   // load 
 
 
-
   $scope.load = function() {
 
     BlockSectionScheduleView.get({ id: $scope.id }, function(e) {
 
       $scope.data = e.data;
-
-    });
-
-    Select.get({ code: 'block-sections' },function(e){
-
-      $scope.sections = e.data;
-
-    });
-
-    Select.get({ code: 'block-section-courses' },function(e){
-
-      $scope.courses = e.data;
 
     });
 
@@ -1079,7 +1075,12 @@ app.controller('BlockSectionScheduleViewController', function($scope, $routePara
 
   }
 
+
+
   $scope.load();
+
+
+
 
     function timeToMinutes(time) {
       // Split the time string into hours and minutes
@@ -1100,8 +1101,15 @@ app.controller('BlockSectionScheduleViewController', function($scope, $routePara
 
 
 
+
+
   $scope.addSchedule = function() { 
 
+    Select.get({ code: 'block-section', id: $scope.data.BlockSectionCourse.block_section_id },function(e){
+
+      $scope.section = e.data;
+
+    });
 
     $('#add_schedule').validationEngine('attach');
 
@@ -1125,7 +1133,11 @@ app.controller('BlockSectionScheduleViewController', function($scope, $routePara
 
           let validTime = true;
 
-          let conflictMessage = ""
+          let sectionId = $scope.section.section_id;
+
+          let section = $scope.section.section;
+
+          let year = $scope.section.school_year_start;
 
           const input_time_end = timeToMinutes(data.time_end)
 
@@ -1135,26 +1147,55 @@ app.controller('BlockSectionScheduleViewController', function($scope, $routePara
 
           let data_time_end = ""
 
-          angular.forEach($scope.courses, function(courseValue,coursekey){
-
-             if(courseValue.room_id == $scope.data.BlockSectionCourse.room_id && courseValue.id != $scope.id){
-
-
-                if($scope.schedules.length > 0){
+              if($scope.schedules.length > 0){
 
                   angular.forEach($scope.schedules, function(schedValue,schedKey){
 
-                    // data_time
+                    if(schedValue.day == data.day && year == schedValue.year_start){
+
+                      data_time_start = timeToMinutes(schedValue.time_start)
+
+                      data_time_end = timeToMinutes(schedValue.time_end)
+
+                      if($scope.data.BlockSectionCourse.room_id === schedValue.room_id || sectionId === schedValue.section_id){
+
+                        let reason = `${schedValue.room} - ${schedValue.section}`
+
+                          if (input_time_start < data_time_end && input_time_end > data_time_start){
+
+                            validTime = false
+
+                              $.gritter.add({
+
+                                    title: 'Warning!',
+
+                                    text: `The schedule is conflict to ${reason} ${schedValue.day}  ${schedValue.time_start} - ${schedValue.time_end}`
+
+                              });
+
+                          }
+
+                      }
+
+                    }
 
                   })
 
-                }
-
-             }
-
-          })
+                }        
 
           if(validTime){
+
+            $scope.adata.room = $scope.data.BlockSectionCourse.room;
+
+            $scope.adata.room_id = $scope.data.BlockSectionCourse.room_id;
+
+            $scope.adata.section = section;
+
+            $scope.adata.section_id = sectionId;
+
+            $scope.adata.year_start = $scope.section.school_year_start;
+
+            $scope.adata.year_end = $scope.section.school_year_end;
 
             BlockSectionScheduleAdd.save($scope.adata, function(e) {
 
@@ -1174,22 +1215,9 @@ app.controller('BlockSectionScheduleViewController', function($scope, $routePara
 
           });
 
-          }else{
-
-              $.gritter.add({
-
-                title: 'Warning!',
-
-                text: conflictMessage,
-
-              });
+            $('#add-schedule-modal').modal('hide');
 
           }
-
-
-
-
-          $('#add-schedule-modal').modal('hide');
 
       //   }
 
@@ -1200,6 +1228,7 @@ app.controller('BlockSectionScheduleViewController', function($scope, $routePara
   }
 
   $scope.editSchedule = function(index, data) {
+
 
     $('#edit_schedule').validationEngine('attach');
 
@@ -1217,11 +1246,63 @@ app.controller('BlockSectionScheduleViewController', function($scope, $routePara
 
     if (valid) {
 
-      bootbox.confirm('Are you sure you want to update schedule?', function(c) {
+      // bootbox.confirm('Are you sure you want to update schedule?', function(c) {
 
-        if(c) {
+      //   if(c) {
 
-          BlockSectionScheduleAdd.update({id:data.id}, $scope.adata, function(e) {
+          let validTime = true;
+
+          const input_time_end = timeToMinutes(data.time_end)
+
+          const input_time_start = timeToMinutes(data.time_start)
+
+          let data_time_start = ""
+
+          let data_time_end = ""
+
+              if($scope.schedules.length > 0){
+
+                  angular.forEach($scope.schedules, function(schedValue,schedKey){
+
+                    if(data.id != schedValue.id){
+
+                    if(schedValue.day == data.day && data.year_start == schedValue.year_start){
+
+                      data_time_start = timeToMinutes(schedValue.time_start)
+
+                      data_time_end = timeToMinutes(schedValue.time_end)
+
+                      if(data.room_id === schedValue.room_id || data.section_id === schedValue.section_id){
+
+                        let reason = `${schedValue.room} - ${schedValue.section}`
+
+                          if (input_time_start < data_time_end && input_time_end > data_time_start) {
+
+                              validTime = false
+
+                              $.gritter.add({
+
+                                    title: 'Warning!',
+
+                                    text: `The schedule is conflict to ${reason} ${schedValue.day}  ${schedValue.time_start} - ${schedValue.time_end}`
+
+                              });
+
+                          }
+
+                      }
+
+                    }
+
+                  }
+
+                  })
+
+                }   
+
+    if(validTime){
+
+          BlockSectionScheduleAdd.update({id:data.id}, data, function(e) {
 
             if(e.ok) {
 
@@ -1235,15 +1316,26 @@ app.controller('BlockSectionScheduleViewController', function($scope, $routePara
 
               $scope.load();
 
-            }
+            }else{
+
+            $.gritter.add({
+
+              title: 'Warning!',
+
+              text:  e.msg,
+
+            });
+
+          }
 
           });
 
-          $('#edit-schedule-modal').modal('hide');
+            $('#edit-schedule-modal').modal('hide');
+          }
 
-        }
+      //   }
 
-      });
+      // });
 
     }
 
