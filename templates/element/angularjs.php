@@ -157,6 +157,8 @@
 
     'registrar/request-form',
 
+    'registrar/affidavit-of-loss',
+
     // 'registrar/prospectus',
 
     'registrar/purpose',
