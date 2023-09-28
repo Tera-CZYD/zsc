@@ -203,7 +203,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger btn-sm btn-min" data-dismiss="modal"><i class="fa fa-close"></i> CLOSE </button>
-        <button type="button" class="btn btn-primary btn-sm btn-min" ng-click="updateSchedule(data)"><i class="fa fa-save"></i> UPDATE </button>
+        <button type="button" class="btn btn-primary btn-sm btn-min" ng-click="updateSchedule(adata)"><i class="fa fa-save"></i> UPDATE </button>
       </div>
     </div>
   </div>
