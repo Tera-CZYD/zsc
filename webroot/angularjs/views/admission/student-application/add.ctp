@@ -24,23 +24,22 @@
         <div class="clearfix"></div><hr>
         <form id="form">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group">
                 <label> SERIAL NUMBER <i class="required">*</i></label>
                 <input type="text" class="form-control" autocomplete="false" ng-model="data.StudentApplication.serial_number" data-validation-engine="validate[required]">
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group">
                 <label> STUDENT ID NUMBER <i class="required">*</i></label>
                 <input type="text" class="form-control" autocomplete="false" ng-model="data.StudentApplication.student_no" data-validation-engine="validate[required]" disabled>
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="form-gp">
-                <label for="student_no" style="margin-top: -18px">Student Application Number&emsp;<i class="required">*</i></label>
-                <input type="text" id="application_no" ng-model="data.StudentApplication.application_no" autocomplete="off" data-validation-engine="validate[required]" disabled>
-                <i class="ti-user"></i>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Student Application Number<i class="required">*</i></label>
+                <input type="text" class="form-control" id="application_no" ng-model="data.StudentApplication.application_no" autocomplete="off" data-validation-engine="validate[required]" disabled>
               </div>
             </div>
             <div class="col-md-3">
