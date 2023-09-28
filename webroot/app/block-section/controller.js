@@ -238,7 +238,6 @@ app.controller('BlockSectionController', function($scope, BlockSection, Select) 
   }
 
 });
-
 app.controller('BlockSectionAddController', function($scope, BlockSection, Select) {
 
   $('#form').validationEngine('attach');
@@ -282,6 +281,12 @@ app.controller('BlockSectionAddController', function($scope, BlockSection, Selec
     BlockSectionCourse : []
 
   };
+
+  Select.get({code: 'class-schedule-code'}, function(e) {
+
+    $scope.data.BlockSection.code = e.data;
+
+  });
 
   Select.get({ code: 'year-term-list' },function(e){
 
@@ -1372,3 +1377,4 @@ app.controller('BlockSectionScheduleViewController', function($scope, $routePara
   } 
 
 });
+

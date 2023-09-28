@@ -791,8 +791,8 @@
           <?php endif ?>
 
           <?php if (hasAccess('settings/menu', $currentUser)): ?>
-            <li class="nav-link-side nav-permissions nav-accounts nav-roles nav-users nav-user-logs nav-backup nav-settings nav-office-reference nav-admin-management nav-award-management nav-awardee-management nav-announcement-management nav-memorandum"><a><i class="fa fa-cog"></i> Settings </a>
-              <ul class="nav child_menu_bot collapse collapse-permissions collapse-accounts collapse-roles collapse-users collapse-user-logs collapse-backup collapse-settings collapse-office-reference collapse-admin-management collapse-award-management collapse-awardee-management collapse-announcement-management collapse-memorandum">
+            <li class="nav-link-side nav-permissions nav-accounts nav-roles nav-users nav-user-logs nav-backup nav-settings nav-office-reference nav-admin-management nav-award-management nav-awardee-management nav-announcement nav-memorandum"><a><i class="fa fa-cog"></i> Settings </a>
+              <ul class="nav child_menu_bot collapse collapse-permissions collapse-accounts collapse-roles collapse-users collapse-user-logs collapse-backup collapse-settings collapse-office-reference collapse-admin-management collapse-award-management collapse-awardee-management collapse-announcement collapse-memorandum">
                 <?php if (hasAccess('organization information/index', $currentUser)): ?>
                   <li class="nav-link-side nav-settings">
                     <a href="#/settings" onclick="change('settings')"> Organization Information </a>
@@ -825,15 +825,15 @@
                   </li>
                 <?php endif ?>
 
-                <?php if (hasAccess('announcement management/index', $currentUser)): ?>
-                  <li class="nav-link-side nav-announcement-management">
-                    <a href="#/settings/announcement-management" onclick="change('announcement-management')"> Announcement Management </a>
+                <?php if (hasAccess('announcement/index', $currentUser)): ?>
+                  <li class="nav-link-side nav-announcement">
+                    <a href="#/settings/announcement" onclick="change('announcement')"> Announcements </a>
                   </li>
                 <?php endif ?>
 
                 <?php if (hasAccess('memorandum/index', $currentUser)): ?>
                   <li class="nav-link-side nav-memorandum">
-                    <a href="#/settings/memorandum" onclick="change('memorandum')"> Memorandum </a>
+                    <a href="#/settings/memorandum" onclick="change('memorandum')"> Memorandums </a>
                   </li>
                 <?php endif ?>
 

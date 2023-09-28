@@ -18,6 +18,9 @@ class RoomsTable extends Table{
     $this->belongsTo('Buildings', [
         'foreignKey' => 'building_id',
     ]);
+    $this->belongsTo('Colleges', [
+        'foreignKey' => 'college_id',
+    ]);
     $this->belongsTo('RoomTypes', [
         'foreignKey' => 'room_type_id',
     ]);

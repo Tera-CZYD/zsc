@@ -32,7 +32,7 @@ app.controller('DashboardController', function($scope,Select,StudentApplicationM
 
     Dashboard.query(options, function(e) {
 
-      // console.log(currentUser.roleId);
+      // console.log(e);
 
       if (e.ok) {
 
@@ -51,6 +51,8 @@ app.controller('DashboardController', function($scope,Select,StudentApplicationM
         $scope.credited = e.credited;
 
         $scope.incomplete = e.incomplete;
+
+        $scope.announcements = e.announcements;
 
         if(currentUser.roleId == 1){
 
@@ -229,6 +231,8 @@ app.controller('DashboardController', function($scope,Select,StudentApplicationM
           $scope.counts = e.counts;
 
           $scope.scheds = e.scheds;
+
+          $scope.memos = e.memos;
 
           
         }
