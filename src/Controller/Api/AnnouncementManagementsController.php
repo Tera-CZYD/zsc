@@ -73,7 +73,7 @@ class AnnouncementManagementsController extends AppController {
 
          'title'   => $data['title'],
 
-         'date'   => $data['date_start']. " - ". $data['date_end'],
+         'date'   => fdate($data['date_start'],'m/d/Y'). " - ". fdate($data['date_end'],'m/d/Y'),
 
          'time'   => $data['time_start']. " - ". $data['time_end'],
        
@@ -108,7 +108,7 @@ class AnnouncementManagementsController extends AppController {
 
     $requestData = $this->request->getData('AnnouncementManagement');
 
-    var_dump($this->request->getData());
+    // var_dump($this->request->getData());
 
     $requestData['date_start'] = isset($requestData['date_start']) ? fdate($requestData['date_start'],'Y-m-d') : NULL;
 
@@ -224,7 +224,9 @@ class AnnouncementManagementsController extends AppController {
 
     $requestData = $this->getRequest()->getData('AnnouncementManagement');
 
-    $requestData['date'] = isset($requestData['date']) ? date('Y/m/d', strtotime($requestData['date'])) : null;
+    $requestData['date_start'] = isset($requestData['date_start']) ? fdate($requestData['date_start'],'Y-m-d') : NULL;
+
+    $requestData['date_end'] = isset($requestData['date_end']) ? fdate($requestData['date_end'],'Y-m-d') : NULL;
 
     $this->AnnouncementManagements->patchEntity($admin, $requestData); 
 

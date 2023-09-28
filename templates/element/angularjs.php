@@ -111,6 +111,8 @@
 
     'settings/announcement-management',
 
+    'settings/memorandum',
+
     'settings/office-reference',
 
     'settings/admin-management',
