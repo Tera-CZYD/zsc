@@ -131,15 +131,15 @@
 
                 <?php if (hasAccess('adding dropping subject/index', $currentUser)): ?>
                   <li class="nav-link-side nav-adding-dropping-subject">
-                    <a href="#/registrar/admin-adding-dropping-subject" onclick="change('adding-dropping-subject')">Adding/Dropping Subject</a>
+                    <a href="#/registrar/admin-adding-dropping-subject" onclick="change('adding-dropping-subject')">Dropping Subject</a>
                   </li>
                 <?php endif ?>
 
-                <?php if (hasAccess('approval of enrolled course/index', $currentUser)): ?>
+                <!-- <?php if (hasAccess('approval of enrolled course/index', $currentUser)): ?>
                   <li class="nav-link-side nav-approval-of-enrolled-course">
                     <a href="#/registrar/approval-enrolled-course" onclick="change('approval-of-enrolled-course')">Approval of Enrolled Courses</a>
                   </li>
-                  <?php endif ?>
+                <?php endif ?> -->
 
                 <?php if (hasAccess('purpose/index', $currentUser)): ?>
                   <li class="nav-link-side nav-purpose">
@@ -530,11 +530,11 @@
                 </li>
               <?php endif ?>
 
-              <?php if (hasAccess('class schedule/index', $currentUser)): ?>
+              <!-- <?php if (hasAccess('class schedule/index', $currentUser)): ?>
                 <li class="nav-link-side nav-class-schedule">
                   <a href="#/class-schedule" onclick="change('class-schedule')"> Class Scheduling </a>
                 </li>
-              <?php endif ?>
+              <?php endif ?> -->
 
               <?php if (hasAccess('block section/index', $currentUser)): ?>
                 <li class="nav-link-side nav-class-block-section">
