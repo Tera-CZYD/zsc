@@ -13,6 +13,7 @@
 
   // INCLUDE ALL PAGE PERMISSION
   handleAccess('pageIndex', 'announcement  management/index', currentUser);
+  handleAccess('pageView', 'announcement  management/view', currentUser);
   handleAccess('pageAdd', 'announcement  management/add', currentUser);
   handleAccess('pageEdit', 'announcement  management/edit', currentUser);
   handleAccess('pageDelete', 'announcement  management/delete', currentUser);
@@ -61,7 +62,8 @@
                   <td class="text-center">{{ data.time }}</td>
                   <td>
                     <div class="btn-group btn-group-xs">
-                      	<a id="pageEdit" href="#/settings/announcement-management/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a>
+                      <a id="pageView" href="javascript:void(0)" ng-click="view(data.id)" class="btn btn-success" title="VIEW ANNOUNCEMENT"><i class="fa fa-eye"></i></a>
+                      <a id="pageEdit" href="#/settings/announcement-management/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a>
                       <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>
                     </div>
                   </td> 
@@ -99,6 +101,49 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="view-announcement" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title "> ANNOUNCEMENT DETAILS</h5>
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      </div>
+      <div class="modal-body">
+        <form id="requirement_form">  
+          <div class="col-md-12">        
+            <div class="row">
+              <div class="col-md-12" style="width:100%; height:100%; overflow-y:auto;">
+                <table class="table table-bordered table-striped table-hover">
+                  <tr>
+                    <th class="text-left"> TITLE : </th>
+                    <td class="italic">{{views.title}}</td>
+                  </tr>
+                  <tr>
+                    <th class="text-left"> DESCRIPTION : </th>
+                    <td class="italic">{{views.content}}</td>
+                  </tr>
+                  <tr>
+                    <th class="text-left"> DATE : </th>
+                    <td class="italic">{{views.date_start | date:'MMM dd, yyyy' }} - {{views.date_end | date:'MMM dd, yyyy' }}</td>
+                  </tr>
+                  <tr>
+                    <th class="text-left"> TIME : </th>
+                    <td class="italic">{{views.time_start}} - {{views.time_end}}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+           
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger btn-sm btn-min" data-dismiss="modal"><i class="fa fa-close"></i> CLOSE </button>
       </div>
     </div>
   </div>
