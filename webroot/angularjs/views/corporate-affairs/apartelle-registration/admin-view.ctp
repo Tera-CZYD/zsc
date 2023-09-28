@@ -63,10 +63,10 @@
                   <th class="text-right"> COURSE : </th>
                   <td class="italic">{{ data.CollegeProgram.code }} - {{ data.CollegeProgram.name }}</td>
                 </tr>
-                <tr>
+                <!-- <tr>
                   <th class="text-right"> APARTELLE/DORMITORY : </th>
                   <td class="italic">{{ data.Apartelle.building_no }} - {{ data.Apartelle.room_no }}</td>
-                </tr>
+                </tr> -->
                 <tr>
                   <th class="text-right"> YEAR LEVEL : </th>
                   <td class="italic">{{ data.YearLevelTerm.description }}</td>
