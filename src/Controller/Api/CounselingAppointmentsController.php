@@ -623,7 +623,7 @@ class CounselingAppointmentsController extends AppController {
 
     $data = $this->CounselingAppointment->get($id);
 
-     $data->approve = 2;
+    $data->approve = 2;
 
     $data->disapprove_by_id = $this->currentUser->id;
 
@@ -640,6 +640,7 @@ class CounselingAppointmentsController extends AppController {
         'msg'  => 'Counseling Appointment has been successfully disapproved.'
 
       );
+      
       $userLogTable = TableRegistry::getTableLocator()->get('UserLogs');
         
       $userLogEntity = $userLogTable->newEntity([
@@ -648,7 +649,7 @@ class CounselingAppointmentsController extends AppController {
 
           'description' => 'Attendance to Counseling',
 
-          'code' => $requestData['code'],
+          'code' => $data['code'],
 
           'created' => date('Y-m-d H:i:s'),
 
