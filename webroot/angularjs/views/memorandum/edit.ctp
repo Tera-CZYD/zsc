@@ -2,16 +2,29 @@
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
-        <div class="header-title">EDIT SCHOOL TRANSFER REQUEST</div>
+        <div class="header-title">EDIT MEMORANDUM</div>
         <div class="clearfix"></div><hr>
         <form id="form">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8">
               <div class="form-group">
                 <label> Title <i class="required">*</i></label>
                 <input type="text" class="form-control" autocomplete="false" ng-model="data.Memorandum.title" data-validation-engine="validate[required]">
               </div>
             </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label> DATE <i class="required">*</i></label>
+                <input type="text" class="form-control datepicker" autocomplete="false" ng-model="data.Memorandum.date" data-validation-engine="validate[required]">
+              </div>
+            </div>
+            <h6> Display to:  <i class="required">*</i></h6>
+            <div class="col-md-12">
+              
+              <div class="form-group col-md-3" ng-repeat="role in roles"  ng-if="role.id!=1">
+                  <input icheck type="checkbox" class="form-control" autocomplete="false" ng-model="data.Memorandum.receiver[$index]"><span class="font-weight-normal"> {{role.value}}</span>
+              </div>
+            </div> 
             <div class="col-md-12 mb-2">
               <button class="btn btn-primary btn-min btn-file" ng-click="addImage()"><i class="fa fa-upload"></i> UPLOAD FILE </button>
             </div>

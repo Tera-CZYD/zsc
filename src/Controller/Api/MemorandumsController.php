@@ -24,6 +24,8 @@ class MemorandumsController extends AppController {
 
     $this->UserLogs = TableRegistry::getTableLocator()->get('UserLogs');
 
+    $this->Roles = TableRegistry::getTableLocator()->get('Roles');
+
     $this->viewBuilder = new ViewBuilder();
 
     $this->view = $this->viewBuilder->build();
@@ -109,19 +111,57 @@ class MemorandumsController extends AppController {
 
       }
 
+      $roles = $this->Roles->find()
+
+        ->where([
+
+          'visible' => 1
+
+        ])
+
+        ->all();
+
+      $roles = $roles->toArray();
+
+      $role = '';
+
+
       $data['receiver'] = explode(',',$data['receiver']);
 
-        if (!empty($data['receiver'])){
+      $counter = count($data['receiver']);
+
+      // var_dump($counter);
+
+      if (!empty($data['receiver'])){
 
         foreach ($data['receiver'] as $key => $value) {
           
           $data['receiver'][$key] = $data['receiver'][$key] == 1 ? true: false;
 
+          if($data['receiver'][$key]){
+
+            // $role[] = array(
+
+            //   'role' =>$roles[$key]['name']
+
+            // );
+
+            if($key != 0 && $key<=$counter){
+
+              $role .= ', '.$roles[$key]['name'];
+
+            }else{
+              $role.=$roles[$key]['name'];
+            }
+
+
+          }
+
         }
 
       }
 
-      // var_dump($data['receiver']);
+      // var_dump($role);
 
       $datas[] = array(
 
@@ -129,7 +169,11 @@ class MemorandumsController extends AppController {
 
         'title'        => $data['title'],
 
-        'img'         => $imgTmp
+        'img'         => $imgTmp,
+
+        'visible_to' => $role,
+
+        'date'          => fdate($data['date'],'m/d/Y'),
 
       );
 
@@ -342,6 +386,22 @@ class MemorandumsController extends AppController {
       }
     }
 
+    $data['Memorandum']['receiver'] = explode(',',$data['Memorandum']['receiver']);
+
+    $counter = count($data['Memorandum']['receiver']);
+
+    // var_dump($counter);
+
+    if (!empty($data['Memorandum']['receiver'])){
+
+      foreach ($data['Memorandum']['receiver'] as $key => $value) {
+        
+        $data['Memorandum']['receiver'][$key] = $data['Memorandum']['receiver'][$key] == 1 ? true: false;
+
+      }
+
+    }
+
     $response = [
 
       'ok' => true,
@@ -375,6 +435,8 @@ class MemorandumsController extends AppController {
     $requestData = $this->getRequest()->getData('Memorandum');
 
     $requestData['date'] = isset($requestData['date']) ? fdate($requestData['date'],'Y-m-d') : null;
+
+    $requestData['receiver'] = '1'.','.@$requestData['receiver'][1].','.@$requestData['receiver'][2].','.@$requestData['receiver'][3].','.@$requestData['receiver'][4].','.@$requestData['receiver'][5].','.@$requestData['receiver'][6].','.@$requestData['receiver'][7].','.@$requestData['receiver'][8].','.@$requestData['receiver'][9].','.@$requestData['receiver'][10];
 
     $this->Memorandums->patchEntity($data, $requestData); 
 
