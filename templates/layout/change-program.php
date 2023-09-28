@@ -69,11 +69,8 @@
   <script type="text/javascript">
 
     app.controller('ApplicationController', function($scope,$routeParams, $timeout,ChangeProgram,StudentApplication, Select) {
+      
       $scope.id = $routeParams.id;
-
-
-        console.log($scope.id);
-
 
       var completeUrl = window.location.href;
 
