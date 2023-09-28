@@ -280,7 +280,11 @@ app.controller('RequestFormAddController', function($scope, RequestForm, Select,
 
   }
 
+  Select.get({ code: 'year-term-list' },function(e){
 
+    $scope.year_terms = e.data;
+
+  });
 
   Select.get({code: 'request-form-code'}, function(e) {
 
@@ -311,6 +315,24 @@ app.controller('RequestFormAddController', function($scope, RequestForm, Select,
     $scope.purpose = e.data;
 
   });
+
+  $scope.selectTorDiploma = function(data){
+
+    if(data){
+
+      $scope.data.RequestForm.dip = true;
+
+      $scope.data.RequestForm.otr = true;
+
+    }else{
+
+      $scope.data.RequestForm.dip = false;
+
+      $scope.data.RequestForm.otr = false;
+
+    }
+
+  }
 
   $scope.getPurpose = function(id){
 
@@ -542,6 +564,12 @@ app.controller('RequestFormEditController', function($scope, $routeParams, Reque
 
   // });
 
+  Select.get({ code: 'year-term-list' },function(e){
+
+    $scope.year_terms = e.data;
+
+  });
+
   Select.get({code: 'purpose-list'}, function(e) {
 
     $scope.purpose = e.data;
@@ -566,7 +594,23 @@ app.controller('RequestFormEditController', function($scope, $routeParams, Reque
 
   }
 
-  
+  $scope.selectTorDiploma = function(data){
+
+    if(data){
+
+      $scope.data.RequestForm.dip = true;
+
+      $scope.data.RequestForm.otr = true;
+
+    }else{
+
+      $scope.data.RequestForm.dip = false;
+
+      $scope.data.RequestForm.otr = false;
+
+    }
+
+  }
 
   // load 
 
@@ -1006,6 +1050,13 @@ app.controller('AdminRequestFormAddController', function($scope, RequestForm, Se
     RequestForm : {}
 
   }
+  
+  Select.get({ code: 'year-term-list' },function(e){
+
+    $scope.year_terms = e.data;
+
+  });
+  
 
   Select.get({code: 'request-form-code'}, function(e) {
 
@@ -1364,7 +1415,11 @@ app.controller('AdminRequestFormEditController', function($scope, $routeParams, 
 
   }
 
+  Select.get({ code: 'year-term-list' },function(e){
 
+    $scope.year_terms = e.data;
+
+  });
 
   // load 
 
