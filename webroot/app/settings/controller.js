@@ -2,6 +2,30 @@ app.controller('SettingController', function($scope, Setting,Select){
 
   // load business
 
+   Select.get({code: 'year-term-list'}, function(e) {
+
+    $scope.year_terms = e.data;
+
+  });
+
+  $scope.getYear = function(id){
+
+    if($scope.year_terms.length > 0){
+
+      $.each($scope.year_terms, function(i,val){
+
+        if(id == val.id){
+
+          $scope.data.ApartelleRegistration.year = val.value;
+
+        }
+
+      });
+
+    }
+
+  }
+
   $scope.load = function(options) {
 
     options = typeof options !== 'undefined' ?  options : {};

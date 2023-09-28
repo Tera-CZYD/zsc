@@ -164,7 +164,7 @@ class ApartelleRegistrationsController extends AppController {
 
         'ok'  =>true,
 
-        'msg' =>'Apartelle Registrations has been successfully saved.',
+        'msg' =>'Apartelle Registration has been successfully saved.',
 
         'data'=>$requestData
 
@@ -304,7 +304,7 @@ class ApartelleRegistrationsController extends AppController {
 
         'ok'  =>true,
 
-        'msg' =>'Apartelle Registrations has been successfully updated.',
+        'msg' =>'Apartelle Registration has been successfully updated.',
 
         'data'=>$requestData
 
@@ -374,7 +374,7 @@ class ApartelleRegistrationsController extends AppController {
 
         'ok' => true,
 
-        'msg' => 'Apartelle Registrations has been successfully deleted'
+        'msg' => 'Apartelle Registration has been successfully deleted'
 
       ];
 
@@ -442,7 +442,7 @@ class ApartelleRegistrationsController extends AppController {
 
         'ok' => true,
 
-        'msg' => 'Apartelle Registrations has been successfully deleted'
+        'msg' => 'Apartelle Registration has been successfully deleted'
 
       ];
 
@@ -512,7 +512,7 @@ class ApartelleRegistrationsController extends AppController {
 
         'data' => $data,       
 
-        'msg'  => 'Apartelle Registrations has been successfully disapproved.'
+        'msg'  => 'Apartelle Registration has been successfully disapproved.'
 
       );
 

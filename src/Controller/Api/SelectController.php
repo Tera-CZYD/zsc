@@ -2779,56 +2779,62 @@ class SelectController extends AppController {
 
       $lrm = $this->LearningResourceMembers->find()
 
-          ->where([
-
-            'visible' => 1,
-
-            'student_id' => $student_id
-
-          ])
-
-          ->first();
-
-      $lrm_id = $lrm['id'];
-     
-      $tmp = $this->Checkouts->find()
-
-        ->contain([
-
-          'CheckOutSubs' => [
-
-            'conditions' => [
-
-              'CheckOutSubs.visible' => 1,
-
-              'CheckOutSubs.returned' => 0
-
-            ],
-
-          ],
-
-        ])
-
         ->where([
 
-          'Checkouts.visible' => 1,
+          'visible' => 1,
 
-          'Checkouts.learning_resource_member_id' => $lrm_id
+          'student_id' => $student_id
 
         ])
 
       ->first();
 
-      // var_dump($tmp['check_out_subs']);
+      if(!empty($lrm)){
 
-      if(count($tmp['check_out_subs']) > 0){
+        $lrm_id = $lrm['id'];
+       
+        $tmp = $this->Checkouts->find()
 
-        $datas = 0;
+          ->contain([
+
+            'CheckOutSubs' => [
+
+              'conditions' => [
+
+                'CheckOutSubs.visible' => 1,
+
+                'CheckOutSubs.returned' => 0
+
+              ],
+
+            ],
+
+          ])
+
+          ->where([
+
+            'Checkouts.visible' => 1,
+
+            'Checkouts.learning_resource_member_id' => $lrm_id
+
+          ])
+
+        ->first();
+
+        if(count($tmp['check_out_subs']) > 0){
+
+          $datas = 0;
+
+        }else{
+
+          $datas = 1;
+
+        }
 
       }else{
 
         $datas = 1;
-
+        
       }
 
     } else if ($code == 'list-available-courses') {

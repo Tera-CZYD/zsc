@@ -151,27 +151,37 @@ class GradesController extends AppController {
 
   }
 
-  
   public function view($id = null){
 
     $data['Employee'] = $this->Employees->find()
+
       ->contain([
+
         'Colleges' => [
+
           'conditions' => [
+
             'Colleges.visible' => 1
+
           ]
+
         ]
+
       ])
+
       ->where([
-          'Employees.visible' => 1,
-          'Employees.id' => $id
+
+        'Employees.visible' => 1,
+
+        'Employees.id' => $id
+
       ])
-      ->first();
 
-      $data['College'] = $data['Employee']['College'];
+    ->first();
 
-      unset($data['Employee']['College']);
+    $data['College'] = $data['Employee']['College'];
 
+    unset($data['Employee']['College']);
 
     $response = [
 
@@ -197,8 +207,7 @@ class GradesController extends AppController {
 
   }
 
-
-  public function grade_update($id = null){
+  public function gradeUpdate($id = null){
 
     $data = $this->request->getData();
 
@@ -231,6 +240,8 @@ class GradesController extends AppController {
       $userLogEntity = $userLogTable->newEntity([
 
           'action' => 'Update',
+
+          'userId' => $this->Auth->user('id'),
 
           'description' => 'Grades',
 
@@ -284,7 +295,7 @@ class GradesController extends AppController {
 
   }
 
-  public function submit_midterm($id = null){
+  public function submitMidterm($id = null){
 
     $data = $this->request->getData();
 
@@ -309,6 +320,8 @@ class GradesController extends AppController {
       $userLogEntity = $userLogTable->newEntity([
 
           'action' => 'Grade',
+
+          'userId' => $this->Auth->user('id'),
 
           'description' => 'Submit Mid Term Grade',
 
@@ -362,7 +375,7 @@ class GradesController extends AppController {
 
   }
 
-  public function submit_finalterm($id = null){
+  public function submitFinalterm($id = null){
 
     $data = $this->request->getData();
 
@@ -388,89 +401,13 @@ class GradesController extends AppController {
         
         $this->StudentEnrolledCourses->save($entity);
 
-        //UPDATIG STUDENT YEAR TERM LEVEL
+        $student['id'] = $value['student_id'];
 
-          $count_graded = $this->StudentEnrolledCourses->find()
+        $student['status'] = $value['remarks'];
 
-                  ->where([
-
-                      'StudentEnrolledCourses.visible' => 1,
-
-                      'StudentEnrolledCourses.student_id' => $value['student_id'],
-
-                      'StudentEnrolledCourses.year_term_id' => $value['year_term_id'],
-
-                      'StudentEnrolledCourses.remarks !=' => 'NULL'
-
-                  ])
-
-                  ->count();
-
-          $count_enrolled_course = $this->StudentEnrolledCourses->find()
-
-                  ->where([
-
-                      'StudentEnrolledCourses.visible' => 1,
-
-                      'StudentEnrolledCourses.student_id' => $value['student_id'],
-
-                      'StudentEnrolledCourses.year_term_id' => $value['year_term_id']
-
-                  ])
-
-                  ->count();
-
-          if($count_graded == $count_enrolled_course){ // COMPARE GRADED COURSE TO ENROLLED COURSE
-
-            $year_term_id = $value['year_term_id'];
-
-            $year_term = "
-
-              SELECT 
-
-                YearLevelTerm.*
-
-              FROM  
-
-                year_level_terms as YearLevelTerm
-
-              WHERE 
-
-                YearLevelTerm.visible = true AND 
-
-                YearLevelTerm.id > $year_term_id
-
-              ORDER BY 
-
-                YearLevelTerm.id ASC 
-
-              LIMIT 1
-
-            ";
-
-            $connection = $this->YearLevelTerms->getConnection();
-
-            $result = $connection->execute($year_term)->fetchAll('assoc');
-
-            // var_dump($result);
-
-            if(!empty($result)){
-
-              $student['year_term_id'] = $result[0]['id'];
-
-            }
-
-            $student['id'] = $value['student_id'];
-
-            $student['status'] = $value['remarks'];
-
-            $entity = $this->Students->newEntity($student);
-            
-            $this->Students->save($entity);
-
-          }
-
-        //END
+        $entity = $this->Students->newEntity($student);
+        
+        $this->Students->save($entity);
 
       }
 
@@ -479,6 +416,8 @@ class GradesController extends AppController {
       $userLogEntity = $userLogTable->newEntity([
 
           'action' => 'Grade',
+
+          'userId' => $this->Auth->user('id'),
 
           'description' => 'Submit Final Term Grade',
 
