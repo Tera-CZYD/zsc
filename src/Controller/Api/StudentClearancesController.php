@@ -40,6 +40,12 @@ class StudentClearancesController extends AppController {
 
     $this->ApartelleRegistrations = TableRegistry::getTableLocator()->get('ApartelleRegistrations');
 
+    $this->StudentEnrolledCourses = TableRegistry::getTableLocator()->get('StudentEnrolledCourses');
+
+    $this->YearLevelTerms = TableRegistry::getTableLocator()->get('YearLevelTerms');
+
+    $this->Students = TableRegistry::getTableLocator()->get('Students');
+
   }
 
   public function index(){   
@@ -150,7 +156,7 @@ class StudentClearancesController extends AppController {
 
       
 
-      if($employees['academic_rank_id']!=1){
+      if($employees['academic_rank_id']!=1 && $employees['academic_rank_id']!=3){
 
         if (!empty($employee_id)) {
 
@@ -204,7 +210,7 @@ class StudentClearancesController extends AppController {
 
         $step = 4;
 
-      }else if ($role_id==0){
+      }else if ($role_id==12 && $employees['academic_rank_id'] == 3){
 
         $conditions['step'] = " AND StudentClearance.step = 5 ";
 
@@ -232,9 +238,6 @@ class StudentClearancesController extends AppController {
 
       $conditionsPrint .= '&step='.$step;
     }
-
-    // var_dump($this->Auth->user('roleId'));
-
 
     $limit = 25;
 
@@ -805,10 +808,15 @@ class StudentClearancesController extends AppController {
       $employee_id = $this->Auth->user('employeeId');
 
       $employees = $this->Employees->find()
+
         ->contain([
+
             'AcademicRanks'=> [
-                'conditions' => ['AcademicRanks.visible' => 1],
-              ]
+
+              'conditions' => ['AcademicRanks.visible' => 1],
+
+            ]
+
           ])
 
         ->where([
@@ -819,12 +827,11 @@ class StudentClearancesController extends AppController {
 
         ])
 
-        ->first();
+      ->first();
+
     }
 
-    // var_dump($this->Auth->user('roleId'));
-
-    if($this->Auth->user('roleId')==12 && $employees['academic_rank_id'] != 1){
+    if($this->Auth->user('roleId')==12 && $employees['academic_rank_id'] != 1 && $employees['academic_rank_id'] != 3){
 
       $courses = $this->StudentEnrolledCourses->find()
 
@@ -838,9 +845,9 @@ class StudentClearancesController extends AppController {
 
         ])
 
-        ->first();
+      ->first();
 
-      $courses->clearance_remarks = null;
+      $courses->clearance_remarks = 'CLEARED';
 
       $courses->clearance_status = 1;
 
@@ -872,8 +879,7 @@ class StudentClearancesController extends AppController {
 
         ])
 
-        ->count();
-      // var_dump($apartelle);
+      ->count();
 
       if($apartelle>0){
 
@@ -927,6 +933,14 @@ class StudentClearancesController extends AppController {
 
       $save = $this->StudentClearances->save($app);
 
+    }else if($this->Auth->user('roleId')==12 && $employees['academic_rank_id'] == 3){
+
+      $app->status_laboratory = 1;
+
+      $app->step = 6;
+
+      $save = $this->StudentClearances->save($app);
+
     }else if($this->Auth->user('roleId')==12 && $employees['academic_rank_id'] == 1){
 
       $app->status_head = 1;
@@ -943,13 +957,59 @@ class StudentClearancesController extends AppController {
 
       $save = $this->StudentClearances->save($app);
 
-    }
+      //LAST STEP - UPDATE YEAR TERM OF STUDENT
 
-    
+        $year_term_id = $student['year_term_id'];
+
+        $year_term = "
+
+          SELECT 
+
+            YearLevelTerm.*
+
+          FROM  
+
+            year_level_terms as YearLevelTerm
+
+          WHERE 
+
+            YearLevelTerm.visible = true AND 
+
+            YearLevelTerm.id > $year_term_id
+
+          ORDER BY 
+
+            YearLevelTerm.id ASC 
+
+          LIMIT 1
+
+        ";
+
+        $connection = $this->YearLevelTerms->getConnection();
+
+        $result = $connection->execute($year_term)->fetchAll('assoc');
+
+        $sutdentData = array();
+
+        if(!empty($result)){
+
+          $sutdentData['year_term_id'] = $result[0]['id'];
+
+        }
+
+        $sutdentData['id'] = $student['id'];
+
+        $entity = $this->Students->newEntity($sutdentData);
+        
+        $this->Students->save($entity);
+
+      //END 
+
+    }
 
     if ($save) {
 
-      if($this->Auth->user('roleId')==12 && $employees['academic_rank_id'] != 1){
+      if($this->Auth->user('roleId')==12 && $employees['academic_rank_id'] != 1 && $employees['academic_rank_id'] != 3){
 
         $tmp = $this->StudentEnrolledCourses->find()->where([
 
@@ -973,7 +1033,6 @@ class StudentClearancesController extends AppController {
 
       }
 
-
       //EMAIL VERIFICATION
 
         $name = @$student['first_name'].' '.@$student['middle_name'].' '.@$student['last_name'];
@@ -982,92 +1041,100 @@ class StudentClearancesController extends AppController {
 
         $faculty = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
-        // var_dump($faculty);
-
       if(isset($student['email'])){
 
         //EMAIL VERIFICATION
-        if(isset($email)){
+ 
+        if($email != ''){
 
-          if($email != ''){
+          // fix value
+      
+          $mail = new PHPMailer(true);
 
-            // fix value
-        
-            $mail = new PHPMailer(true);
+          //Server settings
+          // $mail->SMTPDebug = SMTP::DEBUG_SERVER; // Enable verbose debug output
+          $mail->isSMTP(); // Send using SMTP
+          $mail->Host = 'smtp.gmail.com';
+          $mail->SMTPAuth = true;
+          $mail->Username = 'mycreativepandaii@gmail.com'; // Your Gmail email address
+          $mail->Password = 'tkoahowwnzuzqczy'; // Your Gmail password
+          $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption
+          $mail->Port = 587; // TCP port to connect to
 
-            //Server settings
-            // $mail->SMTPDebug = SMTP::DEBUG_SERVER; // Enable verbose debug output
-            $mail->isSMTP(); // Send using SMTP
-            $mail->Host = 'smtp.gmail.com';
-            $mail->SMTPAuth = true;
-            $mail->Username = 'mycreativepandaii@gmail.com'; // Your Gmail email address
-            $mail->Password = 'tkoahowwnzuzqczy'; // Your Gmail password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption
-            $mail->Port = 587; // TCP port to connect to
+          // Bypass SSL certificate verification
+          $mail->SMTPOptions = [
 
-            //Recipients
-            $mail->setFrom('mycreativepandaii@gmail.com', 'ZAMBOANGA STATE COLLEGE OF MARINE SCIENCES AND TECHNOLOGY'); // Sender's email and name
-            $mail->addAddress($email, $name); // Recipient's email and name
+            'ssl' => [
 
-            // Content
-            $mail->isHTML(true); // Set email format to HTML
-            $mail->Subject = 'STUDENT CLEARANCE';
+              'verify_peer' => false,
 
-            if($this->Auth->user('roleId')==12 && $employees['academic_rank_id'] != 1){
+              'verify_peer_name' => false,
 
-              $_SESSION['status'] = @$app['status_faculty'] == 1 ? 'CLEARED' : '';
+              'allow_self_signed' => true,
 
-            }else if($this->Auth->user('roleId')==8){
+            ],
 
-              $_SESSION['status'] = @$app['status_cashier'] == 1 ? 'CLEARED' : '';
+          ];
 
-            }else if($this->Auth->user('roleId')==23){
+          //Recipients
+          $mail->setFrom('mycreativepandaii@gmail.com', 'ZAMBOANGA STATE COLLEGE OF MARINE SCIENCES AND TECHNOLOGY'); // Sender's email and name
+          $mail->addAddress($email, $name); // Recipient's email and name
 
-              $_SESSION['status'] = @$app['status_librarian'] == 1 ? 'CLEARED' : '';
+          // Content
+          $mail->isHTML(true); // Set email format to HTML
+          $mail->Subject = 'STUDENT CLEARANCE';
 
-            }else if($this->Auth->user('roleId')==41){
+          if($this->Auth->user('roleId')==12 && $employees['academic_rank_id'] != 1){
 
-              $_SESSION['status'] = @$app['status_apartelle'] == 1 ? 'CLEARED' : '';
+            $_SESSION['status'] = @$app['status_faculty'] == 1 ? 'CLEARED' : '';
 
-            }else if($this->Auth->user('roleId')==0){
+          }else if($this->Auth->user('roleId')==8){
 
-              $_SESSION['status'] = @$app['status_laboratory'] == 1 ? 'CLEARED' : '';
+            $_SESSION['status'] = @$app['status_cashier'] == 1 ? 'CLEARED' : '';
 
-            }else if($this->Auth->user('roleId')==25){
+          }else if($this->Auth->user('roleId')==23){
 
-              $_SESSION['status'] = @$app['status_affairs'] == 1 ? 'CLEARED' : '';
+            $_SESSION['status'] = @$app['status_librarian'] == 1 ? 'CLEARED' : '';
 
-            }else if($this->Auth->user('roleId')==12 && $employees['academic_rank_id'] == 1){
+          }else if($this->Auth->user('roleId')==41){
 
-              $_SESSION['status'] = @$app['status_head'] == 1 ? 'CLEARED' : '';
+            $_SESSION['status'] = @$app['status_apartelle'] == 1 ? 'CLEARED' : '';
 
-            }else if($this->Auth->user('roleId')==39){
+          }else if($this->Auth->user('roleId')==0){
 
-              $_SESSION['status'] = @$app['status_dean'] == 1 ? 'CLEARED' : '';
+            $_SESSION['status'] = @$app['status_laboratory'] == 1 ? 'CLEARED' : '';
 
-            }
+          }else if($this->Auth->user('roleId')==25){
 
+            $_SESSION['status'] = @$app['status_affairs'] == 1 ? 'CLEARED' : '';
 
-            $_SESSION['name'] = @$name; 
+          }else if($this->Auth->user('roleId')==12 && $employees['academic_rank_id'] == 1){
 
-            $_SESSION['faculty'] =  $faculty;
+            $_SESSION['status'] = @$app['status_head'] == 1 ? 'CLEARED' : '';
 
-            $_SESSION['id'] = $id; 
+          }else if($this->Auth->user('roleId')==39){
 
-            ob_start();
-
-            include('Email/clearance-cleared.ctp');
-
-            $bodyContent = ob_get_contents();
-
-            ob_end_clean();
-
-            $mail->Body = $bodyContent;
-                
-
-            $mail->send();
+            $_SESSION['status'] = @$app['status_dean'] == 1 ? 'CLEARED' : '';
 
           }
+
+          $_SESSION['name'] = @$name; 
+
+          $_SESSION['faculty'] =  $faculty;
+
+          $_SESSION['id'] = $id; 
+
+          ob_start();
+
+          include('Email/clearance-cleared.ctp');
+
+          $bodyContent = ob_get_contents();
+
+          ob_end_clean();
+
+          $mail->Body = $bodyContent;
+
+          $mail->send();
 
         }
 
@@ -1084,19 +1151,20 @@ class StudentClearancesController extends AppController {
         'msg'  => 'Email successfully sent.'
 
       );
-          $userLogEntity = $this->UserLogs->newEntity([
 
-          'action' => 'Student Clearances',
+      $userLogEntity = $this->UserLogs->newEntity([
 
-          'description' => 'Send Email'.@$app['StudentApplication']['first_name'].' '.@$app['StudentApplication']['last_name'],
+        'action' => 'Student Clearances',
 
-          'created' => date('Y-m-d H:i:s'),
+        'description' => 'Send Email'.@$app['StudentApplication']['first_name'].' '.@$app['StudentApplication']['last_name'],
 
-          'modified' => date('Y-m-d H:i:s')
+        'created' => date('Y-m-d H:i:s'),
 
-        ]);
+        'modified' => date('Y-m-d H:i:s')
 
-        $this->UserLogs->save($userLogEntity);
+      ]);
+
+      $this->UserLogs->save($userLogEntity);
 
     } else {
 
@@ -1119,7 +1187,6 @@ class StudentClearancesController extends AppController {
       '_serialize'=>'response'
 
     ));
-
 
     $this->response->withType('application/json');
 

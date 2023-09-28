@@ -159,11 +159,13 @@ class ProgramAdvisersController extends AppController {
 
           ->where([
 
-            'visible' => 1,
+            'visible'      => 1,
 
-            'college_id' => $data['college_id'],
+            'college_id'   => $data['college_id'],
 
-            'program_id' => $data['program_id'],
+            'program_id'   => $data['program_id'],
+
+            'year_term_id' => $data['year_term_id'],
 
           ])
 
@@ -277,7 +279,6 @@ class ProgramAdvisersController extends AppController {
 
       $code = 'ASS-' . str_pad($total + 1, 5, "0", STR_PAD_LEFT);
 
-
       $id = $main['id']; 
 
       $student['Student'] = $this->Students->find()
@@ -300,52 +301,53 @@ class ProgramAdvisersController extends AppController {
 
       ->first();
 
+      $assessment['student_id'] = $main['id'];
 
-        $assessment['student_id'] = $main['id'];
+      $assessment['code'] = $code;
 
-        $assessment['code'] = $code;
+      $assessment['age'] = $student['Student']['age'];
 
-        $assessment['age'] = $student['Student']['age'];
+      $assessment['email'] = $student['Student']['email'];
 
-        $assessment['email'] = $student['Student']['email'];
+      $assessment['year_term_id'] = $student['Student']['year_term_id'];
 
-        $assessment['contact_no'] = $student['Student']['contact_no'];
+      $assessment['contact_no'] = $student['Student']['contact_no'];
 
-        $assessment['program'] = $student['Student']['college_program']['name'];
+      $assessment['program'] = $student['Student']['college_program']['name'];
 
-        $assessment['student_name'] = $main['student_name'];
+      $assessment['student_name'] = $main['student_name'];
 
-        $assessment['student_no'] = $main['student_no'];
+      $assessment['student_no'] = $main['student_no'];
 
-      if($student['Student']['year_term_id'] > 3){
+      // if($student['Student']['year_term_id'] > 3){
 
-      $data = $this->Assessments->newEmptyEntity();
-     
-      $data = $this->Assessments->patchEntity($data, $assessment);
+        $data = $this->Assessments->newEmptyEntity();
+       
+        $data = $this->Assessments->patchEntity($data, $assessment);
 
-      if($this->Assessments->save($data)){
+        if($this->Assessments->save($data)){
 
-        $assessment_id = $data->id;
+          $assessment_id = $data->id;
 
-        $query = $this->BlockSectionCourses->find()
+          $query = $this->BlockSectionCourses->find()
 
-          ->where([
+            ->where([
 
-            'visible' => 1,
+              'visible' => 1,
 
-            'block_section_id' => $main['selected_block_section_id']
+              'block_section_id' => $main['selected_block_section_id']
 
-          ]);
+            ]);
 
-        $query->select(['total' => $query->func()->count('*')]);
+          $query->select(['total' => $query->func()->count('*')]);
 
-        $courses_count = $query->firstOrFail()->total;
+          $courses_count = $query->firstOrFail()->total;
 
-        $query1 = $this->Accounts->find();
+          $query1 = $this->Accounts->find();
 
-        $accounts = $query1->all();
+          $accounts = $query1->all();
 
-        foreach ($accounts as $item) {          
+          foreach ($accounts as $item) {          
 
             $acronym = trim($item->acronym);
 
@@ -354,53 +356,54 @@ class ProgramAdvisersController extends AppController {
               'amount'  => $item->amount,
 
             ];
-        }
 
-        $assessment_sub['tuition_fee'] = ($courses_count * 3) * 50;
+          }
 
-        $assessment_sub['athletics_fee'] = $fees['ATH']['amount'];
+          $assessment_sub['tuition_fee'] = ($courses_count * 3) * 50;
 
-        $assessment_sub['cultural_fee'] = $fees['ATH']['amount'];
+          $assessment_sub['athletics_fee'] = $fees['ATH']['amount'];
 
-        $assessment_sub['development_fee'] = null;
+          $assessment_sub['cultural_fee'] = $fees['ATH']['amount'];
 
-        if (trim($student['Student']['college_program']['code']) === 'BSMT' || trim($student['Student']['college_program']['code']) === 'BSME') {
+          $assessment_sub['development_fee'] = null;
+
+          if (trim($student['Student']['college_program']['code']) === 'BSMT' || trim($student['Student']['college_program']['code']) === 'BSME') {
 
             $assessment_sub['development_fee'] = 150;
 
-        } else {
+          } else {
 
             $assessment_sub['development_fee'] = $fees['DEVT']['amount'];
 
-        }
+          }
 
-        $assessment_sub['guidance_fee'] = $fees['GUI']['amount'];
+          $assessment_sub['guidance_fee'] = $fees['GUI']['amount'];
 
-        $query2 = $this->Courses->find()
+          $query2 = $this->Courses->find()
 
             ->where([
 
-                'Courses.laboratory_unit IS NOT' => null,
+              'Courses.laboratory_unit IS NOT' => null,
 
             ])
 
-            ->matching('BlockSectionCourses', function ($q) use ($main) {
+          ->matching('BlockSectionCourses', function ($q) use ($main) {
 
-                return $q->where([
+            return $q->where([
 
-                    'BlockSectionCourses.visible' => 1,
+              'BlockSectionCourses.visible' => 1,
 
-                    'BlockSectionCourses.block_section_id' => $main['selected_block_section_id'],
+              'BlockSectionCourses.block_section_id' => $main['selected_block_section_id'],
 
-                ]);
+            ]);
 
-            });
+          });
 
-        $query2->select(['total' => $query->func()->count('*')]);
+          $query2->select(['total' => $query->func()->count('*')]);
 
-        $courses_laboratory = $query2->firstOrFail()->total;
+          $courses_laboratory = $query2->firstOrFail()->total;
 
-        $query3 = $this->Courses->find()
+          $query3 = $this->Courses->find()
 
             ->where([
 
@@ -408,23 +411,23 @@ class ProgramAdvisersController extends AppController {
 
             ])
 
-            ->matching('BlockSectionCourses', function ($q) use ($main) {
+          ->matching('BlockSectionCourses', function ($q) use ($main) {
 
-                return $q->where([
+              return $q->where([
 
-                    'BlockSectionCourses.visible' => 1,
+                'BlockSectionCourses.visible' => 1,
 
-                    'BlockSectionCourses.block_section_id' => $main['selected_block_section_id'],
+                'BlockSectionCourses.block_section_id' => $main['selected_block_section_id'],
 
-                ]);
+              ]);
 
-            });
+          });
 
-        $query3->select(['total' => $query->func()->count('*')]);
+          $query3->select(['total' => $query->func()->count('*')]);
 
-        $courses_computer = $query3->firstOrFail()->total;
+          $courses_computer = $query3->firstOrFail()->total;
 
-        $query4 = $this->Courses->find()
+          $query4 = $this->Courses->find()
 
             ->where([
 
@@ -432,45 +435,45 @@ class ProgramAdvisersController extends AppController {
 
             ])
 
-            ->matching('BlockSectionCourses', function ($q) use ($main) {
+          ->matching('BlockSectionCourses', function ($q) use ($main) {
 
-                return $q->where([
+            return $q->where([
 
-                    'BlockSectionCourses.visible' => 1,
+                'BlockSectionCourses.visible' => 1,
 
-                    'BlockSectionCourses.block_section_id' => $main['selected_block_section_id'],
+                'BlockSectionCourses.block_section_id' => $main['selected_block_section_id'],
 
-                ]);
+            ]);
 
-            });
+          });
 
-        $query4->select(['total' => $query->func()->count('*')]);
+          $query4->select(['total' => $query->func()->count('*')]);
 
-        $courses_jeep = $query4->firstOrFail()->total;
+          $courses_jeep = $query4->firstOrFail()->total;
 
-        $assessment_sub['laboratory_fee'] = $fees['LAB']['amount'] * $courses_laboratory;
+          $assessment_sub['laboratory_fee'] = $fees['LAB']['amount'] * $courses_laboratory;
 
-        $assessment_sub['library_fee'] = $fees['LIB']['amount'];
+          $assessment_sub['library_fee'] = $fees['LIB']['amount'];
 
-        $assessment_sub['medical_dental_fee'] = $fees['MED']['amount'];
+          $assessment_sub['medical_dental_fee'] = $fees['MED']['amount'];
 
-        $assessment_sub['computer_fee'] =  ($courses_computer > 0) ? $fees['COMP']['amount'] : 0.00;
+          $assessment_sub['computer_fee'] =  ($courses_computer > 0) ? $fees['COMP']['amount'] : 0.00;
 
-        $assessment_sub['jeep_fee'] = ($courses_computer > 0) ? $fees['JEEP']['amount'] : 0.00;;
+          $assessment_sub['jeep_fee'] = ($courses_computer > 0) ? $fees['JEEP']['amount'] : 0.00;;
 
-        $assessment_sub['assessment_id'] = $assessment_id;
+          $assessment_sub['assessment_id'] = $assessment_id;
 
-        $assessment_sub['total'] = $assessment_sub['tuition_fee'] + $assessment_sub['athletics_fee'] + $assessment_sub['cultural_fee'] + $assessment_sub['development_fee'] + $assessment_sub['guidance_fee'] + $assessment_sub['laboratory_fee'] + $assessment_sub['library_fee'] + $assessment_sub['medical_dental_fee'] + $assessment_sub['computer_fee'] + $assessment_sub['jeep_fee'] +  $assessment_sub['assessment_id'];
+          $assessment_sub['total'] = $assessment_sub['tuition_fee'] + $assessment_sub['athletics_fee'] + $assessment_sub['cultural_fee'] + $assessment_sub['development_fee'] + $assessment_sub['guidance_fee'] + $assessment_sub['laboratory_fee'] + $assessment_sub['library_fee'] + $assessment_sub['medical_dental_fee'] + $assessment_sub['computer_fee'] + $assessment_sub['jeep_fee'] +  $assessment_sub['assessment_id'];
 
-        $assessment_data = $this->AssessmentSubs->newEmptyEntity();
-     
-        $assessment_data = $this->AssessmentSubs->patchEntity($assessment_data, $assessment_sub);
+          $assessment_data = $this->AssessmentSubs->newEmptyEntity();
+       
+          $assessment_data = $this->AssessmentSubs->patchEntity($assessment_data, $assessment_sub);
 
-        $this->AssessmentSubs->save($assessment_data);
+          $this->AssessmentSubs->save($assessment_data);
 
-      }
+        }
 
-     }
+      // }
       
       //STUDENT ENROLLED COURSE
 
@@ -567,6 +570,8 @@ class ProgramAdvisersController extends AppController {
               'course_code'  => $value['course_code'],
 
               'course'       => $course,
+
+              'block_section_course_id' => $value['id'],
 
               'year_term_id' => $main['year_term_id'],
 
