@@ -90,8 +90,8 @@
           <?php endif ?>
 
           <?php if (hasAccess('registrar/menu', $currentUser)): ?>
-            <li class="nav-link-side nav-completion nav-request-form nav-tor nav-transferee nav-adding-dropping-subject nav-approval-of-enrolled-course nav-club nav-student-club nav-registrar-student-profile nav-purpose"><a><i class="fa fa-briefcase"></i> Registrar </a>
-              <ul class="nav child_menu collapse collapse-completion collapse-request-form collapse-tor collapse-transferee collapse-adding-dropping-subject collapse-club collapse-approval-of-enrolled-course collapse-student-club collapse-registrar-student-profile collapse-purpose">
+            <li class="nav-link-side nav-completion nav-request-form nav-tor nav-transferee nav-adding-dropping-subject nav-approval-of-enrolled-course nav-club nav-student-club nav-registrar-student-profile nav-purpose nav-affidavit-of-loss"><a><i class="fa fa-briefcase nav-requested-form-payment"></i> Registrar </a>
+              <ul class="nav child_menu collapse collapse-completion collapse-request-form collapse-tor collapse-transferee collapse-adding-dropping-subject collapse-club collapse-approval-of-enrolled-course collapse-student-club collapse-registrar-student-profile collapse-purpose collapse-affidavit-of-loss collapse-requested-form-payment">
 
                 <?php if (hasAccess('registrar /index', $currentUser)): ?>
                   <li class="nav-link-side nav-registrar-student-profile">
@@ -159,6 +159,12 @@
                   </li>
                 <?php endif ?>
 
+                <?php if (hasAccess('affidavit of loss/index', $currentUser)): ?>
+                <li class="nav-link-side nav-affidavit-of-loss">
+                    <a href="#/registrar/admin-affidavit-of-loss" onclick="change('affidavit-of-loss')">Affidavit of loss</a>
+                  </li>
+                <?php endif ?>
+
                 </ul>
             </li>
           <?php endif ?>
@@ -176,6 +182,12 @@
                 <?php if (hasAccess('assessment/index', $currentUser)): ?>
                   <li class="nav-link-side nav-assessment">
                     <a href="#/cashier/assessment" onclick="change('assessment')">Assessment Management</a>
+                  </li>
+                <?php endif ?>
+
+                <?php if (hasAccess('requested form payment/index', $currentUser)): ?>
+                  <li class="nav-link-side nav-requested-form-payment">
+                    <a href="#/cashier/requested-form-payment" onclick="change('requested-form-payment')">Requested Forms</a>
                   </li>
                 <?php endif ?>
 
