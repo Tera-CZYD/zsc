@@ -433,33 +433,41 @@ app.controller("CompletionEditController",function ($scope, $routeParams, Comple
 
     // load
 
-    $scope.load = function () {
-      Completion.get({ id: $scope.id }, function (e) {
-        $scope.data = e.data;
-      });
-    };
-    $scope.load();
+  $scope.load = function () {
 
-    $scope.searchStudent = function (options) {
-      options = typeof options !== "undefined" ? options : {};
+    Completion.get({ id: $scope.id }, function (e) {
 
-      options["code"] = "search-student";
+      $scope.data = e.data;
 
-      Select.query(options, function (e) {
-        console.log(e);
-        $scope.students = e.data.result;
+    });
 
-        $scope.student = {};
+  };
 
-        // paginator
+  $scope.load();
 
-        $scope.paginator = e.data.paginator;
+  $scope.searchStudent = function (options) {
 
-        $scope.pages = paginator($scope.paginator, 10);
+    options = typeof options !== "undefined" ? options : {};
 
-        $("#searched-student-modal").modal("show");
-      });
-    };
+    options["code"] = "search-student";
+
+    Select.query(options, function (e) {
+
+      $scope.students = e.data.result;
+
+      $scope.student = {};
+
+      // paginator
+
+      $scope.paginator = e.data.paginator;
+
+      $scope.pages = paginator($scope.paginator, 10);
+
+      $("#searched-student-modal").modal("show");
+
+    });
+
+  };
 
   $scope.selectedStudent = function (student) {
 
