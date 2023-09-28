@@ -64,6 +64,8 @@ class RequestFormsTable extends Table{
 
         )
 
+        ORDER BY RequestForm.code ASC
+
     ";
 
 
@@ -118,6 +120,8 @@ class RequestFormsTable extends Table{
           RequestForm.purpose LIKE  '%$search%'
 
         )
+
+        ORDER BY RequestForm.code DESC
 
     ";
 
@@ -202,6 +206,8 @@ class RequestFormsTable extends Table{
           RequestForm.purpose LIKE  '%$search%'
 
         )
+
+        ORDER BY RequestForm.code ASC
 
     ";
 
