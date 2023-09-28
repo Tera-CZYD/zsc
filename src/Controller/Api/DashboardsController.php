@@ -67,6 +67,13 @@ class DashboardsController extends AppController {
 
     $this->Settings = TableRegistry::getTableLocator()->get('Settings');
 
+    $this->Memorandums = TableRegistry::getTableLocator()->get('Memorandums');
+
+    $this->Announcements = TableRegistry::getTableLocator()->get('Announcements');
+
+    $this->Roles = TableRegistry::getTableLocator()->get('Roles');
+
+
   }
 
   // public $components = array("Global");
@@ -87,7 +94,202 @@ class DashboardsController extends AppController {
 
     $roleId = $user["roleId"];
 
-    // var_dump($user);
+
+    $currentMonth = date('m');
+    
+    $currentYear = date('Y');
+
+    //memorandum
+
+    $memos = $this->Memorandums->find()
+
+      ->contain([
+
+        'MemorandumImages' => [
+
+          'conditions' => ['MemorandumImages.visible' => 1]
+
+        ]
+
+      ])
+
+      ->where([
+
+        'Memorandums.visible' => 1,
+
+        'MONTH(Memorandums.date)' => $currentMonth,
+
+        'YEAR(Memorandums.date)' => $currentYear
+
+      ])
+
+    ->all();
+
+    $roles = $this->Roles->find()
+
+        ->where([
+
+          'visible' => 1
+
+        ])
+
+        ->all();
+
+    $roles = $roles->toArray();
+
+    $role_final = [];
+
+    $role = [];
+
+    $inMemo = false;
+
+    $memoShow = [];
+
+    foreach ($memos as $k => $memo) {
+
+      $inMemo = false;
+
+      $memo['receiver'] = explode(',',$memo['receiver']);
+
+      if (!empty($memo['receiver'])){
+
+        foreach ($memo['receiver'] as $key => $value) {
+          
+          $memo['receiver'][$key] = $memo['receiver'][$key] == 1 ? true: false;
+
+          if($memo['receiver'][$key]){
+
+            $role[] = array(
+
+              'role' =>$roles[$key]['id']
+
+            );
+
+            if($user['roleId']==$roles[$key]['id']){
+
+              $inMemo = true;
+
+            }
+
+          }
+
+        }
+
+        
+
+        if($inMemo){
+
+          $memoShow[] = array(
+
+            'memo' => $memo
+
+          );
+
+        }
+      }
+
+
+      $memorandumImage = array();
+
+      if(!empty($memo['memorandum_images'])){
+
+        foreach($memo['memorandum_images'] as $key => $image){
+
+          if (!is_null($image['images'])) {
+
+            $memorandumImage[] = array(
+
+              'imageSrc' => $this->base . '/uploads/memorandum/' . $memo['id'] . '/' . @$image['images'],
+
+              'name' => @$image['images'],
+
+              'id' => @$image['id'],
+
+            );
+
+          }
+
+        }
+      }
+
+      $memo['memorandum_images'] = $memorandumImage;
+
+
+    }
+
+    //memorandum
+
+
+    //announcement
+
+
+    $announces = $this->Announcements->find()
+
+      ->contain([
+
+        'AnnouncementImages' => [
+
+          'conditions' => ['AnnouncementImages.visible' => 1]
+
+        ]
+
+      ])
+
+      ->where([
+
+        'Announcements.visible' => 1,
+
+        'MONTH(Announcements.date)' => $currentMonth,
+
+        'YEAR(Announcements.date)' => $currentYear
+
+      ])
+
+    ->all();
+
+    $announcement = [];
+
+    foreach ($announces as $k => $announce) {
+
+      $announceImage = array();
+
+      if(!empty($announce['announcement_images'])){
+
+        foreach($announce['announcement_images'] as $key => $image){
+
+          if (!is_null($image['images'])) {
+
+            $announceImage[] = array(
+
+              'imageSrc' => $this->base . '/uploads/announcement/' . $memo['id'] . '/' . @$image['images'],
+
+              'name' => @$image['images'],
+
+              'id' => @$image['id'],
+
+            );
+
+          }
+
+        }
+      }
+
+      $announce['announcement_images'] = $announceImage;
+
+      $announcement[] = array(
+
+        'title' => $announce['title'],
+
+        'img' => $announce['announcement_images']
+
+      );
+
+
+    }
+
+
+
+
 
     if($user["roleId"] == 1){ //ADMIN DASHBOARD
 
@@ -543,7 +745,9 @@ class DashboardsController extends AppController {
 
           'incomplete' => $incomplete,
 
-          'scheds' => $sched
+          'scheds' => $sched,
+
+          'memo' =>$memoShow
 
         ];
 
@@ -640,60 +844,6 @@ class DashboardsController extends AppController {
 
         ->all();
 
-        // var_dump($subjects);
-
-        // $pending = $this->StudentEnrolledCourses->find()
-
-        //   ->select(['course_id', 'count' => 'COUNT(*)'])
-
-        //   ->where([
-
-        //       'clearance_status' => 0,
-
-        //       'faculty_id' => $employeeId,
-
-        //   ])
-
-        //   ->group(['course_id'])
-
-        //   ->toArray();
-
-        // $cleared = $this->StudentEnrolledCourses->find()
-
-        //   ->select(['course_id', 'count' => 'COUNT(*)'])
-
-        //   ->where([
-
-        //       'clearance_remarks' => 'CLEARED',
-
-        //       'clearance_status' => 1,
-
-        //       'faculty_id' => $employeeId,
-
-        //   ])
-
-        //   ->group(['course_id'])
-
-        //   ->toArray();
-
-        // $inc = $this->StudentEnrolledCourses->find()
-
-          // ->select(['course_id', 'count' => 'COUNT(*)'])
-
-          // ->where([
-
-          //     'clearance_remarks !=' => 'CLEARED',
-
-          //     'clearance_remarks IS NOT NULL',
-
-          //     'faculty_id' => $employeeId,
-
-          // ])
-
-          // ->group(['course_id'])
-
-          // ->toArray();
-
         $pending = 0;
 
         $cleared = 0;
@@ -759,7 +909,11 @@ class DashboardsController extends AppController {
 
           'scheds' => $sched,
 
-          'counts' => $counts
+          'counts' => $counts,
+
+          'memos' =>$memoShow,
+
+          'announcements' =>$announcement
 
         ];
 
