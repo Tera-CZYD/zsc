@@ -196,7 +196,7 @@ class ApartelleRegistrationsController extends AppController {
 
         'data'=>$requestData,
 
-        'msg' =>'Apartelle Registrations cannot saved this time.',
+        'msg' =>'Apartelle Registration cannot saved this time.',
 
       );
 
@@ -336,7 +336,7 @@ class ApartelleRegistrationsController extends AppController {
 
         'data'=>$requestData,
 
-        'msg' =>'Apartelle Registrations cannot updated this time.',
+        'msg' =>'Apartelle Registration cannot updated this time.',
 
       );
 
@@ -402,7 +402,7 @@ class ApartelleRegistrationsController extends AppController {
 
         'ok' => false,
 
-        'msg' => 'Apartelle Registrations cannot be deleted at this time.'
+        'msg' => 'Apartelle Registration cannot be deleted at this time.'
 
       ];
 
@@ -470,7 +470,7 @@ class ApartelleRegistrationsController extends AppController {
 
         'ok' => false,
 
-        'msg' => 'Apartelle Registrations cannot be deleted at this time.'
+        'msg' => 'Apartelle Registration cannot be deleted at this time.'
 
       ];
 
@@ -542,7 +542,7 @@ class ApartelleRegistrationsController extends AppController {
 
         'data' => $data,
 
-        'msg'  =>'Apartelle Registrations cannot be disapproved this time.'
+        'msg'  =>'Apartelle Registration cannot be disapproved this time.'
 
       );
 
