@@ -10,10 +10,16 @@
             <div class="clearfix"></div>
             
 
-            <div class="col-md-12">
+            <div class="col-md-8">
               <div class="form-group">
                 <label> Title <i class="required">*</i></label>
                 <input type="text" class="form-control" autocomplete="false" ng-model="data.Memorandum.title" data-validation-engine="validate[required]">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label> DATE <i class="required">*</i></label>
+                <input type="text" class="form-control datepicker" autocomplete="false" ng-model="data.Memorandum.date" data-validation-engine="validate[required]">
               </div>
             </div>
             <h6> Display to:  <i class="required">*</i></h6>
