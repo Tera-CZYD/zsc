@@ -49,6 +49,10 @@
                   <td class="italic">{{ data.Room.size }}</td>
                 </tr>
                 <tr>
+                  <th class="text-right"> COLLEGE : </th>
+                  <td class="italic">{{ data.College.code }} - {{ data.College.name }}</td>
+                </tr>
+                <tr>
                   <th class="text-right"> CAPACITY : </th>
                   <td class="italic">{{ data.Room.capacity }}</td>
                 </tr>
