@@ -317,7 +317,7 @@
 
       $routes->resources('Backups');
 
-      $routes->resources('AnnouncementManagements');
+      $routes->resources('Announcements');
 
       $routes->resources('Specializations');
 
