@@ -8,7 +8,11 @@ use Cake\Database\StatementInterface;
 
 class AnnouncementManagementsTable extends Table{
 
-  public function initialize(array $config): void{}
+  public function initialize(array $config): void{
+
+    $this->addBehavior('Timestamp');
+
+  }
 
   public function getAllAnnouncementManagement($conditions, $limit, $page){
 
@@ -23,7 +27,7 @@ class AnnouncementManagementsTable extends Table{
 
       FROM
 
-        announcements as AnnouncementManagement  
+        announcement_managements as AnnouncementManagement  
 
       WHERE
 
@@ -95,7 +99,7 @@ class AnnouncementManagementsTable extends Table{
 
        FROM
 
-        announcements as AnnouncementManagement
+        announcement_managements as AnnouncementManagement
 
       WHERE
 
