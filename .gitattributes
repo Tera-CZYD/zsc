@@ -30,4 +30,3 @@
 *.webm binary
 *.mp4 binary
 *.ogv binary
-tmp/debug_kit.sqlite filter=lfs diff=lfs merge=lfs -text
