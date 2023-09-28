@@ -32,6 +32,8 @@ app.controller('DashboardController', function($scope,Select,StudentApplicationM
 
     Dashboard.query(options, function(e) {
 
+      // console.log(currentUser.roleId);
+
       if (e.ok) {
 
         $scope.datas = e.data;
@@ -40,7 +42,17 @@ app.controller('DashboardController', function($scope,Select,StudentApplicationM
 
         $scope.student_subjects = e.student_subjects;
 
-        if(e.roleId == 1){
+        $scope.total_sub = e.total_sub;
+
+        $scope.passed = e.passed;
+
+        $scope.failed = e.failed;
+
+        $scope.credited = e.credited;
+
+        $scope.incomplete = e.incomplete;
+
+        if(currentUser.roleId == 1){
 
           var chart = anychart.pie3d([
 
@@ -168,6 +180,57 @@ app.controller('DashboardController', function($scope,Select,StudentApplicationM
 
           });
 
+        }else if(currentUser.roleId == 13){
+
+          $scope.scheds = e.scheds;
+
+          anychart.onDocumentReady(function () {
+            
+            // create pie chart with passed data
+            
+            var chart = anychart.pie([
+              
+              ['Passed', $scope.passed],
+              
+              ['Failed', $scope.failed],
+              
+              ['Credited', $scope.credited],
+              
+              ['Incomplete', $scope.incomplete]
+              
+            ]);
+
+            // create range color palette with color ranged between light blue and dark blue
+            
+            var palette = anychart.palettes.rangeColors();
+            
+            palette.items([{ color: '#64b5f6' }, { color: '#455a64' }]);
+            
+
+            // set chart title text settings
+            chart
+            
+              // set chart radius
+              .innerRadius('40%')
+              
+              // set palette to the chart
+              .palette(palette);
+
+            // set container id for the chart
+            chart.container('container');
+            
+            // initiate chart drawing
+            chart.draw();
+
+          });
+
+        }else if(currentUser.roleId == 12){
+
+          $scope.counts = e.counts;
+
+          $scope.scheds = e.scheds;
+
+          
         }
 
       }

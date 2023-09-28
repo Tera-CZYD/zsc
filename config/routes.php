@@ -317,6 +317,8 @@
 
       $routes->resources('Backups');
 
+      $routes->resources('AnnouncementManagements');
+
       $routes->resources('Specializations');
 
       $routes->connect('/reports/faculty_masterlists', ['controller' => 'Reports', 'action' => 'faculty_masterlists']);
@@ -342,6 +344,12 @@
       $routes->resources('StudentGrades');
 
       $routes->resources('AcademicRanks');
+
+      $routes->resources('Memorandums');
+
+      $routes->resources('MemorandumsImages');
+
+      $routes->connect('/memorandums/:id', ['controller' => 'Memorandums', 'action' => 'edit']);
 
       $routes->resources('FacultyStudentAttendances');
 
