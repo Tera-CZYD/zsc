@@ -41,7 +41,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label> COURSE <i class="required">*</i></label>
+                  <label> PROGRAM <i class="required">*</i></label>
                   <select selectize ng-model="data.RequestForm.course_id" ng-options="opt.id as opt.value for opt in course" ng-change="getCourse(data.RequestForm.course_id)" data-validation-engine="validate[required]">
                     <option value=""></option>
                   </select>

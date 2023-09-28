@@ -300,6 +300,8 @@ app.controller('RequestFormAddController', function($scope, RequestForm, Select,
 
       $scope.data.RequestForm.program_id = response.data.Student.program_id;
 
+      $scope.data.RequestForm.year_term_id = response.data.Student.year_term_id;
+
     });
 
   });
@@ -1132,7 +1134,11 @@ app.controller('AdminRequestFormAddController', function($scope, RequestForm, Se
 
       code : student.code,
 
-      name : student.name
+      name : student.name,
+
+      program_id : student.program_id,
+
+      year_term_id : student.year_term_id
 
     }; 
 
@@ -1145,6 +1151,10 @@ app.controller('AdminRequestFormAddController', function($scope, RequestForm, Se
     $scope.data.RequestForm.student_name = $scope.student.name;
 
     $scope.data.RequestForm.student_no = $scope.student.code;
+
+    $scope.data.RequestForm.program_id = $scope.student.program_id;
+
+    $scope.data.RequestForm.year_term_id = $scope.student.year_term_id;
 
   }
 
@@ -1380,7 +1390,6 @@ app.controller('AdminRequestFormViewController', function($scope, $routeParams, 
 
   }
 
-
 });
 
 app.controller('AdminRequestFormEditController', function($scope, $routeParams, RequestForm, Select) {
@@ -1502,7 +1511,11 @@ app.controller('AdminRequestFormEditController', function($scope, $routeParams, 
 
       code : student.code,
 
-      name : student.name
+      name : student.name,
+
+      program_id : student.program_id,
+
+      year_term_id : student.year_term_id
 
     }; 
 
@@ -1515,6 +1528,10 @@ app.controller('AdminRequestFormEditController', function($scope, $routeParams, 
     $scope.data.RequestForm.student_name = $scope.student.name;
 
     $scope.data.RequestForm.student_no = $scope.student.code;
+
+    $scope.data.RequestForm.program_id = $scope.student.program_id;
+
+    $scope.data.RequestForm.year_term_id = $scope.student.year_term_id;
 
   }
 
