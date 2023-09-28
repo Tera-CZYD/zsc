@@ -30,10 +30,17 @@
                 <input type="text" class="form-control" autocomplete="false" ng-model="data.StudentApplication.serial_number" data-validation-engine="validate[required]">
               </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-6">
               <div class="form-group">
                 <label> STUDENT ID NUMBER <i class="required">*</i></label>
                 <input type="text" class="form-control" autocomplete="false" ng-model="data.StudentApplication.student_no" data-validation-engine="validate[required]" disabled>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-gp">
+                <label for="student_no" style="margin-top: -18px">Student Application Number&emsp;<i class="required">*</i></label>
+                <input type="text" id="application_no" ng-model="data.StudentApplication.application_no" autocomplete="off" data-validation-engine="validate[required]" disabled>
+                <i class="ti-user"></i>
               </div>
             </div>
             <div class="col-md-3">
