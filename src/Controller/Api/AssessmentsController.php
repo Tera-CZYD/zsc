@@ -355,7 +355,7 @@ class AssessmentsController extends AppController {
 
           foreach ($student_enrolled_courses as $key => $value) {
 
-            $block_section_course_id = $value['id'];
+            $block_section_course_id = $value['block_section_course_id'];
           
             $tmp = "UPDATE block_section_courses SET enrolled_students = IFNULL(enrolled_students,0) + 1 WHERE id = $block_section_course_id";
 
