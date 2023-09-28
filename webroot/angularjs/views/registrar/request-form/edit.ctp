@@ -49,14 +49,9 @@
               </div>
               <div class="col-md-3">
                 <div class="form-group">
-                  <label> YEAR LEVEL <i class="required">*</i></label>
-                  <select class="form-control" ng-model="data.RequestForm.year" autocomplete="false" data-validation-engine="validate[required]" style="height: 44px">
+                  <label> YEAR TERM </label>
+                  <select selectize ng-model="data.RequestForm.year_term_id" ng-options="opt.id as opt.value for opt in year_terms">
                     <option value=""></option>
-                    <option value="First Year">First Year</option>
-                    <option value="Second Year">Second Year</option>
-                    </option>
-                    <option value="Third Year">Third Year</option>
-                    <option value="Fourth Year">Fourth Year</option>
                   </select>
                 </div>
               </div>
@@ -88,7 +83,8 @@
                   <label> PLEASE CHECK NATURE OF REQUEST <i class="required">*</i></label>
                   <div class="row mt-4">
                     <div class="col-md-4">
-                      <input icheck type="checkbox" class="form-control" autocomplete="false" ng-model="data.RequestForm.otr"> Transcript of Record (TOR)
+                      <input icheck type="checkbox" class="form-control" autocomplete="false" ng-change="selectTorDiploma(data.RequestForm.otr)" ng-model="data.RequestForm.otr"> Transcript of Record (TOR)
+                      &nbsp;<p ng-show="data.RequestForm.otr ==true">Price: 120.00/page</p>
                     </div>
                     <div class="col-md-4">
                       <input icheck type="checkbox" class="form-control" autocomplete="false" ng-model="data.RequestForm.cav"> Certification Authentication Verification (CAV)
@@ -121,7 +117,8 @@
                   <div class="row py-3"></div>
                   <div class="row mt-4">
                     <div class="col-md-4">
-                      <input icheck type="checkbox" class="form-control" ng-value-true="true" autocomplete="false" ng-model="data.RequestForm.dip"> Diploma
+                      <input icheck type="checkbox" class="form-control" ng-value-true="true" autocomplete="false" ng-change="selectTorDiploma(data.RequestForm.dip)" ng-model="data.RequestForm.dip"> Diploma
+                      <p ng-show="data.RequestForm.dip ==true">Price: 200.00</p>
                     </div>
                     <div class="col-md-4">
                       <input icheck type="checkbox" class="form-control" autocomplete="false" ng-model="data.RequestForm.rr"> Red Ribbon

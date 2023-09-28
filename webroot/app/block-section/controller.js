@@ -1049,6 +1049,8 @@ app.controller('BlockSectionScheduleViewController', function($scope, $routePara
 
   // load 
 
+
+
   $scope.load = function() {
 
     BlockSectionScheduleView.get({ id: $scope.id }, function(e) {
@@ -1057,11 +1059,49 @@ app.controller('BlockSectionScheduleViewController', function($scope, $routePara
 
     });
 
+    Select.get({ code: 'block-sections' },function(e){
+
+      $scope.sections = e.data;
+
+    });
+
+    Select.get({ code: 'block-section-courses' },function(e){
+
+      $scope.courses = e.data;
+
+    });
+
+    Select.get({ code: 'block-section-schedules' },function(e){
+
+      $scope.schedules = e.data;
+
+    });
+
   }
 
   $scope.load();
 
-  $scope.addSchedule = function() {
+    function timeToMinutes(time) {
+      // Split the time string into hours and minutes
+      const [hourString, minutes, ampm] = time.match(/(\d+):(\d+)\s(AM|PM)/).slice(1);
+      let hours = parseInt(hourString, 10);
+
+      // Determine if it's AM or PM and adjust the hours accordingly
+      if (ampm === 'PM' && hours !== 12) {
+        hours += 12;
+      } else if (ampm === 'AM' && hours === 12) {
+        hours = 0;
+      }
+
+      // Calculate the total minutes since midnight
+      return hours * 60 + parseInt(minutes, 10);
+    }
+
+
+
+
+  $scope.addSchedule = function() { 
+
 
     $('#add_schedule').validationEngine('attach');
 
@@ -1079,11 +1119,44 @@ app.controller('BlockSectionScheduleViewController', function($scope, $routePara
 
     if (valid) {
 
-      bootbox.confirm('Are you sure you want to save schedule?', function(c) {
+      // bootbox.confirm('Are you sure you want to save schedule?', function(c) {
 
-        if(c) {
+      //   if(c) {
 
-          BlockSectionScheduleAdd.save($scope.adata, function(e) {
+          let validTime = true;
+
+          let conflictMessage = ""
+
+          const input_time_end = timeToMinutes(data.time_end)
+
+          const input_time_start = timeToMinutes(data.time_start)
+
+          let data_time_start = ""
+
+          let data_time_end = ""
+
+          angular.forEach($scope.courses, function(courseValue,coursekey){
+
+             if(courseValue.room_id == $scope.data.BlockSectionCourse.room_id && courseValue.id != $scope.id){
+
+
+                if($scope.schedules.length > 0){
+
+                  angular.forEach($scope.schedules, function(schedValue,schedKey){
+
+                    // data_time
+
+                  })
+
+                }
+
+             }
+
+          })
+
+          if(validTime){
+
+            BlockSectionScheduleAdd.save($scope.adata, function(e) {
 
             if(e.ok) {
 
@@ -1101,11 +1174,26 @@ app.controller('BlockSectionScheduleViewController', function($scope, $routePara
 
           });
 
+          }else{
+
+              $.gritter.add({
+
+                title: 'Warning!',
+
+                text: conflictMessage,
+
+              });
+
+          }
+
+
+
+
           $('#add-schedule-modal').modal('hide');
 
-        }
+      //   }
 
-      });
+      // });
 
     }
 

@@ -72,14 +72,9 @@
               </div>
               <div class="col-md-3">
                 <div class="form-group">
-                  <label> YEAR LEVEL <i class="required">*</i></label>
-                  <select class="form-control" ng-model="data.RequestForm.year" autocomplete="false" data-validation-engine="validate[required]" style="height: 44px">
+                  <label> YEAR TERM </label>
+                  <select selectize ng-model="data.RequestForm.year_term_id" ng-options="opt.id as opt.value for opt in year_terms">
                     <option value=""></option>
-                    <option value="First Year">First Year</option>
-                    <option value="Second Year">Second Year</option>
-                    </option>
-                    <option value="Third Year">Third Year</option>
-                    <option value="Fourth Year">Fourth Year</option>
                   </select>
                 </div>
               </div>
@@ -169,7 +164,7 @@
                     <div class="col-md-2 mb-4">
                       <input icheck type="checkbox" class="form-control" ng-value-true="true" autocomplete="false" ng-model="data.RequestForm.other"> Others: <em>(please specify)</em>
                     </div>
-                    <div class="col-md-2" ng-show="data.RequestForm.other ==true">
+                    <div class="col-md-2" ng-show="data.RequestForm.other == true">
                       <input type="text" class="form-control" autocomplete="false" ng-model="data.RequestForm.otherVal">
                     </div>
                   </div>

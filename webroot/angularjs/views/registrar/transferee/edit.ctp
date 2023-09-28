@@ -40,14 +40,10 @@
             <div class="clearfix"></div>
             <div class="col-md-6">
               <div class="form-group">
-                <label> YEAR LEVEL <i class="required">*</i></label>
-                <select class="form-control" ng-model="data.Transferee.year_level" data-validation-engine="validate[required]">
-                 <option value=""></option>
-                 <option value="FIRST YEAR">FIRST YEAR</option>
-                 <option value="SECOND YEAR">SECOND YEAR</option></option>
-                 <option value="THIRD YEAR">THIRD YEAR</option>
-                 <option value="FOURTH YEAR">FOURTH YEAR</option>
-               </select>
+                <label> YEAR TERM </label>
+                <select selectize ng-model="data.Transferee.year_term_id" ng-options="opt.id as opt.value for opt in year_terms">
+                  <option value=""></option>
+                </select>
               </div>
             </div> 
 

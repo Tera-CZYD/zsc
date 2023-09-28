@@ -63,6 +63,10 @@ class DashboardsController extends AppController {
 
     $this->StudentClearances = TableRegistry::getTableLocator()->get('StudentClearances');
 
+    $this->StudentEnrolledSchedules = TableRegistry::getTableLocator()->get('StudentEnrolledSchedules');
+
+    $this->Settings = TableRegistry::getTableLocator()->get('Settings');
+
   }
 
   // public $components = array("Global");
@@ -82,6 +86,8 @@ class DashboardsController extends AppController {
     $base = $urlHelper->build('/', ['fullBase' => true]);
 
     $roleId = $user["roleId"];
+
+    // var_dump($user);
 
     if($user["roleId"] == 1){ //ADMIN DASHBOARD
 
@@ -331,6 +337,7 @@ class DashboardsController extends AppController {
 
 
       $studentData = $this->Students->find()
+      
         ->contain([
 
           'StudentEnrolledCourses' => [
@@ -356,6 +363,8 @@ class DashboardsController extends AppController {
         ])
 
       ->first();
+
+      $year_term = $studentData['year_term_id'];
 
         $student_subjects = $studentData['student_enrolled_courses'];
 
@@ -438,7 +447,80 @@ class DashboardsController extends AppController {
         ])
 
         ->all();
+
+      $enrolled_sub = $this->StudentEnrolledCourses->find()
+
+        ->where([
+
+          'student_id' => $student_id,
+
+          'year_term_id' => $year_term,
+
+          'visible' => 1
+
+        ])
+
+        ->all();
+
+        // var_dump($enrolled_sub);
+        $total_sub = 0;
+
+        $passed = 0;
+
+        $failed =0;
+
+        $credited = 0; 
         
+        $incomplete = 0;
+
+        foreach ($enrolled_sub as $key => $value) {
+
+          $total_sub+=1;
+
+          if($value['final_grade']<=3.00 && $value['final_grade']!=null){
+
+            $passed+=1;
+
+          }else{
+
+            $failed+=1;
+
+          }
+
+          if($value['remarks']=='PASSED'){
+
+            $credited+=1;
+
+          }
+
+          if($value['incomplete']){
+
+            $incomplete=+1;
+
+          }  
+
+        }
+
+        $dayToday = date("l");
+
+        $sched = $this->StudentEnrolledSchedules->find()
+
+          ->where([
+
+            'student_id' => $student_id,
+
+            'year_term_id' => $year_term,
+
+            'visible' => 1,
+
+            'day' => $dayToday
+
+          ])
+
+          ->order(['time_start' => 'DESC'])
+
+          ->all();
+
         $response = [
 
           'ok' => true,
@@ -449,7 +531,235 @@ class DashboardsController extends AppController {
 
           'student_subjects' => $student_subjects,
 
-          'roleId' => $roleId
+          'roleId' => $roleId,
+
+          'total_sub' => $total_sub,
+
+          'passed' => $passed,
+
+          'failed' => $failed,
+
+          'credited' => $credited,
+
+          'incomplete' => $incomplete,
+
+          'scheds' => $sched
+
+        ];
+
+        $this->response->withType('application/json');
+
+        $this->response->getBody()->write(json_encode($response));
+
+        return $this->response;
+      
+    }elseif($user['roleId'] == 12) { //FACULTY DASHBOARD
+
+      $employeeId = $user['employeeId'];
+
+
+      $employees = $this->Employees->find()
+
+        ->where([
+
+          'id' => $employeeId,
+
+          'visible' => 1
+
+        ])
+
+        ->first();
+
+      $settings = $this->Settings->find()->offset(9)->first();
+
+
+      $year_term = $settings['value'];
+
+      $dayToday = date("l");
+
+      $sched = $this->StudentEnrolledSchedules->find()
+
+        ->contain([
+
+          'BlockSectionSchedules' =>[
+
+            'BlockSections'
+
+          ]
+
+        ])
+
+        ->where([
+
+          'StudentEnrolledSchedules.faculty_id' => $employeeId,
+
+          'StudentEnrolledSchedules.year_term_id' => $year_term,
+
+          'StudentEnrolledSchedules.visible' => 1,
+
+          'StudentEnrolledSchedules.day' => $dayToday,
+
+          'StudentEnrolledSchedules.year_term_id' => $year_term
+
+        ])
+
+        ->order(['StudentEnrolledSchedules.time_start' => 'DESC'])
+
+        ->all();
+
+
+      $datas = array();
+
+      $clearance = $this->StudentEnrolledCourses->find()
+
+        ->where([
+
+          'faculty_id' => $employeeId,
+
+          'year_term_id' => $year_term,
+
+          'visible' => 1
+
+        ])
+
+        ->all();
+
+        $subjects = $this->StudentEnrolledCourses->find()
+
+        ->where([
+
+          'faculty_id' => $employeeId,
+
+          'year_term_id' => $year_term,
+
+          'visible' => 1
+
+        ])
+
+        ->group(['course_id'])
+
+        ->all();
+
+        // var_dump($subjects);
+
+        // $pending = $this->StudentEnrolledCourses->find()
+
+        //   ->select(['course_id', 'count' => 'COUNT(*)'])
+
+        //   ->where([
+
+        //       'clearance_status' => 0,
+
+        //       'faculty_id' => $employeeId,
+
+        //   ])
+
+        //   ->group(['course_id'])
+
+        //   ->toArray();
+
+        // $cleared = $this->StudentEnrolledCourses->find()
+
+        //   ->select(['course_id', 'count' => 'COUNT(*)'])
+
+        //   ->where([
+
+        //       'clearance_remarks' => 'CLEARED',
+
+        //       'clearance_status' => 1,
+
+        //       'faculty_id' => $employeeId,
+
+        //   ])
+
+        //   ->group(['course_id'])
+
+        //   ->toArray();
+
+        // $inc = $this->StudentEnrolledCourses->find()
+
+          // ->select(['course_id', 'count' => 'COUNT(*)'])
+
+          // ->where([
+
+          //     'clearance_remarks !=' => 'CLEARED',
+
+          //     'clearance_remarks IS NOT NULL',
+
+          //     'faculty_id' => $employeeId,
+
+          // ])
+
+          // ->group(['course_id'])
+
+          // ->toArray();
+
+        $pending = 0;
+
+        $cleared = 0;
+
+        $inc = 0;
+
+        $counts = [];
+
+        foreach ($subjects as $k => $data) {
+
+          $pending = 0;
+
+          $cleared = 0;
+
+          $inc = 0;
+            
+          foreach ($clearance as $key => $value) {
+
+            if($data['course_id']==$value['course_id']){
+
+              if($value['clearance_remarks'] == 'CLEARED' || $value['clearance_remarks'] == 1){
+
+              $cleared += 1;
+
+              }else if($value['clearance_remarks'] != 'CLEARED' && $value['clearance_remarks'] != null){
+
+                $inc += 1;
+
+              }else if($value['clearance_remarks'] == 0){
+
+                $pending += 1;
+
+              }
+
+            }
+
+          }
+
+          $counts[] = array(
+
+            'subject' => $data['course'],
+
+            'pending' => $pending,
+
+            'inc' =>$inc,
+
+            'cleared' => $cleared 
+
+          );
+
+        }
+
+        
+
+
+        // var_dump($pending);
+
+      
+
+        $response = [
+
+          'ok' => true,
+
+          'scheds' => $sched,
+
+          'counts' => $counts
 
         ];
 
