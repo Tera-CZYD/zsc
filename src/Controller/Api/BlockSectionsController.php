@@ -472,72 +472,132 @@ class BlockSectionsController extends AppController {
 
   public function scheduleAdd($id = null) {
 
-    $data = $this->getRequest()->getData();
+    if($this->request->is('post')){
 
-    if (!empty($data)) {
+        $data = $this->getRequest()->getData();
 
-        $main = $this->BlockSectionCourses->get($data['block_section_course_id']);
+        if (!empty($data)) { 
 
-        $blockSectionSchedule = $this->BlockSectionSchedules->newEmptyEntity();
+            $main = $this->BlockSectionCourses->get($data['block_section_course_id']);
 
-        $blockSectionSchedule = $this->BlockSectionSchedules->patchEntity($blockSectionSchedule, [
+            $blockSectionSchedule = $this->BlockSectionSchedules->newEmptyEntity();
 
-            'block_section_id' => $main->block_section_id,
+            $blockSectionSchedule = $this->BlockSectionSchedules->patchEntity($blockSectionSchedule, [
 
-            'block_section_course_id' => $data['block_section_course_id'],
+                'block_section_id' => $main->block_section_id,
 
-            'day' => $data['day'],
+                'block_section_course_id' => $data['block_section_course_id'],
 
-            'time_start' => $data['time_start'],
+                'day' => $data['day'],
 
-            'time_end' => $data['time_end'],
+                'time_start' => $data['time_start'],
 
-        ]);
+                'time_end' => $data['time_end'],
 
-        if ($this->BlockSectionSchedules->save($blockSectionSchedule)) {
+                'year_start' => $data['year_start'],
 
-          $response = [
+                'year_end' => $data['year_end'],
 
-            'ok' => true,
+                'room_id' => $data['room_id'],
 
-            'data' => $data,
+                'room' => $data['room'],
 
-            'msg' => 'Schedule has been successfully saved.',
+                'section_id' => $data['section_id'],
 
-          ];
+                'section' => $data['section'],
+
+            ]);
+
+            if ($this->BlockSectionSchedules->save($blockSectionSchedule)) {
+
+              $response = [
+
+                'ok' => true,
+
+                'data' => $data,
+
+                'msg' => 'Schedule has been successfully saved.',
+
+              ];
+
+            } else {
+
+              $response = [
+
+                'ok' => false,
+
+                'data' => $data,
+
+                'msg' => 'Failed to save schedule.',
+
+              ];
+
+            }
 
         } else {
 
-          $response = [
+            $response = [
 
-            'ok' => false,
+              'ok' => false,
 
-            'data' => $data,
+              'msg' => 'No data provided.',
 
-            'msg' => 'Failed to save schedule.',
+            ];
+        }
 
-          ];
+        $this->set([
+
+          'response' => $response,
+
+          '_serialize' => 'response',
+
+        ]);
+
+    }else{
+
+        $data = $this->getRequest()->getData();
+
+        $blockSectionSchedule = $this->BlockSectionSchedules->get($data['id']); 
+
+        $this->BlockSectionSchedules->patchEntity($blockSectionSchedule, $data); 
+
+        if ($this->BlockSectionSchedules->save($blockSectionSchedule)) {
+
+          $response = array(
+
+            'ok'  =>true,
+
+            'msg' =>'Block Sections has been successfully updated.',
+
+            'data'=>$data
+
+          );
+            
+        }else {
+
+          $response = array(
+
+            'ok'  =>true,
+
+            'data'=>$data,
+
+            'msg' =>'Block Sections cannot updated this time.',
+
+          );
 
         }
 
-    } else {
+        $this->set(array(
 
-        $response = [
+          'response'=>$response,
 
-          'ok' => false,
+          '_serialize'=>'response'
 
-          'msg' => 'No data provided.',
+        ));
 
-        ];
     }
 
-    $this->set([
 
-      'response' => $response,
-
-      '_serialize' => 'response',
-
-    ]);
 
     $this->response->withType('application/json');
 
@@ -615,21 +675,15 @@ class BlockSectionsController extends AppController {
 
   }
 
-  public function add_faculty($id = null) {
+  public function addFaculty($id = null) {
 
     $data = $this->getRequest()->getData();
 
+    $blockSectionCourse = $this->BlockSectionCourses->get($id);
+
     if (!empty($data)) {
 
-        $main = $this->BlockSectionCourses->get($data['course_id']);
-
-        $blockSectionCourse = $this->BlockSectionCourses->newEmptyEntity();
-
-        $blockSectionCourse = $this->BlockSectionCourses->patchEntity($blockSectionCourse, [
-
-            // 'faculty_id' => ,
-
-        ]);
+        $blockSectionCourse = $this->BlockSectionCourses->patchEntity($blockSectionCourse,$data);
 
         if ($this->BlockSectionCourses->save($blockSectionCourse)) {
 

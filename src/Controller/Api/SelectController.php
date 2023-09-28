@@ -10298,16 +10298,23 @@ class SelectController extends AppController {
 
       }
 
-    }else if ($code == 'block-sections') {
+    }else if ($code == 'block-section') {
+
+      $id = $this->request->getQuery('id');
 
       $tmp = $this->BlockSections->find()
 
-          ->where(['visible' => 1])
+          ->where([
+
+            'visible' => 1,
+
+            'id' => $id
+
+          ])
 
           ->order(['code' => 'ASC'])
 
-          ->all();
-
+          ->first();
 
 
       if(!empty($tmp)){

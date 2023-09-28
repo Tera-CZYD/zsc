@@ -85,7 +85,7 @@
 
         ORDER BY 
 
-          ApartelleRegistration.code ASC
+          ApartelleRegistration.code DESC
           
       ";
 
@@ -146,7 +146,7 @@
 
         ORDER BY 
 
-          ApartelleRegistration.code ASC
+          ApartelleRegistration.code DESC
           
       ";
 
@@ -233,7 +233,7 @@
 
         ORDER BY 
 
-          ApartelleRegistration.code ASC
+          ApartelleRegistration.code DESC
           
       ";
 
