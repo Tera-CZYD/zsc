@@ -2,7 +2,7 @@
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
-        <h4 class="header-title">ADDING & DROPPING SUBJECT MANAGEMENT</h4>
+        <h4 class="header-title">DROPPING SUBJECT</h4>
         <div class="clearfix"></div><hr>
         <!-- nav tab start -->
           <div class="col-lg-12">

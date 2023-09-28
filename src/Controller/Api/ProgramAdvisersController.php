@@ -159,11 +159,13 @@ class ProgramAdvisersController extends AppController {
 
           ->where([
 
-            'visible' => 1,
+            'visible'      => 1,
 
-            'college_id' => $data['college_id'],
+            'college_id'   => $data['college_id'],
 
-            'program_id' => $data['program_id'],
+            'program_id'   => $data['program_id'],
+
+            'year_term_id' => $data['year_term_id'],
 
           ])
 
@@ -307,7 +309,7 @@ class ProgramAdvisersController extends AppController {
 
       $assessment['email'] = $student['Student']['email'];
 
-      $assessment['year_term_id'] = 1;
+      $assessment['year_term_id'] = $student['Student']['year_term_id'];
 
       $assessment['contact_no'] = $student['Student']['contact_no'];
 

@@ -25,6 +25,8 @@ class ProspectusesController extends AppController {
 
     $this->CollegeProgramCourses = TableRegistry::getTableLocator()->get('CollegeProgramCourses');
 
+    $this->Courses = TableRegistry::getTableLocator()->get('Courses');
+
   }
 
   public function index(){   
@@ -340,14 +342,18 @@ class ProspectusesController extends AppController {
 
                 foreach ($prerequisites as $index => $datas) {
 
-                  $courses = $this->Courses->get($datas['CollegeProgramPrerequisite']['course_id']);
+                  $courses = $this->Courses->get($datas['course_id']);
+
+                  if(!empty($courses)){
+
+                    $course_prerequisites[] = array(
+
+                      'course'            => $courses['title'],
+
+                    );
+
+                  }
                   
-                  $course_prerequisites[] = array(
-
-                    'course'            => $courses['Course']['title'],
-
-                  );
-
                 }
 
               }
