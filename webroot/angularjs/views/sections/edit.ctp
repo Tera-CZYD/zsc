@@ -16,7 +16,7 @@
 
 </script>
 
-<div class="row" id="pageView">
+<div class="row" id="pageEdit">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
