@@ -77,7 +77,7 @@
                   </td> 
                 </tr>
                 <tr ng-show="datas == null || datas == ''">
-                  <td colspan="7">No available data</td>
+                  <td colspan="11">No available data</td>
                 </tr>
               </tbody>
             </table>

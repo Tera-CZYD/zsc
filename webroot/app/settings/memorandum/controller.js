@@ -420,7 +420,7 @@ app.controller('MemorandumViewController', function($scope, $routeParams, Memora
 
 });
 
-app.controller('MemorandumEditController', function($scope, $routeParams, Memorandum, MemorandumImage, MemorandumRemoveImage) {
+app.controller('MemorandumEditController', function($scope, $routeParams, Select, Memorandum, MemorandumImage, MemorandumRemoveImage) {
   
   $scope.id = $routeParams.id;
 
@@ -453,6 +453,12 @@ app.controller('MemorandumEditController', function($scope, $routeParams, Memora
     MemorandumImage : []
 
   }
+
+  Select.get({code: 'roles'}, function(e){
+
+    $scope.roles = e.data;
+
+  });
 
   // load 
 

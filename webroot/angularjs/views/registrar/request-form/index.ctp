@@ -55,7 +55,7 @@
               <div class="row">
                 <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                 
-                    <a href="#/registrar/request-form/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
+                    <a href="#/registrar/request-form/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> APPLY</a>
                   
                   <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
                   
