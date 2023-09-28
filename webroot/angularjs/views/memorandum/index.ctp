@@ -30,6 +30,7 @@
                           <th class="text-center w30px">#</th>
                           <th class="text-center"> TITLE </th>
                           <th class="text-center"> FILES </th>
+                          <th class="text-center"> VISIBILITY </th>
                           <th class="w90px"></th>
                         </tr>
                       </thread>
@@ -38,6 +39,7 @@
                           <td class="text-center">{{ (paginator.page - 1 ) * paginator.limit + $index + 1 }}</td>
                           <td class="text-center">{{ data.title }}</td>
                           <td class="text-center"><span ng-repeat="img in data.img"><a href="{{ img.imageSrc }}">{{ img.name }}</a></span></td>
+                          <td class="text-center">{{ data.visible_to }}</td>
                           <td>
                             <div class="btn-group btn-group-xs">
                               <!-- <a href="#/settings/memorandum/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>  -->

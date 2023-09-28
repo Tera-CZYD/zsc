@@ -109,7 +109,7 @@
 
     'settings/awardee-management',
 
-    'settings/announcement-management',
+    'settings/announcement',
 
     'settings/memorandum',
 
