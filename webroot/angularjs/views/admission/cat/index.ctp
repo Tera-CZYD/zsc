@@ -664,14 +664,14 @@
               <input type="text" class="form-control clockpicker" ng-model="schedule.time" data-validation-engine="validate[required]" autocomplete="off">
             </div>
           </div>
-          <div class="col-md-12">
+          <!-- <div class="col-md-12">
             <div class="form-group">
               <label> ROOM <i class="required">*</i></label>
               <select selectize ng-model="schedule.room" ng-options="opt.id as opt.value for opt in rooms" data-validation-engine="validate[required]" autocomplete="off">
                 <option value=""></option>
               </select>
             </div>
-          </div>
+          </div> -->
           <div class="col-md-12">
             <div class="form-group">
               <label> PLACE </label>

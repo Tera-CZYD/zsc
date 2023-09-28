@@ -626,7 +626,7 @@ class StudentApplicationsController extends AppController {
 
   }
 
-  public function delete_image($id = null){
+  public function deleteImage($id = null){
 
     $data = $this->StudentApplicationImages->get($id);
 
