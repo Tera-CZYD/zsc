@@ -17,7 +17,9 @@ app.controller("CompletionController", function ($scope, Completion) {
     options = typeof options !== "undefined" ? options : {};
 
     Completion.query(options, function (e) {
+
       if (e.ok) {
+
         $scope.datas = e.data;
 
         $scope.conditionsPrint = e.conditionsPrint;
@@ -25,8 +27,11 @@ app.controller("CompletionController", function ($scope, Completion) {
         $scope.paginator = e.paginator;
 
         $scope.pages = paginator($scope.paginator, 5);
+
       }
+
     });
+
   };
 
   $scope.load();
@@ -44,6 +49,7 @@ app.controller("CompletionController", function ($scope, Completion) {
     $scope.endDate = null;
 
     $scope.load();
+
   };
 
   $scope.searchy = function (search) {
@@ -51,12 +57,19 @@ app.controller("CompletionController", function ($scope, Completion) {
     search = typeof search !== "undefined" ? search : "";
 
     if (search.length > 0) {
+
       $scope.load({
+
         search: search,
+
       });
+
     } else {
+
       $scope.load();
+
     }
+
   };
 
   $scope.selectedFilter = 'date';
@@ -170,6 +183,7 @@ app.controller("CompletionController", function ($scope, Completion) {
     }
 
   };
+  
 });
 
 app.controller("CompletionAddController",function ($scope, Completion, Select) {

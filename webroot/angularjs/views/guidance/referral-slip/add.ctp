@@ -75,7 +75,7 @@
               </div>
             </div> -->
 
-            <div class="col-md-12">
+            <div class="col-md-8">
               <div class="form-group">
                 <label> PROGRAM <i class="required">*</i></label>
                 <select selectize ng-options="opt.id as opt.value for opt in college_program" ng-model="data.ReferralSlip.course_id" ng-change="getCourse(data.ReferralSlip.course_id)" data-validation-engine="validate[required]">
@@ -83,16 +83,12 @@
               </div>
             </div>
             
-            <div class="col-md-12">
+            <div class="col-md-4">
               <div class="form-group">
-                <label> YEAR LEVEL <i class="required">*</i></label>
-                <select class="form-control" ng-model="data.ReferralSlip.year" data-validation-engine="validate[required]">
+                <label> YEAR TERM </label>
+                <select selectize ng-model="data.ReferralSlip.year_term_id" ng-options="opt.id as opt.value for opt in year_terms">
                   <option value=""></option>
-                  <option value="First Year">First Year</option>
-                  <option value="Second Year">Second Year</option></option>
-                  <option value="Third Year">Third Year</option>
-                  <option value="Fourth Year">Fourth Year</option>
-               </select>
+                </select>
               </div>
             </div>
 
