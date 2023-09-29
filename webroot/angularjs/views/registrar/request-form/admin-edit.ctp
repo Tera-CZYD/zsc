@@ -73,7 +73,7 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <label> YEAR TERM </label>
-                  <select selectize ng-model="data.RequestForm.year_term_id" ng-options="opt.id as opt.value for opt in year_terms">
+                  <select selectize ng-model="data.RequestForm.year_term_id" ng-options="opt.id as opt.value for opt in year_terms" ng-change="getYear(data.RequestForm.year_term_id)" data-validation-engine="validate[required]">
                     <option value=""></option>
                   </select>
                 </div>
