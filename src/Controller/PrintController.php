@@ -10276,7 +10276,7 @@ class PrintController extends AppController {
     $pdf->AddPage("P", "Legal", 0);
     // $pdf->Image($this->base .'/assets/img/dental_form2.png',0,0,215.9,355.6);
 
-    $pdf->Ln(50);
+    $pdf->Ln(20);
     $pdf->SetFont("Arial", 'B', 11);
     $pdf->Cell(35,5,'',0,0,'L');
     $pdf->Cell(10,5,'ORAL HEALTH CONDITION',0,0,'C');
