@@ -176,8 +176,8 @@
           <?php endif ?>
 
           <?php if (hasAccess('cashier/menu', $currentUser)): ?>
-            <li class="nav-link-side nav-payment nav-assessment"><a><i class="fa fa-credit-card"></i> Cashier </a>
-              <ul class="nav child_menu collapse collapse-payment collapse-assessment">
+            <li class="nav-link-side nav-payment nav-assessment nav-requested-form-payment"><a><i class="fa fa-credit-card"></i> Cashier </a>
+              <ul class="nav child_menu collapse collapse-payment collapse-assessment collapse-requested-form-payment">
 
                 <?php if (hasAccess('payment/index', $currentUser)): ?>
                   <li class="nav-link-side nav-payment">
