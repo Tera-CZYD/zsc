@@ -363,7 +363,7 @@ app.controller('RequestFormAddController', function($scope, RequestForm, Select,
 
         if(q.data){
 
-          Select.get({code: 'check-transaction', purpose : $scope.data.RequestForm.purpose, student_id : $scope.data.RequestForm.student_id}, function(e) {
+          Select.get({code: 'check-transaction', purpose : $scope.data.RequestForm.purpose_id, student_id : $scope.data.RequestForm.student_id}, function(e) {
 
             if(e.data){
 
@@ -1222,7 +1222,7 @@ app.controller('AdminRequestFormAddController', function($scope, RequestForm, Se
 
         if(q.data){
 
-          Select.get({code: 'check-transaction', purpose : $scope.data.RequestForm.purpose, student_id : $scope.data.RequestForm.student_id}, function(e) {
+          Select.get({code: 'check-transaction', data : $scope.data, purpose : $scope.data.RequestForm.purpose_id, student_id : $scope.data.RequestForm.student_id}, function(e) {
 
             if(e.data){
 
@@ -1260,7 +1260,7 @@ app.controller('AdminRequestFormAddController', function($scope, RequestForm, Se
 
                 title: 'Warning!',
 
-                text:  'Student still have a pending request with the same purpose.',
+                text:  'Student still have a pending request with the same purpose and Requested Form. File an Affidavit Of Loss <a href="#/registrar/admin-affidavit-of-loss">Click here</a>'
 
               });
 
