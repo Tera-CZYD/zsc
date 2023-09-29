@@ -177,11 +177,15 @@
 
     'registrar/student-profile',
 
+    'registrar/scholastic-document',
+
     //CASHIER
 
     'cashier/payment',
 
     'cashier/assessment',
+
+    'cashier/requested-form',
 
     //GUIDANCE AND COUNSELING
 

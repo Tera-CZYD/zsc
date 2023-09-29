@@ -351,6 +351,24 @@ app.controller('RequestFormAddController', function($scope, RequestForm, Select,
     }
 
   }
+
+  $scope.getYear = function(id){
+
+    if($scope.year_terms.length > 0){
+
+      $.each($scope.year_terms, function(i,val){
+
+        if(id == val.id){
+
+          $scope.data.RequestForm.year = val.value;
+
+        }
+
+      });
+
+    }
+
+  }
   
 
   $scope.save = function() {
@@ -363,7 +381,7 @@ app.controller('RequestFormAddController', function($scope, RequestForm, Select,
 
         if(q.data){
 
-          Select.get({code: 'check-transaction', purpose : $scope.data.RequestForm.purpose, student_id : $scope.data.RequestForm.student_id}, function(e) {
+          Select.get({code: 'check-transaction', purpose : $scope.data.RequestForm.purpose_id, student_id : $scope.data.RequestForm.student_id}, function(e) {
 
             if(e.data){
 
@@ -401,7 +419,7 @@ app.controller('RequestFormAddController', function($scope, RequestForm, Select,
 
                 title: 'Warning!',
 
-                text:  'You still have a pending request with the same purpose.',
+                text:  'Student still have a pending request with the same purpose and Requested Form. File an Affidavit Of Loss <a href="#/registrar/admin-affidavit-of-loss">Click here</a>'
                 
               });
 
@@ -585,6 +603,24 @@ app.controller('RequestFormEditController', function($scope, $routeParams, Reque
         if(id == val.id){
 
           $scope.data.RequestForm.purpose = val.value;
+
+        }
+
+      });
+
+    }
+
+  }
+
+  $scope.getYear = function(id){
+
+    if($scope.year_terms.length > 0){
+
+      $.each($scope.year_terms, function(i,val){
+
+        if(id == val.id){
+
+          $scope.data.RequestForm.year = val.value;
 
         }
 
@@ -1100,6 +1136,24 @@ app.controller('AdminRequestFormAddController', function($scope, RequestForm, Se
 
   }
 
+  $scope.getYear = function(id){
+
+    if($scope.year_terms.length > 0){
+
+      $.each($scope.year_terms, function(i,val){
+
+        if(id == val.id){
+
+          $scope.data.RequestForm.year = val.value;
+
+        }
+
+      });
+
+    }
+
+  }
+
   $scope.searchStudent = function(options) {
 
     options = typeof options !== 'undefined' ?  options : {};
@@ -1222,7 +1276,7 @@ app.controller('AdminRequestFormAddController', function($scope, RequestForm, Se
 
         if(q.data){
 
-          Select.get({code: 'check-transaction', purpose : $scope.data.RequestForm.purpose, student_id : $scope.data.RequestForm.student_id}, function(e) {
+          Select.get({code: 'check-transaction', data : $scope.data, purpose : $scope.data.RequestForm.purpose_id, student_id : $scope.data.RequestForm.student_id}, function(e) {
 
             if(e.data){
 
@@ -1260,7 +1314,7 @@ app.controller('AdminRequestFormAddController', function($scope, RequestForm, Se
 
                 title: 'Warning!',
 
-                text:  'Student still have a pending request with the same purpose.',
+                text:  'Student still have a pending request with the same purpose and Requested Form. File an Affidavit Of Loss <a href="#/registrar/admin-affidavit-of-loss">Click here</a>'
 
               });
 
@@ -1461,6 +1515,24 @@ app.controller('AdminRequestFormEditController', function($scope, $routeParams, 
         if(id == val.id){
 
           $scope.data.RequestForm.purpose = val.value;
+
+        }
+
+      });
+
+    }
+
+  }
+
+  $scope.getYear = function(id){
+
+    if($scope.year_terms.length > 0){
+
+      $.each($scope.year_terms, function(i,val){
+
+        if(id == val.id){
+
+          $scope.data.RequestForm.year = val.value;
 
         }
 

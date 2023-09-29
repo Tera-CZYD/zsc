@@ -30,7 +30,7 @@ use App\Model\Table\CounselingTypesTable;
 use App\Model\Table\CounselingIntakesTable;
 use App\Model\Table\ParticipantEvaluationActivitiesTable;
 use App\Model\Table\StudentExitsTable;
-use App\Model\Table\RolesTable;
+use App\Model\Table\RolesTable; 
 
 class SelectController extends AppController {
 
@@ -2713,7 +2713,13 @@ class SelectController extends AppController {
 
     }else if ($code == 'check-transaction') {
 
-      $purpose = $this->request->getQuery('purpose');
+      $current_year = date('Y');
+
+      $purpose_id = $this->request->getQuery('purpose');
+
+      $data = $this->request->getQuery('data');
+
+      $data = json_decode($data);
 
       $student_id = $this->request->getQuery('student_id');
      
@@ -2725,23 +2731,123 @@ class SelectController extends AppController {
 
           'approve' => 0,
 
-          'purpose' => $purpose,
+          'purpose_id' => $purpose_id,
 
-          'student_id' => $student_id
+          'student_id' => $student_id,
+
+          'YEAR(date)' => $current_year
 
         ])
 
-      ->count();
+      ->all();
 
-      if($tmp == 0){
+      $datas = 1;
 
-        $datas = 1;
+      // debug($data);
 
-      }else{
+      foreach ($tmp as $key => $value) {
+          
+          if($value['otr'] != null && $value['otr'] > 0){
 
-        $datas = 0;
+            $otr = isset($data->RequestForm->otr) ? $data->RequestForm->otr : null; 
+
+            if($value['otr'] == $otr){
+
+              $datas = 0;
+
+            }
+
+          }
+
+          if($value['cav'] != null && $value['cav'] > 0){
+
+            $cav = isset($data->RequestForm->cav) ? $data->RequestForm->cav : null; 
+
+            // debug($cav);
+
+            if($value['cav'] == $cav) {
+
+              $datas = 0;
+
+            }
+
+          }
+
+          if($value['cert'] != null && $value['cert'] > 0){
+
+            $cert = isset($data->RequestForm->cert) ? $data->RequestForm->cert : null; 
+
+            if($value['cert'] == $cert){
+
+              $datas = 0;
+
+            }
+
+          }
+
+          if($value['hon'] != null && $value['hon'] > 0){
+
+            $hon = isset($data->RequestForm->hon) ? $data->RequestForm->hon : null; 
+
+            if($value['hon'] == $hon){
+
+              $datas = 0;
+
+            }
+
+          }
+
+          if($value['authGrad'] != null && $value['authGrad'] > 0){
+
+            $authGrad = isset($data->RequestForm->authGrad) ? $data->RequestForm->authGrad : null; 
+
+            if($value['authGrad'] == $authGrad){
+
+              $datas = 0;
+
+            }
+
+          }
+
+          if($value['authUGrad'] != null && $value['authUGrad'] > 0){
+
+            $authUGrad = isset($data->RequestForm->authUGrad) ? $data->RequestForm->authUGrad : null; 
+
+            if($value['authUGrad'] == $authUGrad){
+
+              $datas = 0;
+
+            }
+
+          }
+
+          if($value['dip'] != null && $value['dip'] > 0){
+
+            $dip = isset($data->RequestForm->dip) ? $data->RequestForm->dip : null; 
+
+            if($value['dip'] == $dip){
+
+              $datas = 0;
+
+            }
+
+          }
+
+          if($value['rr'] != null && $value['rr'] > 0){
+
+            $rr = isset($data->RequestForm->rr) ? $data->RequestForm->rr : null;
+
+            if($value['rr'] == $rr){
+
+              $datas = 0;
+
+            }
+
+          }
 
       }
+
+      // debug($datas);
 
     }else if ($code == 'check-student-ledger') {
 
