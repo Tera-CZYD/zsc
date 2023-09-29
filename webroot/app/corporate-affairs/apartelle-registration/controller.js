@@ -492,6 +492,17 @@ app.controller('ApartelleRegistrationAddController', function($scope, ApartelleR
 
       $scope.data.ApartelleRegistration.student_no = response.data.Student.student_no;
 
+      $scope.data.ApartelleRegistration.program_id = response.data.Student.program_id;
+
+      $scope.data.ApartelleRegistration.year_term_id = response.data.Student.year_term_id;
+
+      $scope.data.ApartelleRegistration.date_of_birth = response.data.Student.date_of_birth;
+
+      $scope.data.ApartelleRegistration.address = response.data.Student.address;
+
+      $scope.data.ApartelleRegistration.sex = response.data.Student.gender;
+
+
     });
 
   });
@@ -708,11 +719,9 @@ app.controller('ApartelleRegistrationEditController', function($scope, $routePar
 
 });
 
-
-
 app.controller('AdminApartelleRegistrationController', function($scope, ApartelleRegistration,ApartelleRegistrationEmail) {
 
-    $scope.today = Date.parse('today').toString('MM/dd/yyyy');
+  $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
   $('.datepicker').datepicker({
    
@@ -1124,8 +1133,7 @@ app.controller('AdminApartelleRegistrationController', function($scope, Apartell
 
   }
 
-  });
-
+});
 
 app.controller('AdminApartelleRegistrationAddController', function($scope, ApartelleRegistration, Select) {
 
@@ -1231,7 +1239,17 @@ app.controller('AdminApartelleRegistrationAddController', function($scope, Apart
 
       code : student.code,
 
-      name : student.name
+      name : student.name,
+
+      program_id : student.program_id,
+
+      year_term_id : student.year_term_id,
+
+      date_of_birth : student.date_of_birth,
+
+      address : student.address,
+
+      gender : student.gender,
 
     }; 
 
@@ -1242,6 +1260,16 @@ app.controller('AdminApartelleRegistrationAddController', function($scope, Apart
     $scope.data.ApartelleRegistration.student_id = $scope.student.id;
 
     $scope.data.ApartelleRegistration.student_name = $scope.student.name;
+
+    $scope.data.ApartelleRegistration.program_id = $scope.student.program_id;
+
+    $scope.data.ApartelleRegistration.year_term_id = $scope.student.year_term_id;
+
+    $scope.data.ApartelleRegistration.date_of_birth = $scope.student.date_of_birth;
+
+    $scope.data.ApartelleRegistration.address = $scope.student.address;
+
+    $scope.data.ApartelleRegistration.sex = $scope.student.gender;
 
   }
 
@@ -1281,8 +1309,9 @@ app.controller('AdminApartelleRegistrationAddController', function($scope, Apart
 
     }  
 
-  }});
+  }
 
+});
 
 app.controller('AdminApartelleRegistrationViewController', function($scope, $routeParams, ApartelleRegistration,ApartelleRegistrationApprove, ApartelleRegistrationDisapproved,Select) {
 
@@ -1426,14 +1455,13 @@ app.controller('AdminApartelleRegistrationViewController', function($scope, $rou
 
 });
 
-
 app.controller('AdminApartelleRegistrationEditController', function($scope, $routeParams, ApartelleRegistration, Select) {
   
   $scope.id = $routeParams.id;
 
   $('#form').validationEngine('attach');
 
- $('.datepicker').datepicker({
+  $('.datepicker').datepicker({
 
     format:'mm/dd/yyyy',
 
@@ -1443,7 +1471,7 @@ app.controller('AdminApartelleRegistrationEditController', function($scope, $rou
 
   });
 
- $('.clockpicker').clockpicker({
+  $('.clockpicker').clockpicker({
 
     donetext: 'Done',
 
@@ -1539,7 +1567,15 @@ app.controller('AdminApartelleRegistrationEditController', function($scope, $rou
 
       code : student.code,
 
-      name : student.name
+      name : student.name,
+
+      program_id : student.program_id,
+
+      year_term_id : student.year_term_id,
+
+      date_of_birth : student.date_of_birth,
+
+      address : student.address,
 
     }; 
 
@@ -1550,6 +1586,14 @@ app.controller('AdminApartelleRegistrationEditController', function($scope, $rou
     $scope.data.ApartelleRegistration.student_id = $scope.student.id;
 
     $scope.data.ApartelleRegistration.student_name = $scope.student.name;
+
+    $scope.data.ApartelleRegistration.program_id = $scope.student.program_id;
+
+    $scope.data.ApartelleRegistration.year_term_id = $scope.student.year_term_id;
+
+    $scope.data.ApartelleRegistration.date_of_birth = $scope.student.date_of_birth;
+
+    $scope.data.ApartelleRegistration.address = $scope.student.address;
 
   }
 
@@ -1591,4 +1635,6 @@ app.controller('AdminApartelleRegistrationEditController', function($scope, $rou
 
     }
 
-  }});
+  }
+
+});
