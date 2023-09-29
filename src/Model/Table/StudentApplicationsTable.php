@@ -237,6 +237,22 @@ class StudentApplicationsTable extends Table{
 
       $order = "ORDER BY CAST(StudentApplication.rate AS DECIMAL(10, 2)) DESC";
 
+    }elseif(@$conditions['order'] == 'applicantNameDesc'){
+
+      $order = "ORDER BY full_name DESC";
+
+    }elseif(@$conditions['order'] == 'applicantNameAsc'){
+
+      $order = "ORDER BY full_name ASC";
+
+    }elseif(@$conditions['order'] == 'applicationDateDesc'){
+
+      $order = "ORDER BY StudentApplication.application_date DESC";
+
+    }elseif(@$conditions['order'] == 'applicationDateAsc'){
+
+      $order = "ORDER BY StudentApplication.application_date ASC";
+
     }else{
 
       $order = "ORDER BY full_name ASC";
