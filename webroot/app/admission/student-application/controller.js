@@ -350,47 +350,27 @@ app.controller('StudentApplicationAddController', function($scope, StudentApplic
 
   $scope.generateRandomString();
 
-  // $scope.isValidFileType = function (file) {
-    
-  //   var allowedExtensions = ["png", "jpeg", "jpg", "pdf"];
+  $scope.generateApplicationNumber = function(){
 
-    
-  //   var fileExtension = file.name.split('.').pop().toLowerCase();
+        var result = '';
+       
+        var characters = '0123456789';
+       
+        var charactersLength = characters.length;
+       
+        for (var i = 0; i < 5; i++) {
+       
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
+       
+        }
 
-    
-  //   return allowedExtensions.indexOf(fileExtension) !== -1;
+        const d = new Date();
 
-  // };
+        $scope.data.StudentApplication.application_no = d.getFullYear()+'-AN-'+result;
 
-  // $scope.validateFiles = function () {
+      }
 
-  //   console.log('sheesh')
-
-  //   var validFiles = [];
-  //   var invalidFiles = [];
-
-  //   // Loop through the selected files
-  //   for (var i = 0; i < $scope.data.StudentApplicationImage.length; i++) {
-  //     var file = $scope.data.StudentApplicationImage[i];
-
-  //     // Check if the file is of an allowed type
-  //     if ($scope.isValidFileType(file)) {
-  //       validFiles.push(file);
-  //     } else {
-  //       invalidFiles.push(file);
-  //     }
-  //   }
-
-    
-  //   $scope.data.StudentApplicationImage = validFiles;
-
-
-  //   if (invalidFiles.length > 0) {
-  //     alert("Invalid file types. Allowed types: PNG, JPEG, PDF");
-      
-  //   }
-
-  // };
+      $scope.generateApplicationNumber();
 
   $scope.saveImages = function (files) {
 
@@ -692,6 +672,28 @@ app.controller('StudentApplicationEditController', function($scope, $routeParams
   }
 
   $scope.load();
+
+  $scope.generateApplicationNumber = function(){
+
+        var result = '';
+       
+        var characters = '0123456789';
+       
+        var charactersLength = characters.length;
+       
+        for (var i = 0; i < 5; i++) {
+       
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
+       
+        }
+
+        const d = new Date();
+
+        $scope.data.StudentApplication.application_no = d.getFullYear()+'-AN-'+result;
+
+      }
+
+      $scope.generateApplicationNumber();
 
   $scope.addImage = function() {
 

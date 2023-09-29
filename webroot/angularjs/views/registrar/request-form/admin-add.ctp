@@ -83,12 +83,13 @@
                   <label> DATE <i class="required">*</i></label>
                   <input type="text" class="form-control datepicker" autocomplete="false" ng-model="data.RequestForm.date" data-validation-engine="validate[required]">
                 </div>
-              </div>
-              <div class="col-md-6">
+              </div><div class="col-md-6">
                 <div class="form-group">
-                  <label> PURPOSE <i class="required">*</i></label>
-                  <select selectize ng-model="data.RequestForm.purpose_id" ng-options="opt.id as opt.value for opt in purpose" ng-change="getPurpose(data.RequestForm.purpose_id)" data-validation-engine="validate[required]">
+                  <label> IDENTIFIER <i class="required">*</i></label>
+                  <select selectize ng-model="data.RequestForm.identifier" autocomplete="false" data-validation-engine="validate[required]">
                     <option value=""></option>
+                    <option value="Graduate">Graduate</option>
+                    <option value="Enrolled">Enrolled</option>
                   </select>
                 </div>
               </div>
@@ -96,6 +97,14 @@
                 <div class="form-group">
                   <label> REMARKS <i class="required">*</i></label>
                   <textarea rows="1" class="form-control" autocomplete="false" ng-model="data.RequestForm.remarks" data-validation-engine="validate[required]"></textarea>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group" ng-show="data.RequestForm.identifier != undefined">
+                  <label> PURPOSE <i class="required">*</i></label>
+                  <select selectize ng-model="data.RequestForm.purpose_id" ng-options="opt.id as opt.value for opt in purpose" ng-change="getPurpose(data.RequestForm.purpose_id)" data-validation-engine="validate[required]">
+                    <option value=""></option>
+                  </select>
                 </div>
               </div>
               <div class="col-md-6">
