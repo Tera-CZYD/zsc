@@ -471,7 +471,11 @@ app.controller('DentalAddController', function($scope, Dental, Select) {
 
       name : student.name,
      
-      age : age, 
+      age : student.age, 
+
+      program_id : student.program_id, 
+
+      year_term_id : student.year_term_id, 
 
     }; 
     
@@ -487,6 +491,10 @@ app.controller('DentalAddController', function($scope, Dental, Select) {
     $scope.data.Dental.student_no = $scope.student.code;
 
     $scope.data.Dental.age = $scope.student.age;
+
+    $scope.data.Dental.course_id = $scope.student.program_id;
+
+    $scope.data.Dental.year_term_id = $scope.student.year_term_id;
 
   }
 
