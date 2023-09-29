@@ -49,11 +49,6 @@ class PrintController extends AppController {
 
     $this->loadModel('Students');
 
-<<<<<<< HEAD
-    $this->loadModel('AddingDroppingSubjects');
-
-=======
->>>>>>> 1123ad511b3ef0ae1a8578805c485c085864f3ab
     $this->loadModel('ClassSchedules');
 
     $this->loadModel('BlockSections');
@@ -10281,13 +10276,57 @@ class PrintController extends AppController {
     $pdf->AddPage("P", "Legal", 0);
     // $pdf->Image($this->base .'/assets/img/dental_form2.png',0,0,215.9,355.6);
 
-    $pdf->Ln(10);
+    $pdf->Ln(50);
     $pdf->SetFont("Arial", 'B', 11);
     $pdf->Cell(35,5,'',0,0,'L');
     $pdf->Cell(10,5,'ORAL HEALTH CONDITION',0,0,'C');
     $pdf->Cell(101,5,'',0,0,'L');
     $pdf->Cell(10,5,'DENTAL HEALTH CONDITION',0,0,'C');
     $pdf->Ln(10);
+
+        $dentalImages = [];
+
+      if (!empty($data['DentalImage'])) {
+          foreach ($data['DentalImage'] as $image) {
+              if (!is_null($image['images'])) {
+                  $dentalImages[] = [
+                      'imageSrc' => '/uploads/dental/' . $id . '/' . $image['images'],
+                      'name' => $image['images'],
+                      'id' => $image['dental_id'] ?? null,
+                  ];
+              }
+          }
+      }
+
+      function isImageFile($file)
+        {
+            $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+            $fileExtension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+            return in_array($fileExtension, $allowedExtensions) && getimagesize('../webroot' . $file['imageSrc']);
+        }
+
+        $xPosition = 125;
+        $yPosition = 20;
+        $imageCount = 0;
+        $imageLimit = 2; // Set the limit to 2 images
+
+        if (!empty($dentalImages)) {
+            foreach ($dentalImages as $img) {
+                if (isImageFile($img)) {
+                    $imageCount++;
+                    $pdf->Image($this->base . $img['imageSrc'], $xPosition, $yPosition, 70, 35);
+                    $yPosition += 37;
+                    if ($imageCount == $imageLimit) {
+                        break; // Stop adding images after reaching the limit
+                    }
+                    if ($imageCount % 2 === 0) {
+                        // $xPosition = 115;
+                        $yPosition += 37;
+                    }
+                }
+            }
+        }
+
     $pdf->SetFont("Arial", '', 11);
     $pdf->Cell(2.5,5,'',0,0,'L');
     $pdf->SetFillColor(255,255,255);
@@ -24755,18 +24794,18 @@ class PrintController extends AppController {
     $pdf->SetFont("Times", '', 6);
     $rows = 0;
 
-    if (!empty($tmpData)) {
+    if ($tmpData != null) {
     foreach ($tmpData as $key => $data) {
         $tmp = $data['AddingDroppingSubjectSub'];
         $pdf->Cell(3);
         $y = $pdf->GetY();
 
         $pdf->SetFont("Arial", '', 8);
-        $courseTitle = $data['AddingDroppingSubjectSub']['course_title'];
-        $status = $data['AddingDroppingSubjectSub']['status'];
+        $courseTitle = $data['course_title'];
+        $status = $data['status'];
         
-        $courseTitle = $data['AddingDroppingSubjectSub']['course_title'];
-        $status = $data['AddingDroppingSubjectSub']['status'];
+        $courseTitle = $data['course_title'];
+        $status = $data['status'];
         $courseTitleParts = explode(' ', $courseTitle);
         $courseTitleLines = [];
 
@@ -24793,7 +24832,7 @@ class PrintController extends AppController {
 
         $pdf->SetFont("Arial", '', 8);
         $pdf->Cell(102.9, 10, '', 0, 0, 'C');
-        $pdf->CellFitSpace(104, 10, $data['AddingDroppingSubjectSub']['faculty_name'], 1, 0, 'C');
+        $pdf->CellFitSpace(104, 10, $data['faculty_name'], 1, 0, 'C');
         $pdf->Ln(10);
 
         $rows++;
@@ -33509,12 +33548,12 @@ class PrintController extends AppController {
 
     $dentalImages = [];
 
-    if (!empty($data['StudentFile'])) {
-        foreach ($data['StudentFile'] as $image) {
-            if (!is_null($image['files'])) {
+    if (!empty($data['MedicalStudentProfileImage'])) {
+        foreach ($data['MedicalStudentProfileImage'] as $image) {
+            if (!is_null($image['images'])) {
                 $dentalImages[] = [
-                    'imageSrc' => '/uploads/medical-student-profile/' . $id . '/' . $image['files'],
-                    'name' => $image['files'],
+                    'imageSrc' => '/uploads/medical-student-profile/' . $id . '/' . $image['images'],
+                    'name' => $image['images'],
                     'id' => $image['id'] ?? null,
                 ];
             }
