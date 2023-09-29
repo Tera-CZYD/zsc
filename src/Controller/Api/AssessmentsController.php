@@ -183,7 +183,9 @@ class AssessmentsController extends AppController {
 
       ->contain([
 
-        'AssessmentSubs'
+        'AssessmentSubs',
+
+        'YearLevelTerms'
 
       ])
 
@@ -203,9 +205,12 @@ class AssessmentsController extends AppController {
 
         'AssessmentSub' => $data['Assessment']->assessment_subs
 
+        'YearLevelTerm' => $data['Assessment']->year_level_term
+
       ];
 
-      unset($data['Assessment']->assessment_sub);
+      unset($data['Assessment']->assessment_subs);
+      unset($data['Assessment']->year_level_term);
 
      $response = [
 

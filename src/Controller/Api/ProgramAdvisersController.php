@@ -363,7 +363,7 @@ class ProgramAdvisersController extends AppController {
 
           $assessment_sub['athletics_fee'] = $fees['ATH']['amount'];
 
-          $assessment_sub['cultural_fee'] = $fees['ATH']['amount'];
+          $assessment_sub['cultural_fee'] = $fees['CUL']['amount'];
 
           $assessment_sub['development_fee'] = null;
 
@@ -513,12 +513,6 @@ class ProgramAdvisersController extends AppController {
 
           }
 
-          debug($courses_count);
-
-          debug($nstp_count);
-
-                    
-
           $query1 = $this->Accounts->find();
 
           $accounts = $query1->all();
@@ -535,11 +529,34 @@ class ProgramAdvisersController extends AppController {
 
           }
 
+
           $assessment_sub['tuition_fee'] = ($courses_count * 3) * 50;
+
+          if($nstp_count > 0){
+
+            $minus = ($nstp_count * 1.5) * 50;
+
+            $assessment_sub['tuition_fee'] = $assessment_sub['tuition_fee'] - $minus;
+
+          }
+
+          if($student['Student']['year_term_id'] == 1){
+
+            $assessment_sub['admission_fee'] = $fees['ADM']['amount'];
+
+          }
+
+          $assessment_sub['handbook_fee'] = $fees['SHB']['amount'];
 
           $assessment_sub['athletics_fee'] = $fees['ATH']['amount'];
 
-          $assessment_sub['cultural_fee'] = $fees['ATH']['amount'];
+          $assessment_sub['entrance_fee'] = $fees['ENF']['amount'];
+
+          $assessment_sub['registration_fee'] = $fees['REG']['amount'];
+
+          $assessment_sub['school_id_fee'] = $fees['IDC']['amount'];
+
+          $assessment_sub['cultural_fee'] = $fees['CUL']['amount'];
 
           $assessment_sub['development_fee'] = null;
 
@@ -639,7 +656,15 @@ class ProgramAdvisersController extends AppController {
 
           $assessment_sub['assessment_id'] = $assessment_id;
 
-          $assessment_sub['total'] = $assessment_sub['tuition_fee'] + $assessment_sub['athletics_fee'] + $assessment_sub['cultural_fee'] + $assessment_sub['development_fee'] + $assessment_sub['guidance_fee'] + $assessment_sub['laboratory_fee'] + $assessment_sub['library_fee'] + $assessment_sub['medical_dental_fee'] + $assessment_sub['computer_fee'] + $assessment_sub['jeep_fee'] +  $assessment_sub['assessment_id'];
+          $admission_fee = 0;
+
+          if(isset($assessment_sub['admission_fee'])){
+
+            $admission_fee = $assessment_sub['admission_fee'];
+
+          }
+
+          $assessment_sub['total'] = $assessment_sub['tuition_fee'] + $assessment_sub['athletics_fee'] + $assessment_sub['cultural_fee'] + $assessment_sub['development_fee'] + $assessment_sub['guidance_fee'] + $assessment_sub['laboratory_fee'] + $assessment_sub['library_fee'] + $assessment_sub['medical_dental_fee'] + $assessment_sub['computer_fee'] + $assessment_sub['jeep_fee'] +  $assessment_sub['assessment_id'] + $admission_fee + $assessment_sub['handbook_fee'] + $assessment_sub['entrance_fee'] + $assessment_sub['registration_fee'] + $assessment_sub['school_id_fee'];
 
           $assessment_data = $this->AssessmentSubs->newEmptyEntity();
        

@@ -177,6 +177,8 @@
 
     'registrar/student-profile',
 
+    'registrar/scholastic-document',
+
     //CASHIER
 
     'cashier/payment',
