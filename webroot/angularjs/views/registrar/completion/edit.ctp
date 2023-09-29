@@ -61,7 +61,7 @@
                 <input type="text" class="form-control uppercase" autocomplete="off" ng-model="data.Completion.requirement" data-validation-engine="validate[required]">
               </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-6">
               <div class="form-group">
                 <label> INSTRUCTOR <i class="required">*</i></label>
                 <input type="text" class="form-control uppercase" autocomplete="off" ng-model="data.Completion.instructor" data-validation-engine="validate[required]">
@@ -69,19 +69,9 @@
             </div>
             <div class="col-md-3">
               <div class="form-group">
-                <label> SEMESTER <i class="required">*</i></label>
-                <input type="text" class="form-control uppercase" autocomplete="off" ng-model="data.Completion.semester" data-validation-engine="validate[required]">
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <label> YEAR LEVEL <i class="required">*</i></label>
-                <select class="form-control" ng-model="data.Completion.year" autocomplete="false" data-validation-engine="validate[required]" style="height: 44px">
+                <label> YEAR TERM </label>
+                <select selectize ng-model="data.Completion.year_term_id" ng-options="opt.id as opt.value for opt in year_terms">
                   <option value=""></option>
-                  <option value="First Year">First Year</option>
-                  <option value="Second Year">Second Year</option>
-                  <option value="Third Year">Third Year</option>
-                  <option value="Fourth Year">Fourth Year</option>
                 </select>
               </div>
             </div>
