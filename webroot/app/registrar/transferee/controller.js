@@ -330,6 +330,10 @@ app.controller('TransfereeAddController', function($scope, Transferee, Select, S
 
       $scope.data.Transferee.last_name = response.data.Student.last_name;
 
+      $scope.data.Transferee.year_term_id = response.data.Student.year_term_id;
+
+      $scope.data.Transferee.email = response.data.Student.email;
+
       $scope.data.Transferee.type = 'Transfer Out';
 
     });
@@ -415,84 +419,6 @@ app.controller('TransfereeViewController', function($scope, $routeParams, Transf
   }
 
   $scope.load();  
-
-  // $scope.approve = function(data){
-
-  //   bootbox.confirm('Are you sure you want to transferee?', function(e){
-
-  //     if(e) {
-
-  //       Transferee.get({id:data.id}, function(e){
-
-  //         if(e.ok){
-
-  //           $scope.load();
-
-  //           $.gritter.add({
-
-  //             title: 'Successful!',
-
-  //             text: e.msg
-
-  //           });
-
-  //         }
-
-  //         window.location = "#/admission/transferee";
-
-  //       });
-
-  //     }
-
-  //   });
-
-  // }
-
-  // $scope.disapprove = function(data){  
-
-  //   bootbox.confirm('Are you sure you want to disapprove application?', function(b){
-
-  //     if(b) {
-
-  //       bootbox.prompt('REASON ?', function(result){
-
-  //         if(result){
-
-  //           $scope.data = {
-
-  //             explanation : result
-
-  //           };
-
-  //           StudentApplicationDisapproved.update({id:data.id},$scope.data, function(e){
-
-  //             if(e.ok){
-
-  //               $.gritter.add({
-
-  //                 title : 'Successful!',
-
-  //                 text: e.msg
-
-  //               });
-
-  //               $scope.load();
-
-  //               window.location = "#/admission/student-application";
-
-  //             }
-
-  //           });
-
-  //         }
-
-  //       });
-
-  //     }
-
-  //   });
-
-  // }
 
   // remove 
   $scope.remove = function(data) {
@@ -977,34 +903,6 @@ app.controller('AdminTransfereeController', function($scope, Transferee) {
 
   }
 
-  // $scope.printApproved = function(){
-
-  //   if ($scope.conditionsPrintApproved !== '') {
-    
-  //     printTable(base + 'print/student_application?print=1' + $scope.conditionsPrintApproved);
-
-  //   }else{
-
-  //     printTable(base + 'print/student_application?print=1');
-
-  //   }
-
-  // }
-
-  // $scope.printDisapproved = function(){
-
-  //   if ($scope.conditionsPrintDisapproved !== '') {
-    
-  //     printTable(base + 'print/student_application?print=1' + $scope.conditionsPrintDisapproved);
-
-  //   }else{
-
-  //     printTable(base + 'print/student_application?print=1');
-
-  //   }
-
-  // }
-
 });
 
 app.controller('AdminTransfereeAddController', function($scope, Transferee, Select) {
@@ -1085,6 +983,10 @@ app.controller('AdminTransfereeAddController', function($scope, Transferee, Sele
 
       last_name : student.last_name,
 
+      year_term_id : student.year_term_id,
+
+      email : student.email,
+
     }; 
 
   }
@@ -1103,6 +1005,10 @@ app.controller('AdminTransfereeAddController', function($scope, Transferee, Sele
 
     $scope.data.Transferee.last_name = $scope.student.last_name;
 
+    $scope.data.Transferee.year_term_id = $scope.student.year_term_id;
+
+    $scope.data.Transferee.email = $scope.student.email;
+
   }
 
   $scope.clearData = function(){
@@ -1118,6 +1024,10 @@ app.controller('AdminTransfereeAddController', function($scope, Transferee, Sele
     $scope.data.Transferee.middle_name = null;
 
     $scope.data.Transferee.last_name = null;
+
+    $scope.data.Transferee.year_term_id = null;
+
+    $scope.data.Transferee.email = null;
 
   }
 
@@ -1255,84 +1165,6 @@ app.controller('AdminTransfereeViewController', function($scope, $routeParams, T
 
   $scope.load();  
 
-  // $scope.approve = function(data){
-
-  //   bootbox.confirm('Are you sure you want to transferee?', function(e){
-
-  //     if(e) {
-
-  //       Transferee.get({id:data.id}, function(e){
-
-  //         if(e.ok){
-
-  //           $scope.load();
-
-  //           $.gritter.add({
-
-  //             title: 'Successful!',
-
-  //             text: e.msg
-
-  //           });
-
-  //         }
-
-  //         window.location = "#/admission/transferee";
-
-  //       });
-
-  //     }
-
-  //   });
-
-  // }
-
-  // $scope.disapprove = function(data){  
-
-  //   bootbox.confirm('Are you sure you want to disapprove application?', function(b){
-
-  //     if(b) {
-
-  //       bootbox.prompt('REASON ?', function(result){
-
-  //         if(result){
-
-  //           $scope.data = {
-
-  //             explanation : result
-
-  //           };
-
-  //           StudentApplicationDisapproved.update({id:data.id},$scope.data, function(e){
-
-  //             if(e.ok){
-
-  //               $.gritter.add({
-
-  //                 title : 'Successful!',
-
-  //                 text: e.msg
-
-  //               });
-
-  //               $scope.load();
-
-  //               window.location = "#/admission/student-application";
-
-  //             }
-
-  //           });
-
-  //         }
-
-  //       });
-
-  //     }
-
-  //   });
-
-  // }
-
   // remove 
   $scope.remove = function(data) {
 
@@ -1456,6 +1288,10 @@ app.controller('AdminTransfereeEditController', function($scope, $routeParams, T
 
       last_name : student.last_name,
 
+      year_term_id : student.year_term_id,
+
+      email : student.email,
+
     }; 
 
   }
@@ -1474,6 +1310,10 @@ app.controller('AdminTransfereeEditController', function($scope, $routeParams, T
 
     $scope.data.Transferee.last_name = $scope.student.last_name;
 
+    $scope.data.Transferee.year_term_id = $scope.student.year_term_id;
+
+    $scope.data.Transferee.email = $scope.student.email;
+
   }
 
   $scope.clearData = function(){
@@ -1489,6 +1329,10 @@ app.controller('AdminTransfereeEditController', function($scope, $routeParams, T
     $scope.data.Transferee.middle_name = null;
 
     $scope.data.Transferee.last_name = null;
+
+    $scope.data.Transferee.year_term_id = null;
+
+    $scope.data.Transferee.email = null;
 
   }
 

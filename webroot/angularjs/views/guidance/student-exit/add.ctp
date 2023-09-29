@@ -23,7 +23,7 @@
           <div class="header-title">ADD NEW STUDENT EXIT </div>
           <div class="clearfix"></div><hr>
 
-            <div class="col-md-6">
+            <div class="col-md-12">
               <div class="form-group">
                 <label> SERIAL NUMBER <i class="required">*</i></label>
                 <input type="text" class="form-control" autocomplete="false" ng-model="data.StudentExit.serial_number" data-validation-engine="validate[required]">
