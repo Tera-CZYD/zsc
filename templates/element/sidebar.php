@@ -165,6 +165,12 @@
                   </li>
                 <?php endif ?>
 
+                <?php if (hasAccess('scholastic document/index', $currentUser)): ?>
+                  <li class="nav-link-side nav-scholastic-document">
+                    <a href="#/registrar/scholastic-document" onclick="change('scholastic-document')">Scholastic Document Management</a>
+                  </li>
+                <?php endif ?>
+
                 </ul>
             </li>
           <?php endif ?>

@@ -5,7 +5,11 @@
 !/logs/*
 !/tmp/*
 !/vendor/*
+tmp/debug_kit.sqlite
+<<<<<<< HEAD
+=======
 
+>>>>>>> 1123ad511b3ef0ae1a8578805c485c085864f3ab
 # OS generated files #
 ######################
 .DS_Store
