@@ -49,8 +49,11 @@ class PrintController extends AppController {
 
     $this->loadModel('Students');
 
+<<<<<<< HEAD
     $this->loadModel('AddingDroppingSubjects');
 
+=======
+>>>>>>> 1123ad511b3ef0ae1a8578805c485c085864f3ab
     $this->loadModel('ClassSchedules');
 
     $this->loadModel('BlockSections');
