@@ -69,15 +69,15 @@
   <script type="text/javascript">
 
     app.controller('ApplicationController', function($scope,$routeParams, $timeout,ChangeProgram,StudentApplication, Select) {
+      
       $scope.id = $routeParams.id;
-
-
-        console.log($scope.id);
-
 
       var completeUrl = window.location.href;
 
-      var application_id = completeUrl.match(/\d+/)[0];
+      var application_id = completeUrl.match(/\d+$/);
+
+        application_id = application_id[0];
+
 
       $('#form').validationEngine('attach');
 
