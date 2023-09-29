@@ -56,6 +56,12 @@
       .bg3{
         background-color: linear-gradient(-45deg, #ffec61, #f321d7);
       }
+      li{
+        padding: 3px;
+      }
+      body{
+        overflow-y: auto;
+      }
     </style>
 
 
@@ -80,7 +86,7 @@
         <h3>ZAMBOANGA STATE COLLEGE OF MARINE AND TECHNOLOGY</h3>
     </div>
       <div class="container-fluid p-0">
-        <div style="margin: 0 10% 0 10%;">
+        <div style="margin: -4.8% 10% 0 10%;">
           <div class="row d-flex align-items-center justify-content-center">
             <div class="col-md-4" >
               <div class="login-box-s2 ptb--100">
@@ -89,14 +95,17 @@
                     <div class="login-form-head">
                       <h4>New Applicants</h4>
                     </div>
-                    <div style="border-bottom: 2px solid grey;">
-                      <p style="text-align: center; padding: 10px">Content description here</p>
+                    <div id="leftDiv" style="border-bottom: 2px solid grey; margin: 5px;">
+                      <ol style="margin-left: 20px; font-size: 11px; font-weight: normal; color: black; font-family: tahoma;">
+                        <li>Student must first fill up the form in Pre-registration.</li>
+                        <li>Upload the required file in a specific applied course.</li>
+                        <li>Wait for the email message to access the student account.</li>
+                      </ol>
                     </div>
                     <div class="login-form-body">
                       <div class="row">
                         <div class="col-lg-12">
                           <img src="<?php echo $base ?>/assets/img/NewApplicants.png" width="100%">
-                          <!-- <span style="display: block; text-align: center; padding: 10px;">Image here</span> -->
                         </div>
 
                       </div>
@@ -116,8 +125,14 @@
                     <div class="login-form-head">
                       <h4>Incoming Freshmen</h4>
                     </div>
-                    <div style="border-bottom: 2px solid grey;">
-                      <p style="text-align: center; padding: 10px">Content description here</p>
+                    <div id="centerDiv" style="border-bottom: 2px solid grey; margin: 5px;">
+                      <ol style="margin-left: 20px; font-size: 11px; font-weight: normal; color: black; font-family: tahoma;">
+                        <li>Login the credentials that is being sent in email address.</li>
+                        <li>Wait for the CAT date that will be sent in the email.</li>
+                        <li>After passing the CAT, the student is subjected to the medical examination.</li>
+                        <li>Wait for the medical examination result to proceed in assesment.</li>
+                        <li>After being assessed in cashier, the student in now officially enrolled.</li>
+                      </ol>
                     </div>
                     <div class="login-form-body">
                       <div class="row">
@@ -142,8 +157,12 @@
                     <div class="login-form-head">
                       <h4>Continuing Students</h4>
                     </div>
-                    <div style="border-bottom: 2px solid grey;">
-                      <p style="text-align: center; padding: 10px">Content description here</p>
+                    <div id="rightDiv" style="border-bottom: 2px solid grey; margin: 5px;">
+                      <ol style="margin-left: 20px; font-size: 11px; font-weight: normal; color: black; font-family: tahoma;">
+                        <li>Login the student credentials.</li>
+                        <li>Monitor if you have been enrolled by the program adviser. (Regular)</li>
+                        <li>Enroll subjects that is avaible and applicable in your scheduled enrollment date (Irregular)</li>
+                      </ol>
                     </div>
                     <div class="login-form-body">
                       <div class="row">
@@ -210,4 +229,11 @@
       window.location.href = $(this).attr('href');
     });
   });
+
+  var centerHeight = document.getElementById('centerDiv').offsetHeight;
+
+  // Set the height of the 'left' and 'right' divs to match the 'center' div
+  document.getElementById('leftDiv').style.height = centerHeight + 'px';
+  document.getElementById('rightDiv').style.height = centerHeight + 'px';
+
 </script>

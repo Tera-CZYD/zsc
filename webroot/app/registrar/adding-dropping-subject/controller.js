@@ -285,7 +285,6 @@ app.controller('AddingDroppingSubjectController', function($scope, AddingDroppin
 
   }
 
- 
 });
 
 app.controller('AddingDroppingSubjectAddController', function($scope, AddingDroppingSubject, Select, Student) {
@@ -975,7 +974,6 @@ app.controller('AddingDroppingSubjectEditController', function($scope, $routePar
 
 });
 
-
 app.controller('AdminAddingDroppingSubjectController', function($scope, AddingDroppingSubject) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
@@ -1288,31 +1286,36 @@ app.controller('AdminAddingDroppingSubjectAddController', function($scope, Addin
   })
 
   $scope.data = {
-      AddingDroppingSubject: {},
 
-      AddingDroppingSubjectSub: [],
-    };
+    AddingDroppingSubject: {},
 
-    $scope.removeSubs = function (index) {
-      $scope.data.AddingDroppingSubjectSub.splice(index, 1);
-    };
+    AddingDroppingSubjectSub: [],
+
+  };
+
+  $scope.removeSubs = function (index) {
+
+    $scope.data.AddingDroppingSubjectSub.splice(index, 1);
+
+  };
 
   Select.get({ code: "add-drop-subject" }, function (e) {
-    $scope.data.AddingDroppingSubject.code = e.data;
-  });
 
+    $scope.data.AddingDroppingSubject.code = e.data;
+
+  });
 
   Select.get({ code: "course-list" }, function (e) {
-    $scope.course = e.data;
-  });
 
+    $scope.course = e.data;
+
+  });
 
   Select.get({ code: 'college-list' }, function(e) {
 
     $scope.colleges = e.data;
 
   });
-
 
   $scope.getCollegeProgram = function(id){
 
@@ -1333,6 +1336,8 @@ app.controller('AdminAddingDroppingSubjectAddController', function($scope, Addin
     Select.get({ code: 'application-program-list', college_id : id }, function(e) {
 
       $scope.programs = e.data;
+
+      $scope.data.AddingDroppingSubject.program_id = $scope.student.program_id;
 
     });
 
@@ -1355,7 +1360,6 @@ app.controller('AdminAddingDroppingSubjectAddController', function($scope, Addin
     }
 
   }
-
 
   $scope.searchStudent = function(options) {
 
@@ -1393,6 +1397,7 @@ app.controller('AdminAddingDroppingSubjectAddController', function($scope, Addin
 
       college_id : student.college_id,
 
+      program_id : student.program_id,
 
     }; 
 
@@ -1460,46 +1465,56 @@ app.controller('AdminAddingDroppingSubjectAddController', function($scope, Addin
   }
 
   $scope.addDropSubs = function () {
-      $("#add_subs").validationEngine("attach");
 
-      $scope.adata = {};
+    $("#add_subs").validationEngine("attach");
 
-      $("#add-subs-modal").modal("show");
-    };
+    $scope.adata = {};
 
-    $scope.saveSubs = function (data) {
+    $("#add-subs-modal").modal("show");
 
-       $scope.bool3 = true;
-      
-      valid = $("#add_subs").validationEngine("validate");
+  };
 
-      if (valid) {
-        $scope.data.AddingDroppingSubjectSub.push(data);
+  $scope.saveSubs = function (data) {
 
-        console.log($scope.data);
-        $("#add-subs-modal").modal("hide");
-      }
-    };
+    $scope.bool3 = true;
+    
+    valid = $("#add_subs").validationEngine("validate");
 
-    $scope.editSubs = function (index, data) {
-      $("#edit_subs").validationEngine("attach");
+    if (valid) {
 
-      data.index = index;
+      $scope.data.AddingDroppingSubjectSub.push(data);
 
-      $scope.adata = data;
+      $("#add-subs-modal").modal("hide");
 
-      $("#edit-subs-modal").modal("show");
-    };
+    }
 
-    $scope.updateSubs = function (data, index) {
-      valid = $("#edit_subs").validationEngine("validate");
+  };
 
-      if (valid) {
-        $scope.data.AddingDroppingSubjectSub[data.index] = data;
+  $scope.editSubs = function (index, data) {
 
-        $("#edit-subs-modal").modal("hide");
-      }
-    };
+    $("#edit_subs").validationEngine("attach");
+
+    data.index = index;
+
+    $scope.adata = data;
+
+    $("#edit-subs-modal").modal("show");
+
+  };
+
+  $scope.updateSubs = function (data, index) {
+
+    valid = $("#edit_subs").validationEngine("validate");
+
+    if (valid) {
+
+      $scope.data.AddingDroppingSubjectSub[data.index] = data;
+
+      $("#edit-subs-modal").modal("hide");
+
+    }
+
+  };
 
   $scope.save = function() {
 
@@ -1556,7 +1571,6 @@ app.controller('AdminAddingDroppingSubjectAddController', function($scope, Addin
     }  
 
   }
-
 
 });
 
@@ -1724,31 +1738,33 @@ app.controller('AdminAddingDroppingSubjectEditController', function($scope, $rou
   })
 
    $scope.data = {
+
       AddingDroppingSubject: {},
 
-      // AddingDroppingSubjectSub: [],
+      AddingDroppingSubjectSub: [],
+
     };
 
-    $scope.bool = [
+  $scope.bool = [
 
     { id: true, value: "Yes" },
 
     { id: false, value: "No" },
 
-    ];
+  ];
 
 
-    $scope.load = function () {
-      
-      AddingDroppingSubject.get({ id: $scope.id }, function (e) {
+  $scope.load = function () {
+    
+    AddingDroppingSubject.get({ id: $scope.id }, function (e) {
 
-        $scope.data = e.data;
+      $scope.data = e.data;
 
-        $scope.putIndex();
+      $scope.putIndex();
 
-      });
+    });
 
-      AddingDroppingSubject.get({ id: $scope.id }, function(e) {
+    AddingDroppingSubject.get({ id: $scope.id }, function(e) {
 
       $scope.data = e.data;
 
@@ -1759,75 +1775,97 @@ app.controller('AdminAddingDroppingSubjectEditController', function($scope, $rou
       });
 
     });
-    };
+
+  };
 
   $scope.load();
 
-    $scope.putIndex = function () {
-      if ($scope.data.AddingDroppingSubjectSub.length > 0) {
-        index = 0;
+  $scope.putIndex = function () {
 
-        $.each($scope.data.AddingDroppingSubjectSub, function (key, val) {
-          if (val.visible != 0) {
-            index += 1;
+    if ($scope.data.AddingDroppingSubjectSub.length > 0) {
 
-            $scope.data.AddingDroppingSubjectSub[key].index = index;
-          }
-          console.log(index);
-        });
-      }
-    };
+      index = 0;
 
-    $scope.addDropSubs = function () {
-      $("#add_subs").validationEngine("attach");
+      $.each($scope.data.AddingDroppingSubjectSub, function (key, val) {
 
-      $scope.adata = {};
+        if (val.visible != 0) {
 
-      $("#add-subs-modal").modal("show");
-    };
+          index += 1;
 
-    $scope.saveSubs = function (data) {
-      
-      valid = $("#add_subs").validationEngine("validate");
+          $scope.data.AddingDroppingSubjectSub[key].index = index;
 
-      if (valid) {
-        $scope.data.AddingDroppingSubjectSub.push(data);
+        }
 
-        console.log($scope.data);
-        $("#add-subs-modal").modal("hide");
-      }
-    };
+      });
 
-    $scope.editSubs = function (index, data) {
-      $("#edit_subs").validationEngine("attach");
+    }
 
-      data.index = index;
+  };
 
-      $scope.adata = data;
+  $scope.addDropSubs = function () {
 
-      $("#edit-subs-modal").modal("show");
-    };
+    $("#add_subs").validationEngine("attach");
+
+    $scope.adata = {};
+
+    $("#add-subs-modal").modal("show");
+
+  };
+
+  $scope.saveSubs = function (data) {
     
-    $scope.updateSubs = function (data, index) {
-      valid = $("#edit_subs").validationEngine("validate");
+    valid = $("#add_subs").validationEngine("validate");
 
-      if (valid) {
-        $scope.data.AddingDroppingSubjectSub[data.index] = data;
-        $scope.putIndex();
-        $("#edit-subs-modal").modal("hide");
-      }
-    };
+    if (valid) {
 
-    $scope.removeSubs = function (index) {
-      $scope.data.AddingDroppingSubjectSub[index].visible = 0;
+      $scope.data.AddingDroppingSubjectSub.push(data);
+
+      $("#add-subs-modal").modal("hide");
+
+    }
+
+  };
+
+  $scope.editSubs = function (index, data) {
+
+    $("#edit_subs").validationEngine("attach");
+
+    data.index = index;
+
+    $scope.adata = data;
+
+    $("#edit-subs-modal").modal("show");
+
+  };
+    
+  $scope.updateSubs = function (data, index) {
+
+    valid = $("#edit_subs").validationEngine("validate");
+
+    if (valid) {
+
+      $scope.data.AddingDroppingSubjectSub[data.index] = data;
 
       $scope.putIndex();
-    };
 
+      $("#edit-subs-modal").modal("hide");
 
+    }
+
+  };
+
+  $scope.removeSubs = function (index) {
+
+    $scope.data.AddingDroppingSubjectSub[index].visible = 0;
+
+    $scope.putIndex();
+
+  };
 
   Select.get({ code: "course-list" }, function (e) {
+
     $scope.course = e.data;
+
   });
 
   Select.get({ code: 'college-list' }, function(e) {
@@ -1835,17 +1873,6 @@ app.controller('AdminAddingDroppingSubjectEditController', function($scope, $rou
     $scope.colleges = e.data;
 
   });
-
-
-  // $scope.getProgram = function(id){
-
-  //   Select.get({ code: 'application-program-list', college_id : id }, function(e) {
-
-  //     $scope.programs = e.data;
-
-  //   });
-
-  // }
 
   $scope.load = function() {
 
@@ -1905,7 +1932,6 @@ app.controller('AdminAddingDroppingSubjectEditController', function($scope, $rou
 
   }
 
-
   $scope.searchStudent = function(options) {
 
     options = typeof options !== 'undefined' ?  options : {};
@@ -1952,6 +1978,10 @@ app.controller('AdminAddingDroppingSubjectEditController', function($scope, $rou
     $scope.data.AddingDroppingSubject.student_name = $scope.student.name;
 
     $scope.data.AddingDroppingSubject.student_no = $scope.student.code;
+
+    $scope.data.AddingDroppingSubject.college_id = $scope.student.college_id;
+
+    $scope.data.AddingDroppingSubject.program_id = $scope.student.program_id;
 
   }
 
