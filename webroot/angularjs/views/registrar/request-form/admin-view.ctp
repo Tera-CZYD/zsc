@@ -54,7 +54,7 @@
                   </tr>
                   <tr>
                     <th class="text-right"> COURSE : </th>
-                    <td class="italic">{{ data.Program.code }} - {{ data.Program.name }}</td>
+                    <td class="italic">{{ data.CollegeProgram.code }} - {{ data.CollegeProgram.name }}</td>
                   </tr>
                   <tr>
                     <th class="text-right"> YEAR : </th>

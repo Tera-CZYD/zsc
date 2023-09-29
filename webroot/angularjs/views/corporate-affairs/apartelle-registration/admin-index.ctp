@@ -50,7 +50,7 @@
 	                  <div class="row">
 	                    <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
 	                      
-	                        <a id="pageAdd" href="#/corporate-affairs/admin-apartelle-registration/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
+	                        <a id="pageAdd" href="#/corporate-affairs/admin-apartelle-registration/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> APPLY</a>
 	                      
 	                      
 	                        <button id="pagePrint" ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>

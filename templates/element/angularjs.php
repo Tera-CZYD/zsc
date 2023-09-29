@@ -157,6 +157,8 @@
 
     'registrar/request-form',
 
+    'registrar/affidavit-of-loss',
+
     // 'registrar/prospectus',
 
     'registrar/purpose',
@@ -180,6 +182,8 @@
     'cashier/payment',
 
     'cashier/assessment',
+
+    'cashier/requested-form',
 
     //GUIDANCE AND COUNSELING
 
