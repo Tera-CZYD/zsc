@@ -43,7 +43,7 @@ class CoursesController extends AppController {
 
     $conditions['year'] = '';
 
-    if ($this->request->getQuery('year')) {
+    if ($this->request->getQuery('year')) { 
 
       $search_date = $this->request->getQuery('year');
 
@@ -136,6 +136,10 @@ class CoursesController extends AppController {
     $this->autoRender = false;
 
     $requestData = $this->request->getData('Course');
+
+    $requestData['is_computer'] = $requestData['is_computer'] ? 1 : 0;
+
+    $requestData['is_jeep'] = $requestData['is_jeep'] ? 1 : 0;
 
     $data = $this->Courses->newEmptyEntity();
    
@@ -254,6 +258,10 @@ class CoursesController extends AppController {
     $course = $this->Courses->get($id); 
 
     $requestData = $this->getRequest()->getData('Course');
+
+    $course['is_computer'] = $requestData['is_computer'] ? 1 : 0;
+
+    $course['is_jeep'] = $requestData['is_jeep'] ? 1 : 0;    
 
     $requestData['date'] = isset($requestData['date']) ? date('Y/m/d', strtotime($requestData['date'])) : null;
 
