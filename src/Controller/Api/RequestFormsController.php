@@ -21,6 +21,12 @@ class RequestFormsController extends AppController {
 
     $this->RequestForms = TableRegistry::getTableLocator()->get('RequestForms');
 
+    $this->loadModel('RequestedFormPayments');
+
+    $this->loadModel('RequestedFormPaymentSubs');
+
+    $this->loadModel('Students');    
+
   }
 
   public function index(){   
@@ -193,6 +199,197 @@ class RequestFormsController extends AppController {
     $data = $this->RequestForms->patchEntity($data, $requestData); 
 
     if ($this->RequestForms->save($data)) {
+
+
+      $request_form_id = $data->id;
+
+      $query = $this->RequestedFormPayments->find();
+
+      $query->select(['total' => $query->func()->count('*')]);
+
+      $total = $query->firstOrFail()->total;
+
+      $code = 'RFP-' . str_pad($total + 1, 5, "0", STR_PAD_LEFT);
+
+      $studentId = $requestData['student_id']; 
+
+      $student['Student'] = $this->Students->find()
+
+        ->contain([
+
+          'CollegePrograms' => [
+
+            'conditions' => [
+
+              'CollegePrograms.visible' => 1,
+
+            ]
+
+          ]
+
+        ])
+
+        ->where(['Students.id' => $studentId])
+
+      ->first();
+
+      $payment['student_id'] = $studentId;
+
+      $payment['request_form_id'] = $request_form_id;
+
+      $payment['code'] = $code;
+
+      $payment['student_no'] = $requestData['student_no']; 
+
+      $payment['student_name'] = $requestData['student_name'];
+
+      $payment['email'] = $student['Student']['email'];
+
+      $payment['contact_no'] = $student['Student']['contact_no'];
+
+      $payment['program'] = $student['Student']['college_program']['name'];
+
+      $payment['request'] = "REQUEST FORMS";
+
+      $data_payment = $this->RequestedFormPayments->newEmptyEntity();
+     
+      $data_payment = $this->RequestedFormPayments->patchEntity($data_payment, $payment);
+
+      if($this->RequestedFormPayments->save($data_payment)){
+
+        $requested_form_payment_id = $data_payment->id;
+
+        $sub = [];
+
+      if($data['otr'] != null && $data['otr'] == true){
+
+        $otrVal = isset($requestData['otrVal']) ? $requestData['otrVal'] : 1;
+
+        $sub[] = [
+
+          'name' => 'Transcript Of Records',
+
+          'amount' => 120 * $otrVal
+
+        ];
+
+      }
+
+      if($data['cav'] != null && $data['cav'] == true){
+
+        $sub[] = [
+
+          'name' => 'Certification Authentication Verification',
+
+          'amount' => 100
+
+        ];
+
+      }
+
+      if($data['cert'] != null && $data['cert'] == true){
+
+        $sub[] = [
+
+          'name' => 'Certification',
+
+          'amount' => 50
+
+        ];
+
+      }
+
+      if($data['hon'] != null && $data['hon'] == true){
+
+        $sub[] = [
+
+          'name' => 'Honorable Dismissal',
+
+          'amount' => 100
+
+        ];
+
+      }
+
+      if($data['authGrad'] != null && $data['authGrad'] == true){
+
+        $sub[] = [
+
+          'name' => 'Authentication ( Graduate )',
+
+          'amount' => 50
+
+        ];
+
+      }
+
+      if($data['authUGrad'] != null && $data['authUGrad'] == true){
+
+        $sub[] = [
+
+          'name' => 'Authentication ( Under Graduate )',
+
+          'amount' => 50
+
+        ];
+
+      }
+
+      if($data['dip'] != null && $data['dip'] == true){
+
+        $sub[] = [
+
+          'name' => 'Diploma',
+
+          'amount' => 200
+
+        ];
+
+      }
+
+      if($data['rr'] != null && $data['rr'] == true){
+
+        $sub[] = [
+
+          'name' => 'Red Ribbon',
+
+          'amount' => 100
+
+        ];
+
+      }
+
+      if($data['other'] != null && $data['other'] == true){
+
+        $sub[] = [
+
+          'name' => $requestData['otherVal'],
+
+          'amount' => 100
+
+        ];
+
+      }
+
+      if(!empty($sub)){
+        
+        foreach ($sub as $key => $value) {
+
+          $sub[$key]['requested_form_payment_id'] = $requested_form_payment_id;
+
+          $sub[$key]['name'] = $value['name'];
+
+          $sub[$key]['amount'] = $value['amount'];
+          
+        }
+
+        $subEntities = $this->RequestedFormPaymentSubs->newEntities($sub);
+
+        $this->RequestedFormPaymentSubs->saveMany($subEntities);
+      
+      }
+
+      }      
 
       $response = array(
 
