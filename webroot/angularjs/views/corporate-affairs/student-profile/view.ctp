@@ -13,11 +13,11 @@
 
   // INCLUDE ALL PAGE PERMISSION
   handleAccess('pageView', 'registered students/view', currentUser);
-  handleAccess('pagePrintForm', 'registered students/print cor', currentUser);
-
-
+  handleAccess('pagePrintCor', 'registered students/print cor', currentUser);
 
 </script>
+
+
 
 <div class="row" id="pageView">
   <div class="col-lg-12 mt-3">
@@ -37,7 +37,7 @@
                 </tr>
                 <tr>
                   <th class="text-right"> STUDENT NAME : </th>
-                  <td class="italic">{{ data.Student.proper_name }}</td>
+                  <td class="italic">{{ data.Student.last_name }}, {{ data.Student.first_name }} {{ data.Student.middle_name }}</td>
                   <th class="text-right"> COLLEGE : </th>
                   <td class="italic">{{ data.College.name }}</td>
                 </tr>
@@ -54,7 +54,9 @@
           </div>
 
           <div class="col-md-12">
-              <button id="pagePrintForm" type="button" class="btn btn-info  btn-min" ng-click="print(data.Student.id )"><i class="fa fa-print"></i> PRINT CERTIFICATE OF REGISTRATION </button>
+           
+              <button id="pagePrintCor" type="button" class="btn btn-info  btn-min" ng-click="print(data.Student.id )"><i class="fa fa-print"></i> PRINT CERTIFICATE OF REGISTRATION </button>
+             
           </div>
 
           <div class="col-md-12">
@@ -101,11 +103,43 @@
             </div>
           </div>
 
+          <div class="col-md-12">
+            <div class="clearfix"></div><hr>
+            <h5 class="table-top-title mb-2"> GRADES </h5>
+          </div>
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped table-hover">
+                <thead>
+                  <tr class="bg-info">
+                    <th style="width: 15px;">#</th>
+                    <th class="text-center"> COURSE </th>
+                    <th class="text-center"> MIDTERM GRADE </th>
+                    <th class="text-center"> FINAL TERM GRADE </th>
+                    <th class="text-center"> FINAL GRADE </th>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="subs in data.StudentEnrolledCourse">
+                    <td style="width: 15px;"> {{ $index + 1 }} </td>
+                    <td class="text-left uppercase">{{ subs.course }}</td>
+                    <td class="text-center uppercase">{{ subs.midterm_grade }}</td>
+                    <td class="text-center uppercase">{{ subs.finalterm_grade }}</td>
+                    <td class="text-center uppercase">{{ subs.final_grade }}</td>
+                  </tr>
+                  <tr ng-if="data.StudentEnrolledCourse == ''">
+                    <td class="text-center" colspan="7">No data available.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <style type="text/css">
   th {
     white-space: nowrap;
