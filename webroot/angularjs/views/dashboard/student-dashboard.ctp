@@ -270,6 +270,17 @@
 
             </div>
           </div>
+          <div class="single-table" ng-show="scheds == null || scheds == ''">
+            <div class="table-responsive">
+              <table class="table table-hover text-center">
+                <thead>
+                  <tr class="table-info">
+                    <th style="font-size:12px;font-weight: normal;"> No Class for todays bidyo </th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>  
         <div class="clearfix"></div>
       </div>
     </div>
@@ -299,9 +310,6 @@
                   <td class="text-center">{{ data.faculty_name }}</td>
                   <td class="text-center text-danger font-weight-bold">{{ data.final_grade }}</td>
                 </tr>
-                <tr ng-show="datas == null || datas == ''">
-                  <td colspan="9">No available data</td>
-                </tr>
               </tbody>
             </table>
           </div>
@@ -310,7 +318,7 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-6 mt-3" ng-show="clearance != null && clearance != '' ">
+  <div class="col-lg-6" ng-show="clearance != null && clearance != '' ">
     <div class="card">
       <div class="card-body">
         <p class="card-title" style="font-size:15px;">INCOMPLETE CLEARANCE REQUIREMENTS</p>

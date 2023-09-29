@@ -23,7 +23,7 @@
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
-        <h4 class="header-title">PROGRAM ADVISER MANAGEMENT</h4>
+        <h4 class="header-title">PROGRAM ADVISER</h4>
         <div class="clearfix"></div><hr>
         <div class="col-md-8">
           <div class="form-group col-md-4">
