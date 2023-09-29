@@ -351,6 +351,24 @@ app.controller('RequestFormAddController', function($scope, RequestForm, Select,
     }
 
   }
+
+  $scope.getYear = function(id){
+
+    if($scope.year_terms.length > 0){
+
+      $.each($scope.year_terms, function(i,val){
+
+        if(id == val.id){
+
+          $scope.data.RequestForm.year = val.value;
+
+        }
+
+      });
+
+    }
+
+  }
   
 
   $scope.save = function() {
@@ -585,6 +603,24 @@ app.controller('RequestFormEditController', function($scope, $routeParams, Reque
         if(id == val.id){
 
           $scope.data.RequestForm.purpose = val.value;
+
+        }
+
+      });
+
+    }
+
+  }
+
+  $scope.getYear = function(id){
+
+    if($scope.year_terms.length > 0){
+
+      $.each($scope.year_terms, function(i,val){
+
+        if(id == val.id){
+
+          $scope.data.RequestForm.year = val.value;
 
         }
 
@@ -1100,6 +1136,24 @@ app.controller('AdminRequestFormAddController', function($scope, RequestForm, Se
 
   }
 
+  $scope.getYear = function(id){
+
+    if($scope.year_terms.length > 0){
+
+      $.each($scope.year_terms, function(i,val){
+
+        if(id == val.id){
+
+          $scope.data.RequestForm.year = val.value;
+
+        }
+
+      });
+
+    }
+
+  }
+
   $scope.searchStudent = function(options) {
 
     options = typeof options !== 'undefined' ?  options : {};
@@ -1461,6 +1515,24 @@ app.controller('AdminRequestFormEditController', function($scope, $routeParams, 
         if(id == val.id){
 
           $scope.data.RequestForm.purpose = val.value;
+
+        }
+
+      });
+
+    }
+
+  }
+
+  $scope.getYear = function(id){
+
+    if($scope.year_terms.length > 0){
+
+      $.each($scope.year_terms, function(i,val){
+
+        if(id == val.id){
+
+          $scope.data.RequestForm.year = val.value;
 
         }
 
