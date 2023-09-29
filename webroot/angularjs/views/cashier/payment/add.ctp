@@ -1,27 +1,9 @@
-<script type="text/javascript">
-
-  function handleAccess(elementId, permissionCode, currentUser) {
-    const element = document.getElementById(elementId);
-    const accessGranted = hasAccess(permissionCode, currentUser);
-    
-    if (accessGranted) {
-      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
-    } else {
-      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
-    }
-  }
-
-  // INCLUDE ALL PAGE PERMISSION
-  handleAccess('pageAdd', 'payment/add', currentUser);
-  handleAccess('pageDelete', 'payment/delete', currentUser);
-
-</script>
-
-<div class="row" id="pageAdd">
+<?php if (hasAccess('payment/add', $currentUser)): ?>
+<div class="row">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
-        <div class="header-title"> ADD NEW PAYMENT DATA </div>
+        <div class="header-title"> ADD NEW PAYMENT </div>
         <div class="clearfix"></div><hr>
         <form id="form">
           <div class="row">
@@ -32,107 +14,167 @@
               </div>
             </div>
 
-           <div class="col-md-9">
+            <div class="col-md-6">
               <div class="form-group">
                 <label> SEARCH STUDENT </label><label style="font-size:10px;color:gray;" class="pull-right">Press Enter to search</label>
-                <input type="text" class="form-control search uppercase" placeholder="TYPE STUDENT HERE" ng-model="searchTxt" ng-enter="searchApprovalCourse({ search: searchTxt })">
+                <input type="text" class="form-control search uppercase" placeholder="TYPE STUDENT HERE" ng-model="searchTxt" ng-enter="searchStudent({ search: searchTxt })">
               </div>
             </div>
-
-            <div class="col-md-12">
-            <div class="table-responsive">
-              <table class="table table-striped">
-                <tr>
-                  <th class="text-left"> PROGRAM : </th>
-                  <td class="italic">{{ data.Payment.program }}</td>
-                </tr>
-                <tr>
-                  <th class="text-left"> STUDENT NAME : </th>
-                  <td class="italic">{{ data.Payment.student_name }}</td>
-                </tr>
-                <tr>
-                  <th class="text-left"> EMAIL : </th>
-                  <td class="italic">{{ data.Payment.email }}</td>
-                </tr>
-                <tr>
-                  <th class="text-left"> CONTACT NO. : </th>
-                  <td class="italic">{{ data.Payment.contact_no }}</td>
-                </tr>
-              </table>
-            </div> 
-          </div>
-
-            <div class="col-md-12">
-            <div class="clearfix"></div><hr>
-          </div>
-          <div class="col-md-12 table-wrapper">
-            <div class="table-responsive">
-              <table class="table table-bordered">
-                <thead>
-                  <th class="bg-info" colspan="6">MISCELLANEOUS</th>
-                </thead>
-                <thead>
-                  <tr >
-                    <th class="w30px text-center">#</th>
-                    <th class="text-center">CODE </th>
-                    <th class="text-center">NAME</th>
-                    <th class="text-center">UNIT</th>
-                    <th class="text-center">AMOUNT</th>
-                    <th class="w100px"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr ng-repeat="datax in data.CashierSub">
-                    <td class="w30px">{{ $index + 1 }}</td>
-                    <td class="uppercase w200px">{{ datax.code }}</td>
-                    <td class="uppercase">{{ datax.name }}</td>
-                    <td class="uppercase"> {{ datax.unit }}</td>
-                    <td class="text-right">{{ datax.amount | number : 2 }}</td>
-                    <td class="w30px">
-                      <div id="pageDelete" class="btn-group btn-group-xs">
-                        <a class="btn btn-danger no-border-radius" ng-click="removeMiscellaneous($index,data);" ><i class="fa fa-trash"></i></a>
-                      </div>
-                    </td>
-                    <tr ng-if="data.CashierSub == '' || data.CashierSub == null">
-                      <td class="text-center" colspan="10">No available Miscellaneous</td>
-                    </tr>
-                  </tr>
-                </tbody>
-                <tfoot ng-if="data.CashierSub != ''">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> STUDENT <i class="required">*</i></label>
+                <table class="table table-bordered">
                   <tr>
-                    <th class="text-left" colspan="4">TOTAL</th>
-                    <th class="text-right">{{ data.Payment.total | number : 2 }}</th>
-                    <th></th>
+                    <td style="{{ data.Payment.student_name == undefined ? 'padding:15px':'padding:5px !important'}}" class="uppercase">{{ data.Payment.student_name }}</td>
+                    <td style="{{ data.Payment.student_name == undefined ? 'padding:15px':'padding:5px !important'}}" class="w30px" ng-hide="data.Payment.student_name == undefined">
+                      <button class="btn btn-xs btn-sm  btn-danger" ng-click="data.Payment.student_name = null; data.Payment.student_id = null;" ng-init="data.Payment.student_id = null"><i class="fa fa-times"></i></button>
+                    </td>
                   </tr>
-                </tfoot>
-              </table>
-            </div>
-
-            <div class="col-md-12">
-              <div class="col-md-3">
-                <button id="pageAdd" type="button" class="btn btn-primary btn-min" data-toggle="modal" ng-click="addMiscellaneous()"><i class="fa fa-plus"></i> ADD MISCELLANEOUS</button>
+                </table>
               </div>
             </div>
 
-            <div class="clearfix"></div><hr>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="pull-right">
-                  <button class="btn btn-primary btn-min" id = "save" ng-click="save()" [class.disabled]="isClickedOnce"
-                (click)="isClickedOnce = true"><i class="fa fa-save"></i> SAVE </button>
-                </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> PROGRAM <i class="required">*</i></label>
+                <select selectize ng-model="data.Payment.program_id" ng-options="opt.id as opt.value for opt in college_program" data-validation-engine="validate[required]">
+                  <option value=""></option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label> EMAIL <i class="required">*</i></label>
+                <input type="text" class="form-control" autocomplete="false" ng-model="data.Payment.email" data-validation-engine="validate[required]">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label> CONTACT NO <i class="required">*</i></label>
+                <input type="text" class="form-control" autocomplete="false" ng-model="data.Payment.contact_no" data-validation-engine="validate[required]">
               </div>
             </div>
 
+            <div class="col-md-3">
+              <div class="form-group">
+                <label> OR NO. <i class="required">*</i></label>
+                <input type="text" class="form-control" autocomplete="false" ng-model="data.Payment.or_no" data-validation-engine="validate[required]">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label> AMOUNT <i class="required">*</i></label>
+                <input type="text" class="form-control" decimal autocomplete="false" ng-model="data.Payment.amount" data-validation-engine="validate[required]">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label> TYPE <i class="required">*</i></label>
+                <select class="form-control" ng-model="data.Payment.type">
+                  <option value=""></option>
+                  <option value="Apartelle/Dormitory">Apartelle/Dormitory</option>
+                  <option value="Learning Resource Center">Learning Resource Center</option>
+                  <option value="Health & Medical Services">Health & Medical Services</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+        </form>
+        <div class="clearfix"></div>
+        <hr>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="pull-right">
+              <button class="btn btn-primary btn-min" id="save" ng-click="save();"><i class="fa fa-save"></i> SAVE </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </form>
+  </div>
 </div>
+<?php endif ?>
+
+
 <script>
 $('#form').validationEngine('attach');
 </script>
 
 
+<div class="modal fade" id="searched-student-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">ADVANCE SEARCH</h5>
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-bordered vcenter table-striped table-condensed">
+              <thead>
+                <tr>
+                  <th class="w30px">#</th>
+                  <th class="text-center">STUDENT NUMBER</th>
+                  <th class="text-center">NAME</th>
+                  <th class="w30px"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="student in students">
+                  <td>{{ (paginator.page - 1) * paginator.limit + $index + 1 }}</td>
+                  <td class="uppercase text-center">{{ student.code }}</td>
+                  <td class="uppercase text-center">{{ student.name }}</td>
+                  <td>
+                    <input icheck type="radio" ng-init="student.selected = false" ng-model="student.selected" name="iCheck" ng-selected="student.selected = true" ng-change="selectedStudent(student)">
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot ng-show="paginator.pageCount > 0">
+                <tr>
+                  <td colspan="4" class="text-center">
+                    <div class="clearfix"></div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <ul class="pagination justify-content-center">
+                          <li class="page-item">
+                            <a class="page-link" href="javascript:void(0)" ng-click="searchStudent({ page: 1 ,search: searchTxtStudent})"><sub>&laquo;&laquo;</sub></a>
+                          </li>
+                          <li class="page-item prevPage {{ !paginator.prevPage? 'disabled':'' }}">
+                            <a class="page-link" href="javascript:void(0)" ng-click="searchStudent({ page: 1 ,search: searchTxtStudent})">&laquo;</a>
+                          </li>
+                          <li ng-repeat="page in pages" class="page-item {{ paginator.page == page.number ? 'active':''}}" >
+                            <a class="page-link" href="javascript:void(0)" class="text-center" ng-click="searchStudent({ page: 1 ,search: searchTxtStudent})">{{ page.number }}</a>
+                          </li>
+                          <li class="page-item nextPage {{ !paginator.nextPage? 'disabled':'' }}">
+                            <a class="page-link" href="javascript:void(0)" ng-click="searchStudent({ page: 1 ,search: searchTxtStudent})">&raquo;</a>
+                          </li>
+                          <li class="page-item">
+                            <a class="page-link" href="javascript:void(0)" ng-click="searchStudent({ page: 1 ,search: searchTxtStudent})"><sub>&raquo;&raquo;</sub> </a>
+                          </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                        <div class="text-center" ng-show="paginator.pageCount > 0">
+                          <sup class="text-primary">Page {{ paginator.pageCount > 0 ? paginator.page : 0 }} out of {{ paginator.pageCount }}</sup>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>  
+      </div> 
 
+      <div class="modal-footer">
+        <div class="pull-right">
+          <button type="button" class="btn btn-danger btn-sm btn-min" data-dismiss="modal"><i class="fa fa-close"></i> CLOSE</button>
+          <button type="button" class="btn btn-primary btn-sm btn-min" ng-click="studentData(employee.id)" data-dismiss="modal"><i class="fa fa-check"></i> OK</button>
+        </div> 
+        
+      </div>
+    </div>  
+  </div><!-- /.modal-content -->
+</div>
