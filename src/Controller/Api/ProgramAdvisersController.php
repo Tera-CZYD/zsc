@@ -475,180 +475,182 @@ class ProgramAdvisersController extends AppController {
 
       }
 
-      // if($student['Student']['year_term_id'] <= 3){
+      if($student['Student']['year_term_id'] <= 3){
 
-      //   $data = $this->Assessments->newEmptyEntity();
+        $data = $this->Assessments->newEmptyEntity();
        
-      //   $data = $this->Assessments->patchEntity($data, $assessment);
+        $data = $this->Assessments->patchEntity($data, $assessment);
 
-      //   if($this->Assessments->save($data)){
+        if($this->Assessments->save($data)){
 
-      //     $assessment_id = $data->id;
+          $assessment_id = $data->id;
 
-      //     $query = $this->BlockSectionCourses->find()
+          $query = $this->BlockSectionCourses->find()
 
-      //       ->where([
+            ->where([
 
-      //         'visible' => 1,
+              'visible' => 1,
 
-      //         'block_section_id' => $main['selected_block_section_id']
+              'block_section_id' => $main['selected_block_section_id']
 
-      //       ]);
+            ]);
 
-      //     $courses = $query->all();
+          $courses = $query->all();
 
-      //     $query->select(['total' => $query->func()->count('*')]);
+          $query->select(['total' => $query->func()->count('*')]);
 
-      //     $courses_count = $query->firstOrFail()->total;
+          $courses_count = $query->firstOrFail()->total;
 
-      //     $nstp_count = 0;
+          $nstp_count = 0;
 
-      //     foreach($courses as $course){
+          foreach($courses as $course){
 
-      //       if($course->id == 14 || $course->id == 15 || $course->id == 32 || $course->id == 33){
+            if($course->course_id == 14 || $course->course_id == 15 || $course->course_id == 32 || $course->id == 33){
 
-      //         echo "asd";
+              $nstp_count += 1;
 
-      //       }
+            }
 
-      //     }
+          }
 
-      //     debug($courses_count);
+          debug($courses_count);
 
-      //     debug($nstp_count);          
+          debug($nstp_count);
 
-      //     $query1 = $this->Accounts->find();
+                    
 
-      //     $accounts = $query1->all();
+          $query1 = $this->Accounts->find();
 
-      //     foreach ($accounts as $item) {          
+          $accounts = $query1->all();
 
-      //       $acronym = trim($item->acronym);
+          foreach ($accounts as $item) {          
 
-      //       $fees[$acronym] = [
+            $acronym = trim($item->acronym);
 
-      //         'amount'  => $item->amount,
+            $fees[$acronym] = [
 
-      //       ];
+              'amount'  => $item->amount,
 
-      //     }
+            ];
 
-      //     $assessment_sub['tuition_fee'] = ($courses_count * 3) * 50;
+          }
 
-      //     $assessment_sub['athletics_fee'] = $fees['ATH']['amount'];
+          $assessment_sub['tuition_fee'] = ($courses_count * 3) * 50;
 
-      //     $assessment_sub['cultural_fee'] = $fees['ATH']['amount'];
+          $assessment_sub['athletics_fee'] = $fees['ATH']['amount'];
 
-      //     $assessment_sub['development_fee'] = null;
+          $assessment_sub['cultural_fee'] = $fees['ATH']['amount'];
 
-      //     if (trim($student['Student']['college_program']['code']) === 'BSMT' || trim($student['Student']['college_program']['code']) === 'BSME') {
+          $assessment_sub['development_fee'] = null;
 
-      //       $assessment_sub['development_fee'] = 150;
+          if (trim($student['Student']['college_program']['code']) === 'BSMT' || trim($student['Student']['college_program']['code']) === 'BSME') {
 
-      //     } else {
+            $assessment_sub['development_fee'] = 150;
 
-      //       $assessment_sub['development_fee'] = $fees['DEVT']['amount'];
+          } else {
 
-      //     }
+            $assessment_sub['development_fee'] = $fees['DEVT']['amount'];
 
-      //     $assessment_sub['guidance_fee'] = $fees['GUI']['amount'];
+          }
 
-      //     $query2 = $this->Courses->find()
+          $assessment_sub['guidance_fee'] = $fees['GUI']['amount'];
 
-      //       ->where([
+          $query2 = $this->Courses->find()
 
-      //         'Courses.laboratory_unit IS NOT' => null,
+            ->where([
 
-      //       ])
+              'Courses.laboratory_unit IS NOT' => null,
 
-      //     ->matching('BlockSectionCourses', function ($q) use ($main) {
+            ])
 
-      //       return $q->where([
+          ->matching('BlockSectionCourses', function ($q) use ($main) {
 
-      //         'BlockSectionCourses.visible' => 1,
+            return $q->where([
 
-      //         'BlockSectionCourses.block_section_id' => $main['selected_block_section_id'],
+              'BlockSectionCourses.visible' => 1,
 
-      //       ]);
+              'BlockSectionCourses.block_section_id' => $main['selected_block_section_id'],
 
-      //     });
+            ]);
 
-      //     $query2->select(['total' => $query->func()->count('*')]);
+          });
 
-      //     $courses_laboratory = $query2->firstOrFail()->total;
+          $query2->select(['total' => $query->func()->count('*')]);
 
-      //     $query3 = $this->Courses->find()
+          $courses_laboratory = $query2->firstOrFail()->total;
 
-      //       ->where([
+          $query3 = $this->Courses->find()
 
-      //           'Courses.is_computer' => 1,
+            ->where([
 
-      //       ])
+                'Courses.is_computer' => 1,
 
-      //     ->matching('BlockSectionCourses', function ($q) use ($main) {
+            ])
 
-      //         return $q->where([
+          ->matching('BlockSectionCourses', function ($q) use ($main) {
 
-      //           'BlockSectionCourses.visible' => 1,
+              return $q->where([
 
-      //           'BlockSectionCourses.block_section_id' => $main['selected_block_section_id'],
+                'BlockSectionCourses.visible' => 1,
 
-      //         ]);
+                'BlockSectionCourses.block_section_id' => $main['selected_block_section_id'],
 
-      //     });
+              ]);
 
-      //     $query3->select(['total' => $query->func()->count('*')]);
+          });
 
-      //     $courses_computer = $query3->firstOrFail()->total;
+          $query3->select(['total' => $query->func()->count('*')]);
 
-      //     $query4 = $this->Courses->find()
+          $courses_computer = $query3->firstOrFail()->total;
 
-      //       ->where([
+          $query4 = $this->Courses->find()
 
-      //           'Courses.is_jeep' => 1,
+            ->where([
 
-      //       ])
+                'Courses.is_jeep' => 1,
 
-      //     ->matching('BlockSectionCourses', function ($q) use ($main) {
+            ])
 
-      //       return $q->where([
+          ->matching('BlockSectionCourses', function ($q) use ($main) {
 
-      //           'BlockSectionCourses.visible' => 1,
+            return $q->where([
 
-      //           'BlockSectionCourses.block_section_id' => $main['selected_block_section_id'],
+                'BlockSectionCourses.visible' => 1,
 
-      //       ]);
+                'BlockSectionCourses.block_section_id' => $main['selected_block_section_id'],
 
-      //     });
+            ]);
 
-      //     $query4->select(['total' => $query->func()->count('*')]);
+          });
 
-      //     $courses_jeep = $query4->firstOrFail()->total;
+          $query4->select(['total' => $query->func()->count('*')]);
 
-      //     $assessment_sub['laboratory_fee'] = $fees['LAB']['amount'] * $courses_laboratory;
+          $courses_jeep = $query4->firstOrFail()->total;
 
-      //     $assessment_sub['library_fee'] = $fees['LIB']['amount'];
+          $assessment_sub['laboratory_fee'] = $fees['LAB']['amount'] * $courses_laboratory;
 
-      //     $assessment_sub['medical_dental_fee'] = $fees['MED']['amount'];
+          $assessment_sub['library_fee'] = $fees['LIB']['amount'];
 
-      //     $assessment_sub['computer_fee'] =  ($courses_computer > 0) ? $fees['COMP']['amount'] : 0.00;
+          $assessment_sub['medical_dental_fee'] = $fees['MED']['amount'];
 
-      //     $assessment_sub['jeep_fee'] = ($courses_computer > 0) ? $fees['JEEP']['amount'] : 0.00;;
+          $assessment_sub['computer_fee'] =  ($courses_computer > 0) ? $fees['COMP']['amount'] : 0.00;
 
-      //     $assessment_sub['assessment_id'] = $assessment_id;
+          $assessment_sub['jeep_fee'] = ($courses_computer > 0) ? $fees['JEEP']['amount'] : 0.00;;
 
-      //     $assessment_sub['total'] = $assessment_sub['tuition_fee'] + $assessment_sub['athletics_fee'] + $assessment_sub['cultural_fee'] + $assessment_sub['development_fee'] + $assessment_sub['guidance_fee'] + $assessment_sub['laboratory_fee'] + $assessment_sub['library_fee'] + $assessment_sub['medical_dental_fee'] + $assessment_sub['computer_fee'] + $assessment_sub['jeep_fee'] +  $assessment_sub['assessment_id'];
+          $assessment_sub['assessment_id'] = $assessment_id;
 
-      //     $assessment_data = $this->AssessmentSubs->newEmptyEntity();
+          $assessment_sub['total'] = $assessment_sub['tuition_fee'] + $assessment_sub['athletics_fee'] + $assessment_sub['cultural_fee'] + $assessment_sub['development_fee'] + $assessment_sub['guidance_fee'] + $assessment_sub['laboratory_fee'] + $assessment_sub['library_fee'] + $assessment_sub['medical_dental_fee'] + $assessment_sub['computer_fee'] + $assessment_sub['jeep_fee'] +  $assessment_sub['assessment_id'];
+
+          $assessment_data = $this->AssessmentSubs->newEmptyEntity();
        
-      //     $assessment_data = $this->AssessmentSubs->patchEntity($assessment_data, $assessment_sub);
+          $assessment_data = $this->AssessmentSubs->patchEntity($assessment_data, $assessment_sub);
 
-      //     $this->AssessmentSubs->save($assessment_data);
+          $this->AssessmentSubs->save($assessment_data);
 
-      //   }
+        }
 
 
-      // }
+      }
       
       //STUDENT ENROLLED COURSE
 
