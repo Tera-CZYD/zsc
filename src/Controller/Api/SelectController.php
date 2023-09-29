@@ -9416,19 +9416,17 @@ class SelectController extends AppController {
 
     } else if ($code == 'good-moral-code'){
 
-      $tmp = $this->GoodMoral->query("
+      $tmp = $this->GoodMorals->find()
 
-        SELECT 
+          ->where([
 
-          count(*) as total
+            'visible' => 1
 
-        FROM 
+          ])
 
-          good_morals as GoodMoral
-
-      ");
+          ->count();
    
-      $datas = 'GM-' . str_pad($tmp[0][0]['total'] + 1, 5, "0", STR_PAD_LEFT);
+      $datas = 'GM-' . str_pad($tmp + 1, 5, "0", STR_PAD_LEFT);
 
     } else if ($code == 'affidavit-code'){
 
