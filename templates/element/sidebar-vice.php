@@ -67,6 +67,12 @@
               </ul>
             </li>
           <?php endif ?>
+
+          <?php if (hasAccess('club/index', $currentUser)): ?>
+            <li class="nav-link-side nav-club">
+              <a href="#/registrar/club" onclick="change('club')"><i class="fa fa-cc-diners-club "></i> Club Management</a>
+            </li>
+          <?php endif ?>
           </li>
         </ul>
       </div>
