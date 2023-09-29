@@ -870,132 +870,133 @@ class StudentApplicationsController extends AppController {
 
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
-    if ($this->StudentApplications->save($app)) {
+      if ($this->StudentApplications->save($app)) {
 
-      //EMAIL VERIFICATION
+        //EMAIL VERIFICATION
 
-        $name = @$app['first_name'].' '.@$app['middle_name'].' '.@$app['last_name'];
+          $name = @$app['first_name'].' '.@$app['middle_name'].' '.@$app['last_name'];
 
-        $email = @$app['email'];
+          $email = @$app['email'];
 
-        if(isset($app['email'])){
+          if(isset($app['email'])){
 
-          $name = $app['first_name'].' '.substr($app['middle_name'],0,1).'. '.$app['last_name'];
+            $name = $app['first_name'].' '.substr($app['middle_name'],0,1).'. '.$app['last_name'];
 
-          $app_no = $app['application_no'];
+            $app_no = $app['application_no'];
 
-          $email = $app['email'];
+            $email = $app['email'];
 
-          if($email != ''){
+            if($email != ''){
 
-            // fix value
-        
-            $mail = new PHPMailer(true);
+              // fix value
+          
+              $mail = new PHPMailer(true);
 
-            $mail->isSMTP(); // Send using SMTP
+              $mail->isSMTP(); // Send using SMTP
 
-            $mail->Host = 'smtp.gmail.com';
+              $mail->Host = 'smtp.gmail.com';
 
-            $mail->SMTPAuth = true;
+              $mail->SMTPAuth = true;
 
-            $mail->Username = 'mycreativepandaii@gmail.com'; // Your Gmail email address
+              $mail->Username = 'mycreativepandaii@gmail.com'; // Your Gmail email address
 
-            $mail->Password = 'tkoahowwnzuzqczy'; // Your Gmail password
+              $mail->Password = 'tkoahowwnzuzqczy'; // Your Gmail password
 
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption
+              $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption
 
-            $mail->Port = 587; // TCP port to connect to
+              $mail->Port = 587; // TCP port to connect to
 
-            // Bypass SSL certificate verification
-            $mail->SMTPOptions = [
+              // Bypass SSL certificate verification
+              $mail->SMTPOptions = [
 
-              'ssl' => [
+                'ssl' => [
 
-                'verify_peer' => false,
+                  'verify_peer' => false,
 
-                'verify_peer_name' => false,
+                  'verify_peer_name' => false,
 
-                'allow_self_signed' => true,
+                  'allow_self_signed' => true,
 
-              ],
+                ],
 
-            ];
+              ];
 
-            //Recipients
+              //Recipients
 
-            $mail->setFrom('mycreativepandaii@gmail.com', 'ZAMBOANGA STATE COLLEGE OF MARINE SCIENCES AND TECHNOLOGY'); // Sender's email and name
+              $mail->setFrom('mycreativepandaii@gmail.com', 'ZAMBOANGA STATE COLLEGE OF MARINE SCIENCES AND TECHNOLOGY'); // Sender's email and name
 
-            $mail->addAddress($email, $name); // Recipient's email and name
+              $mail->addAddress($email, $name); // Recipient's email and name
 
-            // Content
+              // Content
 
-            $mail->isHTML(true); // Set email format to HTML
+              $mail->isHTML(true); // Set email format to HTML
 
-            $mail->Subject = 'Application Status';
+              $mail->Subject = 'Application Status';
 
-            $_SESSION['name'] = @$name; 
+              $_SESSION['name'] = @$name; 
 
-            $_SESSION['application_no'] = @$app['application_no'];
+              $_SESSION['application_no'] = @$app['application_no'];
 
-            $_SESSION['disapproved_reason'] = @$app['disapproved_reason'];
+              $_SESSION['disapproved_reason'] = @$app['disapproved_reason'];
 
-            $_SESSION['id'] = $id; 
+              $_SESSION['id'] = $id; 
 
-            ob_start();
+              ob_start();
 
-            include('Email/admission-application-disapproved.ctp');
+              include('Email/admission-application-disapproved.ctp');
 
-            $bodyContent = ob_get_contents();
+              $bodyContent = ob_get_contents();
 
-            ob_end_clean();
+              ob_end_clean();
 
-            $mail->Body = $bodyContent;
-                
-            $mail->send();
+              $mail->Body = $bodyContent;
+                  
+              $mail->send();
+
+            }
 
           }
 
-        }
+        //EMAIL VERIFICATION
 
-      //EMAIL VERIFICATION
+        $response = array(
 
-      $response = array(
+          'ok'   => true,
 
-        'ok'   => true,
+          'data' => $app,       
 
-        'data' => $app,       
+          'msg'  => 'Examinee has been successfully rated.'
 
-        'msg'  => 'Examinee has been successfully rated.'
+        );
+            $userLogEntity = $this->UserLogs->newEntity([
 
-      );
-          $userLogEntity = $this->UserLogs->newEntity([
+            'action' => 'CAT',
 
-          'action' => 'CAT',
+            'description' => 'Unqualify'.@$app['StudentApplication']['first_name'].' '.@$app['StudentApplication']['last_name'],
 
-          'description' => 'Unqualify'.@$app['StudentApplication']['first_name'].' '.@$app['StudentApplication']['last_name'],
+            'created' => date('Y-m-d H:i:s'),
 
-          'created' => date('Y-m-d H:i:s'),
+            'modified' => date('Y-m-d H:i:s')
 
-          'modified' => date('Y-m-d H:i:s')
+          ]);
 
-        ]);
+          $this->UserLogs->save($userLogEntity);
 
-        $this->UserLogs->save($userLogEntity);
+      } else {
 
-    } else {
+        $response = array(
 
-      $response = array(
+          'ok'   => false,
 
-        'ok'   => false,
+          'data' => $app,
 
-        'data' => $app,
+          'msg'  =>'Examinee cannot be rated this time.'
 
-        'msg'  =>'Examinee cannot be rated this time.'
+        );
 
-      );
+      }
 
-    }
-  }else {
+    }else {
 
       $response = array(
 
@@ -1600,7 +1601,6 @@ class StudentApplicationsController extends AppController {
 
       //TRANSFERRING DATA TO STUDENT TABLE
 
-      
         $query = new Student([
 
           'student_applicant_id' => $id,
@@ -1621,7 +1621,9 @@ class StudentApplicationsController extends AppController {
 
           'year_term_id' => $app['year_term_id'],
 
-          'email' => $app['email']
+          'email' => $app['email'],
+
+          'present_address' => $app['address'],
 
         ]);
 
