@@ -1,19 +1,25 @@
 app.controller("CompletionController", function ($scope, Completion) {
+
   $scope.today = Date.parse("today").toString("MM/dd/yyyy");
 
   $(".datepicker").datepicker({
+
     format: "mm/dd/yyyy",
 
     autoclose: true,
 
     todayHighlight: true,
+
   });
 
   $scope.load = function (options) {
+
     options = typeof options !== "undefined" ? options : {};
 
     Completion.query(options, function (e) {
+
       if (e.ok) {
+
         $scope.datas = e.data;
 
         $scope.conditionsPrint = e.conditionsPrint;
@@ -21,13 +27,17 @@ app.controller("CompletionController", function ($scope, Completion) {
         $scope.paginator = e.paginator;
 
         $scope.pages = paginator($scope.paginator, 5);
+
       }
+
     });
+
   };
 
   $scope.load();
 
   $scope.reload = function (options) {
+
     $scope.search = {};
 
     $scope.searchTxt = "";
@@ -39,18 +49,27 @@ app.controller("CompletionController", function ($scope, Completion) {
     $scope.endDate = null;
 
     $scope.load();
+
   };
 
   $scope.searchy = function (search) {
+
     search = typeof search !== "undefined" ? search : "";
 
     if (search.length > 0) {
+
       $scope.load({
+
         search: search,
+
       });
+
     } else {
+
       $scope.load();
+
     }
+
   };
 
   $scope.selectedFilter = 'date';
@@ -122,105 +141,146 @@ app.controller("CompletionController", function ($scope, Completion) {
   }
 
   $scope.remove = function (data) {
-    bootbox.confirm(
-      "Are you sure you want to delete " + data.student_name + " ?",
-      function (c) {
-        if (c) {
-          Completion.remove({ id: data.id }, function (e) {
-            if (e.ok) {
-              $.gritter.add({
-                title: "Successful!",
 
-                text: e.msg,
-              });
+    bootbox.confirm("Are you sure you want to delete " + data.student_name + " ?",function (c) {
+      if (c) {
 
-              $scope.load();
-            }
-          });
-        }
+        Completion.remove({ id: data.id }, function (e) {
+
+          if (e.ok) {
+
+            $.gritter.add({
+
+              title: "Successful!",
+
+              text: e.msg,
+
+            });
+
+            $scope.load();
+          }
+
+        });
+
       }
-    );
+
+    });
+
   };
 
   $scope.print = function () {
+
     date = "";
 
     if ($scope.conditionsPrint !== "") {
+
       printTable(base + "print/completion?print=1" + $scope.conditionsPrint);
+
     } else {
+
       printTable(base + "print/completion?print=1");
+
     }
+
   };
+  
 });
 
 app.controller("CompletionAddController",function ($scope, Completion, Select) {
-    $("#form").validationEngine("attach");
 
-    $(".datepicker").datepicker({
-      format: "mm/dd/yyyy",
+  $("#form").validationEngine("attach");
 
-      autoclose: true,
+  $(".datepicker").datepicker({
 
-      todayHighlight: true,
+    format: "mm/dd/yyyy",
+
+    autoclose: true,
+
+    todayHighlight: true,
+
+  });
+
+  $(".clockpicker").clockpicker({
+
+    donetext: "Done",
+
+    twelvehour: true,
+
+    placement: "bottom",
+
+  });
+
+  $scope.data = {
+
+    Completion: {},
+
+  };
+
+  Select.get({ code: "completions" }, function (e) {
+
+    $scope.data.Completion.code = e.data;
+
+  });
+
+  Select.get({ code: 'year-term-list' },function(e){
+
+    $scope.year_terms = e.data;
+
+  });
+
+  $scope.searchStudent = function (options) {
+
+    options = typeof options !== "undefined" ? options : {};
+
+    options["code"] = "search-student";
+
+    Select.query(options, function (e) {
+
+      $scope.students = e.data.result;
+
+      $scope.student = {};
+
+      // paginator
+
+      $scope.paginator = e.data.paginator;
+
+      $scope.pages = paginator($scope.paginator, 10);
+
+      $("#searched-student-modal").modal("show");
+
     });
 
-    $(".clockpicker").clockpicker({
-      donetext: "Done",
+  };
 
-      twelvehour: true,
+  $scope.selectedStudent = function (student) {
 
-      placement: "bottom",
-    });
+    $scope.student = {
 
-    $scope.data = {
-      Completion: {},
+      id: student.id,
+
+      code: student.code,
+
+      name: student.name,
+
+      program_id : student.program_id,
+
+      year_term_id : student.year_term_id
+
     };
 
-    Select.get({ code: "completions" }, function (e) {
-      $scope.data.Completion.code = e.data;
-    });
+  };
 
-    // Select.get({ code: "course-list" }, function (e) {
-    //   $scope.course = e.data;
-    // });
+  $scope.studentData = function (id) {
 
-    $scope.searchStudent = function (options) {
-      options = typeof options !== "undefined" ? options : {};
+    $scope.data.Completion.student_id = $scope.student.id;
 
-      options["code"] = "search-student";
+    $scope.data.Completion.student_name = $scope.student.name;
 
-      Select.query(options, function (e) {
-        $scope.students = e.data.result;
+    $scope.data.Completion.student_no = $scope.student.code;
 
-        $scope.student = {};
+    $scope.data.Completion.year_term_id = $scope.student.year_term_id;
 
-        // paginator
-
-        $scope.paginator = e.data.paginator;
-
-        $scope.pages = paginator($scope.paginator, 10);
-
-        $("#searched-student-modal").modal("show");
-      });
-    };
-
-    $scope.selectedStudent = function (student) {
-      $scope.student = {
-        id: student.id,
-
-        code: student.code,
-
-        name: student.name,
-      };
-    };
-
-    $scope.studentData = function (id) {
-      $scope.data.Completion.student_id = $scope.student.id;
-
-      $scope.data.Completion.student_name = $scope.student.name;
-
-      $scope.data.Completion.student_no = $scope.student.code;
-    };
+  };
 
   $scope.save = function () {
 
@@ -277,136 +337,181 @@ app.controller("CompletionAddController",function ($scope, Completion, Select) {
     }
 
   };
-  }
-);
 
-app.controller("CompletionViewController",function ($scope, $routeParams, Completion) {
-    $scope.id = $routeParams.id;
-
-    $scope.data = {};
-
-    // load
-
-    $scope.load = function () {
-      
-      Completion.get({ id: $scope.id }, function (e) {
-        $scope.data = e.data;
-      });
-    };
-
-    $scope.load();
-
-    $scope.print = function (id) {
-      printTable(base + "print/completion_form/" + id);
-    };
-
-    // remove
-    $scope.remove = function (data) {
-      bootbox.confirm(
-        "Are you sure you want to remove " + data.code + " ?",
-        function (c) {
-          if (c) {
-            Completion.remove({ id: data.id }, function (e) {
-              if (e.ok) {
-                $.gritter.add({
-                  title: "Successful!",
-
-                  text: e.msg,
-                });
-
-                window.location =
-                  "#/registrar/completion";
-              }
-            });
-          }
-        }
-      );
-    };
 });
 
-app.controller(
-  "CompletionEditController",
-  function ($scope, $routeParams, Completion, Select) {
-    $scope.id = $routeParams.id;
+app.controller("CompletionViewController",function ($scope, $routeParams, Completion) {
 
-    $("#form").validationEngine("attach");
+  $scope.id = $routeParams.id;
 
-    $(".datepicker").datepicker({
-      format: "mm/dd/yyyy",
+  $scope.data = {};
 
-      autoclose: true,
+  // load
 
-      todayHighlight: true,
+  $scope.load = function () {
+    
+    Completion.get({ id: $scope.id }, function (e) {
+
+      $scope.data = e.data;
+
     });
 
-    $(".clockpicker").clockpicker({
-      donetext: "Done",
+  };
 
-      twelvehour: true,
+  $scope.load();
 
-      placement: "bottom",
+  $scope.print = function (id) {
+
+    printTable(base + "print/completion_form/" + id);
+
+  };
+
+  // remove
+  $scope.remove = function (data) {
+
+    bootbox.confirm("Are you sure you want to remove " + data.code + " ?",function (c) {
+
+      if (c) {
+
+        Completion.remove({ id: data.id }, function (e) {
+
+          if (e.ok) {
+
+            $.gritter.add({
+
+              title: "Successful!",
+
+              text: e.msg,
+
+            });
+
+            window.location = "#/registrar/completion";
+
+          }
+
+        });
+
+      }
+
     });
 
-    $scope.data = {
-      Completion: {},
-    };
+  };
 
-    $scope.bool = [
-      { id: true, value: "Yes" },
-      { id: false, value: "No" },
-    ];
+});
 
-    // Select.get({ code: "course-list" }, function (e) {
-    //   $scope.course = e.data;
-    // });
+app.controller("CompletionEditController",function ($scope, $routeParams, Completion, Select) {
+
+  $scope.id = $routeParams.id;
+
+  $("#form").validationEngine("attach");
+
+  $(".datepicker").datepicker({
+
+    format: "mm/dd/yyyy",
+
+    autoclose: true,
+
+    todayHighlight: true,
+
+  });
+
+  $(".clockpicker").clockpicker({
+
+    donetext: "Done",
+
+    twelvehour: true,
+
+    placement: "bottom",
+
+  });
+
+  $scope.data = {
+
+    Completion: {},
+
+  };
+
+  $scope.bool = [
+
+    { id: true, value: "Yes" },
+
+    { id: false, value: "No" },
+
+  ];
+
+  Select.get({ code: 'year-term-list' },function(e){
+
+    $scope.year_terms = e.data;
+
+  });
 
     // load
 
-    $scope.load = function () {
-      Completion.get({ id: $scope.id }, function (e) {
-        $scope.data = e.data;
-      });
+  $scope.load = function () {
+
+    Completion.get({ id: $scope.id }, function (e) {
+
+      $scope.data = e.data;
+
+    });
+
+  };
+
+  $scope.load();
+
+  $scope.searchStudent = function (options) {
+
+    options = typeof options !== "undefined" ? options : {};
+
+    options["code"] = "search-student";
+
+    Select.query(options, function (e) {
+
+      $scope.students = e.data.result;
+
+      $scope.student = {};
+
+      // paginator
+
+      $scope.paginator = e.data.paginator;
+
+      $scope.pages = paginator($scope.paginator, 10);
+
+      $("#searched-student-modal").modal("show");
+
+    });
+
+  };
+
+  $scope.selectedStudent = function (student) {
+
+    $scope.student = {
+
+      id: student.id,
+
+      code: student.code,
+
+      name: student.name,
+
+      program_id : student.program_id,
+
+      year_term_id : student.year_term_id
+
     };
-    $scope.load();
 
-    $scope.searchStudent = function (options) {
-      options = typeof options !== "undefined" ? options : {};
+  };
 
-      options["code"] = "search-student";
+  $scope.studentData = function (id) {
 
-      Select.query(options, function (e) {
-        console.log(e);
-        $scope.students = e.data.result;
+    $scope.data.Completion.student_id = $scope.student.id;
 
-        $scope.student = {};
+    $scope.data.Completion.student_name = $scope.student.name;
 
-        // paginator
+    $scope.data.Completion.student_no = $scope.student.code;
 
-        $scope.paginator = e.data.paginator;
+    $scope.data.Completion.year_term_id = $scope.student.year_term_id;
 
-        $scope.pages = paginator($scope.paginator, 10);
-
-        $("#searched-student-modal").modal("show");
-      });
-    };
-
-    $scope.selectedStudent = function (student) {
-      $scope.student = {
-        id: student.id,
-
-        code: student.code,
-
-        name: student.name,
-      };
-    };
-
-    $scope.studentData = function (id) {
-      $scope.data.Completion.student_id = $scope.student.id;
-
-      $scope.data.Completion.student_name = $scope.student.name;
-
-      $scope.data.Completion.student_no = $scope.student.code;
-    };
+  };
 
     $scope.update = function () {
       valid = $("#form").validationEngine("validate");

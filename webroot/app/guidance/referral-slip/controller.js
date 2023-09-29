@@ -286,11 +286,11 @@ app.controller('ReferralSlipAddController', function($scope, ReferralSlip, Selec
 
   });
 
-  // Select.get({code: 'course-list'}, function(e) {
+  Select.get({ code: 'year-term-list' },function(e){
 
-  //   $scope.course = e.data;
+    $scope.year_terms = e.data;
 
-  // });
+  });
 
    Select.get({code: 'college-program-list-all'}, function(e) {
 
@@ -330,7 +330,11 @@ app.controller('ReferralSlipAddController', function($scope, ReferralSlip, Selec
 
       code : student.code,
 
-      name : student.name 
+      name : student.name,
+
+      program_id : student.program_id,
+
+      year_term_id : student.year_term_id
 
     }; 
 
@@ -341,6 +345,10 @@ app.controller('ReferralSlipAddController', function($scope, ReferralSlip, Selec
     $scope.data.ReferralSlip.student_id = $scope.student.id;
 
     $scope.data.ReferralSlip.student_name = $scope.student.name;
+
+    $scope.data.ReferralSlip.course_id = $scope.student.program_id;
+
+    $scope.data.ReferralSlip.year_term_id = $scope.student.year_term_id;
 
   }
 
@@ -515,7 +523,11 @@ app.controller('ReferralSlipEditController', function($scope, $routeParams, Refe
 
       code : student.code,
 
-      name : student.code + ' - ' + student.name 
+      name : student.name,
+
+      program_id : student.program_id,
+
+      year_term_id : student.year_term_id
 
     }; 
 
@@ -526,6 +538,10 @@ app.controller('ReferralSlipEditController', function($scope, $routeParams, Refe
     $scope.data.ReferralSlip.student_id = $scope.student.id;
 
     $scope.data.ReferralSlip.student_name = $scope.student.name;
+
+    $scope.data.ReferralSlip.course_id = $scope.student.program_id;
+
+    $scope.data.ReferralSlip.year_term_id = $scope.student.year_term_id;
 
   }
 
