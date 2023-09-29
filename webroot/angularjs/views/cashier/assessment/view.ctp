@@ -47,6 +47,10 @@
                   <th class="text-right"> CONTACT NO. : </th>
                   <td class="italic">{{ data.Assessment.contact_no }}</td>
                 </tr>
+                <tr>
+                  <th class="text-right"> YEAR LEVEL : </th>
+                  <td class="italic">{{ data.YearLevelTerm.description }}</td>
+                </tr>
               </table>
             </div> 
           </div>

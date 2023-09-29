@@ -1,5 +1,24 @@
-<?php if (hasAccess('scholastic document/view', $currentUser)): ?>
-<div class="row">
+<script type="text/javascript">
+
+  function handleAccess(elementId, permissionCode, currentUser) {
+    const element = document.getElementById(elementId);
+    const accessGranted = hasAccess(permissionCode, currentUser);
+    
+    if (accessGranted) {
+      element.classList.remove('d-none'); // Remove Bootstrap's "d-none" class to show the element
+    } else {
+      element.classList.add('d-none'); // Add Bootstrap's "d-none" class to hide the element
+    }
+  }
+
+  // INCLUDE ALL PAGE PERMISSION
+  handleAccess('pageView', 'scholastic document/view', currentUser);
+  handleAccess('pageEdit', 'scholastic document/edit', currentUser);
+  handleAccess('pageDelete', 'scholastic document/delete', currentUser);
+
+</script>
+
+<div class="row" id="pageView">
     <div class="col-lg-12 mt-3">
         <div class="card">
             <div class="card-body">
@@ -28,14 +47,10 @@
                     </div>
                     <div class="col-md-12">
                         <div class="pull-right">
-                            <?php if (hasAccess('scholastic document/edit', $currentUser)): ?>
-                            <a href="#/registrar/scholastic-document/edit/{{ data.ScholasticDocument.id }}"
+                            <a id="pageEdit" href="#/registrar/scholastic-document/edit/{{ data.ScholasticDocument.id }}"
                                 class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
-                            <?php endif ?>
-                            <?php if (hasAccess('scholastic document/delete', $currentUser)): ?>
-                            <button class="btn btn-danger btn-min" ng-click="remove(data.ScholasticDocument)"><i
+                            <button id="pageDelete" class="btn btn-danger btn-min" ng-click="remove(data.ScholasticDocument)"><i
                                     class="fa fa-trash"></i> DELETE </button>
-                            <?php endif ?>
                         </div>
                     </div>
                 </div>
@@ -43,7 +58,6 @@
         </div>
     </div>
 </div>
-<?php endif ?>
 <style type="text/css">
 th {
     white-space: nowrap;
