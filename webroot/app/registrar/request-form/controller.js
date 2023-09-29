@@ -401,7 +401,7 @@ app.controller('RequestFormAddController', function($scope, RequestForm, Select,
 
                 title: 'Warning!',
 
-                text:  'You still have a pending request with the same purpose.',
+                text:  'Student still have a pending request with the same purpose and Requested Form. File an Affidavit Of Loss <a href="#/registrar/admin-affidavit-of-loss">Click here</a>'
                 
               });
 
