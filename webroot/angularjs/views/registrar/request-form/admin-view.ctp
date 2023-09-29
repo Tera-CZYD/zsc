@@ -53,14 +53,23 @@
                     <td class="italic">{{ data.RequestForm.date }}</td>
                   </tr>
                   <tr>
+<<<<<<< HEAD
+                    <th class="text-right"> PROGRAM : </th>
+                    <td class="italic">{{ data.Program.code }} - {{ data.Program.name }}</td>
+=======
                     <th class="text-right"> COURSE : </th>
                     <td class="italic">{{ data.CollegeProgram.code }} - {{ data.CollegeProgram.name }}</td>
+>>>>>>> 244db000a8c1282a00a0313b1dd8863ae55b6576
                   </tr>
                   <tr>
                     <th class="text-right"> YEAR : </th>
                     <td class="italic">{{ data.RequestForm.year }}</td>
                   </tr>
                   <tr>
+                    <th class="text-right"> IDENTIFIER : </th>
+                    <td class="italic">{{ data.RequestForm.identifier }}</td>
+                  </tr>
+                  <tr ng-show="data.RequestForm.identifier != undefined">
                     <th class="text-right"> PURPOSE : </th>
                     <td class="italic">{{ data.RequestForm.purpose }}</td> 
                   </tr>
@@ -72,7 +81,21 @@
               </div>
             </div>
             <div class="clearfix"></div>
-            <hr>
+            <div class="col-md-12 mt-4" ng-show="data.RequestForm.identifier != undefined">
+                <div class="form-group">
+                  <div class="row mt-4">
+                    <div class="col-md-4">
+                      <input icheck type="checkbox" disabled class="form-control" autocomplete="false" ng-model="data.RequestForm.gwa"> With GWA
+                    </div>
+                    <div class="col-md-4">
+                      <input icheck type="checkbox" disabled class="form-control" autocomplete="false" ng-model="data.RequestForm.unit"> With Units
+                    </div>
+                    <div class="col-md-4">
+                      <input icheck type="checkbox" disabled class="form-control" autocomplete="false" ng-model="data.RequestForm.medium"> With of Instruction
+                    </div>
+                  </div>
+                </div>
+              </div>
             <div class="col-md-12 mt-4">
               <div class="form-group">
                 <label> PLEASE CHECK NATURE OF REQUEST <i class="required">*</i></label>
