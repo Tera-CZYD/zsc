@@ -21,62 +21,74 @@
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
-        <h4 class="header-title">SCHOLARSHIP APPLICATION</h4>
+        <h4 class="header-title">SCHOLARSHIP APPLICATION</h4> 
         <div class="clearfix"></div>
         <hr>
         <!-- nav tab start -->
-        <div class="col-lg-12">
-
-          <div class="col-md-8 col-xs-12">
-            <ul class="nav nav-tabs" id="myTab" role="tablist" style="cursor: pointer;">
-              <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" data-target ="#pending" role="tab">PENDING</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" data-target ="#for_processing" role="tab">FOR PROCESSING</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" data-target ="#confirmed" role="tab">CONFIRMED</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" data-target ="#disapproved" role="tab">DISAPPROVED</a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="col-md-4 col-xs-12">
-            <div class="input-group-prepend">
-          
-              <span class="dropleft float-right input-group-text" style="padding : 0;">
-                <a class="fa fa-filter" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 15px;"></a>
-                <div class="dropdown-menu">
-                  <div ng-show="!data.CourseActivity.disable_admin_quiz_button">
-                    <a class="dropdown-item text-dark" href="javascript:void(0)" ng-click="changeFilter('date')">DATE</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-dark" href="javascript:void(0)" ng-click="changeFilter('month')">MONTH</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-dark" href="javascript:void(0)" ng-click="changeFilter('customRange')">CUSTOM RANGE</a>
-                  </div>
-                </div>
-              </span>
-              <input ng-show="selectedFilter == 'date'" type="text" class="form-control datepicker input-sm uppercase" ng-model="search.date" ng-change="searchFilter(search)" placeholder="FILTER BY DATE">
-              <input ng-show="selectedFilter == 'month'" type="text" class="form-control monthpicker input-sm uppercase" ng-model="search.month" ng-change="searchFilter(search)" placeholder="FILTER BY MONTH">
-              <div class="input-group input-daterange" style="margin-bottom: 0;" ng-show="selectedFilter == 'customRange'">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                </div>
-                <input type="text" class="form-control input-sm uppercase" ng-model="search.startDate" ng-change="searchFilter(search)" placeholder="START DATE">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                </div>
-                <input type="text" class="form-control input-sm uppercase" ng-model="search.endDate" ng-change="searchFilter(search)" placeholder="END DATE">
-              </div>
+        <div class="col-md-8">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label> PROGRAM </label>
+              <select selectize ng-model="program_id" ng-options="opt.id as opt.value for opt in programs">
+                <option value=""></option>
+              </select>
             </div>
           </div>
-          
+          <div class="col-md-3">
+            <div class="form-group">
+              <label> YEAR TERM </label>
+              <select selectize ng-model="year" ng-options="opt.id as opt.value for opt in year_terms">
+                <option value=""></option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label> SCHOLARSHIP </label>
+              <select selectize ng-model="scholarship" ng-options="opt.id as opt.value for opt in scholarships" ng-change = "getFinal()">
+                <option value=""></option>
+              </select>
+            </div>
+          </div>
+        </div> 
+
+        <div class="col-md-4" style="margin-top: 28.5px">
+          <div class="input-group-prepend">
+
+            <span class="dropleft float-right input-group-text" style="padding : 0;">
+              <a class="fa fa-filter" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 15px;"></a>
+              <div class="dropdown-menu">
+                <div ng-show="!data.CourseActivity.disable_admin_quiz_button">
+                  <a class="dropdown-item text-dark" href="javascript:void(0)" ng-click="changeFilter('date')">DATE</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item text-dark" href="javascript:void(0)" ng-click="changeFilter('month')">MONTH</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item text-dark" href="javascript:void(0)" ng-click="changeFilter('customRange')">CUSTOM RANGE</a>
+                </div>
+              </div>
+            </span>
+            <input ng-show="selectedFilter == 'date'" type="text" class="form-control datepicker input-sm uppercase" ng-model="search.date" ng-change="searchFilter(search)" placeholder="FILTER BY DATE">
+            <input ng-show="selectedFilter == 'month'" type="text" class="form-control monthpicker input-sm uppercase" ng-model="search.month" ng-change="searchFilter(search)" placeholder="FILTER BY MONTH">
+            <div class="input-group input-daterange" style="margin-bottom: 0;" ng-show="selectedFilter == 'customRange'">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+              </div>
+              <input type="text" class="form-control input-sm uppercase" ng-model="search.startDate" ng-change="searchFilter(search)" placeholder="START DATE">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+              </div>
+              <input type="text" class="form-control input-sm uppercase" ng-model="search.endDate" ng-change="searchFilter(search)" placeholder="END DATE">
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-12">
 
           <div class="tab-content mt-3" id="myTabContent">
             <div class="clearfix"></div><hr>
+<<<<<<< HEAD
+
+=======
             <div class="tab-pane fade show active" id="pending">
               <div class="col-md-12">
                 <div class="row">
@@ -240,8 +252,9 @@
                 </div>
               </div>
             </div>
+>>>>>>> 1123ad511b3ef0ae1a8578805c485c085864f3ab
 
-            <div class="tab-pane fade show" id="confirmed">
+            <div class="tab-pane fade show active" id="confirmed">
               <div class="col-md-12">
                 <div class="row">
                   <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
@@ -322,6 +335,8 @@
                 </div>
               </div>
             </div>
+<<<<<<< HEAD
+=======
 
             <div class="tab-pane fade show" id="disapproved">
               <div class="col-md-12">
@@ -405,6 +420,7 @@
               </div>
             </div>
 
+>>>>>>> 1123ad511b3ef0ae1a8578805c485c085864f3ab
           </div>
 
         </div>

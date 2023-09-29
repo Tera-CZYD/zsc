@@ -121,12 +121,12 @@
                             <input icheck type="checkbox" ng-init="selectAll = false" ng-model="selectAll" ng-change="selectall()">
                           </th>
                           <th class="text-center w30px">#</th>
-                          <th class="text-center" id="applicantName" ng-click='studentRating()' ng-model="orderApplicantName"><i class="fa fa-sort"></i> APPLICANT NAME </th>
+                          <th class="text-center" id="applicantName" ng-click='applicantName()' ng-model="orderApplicantName"><i class="fa fa-sort"></i> APPLICANT NAME </th>
                           <th class="text-center"> EMAIL </th>
                           <th class="text-center"> ADDRESS </th>
                           <th class="text-center"> CONTACT NO. </th>
                           <th class="text-center"> GENDER </th>
-                          <th class="text-center" id="applicationDate" ng-click='studentRating()' ng-model="orderApplicationDate"><i class="fa fa-sort"></i> APPLICATION DATE </th>
+                          <th class="text-center" id="applicationDate" ng-click='applicationDate()' ng-model="orderApplicationDate"><i class="fa fa-sort"></i> APPLICATION DATE </th>
                           <th class="w90px"></th>
                         </tr>
                       </thread>

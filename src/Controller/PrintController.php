@@ -49,6 +49,11 @@ class PrintController extends AppController {
 
     $this->loadModel('Students');
 
+<<<<<<< HEAD
+    $this->loadModel('AddingDroppingSubjects');
+
+=======
+>>>>>>> 1123ad511b3ef0ae1a8578805c485c085864f3ab
     $this->loadModel('ClassSchedules');
 
     $this->loadModel('BlockSections');
@@ -23000,71 +23005,60 @@ class PrintController extends AppController {
 
   }
 
-  public function cat_rating_result($id = null){
+  public function catRatingResult($id = null){
 
-    $data = $this->StudentApplication->find('first', array(
+    $data['StudentApplication'] = $this->StudentApplications->find()
+    ->contain([
+        'YearLevelTerms',
+        'Colleges',
+        'PreferredPrograms',
 
-      'contain' => array(
+        'SecondaryPrograms',
+        'StudentApplicationImages' => [
+            'conditions' => ['StudentApplicationImages.visible' => 1]
+        ],
+        'StudentEnrolledCourses' => [
+            'conditions' => ['StudentEnrolledCourses.visible' => 1]
+        ],
+        'StudentEnrolledUnits' => [
+            'conditions' => ['StudentEnrolledUnits.visible' => 1]
+        ],
+        'StudentEnrollments' => [
+            'conditions' => ['StudentEnrollments.visible' => 1]
+        ]
+    ])
+    ->where([
+        'StudentApplications.visible' => 1,
+        'StudentApplications.id' => $id
+    ])
+    ->first();
 
-        'YearLevelTerm',
+    $data['StudentApplication']['birth_date'] = isset($data['StudentApplication']['birth_date']) ? date('m/d/Y', strtotime($data['StudentApplication']['birth_date'])) : '';
 
-        'College',
+    $data['StudentApplication']['approved_date'] = isset($data['StudentApplication']['approved_date']) ? date('m/d/Y', strtotime($data['StudentApplication']['approved_date'])) : '';
 
-        'CollegeProgram',
+    $data['StudentApplication']['disapproved_date'] = isset($data['StudentApplication']['disapproved_date']) ? date('m/d/Y', strtotime($data['StudentApplication']['disapproved_date'])) : '';
 
-        'CollegeProgramSecondary',
+    $data['StudentApplicationImage'] = $data['StudentApplication']['student_application_images'];
 
-        'StudentApplicationImage' => array(
+    $data['College'] = $data['StudentApplication']['college'];
 
-          'conditions' => array(
+    $data['CollegeProgram'] = $data['StudentApplication']['preferred_program'];
 
-            'StudentApplicationImage.visible' => true
+    $data['CollegeProgramSecondary'] = $data['StudentApplication']['secondary_program'];
 
-          ),
+    $data['YearLevelTerm'] = $data['StudentApplication']['year_level_term'];
 
-        ),
+    unset($data['StudentApplication']['student_application_image']);
 
-        'StudentEnrolledCourse' => array(
+    unset($data['StudentApplication']['college']);
 
-          'conditions' => array(
+    unset($data['StudentApplication']['preferred_program']);
 
-            'StudentEnrolledCourse.visible' => true
+    unset($data['StudentApplication']['year_level_term']);
 
-          )
+    unset($data['StudentApplication']['secondary_program']);
 
-        ),
-
-        'StudentEnrolledUnit' => array(
-
-          'conditions' => array(
-
-            'StudentEnrolledUnit.visible' => true
-
-          )
-
-        ),
-
-        'StudentEnrollment' => array(
-
-          'conditions' => array(
-
-            'StudentEnrollment.visible' => true
-
-          )
-
-        )
-
-      ),
-
-      'conditions' => array(
-
-        'StudentApplication.visible' => true,
-
-        'StudentApplication.id' => $id,
-
-      )
-
-    ));
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
     require("wordwrap.php");
@@ -23152,11 +23146,7 @@ class PrintController extends AppController {
     $pdf->SetXY(5, $pdf->getY());
     $pdf->Cell(10);
     $pdf->SetFont("Times", '', 20);
-    $pdf->MultiCell(40,5,'
-
-'.$data['StudentApplication']['rate'].'
-
-    ',1,'C',0);
+    $pdf->Cell(40,30,$data['StudentApplication']['rate'],'LTR',0,'C');
 
     $pdf->SetFont("Times", '', 9);
     $mt='';
@@ -23233,126 +23223,125 @@ class PrintController extends AppController {
     if($data['CollegeProgramSecondary']['major']=='Home Economics'){
           $home='4';
     }
-    $pdf->Rect(55, $pdf->GetY()-25, 150, 55);
+    $pdf->Rect(55, $pdf->GetY(), 150, 55);
 
-    $pdf->SetXY(56, $pdf->getY()-25);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(1);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$mt,0,'L',0);
+    $pdf->Cell(3,5,$mt,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(50,5,'1. BS Marine Transportation (BSMT)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(50,5,'1. BS Marine Transportation (BSMT)',0,0,'L');
     $pdf->Cell(15);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$hm,0,'L',0);
+    $pdf->Cell(3,5,$hm,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(55,5,'12. BS Hospitality Management (BSHM)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(55,5,'12. BS Hospitality Management (BSHM)',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$me,0,'L',0);
+    $pdf->Cell(3,5,$me,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(47,5,'2. BS Marine Engineering (BSME)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(47,5,'2. BS Marine Engineering (BSME)',0,0,'L');
     $pdf->Cell(18);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$ed,0,'L',0);
+    $pdf->Cell(3,5,$ed,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(50,5,'13. BS Secondary Education (BSED)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(50,5,'13. BS Secondary Education (BSED)',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$martech,0,'L',0);
+    $pdf->Cell(3,5,$martech,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(53.5,5,'3. BS Marine Technology (BSMarTech)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(53.5,5,'3. BS Marine Technology (BSMarTech)',0,0,'L');
     $pdf->Cell(10);
         $pdf->SetFont("Times", 'B', 9);
-    $pdf->Cell(23,5,'Major: ',0,'L',0);
+    $pdf->Cell(23,5,'Major: ',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$a,0,'L',0);
+    $pdf->Cell(3,5,$a,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(34.5,5,'4. BS Aquaculture (BSA)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(34.5,5,'4. BS Aquaculture (BSA)',0,0,'L');
     $pdf->Cell(41);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$sci,0,'L',0);
+    $pdf->Cell(3,5,$sci,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(12,5,'Science',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(12,5,'Science',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$fi,0,'L',0);
+    $pdf->Cell(3,5,$fi,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(30.5,5,'5. BS Fisheries (BSFi)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(30.5,5,'5. BS Fisheries (BSFi)',0,0,'L');
     $pdf->Cell(44);
-    $pdf->Cell(3,5,'(',0,'L',0);
+    $pdf->Cell(3,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$fil,0,'L',0);
+    $pdf->Cell(3,5,$fil,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(12,5,'Filipino',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(12,5,'Filipino',0,0,'L');
 
     $pdf->Ln(5);   
     $pdf->Cell(10); 
-     $pdf->MultiCell(40,5,'PERCENTAGE
-EQUIVALENT',1,'C',0);
+    $pdf->MultiCell(40,5,"PERCENTAGE\nEQUIVALENT",1,'C',0);
     $pdf->SetXY(55, $pdf->getY()-15);
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$ft,0,'L',0);
+    $pdf->Cell(3,5,$ft,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(42.5,5,'6. BS Food Technology (BSFT)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(42.5,5,'6. BS Food Technology (BSFT)',0,0,'L');
     $pdf->Cell(33);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$eng,0,'L',0);
+    $pdf->Cell(3,5,$eng,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(11.5,5,'English',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(11.5,5,'English',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$mb,0,'L',0);
+    $pdf->Cell(3,5,$mb,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(41.5,5,'7. BS Marine Biology (BSMB)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(41.5,5,'7. BS Marine Biology (BSMB)',0,0,'L');
     $pdf->Cell(34);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$math,0,'L',0);
+    $pdf->Cell(3,5,$math,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(9,5,'Math',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(9,5,'Math',0,0,'L');
 
     $pdf->Ln(5);   
     $pdf->Cell(10); 
@@ -23364,65 +23353,65 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$es,0,'L',0);
+    $pdf->Cell(3,5,$es,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(50,5,'8. BS Environmental Science (BSES)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(50,5,'8. BS Environmental Science (BSES)',0,0,'L');
     $pdf->Cell(17);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$led,0,'L',0);
+    $pdf->Cell(3,5,$led,0,0,'L');
         $pdf->SetFont("Times", '', 7);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(65,5,'14. Bachelor in Technology and Livelihood Education (BTLEd)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(65,5,'14. Bachelor in Technology and Livelihood Education (BTLEd)',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$fipht,0,'L',0);
+    $pdf->Cell(3,5,$fipht,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(62,5,'9. BS Fi Post-Harvest Technology (BSFi-PHT)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(62,5,'9. BS Fi Post-Harvest Technology (BSFi-PHT)',0,0,'L');
     $pdf->Cell(14);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$ict,0,'L',0);
+    $pdf->Cell(3,5,$ict,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(7,5,'ICT',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(7,5,'ICT',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$dmect,0,'L',0);
+    $pdf->Cell(3,5,$dmect,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(67,5,'10. Diploma in Marine Electronics Communication ',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(67,5,'10. Diploma in Marine Electronics Communication ',0,0,'L');
     $pdf->Cell(9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$agri,0,'L',0);
+    $pdf->Cell(3,5,$agri,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(20,5,'Agri-Fisheries',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(20,5,'Agri-Fisheries',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(63);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(30,5,'Technology (DMECT)',0,'L',0);
+    $pdf->Cell(30,5,'Technology (DMECT)',0,0,'L');
     $pdf->Cell(41);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$agri,0,'L',0);
+    $pdf->Cell(3,5,$agri,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(25,5,'Home Economics ',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(25,5,'Home Economics ',0,0,'L');
 
     $pdf->Ln(20);
     $pdf->SetTextColor(0,0,0);
@@ -23521,134 +23510,129 @@ EQUIVALENT',1,'C',0);
     $pdf->SetXY(5, $pdf->getY());
     $pdf->Cell(10);
     $pdf->SetFont("Times", '', 20);
-    $pdf->MultiCell(40,5,'
-
-'.$data['StudentApplication']['rate'].'
-
-    ',1,'C',0);
+    $pdf->Cell(40,30,$data['StudentApplication']['rate'],'LRT',0,'C');
 
     $pdf->SetFont("Times", '', 9);
 
-    $pdf->Rect(55, $pdf->GetY()-25, 150, 55);
+    $pdf->Rect(55, $pdf->GetY(), 150, 55);
 
-    $pdf->SetXY(56, $pdf->getY()-25);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(1);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$mt,0,'L',0);
+    $pdf->Cell(3,5,$mt,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(50,5,'1. BS Marine Transportation (BSMT)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(50,5,'1. BS Marine Transportation (BSMT)',0,0,'L');
     $pdf->Cell(15);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$hm,0,'L',0);
+    $pdf->Cell(3,5,$hm,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(55,5,'12. BS Hospitality Management (BSHM)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(55,5,'12. BS Hospitality Management (BSHM)',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$me,0,'L',0);
+    $pdf->Cell(3,5,$me,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(47,5,'2. BS Marine Engineering (BSME)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(47,5,'2. BS Marine Engineering (BSME)',0,0,'L');
     $pdf->Cell(18);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$ed,0,'L',0);
+    $pdf->Cell(3,5,$ed,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(50,5,'13. BS Secondary Education (BSED)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(50,5,'13. BS Secondary Education (BSED)',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$martech,0,'L',0);
+    $pdf->Cell(3,5,$martech,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(53.5,5,'3. BS Marine Technology (BSMarTech)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(53.5,5,'3. BS Marine Technology (BSMarTech)',0,0,'L');
     $pdf->Cell(10);
         $pdf->SetFont("Times", 'B', 9);
-    $pdf->Cell(23,5,'Major: ',0,'L',0);
+    $pdf->Cell(23,5,'Major: ',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$a,0,'L',0);
+    $pdf->Cell(3,5,$a,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(34.5,5,'4. BS Aquaculture (BSA)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(34.5,5,'4. BS Aquaculture (BSA)',0,0,'L');
     $pdf->Cell(41);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$sci,0,'L',0);
+    $pdf->Cell(3,5,$sci,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(12,5,'Science',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(12,5,'Science',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$fi,0,'L',0);
+    $pdf->Cell(3,5,$fi,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(30.5,5,'5. BS Fisheries (BSFi)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(30.5,5,'5. BS Fisheries (BSFi)',0,0,'L');
     $pdf->Cell(44);
-    $pdf->Cell(3,5,'(',0,'L',0);
+    $pdf->Cell(3,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$fil,0,'L',0);
+    $pdf->Cell(3,5,$fil,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(12,5,'Filipino',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(12,5,'Filipino',0,0,'L');
 
     $pdf->Ln(5);   
     $pdf->Cell(10); 
-     $pdf->MultiCell(40,5,'PERCENTAGE
-EQUIVALENT',1,'C',0);
+    $pdf->MultiCell(40,5,"PERCENTAGE\nEQUIVALENT",1,'C',0);
     $pdf->SetXY(55, $pdf->getY()-15);
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$ft,0,'L',0);
+    $pdf->Cell(3,5,$ft,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(42.5,5,'6. BS Food Technology (BSFT)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(42.5,5,'6. BS Food Technology (BSFT)',0,0,'L');
     $pdf->Cell(33);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$eng,0,'L',0);
+    $pdf->Cell(3,5,$eng,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(11.5,5,'English',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(11.5,5,'English',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$mb,0,'L',0);
+    $pdf->Cell(3,5,$mb,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(41.5,5,'7. BS Marine Biology (BSMB)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(41.5,5,'7. BS Marine Biology (BSMB)',0,0,'L');
     $pdf->Cell(34);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$math,0,'L',0);
+    $pdf->Cell(3,5,$math,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(9,5,'Math',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(9,5,'Math',0,0,'L');
 
     $pdf->Ln(5);   
     $pdf->Cell(10); 
@@ -23660,65 +23644,75 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$es,0,'L',0);
+    $pdf->Cell(3,5,$es,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(50,5,'8. BS Environmental Science (BSES)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(50,5,'8. BS Environmental Science (BSES)',0,0,'L');
     $pdf->Cell(17);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$led,0,'L',0);
+    $pdf->Cell(3,5,$led,0,0,'L');
         $pdf->SetFont("Times", '', 7);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(65,5,'14. Bachelor in Technology and Livelihood Education (BTLEd)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(65,5,'14. Bachelor in Technology and Livelihood Education (BTLEd)',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$fipht,0,'L',0);
+    $pdf->Cell(3,5,$fipht,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(62,5,'9. BS Fi Post-Harvest Technology (BSFi-PHT)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(62,5,'9. BS Fi Post-Harvest Technology (BSFi-PHT)',0,0,'L');
     $pdf->Cell(14);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$ict,0,'L',0);
+    $pdf->Cell(3,5,$ict,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(7,5,'ICT',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(7,5,'ICT',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$dmect,0,'L',0);
+    $pdf->Cell(3,5,$dmect,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(67,5,'10. Diploma in Marine Electronics Communication ',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(67,5,'10. Diploma in Marine Electronics Communication ',0,0,'L');
     $pdf->Cell(9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$agri,0,'L',0);
+    $pdf->Cell(3,5,$agri,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(20,5,'Agri-Fisheries',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(20,5,'Agri-Fisheries',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(63);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(30,5,'Technology (DMECT)',0,'L',0);
+    $pdf->Cell(30,5,'Technology (DMECT)',0,0,'L');
     $pdf->Cell(41);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$agri,0,'L',0);
+    $pdf->Cell(3,5,$agri,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(25,5,'Home Economics ',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(25,5,'Home Economics ',0,0,'L');
+
+    $pdf->Ln(20);
+    $pdf->SetTextColor(0,0,0);
+    $pdf->SetFont("Arial", 'BU', 11);
+    $pdf->Cell(120);
+    $pdf->Cell(58,5,'REGAN C. SITOY',0,'C',0);
+    $pdf->Ln();
+    $pdf->SetFont("Times", '', 9);
+    $pdf->Cell(130);
+    $pdf->Cell(58,5,'Head, Admission, & Scholarship Office',0,'C',0);
 
     $pdf->Ln(20);
     $pdf->SetTextColor(0,0,0);
@@ -24519,8 +24513,6 @@ EQUIVALENT',1,'C',0);
 
     $office_reference = $this->Global->OfficeReference('Adding/Dropping Subject');
 
-    $this->loadModel('AddingDroppingSubjects');
-
     $data['AddingDroppingSubject'] = $this->AddingDroppingSubjects->find()
 
         ->contain([
@@ -24541,21 +24533,19 @@ EQUIVALENT',1,'C',0);
 
         ->first();
 
-    // $data['AddingDroppingSubjectSubs'] = $this->AddingDroppingSubjectSubs->find()
+        // debug($data['AddingDroppingSubject']);    
 
-    // ->where([
-
-    //     'visible' => 1,
-
-    //     'adding_dropping_subject_id' => $id
-
-    // ])
-
-    // ->orderAsc('id')
-
-    // ->toArray();
+    $data['AddingDroppingSubjectSub'] = $data['AddingDroppingSubject']['adding_dropping_subject_subs'];   
 
     $tmpData = $data['AddingDroppingSubjectSub'];
+
+    $data['Student'] = $data['AddingDroppingSubject']['student'];
+
+    unset($data['AddingDroppingSubject']['adding_dropping_subject_subs']);
+
+    unset($data['AddingDroppingSubject']['student']);    
+
+    
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
