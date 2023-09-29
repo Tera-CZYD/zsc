@@ -35238,3 +35238,1798 @@ Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\R
 Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
 [main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
 
+2023-09-29 03:41:32 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\PrintController::initialize() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 22
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 11:41:32 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /main/login?redirect=%2Fprint%2Fadding_dropping_subject_form%2F2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\MainController::initialize() C:\xampp\htdocs\zscmst\src\Controller\MainController.php, line 37
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 11:41:32 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /main/bg/bg1.png
+Referer URL: http://localhost/zscmst/main/login?redirect=%2Fprint%2Fadding_dropping_subject_form%2F2
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\MainController::initialize() C:\xampp\htdocs\zscmst\src\Controller\MainController.php, line 37
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 77
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 11:41:37 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\MainController::initialize() C:\xampp\htdocs\zscmst\src\Controller\MainController.php, line 37
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 11:41:38 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /main/login?redirect=%2Fmain
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\MainController::initialize() C:\xampp\htdocs\zscmst\src\Controller\MainController.php, line 37
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 11:41:38 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /main/bg/bg1.png
+Referer URL: http://localhost/zscmst/main/login?redirect=%2Fmain
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\MainController::initialize() C:\xampp\htdocs\zscmst\src\Controller\MainController.php, line 37
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 77
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 11:41:42 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /main/login
+Referer URL: http://localhost/zscmst/main/login?redirect=%2Fmain
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\MainController::initialize() C:\xampp\htdocs\zscmst\src\Controller\MainController.php, line 37
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 162
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 11:41:42 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /main
+Referer URL: http://localhost/zscmst/main/login?redirect=%2Fmain
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\MainController::initialize() C:\xampp\htdocs\zscmst\src\Controller\MainController.php, line 37
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 03:41:51 notice: PaginatorComponent is deprecated, use a Cake\Datasource\Pagination\NumericPaginator instance directly.
+C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line: 133
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/cakephp/src/Controller/ComponentRegistry.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only.
+Request URL: /api/adding-dropping-subjects?status=2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+deprecationWarning C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\functions.php, line 328
+Cake\Controller\Component\PaginatorComponent::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Component\PaginatorComponent.php, line 54
+Cake\Controller\ComponentRegistry::_create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 133
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 110
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\Api\AddingDroppingSubjectsController::initialize() C:\xampp\htdocs\zscmst\src\Controller\Api\AddingDroppingSubjectsController.php, line 17
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 03:41:51 notice: PaginatorComponent is deprecated, use a Cake\Datasource\Pagination\NumericPaginator instance directly.
+C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line: 133
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/cakephp/src/Controller/ComponentRegistry.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only.
+Request URL: /api/adding-dropping-subjects?status=0
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+deprecationWarning C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\functions.php, line 328
+Cake\Controller\Component\PaginatorComponent::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Component\PaginatorComponent.php, line 54
+Cake\Controller\ComponentRegistry::_create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 133
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 110
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\Api\AddingDroppingSubjectsController::initialize() C:\xampp\htdocs\zscmst\src\Controller\Api\AddingDroppingSubjectsController.php, line 17
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 03:41:51 notice: PaginatorComponent is deprecated, use a Cake\Datasource\Pagination\NumericPaginator instance directly.
+C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line: 133
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/cakephp/src/Controller/ComponentRegistry.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only.
+Request URL: /api/adding-dropping-subjects?status=1
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+deprecationWarning C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\functions.php, line 328
+Cake\Controller\Component\PaginatorComponent::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Component\PaginatorComponent.php, line 54
+Cake\Controller\ComponentRegistry::_create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 133
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 110
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\Api\AddingDroppingSubjectsController::initialize() C:\xampp\htdocs\zscmst\src\Controller\Api\AddingDroppingSubjectsController.php, line 17
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 03:41:53 notice: PaginatorComponent is deprecated, use a Cake\Datasource\Pagination\NumericPaginator instance directly.
+C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line: 133
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/cakephp/src/Controller/ComponentRegistry.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only.
+Request URL: /api/adding-dropping-subjects/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+deprecationWarning C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\functions.php, line 328
+Cake\Controller\Component\PaginatorComponent::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Component\PaginatorComponent.php, line 54
+Cake\Controller\ComponentRegistry::_create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 133
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 110
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\Api\AddingDroppingSubjectsController::initialize() C:\xampp\htdocs\zscmst\src\Controller\Api\AddingDroppingSubjectsController.php, line 17
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 03:41:55 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\PrintController::initialize() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 22
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 03:42:00 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\PrintController::initialize() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 22
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 03:43:42 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\PrintController::initialize() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 22
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 03:43:42 notice: Function utf8_decode() is deprecated
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+App\Controller\PrintController::addingDroppingSubjectForm() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 24973
+Cake\Controller\Controller::invokeAction() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 547
+Cake\Controller\ControllerFactory::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 03:43:57 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\PrintController::initialize() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 22
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 03:44:51 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\PrintController::initialize() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 22
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 03:45:04 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\PrintController::initialize() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 22
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 03:45:47 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\PrintController::initialize() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 22
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 03:45:49 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\PrintController::initialize() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 22
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 03:46:07 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\PrintController::initialize() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 22
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 03:46:29 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\PrintController::initialize() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 22
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 03:47:42 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\PrintController::initialize() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 22
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 03:48:00 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\PrintController::initialize() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 22
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 13:02:32 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\MainController::initialize() C:\xampp\htdocs\zscmst\src\Controller\MainController.php, line 37
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 13:02:32 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /main/login?redirect=%2Fmain
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\MainController::initialize() C:\xampp\htdocs\zscmst\src\Controller\MainController.php, line 37
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 13:02:33 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /main/bg/bg1.png
+Referer URL: http://localhost/zscmst/main/login?redirect=%2Fmain
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\MainController::initialize() C:\xampp\htdocs\zscmst\src\Controller\MainController.php, line 37
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 77
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 13:02:37 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /main/login
+Referer URL: http://localhost/zscmst/main/login?redirect=%2Fmain
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\MainController::initialize() C:\xampp\htdocs\zscmst\src\Controller\MainController.php, line 37
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 162
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 13:02:37 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /main
+Referer URL: http://localhost/zscmst/main/login?redirect=%2Fmain
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\MainController::initialize() C:\xampp\htdocs\zscmst\src\Controller\MainController.php, line 37
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 05:02:47 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /api/student-applications?entries=25&status=1
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\Api\StudentApplicationsController::initialize() C:\xampp\htdocs\zscmst\src\Controller\Api\StudentApplicationsController.php, line 35
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 05:02:47 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /api/student-applications?status=5
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\Api\StudentApplicationsController::initialize() C:\xampp\htdocs\zscmst\src\Controller\Api\StudentApplicationsController.php, line 35
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 05:02:47 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /api/student-applications?status=3
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\Api\StudentApplicationsController::initialize() C:\xampp\htdocs\zscmst\src\Controller\Api\StudentApplicationsController.php, line 35
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 05:02:47 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /api/student-applications?status=4
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\Api\StudentApplicationsController::initialize() C:\xampp\htdocs\zscmst\src\Controller\Api\StudentApplicationsController.php, line 35
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 05:02:51 notice: PaginatorComponent is deprecated, use a Cake\Datasource\Pagination\NumericPaginator instance directly.
+C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line: 133
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/cakephp/src/Controller/ComponentRegistry.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only.
+Request URL: /api/adding-dropping-subjects?status=1
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+deprecationWarning C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\functions.php, line 328
+Cake\Controller\Component\PaginatorComponent::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Component\PaginatorComponent.php, line 54
+Cake\Controller\ComponentRegistry::_create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 133
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 110
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\Api\AddingDroppingSubjectsController::initialize() C:\xampp\htdocs\zscmst\src\Controller\Api\AddingDroppingSubjectsController.php, line 17
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 05:02:51 notice: PaginatorComponent is deprecated, use a Cake\Datasource\Pagination\NumericPaginator instance directly.
+C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line: 133
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/cakephp/src/Controller/ComponentRegistry.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only.
+Request URL: /api/adding-dropping-subjects?status=2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+deprecationWarning C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\functions.php, line 328
+Cake\Controller\Component\PaginatorComponent::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Component\PaginatorComponent.php, line 54
+Cake\Controller\ComponentRegistry::_create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 133
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 110
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\Api\AddingDroppingSubjectsController::initialize() C:\xampp\htdocs\zscmst\src\Controller\Api\AddingDroppingSubjectsController.php, line 17
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 05:02:51 notice: PaginatorComponent is deprecated, use a Cake\Datasource\Pagination\NumericPaginator instance directly.
+C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line: 133
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/cakephp/src/Controller/ComponentRegistry.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only.
+Request URL: /api/adding-dropping-subjects?status=0
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+deprecationWarning C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\functions.php, line 328
+Cake\Controller\Component\PaginatorComponent::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Component\PaginatorComponent.php, line 54
+Cake\Controller\ComponentRegistry::_create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 133
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 110
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\Api\AddingDroppingSubjectsController::initialize() C:\xampp\htdocs\zscmst\src\Controller\Api\AddingDroppingSubjectsController.php, line 17
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 05:02:53 notice: PaginatorComponent is deprecated, use a Cake\Datasource\Pagination\NumericPaginator instance directly.
+C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line: 133
+You can disable all deprecation warnings by setting `Error.errorLevel` to `E_ALL & ~E_USER_DEPRECATED`. Adding `vendor/cakephp/cakephp/src/Controller/ComponentRegistry.php` to `Error.ignoredDeprecationPaths` in your `config/app.php` config will mute deprecations from that file only.
+Request URL: /api/adding-dropping-subjects/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+deprecationWarning C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\functions.php, line 328
+Cake\Controller\Component\PaginatorComponent::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Component\PaginatorComponent.php, line 54
+Cake\Controller\ComponentRegistry::_create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 133
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 110
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\Api\AddingDroppingSubjectsController::initialize() C:\xampp\htdocs\zscmst\src\Controller\Api\AddingDroppingSubjectsController.php, line 17
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 05:02:54 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\PrintController::initialize() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 22
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 05:03:29 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\PrintController::initialize() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 22
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 05:03:31 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\PrintController::initialize() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 22
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 05:03:39 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\PrintController::initialize() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 22
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 05:04:12 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\PrintController::initialize() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 22
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 05:05:12 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\PrintController::initialize() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 22
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 05:05:12 notice: explode(): Passing null to parameter #2 ($string) of type string is deprecated
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+explode [internal], line ??
+App\Controller\PrintController::addingDroppingSubjectForm() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 24769
+Cake\Controller\Controller::invokeAction() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 547
+Cake\Controller\ControllerFactory::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 05:05:12 notice: strlen(): Passing null to parameter #1 ($string) of type string is deprecated
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+strlen [internal], line ??
+App\Controller\PrintController::addingDroppingSubjectForm() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 24783
+Cake\Controller\Controller::invokeAction() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 547
+Cake\Controller\ControllerFactory::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 05:06:05 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\PrintController::initialize() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 22
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 05:06:05 notice: explode(): Passing null to parameter #2 ($string) of type string is deprecated
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+explode [internal], line ??
+App\Controller\PrintController::addingDroppingSubjectForm() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 24767
+Cake\Controller\Controller::invokeAction() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 547
+Cake\Controller\ControllerFactory::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 05:06:05 notice: strlen(): Passing null to parameter #1 ($string) of type string is deprecated
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+strlen [internal], line ??
+App\Controller\PrintController::addingDroppingSubjectForm() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 24781
+Cake\Controller\Controller::invokeAction() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 547
+Cake\Controller\ControllerFactory::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 05:06:33 notice: Optional parameter $arrs declared before required parameter $field is implicitly treated as a required parameter
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+include C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\{closure} C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 576
+Composer\Autoload\ClassLoader::loadClass() C:\xampp\htdocs\zscmst\vendor\composer\ClassLoader.php, line 427
+class_exists [internal], line ??
+Cake\Core\App::_classExistsInBase() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 161
+Cake\Core\App::className() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\App.php, line 68
+Cake\Controller\ComponentRegistry::_resolveClassName() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php, line 95
+Cake\Core\ObjectRegistry::load() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php, line 99
+Cake\Controller\Controller::loadComponent() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 304
+App\Controller\PrintController::initialize() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 22
+Cake\Controller\Controller::__construct() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 229
+ReflectionClass::newInstance() [internal], line ??
+Cake\Controller\ControllerFactory::create() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 87
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 318
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 05:06:33 notice: explode(): Passing null to parameter #2 ($string) of type string is deprecated
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+explode [internal], line ??
+App\Controller\PrintController::addingDroppingSubjectForm() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 24767
+Cake\Controller\Controller::invokeAction() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 547
+Cake\Controller\ControllerFactory::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+
+2023-09-29 05:06:33 notice: strlen(): Passing null to parameter #1 ($string) of type string is deprecated
+Request URL: /print/adding_dropping_subject_form/2
+Referer URL: http://localhost/zscmst/main
+Client IP: 127.0.0.1
+Trace:
+strlen [internal], line ??
+App\Controller\PrintController::addingDroppingSubjectForm() C:\xampp\htdocs\zscmst\src\Controller\PrintController.php, line 24781
+Cake\Controller\Controller::invokeAction() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\Controller.php, line 547
+Cake\Controller\ControllerFactory::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 139
+Cake\Controller\ControllerFactory::invoke() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php, line 114
+Cake\Http\BaseApplication::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\BaseApplication.php, line 320
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 86
+Cake\Http\Middleware\CsrfProtectionMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\CsrfProtectionMiddleware.php, line 174
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Middleware\BodyParserMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php, line 157
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\RoutingMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php, line 186
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Routing\Middleware\AssetMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php, line 68
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Error\Middleware\ErrorHandlerMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php, line 131
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+DebugKit\Middleware\DebugKitMiddleware::process() C:\xampp\htdocs\zscmst\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php, line 60
+Cake\Http\Runner::handle() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 82
+Cake\Http\Runner::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Runner.php, line 67
+Cake\Http\Server::run() C:\xampp\htdocs\zscmst\vendor\cakephp\cakephp\src\Http\Server.php, line 90
+[main] C:\xampp\htdocs\zscmst\webroot\index.php, line 40
+

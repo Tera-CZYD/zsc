@@ -49,6 +49,8 @@ class PrintController extends AppController {
 
     $this->loadModel('Students');
 
+    $this->loadModel('AddingDroppingSubjects');
+
     $this->loadModel('ClassSchedules');
 
     $this->loadModel('BlockSections');
@@ -24508,8 +24510,6 @@ class PrintController extends AppController {
 
     $office_reference = $this->Global->OfficeReference('Adding/Dropping Subject');
 
-    $this->loadModel('AddingDroppingSubjects');
-
     $data['AddingDroppingSubject'] = $this->AddingDroppingSubjects->find()
 
         ->contain([
@@ -24530,11 +24530,17 @@ class PrintController extends AppController {
 
         ->first();
 
-        debug($data['AddingDroppingSubject']);
+        // debug($data['AddingDroppingSubject']);    
+
+    $data['AddingDroppingSubjectSub'] = $data['AddingDroppingSubject']['adding_dropping_subject_subs'];   
 
     $tmpData = $data['AddingDroppingSubjectSub'];
 
-    $data['AddingDroppingSubjectSub'] = $data['AddingDroppingSubject']['adding_dropping_subject_subs'];    
+    $data['Student'] = $data['AddingDroppingSubject']['student'];
+
+    unset($data['AddingDroppingSubject']['adding_dropping_subject_subs']);
+
+    unset($data['AddingDroppingSubject']['student']);    
 
     
 
