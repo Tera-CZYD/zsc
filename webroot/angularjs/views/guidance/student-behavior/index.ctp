@@ -82,7 +82,7 @@
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-               <a id="pageAdd" href="#/registrar/student-behavior/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
+               <a id="pageAdd" href="#/guidance/student-behavior/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
               <!-- <a href="javascript:void(0)" class="btn btn-success btn-sm btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
               
               <button id="pagePrint" id="pagePrint" type="button" class="btn btn-print btn-sm btn-min" ng-click="print()"><i class="fa fa-print"></i> PRINT </button>
@@ -121,10 +121,10 @@
                   <td>
                     <div class="btn-group btn-group-xs">
                       
-                      <a id="pageView" href="#/registrar/student-behavior/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                      <a id="pageView" href="#/guidance/student-behavior/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
                       
                       
-                      <a id="pageEdit" href="#/registrar/student-behavior/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
+                      <a id="pageEdit" href="#/guidance/student-behavior/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
                       
                       
                       <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>

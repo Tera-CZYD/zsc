@@ -580,6 +580,12 @@ app.controller("StudentClearanceAddController", function ($scope, StudentClearan
 
       name: student.name,
 
+      program_id: student.program_id,
+
+      year_term_id: student.year_term_id,
+
+      school_year: student.school_year,
+
     };
 
   };
@@ -591,6 +597,12 @@ app.controller("StudentClearanceAddController", function ($scope, StudentClearan
     $scope.data.StudentClearance.student_name = $scope.student.name;
 
     $scope.data.StudentClearance.student_no = $scope.student.code;
+
+    $scope.data.StudentClearance.course_id = $scope.student.program_id;
+
+    $scope.data.StudentClearance.year_term_id = $scope.student.year_term_id;
+
+    $scope.data.StudentClearance.school_year = $scope.student.school_year;
 
   };
 
