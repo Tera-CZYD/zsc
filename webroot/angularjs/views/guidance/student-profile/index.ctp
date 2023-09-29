@@ -117,7 +117,7 @@
                   <td>
                     <div class="btn-group btn-group-xs">
                       
-                        <a id="pageView" href="#/admission/registered-students/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                        <a id="pageView" href="#/guidance/student-profile/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
                       
                     </div>
                   </td>
