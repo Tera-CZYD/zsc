@@ -195,6 +195,8 @@ class SelectController extends AppController {
     $this->loadModel("Municipalities");
 
     $this->loadModel("Barangays");
+
+    $this->loadModel("AffidavitOfLosses");
     
 
     //sir raf
@@ -9420,6 +9422,16 @@ class SelectController extends AppController {
       ])->count();
    
       $datas = 'ALI-' . str_pad($tmp + 1, 5, "0", STR_PAD_LEFT);
+
+    } else if ($code == 'affidavit-of-loss-code'){
+
+      $tmp = $this->AffidavitOfLosses->find()->where([
+
+        "visible" => 1
+
+      ])->count();
+   
+      $datas = 'ALR-' . str_pad($tmp + 1, 5, "0", STR_PAD_LEFT);
 
     } else if ($code == 'calendar-activity-code'){
 

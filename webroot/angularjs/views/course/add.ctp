@@ -59,13 +59,26 @@
                 </select>
               </div>
             </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <label> DESCRIPTION </i></label>
-                <textarea type="text" class="form-control" ng-model="data.Course.description"></textarea>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label> DESCRIPTION </i></label>
+                  <textarea type="text" class="form-control" ng-model="data.Course.description"></textarea>
+                </div>
               </div>
             </div>
-            </div>
+
+          <div class="clearfix"></div>
+              <hr>
+          <div class="col-md-12">
+              <div class="form-group">
+                <label> COMPUTER SUBJECT</label>
+                <input icheck type="checkbox" class="form-control" autocomplete="false" ng-model="data.Course.is_computer">
+              </div>
+              <div class="form-group">
+                <label> WITH JEEP SUBJECT</label>
+                <input icheck type="checkbox" class="form-control" autocomplete="false" ng-model="data.Course.is_jeep">
+              </div>
+          </div>
             <!-- <div class="col-md-12">
               <div class="clearfix"></div><hr>
               <table class="table table-bordered center">
