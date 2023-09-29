@@ -221,7 +221,7 @@ app.controller('ListStudentController', function($scope,Select, ListStudent) {
 
 });
 
-app.controller('ListScholarsController', function($scope, ListScholar) {
+app.controller('ListScholarsController', function($scope, ListScholar,Select) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -234,58 +234,38 @@ app.controller('ListScholarsController', function($scope, ListScholar) {
     todayHighlight: true
   
   });
+  Select.get({ code: 'year-term-list' },function(e){
 
-  $scope.pending = function(options) {
+    $scope.year_terms = e.data;
 
-    options = typeof options !== 'undefined' ?  options : {};
+  });
+  Select.get({ code: 'program-list' },function(e){
 
-    options['status'] = 0;
+    $scope.programs = e.data;
 
-    ListScholar.query(options, function(e) {
+  });
 
-      if (e.ok) {
+  Select.get({ code: 'scholarship-name-list' },function(e){
 
-        $scope.datas = e.data;
+    $scope.scholarships = e.data;
 
-        $scope.conditionsPrint = e.conditionsPrint;
+  });
 
-        $scope.paginator = e.paginator;
+  $scope.getFinal = function(){
 
-        $scope.pages = paginator($scope.paginator, 5);
+    $scope.load({
 
-      }
+      program_id: $scope.program_id,
 
-    });
+      year: $scope.year,
 
-  }
-
-  $scope.approved = function(options) {
-
-    options = typeof options !== 'undefined' ?  options : {};
-
-    options['status'] = 1;
-
-    ListScholar.query(options, function(e) {
-
-      if (e.ok) {
-
-        $scope.datasApproved = e.data;
-
-        $scope.conditionsPrintApproved = e.conditionsPrint;
-
-        // paginator
-
-        $scope.paginatorApproved  = e.paginator;
-
-        $scope.pagesApproved = paginator($scope.paginatorApproved, 5);
-
-      }
+      scholarship: $scope.scholarship
 
     });
 
   }
 
-   $scope.confirmed = function(options) {
+  $scope.confirmed = function(options) {
 
     options = typeof options !== 'undefined' ?  options : {};
 
@@ -311,39 +291,8 @@ app.controller('ListScholarsController', function($scope, ListScholar) {
 
   }
 
-  $scope.disapproved = function(options) {
-
-    options = typeof options !== 'undefined' ?  options : {};
-
-    options['status'] = 2;
-
-    ListScholar.query(options, function(e) {
-
-      if (e.ok) {
-
-        $scope.datasDisapproved = e.data;
-
-        $scope.conditionsPrintDisapproved = e.conditionsPrint;
-
-        // paginator
-
-        $scope.paginatorDisapproved  = e.paginator;
-
-        $scope.pagesDisapproved = paginator($scope.paginatorDisapproved, 5);
-
-      }
-
-    });
-
-  }
 
   $scope.load = function(options) {
-
-    $scope.pending(options);
-
-    $scope.approved(options);
-
-    $scope.disapproved(options);
 
     $scope.confirmed(options);
 
@@ -363,6 +312,12 @@ app.controller('ListScholarsController', function($scope, ListScholar) {
    
     $scope.endDate = null;
 
+    $scope.year = null;
+
+    $scope.program_id = null;
+
+    $scope.scholarship = null;
+
     $scope.load();
 
   }
@@ -375,13 +330,40 @@ app.controller('ListScholarsController', function($scope, ListScholar) {
 
       $scope.load({
 
-        search: search
+        search: search,
+
+        date          : $scope.dateToday,
+
+        startDate     : $scope.startDate,
+
+        endDate       : $scope.endDate,
+
+        year  : $scope.year,
+
+        program_id  : $scope.program_id,
+
+        scholarship: $scope.scholarship
+
 
       });
 
     }else{
 
-      $scope.load();
+      $scope.load({
+
+        date          : $scope.dateToday,
+
+        startDate     : $scope.startDate,
+
+        endDate       : $scope.endDate,
+
+        year  : $scope.year,
+
+         program_id  : $scope.program_id,
+
+         scholarship: $scope.scholarship
+
+      });
     
     }
 
@@ -452,7 +434,11 @@ app.controller('ListScholarsController', function($scope, ListScholar) {
 
       endDate      : $scope.endDate,
 
-      year_term_id : $scope.year_term_id
+      year : $scope.year,
+
+      program_id  : $scope.program_id,
+
+      scholarship: $scope.scholarship
 
     });
   

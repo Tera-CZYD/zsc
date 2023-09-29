@@ -2404,6 +2404,12 @@ class ReportsTable extends Table
 
       $studentId = @$conditions['studentId'];
 
+      $year = @$conditions['year'];
+
+      $program_id = @$conditions['program_id'];
+
+      $scholarship = @$conditions['scholarship'];
+
       $offset = ($page - 1) * $limit;
 
       $sql = "SELECT 
@@ -2426,7 +2432,7 @@ class ReportsTable extends Table
 
         WHERE
 
-          ScholarshipApplication.visible = true $date $status $studentId AND
+          ScholarshipApplication.visible = true $date $status $year $program_id $scholarship $studentId AND
 
           (
    
@@ -2453,6 +2459,8 @@ class ReportsTable extends Table
         $limit OFFSET $offset ";
 
         $query = $this->getConnection()->prepare($sql);
+
+        // var_dump($query);
 
         $query->execute();
 

@@ -70,6 +70,10 @@
                     <td class="uppercase w200px">TUITION</td>
                     <td class="uppercase">{{ data.AssessmentSub[0].tuition_fee }}</td>
                   </tr>
+                  <tr ng-if="data.AssessmentSub[0].admission_fee != null">
+                    <td class="uppercase w200px">ADMISSION FEE</td>
+                    <td class="uppercase">{{ data.AssessmentSub[0].admission_fee }}</td>
+                  </tr>
                   <tr>
                     <td class="uppercase w200px">ATHLETICS FEE</td>
                     <td class="uppercase">{{ data.AssessmentSub[0].athletics_fee }}</td>
@@ -82,9 +86,17 @@
                     <td class="uppercase w200px">DEVELOPMENT FEE</td>
                     <td class="uppercase">{{ data.AssessmentSub[0].development_fee }}</td>
                   </tr>
+                  <tr ng-if="data.AssessmentSub[0].entrance_fee != null">
+                    <td class="uppercase w200px">ADMISSION FEE</td>
+                    <td class="uppercase">{{ data.AssessmentSub[0].entrance_fee }}</td>
+                  </tr>
                   <tr>
                     <td class="uppercase w200px">GUIDANCE</td>
                     <td class="uppercase">{{ data.AssessmentSub[0].guidance_fee }}</td>
+                  </tr>
+                  <tr ng-if="data.AssessmentSub[0].handbook_fee != null">
+                    <td class="uppercase w200px">ADMISSION FEE</td>
+                    <td class="uppercase">{{ data.AssessmentSub[0].handbook_fee }}</td>
                   </tr>
                   <tr>
                     <td class="uppercase w200px">LABORATORY FEE</td>
@@ -97,6 +109,14 @@
                   <tr>
                     <td class="uppercase w200px">MEDICAL/DENTAL FEE</td>
                     <td class="uppercase">{{ data.AssessmentSub[0].medical_dental_fee }}</td>
+                  </tr>
+                  <tr ng-if="data.AssessmentSub[0].registration_fee != null">
+                    <td class="uppercase w200px">ADMISSION FEE</td>
+                    <td class="uppercase">{{ data.AssessmentSub[0].registration_fee }}</td>
+                  </tr>
+                  <tr ng-if="data.AssessmentSub[0].school_id_fee != null">
+                    <td class="uppercase w200px">ADMISSION FEE</td>
+                    <td class="uppercase">{{ data.AssessmentSub[0].school_id_fee }}</td>
                   </tr>
                   <tr>
                     <td class="uppercase w200px">COMPUTER FEE</td>
