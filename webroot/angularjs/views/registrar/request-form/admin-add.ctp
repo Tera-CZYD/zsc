@@ -83,7 +83,8 @@
                   <label> DATE <i class="required">*</i></label>
                   <input type="text" class="form-control datepicker" autocomplete="false" ng-model="data.RequestForm.date" data-validation-engine="validate[required]">
                 </div>
-              </div><div class="col-md-6">
+              </div>
+              <div class="col-md-6">
                 <div class="form-group">
                   <label> IDENTIFIER <i class="required">*</i></label>
                   <select selectize ng-model="data.RequestForm.identifier" autocomplete="false" data-validation-engine="validate[required]">
@@ -111,6 +112,21 @@
                 <div class="form-group" ng-show="data.RequestForm.purpose_id == 1">
                   <label> OTHERS <i class="required">*</i></label>
                   <textarea rows="1" class="form-control" autocomplete="false" ng-model="data.RequestForm.othersPurpose" data-validation-engine="validate[required]"></textarea>
+                </div>
+              </div>
+              <div class="col-md-12 mt-4" ng-show="data.RequestForm.identifier != undefined">
+                <div class="form-group">
+                  <div class="row mt-4">
+                    <div class="col-md-4">
+                      <input icheck type="checkbox" class="form-control" autocomplete="false" ng-model="data.RequestForm.gwa"> With GWA
+                    </div>
+                    <div class="col-md-4">
+                      <input icheck type="checkbox" class="form-control" autocomplete="false" ng-model="data.RequestForm.unit"> With Units
+                    </div>
+                    <div class="col-md-4">
+                      <input icheck type="checkbox" class="form-control" autocomplete="false" ng-model="data.RequestForm.medium"> With of Instruction
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="clearfix"></div>
