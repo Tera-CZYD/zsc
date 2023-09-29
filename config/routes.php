@@ -247,6 +247,16 @@
 
       $routes->resources('StudentAttendanceFiles');
 
+        $routes->resources('AffidavitOfLosses');
+
+        // $routes->connect('/admin-affidavit-of-loss/:id', ['controller' => 'AffidavitofLosses', 'action' => 'edit']);
+
+        $routes->connect('/affidavit-of-losses/:id', ['controller' => 'AffidavitofLosses', 'action' => 'edit']);
+
+        $routes->resources('ScholasticDocuments');
+
+        $routes->resources('RequestedFormPayments');
+
 
       //REPORTS MEDICAL SERVICES
 
