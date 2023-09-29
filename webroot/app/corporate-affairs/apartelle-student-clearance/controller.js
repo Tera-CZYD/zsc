@@ -433,6 +433,10 @@ app.controller('ApartelleStudentClearanceAddController', function($scope, Aparte
 
       $scope.data.ApartelleStudentClearance.student_no = response.data.Student.student_no;
 
+      $scope.data.ApartelleStudentClearance.program_id = response.data.Student.program_id;
+
+      $scope.data.ApartelleStudentClearance.year_term_id = response.data.Student.year_term_id;
+
     });
 
   });
@@ -668,11 +672,9 @@ app.controller('ApartelleStudentClearanceEditController', function($scope, $rout
 
 });
 
-
-
 app.controller('AdminApartelleStudentClearanceController', function($scope, ApartelleStudentClearance) {
 
-    $scope.today = Date.parse('today').toString('MM/dd/yyyy');
+  $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
   $('.datepicker').datepicker({
    
@@ -1007,13 +1009,13 @@ app.controller('AdminApartelleStudentClearanceController', function($scope, Apar
 
   }
 
-  });
+});
 
 app.controller('AdminApartelleStudentClearanceAddController', function($scope, ApartelleStudentClearance, Select) {
 
- $('#form').validationEngine('attach');
+  $('#form').validationEngine('attach');
 
- $('.datepicker').datepicker({
+  $('.datepicker').datepicker({
 
     format:'mm/dd/yyyy',
 
@@ -1023,7 +1025,7 @@ app.controller('AdminApartelleStudentClearanceAddController', function($scope, A
 
   });
 
- $('.clockpicker').clockpicker({
+  $('.clockpicker').clockpicker({
 
     donetext: 'Done',
 
@@ -1113,7 +1115,11 @@ app.controller('AdminApartelleStudentClearanceAddController', function($scope, A
 
       code : student.code,
 
-      name : student.name
+      name : student.name,
+
+      program_id : student.program_id,
+
+      year_term_id : student.year_term_id
 
     }; 
 
@@ -1126,6 +1132,10 @@ app.controller('AdminApartelleStudentClearanceAddController', function($scope, A
     $scope.data.ApartelleStudentClearance.student_no = $scope.student.code;
 
     $scope.data.ApartelleStudentClearance.student_name = $scope.student.name;
+
+    $scope.data.ApartelleStudentClearance.program_id = $scope.student.program_id;
+
+    $scope.data.ApartelleStudentClearance.year_term_id = $scope.student.year_term_id;
 
   }
 
@@ -1411,7 +1421,11 @@ app.controller('AdminApartelleStudentClearanceEditController', function($scope, 
 
       code : student.code,
 
-      name : student.name
+      name : student.name,
+
+      program_id : student.program_id,
+
+      year_term_id : student.year_term_id
 
     }; 
 
@@ -1421,7 +1435,13 @@ app.controller('AdminApartelleStudentClearanceEditController', function($scope, 
 
     $scope.data.ApartelleStudentClearance.student_id = $scope.student.id;
 
+    $scope.data.ApartelleStudentClearance.student_no = $scope.student.code;
+
     $scope.data.ApartelleStudentClearance.student_name = $scope.student.name;
+
+    $scope.data.ApartelleStudentClearance.program_id = $scope.student.program_id;
+
+    $scope.data.ApartelleStudentClearance.year_term_id = $scope.student.year_term_id;
 
   }
 
