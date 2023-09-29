@@ -183,6 +183,8 @@
 
     'cashier/assessment',
 
+    'cashier/requested-form',
+
     //GUIDANCE AND COUNSELING
 
     'guidance/counseling-appointment',
