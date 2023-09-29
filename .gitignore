@@ -5,7 +5,7 @@
 !/logs/*
 !/tmp/*
 !/vendor/*
-
+debug_kit.sqlite
 # OS generated files #
 ######################
 .DS_Store
