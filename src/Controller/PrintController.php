@@ -49,11 +49,6 @@ class PrintController extends AppController {
 
     $this->loadModel('Students');
 
-<<<<<<< HEAD
-    $this->loadModel('AddingDroppingSubjects');
-
-=======
->>>>>>> 1123ad511b3ef0ae1a8578805c485c085864f3ab
     $this->loadModel('ClassSchedules');
 
     $this->loadModel('BlockSections');
@@ -24755,18 +24750,18 @@ class PrintController extends AppController {
     $pdf->SetFont("Times", '', 6);
     $rows = 0;
 
-    if (!empty($tmpData)) {
+    if ($tmpData != null) {
     foreach ($tmpData as $key => $data) {
         $tmp = $data['AddingDroppingSubjectSub'];
         $pdf->Cell(3);
         $y = $pdf->GetY();
 
         $pdf->SetFont("Arial", '', 8);
-        $courseTitle = $data['AddingDroppingSubjectSub']['course_title'];
-        $status = $data['AddingDroppingSubjectSub']['status'];
+        $courseTitle = $data['course_title'];
+        $status = $data['status'];
         
-        $courseTitle = $data['AddingDroppingSubjectSub']['course_title'];
-        $status = $data['AddingDroppingSubjectSub']['status'];
+        $courseTitle = $data['course_title'];
+        $status = $data['status'];
         $courseTitleParts = explode(' ', $courseTitle);
         $courseTitleLines = [];
 
@@ -24793,7 +24788,7 @@ class PrintController extends AppController {
 
         $pdf->SetFont("Arial", '', 8);
         $pdf->Cell(102.9, 10, '', 0, 0, 'C');
-        $pdf->CellFitSpace(104, 10, $data['AddingDroppingSubjectSub']['faculty_name'], 1, 0, 'C');
+        $pdf->CellFitSpace(104, 10, $data['faculty_name'], 1, 0, 'C');
         $pdf->Ln(10);
 
         $rows++;
