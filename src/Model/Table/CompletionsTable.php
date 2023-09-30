@@ -27,18 +27,22 @@ class CompletionsTable extends Table{
 
     $sql = "SELECT
 
-        Completion.*
+        Completion.*,
+
+        YearLevelTerm.description
 
 
       FROM
 
         completions as Completion LEFT JOIN
 
-        students as Student ON Completion.student_id = Student.id
+        students as Student ON Completion.student_id = Student.id LEFT JOIN
+
+        year_level_terms as YearLevelTerm ON Completion.year_term_id = YearLevelTerm.id
 
       WHERE
 
-      Completion.visible = 1 $date AND
+      Completion.visible = true $date AND
 
         (
  
@@ -46,9 +50,7 @@ class CompletionsTable extends Table{
 
             Completion.student_no LIKE  '%$search%' OR
 
-            Completion.student_name LIKE  '%$search%' OR
-
-            Completion.year LIKE  '%$search%'
+            Completion.student_name LIKE  '%$search%'
 
             -- Consultation.description LIKE  '%$search%'
 
@@ -79,14 +81,18 @@ class CompletionsTable extends Table{
 
     $sql = "SELECT
 
-        Completion.*
+        Completion.*,
+
+        YearLevelTerm.description
 
 
       FROM
 
         completions as Completion LEFT JOIN
 
-        students as Student ON Completion.student_id = Student.id
+        students as Student ON Completion.student_id = Student.id LEFT JOIN
+
+        year_level_terms as YearLevelTerm ON Completion.year_term_id = YearLevelTerm.id
 
       WHERE
 
@@ -98,9 +104,7 @@ class CompletionsTable extends Table{
 
             Completion.student_no LIKE  '%$search%' OR
 
-            Completion.student_name LIKE  '%$search%' OR
-
-            Completion.year LIKE  '%$search%'
+            Completion.student_name LIKE  '%$search%'
 
             -- Consultation.description LIKE  '%$search%'
 
@@ -166,11 +170,15 @@ class CompletionsTable extends Table{
 
         count(*) as count
 
+      
       FROM
 
         completions as Completion LEFT JOIN
 
-        students as Student ON Completion.student_id = Student.id
+        students as Student ON Completion.student_id = Student.id LEFT JOIN
+
+        year_level_terms as YearLevelTerm ON Completion.year_term_id = YearLevelTerm.id
+
 
       WHERE
 
@@ -182,10 +190,7 @@ class CompletionsTable extends Table{
 
           Completion.student_no LIKE  '%$search%' OR
 
-          Completion.student_name LIKE  '%$search%' OR
-
-          Completion.year LIKE  '%$search%'
-
+          Completion.student_name LIKE  '%$search%'
           -- MedicalCertificate.description LIKE  '%$search%'
 
         )

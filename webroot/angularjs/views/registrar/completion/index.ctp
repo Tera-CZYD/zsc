@@ -95,8 +95,7 @@
                     <th class="text-center"> DATE </th>
                     <th class="text-center"> REQUIREMENT </th>
                     <th class="text-center"> INSTRUCTOR </th>
-                    <th class="text-center"> SEMESTER </th>
-                    <th class="text-center"> YEAR </th>
+                    <th class="text-center"> YEAR LEVEL & SEMESTER </th>
                     <th class="w90px"></th>
                   </tr>
                 </thread>
@@ -109,7 +108,6 @@
                     <td class="text-center">{{ data.requirement }}</td>
                     <td class="text-center">{{ data.instructor }}</td>
                     <td class="text-center">{{ data.semester }}</td>
-                    <td class="text-center">{{ data.year }}</td>
                     <td>
                       <div class="btn-group btn-group-xs">
                         <a id="pageView" href="#/registrar/completion/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>

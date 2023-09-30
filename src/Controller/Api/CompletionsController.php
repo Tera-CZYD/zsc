@@ -111,13 +111,11 @@ class CompletionsController extends AppController {
 
          'instructor'     => $data['instructor'],
 
-         'semester'       => $data['semester'],
+         'semester'       => $data['description'],
 
          'or_no'             => $data['or_no'],
 
          'school_year'    => $data['school_year'],
-
-         'year'           => $data['year'],
 
          'date'           => fdate($data['date'],'m/d/Y'),
 
