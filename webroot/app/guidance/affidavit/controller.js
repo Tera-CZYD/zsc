@@ -273,7 +273,9 @@ app.controller('AffidavitAddController', function($scope, Affidavit, Select) {
 
       program_id : student.program_id,
 
-      year_term_id : student.year_term_id
+      year_term_id : student.year_term_id,
+
+      address : student.address
 
     }; 
 
@@ -290,6 +292,8 @@ app.controller('AffidavitAddController', function($scope, Affidavit, Select) {
     $scope.data.Affidavit.program_id = $scope.student.program_id;
 
     $scope.data.Affidavit.year_term_id = $scope.student.year_term_id;
+
+    $scope.data.Affidavit.address = $scope.student.address;
 
   }
 

@@ -245,6 +245,8 @@ app.controller('MedicalEmployeeProfileAddController', function($scope, MedicalEm
 
       college_id : employee.college_id,
 
+      gender : employee.gender,
+
     }; 
 
   }
@@ -258,6 +260,8 @@ app.controller('MedicalEmployeeProfileAddController', function($scope, MedicalEm
     $scope.data.MedicalEmployeeProfile.employee_name = $scope.employee.name;
 
     $scope.data.MedicalEmployeeProfile.college_id = $scope.employee.college_id;
+
+    $scope.data.MedicalEmployeeProfile.gender = $scope.employee.gender;
 
   }
 
