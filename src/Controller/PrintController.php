@@ -49,12 +49,8 @@ class PrintController extends AppController {
 
     $this->loadModel('Students');
 
-<<<<<<< HEAD
-
     $this->loadModel('AddingDroppingSubjects');
 
-=======
->>>>>>> 923ec1a123e3017fd297a924b718554ac68011b1
     $this->loadModel('ClassSchedules');
 
     $this->loadModel('BlockSections');
@@ -18564,35 +18560,39 @@ class PrintController extends AppController {
 
         'YearLevelTerms',
 
-        'Colleges' => function ($q) {
+        'Colleges' => array(
 
-            return $q->where(['Colleges.visible' => 1]);
+          'conditions' => ['Colleges.visible' => 1]
 
-        },
+        ),
 
-        'CollegePrograms' => function ($q) {
+        'CollegePrograms' => array(
 
-            return $q->where(['CollegePrograms.visible' => 1]);
+          'conditions' => ['CollegePrograms.visible' => 1]
 
-        },
+        ),
 
-        'StudentEnrolledCourses' => function ($q) {
+        'StudentEnrolledCourses' => array(
 
-            return $q->where(['StudentEnrolledCourses.visible' => 1]);
+          'conditions' => [
 
-        },
+            'StudentEnrolledCourses.visible' => 1,
 
-        'StudentEnrolledUnits' => function ($q) {
+          ]
 
-            return $q->where(['StudentEnrolledUnits.visible' => 1]);
+        ),
 
-        },
+        'StudentEnrolledUnits' => array(
 
-        'StudentEnrollments' => function ($q) {
+          'conditions' => ['StudentEnrolledUnits.visible' => 1]
 
-            return $q->where(['StudentEnrollments.visible' => 1]);
+        ),
 
-        },
+        'StudentEnrollments' => array(
+
+          'conditions' => ['StudentEnrollments.visible' => 1]
+
+        ),
 
       ])
 
@@ -18858,7 +18858,7 @@ class PrintController extends AppController {
 
             $value['section'],
 
-            $block_section_course['faculty_name']
+            $block_section_course['faculty_name'] != null ? $block_section_course['faculty_name'] : 'To be assigned'
 
           ));
 
