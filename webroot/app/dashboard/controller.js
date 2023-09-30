@@ -6,6 +6,8 @@ app.controller('DashboardController', function($scope,Select,StudentApplicationM
 
     $scope.data = e.data;
 
+    console.log($scope.data);
+
     if($scope.data.for_medical_interview == 1 && $scope.data.for_schedule == 0){
 
       $('#medical_interview').validationEngine('attach');
