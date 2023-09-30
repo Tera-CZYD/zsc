@@ -48,7 +48,7 @@
                 <a href="#/cashier/payment/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
               <?php endif ?>
               <?php if (hasAccess('payment/print', $currentUser)): ?>
-                <button ng-click="print()" class="btn btn-danger  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                <button ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
               <?php endif ?>
               <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
             </div>
