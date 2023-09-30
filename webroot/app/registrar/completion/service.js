@@ -4,13 +4,8 @@ app.factory("Completion", function ($resource, $http) {
   
   $http.defaults.headers.common['X-CSRF-Token'] = csrfToken;
 
-  return $resource(
-
-    api + "completions/:id",
-
-    { id: "@id" },
+  return $resource(api + "completions/:id",{ id: "@id" }, {
     
-    {
       query: { method: "GET", isArray: false },
 
       update: { method: "PUT" },
