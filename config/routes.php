@@ -299,6 +299,8 @@
 
       $routes->resources('RequestForms');
 
+      $routes->connect('/request-forms/:id', ['controller' => 'RequestForms', 'action' => 'edit']);      
+
      	$routes->resources('Majors');
 
       $routes->resources('Rooms');

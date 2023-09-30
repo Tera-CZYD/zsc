@@ -16,7 +16,7 @@
 
 </script>
 
-  <div class="row" id="pageIndex">
+  <div class="row" id="pageEdit">
     <div class="col-lg-12 mt-3">
       <div class="card">
         <div class="card-body">
@@ -130,9 +130,8 @@
                
             </div>
           </form>
-        </div>
-      </div>
-          <div class="clearfix"></div>
+
+        <div class="clearfix"></div>
           <hr>
           <div class="row">
             <div class="col-md-12">
@@ -141,6 +140,9 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
         </div>
       </div>
 

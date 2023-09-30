@@ -1815,7 +1815,7 @@ class StudentApplicationsController extends AppController {
 
     $request = $this->request->getData(); 
 
-    $room = $this->Room->get($request['room']);
+    // $room = $this->Room->get($request['room']);
 
     $app = $this->StudentApplications->get($id);
 
@@ -1888,7 +1888,7 @@ class StudentApplicationsController extends AppController {
 
           $_SESSION['place'] = $request['place']; 
 
-          $_SESSION['room'] = $request['room'];
+          // $_SESSION['room'] = $request['room'];
 
           ob_start();
 
