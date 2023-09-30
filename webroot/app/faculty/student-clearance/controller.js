@@ -316,26 +316,28 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
             Select.get({code: 'get-student', student_id : data.student_id },function(n){
 
-              // console.log(n.id);
+              // console.log(n);
 
-              Select.get({ code: 'get-student-attendance', student_id : n.data.id, year_term_id : n.data.year_term_id },function(q){
+              Select.get({ code: 'get-student-absent', student_id : n.data.id, year_term_id : n.data.year_term_id },function(q){
 
-                $scope.count = q.data;
+                $scope.count = q.data.length;
 
-                if($scope.count<=5){
+                // console.log($scope.count);
 
-                  if($scope.count==5){
+                if($scope.count==0){
 
-                    $.gritter.add({
+                  // if($scope.count==5){
 
-                      title: 'Unable to clear Student!',
+                  //   $.gritter.add({
 
-                      text:  'Student Dropped',
+                  //     title: 'Unable to clear Student!',
 
-                    });
+                  //     text:  'Student Dropped',
+
+                  //   });
 
 
-                  }else{
+                  // }else{
 
                     StudentClearanceClear.update({id:data.id},$scope.data, function(e){
 
@@ -355,7 +357,7 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
                     });
 
-                  }
+                  // }
 
                 }else{
 
