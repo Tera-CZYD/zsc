@@ -223,7 +223,7 @@
               <table class="table table-hover text-center">
                 <thead>
                   <tr class="table-info">
-                    <th style="font-size:12px;font-weight: normal;"> No Class for todays bidyo </th>
+                    <th style="font-size:12px;font-weight: normal;"> No Class for today</th>
                   </tr>
                 </thead>
               </table>

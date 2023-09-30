@@ -1191,7 +1191,9 @@ app.controller('AdminAffidavitOfLossAddController', function($scope, AffidavitOf
 
       code: student.code,
 
-      name: student.name
+      name: student.name,
+
+      program_id: student.program_id,
 
     };
 
@@ -1204,6 +1206,8 @@ app.controller('AdminAffidavitOfLossAddController', function($scope, AffidavitOf
     $scope.data.AffidavitOfLoss.student_name = $scope.student.name;
 
     $scope.data.AffidavitOfLoss.student_no = $scope.student.code;
+
+    $scope.data.AffidavitOfLoss.program_id = $scope.student.program_id;
 
   };
 

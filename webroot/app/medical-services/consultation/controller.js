@@ -532,6 +532,12 @@ app.controller( "ConsultationAddController", function ($scope, Consultation, Sel
 
       name: student.name,
 
+      age: student.age,
+
+      gender: student.gender,
+
+      address: student.address,
+
     };
 
   };
@@ -543,6 +549,12 @@ app.controller( "ConsultationAddController", function ($scope, Consultation, Sel
     $scope.data.Consultation.student_name = $scope.student.name;
 
     $scope.data.Consultation.student_no = $scope.student.code;
+
+    $scope.data.Consultation.age = $scope.student.age;
+
+    $scope.data.Consultation.sex = $scope.student.gender;
+
+    $scope.data.Consultation.address = $scope.student.address;
 
   };
 
@@ -578,7 +590,11 @@ app.controller( "ConsultationAddController", function ($scope, Consultation, Sel
 
       code : employee.code,
 
-      name : employee.name
+      name : employee.name,
+
+      age: employee.age,
+
+      gender: employee.gender,
 
     }; 
 
@@ -591,6 +607,10 @@ app.controller( "ConsultationAddController", function ($scope, Consultation, Sel
     $scope.data.Consultation.employee_no = $scope.employee.code;
 
     $scope.data.Consultation.employee_name = $scope.employee.name;
+
+    $scope.data.Consultation.age = $scope.employee.age;
+
+    $scope.data.Consultation.sex = $scope.employee.gender;
 
   }
 
