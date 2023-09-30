@@ -112,6 +112,8 @@
 
       $routes->resources('Consultations');
 
+      $routes->resources('Curriculums');
+
       $routes->resources('StudentApplications');
 
       $routes->resources('StudentApplicationImages');
