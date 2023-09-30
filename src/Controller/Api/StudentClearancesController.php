@@ -740,7 +740,7 @@ class StudentClearancesController extends AppController {
 
         'data' => $app,       
 
-        'msg'  => 'Email successfully sent.'
+        'msg'  => 'Student has been successfully cleared.'
 
       );
           $userLogEntity = $this->UserLogs->newEntity([
@@ -1148,7 +1148,7 @@ class StudentClearancesController extends AppController {
 
         'data' => $app,       
 
-        'msg'  => 'Email successfully sent.'
+        'msg'  => 'Student has been successfully cleared.'
 
       );
 
