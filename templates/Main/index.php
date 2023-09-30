@@ -22,9 +22,13 @@
 
       <?php echo $this->element('sidebar-dean');
 
-    }else if ($currentUser['role']['code'] == 'Vice President') { 
+    }else if ($currentUser['role']['code'] == 'Vice President') { ?>
 
-      echo $this->element('sidebar-vice'); 
+      <script>
+        var dashboard = 'vice-dashboard.ctp';
+      </script>
+
+      <?php echo $this->element('sidebar-vice'); 
 
     }else if ($currentUser['role']['code'] == 'Faculty') { ?>
 
