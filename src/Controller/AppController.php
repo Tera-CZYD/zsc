@@ -273,7 +273,7 @@ class AppController extends Controller
 
             $student_data = $this->Students->get($student_id);
 
-            if($student_data['status'] == 'IRREGULAR' || $student_data['status'] == 'INCOMPLETE'){
+            if($student_data['status'] == 'IRREGULAR' || $student_data['status'] == 'INCOMPLETE' || $student_data['status'] == 'FAILED'){
 
               $show_self_enrollment = 1;
 

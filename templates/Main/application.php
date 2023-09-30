@@ -135,7 +135,7 @@
                             </div>
                             <div class="col-lg-6">
                               <div class="form-gp">
-                                <label for="last_school"  style="margin-top: -11px">Name of Last School Attended&emsp;<i class="required">*</i></label>
+                                <label for=""  style="margin-top: -11px">Name of Last School Attended&emsp;<i class="required">*</i></label>
                                 <select id="college" class="form-control" style="border-bottom: 1px solid rgba(170, 170, 170, .3); border-top: none; border-left: none; border-right: none; font-size: 12px; margin-top: -8px" ng-model="data.StudentApplication.last_school_id" ng-options="opt.id as opt.value for opt in school" data-validation-engine="validate[required]" ng-change="getSchool(data.StudentApplication.last_school_id)">
                                   <option value=""></option>
                                 </select>
@@ -144,8 +144,8 @@
 
                             <div class="col-lg-6" ng-hide="data.StudentApplication.last_school_id == '7'">
                               <div class="form-gp">
-                                <label for="address">School Address&emsp;<i class="required">*</i></label>
-                                <input type="text" id="address" ng-model="data.StudentApplication.last_school_address" autocomplete="off" data-validation-engine="validate[required]">
+                                <label for="address" style="margin-top: -18px">School Address&emsp;<i class="required">*</i></label>
+                                <input type="text" id="address" ng-model="data.StudentApplication.last_school_address" disabled="" autocomplete="off" data-validation-engine="validate[required]">
                               </div>
                             </div>
 
@@ -495,18 +495,25 @@
         $scope.school = e.data;
 
       });
+
       $scope.getSchool = function(id){
-        // console.log($scope.data.StudentApplication);
-        // console.log($scope.school);
+ 
         if($scope.school.length > 0){
 
           $.each($scope.school, function(i,val){
-            console.log(val);
+           
             if(val.id == id){
+
               if(id!=7){
+
                 $scope.data.StudentApplication.last_school = val.value;
+
+              }else{
+
+                $scope.data.StudentApplication.last_school = null
+
               }
-              // console.log($scope.data.StudentApplication.last_school);
+            
               $scope.data.StudentApplication.last_school_address = val.school_address;
 
             }
