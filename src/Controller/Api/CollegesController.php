@@ -19,6 +19,8 @@ class CollegesController extends AppController {
 
     $this->Colleges = TableRegistry::getTableLocator()->get('Colleges');
 
+    $this->CollegeSubs = TableRegistry::getTableLocator()->get('CollegeSubs');
+
   }
 
   public function index(){   
@@ -113,7 +115,25 @@ class CollegesController extends AppController {
    
     $data = $this->Colleges->patchEntity($data, $requestData); 
 
+    $sub = $this->request->getData('CollegeSub');
+
     if ($this->Colleges->save($data)) {
+
+       $id = $data->id;
+
+      if(!empty($sub)){
+        
+        foreach ($sub as $key => $value) {
+
+          $sub[$key]['college_id'] = $id;
+          
+        }
+
+        $subEntities = $this->CollegeSubs->newEntities($sub);
+
+        $this->CollegeSubs->saveMany($subEntities);
+      
+      }
 
       $response = array(
 
@@ -235,7 +255,31 @@ class CollegesController extends AppController {
 
     $this->Colleges->patchEntity($college, $requestData); 
 
+    $sub = $this->request->getData('CollegeSub');
+
     if ($this->Colleges->save($college)) {
+
+      $this->CollegeSubs->updateAll(
+
+        ['visible' => 0],
+
+        ['college_id' => $id]
+          
+      );
+
+      if(!empty($sub)){
+        
+        foreach ($sub as $key => $value) {
+
+          $sub[$key]['college_id'] = $id;
+          
+        }
+
+        $subEntities = $this->CollegeSubs->newEntities($sub);
+
+        $this->CollegeSubs->saveMany($subEntities);
+      
+      }
 
       $response = array(
 

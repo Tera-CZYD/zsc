@@ -532,8 +532,8 @@
           <?php endif ?>
 
           <?php if (hasAccess('curriculum/menu', $currentUser)): ?>
-            <li class="nav-link-side nav-class-schedule nav-colleges nav-program nav-prospectus nav-room nav-building nav-course nav-sections nav-block-section nav-college nav-major nav-curriculum-student-profile"><a><i class="fa fa-industry"></i> Curriculum </a>
-              <ul class="nav child_menu_bot collapse collapse-class-schedule collapse-colleges collapse-prospectus collapse-program collapse-room collapse-building collapse-course collapse-sections collapse-block-section collapse-college collapse-major collapse-curriculum-student-profile">
+            <li class="nav-link-side nav-class-schedule nav-colleges nav-curriculum nav-program nav-prospectus nav-room nav-building nav-course nav-sections nav-block-section nav-college nav-major nav-curriculum-student-profile"><a><i class="fa fa-industry"></i> Curriculum </a>
+              <ul class="nav child_menu_bot collapse collapse-class-schedule collapse-colleges collapse-curriculum collapse-prospectus collapse-program collapse-room collapse-building collapse-course collapse-sections collapse-block-section collapse-college collapse-major collapse-curriculum-student-profile">
 
                 <?php if (hasAccess('curriculum student profile/index', $currentUser)): ?>
                 <li class="nav-link-side nav-curriculum-student-profile">
@@ -541,6 +541,11 @@
                 </li>
               <?php endif ?>
 
+              <?php if (hasAccess('prospectus/index', $currentUser)): ?>
+                <li class="nav-link-side nav-curriculum">
+                  <a href="#/curriculum/curriculums" onclick="change('curriculum')">Curriculum Management</a>
+                </li>
+              <?php endif ?>
 
               <?php if (hasAccess('prospectus/index', $currentUser)): ?>
                 <li class="nav-link-side nav-prospectus">

@@ -247,6 +247,14 @@ app.controller('MedicalStudentProfileAddController', function($scope, MedicalStu
 
       year_term_id: student.year_term_id,
 
+      address: student.address,
+
+      gender: student.gender,
+
+      civil_status: student.civil_status,
+
+      age: student.age,
+
     };
 
   };
@@ -262,6 +270,14 @@ app.controller('MedicalStudentProfileAddController', function($scope, MedicalStu
     $scope.data.MedicalStudentProfile.course_id = $scope.student.program_id;
 
     $scope.data.MedicalStudentProfile.year_term_id = $scope.student.year_term_id;
+
+    $scope.data.MedicalStudentProfile.address = $scope.student.address;
+
+    $scope.data.MedicalStudentProfile.gender = $scope.student.gender;
+
+    $scope.data.MedicalStudentProfile.civil_status = $scope.student.civil_status;
+
+    $scope.data.MedicalStudentProfile.age = $scope.student.age;
 
   };
 
