@@ -114,17 +114,15 @@ class CounselingIntakesController extends AppController {
 
       $datas[] = array(
 
-  
           'id'                 => $data['id'],
   
           'full_name'          => $data['full_name'],
 
           'address'            => $data['address'],
 
-          'year_level_term'    => $data['year_level_term'],
+          'year_level_term'    => $data['description'],
 
           'contact_no'         => $data['contact_no'],
-
 
       );
 

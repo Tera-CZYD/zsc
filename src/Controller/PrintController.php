@@ -49,6 +49,8 @@ class PrintController extends AppController {
 
     $this->loadModel('Students');
 
+    $this->loadModel('AddingDroppingSubjects');
+
     $this->loadModel('ClassSchedules');
 
     $this->loadModel('BlockSections');
@@ -18558,35 +18560,39 @@ class PrintController extends AppController {
 
         'YearLevelTerms',
 
-        'Colleges' => function ($q) {
+        'Colleges' => array(
 
-            return $q->where(['Colleges.visible' => 1]);
+          'conditions' => ['Colleges.visible' => 1]
 
-        },
+        ),
 
-        'CollegePrograms' => function ($q) {
+        'CollegePrograms' => array(
 
-            return $q->where(['CollegePrograms.visible' => 1]);
+          'conditions' => ['CollegePrograms.visible' => 1]
 
-        },
+        ),
 
-        'StudentEnrolledCourses' => function ($q) {
+        'StudentEnrolledCourses' => array(
 
-            return $q->where(['StudentEnrolledCourses.visible' => 1]);
+          'conditions' => [
 
-        },
+            'StudentEnrolledCourses.visible' => 1,
 
-        'StudentEnrolledUnits' => function ($q) {
+          ]
 
-            return $q->where(['StudentEnrolledUnits.visible' => 1]);
+        ),
 
-        },
+        'StudentEnrolledUnits' => array(
 
-        'StudentEnrollments' => function ($q) {
+          'conditions' => ['StudentEnrolledUnits.visible' => 1]
 
-            return $q->where(['StudentEnrollments.visible' => 1]);
+        ),
 
-        },
+        'StudentEnrollments' => array(
+
+          'conditions' => ['StudentEnrollments.visible' => 1]
+
+        ),
 
       ])
 
@@ -18852,7 +18858,7 @@ class PrintController extends AppController {
 
             $value['section'],
 
-            $block_section_course['faculty_name']
+            $block_section_course['faculty_name'] != null ? $block_section_course['faculty_name'] : 'To be assigned'
 
           ));
 
@@ -20000,11 +20006,11 @@ class PrintController extends AppController {
 
                 foreach ($prerequisites as $index => $datas) {
 
-                  $courses = $this->Courses->get($datas['CollegeProgramPrerequisite']['course_id']);
+                  $courses = $this->Courses->get($datas['course_id']);
                   
                   $course_prerequisites[] = array(
 
-                    'course'            => $courses['Course']['title'],
+                    'course'            => $courses['title'],
 
                   );
 
@@ -20372,7 +20378,7 @@ class PrintController extends AppController {
 
     $pdf->ln(4);
     $pdf->Cell(5.4);
-    $pdf->Cell(20,5,'Authoruty to Operate Program:');
+    $pdf->Cell(20,5,'Authority to Operate Program:');
     $pdf->Ln(4);
     $y = $pdf->Gety();
     $pdf->Cell(15);
@@ -20387,7 +20393,7 @@ class PrintController extends AppController {
     $pdf->SetY($y);
     $pdf->Cell(5.4);
     $pdf->Cell(90);
-    $pdf->Cell(27,5,'This Program requires:',0,0,'L');
+    $pdf->Cell(27,5,'This program requires:',0,0,'L');
     $pdf->Cell(21,5,'Computer Course:',0,0,'L');
     $pdf->Cell(15,5,'( ) Yes ( ) No',0,0,'L');
     $pdf->Cell(13);
@@ -20621,10 +20627,10 @@ class PrintController extends AppController {
     $pdf->SetMargins(5, 9, 5);
     $pdf->AddPage("P", "Legal", 0);
     $pdf->SetAutoPageBreak(false);
-    // $pdf->Image($this->base . '/assets/img/zam.png', 6.5, 22,35, 35);
+    $pdf->Image($this->base . '/assets/img/zam.png', 6.5, 22,35, 35);
     $pdf->SetFont("Times", '', 12);
     $pdf->Cell(0, 5, 'ZSCMST-OCR 3.10.I-I5', 0, 0, 'L');
-    // $pdf->Image($this->base . '/assets/img/iso.png', 182, 13, 18, 21);
+    $pdf->Image($this->base . '/assets/img/iso.png', 182, 13, 18, 21);
     $pdf->SetFont("Times", '', 10);
     $pdf->Ln(5);
     $pdf->Cell(-7);
