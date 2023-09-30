@@ -1,1 +1,0 @@
-presentation por todays bidyo
