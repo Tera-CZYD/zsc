@@ -146,6 +146,7 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
       $scope.incomplete(options);
 
     }
+
   }else{
 
     $scope.load = function (options) {
@@ -315,7 +316,7 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
             Select.get({code: 'get-student', student_id : data.student_id },function(n){
 
-              console.log(n.id);
+              // console.log(n.id);
 
               Select.get({ code: 'get-student-attendance', student_id : n.data.id, year_term_id : n.data.year_term_id },function(q){
 
@@ -415,7 +416,7 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
                 });
 
-                $scope.load();
+              $scope.load();
 
               }
 
