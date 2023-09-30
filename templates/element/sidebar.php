@@ -90,8 +90,8 @@
           <?php endif ?>
 
           <?php if (hasAccess('registrar/menu', $currentUser)): ?>
-            <li class="nav-link-side nav-completion nav-request-form nav-tor nav-transferee nav-adding-dropping-subject nav-approval-of-enrolled-course nav-club nav-student-club nav-registrar-student-profile nav-purpose nav-affidavit-of-loss"><a><i class="fa fa-briefcase nav-requested-form-payment"></i> Registrar </a>
-              <ul class="nav child_menu collapse collapse-completion collapse-request-form collapse-tor collapse-transferee collapse-adding-dropping-subject collapse-club collapse-approval-of-enrolled-course collapse-student-club collapse-registrar-student-profile collapse-purpose collapse-affidavit-of-loss collapse-requested-form-payment">
+            <li class="nav-link-side nav-completion nav-request-form nav-tor nav-transferee nav-adding-dropping-subject nav-approval-of-enrolled-course nav-club nav-student-club nav-registrar-student-profile nav-purpose nav-affidavit-of-loss"><a><i class="fa fa-briefcase"></i> Registrar </a>
+              <ul class="nav child_menu collapse collapse-completion collapse-request-form collapse-tor collapse-transferee collapse-adding-dropping-subject collapse-club collapse-approval-of-enrolled-course collapse-student-club collapse-registrar-student-profile collapse-purpose collapse-affidavit-of-loss">
 
                 <?php if (hasAccess('registrar /index', $currentUser)): ?>
                   <li class="nav-link-side nav-registrar-student-profile">
@@ -176,8 +176,8 @@
           <?php endif ?>
 
           <?php if (hasAccess('cashier/menu', $currentUser)): ?>
-            <li class="nav-link-side nav-payment nav-assessment"><a><i class="fa fa-credit-card"></i> Cashier </a>
-              <ul class="nav child_menu collapse collapse-payment collapse-assessment">
+            <li class="nav-link-side nav-payment nav-assessment nav-requested-form-payment"><a><i class="fa fa-credit-card"></i> Cashier </a>
+              <ul class="nav child_menu collapse collapse-payment collapse-assessment collapse-requested-form-payment">
 
                 <?php if (hasAccess('payment/index', $currentUser)): ?>
                   <li class="nav-link-side nav-payment">
