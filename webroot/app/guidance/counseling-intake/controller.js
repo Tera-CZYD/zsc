@@ -197,7 +197,11 @@ app.controller('CounselingIntakeAddController', function($scope, CounselingIntak
 
       program_id : student.program_id,
 
-      year_term_id : student.year_term_id
+      year_term_id : student.year_term_id, 
+
+      contact_no: student.contact_no,
+
+      address: student.address,
 
     }; 
 
@@ -214,6 +218,10 @@ app.controller('CounselingIntakeAddController', function($scope, CounselingIntak
     $scope.data.CounselingIntake.course_id = $scope.student.program_id;
 
     $scope.data.CounselingIntake.year_term_id = $scope.student.year_term_id;
+
+    $scope.data.CounselingIntake.contact_no = $scope.student.contact_no;
+
+    $scope.data.CounselingIntake.address = $scope.student.address;
 
   }
 

@@ -353,6 +353,10 @@ app.controller('StudentExitAddController', function($scope, StudentExit, Select)
 
       program_id : student.program_id,
 
+      email: student.email,
+
+      contact_no: student.contact_no,
+
     }; 
 
   }
@@ -366,6 +370,10 @@ app.controller('StudentExitAddController', function($scope, StudentExit, Select)
     $scope.data.StudentExit.birth_date = $scope.student.date_of_birth;
 
     $scope.data.StudentExit.course_id = $scope.student.program_id;
+    
+    $scope.data.StudentExit.email = $scope.student.email;
+
+    $scope.data.StudentExit.contact_no = $scope.student.contact_no;
 
   }
 

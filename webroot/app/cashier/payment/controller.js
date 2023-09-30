@@ -203,11 +203,7 @@ app.controller('PaymentAddController', function($scope, Payment, Account, Select
 
   $scope.data = {
 
-    Payment : {},
-
-    CashierSub : [],
-
-    Account : []
+    Payment : {}
 
   }
 
@@ -219,29 +215,31 @@ app.controller('PaymentAddController', function($scope, Payment, Account, Select
 
   });
 
-  $scope.searchApprovalCourse = function(options) {
+  Select.get({code: 'college-program-list-all'}, function(e) {
+
+    $scope.college_program = e.data;
+
+  });
+
+  $scope.searchStudent = function(options) {
 
     options = typeof options !== 'undefined' ?  options : {};
 
-    options['code'] = 'search-approval-course';
+    options['code'] = 'search-student';
 
     Select.query(options, function(e) {
 
-      if(e.ok) {
+      $scope.students = e.data.result;
 
-        $scope.approval_enrolled_courses = e.data.result;
+      $scope.student = {};
+      
+      // paginator
 
-        $scope.student = {};
-        
-        // paginator
+      $scope.paginator  = e.data.paginator;
 
-        $scope.paginator  = e.data.paginator;
+      $scope.pages = paginator($scope.paginator, 10);
 
-        $scope.pages = paginator($scope.paginator, 10);
-
-        $("#searched-approval-enrolled-course-modal").modal('show');
-
-      }
+      $("#searched-student-modal").modal('show');
 
     });
 
@@ -251,21 +249,23 @@ app.controller('PaymentAddController', function($scope, Payment, Account, Select
 
     $scope.student = {
 
-      id   : student.id,
+      id            : student.id,
 
-      code : student.code,
+      code          : student.code,
 
-      name : student.name,
+      name          : student.name,
 
-      age : student.age,
+      email         : student.email, 
 
-      email : student.email,
+      college_id    : student.college_id,
 
-      gender : student.gender,
+      program_id    : student.program_id,
+  
+      year_term_id  : student.year_term_id,
 
-      program : student.program,
+      year_level  : student.year_level,
 
-      contact_no : student.contact_no
+      contact_no  : student.contact_no,
 
     }; 
 
@@ -273,109 +273,17 @@ app.controller('PaymentAddController', function($scope, Payment, Account, Select
 
   $scope.studentData = function(id) {
 
-    $scope.data.Payment.program_adviser_id = $scope.student.id;
+    $scope.data.Payment.student_id = $scope.student.id;
 
     $scope.data.Payment.student_name = $scope.student.name;
 
+    $scope.data.Payment.student_no = $scope.student.code;
+
+    $scope.data.Payment.program_id = $scope.student.program_id;
+
     $scope.data.Payment.email = $scope.student.email;
 
-    $scope.data.Payment.program = $scope.student.program;
-
-    $scope.data.Payment.gender = $scope.student.gender;
-
     $scope.data.Payment.contact_no = $scope.student.contact_no;
-
-    $scope.data.Payment.age = $scope.student.age;
-
-  }
-
-  $scope.addMiscellaneous = function() {
-
-    options = typeof options !== 'undefined' ?  options : {};
-
-    options['code'] = 'account-list-all';
-
-    Select.query(options, function(e) {
-
-      if(e.ok) {
-
-        $scope.accounts = e.data.result;
-
-        $('#add-miscellaneous-modal').modal('show');
-
-      }
-
-    });    
-
-  }
-
-  $scope.removeMiscellaneous = function(index, data) {
-
-    $scope.data.CashierSub.splice(index,1);
-
-    angular.forEach($scope.accounts, function(select, s) {
-      
-      if (select.id == data.miscellaneous_id) {
-
-        $scope.accounts[s].selected = false;
-
-        $scope.accounts[s].selecteds = 0;
-
-      }
-  
-    });
-
-    amount = 0;
-
-    $.each($scope.data.CashierSub, function(key, val) {
-
-      amount += parseFloat(val['amount']);
-
-    });
-
-    $scope.data.Payment.total = amount;
-
-  }
-
-  $scope.saveMiscellaneous = function() {
-
-    angular.forEach($scope.accounts, function(account, e) {
-
-      if(account.selected && account.selecteds != 1) {
-
-        $scope.accounts[e].selected = 1;
-
-        $scope.data.CashierSub.push({
-
-          miscellaneous_id : account.id,
-
-          name : account.name,
-
-          unit : account.unit,
-
-          amount : account.amount,
-
-          code: account.code,
-
-          type : true
-
-        });
-
-      }
-
-    });
-
-    amount = 0;
-
-    $.each($scope.data.CashierSub, function(key, val) {
-
-      amount += parseFloat(val['amount']);
-
-    });
-
-    $scope.data.Payment.total = amount;
-
-    $('#add-miscellaneous-modal').modal('hide');
 
   }
 
@@ -384,6 +292,8 @@ app.controller('PaymentAddController', function($scope, Payment, Account, Select
     valid = $("#form").validationEngine('validate');
     
     if (valid) {
+
+      $scope.data.Payment.amount = number_format($scope.data.Payment.amount, 2, '.', '');
 
       Payment.save($scope.data, function(e) {
 
@@ -551,9 +461,7 @@ app.controller('PaymentEditController', function($scope, $routeParams, Payment, 
 
   $scope.data = {
 
-    Payment : {},
-
-    CashierSub : []
+    Payment : {}
 
   }
 
@@ -563,66 +471,41 @@ app.controller('PaymentEditController', function($scope, $routeParams, Payment, 
 
     options = typeof options !== 'undefined' ?  options : {};
 
-
     Payment.get({ id: $scope.id }, function(e) {
 
       $scope.data = e.data;
-
-      Select.query({code : 'account-list-all' }, function(e) {
-
-        $scope.accounts = e.data;
-
-        if($scope.accounts.length > 0) {
-
-          $.each($scope.accounts, function(i, val) {
-
-            if($scope.data.CashierSub.length > 0) {
-
-              $.each($scope.data.CashierSub, function(is, vals) {
-
-                if(val.id == vals.miscellaneous_id) {
-
-                  $scope.accounts[i].selecteds = 1;
-
-                }
-
-              });
-
-            }
-
-          });
-
-        } 
-
-      });
 
     });
 
   }
 
-  $scope.searchApprovalCourse = function(options) {
+  $scope.load();
+
+  Select.get({code: 'college-program-list-all'}, function(e) {
+
+    $scope.college_program = e.data;
+
+  });
+
+  $scope.searchStudent = function(options) {
 
     options = typeof options !== 'undefined' ?  options : {};
 
-    options['code'] = 'search-approval-course';
+    options['code'] = 'search-student';
 
     Select.query(options, function(e) {
 
-      if(e.ok) {
+      $scope.students = e.data.result;
 
-        $scope.approval_enrolled_courses = e.data.result;
+      $scope.student = {};
+      
+      // paginator
 
-        $scope.student = {};
-        
-        // paginator
+      $scope.paginator  = e.data.paginator;
 
-        $scope.paginator  = e.data.paginator;
+      $scope.pages = paginator($scope.paginator, 10);
 
-        $scope.pages = paginator($scope.paginator, 10);
-
-        $("#searched-approval-enrolled-course-modal").modal('show');
-
-      }
+      $("#searched-student-modal").modal('show');
 
     });
 
@@ -632,21 +515,23 @@ app.controller('PaymentEditController', function($scope, $routeParams, Payment, 
 
     $scope.student = {
 
-      id   : student.id,
+      id            : student.id,
 
-      code : student.code,
+      code          : student.code,
 
-      name : student.name,
+      name          : student.name,
 
-      age : student.age,
+      email         : student.email, 
 
-      email : student.email,
+      college_id    : student.college_id,
 
-      gender : student.gender,
+      program_id    : student.program_id,
+  
+      year_term_id  : student.year_term_id,
 
-      program : student.program,
+      year_level  : student.year_level,
 
-      contact_no : student.contact_no
+      contact_no  : student.contact_no,
 
     }; 
 
@@ -654,111 +539,17 @@ app.controller('PaymentEditController', function($scope, $routeParams, Payment, 
 
   $scope.studentData = function(id) {
 
-    $scope.data.Payment.program_adviser_id = $scope.student.id;
+    $scope.data.Payment.student_id = $scope.student.id;
 
     $scope.data.Payment.student_name = $scope.student.name;
 
+    $scope.data.Payment.student_no = $scope.student.code;
+
+    $scope.data.Payment.program_id = $scope.student.program_id;
+
     $scope.data.Payment.email = $scope.student.email;
 
-    $scope.data.Payment.program = $scope.student.program;
-
-    $scope.data.Payment.gender = $scope.student.gender;
-
     $scope.data.Payment.contact_no = $scope.student.contact_no;
-
-    $scope.data.Payment.age = $scope.student.age;
-
-  }
-
-  $scope.load();
-
-  $scope.addMiscellaneous = function() {
-
-    options = typeof options !== 'undefined' ?  options : {};
-
-    options['code'] = 'account-list-all';
-
-    Select.query(options, function(e) {
-
-      if(e.ok) {
-
-        $scope.accounts = e.data.result;
-
-        $('#add-miscellaneous-modal').modal('show');
-
-      }
-
-    });    
-
-  }
-
-  $scope.removeMiscellaneous = function(index, data) {
-
-    $scope.data.CashierSub.splice(index,1);
-
-    angular.forEach($scope.accounts, function(select, s) {
-      
-      if (select.id == data.miscellaneous_id) {
-
-        $scope.accounts[s].selected = false;
-
-        $scope.accounts[s].selecteds = 0;
-
-      }
-  
-    });
-
-    amount = 0;
-
-    $.each($scope.data.CashierSub, function(key, val) {
-
-      amount += parseFloat(val['amount']);
-
-    });
-
-    $scope.data.Payment.total = amount;
-
-  }
-
-  $scope.saveMiscellaneous = function() {
-
-    angular.forEach($scope.accounts, function(account, e) {
-
-      if(account.selected && account.selecteds != 1) {
-
-        $scope.accounts[e].selecteds = 1;
-
-        $scope.data.CashierSub.push({
-
-          miscellaneous_id : account.id,
-
-          name : account.name,
-
-          unit : account.unit,
-
-          amount : account.amount,
-
-          code: account.code,
-
-          type : true
-
-        });
-
-      }
-
-    });
-
-    amount = 0;
-
-    $.each($scope.data.CashierSub, function(key, val) {
-
-      amount += parseFloat(val['amount']);
-
-    });
-
-    $scope.data.Payment.total = amount;
-
-    $('#add-miscellaneous-modal').modal('hide');
 
   }
 
@@ -767,6 +558,8 @@ app.controller('PaymentEditController', function($scope, $routeParams, Payment, 
     valid = $("#form").validationEngine('validate');
 
     if (valid) {
+
+      $scope.data.Payment.amount = number_format($scope.data.Payment.amount, 2, '.', '');
 
       Payment.update({id:$scope.id}, $scope.data, function(e) {
 

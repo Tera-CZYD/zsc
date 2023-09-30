@@ -384,6 +384,10 @@ app.controller('InterviewRequestAddController', function($scope, InterviewReques
 
       name : student.name,
 
+      program_id : student.program_id,
+
+      year_term_id : student.year_term_id
+
     }; 
     
 
@@ -396,6 +400,10 @@ app.controller('InterviewRequestAddController', function($scope, InterviewReques
     $scope.data.InterviewRequest.student_name = $scope.student.name;
 
     $scope.data.InterviewRequest.student_no = $scope.student.code;
+
+    $scope.data.InterviewRequest.program_id = $scope.student.program_id;
+
+    $scope.data.InterviewRequest.year_term_id = $scope.student.year_term_id;
 
   }
 
@@ -721,6 +729,10 @@ app.controller('InterviewRequestEditController', function($scope, $routeParams, 
 
       name : student.name,
 
+      program_id : student.program_id,
+
+      year_term_id : student.year_term_id
+
     }; 
     
 
@@ -733,6 +745,10 @@ app.controller('InterviewRequestEditController', function($scope, $routeParams, 
     $scope.data.InterviewRequest.student_name = $scope.student.name;
 
     $scope.data.InterviewRequest.student_no = $scope.student.code;
+
+    $scope.data.InterviewRequest.program_id = $scope.student.program_id;
+
+    $scope.data.InterviewRequest.year_term_id = $scope.student.year_term_id;
 
   }
 
@@ -777,8 +793,6 @@ app.controller('InterviewRequestEditController', function($scope, $routeParams, 
   }
 
 });
-
-
 
 app.controller("StudentInterviewRequestController", function ($scope, InterviewRequest) {
 
@@ -1083,7 +1097,9 @@ app.controller( "StudentInterviewRequestAddController", function ($scope, Interv
 
       $scope.data.InterviewRequest.student_name = response.data.Student.full_name;
 
-      $scope.data.InterviewRequest.course_id = response.data.Student.program_id;
+      $scope.data.InterviewRequest.program_id = response.data.Student.program_id;
+
+      $scope.data.InterviewRequest.year_term_id = response.data.Student.year_term_id;
 
       $scope.data.InterviewRequest.year = response.data.YearLevelTerm.year;
 

@@ -46,6 +46,8 @@ class SelectController extends AppController {
 
     $this->loadModel('Checkouts');
 
+    $this->loadModel('Payments');
+
     $this->loadModel('Attendances');
 
     $this->loadModel("Colleges");
@@ -195,6 +197,8 @@ class SelectController extends AppController {
     $this->loadModel("Municipalities");
 
     $this->loadModel("Barangays");
+
+    $this->loadModel("AffidavitOfLosses");
     
 
     //sir raf
@@ -701,6 +705,11 @@ class SelectController extends AppController {
 
       foreach ($students as $student) {
 
+        $birthdate = $student['date_of_birth'];
+    
+        $today = date("Y-m-d");
+        $age = floor((strtotime($today) - strtotime($birthdate)) / 31556926);
+
         $datas[] = array(
 
           'id' => $student['id'],
@@ -716,6 +725,8 @@ class SelectController extends AppController {
           'name' => $student['full_name'],
        
           'email' => $student['email'],
+
+          'contact_no' => $student['contact_no'],
        
           'college_id' => $student['college_id'],
        
@@ -723,7 +734,17 @@ class SelectController extends AppController {
        
           'year_term_id' => $student['year_term_id'],
 
-          'date_of_birth' => $student['date_of_birth'],
+          'civil_status' => $student['civil_status'],
+
+          'age' => $age,
+
+          'gender' => $student['gender'],
+
+          'school_year' => $student['school_year'],
+
+          'date_of_birth' => fdate($student['date_of_birth'],'m/dY'),
+
+          'address' =>$student['present_address']
 
         );
 
@@ -3533,6 +3554,12 @@ class SelectController extends AppController {
 
       foreach ($employees as $employee) {
 
+        $birthdate = $employee['birthdate'];
+    
+        $today = date("Y-m-d");
+
+        $age = floor((strtotime($today) - strtotime($birthdate)) / 31556926);
+
         $datas[] = array(
 
           'id'   => $employee['id'],
@@ -3542,6 +3569,10 @@ class SelectController extends AppController {
           'name' =>  $employee['full_name'],
 
           'college_id' =>  $employee['college_id'],
+
+          'gender' =>  $employee['gender'],
+
+          'age' => $age
 
         );
 
@@ -9206,19 +9237,17 @@ class SelectController extends AppController {
 
     } else if ($code == 'payment-code'){
 
-      $tmp = $this->Payment->query("
+      $tmp = $this->Payments->find()
 
-        SELECT 
+          ->where([
 
-          count(*) as total
+            'visible' => 1
 
-        FROM 
+          ])
 
-          payments as Payment
-
-      ");
+          ->count();
    
-      $datas = 'PAY-' . str_pad($tmp[0][0]['total'] + 1, 5, "0", STR_PAD_LEFT);
+      $datas = 'PAY-' . str_pad($tmp + 1, 5, "0", STR_PAD_LEFT);
 
     } else if ($code == 'award-list') {
 
@@ -9397,19 +9426,17 @@ class SelectController extends AppController {
 
     } else if ($code == 'good-moral-code'){
 
-      $tmp = $this->GoodMoral->query("
+      $tmp = $this->GoodMorals->find()
 
-        SELECT 
+          ->where([
 
-          count(*) as total
+            'visible' => 1
 
-        FROM 
+          ])
 
-          good_morals as GoodMoral
-
-      ");
+          ->count();
    
-      $datas = 'GM-' . str_pad($tmp[0][0]['total'] + 1, 5, "0", STR_PAD_LEFT);
+      $datas = 'GM-' . str_pad($tmp + 1, 5, "0", STR_PAD_LEFT);
 
     } else if ($code == 'affidavit-code'){
 
@@ -9420,6 +9447,16 @@ class SelectController extends AppController {
       ])->count();
    
       $datas = 'ALI-' . str_pad($tmp + 1, 5, "0", STR_PAD_LEFT);
+
+    } else if ($code == 'affidavit-of-loss-code'){
+
+      $tmp = $this->AffidavitOfLosses->find()->where([
+
+        "visible" => 1
+
+      ])->count();
+   
+      $datas = 'ALR-' . str_pad($tmp + 1, 5, "0", STR_PAD_LEFT);
 
     } else if ($code == 'calendar-activity-code'){
 
@@ -9598,19 +9635,13 @@ class SelectController extends AppController {
 
     } else if ($code == 'medical-certificate-code'){
 
-      $tmp = $this->MedicalCertificate->query("
+      $tmp = $this->MedicalCertificates->find()->where([
 
-        SELECT 
+        "visible" => 1,
 
-          count(*) as total
-
-        FROM 
-
-          medical_certificates as MedicalCertificate
-
-      ");
+      ])->count();
    
-      $datas = 'MCR-' . str_pad($tmp[0][0]['total'] + 1, 5, "0", STR_PAD_LEFT);
+      $datas = 'MCR-' . str_pad($tmp + 1, 5, "0", STR_PAD_LEFT);
 
     } else if ($code == 'customer-satisfaction-code'){
 
