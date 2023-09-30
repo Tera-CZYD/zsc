@@ -23,7 +23,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="col-md-8 col-xs-12">
-              <h4 class="header-title">APARTELLE/DORMITORY MONTHLY PAYMENT REPORT</h4>
+              <h4 class="header-title">MONTHLY CONSUMPTION</h4>
             </div>
             <div class="col-md-4 col-xs-12 pull-right">
               <div class="input-group-prepend">

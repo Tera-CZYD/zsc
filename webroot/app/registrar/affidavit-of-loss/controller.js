@@ -8,7 +8,7 @@ app.controller('AffidavitOfLossController', function($scope, AffidavitOfLoss) {
    
     autoclose: true,
    
-    todayHighlight: true
+    todayHighlight: true 
   
   });
 
