@@ -20000,11 +20000,11 @@ class PrintController extends AppController {
 
                 foreach ($prerequisites as $index => $datas) {
 
-                  $courses = $this->Courses->get($datas['CollegeProgramPrerequisite']['course_id']);
+                  $courses = $this->Courses->get($datas['course_id']);
                   
                   $course_prerequisites[] = array(
 
-                    'course'            => $courses['Course']['title'],
+                    'course'            => $courses['title'],
 
                   );
 
@@ -20372,7 +20372,7 @@ class PrintController extends AppController {
 
     $pdf->ln(4);
     $pdf->Cell(5.4);
-    $pdf->Cell(20,5,'Authoruty to Operate Program:');
+    $pdf->Cell(20,5,'Authority to Operate Program:');
     $pdf->Ln(4);
     $y = $pdf->Gety();
     $pdf->Cell(15);
@@ -20387,7 +20387,7 @@ class PrintController extends AppController {
     $pdf->SetY($y);
     $pdf->Cell(5.4);
     $pdf->Cell(90);
-    $pdf->Cell(27,5,'This Program requires:',0,0,'L');
+    $pdf->Cell(27,5,'This program requires:',0,0,'L');
     $pdf->Cell(21,5,'Computer Course:',0,0,'L');
     $pdf->Cell(15,5,'( ) Yes ( ) No',0,0,'L');
     $pdf->Cell(13);
