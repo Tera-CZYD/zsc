@@ -635,7 +635,7 @@ app.controller('CatController', function($scope, Select, StudentApplication, Stu
 
     if(valid){
 
-      if(data.room !== '' && data.room !== null && data.room !== undefined){
+      // if(data.room !== '' && data.room !== null && data.room !== undefined){
 
         StudentApplicationSchedule.save({ id : $scope.student_id },$scope.schedule, function(e){
 
@@ -659,17 +659,17 @@ app.controller('CatController', function($scope, Select, StudentApplication, Stu
 
         });
 
-      }else{
+      // }else{
 
-        $.gritter.add({
+      //   $.gritter.add({
 
-          title: 'Warning!',
+      //     title: 'Warning!',
 
-          text: 'Please select room.'
+      //     text: 'Please select room.'
 
-        });
+      //   });
 
-      }
+      // }
 
     }
 
