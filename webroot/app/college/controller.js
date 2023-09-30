@@ -157,11 +157,7 @@ app.controller('CollegeAddController', function($scope, College, Select) {
 
   };
 
-  Select.get({ code: 'campus-list' },function(e){
 
-    $scope.campuses = e.data;
-
-  });
 
   Select.get({ code: 'program-list' },function(e){
 

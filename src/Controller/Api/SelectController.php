@@ -3554,6 +3554,12 @@ class SelectController extends AppController {
 
       foreach ($employees as $employee) {
 
+        $birthdate = $employee['birthdate'];
+    
+        $today = date("Y-m-d");
+
+        $age = floor((strtotime($today) - strtotime($birthdate)) / 31556926);
+
         $datas[] = array(
 
           'id'   => $employee['id'],
@@ -3563,6 +3569,10 @@ class SelectController extends AppController {
           'name' =>  $employee['full_name'],
 
           'college_id' =>  $employee['college_id'],
+
+          'gender' =>  $employee['gender'],
+
+          'age' => $age
 
         );
 
@@ -9416,19 +9426,17 @@ class SelectController extends AppController {
 
     } else if ($code == 'good-moral-code'){
 
-      $tmp = $this->GoodMoral->query("
+      $tmp = $this->GoodMorals->find()
 
-        SELECT 
+          ->where([
 
-          count(*) as total
+            'visible' => 1
 
-        FROM 
+          ])
 
-          good_morals as GoodMoral
-
-      ");
+          ->count();
    
-      $datas = 'GM-' . str_pad($tmp[0][0]['total'] + 1, 5, "0", STR_PAD_LEFT);
+      $datas = 'GM-' . str_pad($tmp + 1, 5, "0", STR_PAD_LEFT);
 
     } else if ($code == 'affidavit-code'){
 
@@ -9627,19 +9635,13 @@ class SelectController extends AppController {
 
     } else if ($code == 'medical-certificate-code'){
 
-      $tmp = $this->MedicalCertificate->query("
+      $tmp = $this->MedicalCertificates->find()->where([
 
-        SELECT 
+        "visible" => 1,
 
-          count(*) as total
-
-        FROM 
-
-          medical_certificates as MedicalCertificate
-
-      ");
+      ])->count();
    
-      $datas = 'MCR-' . str_pad($tmp[0][0]['total'] + 1, 5, "0", STR_PAD_LEFT);
+      $datas = 'MCR-' . str_pad($tmp + 1, 5, "0", STR_PAD_LEFT);
 
     } else if ($code == 'customer-satisfaction-code'){
 

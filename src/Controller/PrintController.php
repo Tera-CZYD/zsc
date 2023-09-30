@@ -49,6 +49,12 @@ class PrintController extends AppController {
 
     $this->loadModel('Students');
 
+<<<<<<< HEAD
+
+    $this->loadModel('AddingDroppingSubjects');
+
+=======
+>>>>>>> 923ec1a123e3017fd297a924b718554ac68011b1
     $this->loadModel('ClassSchedules');
 
     $this->loadModel('BlockSections');
@@ -20621,10 +20627,10 @@ class PrintController extends AppController {
     $pdf->SetMargins(5, 9, 5);
     $pdf->AddPage("P", "Legal", 0);
     $pdf->SetAutoPageBreak(false);
-    // $pdf->Image($this->base . '/assets/img/zam.png', 6.5, 22,35, 35);
+    $pdf->Image($this->base . '/assets/img/zam.png', 6.5, 22,35, 35);
     $pdf->SetFont("Times", '', 12);
     $pdf->Cell(0, 5, 'ZSCMST-OCR 3.10.I-I5', 0, 0, 'L');
-    // $pdf->Image($this->base . '/assets/img/iso.png', 182, 13, 18, 21);
+    $pdf->Image($this->base . '/assets/img/iso.png', 182, 13, 18, 21);
     $pdf->SetFont("Times", '', 10);
     $pdf->Ln(5);
     $pdf->Cell(-7);

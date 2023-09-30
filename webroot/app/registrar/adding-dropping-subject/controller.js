@@ -1339,6 +1339,8 @@ app.controller('AdminAddingDroppingSubjectAddController', function($scope, Addin
 
       $scope.data.AddingDroppingSubject.program_id = $scope.student.program_id;
 
+      // console.log($scope.data.AddingDroppingSubject.program_id);
+
     });
 
   }
@@ -1412,6 +1414,8 @@ app.controller('AdminAddingDroppingSubjectAddController', function($scope, Addin
     $scope.data.AddingDroppingSubject.student_no = $scope.student.code;
 
     $scope.data.AddingDroppingSubject.college_id = $scope.student.college_id;
+
+    $scope.data.AddingDroppingSubject.program_id = $scope.student.program_id;
 
     $scope.getCollegeProgram($scope.student.college_id);
 

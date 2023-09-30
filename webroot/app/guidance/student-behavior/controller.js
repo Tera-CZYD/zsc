@@ -385,7 +385,7 @@ app.controller('StudentBehaviorAddController', function($scope, StudentBehavior,
      
       age : student.age, 
 
-      year : student.year_level, 
+      year_term_id : student.year_term_id, 
 
       program : student.program_id, 
 
@@ -403,7 +403,8 @@ app.controller('StudentBehaviorAddController', function($scope, StudentBehavior,
     $scope.data.StudentBehavior.student_no = $scope.student.code;
 
     $scope.data.StudentBehavior.age = $scope.student.age;
-    $scope.data.StudentBehavior.year_level = $scope.student.year;
+    
+    $scope.data.StudentBehavior.year_term_id = $scope.student.year_term_id;
 
     $scope.data.StudentBehavior.course_id = $scope.student.program;
 
