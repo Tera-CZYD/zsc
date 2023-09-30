@@ -1263,7 +1263,7 @@ class StudentApplicationsController extends AppController {
             // Content
             $mail->isHTML(true); // Set email format to HTML
 
-            $mail->Subject = 'Test Email';
+            $mail->Subject = 'CAT Schedule';
 
             $_SESSION['name'] = $name; 
 
