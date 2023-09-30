@@ -11,7 +11,7 @@ use Cake\I18n\Time;
 
 
 
-class RequestFormsController extends AppController {
+class RequestFormsController extends AppController { 
    
   public function initialize(): void{
 
@@ -190,18 +190,65 @@ class RequestFormsController extends AppController {
 
     $this->autoRender = false;
 
-    $requestData = $this->request->getData('RequestForm');
+    $requestData = $this->request->getData('data');
 
-    $requestData['date'] = isset($requestData['date']) ? fdate($requestData['date'],'Y-m-d') : null;
+    $data = json_decode($requestData, true);
 
-    $data = $this->RequestForms->newEmptyEntity();
+    $data['RequestForm']['date'] = isset($data['RequestForm']['date']) ? fdate($data['RequestForm']['date'],'Y-m-d') : null;
+
+    $uploadedFile = $this->request->getData('file');
+
+      if ($uploadedFile instanceof \Laminas\Diactoros\UploadedFile && $uploadedFile->getError() === UPLOAD_ERR_OK) {
+
+      $data['RequestForm']['image'] = $uploadedFile->getClientFilename();
+
+      }
+
+
+    $requestForm = $this->RequestForms->newEmptyEntity();
    
-    $data = $this->RequestForms->patchEntity($data, $requestData); 
+    $requestForm = $this->RequestForms->patchEntity($requestForm, $data['RequestForm']); 
 
-    if ($this->RequestForms->save($data)) {
+    if ($this->RequestForms->save($requestForm)) {
 
 
-      $request_form_id = $data->id;
+      $request_form_id = $requestForm->id;
+
+        if($data['RequestForm']['claim'] == 1){
+
+            if ($uploadedFile instanceof \Laminas\Diactoros\UploadedFile && $uploadedFile->getError() === UPLOAD_ERR_OK) {
+
+              $data['RequestForm']['image'] = $uploadedFile->getClientFilename();
+
+              // Upload user image
+
+              if (!file_exists('uploads')) {
+
+                mkdir('uploads');
+
+              }
+
+              if (!file_exists('uploads/request-form')) {
+
+                mkdir('uploads/affidavit-of-loss');
+
+              }
+
+              $imagePath = "uploads/request-form/$request_form_id";
+
+              if (!file_exists($imagePath)) {
+
+                mkdir($imagePath);
+
+              }
+
+              $uploadedFilePath = $imagePath . '/' . $uploadedFile->getClientFilename();
+
+              $uploadedFile->moveTo($uploadedFilePath);
+
+            }
+
+        }
 
       $query = $this->RequestedFormPayments->find();
 
@@ -211,7 +258,7 @@ class RequestFormsController extends AppController {
 
       $code = 'RFP-' . str_pad($total + 1, 5, "0", STR_PAD_LEFT);
 
-      $studentId = $requestData['student_id']; 
+      $studentId = $data['RequestForm']['student_id']; 
 
       $student['Student'] = $this->Students->find()
 
@@ -239,9 +286,9 @@ class RequestFormsController extends AppController {
 
       $payment['code'] = $code;
 
-      $payment['student_no'] = $requestData['student_no']; 
+      $payment['student_no'] = $data['RequestForm']['student_no']; 
 
-      $payment['student_name'] = $requestData['student_name'];
+      $payment['student_name'] = $data['RequestForm']['student_name'];
 
       $payment['email'] = $student['Student']['email'];
 
@@ -261,9 +308,10 @@ class RequestFormsController extends AppController {
 
         $sub = [];
 
-      if($data['otr'] != null && $data['otr'] == true){
 
-        $otrVal = isset($requestData['otrVal']) ? $requestData['otrVal'] : 1;
+      if($requestForm['otr'] != null && $requestForm['otr'] == true){
+
+        $otrVal = isset($data['RequestForm']['otrVal']) ? $data['RequestForm']['otrVal'] : 1;
 
         $sub[] = [
 
@@ -275,7 +323,7 @@ class RequestFormsController extends AppController {
 
       }
 
-      if($data['cav'] != null && $data['cav'] == true){
+      if($requestForm['cav'] != null && $requestForm['cav'] == true){
 
         $sub[] = [
 
@@ -287,7 +335,7 @@ class RequestFormsController extends AppController {
 
       }
 
-      if($data['cert'] != null && $data['cert'] == true){
+      if($requestForm['cert'] != null && $requestForm['cert'] == true){
 
         $sub[] = [
 
@@ -299,7 +347,7 @@ class RequestFormsController extends AppController {
 
       }
 
-      if($data['hon'] != null && $data['hon'] == true){
+      if($requestForm['hon'] != null && $requestForm['hon'] == true){
 
         $sub[] = [
 
@@ -311,7 +359,7 @@ class RequestFormsController extends AppController {
 
       }
 
-      if($data['authGrad'] != null && $data['authGrad'] == true){
+      if($requestForm['authGrad'] != null && $requestForm['authGrad'] == true){
 
         $sub[] = [
 
@@ -323,7 +371,7 @@ class RequestFormsController extends AppController {
 
       }
 
-      if($data['authUGrad'] != null && $data['authUGrad'] == true){
+      if($requestForm['authUGrad'] != null && $requestForm['authUGrad'] == true){
 
         $sub[] = [
 
@@ -335,7 +383,7 @@ class RequestFormsController extends AppController {
 
       }
 
-      if($data['dip'] != null && $data['dip'] == true){
+      if($requestForm['dip'] != null && $requestForm['dip'] == true){
 
         $sub[] = [
 
@@ -347,7 +395,7 @@ class RequestFormsController extends AppController {
 
       }
 
-      if($data['rr'] != null && $data['rr'] == true){
+      if($requestForm['rr'] != null && $requestForm['rr'] == true){
 
         $sub[] = [
 
@@ -359,7 +407,7 @@ class RequestFormsController extends AppController {
 
       }
 
-      if($data['other'] != null && $data['other'] == true){
+      if($requestForm['other'] != null && $requestForm['other'] == true){
 
         $sub[] = [
 
@@ -397,7 +445,7 @@ class RequestFormsController extends AppController {
 
         'msg' =>'Request Form has been successfully saved.',
 
-        'data'=>$requestData
+        'data'=>$data
 
       );
 
@@ -409,7 +457,7 @@ class RequestFormsController extends AppController {
 
           'description' => 'Request Form Management',
 
-          'code' => $requestData['code'],
+          'code' => $data['RequestForm']['code'],
 
           'created' => date('Y-m-d H:i:s'),
 
@@ -498,17 +546,73 @@ class RequestFormsController extends AppController {
   }
 
 
-  public function edit($id){
+  public function edit(){
 
-    $data = $this->RequestForms->get($id); 
+    $id = $this->request->getParam('id'); 
 
-    $requestData = $this->getRequest()->getData('RequestForm');
+    $requestForm = $this->RequestForms->get($id); 
 
-    $requestData['date'] = isset($requestData['date']) ? fdate($requestData['date'],'Y-m-d') : NULL;
+    // $requestData = $this->getRequest()->getData('RequestForm');
 
-    $this->RequestForms->patchEntity($data, $requestData); 
+    $requestData = $this->request->getData('data');
 
-    if ($this->RequestForms->save($data)) {
+    $data = json_decode($requestData, true);
+
+    $data['RequestForm']['date'] = isset($data['RequestForm']['date']) ? fdate($data['RequestForm']['date'],'Y-m-d') : NULL;
+
+    $uploadedFile = $this->request->getData('file');
+
+      if ($uploadedFile instanceof \Laminas\Diactoros\UploadedFile && $uploadedFile->getError() === UPLOAD_ERR_OK) {
+
+      $data['RequestForm']['image'] = $uploadedFile->getClientFilename();
+
+      }
+
+      if($data['RequestForm']['claim'] == 0){
+
+          $data['RequestForm']['image'] = null;
+
+      }    
+
+    $this->RequestForms->patchEntity($requestForm, $data['RequestForm']); 
+
+    if ($this->RequestForms->save($requestForm)) {
+
+        if($data['RequestForm']['claim'] == 1){
+
+            if ($uploadedFile instanceof \Laminas\Diactoros\UploadedFile && $uploadedFile->getError() === UPLOAD_ERR_OK) {
+
+              $data['RequestForm']['image'] = $uploadedFile->getClientFilename();
+
+              // Upload user image
+
+              if (!file_exists('uploads')) {
+
+                mkdir('uploads');
+
+              }
+
+              if (!file_exists('uploads/request-form')) {
+
+                mkdir('uploads/request-form');
+
+              }
+
+              $imagePath = "uploads/affidavit-of-loss/$id";
+
+              if (!file_exists($imagePath)) {
+
+                mkdir($imagePath);
+
+              }
+
+              $uploadedFilePath = $imagePath . '/' . $uploadedFile->getClientFilename();
+
+              $uploadedFile->moveTo($uploadedFilePath);
+
+            }
+
+        }      
 
       $response = array(
 
@@ -516,7 +620,7 @@ class RequestFormsController extends AppController {
 
         'msg' => 'Request Form has been successfully updated.',
 
-        'data'=> $requestData
+        'data'=> $data['RequestForm']
 
       );
         
@@ -528,7 +632,7 @@ class RequestFormsController extends AppController {
 
           'description' => 'Request Form',
 
-          'code' => $requestData['code'],
+          'code' => $data['RequestForm']['code'],
 
           'created' => date('Y-m-d H:i:s'),
 
@@ -544,7 +648,7 @@ class RequestFormsController extends AppController {
 
         'ok'  =>true,
 
-        'data'=>$requestData,
+        'data'=>$data['RequestForm'],
 
         'msg' =>'Request Form cannot updated this time.',
 

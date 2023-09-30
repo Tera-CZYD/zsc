@@ -364,135 +364,135 @@ class AffidavitOfLossesController extends AppController {
 
 	} 
 
-  // public function edit(){
+  public function edit(){
 
-  //   $id = $this->request->getParam('id');
+    $id = $this->request->getParam('id');
 
-  //   $affidavit = $this->AffidavitOfLosses->get($id); 
+    $affidavit = $this->AffidavitOfLosses->get($id); 
 
-  //   // $requestData = $this->getRequest()->getData('Affidavit');
+    // $requestData = $this->getRequest()->getData('Affidavit');
 
-  //   $requestData = $this->request->getData('data');
+    $requestData = $this->request->getData('data');
 
-  //   $data = json_decode($requestData, true);
+    $data = json_decode($requestData, true);
 
-  //   $data['AffidavitOfLoss']['claim'] = ($data['AffidavitOfLoss']['claim'] == true) ? 1 : 0;  
+    $data['AffidavitOfLoss']['claim'] = ($data['AffidavitOfLoss']['claim'] == true) ? 1 : 0;  
 
-  //   $data['AffidavitOfLoss']['date'] = isset($data['AffidavitOfLoss']['date']) ? date('Y-m-d', strtotime($data['AffidavitOfLoss']['date'])) : null;
+    $data['AffidavitOfLoss']['date'] = isset($data['AffidavitOfLoss']['date']) ? date('Y-m-d', strtotime($data['AffidavitOfLoss']['date'])) : null;
 
-  //   $uploadedFile = $this->request->getData('file');
+    $uploadedFile = $this->request->getData('file');
 
-  //     if ($uploadedFile instanceof \Laminas\Diactoros\UploadedFile && $uploadedFile->getError() === UPLOAD_ERR_OK) {
+      if ($uploadedFile instanceof \Laminas\Diactoros\UploadedFile && $uploadedFile->getError() === UPLOAD_ERR_OK) {
 
-  //     $data['AffidavitOfLoss']['image'] = $uploadedFile->getClientFilename();
+      $data['AffidavitOfLoss']['image'] = $uploadedFile->getClientFilename();
 
-  //     }
+      }
 
-  //   if($data['AffidavitOfLoss']['claim'] == 0){
+    if($data['AffidavitOfLoss']['claim'] == 0){
 
-  //       $data['AffidavitOfLoss']['image'] = null;
+        $data['AffidavitOfLoss']['image'] = null;
 
-  //   }
+    }
 
 
-  //   $this->AffidavitOfLosses->patchEntity($affidavit, $data['AffidavitOfLoss']); 
+    $this->AffidavitOfLosses->patchEntity($affidavit, $data['AffidavitOfLoss']); 
 
-  //   if ($this->AffidavitOfLosses->save($affidavit)) {
+    if ($this->AffidavitOfLosses->save($affidavit)) {
 
-  //       if($data['AffidavitOfLoss']['claim'] == 1){
+        if($data['AffidavitOfLoss']['claim'] == 1){
 
-  //           if ($uploadedFile instanceof \Laminas\Diactoros\UploadedFile && $uploadedFile->getError() === UPLOAD_ERR_OK) {
+            if ($uploadedFile instanceof \Laminas\Diactoros\UploadedFile && $uploadedFile->getError() === UPLOAD_ERR_OK) {
 
-  //             $data['AffidavitOfLoss']['image'] = $uploadedFile->getClientFilename();
+              $data['AffidavitOfLoss']['image'] = $uploadedFile->getClientFilename();
 
-  //             // Upload user image
+              // Upload user image
 
-  //             if (!file_exists('uploads')) {
+              if (!file_exists('uploads')) {
 
-  //               mkdir('uploads');
+                mkdir('uploads');
 
-  //             }
+              }
 
-  //             if (!file_exists('uploads/affidavit-of-loss')) {
+              if (!file_exists('uploads/affidavit-of-loss')) {
 
-  //               mkdir('uploads/affidavit-of-loss');
+                mkdir('uploads/affidavit-of-loss');
 
-  //             }
+              }
 
-  //             $imagePath = "uploads/affidavit-of-loss/$id";
+              $imagePath = "uploads/affidavit-of-loss/$id";
 
-  //             if (!file_exists($imagePath)) {
+              if (!file_exists($imagePath)) {
 
-  //               mkdir($imagePath);
+                mkdir($imagePath);
 
-  //             }
+              }
 
-  //             $uploadedFilePath = $imagePath . '/' . $uploadedFile->getClientFilename();
+              $uploadedFilePath = $imagePath . '/' . $uploadedFile->getClientFilename();
 
-  //             $uploadedFile->moveTo($uploadedFilePath);
+              $uploadedFile->moveTo($uploadedFilePath);
 
-  //           }
+            }
 
-  //       }
+        }
 
-  //     $response = array(
+      $response = array(
 
-  //       'ok'  =>true,
+        'ok'  =>true,
 
-  //       'msg' =>'Affidavit Of Loss has been successfully updated.',
+        'msg' =>'Affidavit Of Loss has been successfully updated.',
 
-  //       'data'=>$data
+        'data'=>$data
 
-  //     );
+      );
         
-  //     $userLogTable = TableRegistry::getTableLocator()->get('UserLogs');
+      $userLogTable = TableRegistry::getTableLocator()->get('UserLogs');
         
-  //     $userLogEntity = $userLogTable->newEntity([
+      $userLogEntity = $userLogTable->newEntity([
 
-  //         'action' => 'Edit',
+          'action' => 'Edit',
 
-  //         'description' => 'Affidavit Of Loss Management',
+          'description' => 'Affidavit Of Loss Management',
 
-  //         'code' => $data['AffidavitOfLoss']['code'],
+          'code' => $data['AffidavitOfLoss']['code'],
 
-  //         'created' => date('Y-m-d H:i:s'),
+          'created' => date('Y-m-d H:i:s'),
 
-  //         'modified' => date('Y-m-d H:i:s')
+          'modified' => date('Y-m-d H:i:s')
 
-  //     ]);
+      ]);
       
-  //     $userLogTable->save($userLogEntity);
+      $userLogTable->save($userLogEntity);
 
-  //   }else {
+    }else {
 
-  //     $response = array(
+      $response = array(
 
-  //       'ok'  =>true,
+        'ok'  =>true,
 
-  //       'data'=>$data,
+        'data'=>$data,
 
-  //       'msg' =>'Afffidavit Of Loss cannot updated this time.',
+        'msg' =>'Afffidavit Of Loss cannot updated this time.',
 
-  //     );
+      );
 
-  //   }
+    }
 
-  //   $this->set(array(
+    $this->set(array(
 
-  //     'response'=>$response,
+      'response'=>$response,
 
-  //     '_serialize'=>'response'
+      '_serialize'=>'response'
 
-  //   ));
+    ));
 
-  //   $this->response->withType('application/json');
+    $this->response->withType('application/json');
 
-  //   $this->response->getBody()->write(json_encode($response));
+    $this->response->getBody()->write(json_encode($response));
 
-  //   return $this->response;
+    return $this->response;
 
 
-  // }
+  }
 
   public function delete($id = null){
 
