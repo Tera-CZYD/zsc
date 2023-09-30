@@ -251,6 +251,8 @@
 
         $routes->resources('AffidavitOfLosses');
 
+        $routes->resources('StudentEnrollments');
+
         // $routes->connect('/admin-affidavit-of-loss/:id', ['controller' => 'AffidavitofLosses', 'action' => 'edit']);
 
         $routes->connect('/affidavit-of-losses/:id', ['controller' => 'AffidavitofLosses', 'action' => 'edit']);
