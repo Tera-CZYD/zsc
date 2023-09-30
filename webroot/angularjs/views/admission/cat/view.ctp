@@ -204,8 +204,8 @@
           </div>
           <div class="col-md-12">
             <div class="pull-right">
-                <button id="pageQualify" href="javascript:void(0)" ng-click="qualify(data.StudentApplication)" ng-disabled="data.StudentApplication.approve == 4 || data.StudentApplication.approve == 5" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> QUALIFY </button>
-                <button id="pageUnqualify" href="javascript:void(0)" ng-click="unqualify(data.StudentApplication)" ng-disabled="data.StudentApplication.approve == 4 || data.StudentApplication.approve == 5" class="btn btn-warning  btn-min" ><i class="fa fa-close"></i> UNQUALIFY </button>
+                <button id="pageQualify" href="javascript:void(0)" ng-click="qualify(data.StudentApplication)" ng-disabled="data.StudentApplication.approve == 4 || data.StudentApplication.approve == 5" ng-hide="data.StudentApplication.approve == 1 || data.StudentApplication.approve == 0" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> QUALIFY </button>
+                <button id="pageUnqualify" href="javascript:void(0)" ng-click="unqualify(data.StudentApplication)" ng-disabled="data.StudentApplication.approve == 4 || data.StudentApplication.approve == 5" ng-hide="data.StudentApplication.approve == 1 || data.StudentApplication.approve == 0" class="btn btn-warning  btn-min" ><i class="fa fa-close"></i> UNQUALIFY </button>
                 <button id="pagePrintForm" type="button" class="btn btn-info  btn-min" ng-click="print(data.StudentApplication.id )"><i class="fa fa-print"></i> PRINT CAT </button>
             </div>
           </div>
