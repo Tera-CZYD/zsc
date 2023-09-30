@@ -53,13 +53,8 @@
                     <td class="italic">{{ data.RequestForm.date }}</td>
                   </tr>
                   <tr>
-<<<<<<< HEAD
-                    <th class="text-right"> PROGRAM : </th>
-                    <td class="italic">{{ data.Program.code }} - {{ data.Program.name }}</td>
-=======
                     <th class="text-right"> COURSE : </th>
                     <td class="italic">{{ data.CollegeProgram.code }} - {{ data.CollegeProgram.name }}</td>
->>>>>>> 244db000a8c1282a00a0313b1dd8863ae55b6576
                   </tr>
                   <tr>
                     <th class="text-right"> YEAR : </th>

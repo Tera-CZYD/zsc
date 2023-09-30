@@ -2,65 +2,33 @@ app.config(function($routeProvider) {
 
   $routeProvider
 
-  .when('/curriculum', {
+  .when('/curriculum/curriculums', {
 
-    templateUrl: tmp + 'curriculum__index',
+    templateUrl: 'angularjs/views/curriculum/index.ctp',
 
     controller: 'CurriculumController',
 
   })
 
- .when('/curriculum/add', {
+ .when('/curriculum/curriculums/add', {
 
-   templateUrl: tmp + 'curriculum__add',
+   templateUrl: 'angularjs/views/curriculum/add.ctp',
 
   controller: 'CurriculumAddController',
 
  })
 
- .when('/curriculum/edit/:id', {
+ .when('/curriculum/curriculums/edit/:id', {
 
-   templateUrl: tmp + 'curriculum__edit',
+   templateUrl: 'angularjs/views/curriculum/edit.ctp',
 
    controller: 'CurriculumEditController',
 
   })
 
- .when('/curriculum/add-course/:id', {
+  .when('/curriculum/curriculums/view/:id', {
 
-   templateUrl: tmp + 'curriculum__add_course',
-
-   controller: 'CurriculumAddCourseController',
-
-  })
-
- .when('/curriculum/view-course/:id', {
-
-    templateUrl: tmp + 'curriculum__view_course',
-
-    controller: 'CurriculumViewCourseController',
-
-  })
-
-  .when('/curriculum/edit-course/:id', {
-
-    templateUrl: tmp + 'curriculum__edit_course',
-
-    controller: 'CurriculumEditCourseController',
-
-  })
-
-  .when('/curriculum/year-term-load/:id', {
-
-    templateUrl: tmp + 'curriculum__year_term_load',
-
-    controller: 'CurriculumYearTermLoadController',
-
-  })
-
-  .when('/curriculum/view/:id', {
-
-    templateUrl: tmp + 'curriculum__view',
+    templateUrl: 'angularjs/views/curriculum/view.ctp',
 
     controller: 'CurriculumViewController',
 
