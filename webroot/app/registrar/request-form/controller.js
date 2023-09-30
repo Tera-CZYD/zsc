@@ -654,7 +654,7 @@ app.controller('RequestFormEditController', function($scope, $routeParams, Reque
 
   $scope.load = function() {
 
-    RequestForm.get({ id: $scope.id }, function(e) {
+    RequestForm.get({ id: $scope.id }, function(e) { 
 
       $scope.data = e.data;
 
@@ -1478,7 +1478,11 @@ app.controller('AdminRequestFormEditController', function($scope, $routeParams, 
 
   $scope.data = {
 
-    RequestForm : {}
+    RequestForm : {
+
+      image: null
+
+    }
 
   }
 
