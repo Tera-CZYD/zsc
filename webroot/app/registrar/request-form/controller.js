@@ -14,7 +14,7 @@ app.controller('RequestFormController', function($scope, RequestForm) {
 
   $scope.request = function(options) {
 
-    options = typeof options !== 'undefined' ?  options : {};
+    options = typeof options !== 'undefined' ?  options : {}; 
 
     options['status'] = 0;
 
@@ -1085,7 +1085,11 @@ app.controller('AdminRequestFormAddController', function($scope, RequestForm, Se
 
   $scope.data = {
 
-    RequestForm : {}
+    RequestForm : {
+
+      image: null
+
+    }
 
   }
   
