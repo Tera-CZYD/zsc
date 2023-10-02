@@ -109,7 +109,7 @@ class StudentApplicationsTable extends Table{
 
         'ok' => false,
 
-        'msg' => 'Student Application already exists.'
+        'msg' => '<span style="color:#f5f5f5; font-size: 13px">Please input valid email address.</span>'
 
       ];
 

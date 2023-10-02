@@ -83,7 +83,7 @@
     <div class="login-area login-bg" >
       <div class="d-flex align-items-center justify-content-center">
         <img src="<?php echo $base ?>/assets/img/3dgifmaker69088.gif" width="150" height="150" class="d-inline-block align-top" alt="">
-        <h3>ZAMBOANGA STATE COLLEGE OF MARINE AND TECHNOLOGY</h3>
+        <h3>ZAMBOANGA STATE COLLEGE OF MARINE SCIENCES AND TECHNOLOGY</h3>
     </div>
       <div class="container-fluid p-0">
         <div style="margin: -4.8% 10% 0 10%;">

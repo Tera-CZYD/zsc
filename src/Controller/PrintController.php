@@ -9398,11 +9398,13 @@ class PrintController extends AppController {
 
     $conditions['status'] = '';
 
-    if (isset($this->request->query['status'])) {
+    if ($this->request->getQuery('status')!=null) {
 
-      $status = $this->request->query['status'];
+      $status = $this->request->getQuery('status');
 
       $conditions['status'] = "AND ReferralRecommendation.status = $status";
+
+
 
     }
 
@@ -9461,7 +9463,7 @@ class PrintController extends AppController {
     $pdf->SetWidths(array(10,35,95,55,70,80));
     $pdf->SetAligns(array('C','C','L','C','L','L'));
 
-    if(!empty($tmpData)){
+    if(count($tmpData) > 0){
 
       foreach ($tmpData as $key => $data){
 
