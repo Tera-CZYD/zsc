@@ -240,7 +240,7 @@
                           <td class="text-center">{{ data.status }}</td>
                           <td class="text-center">
                             <div class="btn-group btn-group-xs">
-                              <a id="pageViewInterview" href="javascript:void(0)" ng-click="viewInterviewRequest(data)" class="btn btn-info" title="VIEW INTERVIEW REQUEST"><i class="fa fa-envelope"></i></a>
+                              <a id="pageViewInterview" href="javascript:void(0)" ng-show="data.status == 'REQUESTED'" ng-click="viewInterviewRequest(data)" class="btn btn-info" title="VIEW INTERVIEW REQUEST"><i class="fa fa-envelope"></i></a>
                               <a id="pageEmail" href="#/admission/cat/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
                               <button id="pagePrint" ng-click="printData(data.id)" class="btn btn-danger"><i class="fa fa-print"></i></button>
                             </div>

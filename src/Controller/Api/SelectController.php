@@ -3258,7 +3258,7 @@ class SelectController extends AppController {
 
         $student_details = $connection->execute($tmp)->fetchAll('assoc');
 
-        $for_medical_interview = $student_details[0]['approve'] == 1 ? 1 : 0;
+        $for_medical_interview = $student_details[0]['approve'] == 3 ? 1 : 0;
 
         $for_schedule = $student_details[0]['status'] == 'REQUESTED' ? 1 : 0;
 
@@ -7934,7 +7934,7 @@ class SelectController extends AppController {
 
       $student = $this->Students->get($student_id);
 
-      $attendance = $this->Attendances->find()->where([
+      $attendance = $this->StudentEnrolledCourses->find()->where([
 
         'visible' => 1,
 
@@ -7942,11 +7942,13 @@ class SelectController extends AppController {
 
         'year_term_id' => $year_term_id,
 
-        'status' => 'absent'
+        'clearance_status' => 3
 
       ])->count();
 
        $datas = $attendance;
+
+       // debug($attendance);
 
     
     }else if ($code == 'get-student-absent') {
@@ -7955,9 +7957,15 @@ class SelectController extends AppController {
 
       $year_term_id = $this->request->getQuery('year_term_id');
 
+      $section = $this->request->getQuery('section');
+
+      $course_id = $this->request->getQuery('course_id');
+
+      $faculty_id = $this->request->getQuery('faculty_id');
+
       // $student = $this->Students->get($student_id);
 
-      $clear = $this->StudentEnrolledCourses->find()
+      $clear = $this->Attendances->find()
 
         ->where([
 
@@ -7967,11 +7975,15 @@ class SelectController extends AppController {
 
           'year_term_id' => $year_term_id,
 
-          'clearance_status' => 3
+          'section_id' => $section,
+
+          'course_id' => $course_id,
+
+          'faculty_id' => $faculty_id
 
         ])
 
-        ->all();  
+        ->count();  
 
        $datas = $clear;
 

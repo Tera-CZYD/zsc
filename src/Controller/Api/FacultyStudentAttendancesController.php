@@ -37,6 +37,10 @@ class FacultyStudentAttendancesController extends AppController {
 
     $this->UserLogs = TableRegistry::getTableLocator()->get('UserLogs');
 
+    $this->AddingDroppingSubjects = TableRegistry::getTableLocator()->get('AddingDroppingSubjects');
+
+    $this->AddingDroppingSubjectSubs = TableRegistry::getTableLocator()->get('AddingDroppingSubjectSubs');
+
   }
 
   public function index(){   
@@ -481,6 +485,12 @@ class FacultyStudentAttendancesController extends AppController {
 
               'student_id' => $sid,
 
+              'course_id' => $course,
+
+              'faculty_id' => $faculty,
+
+              'section_id' =>  $id,
+
               'visible'    => 1 
 
           ])
@@ -642,7 +652,35 @@ class FacultyStudentAttendancesController extends AppController {
 
       ->first();
 
-    // var_dump($app);
+    $student = $this->Students->find()
+
+      ->contain([
+
+        'Colleges'=> [
+
+          'conditions' => ['Colleges.visible' => 1],
+
+        ],
+
+        'CollegePrograms' => [
+
+          'conditions' => ['CollegePrograms.visible' => 1],
+
+        ],
+
+      ])
+
+      ->where([
+
+        'Students.id' => $id,
+
+        'Students.visible' => 1
+
+      ])
+
+      ->first();
+
+    // var_dump($student);
 
     $co = $this->Courses->get($course);
 
@@ -656,6 +694,71 @@ class FacultyStudentAttendancesController extends AppController {
     $app->clearance_remarks = 'DROPPED';
 
     if ($this->StudentEnrolledCourses->save($app)) {
+
+      $tmp = $this->AddingDroppingSubjects->find()->where([
+
+        "visible" => 1,
+
+      ])->count();
+   
+      $code = 'ADS-' . str_pad($tmp + 1, 5, "0", STR_PAD_LEFT);
+
+      $currentDate = date('Y-m-d'); 
+
+      $requestData = [
+
+        'student_id' => $id,
+
+        'student_no' => $student['student_no'],
+
+        'code' => $code,
+
+        'program_id' => $student['college_program']['id'],
+
+        'program' => $student['college_program']['name'],
+
+        'college_id' => $student['college']['id'],
+
+        'college' => $student['college']['name'],
+
+        'student_name' => $student['last_name'].', '.$student['first_name'],
+
+        'approve' => 1,
+
+        'approve_by_id' => $faculty,
+
+        'date' =>$currentDate
+
+      ];
+
+
+      $data = $this->AddingDroppingSubjects->newEmptyEntity();
+   
+      $data = $this->AddingDroppingSubjects->patchEntity($data, $requestData); 
+
+      // var_dump($data);
+
+      $this->AddingDroppingSubjects->save($data);
+
+      $last_id = $data->id;
+
+      $subEntities = $this->AddingDroppingSubjectSubs->newEntity([
+
+              'adding_dropping_subject_id' => $last_id,
+
+              'course_title' => $app['course_code'].' - '.$app['course'],
+
+              'faculty_id' => $faculty,
+
+              'faculty_name' => $app['faculty_name'],
+
+              'status' => 'DROP',
+
+              'course_id' => $course,
+
+          ]);
+
+      $this->AddingDroppingSubjectSubs->save($subEntities);
 
       //EMAIL VERIFICATION
 
