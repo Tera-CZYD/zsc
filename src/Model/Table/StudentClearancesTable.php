@@ -185,6 +185,8 @@ class StudentClearancesTable extends Table
 
     $query = $this->getConnection()->prepare($sql);
 
+    // var_dump($query);
+
     $query->execute();
 
     return $query;
