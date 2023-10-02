@@ -458,7 +458,11 @@ app.controller('MedicalCertificateAddController', function($scope, MedicalCertif
 
       name : student.name,
      
-      age : age, 
+      age : student.age, 
+
+      program_id : student.program_id, 
+
+      year_term_id : student.year_term_id, 
 
     }; 
     
@@ -474,6 +478,10 @@ app.controller('MedicalCertificateAddController', function($scope, MedicalCertif
     $scope.data.MedicalCertificate.student_no = $scope.student.code;
 
     $scope.data.MedicalCertificate.age = $scope.student.age;
+
+    $scope.data.MedicalCertificate.program_id = $scope.student.program_id;
+
+    $scope.data.MedicalCertificate.year_term_id = $scope.student.year_term_id;
 
   }
 

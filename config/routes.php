@@ -112,6 +112,8 @@
 
       $routes->resources('Consultations');
 
+      $routes->resources('Curriculums');
+
       $routes->resources('StudentApplications');
 
       $routes->resources('StudentApplicationImages');
@@ -247,6 +249,18 @@
 
       $routes->resources('StudentAttendanceFiles');
 
+        $routes->resources('AffidavitOfLosses');
+
+        $routes->resources('StudentEnrollments');
+
+        // $routes->connect('/admin-affidavit-of-loss/:id', ['controller' => 'AffidavitofLosses', 'action' => 'edit']);
+
+        $routes->connect('/affidavit-of-losses/:id', ['controller' => 'AffidavitofLosses', 'action' => 'edit']);
+
+        $routes->resources('ScholasticDocuments');
+
+        $routes->resources('RequestedFormPayments');
+
 
       //REPORTS MEDICAL SERVICES
 
@@ -287,6 +301,8 @@
 
       $routes->resources('RequestForms');
 
+      $routes->connect('/request-forms/:id', ['controller' => 'RequestForms', 'action' => 'edit']);      
+
      	$routes->resources('Majors');
 
       $routes->resources('Rooms');
@@ -317,7 +333,7 @@
 
       $routes->resources('Backups');
 
-      $routes->resources('AnnouncementManagements');
+      $routes->resources('Announcements');
 
       $routes->resources('Specializations');
 

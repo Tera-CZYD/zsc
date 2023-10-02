@@ -85,6 +85,9 @@
               <li class="nav-link-side nav-gco-evaluation">
                 <a href="#/guidance/gco-evaluation" onclick="change('gco-evaluation')">GCO Evaluation</a>
               </li>
+              <li class="nav-link-side nav-participant-evaluation">
+                <a href="#/guidance/participant-evaluation" onclick="change('participant-evaluation')">Participant Evaluation Activity</a>
+              </li>
             </ul>
           </li> 
 

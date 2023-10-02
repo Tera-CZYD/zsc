@@ -121,12 +121,12 @@
                             <input icheck type="checkbox" ng-init="selectAll = false" ng-model="selectAll" ng-change="selectall()">
                           </th>
                           <th class="text-center w30px">#</th>
-                          <th class="text-center" id="applicantName" ng-click='studentRating()' ng-model="orderApplicantName"><i class="fa fa-sort"></i> APPLICANT NAME </th>
+                          <th class="text-center" id="applicantName" ng-click='applicantName()' ng-model="orderApplicantName"><i class="fa fa-sort"></i> APPLICANT NAME </th>
                           <th class="text-center"> EMAIL </th>
                           <th class="text-center"> ADDRESS </th>
                           <th class="text-center"> CONTACT NO. </th>
                           <th class="text-center"> GENDER </th>
-                          <th class="text-center" id="applicationDate" ng-click='studentRating()' ng-model="orderApplicationDate"><i class="fa fa-sort"></i> APPLICATION DATE </th>
+                          <th class="text-center" id="applicationDate" ng-click='applicationDate()' ng-model="orderApplicationDate"><i class="fa fa-sort"></i> APPLICATION DATE </th>
                           <th class="w90px"></th>
                         </tr>
                       </thread>
@@ -664,14 +664,14 @@
               <input type="text" class="form-control clockpicker" ng-model="schedule.time" data-validation-engine="validate[required]" autocomplete="off">
             </div>
           </div>
-          <div class="col-md-12">
+          <!-- <div class="col-md-12">
             <div class="form-group">
               <label> ROOM <i class="required">*</i></label>
               <select selectize ng-model="schedule.room" ng-options="opt.id as opt.value for opt in rooms" data-validation-engine="validate[required]" autocomplete="off">
                 <option value=""></option>
               </select>
             </div>
-          </div>
+          </div> -->
           <div class="col-md-12">
             <div class="form-group">
               <label> PLACE </label>

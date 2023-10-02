@@ -18,6 +18,12 @@ class AssessmentsTable extends Table{
 
     ]);
 
+    $this->belongsTo('YearLevelTerms', [
+
+      'foreignKey' => 'year_term_id', 
+
+    ]);    
+
     // $this->belongsTo('Students', [
 
     //   'foreignKey' => 'student_id', 

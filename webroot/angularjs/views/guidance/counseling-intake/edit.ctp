@@ -47,35 +47,22 @@
               </div>
             </div>
 
-            <!-- <div class="col-md-6">
-                <div class="form-group">
-                  <label> COURSE <i class="required">*</i></label>
-                  <select selectize ng-model="data.CounselingIntake.course_id" ng-options="opt.id as opt.value for opt in course" ng-change="getCourse(data.CounselingIntake.course_id)" data-validation-engine="validate[required]">
-                    <option value=""></option>
-                  </select>
-                </div>
-              </div> -->
-
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label> PROGRAM <i class="required">*</i></label>
-                  <select selectize ng-options="opt.id as opt.value for opt in college_program" ng-model="data.CounselingIntake.course_id" data-validation-engine="validate[required]">
-                  <option value=""></option></select>
-                </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> PROGRAM <i class="required">*</i></label>
+                <select selectize ng-options="opt.id as opt.value for opt in college_program" ng-model="data.CounselingIntake.course_id" data-validation-engine="validate[required]">
+                <option value=""></option></select>
               </div>
+            </div>
 
             <div class="col-md-6">
-	            <div class="form-group">
-	              <label> YEAR LEVEL <i class="required">*</i></label>
-	              <select class="form-control" ng-model="data.CounselingIntake.year_level_term" data-validation-engine="validate[required]">
-	               <option value=""></option>
-	               <option value="FIRST YEAR">FIRST YEAR</option>
-	               <option value="SECOND YEAR">SECOND YEAR</option></option>
-	               <option value="THIRD YEAR">THIRD YEAR</option>
-	               <option value="FOURTH YEAR">FOURTH YEAR</option>
-	             </select>
-	            </div>
-          	</div>
+              <div class="form-group">
+                <label> YEAR TERM </label>
+                <select selectize ng-model="data.CounselingIntake.year_term_id" ng-options="opt.id as opt.value for opt in year_terms">
+                  <option value=""></option>
+                </select>
+              </div>
+            </div>
 
             <div class="col-md-6">
               <div class="form-group">

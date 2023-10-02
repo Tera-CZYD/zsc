@@ -49,6 +49,8 @@ class PrintController extends AppController {
 
     $this->loadModel('Students');
 
+    $this->loadModel('AddingDroppingSubjects');
+
     $this->loadModel('ClassSchedules');
 
     $this->loadModel('BlockSections');
@@ -240,16 +242,16 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'Course Management',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(15,5,'#',1,0,'C',1);
     $pdf->Cell(35,5,'CODE',1,0,'C',1);
     $pdf->Cell(145,5,'COURSE TITLE',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(15,35,145));
     $pdf->SetAligns(array('C','C','L'));
 
@@ -277,10 +279,11 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+83,$pdf->getY()+2);
-    $pdf->Line($pdf->getX()+110,$pdf->getY()+2,$pdf->getX()+195,$pdf->getY()+2);
+    $pdf->Line($pdf->getX()+112,$pdf->getY()+2,$pdf->getX()+195,$pdf->getY()+2);
     $pdf->SetDash();
 
     $pdf->output();
@@ -328,10 +331,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'Campus Management',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(15,5,'No.',1,0,'C',1);
     $pdf->Cell(40,5,'Campus Code',1,0,'C',1);
@@ -340,7 +343,7 @@ class PrintController extends AppController {
     $pdf->Cell(85,5,'Address',1,0,'C',1);
     $pdf->Cell(30,5,'Active?',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(15,40,90,85,85,30));
     $pdf->SetAligns(array('C','C','L','L','L','C'));
 
@@ -429,10 +432,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'College Management',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'NO',1,0,'C',1);
     $pdf->Cell(30,5,'COLLEGE CODE',1,0,'C',1);
@@ -440,7 +443,7 @@ class PrintController extends AppController {
     $pdf->Cell(30,5,'ACRONYM',1,0,'C',1);
     $pdf->Cell(30,5,'YEAR ESTABLISHED',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,30,95,30,30));
     $pdf->SetAligns(array('C','C','L','C','C'));
 
@@ -472,6 +475,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+83,$pdf->getY()+2);
@@ -533,16 +537,16 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'Building Management',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(15,5,'No.',1,0,'C',1);
     $pdf->Cell(100,5,'Building Code',1,0,'C',1);
     $pdf->Cell(230,5,'Building Name',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(15,100,230));
     $pdf->SetAligns(array('C','C','L'));
 
@@ -638,16 +642,16 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'Room Management',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(15,5,'No.',1,0,'C',1);
     $pdf->Cell(100,5,'Room Code',1,0,'C',1);
     $pdf->Cell(230,5,'Room Name',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(15,100,230));
     $pdf->SetAligns(array('C','C','L'));
 
@@ -1148,10 +1152,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'Program Management',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(15,5,'No.',1,0,'C',1);
     $pdf->Cell(45,5,'Code',1,0,'C',1);
@@ -1161,7 +1165,7 @@ class PrintController extends AppController {
     $pdf->Cell(40,5,'Capacity',1,0,'C',1);
     // $pdf->Cell(30,5,'Term',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(15,45,150,40,40,40,30));
     $pdf->SetAligns(array('C','L','L','C','C','C','C'));
 
@@ -1197,6 +1201,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
@@ -2949,10 +2954,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'Faculty Management',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(15,5,'No.',1,0,'C',1);
     $pdf->Cell(40,5,'Employee No.',1,0,'C',1);
@@ -2964,7 +2969,7 @@ class PrintController extends AppController {
     $pdf->Cell(78,5,'College',1,0,'C',1);
     $pdf->Cell(30,5,'Active?',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(15,40,40,40,30,30,40,78,30,30));
     $pdf->SetAligns(array('C','C','L','L','L','C','L','L','C'));
 
@@ -3014,6 +3019,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
@@ -5405,10 +5411,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'STUDENT LOG',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(15,5,'No.',1,0,'C',1);
     $pdf->Cell(100,5,'Student Name',1,0,'C',1);
@@ -5416,7 +5422,7 @@ class PrintController extends AppController {
     $pdf->Cell(65,5,'Time',1,0,'C',1);
     $pdf->Cell(100,5,'Concern',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(15,100,65,65,100));
     $pdf->SetAligns(array('C','C','C','C','C'));
 
@@ -5448,6 +5454,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX()+10,$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
@@ -6038,10 +6045,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'ATTENDANCE TO COUNSELING',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(35,5,'CODE',1,0,'C',1);
@@ -6051,7 +6058,7 @@ class PrintController extends AppController {
     $pdf->Cell(40,5,'TIME',1,0,'C',1);
     $pdf->Cell(50,5,'LOCATION',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,35,60,100,50,40,50));
     $pdf->SetAligns(array('C','C','C','L','C','C','C'));
 
@@ -6089,6 +6096,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
@@ -7285,10 +7293,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'REFERRAL / APPOINTMENT SLIP',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(50,5,'CONTROL NO.',1,0,'C',1);
@@ -7297,7 +7305,7 @@ class PrintController extends AppController {
     $pdf->Cell(60,5,'YEAR',1,0,'C',1);
     $pdf->Cell(65,5,'REASON',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,50,50,110,60,65));
     $pdf->SetAligns(array('C','C','L','C','C','C'));
 
@@ -7331,6 +7339,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
@@ -7404,10 +7413,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'REFERRAL / APPOINTMENT SLIP',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(50,5,'CONTROL NO.',1,0,'C',1);
@@ -7416,7 +7425,7 @@ class PrintController extends AppController {
     $pdf->Cell(60,5,'TIME',1,0,'C',1);
     $pdf->Cell(65,5,'LOCATION',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,50,100,60,60,65));
     $pdf->SetAligns(array('C','C','L','C','C','C'));
 
@@ -7450,6 +7459,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
@@ -7561,10 +7571,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'COUNSELING APPOINTMENT',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(45,5,'Control No.',1,0,'C',1);
@@ -7574,7 +7584,7 @@ class PrintController extends AppController {
     $pdf->Cell(45,5,'Time',1,0,'C',1);
     $pdf->Cell(35,5,'Status',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,45,50,100,60,45,35));
     $pdf->SetAligns(array('C','C','C','L','C','C','C'));
 
@@ -7634,6 +7644,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
@@ -7709,10 +7720,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'AFFIDAVIT FOR LOST',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(35,5,'CONTROL NO.',1,0,'C',1);
@@ -7721,7 +7732,7 @@ class PrintController extends AppController {
     $pdf->Cell(150,5,'COLLEGE PROGRAM',1,0,'C',1);
     $pdf->Cell(50,5,'YEAR LEVEL',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,35,65,30,150,50));
     $pdf->SetAligns(array('C','C','L','C','C','C'));
 
@@ -7756,6 +7767,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
@@ -8018,10 +8030,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'PROMISSORY NOTE',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(35,5,'CONTROL NO.',1,0,'C',1);
@@ -8030,7 +8042,7 @@ class PrintController extends AppController {
     $pdf->Cell(130,5,'COLLEGE PROGRAM',1,0,'C',1);
     $pdf->Cell(80,5,'YEAR LEVEL',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,35,50,40,130,80));
     $pdf->SetAligns(array('C','C','L','C','C','C'));
 
@@ -8064,6 +8076,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
@@ -8161,6 +8174,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+88,$pdf->getY()+2);
@@ -8254,10 +8268,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'GCO EVALUATION',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(35,5,'CONTROL NO.',1,0,'C',1);
@@ -8265,7 +8279,7 @@ class PrintController extends AppController {
     $pdf->Cell(50,5,'ATTENDANCE TO COUNSELING',1,0,'C',1);
     $pdf->Cell(25,5,'DATE',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,35,85,50,25));
     $pdf->SetAligns(array('C','C','L','C','C'));
 
@@ -8298,6 +8312,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+88,$pdf->getY()+2);
@@ -9039,10 +9054,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'MEDICAL CERTIFICATE',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(35,5,'CONTROL NO.',1,0,'C',1);
@@ -9051,7 +9066,7 @@ class PrintController extends AppController {
     $pdf->Cell(70,5,'COURSE',1,0,'C',1);
     $pdf->Cell(80,5,'YEAR LEVEL',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,35,95,55,70,80));
     $pdf->SetAligns(array('C','C','L','C','C','C'));
 
@@ -9086,6 +9101,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
@@ -9429,10 +9445,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'REFERRAL RECOMMENDATION',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(35,5,'CONTROL NO.',1,0,'C',1);
@@ -9441,7 +9457,7 @@ class PrintController extends AppController {
     $pdf->Cell(70,5,'COMPLAINTS',1,0,'C',1);
     $pdf->Cell(80,5,'RECOMMENDATIONS',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,35,95,55,70,80));
     $pdf->SetAligns(array('C','C','L','C','L','L'));
 
@@ -9476,6 +9492,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
@@ -9606,10 +9623,10 @@ class PrintController extends AppController {
     // elseif($pdf->GetY() >= 125.5){
     //   $pdf->Ln(4);
     // }
-    $pdf->Ln(16);
+    $pdf->Ln(20);
     $pdf->Cell(117);
     $pdf->Cell(60,5,$data['NurseProfile']['name'],0,0,'C');
-    $pdf->Ln(6);
+    $pdf->Ln(2);
     $pdf->SetFont("Arial", '', 11);
     $pdf->Cell(19.5,5,'',0,0,'L');
     $pdf->Cell(9,5,'Thank you.',0,0,'L');
@@ -9826,10 +9843,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'DENTAL INFORMATION',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'No.',1,0,'C',1);
     $pdf->Cell(50,5,'CODE',1,0,'C',1);
@@ -9839,7 +9856,7 @@ class PrintController extends AppController {
     $pdf->Cell(40,5,'YEAR',1,0,'C',1);
 
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,50,150,45,45,40));
     $pdf->SetAligns(array('C','C','L','C','C','C'));
     $conditions = array();
@@ -9874,6 +9891,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
@@ -10267,6 +10285,50 @@ class PrintController extends AppController {
     $pdf->Cell(101,5,'',0,0,'L');
     $pdf->Cell(10,5,'DENTAL HEALTH CONDITION',0,0,'C');
     $pdf->Ln(10);
+
+      $dentalImages = [];
+
+      if (!empty($data['DentalImage'])) {
+          foreach ($data['DentalImage'] as $image) {
+              if (!is_null($image['images'])) {
+                  $dentalImages[] = [
+                      'imageSrc' => '/uploads/dental/' . $id . '/' . $image['images'],
+                      'name' => $image['images'],
+                      'id' => $image['student_profile_id'] ?? null,
+                  ];
+              }
+          }
+      }
+
+      function isImageFile($file)
+        {
+            $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+            $fileExtension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+            return in_array($fileExtension, $allowedExtensions) && getimagesize('../webroot' . $file['imageSrc']);
+        }
+
+        $xPosition = 125;
+        $yPosition = 30;
+        $imageCount = 0;
+        $imageLimit = 2; // Set the limit to 2 images
+
+        if (!empty($dentalImages)) {
+            foreach ($dentalImages as $img) {
+                if (isImageFile($img)) {
+                    $imageCount++;
+                    $pdf->Image($this->base . $img['imageSrc'], $xPosition, $yPosition, 70, 35);
+                    $yPosition += 37;
+                    if ($imageCount == $imageLimit) {
+                        break; // Stop adding images after reaching the limit
+                    }
+                    if ($imageCount % 2 === 0) {
+                        // $xPosition = 115;
+                        $yPosition += 37;
+                    }
+                }
+            }
+        }
+
     $pdf->SetFont("Arial", '', 11);
     $pdf->Cell(2.5,5,'',0,0,'L');
     $pdf->SetFillColor(255,255,255);
@@ -10466,21 +10528,21 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'PROPERTY LOG',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217, 237, 247);
     
     $pdf->Cell(15, 5, '#', 1,0, 'C', 1);
     $pdf->Cell(40, 5, 'PROPERTY NAME', 1, 0, 'C', 1);
     $pdf->Cell(35, 5, 'DATE', 1, 0, 'C', 1);
     $pdf->Cell(40, 5, 'MANUFACTURING DATE', 1, 0, 'C', 1);
-    $pdf->Cell(30, 5, 'BATCH NO', 1, 0, 'C', 1);
+    $pdf->Cell(30, 5, 'BATCH NUMBER', 1, 0, 'C', 1);
     $pdf->Cell(35, 5, 'EXPIRATION DATE', 1, 0, 'C', 1);
 
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(15,40,35,40,30,35));
     $pdf->SetAligns(array('C','C','C','C','C','C'));
  
@@ -10516,6 +10578,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+85,$pdf->getY()+2);
@@ -10617,10 +10680,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'STUDENT MEMBERS',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(40,5,'LIBRARY ID NUMBER',1,0,'C',1);
@@ -10630,7 +10693,7 @@ class PrintController extends AppController {
     $pdf->Cell(50,5,'YEAR LEVEL',1,0,'C',1);
     $pdf->Cell(40,5,'DATE',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,40,50,50,100,50,40));
     $pdf->SetAligns(array('C','C','L','C','C','C','C'));
 
@@ -10666,6 +10729,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
@@ -11397,10 +11461,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'BIBLIOGRAPHY',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(35,5,'CONTROL NO.',1,0,'C',1);
@@ -11409,7 +11473,7 @@ class PrintController extends AppController {
     $pdf->Cell(70,5,'COLLECTION TYPE',1,0,'C',1);
     $pdf->Cell(80,5,'PUBLISHED DATE',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,35,95,55,70,80));
     $pdf->SetAligns(array('C','C','L','C','C','C'));
 
@@ -11443,6 +11507,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
@@ -11524,10 +11589,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'STUDENT APPLICATION',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(35,5,'STUDENT ID',1,0,'C',1);
@@ -11536,7 +11601,7 @@ class PrintController extends AppController {
     $pdf->Cell(100,5,'EMAIL',1,0,'C',1);
     $pdf->Cell(60,5,'APPLICATION NOTE',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,35,75,65,100,60));
     $pdf->SetAligns(array('C','L','L','C','C','C'));
 
@@ -11570,6 +11635,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
@@ -11641,10 +11707,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'LIST OF REQUESTED FORMS',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10);
     $pdf->Cell(10,5,'#',1,0,'C',1);
@@ -11652,7 +11718,7 @@ class PrintController extends AppController {
     $pdf->Cell(70,5,'STUDENT NAME',1,0,'C',1);
     $pdf->Cell(80,5,'REQUESTED FORM',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,30,70,80));
     $pdf->SetAligns(array('C','C','C','C'));
 
@@ -11724,6 +11790,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX()+10,$pdf->getY()+2,$pdf->getX()+88,$pdf->getY()+2);
@@ -11859,10 +11926,10 @@ class PrintController extends AppController {
 
     }
 
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,$status.' STUDENT APPLICATION',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(105,5,' APPLICANT NAME',1,0,'C',1);
@@ -11909,6 +11976,7 @@ class PrintController extends AppController {
     $pdf->Ln(5);
 
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
@@ -12115,10 +12183,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'CLASS SCHEDULE',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'No.',1,0,'C',1);
     $pdf->Cell(25,5,'CODE',1,0,'C',1);
@@ -12128,7 +12196,7 @@ class PrintController extends AppController {
     $pdf->Cell(40,5,'YEAR TERM',1,0,'C',1);
     $pdf->Cell(40,5,'SCHOOL YEAR',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,25,70,80,80,40,40));
     $pdf->SetAligns(array('C','C','L','L','L','C','C'));
     $conditions = array();
@@ -12164,6 +12232,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
@@ -12216,16 +12285,16 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'ILLNESS & RECOMMENDATION',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'No.',1,0,'C',1);
     $pdf->Cell(70,5,'AILMENT',1,0,'C',1);
     $pdf->Cell(115,5,'DESCRIPTION',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,70,115));
     $pdf->SetAligns(array('C','L','L'));
     $conditions = array();
@@ -12253,6 +12322,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+85,$pdf->getY()+2);
@@ -12330,11 +12400,11 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'PRESCRIPTION',0,0,'C');
     $pdf->Ln(10);
 
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217, 237, 247);
     
     // Centering the table
@@ -12350,7 +12420,7 @@ class PrintController extends AppController {
     
 
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(15,110,70,65,100));
     $pdf->SetAligns(array('C','C','C'));
     $tableWidth = 197.5; // Total width of the table
@@ -12393,6 +12463,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX()+10,$pdf->getY()+2,$pdf->getX()+94,$pdf->getY()+2);
@@ -12755,10 +12826,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'CONSULTATION',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(35,5,'CONTROL NO.',1,0,'C',1);
@@ -12770,7 +12841,7 @@ class PrintController extends AppController {
     $pdf->Cell(20,5,'HEIGHT',1,0,'C',1);
     $pdf->Cell(20,5,'WEIGHT',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,35,80,55,30,30,60,20,20));
     $pdf->SetAligns(array('C','C','L','C','C','C'));
 
@@ -12811,6 +12882,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
@@ -13122,10 +13194,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0, 5, $this->Global->Settings('website') . ' Email: ' . $this->Global->Settings('email'), 0, 0, 'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0, 5, 'REQUEST FORM INFORMATION', 0, 0, 'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217, 237, 247);
     $pdf->Cell(10, 5, 'No.', 1, 0, 'C', 1);
     $pdf->Cell(90, 5, 'CODE', 1, 0, 'C', 1);
@@ -13135,7 +13207,7 @@ class PrintController extends AppController {
     $pdf->Cell(40, 5, 'STATUS', 1, 0, 'C', 1);
 
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10, 90, 110, 45, 45,40));
     $pdf->SetAligns(array('C', 'C', 'C', 'C', 'C', 'C'));
     $conditions = array();
@@ -13179,6 +13251,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
@@ -14289,11 +14362,11 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'COMPLETION',0,0,'C');
     $pdf->Ln(10);
     $pdf->Cell(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(35,5,'CONTROL NO.',1,0,'C',1);
@@ -14304,7 +14377,7 @@ class PrintController extends AppController {
     $pdf->Cell(30,5,'SEMESTER',1,0,'C',1);
     $pdf->Cell(20,5,'YEAR',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,35,80,55,30,60,30,20));
     $pdf->SetAligns(array('C','C','L','C','C','L','C','C'));
 
@@ -14346,6 +14419,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX()+10,$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
@@ -14826,11 +14900,11 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'STUDENT CLEARANCE',0,0,'C');
     $pdf->Ln(10);
     $pdf->Cell(18);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(30,5,'CONTROL NO.',1,0,'C',1);
@@ -14843,7 +14917,7 @@ class PrintController extends AppController {
     $pdf->Cell(40,5,'SEMESTER',1,0,'C',1);
     
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,30,60,40,40,30,30,30,40));
     $pdf->SetAligns(array('C','C','L','C','C','C','C','C','C'));
 
@@ -14885,6 +14959,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX()+18,$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
@@ -14961,10 +15036,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'FACULTY CLEARANCE',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(15,5,'NO.',1,0,'C',1);
     $pdf->Cell(60,5,'CONTROL NO.',1,0,'C',1);
@@ -14972,7 +15047,7 @@ class PrintController extends AppController {
     $pdf->Cell(65,5,'DATE',1,0,'C',1);
     $pdf->Cell(100,5,'REQUEST',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(15,60,100,65,100));
     $pdf->SetAligns(array('C','C','C','C','C'));
 
@@ -15004,6 +15079,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
@@ -15428,10 +15504,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'COUNSELING INTAKE',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(15,5,'No.',1,0,'C',1);
     $pdf->Cell(100,5,'Student Name',1,0,'C',1);
@@ -15439,7 +15515,7 @@ class PrintController extends AppController {
     $pdf->Cell(65,5,'Current Address',1,0,'C',1);
     $pdf->Cell(100,5,'Contact no.',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(15,100,65,65,100));
     $pdf->SetAligns(array('C','L','C','C','C'));
 
@@ -15471,6 +15547,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
@@ -15558,10 +15635,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'Registered Students',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 7);
+    $pdf->SetFont("Times", 'B', 7);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(8,5,'#',1,0,'C',1);
     $pdf->Cell(35,5,'STUDENT NUMBER',1,0,'C',1);
@@ -15572,7 +15649,7 @@ class PrintController extends AppController {
     $pdf->Cell(40,5,'CONTACT NO',1,0,'C',1);
     $pdf->Cell(40,5,'EMAIL',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 7);
+    $pdf->SetFont("Times", '', 7);
     $pdf->SetWidths(array(8,35,50,50,60,60,40,40));
     $pdf->SetAligns(array('C','C','L','C','C','C','C','C'));
 
@@ -15610,6 +15687,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
@@ -15699,10 +15777,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'Student Profiles',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 7);
+    $pdf->SetFont("Times", 'B', 7);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(8,5,'#',1,0,'C',1);
     $pdf->Cell(35,5,'STUDENT NUMBER',1,0,'C',1);
@@ -15710,7 +15788,7 @@ class PrintController extends AppController {
     $pdf->Cell(50,5,'APPLICATION DATE',1,0,'C',1);
     $pdf->Cell(53,5,'EMAIL',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 7);
+    $pdf->SetFont("Times", '', 7);
     $pdf->SetWidths(array(8,35,60,50,53));
     $pdf->SetAligns(array('C','C','L','C','C'));
 
@@ -15742,6 +15820,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+90,$pdf->getY()+2);
@@ -17207,10 +17286,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'APARTELLE/DORMITORY REGISTRATION',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(35,5,'CONTROL NO.',1,0,'C',1);
@@ -17222,7 +17301,7 @@ class PrintController extends AppController {
     $pdf->Cell(35,5,'YEAR LEVEL',1,0,'C',1);
     $pdf->Cell(35,5,'STATUS',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,35,60,35,35,65,35,35,35));
     $pdf->SetAligns(array('C','C','C','C','C','C','C','C','C'));
 
@@ -17278,6 +17357,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
@@ -17357,10 +17437,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'APARTELLE/DORMITORY REGISTRATION',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(35,5,'CONTROL NO.',1,0,'C',1);
@@ -17369,7 +17449,7 @@ class PrintController extends AppController {
     $pdf->Cell(70,5,'YEAR LEVEL',1,0,'C',1);
     $pdf->Cell(35,5,'STATUS',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,35,90,105,70,35));
     $pdf->SetAligns(array('C','C','C','C','C','C'));
 
@@ -17419,6 +17499,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
@@ -17519,10 +17600,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'APARTELLE/DORMITORY',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(70,5,'CONTROL NO.',1,0,'C',1);
@@ -17531,7 +17612,7 @@ class PrintController extends AppController {
     $pdf->Cell(60,5,'PRICE ',1,0,'C',1);
     $pdf->Cell(70,5,'CAPACITY',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,70,70,60,60,70));
     $pdf->SetAligns(array('C','C','C','C','C','C'));
 
@@ -17565,6 +17646,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
@@ -17640,10 +17722,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'APARTELLE/DORMITORY MONTHLY PAYMENT REPORT',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(70,5,'REFERENCE NUMBER',1,0,'C',1);
@@ -17653,7 +17735,7 @@ class PrintController extends AppController {
     $pdf->Cell(35,5,'DATE',1,0,'C',1);
     $pdf->Cell(35,5,'AMOUNT ',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,70,70,60,60,35,35));
     $pdf->SetAligns(array('C','C','C','C','C','C'));
 
@@ -17689,6 +17771,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
@@ -17778,10 +17861,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'LIST OF STUDENT REPORT',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 7);
+    $pdf->SetFont("Times", 'B', 7);
     $pdf->Cell(8,8,'#',1,0,'C');
     $pdf->Cell(22,4,'STUDENT','LTR',0,'C');
     $pdf->Cell(45,8,'STUDENT NAME',1,0,'C');
@@ -17794,7 +17877,7 @@ class PrintController extends AppController {
     $pdf->Cell(153,4,'',0,0,'C');
     $pdf->Cell(22,4,'DATE','LBR',0,'C');
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 7);
+    $pdf->SetFont("Times", '', 7);
     $pdf->SetWidths(array(8,22,45,58,50,22));
     $pdf->SetAligns(array('C','C','L','C','C','C'));
 
@@ -17828,6 +17911,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+88,$pdf->getY()+2);
@@ -17940,10 +18024,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'Scholarship Applications',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(8,5,'#',1,0,'C',1);
     $pdf->Cell(25,5,'CONTROL NO.',1,0,'C',1);
@@ -17954,7 +18038,7 @@ class PrintController extends AppController {
     $pdf->Cell(17,5,'SEX',1,0,'C',1);
     $pdf->Cell(31,5,'STATUS',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 7);
+    $pdf->SetFont("Times", '', 7);
     $pdf->SetWidths(array(8,25,50,25,37,12,17,31));
     $pdf->SetAligns(array('C','C','L','C','L','C','C','C'));
 
@@ -18012,6 +18096,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+90,$pdf->getY()+2);
@@ -18475,35 +18560,39 @@ class PrintController extends AppController {
 
         'YearLevelTerms',
 
-        'Colleges' => function ($q) {
+        'Colleges' => array(
 
-            return $q->where(['Colleges.visible' => 1]);
+          'conditions' => ['Colleges.visible' => 1]
 
-        },
+        ),
 
-        'CollegePrograms' => function ($q) {
+        'CollegePrograms' => array(
 
-            return $q->where(['CollegePrograms.visible' => 1]);
+          'conditions' => ['CollegePrograms.visible' => 1]
 
-        },
+        ),
 
-        'StudentEnrolledCourses' => function ($q) {
+        'StudentEnrolledCourses' => array(
 
-            return $q->where(['StudentEnrolledCourses.visible' => 1]);
+          'conditions' => [
 
-        },
+            'StudentEnrolledCourses.visible' => 1,
 
-        'StudentEnrolledUnits' => function ($q) {
+          ]
 
-            return $q->where(['StudentEnrolledUnits.visible' => 1]);
+        ),
 
-        },
+        'StudentEnrolledUnits' => array(
 
-        'StudentEnrollments' => function ($q) {
+          'conditions' => ['StudentEnrolledUnits.visible' => 1]
 
-            return $q->where(['StudentEnrollments.visible' => 1]);
+        ),
 
-        },
+        'StudentEnrollments' => array(
+
+          'conditions' => ['StudentEnrollments.visible' => 1]
+
+        ),
 
       ])
 
@@ -18769,7 +18858,7 @@ class PrintController extends AppController {
 
             $value['section'],
 
-            $block_section_course['faculty_name']
+            $block_section_course['faculty_name'] != null ? $block_section_course['faculty_name'] : 'To be assigned'
 
           ));
 
@@ -18984,10 +19073,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'Prospectus',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 7);
+    $pdf->SetFont("Times", 'B', 7);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(8,5,'#',1,0,'C',1);
     $pdf->Cell(27,5,'STUDENT NUMBER',1,0,'C',1);
@@ -18995,7 +19084,7 @@ class PrintController extends AppController {
     $pdf->Cell(60,5,'COLLEGE',1,0,'C',1);
     $pdf->Cell(60,5,'PROGRAM',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 7);
+    $pdf->SetFont("Times", '', 7);
     $pdf->SetWidths(array(8,27,50,60,60));
     $pdf->SetAligns(array('C','C','L','C','C'));
 
@@ -19027,6 +19116,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+88,$pdf->getY()+2);
@@ -19150,10 +19240,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'TRANSCRIPT OF RECORDS',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 7);
+    $pdf->SetFont("Times", 'B', 7);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(8,5,'#',1,0,'C',1);
     $pdf->Cell(27,5,'STUDENT NUMBER',1,0,'C',1);
@@ -19161,7 +19251,7 @@ class PrintController extends AppController {
     $pdf->Cell(60,5,'COLLEGE',1,0,'C',1);
     $pdf->Cell(60,5,'PROGRAM',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 7);
+    $pdf->SetFont("Times", '', 7);
     $pdf->SetWidths(array(8,27,50,60,60));
     $pdf->SetAligns(array('C','C','L','C','C'));
 
@@ -19193,6 +19283,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+90,$pdf->getY()+2);
@@ -19264,10 +19355,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'LIST OF ACCOUNTABILITY',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(70,5,'CONTROL NO.',1,0,'C',1);
@@ -19278,7 +19369,7 @@ class PrintController extends AppController {
     $pdf->Cell(35,5,'DATE/nBORROWED',1,0,'C',1);
     $pdf->Cell(35,5,'DATE DUE',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,70,65,65,35,30,35,35));
     $pdf->SetAligns(array('C','L','L','L','C','C','C','C'));
 
@@ -19363,6 +19454,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
@@ -19571,10 +19663,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'LIST OF BOOK COLLECTION',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(30,5,'CALL NUMBER',1,0,'C',1);
@@ -19585,7 +19677,7 @@ class PrintController extends AppController {
     $pdf->Cell(55,5,'COLLECTION TYPE',1,0,'C',1);
     $pdf->Cell(55,5,'MATERIAL TYPE',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,30,35,70,35,55,55,55));
     $pdf->SetAligns(array('C','C','L','L','L','C','C','C'));
 
@@ -19624,6 +19716,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
@@ -19698,10 +19791,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'INVENTORY BIBLIOGRAPHY',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(100,5,'CONTROL NO.',1,0,'C',1);
@@ -19709,7 +19802,7 @@ class PrintController extends AppController {
     $pdf->Cell(65,5,'AUTHOR',1,0,'C',1);
     $pdf->Cell(70,5,'QUANTITY',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,100,100,65,70));
     $pdf->SetAligns(array('C','C','L','C','C'));
 
@@ -19741,6 +19834,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
@@ -19912,11 +20006,11 @@ class PrintController extends AppController {
 
                 foreach ($prerequisites as $index => $datas) {
 
-                  $courses = $this->Courses->get($datas['CollegeProgramPrerequisite']['course_id']);
+                  $courses = $this->Courses->get($datas['course_id']);
                   
                   $course_prerequisites[] = array(
 
-                    'course'            => $courses['Course']['title'],
+                    'course'            => $courses['title'],
 
                   );
 
@@ -20284,7 +20378,7 @@ class PrintController extends AppController {
 
     $pdf->ln(4);
     $pdf->Cell(5.4);
-    $pdf->Cell(20,5,'Authoruty to Operate Program:');
+    $pdf->Cell(20,5,'Authority to Operate Program:');
     $pdf->Ln(4);
     $y = $pdf->Gety();
     $pdf->Cell(15);
@@ -20299,7 +20393,7 @@ class PrintController extends AppController {
     $pdf->SetY($y);
     $pdf->Cell(5.4);
     $pdf->Cell(90);
-    $pdf->Cell(27,5,'This Program requires:',0,0,'L');
+    $pdf->Cell(27,5,'This program requires:',0,0,'L');
     $pdf->Cell(21,5,'Computer Course:',0,0,'L');
     $pdf->Cell(15,5,'( ) Yes ( ) No',0,0,'L');
     $pdf->Cell(13);
@@ -20533,10 +20627,10 @@ class PrintController extends AppController {
     $pdf->SetMargins(5, 9, 5);
     $pdf->AddPage("P", "Legal", 0);
     $pdf->SetAutoPageBreak(false);
-    // $pdf->Image($this->base . '/assets/img/zam.png', 6.5, 22,35, 35);
+    $pdf->Image($this->base . '/assets/img/zam.png', 6.5, 22,35, 35);
     $pdf->SetFont("Times", '', 12);
     $pdf->Cell(0, 5, 'ZSCMST-OCR 3.10.I-I5', 0, 0, 'L');
-    // $pdf->Image($this->base . '/assets/img/iso.png', 182, 13, 18, 21);
+    $pdf->Image($this->base . '/assets/img/iso.png', 182, 13, 18, 21);
     $pdf->SetFont("Times", '', 10);
     $pdf->Ln(5);
     $pdf->Cell(-7);
@@ -21063,10 +21157,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'College Admission Test (For Rating)',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(15,5,'#',1,0,'C',1);
     $pdf->Cell(90,5,'APPLICANT NAME',1,0,'C',1);
@@ -21076,7 +21170,7 @@ class PrintController extends AppController {
     $pdf->Cell(30,5,'GENDER',1,0,'C',1);
     $pdf->Cell(35,5,'APPLICATION DATE',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(15,90,55,70,35,30,35));
     $pdf->SetAligns(array('C','L','C','L','C','C','C'));
 
@@ -21115,6 +21209,7 @@ class PrintController extends AppController {
     $pdf->Ln(5);
 
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+150,$pdf->getY()+2);
@@ -21241,10 +21336,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'College Admission Test (Assessed)',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(15,5,'#',1,0,'C',1);
     $pdf->Cell(80,5,'APPLICANT NAME',1,0,'C',1);
@@ -21255,7 +21350,7 @@ class PrintController extends AppController {
     $pdf->Cell(35,5,'APPLICATION DATE',1,0,'C',1);
     $pdf->Cell(20,5,'RATE',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(15,80,55,60,35,30,35,20));
     $pdf->SetAligns(array('C','L','C','L','C','C','C','C'));
 
@@ -21294,6 +21389,7 @@ class PrintController extends AppController {
     $pdf->Ln(5);
 
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+150,$pdf->getY()+2);
@@ -21419,10 +21515,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'College Admission Test (FOR INTERVIEW)',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(15,5,'#',1,0,'C',1);
     $pdf->Cell(80,5,'APPLICANT NAME',1,0,'C',1);
@@ -21433,7 +21529,7 @@ class PrintController extends AppController {
     $pdf->Cell(35,5,'APPLICATION DATE',1,0,'C',1);
     $pdf->Cell(20,5,'RATE',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(15,80,55,60,35,30,35,20));
     $pdf->SetAligns(array('C','L','C','L','C','C','C','C'));
 
@@ -21472,6 +21568,7 @@ class PrintController extends AppController {
     $pdf->Ln(5);
 
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+150,$pdf->getY()+2);
@@ -21524,11 +21621,11 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'SCHOLARSHIP NAME',0,0,'C');
     $pdf->Ln(10);
 
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217, 237, 247);
     
     // Centering the table
@@ -21543,7 +21640,7 @@ class PrintController extends AppController {
     
 
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(15,182));
     $pdf->SetAligns(array('C','C'));
     $tableWidth = 200; // Total width of the table
@@ -21583,6 +21680,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX()+8,$pdf->getY()+2,$pdf->getX()+90,$pdf->getY()+2);
@@ -21898,17 +21996,17 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'DAILY TREATMENTS',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(10,5,'#',1,0,'C');
     $pdf->Cell(60,5,'PATIENT NAME',1,0,'C');
     $pdf->Cell(45,5,'AILMENTS',1,0,'C');
     $pdf->Cell(45,5,'TREATMENTS',1,0,'C');
     $pdf->Cell(45,5,'REMARKS',1,0,'C');
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 7);
+    $pdf->SetFont("Times", '', 7);
     $pdf->SetWidths(array(10,60,45,45,45));
     $pdf->SetAligns(array('C','L','C','C','L'));
 
@@ -21984,6 +22082,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+88,$pdf->getY()+2);
@@ -22532,17 +22631,17 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'ITEM ISSUANCE',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(130,5,'CONTROL NO.',1,0,'C',1);
     $pdf->Cell(130,5,'TYPE',1,0,'C',1);
     $pdf->Cell(75,5,'DATE',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,130,130,75));
     $pdf->SetAligns(array('C','C','C','C'));
 
@@ -22572,6 +22671,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
@@ -22781,10 +22881,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'LIST OF CHECKOUT',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(35,5,'LIBRARY ID NUMBER',1,0,'C',1);
@@ -22792,7 +22892,7 @@ class PrintController extends AppController {
     $pdf->Cell(55,5,'EMAIL',1,0,'C',1);
     $pdf->Cell(30,5,'DATE BORROWED',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,35,65,55,30));
     $pdf->SetAligns(array('C','C','L','C','C'));
 
@@ -22824,6 +22924,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+83,$pdf->getY()+2);
@@ -22894,10 +22995,10 @@ class PrintController extends AppController {
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'LIST OF CHECKINS',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(35,5,'LIBRARY ID NUMBER',1,0,'C',1);
@@ -22905,7 +23006,7 @@ class PrintController extends AppController {
     $pdf->Cell(55,5,'EMAIL',1,0,'C',1);
     $pdf->Cell(30,5,'DATE RETURNED',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,35,65,55,30));
     $pdf->SetAligns(array('C','C','L','C','C'));
 
@@ -22937,6 +23038,7 @@ class PrintController extends AppController {
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+83,$pdf->getY()+2);
@@ -22948,71 +23050,60 @@ class PrintController extends AppController {
 
   }
 
-  public function cat_rating_result($id = null){
+  public function catRatingResult($id = null){
 
-    $data = $this->StudentApplication->find('first', array(
+    $data['StudentApplication'] = $this->StudentApplications->find()
+    ->contain([
+        'YearLevelTerms',
+        'Colleges',
+        'PreferredPrograms',
 
-      'contain' => array(
+        'SecondaryPrograms',
+        'StudentApplicationImages' => [
+            'conditions' => ['StudentApplicationImages.visible' => 1]
+        ],
+        'StudentEnrolledCourses' => [
+            'conditions' => ['StudentEnrolledCourses.visible' => 1]
+        ],
+        'StudentEnrolledUnits' => [
+            'conditions' => ['StudentEnrolledUnits.visible' => 1]
+        ],
+        'StudentEnrollments' => [
+            'conditions' => ['StudentEnrollments.visible' => 1]
+        ]
+    ])
+    ->where([
+        'StudentApplications.visible' => 1,
+        'StudentApplications.id' => $id
+    ])
+    ->first();
 
-        'YearLevelTerm',
+    $data['StudentApplication']['birth_date'] = isset($data['StudentApplication']['birth_date']) ? date('m/d/Y', strtotime($data['StudentApplication']['birth_date'])) : '';
 
-        'College',
+    $data['StudentApplication']['approved_date'] = isset($data['StudentApplication']['approved_date']) ? date('m/d/Y', strtotime($data['StudentApplication']['approved_date'])) : '';
 
-        'CollegeProgram',
+    $data['StudentApplication']['disapproved_date'] = isset($data['StudentApplication']['disapproved_date']) ? date('m/d/Y', strtotime($data['StudentApplication']['disapproved_date'])) : '';
 
-        'CollegeProgramSecondary',
+    $data['StudentApplicationImage'] = $data['StudentApplication']['student_application_images'];
 
-        'StudentApplicationImage' => array(
+    $data['College'] = $data['StudentApplication']['college'];
 
-          'conditions' => array(
+    $data['CollegeProgram'] = $data['StudentApplication']['preferred_program'];
 
-            'StudentApplicationImage.visible' => true
+    $data['CollegeProgramSecondary'] = $data['StudentApplication']['secondary_program'];
 
-          ),
+    $data['YearLevelTerm'] = $data['StudentApplication']['year_level_term'];
 
-        ),
+    unset($data['StudentApplication']['student_application_image']);
 
-        'StudentEnrolledCourse' => array(
+    unset($data['StudentApplication']['college']);
 
-          'conditions' => array(
+    unset($data['StudentApplication']['preferred_program']);
 
-            'StudentEnrolledCourse.visible' => true
+    unset($data['StudentApplication']['year_level_term']);
 
-          )
+    unset($data['StudentApplication']['secondary_program']);
 
-        ),
-
-        'StudentEnrolledUnit' => array(
-
-          'conditions' => array(
-
-            'StudentEnrolledUnit.visible' => true
-
-          )
-
-        ),
-
-        'StudentEnrollment' => array(
-
-          'conditions' => array(
-
-            'StudentEnrollment.visible' => true
-
-          )
-
-        )
-
-      ),
-
-      'conditions' => array(
-
-        'StudentApplication.visible' => true,
-
-        'StudentApplication.id' => $id,
-
-      )
-
-    ));
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
     require("wordwrap.php");
@@ -23100,11 +23191,7 @@ class PrintController extends AppController {
     $pdf->SetXY(5, $pdf->getY());
     $pdf->Cell(10);
     $pdf->SetFont("Times", '', 20);
-    $pdf->MultiCell(40,5,'
-
-'.$data['StudentApplication']['rate'].'
-
-    ',1,'C',0);
+    $pdf->Cell(40,30,$data['StudentApplication']['rate'],'LTR',0,'C');
 
     $pdf->SetFont("Times", '', 9);
     $mt='';
@@ -23181,126 +23268,125 @@ class PrintController extends AppController {
     if($data['CollegeProgramSecondary']['major']=='Home Economics'){
           $home='4';
     }
-    $pdf->Rect(55, $pdf->GetY()-25, 150, 55);
+    $pdf->Rect(55, $pdf->GetY(), 150, 55);
 
-    $pdf->SetXY(56, $pdf->getY()-25);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(1);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$mt,0,'L',0);
+    $pdf->Cell(3,5,$mt,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(50,5,'1. BS Marine Transportation (BSMT)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(50,5,'1. BS Marine Transportation (BSMT)',0,0,'L');
     $pdf->Cell(15);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$hm,0,'L',0);
+    $pdf->Cell(3,5,$hm,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(55,5,'12. BS Hospitality Management (BSHM)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(55,5,'12. BS Hospitality Management (BSHM)',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$me,0,'L',0);
+    $pdf->Cell(3,5,$me,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(47,5,'2. BS Marine Engineering (BSME)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(47,5,'2. BS Marine Engineering (BSME)',0,0,'L');
     $pdf->Cell(18);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$ed,0,'L',0);
+    $pdf->Cell(3,5,$ed,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(50,5,'13. BS Secondary Education (BSED)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(50,5,'13. BS Secondary Education (BSED)',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$martech,0,'L',0);
+    $pdf->Cell(3,5,$martech,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(53.5,5,'3. BS Marine Technology (BSMarTech)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(53.5,5,'3. BS Marine Technology (BSMarTech)',0,0,'L');
     $pdf->Cell(10);
         $pdf->SetFont("Times", 'B', 9);
-    $pdf->Cell(23,5,'Major: ',0,'L',0);
+    $pdf->Cell(23,5,'Major: ',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$a,0,'L',0);
+    $pdf->Cell(3,5,$a,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(34.5,5,'4. BS Aquaculture (BSA)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(34.5,5,'4. BS Aquaculture (BSA)',0,0,'L');
     $pdf->Cell(41);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$sci,0,'L',0);
+    $pdf->Cell(3,5,$sci,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(12,5,'Science',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(12,5,'Science',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$fi,0,'L',0);
+    $pdf->Cell(3,5,$fi,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(30.5,5,'5. BS Fisheries (BSFi)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(30.5,5,'5. BS Fisheries (BSFi)',0,0,'L');
     $pdf->Cell(44);
-    $pdf->Cell(3,5,'(',0,'L',0);
+    $pdf->Cell(3,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$fil,0,'L',0);
+    $pdf->Cell(3,5,$fil,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(12,5,'Filipino',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(12,5,'Filipino',0,0,'L');
 
     $pdf->Ln(5);   
     $pdf->Cell(10); 
-     $pdf->MultiCell(40,5,'PERCENTAGE
-EQUIVALENT',1,'C',0);
+    $pdf->MultiCell(40,5,"PERCENTAGE\nEQUIVALENT",1,'C',0);
     $pdf->SetXY(55, $pdf->getY()-15);
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$ft,0,'L',0);
+    $pdf->Cell(3,5,$ft,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(42.5,5,'6. BS Food Technology (BSFT)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(42.5,5,'6. BS Food Technology (BSFT)',0,0,'L');
     $pdf->Cell(33);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$eng,0,'L',0);
+    $pdf->Cell(3,5,$eng,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(11.5,5,'English',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(11.5,5,'English',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$mb,0,'L',0);
+    $pdf->Cell(3,5,$mb,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(41.5,5,'7. BS Marine Biology (BSMB)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(41.5,5,'7. BS Marine Biology (BSMB)',0,0,'L');
     $pdf->Cell(34);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$math,0,'L',0);
+    $pdf->Cell(3,5,$math,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(9,5,'Math',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(9,5,'Math',0,0,'L');
 
     $pdf->Ln(5);   
     $pdf->Cell(10); 
@@ -23312,65 +23398,65 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$es,0,'L',0);
+    $pdf->Cell(3,5,$es,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(50,5,'8. BS Environmental Science (BSES)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(50,5,'8. BS Environmental Science (BSES)',0,0,'L');
     $pdf->Cell(17);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$led,0,'L',0);
+    $pdf->Cell(3,5,$led,0,0,'L');
         $pdf->SetFont("Times", '', 7);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(65,5,'14. Bachelor in Technology and Livelihood Education (BTLEd)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(65,5,'14. Bachelor in Technology and Livelihood Education (BTLEd)',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$fipht,0,'L',0);
+    $pdf->Cell(3,5,$fipht,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(62,5,'9. BS Fi Post-Harvest Technology (BSFi-PHT)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(62,5,'9. BS Fi Post-Harvest Technology (BSFi-PHT)',0,0,'L');
     $pdf->Cell(14);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$ict,0,'L',0);
+    $pdf->Cell(3,5,$ict,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(7,5,'ICT',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(7,5,'ICT',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$dmect,0,'L',0);
+    $pdf->Cell(3,5,$dmect,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(67,5,'10. Diploma in Marine Electronics Communication ',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(67,5,'10. Diploma in Marine Electronics Communication ',0,0,'L');
     $pdf->Cell(9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$agri,0,'L',0);
+    $pdf->Cell(3,5,$agri,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(20,5,'Agri-Fisheries',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(20,5,'Agri-Fisheries',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(63);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(30,5,'Technology (DMECT)',0,'L',0);
+    $pdf->Cell(30,5,'Technology (DMECT)',0,0,'L');
     $pdf->Cell(41);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$agri,0,'L',0);
+    $pdf->Cell(3,5,$agri,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(25,5,'Home Economics ',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(25,5,'Home Economics ',0,0,'L');
 
     $pdf->Ln(20);
     $pdf->SetTextColor(0,0,0);
@@ -23469,134 +23555,129 @@ EQUIVALENT',1,'C',0);
     $pdf->SetXY(5, $pdf->getY());
     $pdf->Cell(10);
     $pdf->SetFont("Times", '', 20);
-    $pdf->MultiCell(40,5,'
-
-'.$data['StudentApplication']['rate'].'
-
-    ',1,'C',0);
+    $pdf->Cell(40,30,$data['StudentApplication']['rate'],'LRT',0,'C');
 
     $pdf->SetFont("Times", '', 9);
 
-    $pdf->Rect(55, $pdf->GetY()-25, 150, 55);
+    $pdf->Rect(55, $pdf->GetY(), 150, 55);
 
-    $pdf->SetXY(56, $pdf->getY()-25);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(1);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$mt,0,'L',0);
+    $pdf->Cell(3,5,$mt,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(50,5,'1. BS Marine Transportation (BSMT)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(50,5,'1. BS Marine Transportation (BSMT)',0,0,'L');
     $pdf->Cell(15);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$hm,0,'L',0);
+    $pdf->Cell(3,5,$hm,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(55,5,'12. BS Hospitality Management (BSHM)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(55,5,'12. BS Hospitality Management (BSHM)',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$me,0,'L',0);
+    $pdf->Cell(3,5,$me,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(47,5,'2. BS Marine Engineering (BSME)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(47,5,'2. BS Marine Engineering (BSME)',0,0,'L');
     $pdf->Cell(18);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$ed,0,'L',0);
+    $pdf->Cell(3,5,$ed,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(50,5,'13. BS Secondary Education (BSED)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(50,5,'13. BS Secondary Education (BSED)',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$martech,0,'L',0);
+    $pdf->Cell(3,5,$martech,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(53.5,5,'3. BS Marine Technology (BSMarTech)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(53.5,5,'3. BS Marine Technology (BSMarTech)',0,0,'L');
     $pdf->Cell(10);
         $pdf->SetFont("Times", 'B', 9);
-    $pdf->Cell(23,5,'Major: ',0,'L',0);
+    $pdf->Cell(23,5,'Major: ',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$a,0,'L',0);
+    $pdf->Cell(3,5,$a,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(34.5,5,'4. BS Aquaculture (BSA)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(34.5,5,'4. BS Aquaculture (BSA)',0,0,'L');
     $pdf->Cell(41);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$sci,0,'L',0);
+    $pdf->Cell(3,5,$sci,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(12,5,'Science',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(12,5,'Science',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$fi,0,'L',0);
+    $pdf->Cell(3,5,$fi,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(30.5,5,'5. BS Fisheries (BSFi)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(30.5,5,'5. BS Fisheries (BSFi)',0,0,'L');
     $pdf->Cell(44);
-    $pdf->Cell(3,5,'(',0,'L',0);
+    $pdf->Cell(3,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$fil,0,'L',0);
+    $pdf->Cell(3,5,$fil,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(12,5,'Filipino',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(12,5,'Filipino',0,0,'L');
 
     $pdf->Ln(5);   
     $pdf->Cell(10); 
-     $pdf->MultiCell(40,5,'PERCENTAGE
-EQUIVALENT',1,'C',0);
+    $pdf->MultiCell(40,5,"PERCENTAGE\nEQUIVALENT",1,'C',0);
     $pdf->SetXY(55, $pdf->getY()-15);
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$ft,0,'L',0);
+    $pdf->Cell(3,5,$ft,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(42.5,5,'6. BS Food Technology (BSFT)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(42.5,5,'6. BS Food Technology (BSFT)',0,0,'L');
     $pdf->Cell(33);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$eng,0,'L',0);
+    $pdf->Cell(3,5,$eng,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(11.5,5,'English',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(11.5,5,'English',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$mb,0,'L',0);
+    $pdf->Cell(3,5,$mb,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(41.5,5,'7. BS Marine Biology (BSMB)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(41.5,5,'7. BS Marine Biology (BSMB)',0,0,'L');
     $pdf->Cell(34);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$math,0,'L',0);
+    $pdf->Cell(3,5,$math,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(9,5,'Math',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(9,5,'Math',0,0,'L');
 
     $pdf->Ln(5);   
     $pdf->Cell(10); 
@@ -23608,65 +23689,75 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$es,0,'L',0);
+    $pdf->Cell(3,5,$es,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(50,5,'8. BS Environmental Science (BSES)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(50,5,'8. BS Environmental Science (BSES)',0,0,'L');
     $pdf->Cell(17);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$led,0,'L',0);
+    $pdf->Cell(3,5,$led,0,0,'L');
         $pdf->SetFont("Times", '', 7);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(65,5,'14. Bachelor in Technology and Livelihood Education (BTLEd)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(65,5,'14. Bachelor in Technology and Livelihood Education (BTLEd)',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$fipht,0,'L',0);
+    $pdf->Cell(3,5,$fipht,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(62,5,'9. BS Fi Post-Harvest Technology (BSFi-PHT)',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(62,5,'9. BS Fi Post-Harvest Technology (BSFi-PHT)',0,0,'L');
     $pdf->Cell(14);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$ict,0,'L',0);
+    $pdf->Cell(3,5,$ict,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(7,5,'ICT',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(7,5,'ICT',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(51);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$dmect,0,'L',0);
+    $pdf->Cell(3,5,$dmect,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(67,5,'10. Diploma in Marine Electronics Communication ',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(67,5,'10. Diploma in Marine Electronics Communication ',0,0,'L');
     $pdf->Cell(9);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$agri,0,'L',0);
+    $pdf->Cell(3,5,$agri,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(20,5,'Agri-Fisheries',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(20,5,'Agri-Fisheries',0,0,'L');
 
     $pdf->Ln(5);
     $pdf->Cell(63);
     $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(30,5,'Technology (DMECT)',0,'L',0);
+    $pdf->Cell(30,5,'Technology (DMECT)',0,0,'L');
     $pdf->Cell(41);
-    $pdf->Cell(2,5,'(',0,'L',0);
+    $pdf->Cell(2,5,'(',0,0,'L');
         $pdf->SetFont('ZapfDingbats','', 9);
-    $pdf->Cell(3,5,$agri,0,'L',0);
+    $pdf->Cell(3,5,$agri,0,0,'L');
         $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(2,5,')',0,'L',0);
-    $pdf->Cell(25,5,'Home Economics ',0,'L',0);
+    $pdf->Cell(2,5,')',0,0,'L');
+    $pdf->Cell(25,5,'Home Economics ',0,0,'L');
+
+    $pdf->Ln(20);
+    $pdf->SetTextColor(0,0,0);
+    $pdf->SetFont("Arial", 'BU', 11);
+    $pdf->Cell(120);
+    $pdf->Cell(58,5,'REGAN C. SITOY',0,'C',0);
+    $pdf->Ln();
+    $pdf->SetFont("Times", '', 9);
+    $pdf->Cell(130);
+    $pdf->Cell(58,5,'Head, Admission, & Scholarship Office',0,'C',0);
 
     $pdf->Ln(20);
     $pdf->SetTextColor(0,0,0);
@@ -24388,10 +24479,10 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'ADDING AND/OR DROPPING OF SUBJECT',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(50,5,'CONTROL NO.',1,0,'C',1);
@@ -24400,7 +24491,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(30,5,'DATE',1,0,'C',1);
     $pdf->Cell(30,5,'STATUS',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,50,50,170,30,30));
     $pdf->SetAligns(array('C','C','C','C','C','C'));
 
@@ -24451,6 +24542,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
@@ -24465,8 +24557,6 @@ EQUIVALENT',1,'C',0);
   public function addingDroppingSubjectForm($id = null){
 
     $office_reference = $this->Global->OfficeReference('Adding/Dropping Subject');
-
-    $this->loadModel('AddingDroppingSubjects');
 
     $data['AddingDroppingSubject'] = $this->AddingDroppingSubjects->find()
 
@@ -24488,21 +24578,19 @@ EQUIVALENT',1,'C',0);
 
         ->first();
 
-    // $data['AddingDroppingSubjectSubs'] = $this->AddingDroppingSubjectSubs->find()
+        // debug($data['AddingDroppingSubject']);    
 
-    // ->where([
-
-    //     'visible' => 1,
-
-    //     'adding_dropping_subject_id' => $id
-
-    // ])
-
-    // ->orderAsc('id')
-
-    // ->toArray();
+    $data['AddingDroppingSubjectSub'] = $data['AddingDroppingSubject']['adding_dropping_subject_subs'];   
 
     $tmpData = $data['AddingDroppingSubjectSub'];
+
+    $data['Student'] = $data['AddingDroppingSubject']['student'];
+
+    unset($data['AddingDroppingSubject']['adding_dropping_subject_subs']);
+
+    unset($data['AddingDroppingSubject']['student']);    
+
+    
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -24712,18 +24800,18 @@ EQUIVALENT',1,'C',0);
     $pdf->SetFont("Times", '', 6);
     $rows = 0;
 
-    if (!empty($tmpData)) {
+    if ($tmpData != null) {
     foreach ($tmpData as $key => $data) {
         $tmp = $data['AddingDroppingSubjectSub'];
         $pdf->Cell(3);
         $y = $pdf->GetY();
 
         $pdf->SetFont("Arial", '', 8);
-        $courseTitle = $data['AddingDroppingSubjectSub']['course_title'];
-        $status = $data['AddingDroppingSubjectSub']['status'];
+        $courseTitle = $data['course_title'];
+        $status = $data['status'];
         
-        $courseTitle = $data['AddingDroppingSubjectSub']['course_title'];
-        $status = $data['AddingDroppingSubjectSub']['status'];
+        $courseTitle = $data['course_title'];
+        $status = $data['status'];
         $courseTitleParts = explode(' ', $courseTitle);
         $courseTitleLines = [];
 
@@ -24750,7 +24838,7 @@ EQUIVALENT',1,'C',0);
 
         $pdf->SetFont("Arial", '', 8);
         $pdf->Cell(102.9, 10, '', 0, 0, 'C');
-        $pdf->CellFitSpace(104, 10, $data['AddingDroppingSubjectSub']['faculty_name'], 1, 0, 'C');
+        $pdf->CellFitSpace(104, 10, $data['faculty_name'], 1, 0, 'C');
         $pdf->Ln(10);
 
         $rows++;
@@ -24901,16 +24989,16 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'PROPERTY & EQUIPMENT',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 9);
+    $pdf->SetFont("Times", 'B', 9);
     $pdf->Cell(10,5,'#',1,0,'C');
     $pdf->Cell(115,5,'NAME',1,0,'C');
     $pdf->Cell(40,5,'TYPE',1,0,'C');
     $pdf->Cell(40,5,'DATE',1,0,'C');
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,115,40,40));
     $pdf->SetAligns(array('C','L','C','C'));
 
@@ -24940,6 +25028,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+88,$pdf->getY()+2);
@@ -25011,15 +25100,15 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'CONSULTATION REPORT',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 9);
+    $pdf->SetFont("Times", 'B', 9);
     $pdf->Cell(10,5,'#',1,0,'C');
     $pdf->Cell(115,5,'NAME',1,0,'C');
     $pdf->Cell(80,5,'DATE',1,0,'C');
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,115,80));
     $pdf->SetAligns(array('C','L','C'));
 
@@ -25047,6 +25136,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+88,$pdf->getY()+2);
@@ -25118,17 +25208,17 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'CONSULTATION REPORT',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 9);
+    $pdf->SetFont("Times", 'B', 9);
     $pdf->Cell(10,5,'#',1,0,'C');
     $pdf->Cell(90,5,'NAME',1,0,'C');
     $pdf->Cell(30,5,'DATE',1,0,'C');
     $pdf->Cell(45,5,'REMARKS',1,0,'C');
     $pdf->Cell(30,5,'STATUS',1,0,'C');
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,90,30,45,30));
     $pdf->SetAligns(array('C','L','C','C','C'));
 
@@ -25182,6 +25272,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+88,$pdf->getY()+2);
@@ -25253,15 +25344,15 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
-    $pdf->Cell(0,5,'CONSULTATION REPORT',0,0,'C');
+    $pdf->SetFont("Times", 'B', 12);
+    $pdf->Cell(0,5,'EMPLOYEE CONSULATION FREQUENCY REPORT',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 9);
+    $pdf->SetFont("Times", 'B', 9);
     $pdf->Cell(10,5,'#',1,0,'C');
     $pdf->Cell(115,5,'NAME',1,0,'C');
     $pdf->Cell(80,5,'NO. OF TIMES',1,0,'C');
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,115,80));
     $pdf->SetAligns(array('C','L','C'));
 
@@ -25289,6 +25380,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+88,$pdf->getY()+2);
@@ -25350,11 +25442,11 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'SUBJECT MASTERLISTS',0,0,'C');
     $pdf->Ln(10);
 
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217, 237, 247);
     
     // Centering the table
@@ -25369,7 +25461,7 @@ EQUIVALENT',1,'C',0);
     
 
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(15,182,65,65,182));
     $pdf->SetAligns(array('C','C','C','C','C'));
     $tableWidth = 200; // Total width of the table
@@ -25400,6 +25492,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+88,$pdf->getY()+2);
@@ -25492,10 +25585,10 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'ENROLLMENT LIST REPORT',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 7);
+    $pdf->SetFont("Times", 'B', 7);
     $pdf->Cell(8,8,'#',1,0,'C');
     $pdf->Cell(22,4,'STUDENT','LTR',0,'C');
     $pdf->Cell(45,8,'STUDENT NAME',1,0,'C');
@@ -25508,7 +25601,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(153,4,'',0,0,'C');
     $pdf->Cell(22,4,'DATE','LBR',0,'C');
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 7);
+    $pdf->SetFont("Times", '', 7);
     $pdf->SetWidths(array(8,22,45,58,50,22));
     $pdf->SetAligns(array('C','C','L','C','C','C'));
 
@@ -25542,6 +25635,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+88,$pdf->getY()+2);
@@ -27730,10 +27824,10 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'PARTICIPANT EVALUATION ACTIVITY',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(5,5,'#',1,0,'C',1);
     $pdf->Cell(50,5,'ACTIVITY',1,0,'C',1);
@@ -27742,7 +27836,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(40,5,'DATE',1,0,'C',1);
     $pdf->Cell(40,5,'YEAR',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(5,50,50,150,40,40));
     $pdf->SetAligns(array('C','L','C','L','C','C','C','C'));
 
@@ -27779,6 +27873,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+150,$pdf->getY()+2);
@@ -27878,10 +27973,10 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'STUDENT EXIT MANAGEMENT',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(15,5,'#',1,0,'C',1);
     $pdf->Cell(80,5,'STUDENT NAME',1,0,'C',1);
@@ -27890,7 +27985,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(45,5,'CONTACT NO.',1,0,'C',1);
     $pdf->Cell(35,5,'DATE',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(15,80,90,70,45,35));
     $pdf->SetAligns(array('C','L','C','L','C','C'));
 
@@ -27925,6 +28020,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+152,$pdf->getY()+2);
@@ -28340,10 +28436,10 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'STUDENT '.$title,0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(25,5,'STUDENT NO.',1,0,'C',1);
@@ -28351,7 +28447,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(90,5,'PROGRAM',1,0,'C',1);
     $pdf->Cell(20,5,'RATE',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 7);
+    $pdf->SetFont("Times", '', 7);
     $pdf->SetWidths(array(10,25,50,90,20));
     $pdf->SetAligns(array('C','C','L','L','C'));
 
@@ -28383,6 +28479,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+85,$pdf->getY()+2);
@@ -28623,10 +28720,10 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'PAYMENT MANAGEMENT',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(15,5,'#',1,0,'C',1);
     $pdf->Cell(30,5,'CONTROL NO.',1,0,'C',1);
@@ -28635,7 +28732,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(45,5,'EMAIL',1,0,'C',1);
     $pdf->Cell(40,5,'CONTACT NO.',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(15,30,70,130,45,40));
     $pdf->SetAligns(array('C','C','L','C','L','C','C','C'));
 
@@ -28669,6 +28766,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+150,$pdf->getY()+2);
@@ -28764,10 +28862,10 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'PAYMENT MANAGEMENT',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(15,5,'#',1,0,'C',1);
     $pdf->Cell(30,5,'CONTROL NO.',1,0,'C',1);
@@ -28777,7 +28875,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(40,5,'CONTACT NO.',1,0,'C',1);
     $pdf->Cell(105,5,'PROGRAM',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(15,30,30,70,45,40,105));
     $pdf->SetAligns(array('C','C','C','L','C','C','L'));
 
@@ -28812,6 +28910,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+153,$pdf->getY()+2);
@@ -28916,17 +29015,17 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'STUDENT RANKINGS',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 7);
+    $pdf->SetFont("Times", 'B', 7);
     $pdf->Cell(8,5,'#',1,0,'C');
     $pdf->Cell(40,5,'STUDENT NUMBER',1,0,'C');
     $pdf->Cell(80,5,'STUDENT NAME',1,0,'C');
     $pdf->Cell(57,5,'PROGRAM',1,0,'C');
     $pdf->Cell(20,5,'AVERAGE',1,0,'C');
     $pdf->Ln(5);
-    $pdf->SetFont("Arial", '', 7);
+    $pdf->SetFont("Times", '', 7);
     $pdf->SetWidths(array(8,40,80,57,20));
     $pdf->SetAligns(array('C','C','L','C','C'));
 
@@ -28958,6 +29057,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+88,$pdf->getY()+2);
@@ -29049,16 +29149,16 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'LIST OF PROMOTED STUDENTS',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 7);
+    $pdf->SetFont("Times", 'B', 7);
     $pdf->Cell(8,5,'#',1,0,'C');
     $pdf->Cell(50,5,'STUDENT NUMBER',1,0,'C');
     $pdf->Cell(90,5,'STUDENT NAME',1,0,'C');
     $pdf->Cell(57,5,'PROGRAM',1,0,'C');
     $pdf->Ln(5);
-    $pdf->SetFont("Arial", '', 7);
+    $pdf->SetFont("Times", '', 7);
     $pdf->SetWidths(array(8,50,90,57));
     $pdf->SetAligns(array('C','C','L','C'));
 
@@ -29089,6 +29189,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+88,$pdf->getY()+2);
@@ -29188,10 +29289,10 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0, 5, $this->Global->Settings('website') . ' Email: ' . $this->Global->Settings('email'), 0, 0, 'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0, 5, 'INTERVIEW REQUESTS', 0, 0, 'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217, 237, 247);
     $pdf->Cell(10);
     $pdf->Cell(10, 5, '#', 1, 0, 'C', 1);
@@ -29202,7 +29303,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(30, 5, 'DATE', 1, 0, 'C', 1);
     $pdf->Cell(40, 5, 'STATUS', 1, 0, 'C', 1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10, 20, 50, 130, 45, 30,40));
     $pdf->SetAligns(array('C', 'C', 'C', 'C', 'C', 'C','C'));
     $conditions = array();
@@ -29256,6 +29357,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX()+10,$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
@@ -29362,17 +29464,17 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'STUDENT BEHAVIOR',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 7);
+    $pdf->SetFont("Times", 'B', 7);
     $pdf->Cell(8,5,'#',1,0,'C');
     $pdf->Cell(30,5,'STUDENT NUMBER',1,0,'C');
     $pdf->Cell(60,5,'STUDENT NAME',1,0,'C');
     $pdf->Cell(57,5,'PROGRAM',1,0,'C');
     $pdf->Cell(50,5,'BEHAVIOR',1,0,'C');
     $pdf->Ln(5);
-    $pdf->SetFont("Arial", '', 7);
+    $pdf->SetFont("Times", '', 7);
     $pdf->SetWidths(array(8,30,60,57,50));
     $pdf->SetAligns(array('C','C','L','C','C'));
 
@@ -29405,6 +29507,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+88,$pdf->getY()+2);
@@ -29510,17 +29613,17 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'STUDENT BEHAVIOR',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 7);
+    $pdf->SetFont("Times", 'B', 7);
     $pdf->Cell(8,5,'#',1,0,'C');
     $pdf->Cell(60,5,'STUDENT NAME',1,0,'C');
     $pdf->Cell(30,5,'STUDENT NUMBER',1,0,'C');
     $pdf->Cell(57,5,'COLLEGE',1,0,'C');
     $pdf->Cell(50,5,'PROGRAM',1,0,'C');
     $pdf->Ln(5);
-    $pdf->SetFont("Arial", '', 7);
+    $pdf->SetFont("Times", '', 7);
     $pdf->SetWidths(array(8,30,60,57,50));
     $pdf->SetAligns(array('C','C','L','C','C'));
 
@@ -29553,6 +29656,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+88,$pdf->getY()+2);
@@ -29686,17 +29790,17 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'ACADEMIC LIST',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 7);
+    $pdf->SetFont("Times", 'B', 7);
     $pdf->Cell(8,5,'#',1,0,'C');
     $pdf->Cell(30,5,'STUDENT NUMBER',1,0,'C');
     $pdf->Cell(60,5,'STUDENT NAME',1,0,'C');
     $pdf->Cell(57,5,'AWARD',1,0,'C');
     $pdf->Cell(50,5,'REGISTRATION DATE ',1,0,'C');
     $pdf->Ln(5);
-    $pdf->SetFont("Arial", '', 7);
+    $pdf->SetFont("Times", '', 7);
     $pdf->SetWidths(array(8,30,60,57,50));
     $pdf->SetAligns(array('C','C','L','C','C'));
 
@@ -29728,6 +29832,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+88,$pdf->getY()+2);
@@ -29830,17 +29935,17 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'STUDENT BEHAVIOR',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 7);
+    $pdf->SetFont("Times", 'B', 7);
     $pdf->Cell(8,5,'#',1,0,'C');
     $pdf->Cell(30,5,'STUDENT NUMBER',1,0,'C');
     $pdf->Cell(60,5,'STUDENT NAME',1,0,'C');
     $pdf->Cell(57,5,'PROGRAM',1,0,'C');
     $pdf->Cell(50,5,'BEHAVIOR',1,0,'C');
     $pdf->Ln(5);
-    $pdf->SetFont("Arial", '', 7);
+    $pdf->SetFont("Times", '', 7);
     $pdf->SetWidths(array(8,30,60,57,50));
     $pdf->SetAligns(array('C','C','L','C','C'));
 
@@ -29873,6 +29978,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+90,$pdf->getY()+2);
@@ -29970,10 +30076,10 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0, 5, $this->Global->Settings('website') . ' Email: ' . $this->Global->Settings('email'), 0, 0, 'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0, 5, 'STUDENT CLUB APPLICATIONS', 0, 0, 'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217, 237, 247);
     $pdf->Cell(10);
     $pdf->Cell(10, 5, 'No.', 1, 0, 'C', 1);
@@ -29985,7 +30091,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(40, 5, 'STATUS', 1, 0, 'C', 1);
 
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10, 35, 80, 45, 45, 70,40));
     $pdf->SetAligns(array('C', 'C', 'C', 'C', 'C', 'C','C'));
     $conditions = array();
@@ -30034,6 +30140,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX()+10,$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
@@ -30085,10 +30192,10 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0, 5, $this->Global->Settings('website') . ' Email: ' . $this->Global->Settings('email'), 0, 0, 'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0, 5, 'STUDENT CLUB APPLICATIONS', 0, 0, 'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217, 237, 247);
     $pdf->Cell(35);
     $pdf->Cell(10, 5, 'No.', 1, 0, 'C', 1);
@@ -30096,7 +30203,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(80, 5, 'CLUB NAME', 1, 0, 'C', 1);
 
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,30,80));
     $pdf->SetAligns(array('C', 'C', 'C'));
     $conditions = array();
@@ -30128,6 +30235,7 @@ EQUIVALENT',1,'C',0);
     
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX()+35,$pdf->getY()+2,$pdf->getX()+85,$pdf->getY()+2);
@@ -30260,10 +30368,10 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
      $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'LIST ACADEMIC AWARDEE',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(50,5,'STUDENT NAME',1,0,'C',1);
@@ -30272,7 +30380,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(60,5,'AVERAGE',1,0,'C',1);
     $pdf->Cell(65,5,'AWARD',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,50,100,60,60,65));
     $pdf->SetAligns(array('C','C','C','C','C','C'));
 
@@ -30320,6 +30428,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
@@ -30671,10 +30780,10 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'BLOCK SECTIONS',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'No.',1,0,'C',1);
     $pdf->Cell(25,5,'CODE',1,0,'C',1);
@@ -30683,7 +30792,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(55,5,'YEAR TERM',1,0,'C',1);
     $pdf->Cell(40,5,'SCHOOL YEAR',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,25,100,100,55,40));
     $pdf->SetAligns(array('C','C','L','L','C','C'));
     $conditions = array();
@@ -30717,6 +30826,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
@@ -30802,10 +30912,10 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'LIST OF GENERAL WEIGHTED AVERAGE (GWA)',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(50,5,'STUDENT NAME',1,0,'C',1);
@@ -30814,7 +30924,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(68,5,'GWA',1,0,'C',1);
 
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,50,150,68,68,));
     $pdf->SetAligns(array('C','C','C','C','C'));
 
@@ -30845,6 +30955,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
@@ -30959,7 +31070,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'ACADEMIC FAILURES LIST',0,0,'C');
     $pdf->Ln(5);
     $pdf->Cell(0,5,strtoupper($term),0,0,'C');
@@ -30968,7 +31079,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(0,5,$adata['Course']['code'].' : '.$adata['Course']['title'],0,0,'C');
     $pdf->Ln(10);
 
-    $pdf->SetFont("Arial", 'B', 10);
+    $pdf->SetFont("Times", 'B', 10);
     $pdf->SetFillColor(217, 237, 247);
     $pdf->Cell(15, 5, '#', 1,0, 'C', 1);
     $pdf->Cell(70, 5, 'STUDENT NO', 1, 0, 'C', 1);
@@ -30977,7 +31088,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(65, 5, 'REMARKS', 1, 0, 'C', 1);
 
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 10);
+    $pdf->SetFont("Times", '', 10);
     $pdf->SetWidths(array(15,70,120,70,65));
     $pdf->SetAligns(array('C','C','C','C','C'));
       
@@ -31008,6 +31119,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+156,$pdf->getY()+2);
@@ -31072,11 +31184,11 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'STUDENT CLUB LIST',0,0,'C');
     $pdf->Ln(10);
 
-    $pdf->SetFont("Arial", 'B', 10);
+    $pdf->SetFont("Times", 'B', 10);
     $pdf->SetFillColor(217, 237, 247);
     $pdf->Cell(15, 5, '#', 1,0, 'C', 1);
     $pdf->Cell(70, 5, 'STUDENT NO', 1, 0, 'C', 1);
@@ -31087,7 +31199,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(30, 5, 'POSITION', 1, 0, 'C', 1);
 
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 10);
+    $pdf->SetFont("Times", '', 10);
     $pdf->SetWidths(array(15,70,120,50,30,30,30));
     $pdf->SetAligns(array('C','C','C','C','C','C','C'));
       
@@ -31122,6 +31234,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+156,$pdf->getY()+2);
@@ -31184,10 +31297,10 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'FACULTY MASTERLISTS',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(50,5,'FACULTY NO.',1,0,'C',1);
@@ -31196,7 +31309,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(60,5,'ACADEMIC RANK',1,0,'C',1);
     $pdf->Cell(65,5,'COLLEGE',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,50,100,60,60,65));
     $pdf->SetAligns(array('C','C','C','C','C','C'));
 
@@ -31230,6 +31343,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
@@ -31310,10 +31424,10 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'LIST OF BEST ACADEMIC STUDENT',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 7);
+    $pdf->SetFont("Times", 'B', 7);
     $pdf->Cell(8,8,'#',1,0,'C');
     $pdf->Cell(22,4,'STUDENT','LTR',0,'C');
     $pdf->Cell(45,8,'STUDENT NAME',1,0,'C');
@@ -31326,7 +31440,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(153,4,'',0,0,'C');
     $pdf->Cell(22,4,'','LBR',0,'C');
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 7);
+    $pdf->SetFont("Times", '', 7);
     $pdf->SetWidths(array(8,22,45,58,50,22));
     $pdf->SetAligns(array('C','C','C','C','C','C'));
 
@@ -31360,6 +31474,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+88,$pdf->getY()+2);
@@ -31445,10 +31560,10 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'ENROLLMENT PROFILE',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(50,5,'STUDENT NO.',1,0,'C',1);
@@ -31457,7 +31572,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(60,5,'SECTION',1,0,'C',1);
     $pdf->Cell(65,5,'EMAIL',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,50,100,60,60,65));
     $pdf->SetAligns(array('C','C','C','C','C','C'));
 
@@ -31493,6 +31608,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
@@ -31609,10 +31725,10 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'ENROLLMENT PROFILE',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(50,5,'STUDENT NO.',1,0,'C',1);
@@ -31620,7 +31736,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(120,5,'COMMENTS',1,0,'C',1);
     $pdf->Cell(60,5,'DATE',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,50,100,120,60));
     $pdf->SetAligns(array('C','C','C','C','C'));
 
@@ -31654,6 +31770,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
@@ -31706,10 +31823,10 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'MEDICAL STUDENT PROFILE MANAGEMENT',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(15,5,'No.',1,0,'C',1);
     $pdf->Cell(30,5,'CODE',1,0,'C',1);
@@ -31718,7 +31835,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(30,5,'YEAR',1,0,'C',1);
     $pdf->Cell(75,5,'ADDRESS',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(15,30,50,140,30,75));
     $pdf->SetAligns(array('C','C','C','C','C','C'));
 
@@ -31752,6 +31869,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
@@ -32795,10 +32913,10 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'MEDICAL STUDENT PROFILE MANAGEMENT',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(15,5,'No.',1,0,'C',1);
     $pdf->Cell(30,5,'CODE',1,0,'C',1);
@@ -32809,7 +32927,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(30,5,'WEIGHT',1,0,'C',1);
     $pdf->Cell(70,5,'REMARKS',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(15,30,70,60,33,33,30,70));
     $pdf->SetAligns(array('C','C','C','C','C','C','C','C'));
 
@@ -32847,6 +32965,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+155,$pdf->getY()+2);
@@ -32898,10 +33017,10 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 9);
+    $pdf->SetFont("Times", 'B', 9);
     $pdf->Cell(0,5,'NURSE PROFILE MANAGEMENT',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(15,5,'No.',1,0,'C',1);
     $pdf->Cell(70,5,'NURSE NAME',1,0,'C',1);
@@ -32909,7 +33028,7 @@ EQUIVALENT',1,'C',0);
     $pdf->Cell(35,5,'AGE',1,0,'C',1);
     $pdf->Cell(35,5,'BIRTHDATE',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(15,70,50,35,35));
     $pdf->SetAligns(array('C','C','C','C','C'));
 
@@ -32941,6 +33060,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+85,$pdf->getY()+2);
@@ -33434,12 +33554,12 @@ EQUIVALENT',1,'C',0);
 
     $dentalImages = [];
 
-    if (!empty($data['StudentFile'])) {
-        foreach ($data['StudentFile'] as $image) {
-            if (!is_null($image['files'])) {
+    if (!empty($data['MedicalStudentProfileImage'])) {
+        foreach ($data['MedicalStudentProfileImage'] as $image) {
+            if (!is_null($image['images'])) {
                 $dentalImages[] = [
-                    'imageSrc' => '/uploads/medical-student-profile/' . $id . '/' . $image['files'],
-                    'name' => $image['files'],
+                    'imageSrc' => '/uploads/medical-student-profile/' . $id . '/' . $image['images'],
+                    'name' => $image['images'],
                     'id' => $image['id'] ?? null,
                 ];
             }
@@ -34318,16 +34438,16 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'BIBLIOGRAPHY BARCODE',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(80,5,'CONTROL NO.',1,0,'C',1);
     $pdf->Cell(113,5,'TITLE',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,80,113));
     $pdf->SetAligns(array('C','C','L'));
 
@@ -34355,6 +34475,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+88,$pdf->getY()+2);
@@ -34426,16 +34547,16 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'BIBLIOGRAPHY CALL NUMBER',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(113,5,'TITLE',1,0,'C',1);
     $pdf->Cell(80,5,'CALL NUMBER ',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,113,80));
     $pdf->SetAligns(array('C','C','L','C','C','C'));
 
@@ -34463,6 +34584,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+88,$pdf->getY()+2);
@@ -34535,16 +34657,16 @@ EQUIVALENT',1,'C',0);
     $pdf->Ln(5);
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 12);
+    $pdf->SetFont("Times", 'B', 12);
     $pdf->Cell(0,5,'BIBLIOGRAPHY CATALOG',0,0,'C');
     $pdf->Ln(10);
-    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(113,5,'TITLE',1,0,'C',1);
     $pdf->Cell(80,5,'CATALOG',1,0,'C',1);
     $pdf->Ln();
-    $pdf->SetFont("Arial", '', 8);
+    $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,113,80));
     $pdf->SetAligns(array('C','L','C'));
 
@@ -34572,6 +34694,7 @@ EQUIVALENT',1,'C',0);
 
     $pdf->Ln(5);
     $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
     $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
     $pdf->Ln(0.1);
     $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+88,$pdf->getY()+2);

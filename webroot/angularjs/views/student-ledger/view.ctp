@@ -37,7 +37,7 @@
                   <td class="text-center">{{ ledger.remarks }}</td>
                 </tr>
                 <tr ng-show="data.StudentLedger == null || data.StudentLedger == ''">
-                  <td colspan="7">No available data</td>
+                  <td colspan="6">No available data</td>
                 </tr>
               </tbody>
             </table>

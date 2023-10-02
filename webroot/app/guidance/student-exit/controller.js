@@ -349,7 +349,13 @@ app.controller('StudentExitAddController', function($scope, StudentExit, Select)
 
       name : student.code + ' - ' + student.name,
 
-      date_of_birth : student.date_of_birth
+      date_of_birth : student.date_of_birth,
+
+      program_id : student.program_id,
+
+      email: student.email,
+
+      contact_no: student.contact_no,
 
     }; 
 
@@ -362,6 +368,12 @@ app.controller('StudentExitAddController', function($scope, StudentExit, Select)
     $scope.data.StudentExit.student_name = $scope.student.name;
 
     $scope.data.StudentExit.birth_date = $scope.student.date_of_birth;
+
+    $scope.data.StudentExit.course_id = $scope.student.program_id;
+    
+    $scope.data.StudentExit.email = $scope.student.email;
+
+    $scope.data.StudentExit.contact_no = $scope.student.contact_no;
 
   }
 
@@ -531,7 +543,9 @@ app.controller('StudentExitEditController', function($scope, $routeParams, Stude
 
       name : student.code + ' - ' + student.name,
 
-      date_of_birth : student.date_of_birth
+      date_of_birth : student.date_of_birth,
+
+      program_id : student.program_id,
 
     }; 
 
@@ -544,6 +558,8 @@ app.controller('StudentExitEditController', function($scope, $routeParams, Stude
     $scope.data.StudentExit.student_name = $scope.student.name;
 
     $scope.data.StudentExit.birth_date = $scope.student.date_of_birth;
+
+    $scope.data.StudentExit.course_id = $scope.student.program_id;
 
   }
 

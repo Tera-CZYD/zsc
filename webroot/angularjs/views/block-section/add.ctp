@@ -25,10 +25,10 @@
        	 <form id="form">
           <div class="row">
 
-            <div class="col-md-6">
+            <div class="col-md-12">
               <div class="form-group">
                 <label> CODE <i class="required">*</i></label>
-                <input type="text" class="form-control" autocomplete="off" ng-model="data.BlockSection.code" data-validation-engine="validate[required]">
+                <input type="text" class="form-control" disabled autocomplete="off" ng-model="data.BlockSection.code" data-validation-engine="validate[required]">
               </div>
             </div>
 

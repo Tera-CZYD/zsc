@@ -92,7 +92,7 @@
                               <td class="italic">{{ data.ScholarshipApplication.age }}</td>
                           </tr>
                           <tr>
-                              <th class="text-left"> PLCAE OF BIRTH : </th>
+                              <th class="text-left"> PLACE OF BIRTH : </th>
                               <td class="italic">{{ data.ScholarshipApplication.place_of_birth }}</td>
                           </tr>
                           <tr>

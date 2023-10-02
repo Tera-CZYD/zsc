@@ -463,7 +463,8 @@ class FacultyStudentAttendancesController extends AppController {
 
       foreach ($datas as $key => $data) {
 
-        if($data->student->status != 'DROPPED'){
+        if($data->clearance_status != 3){
+          
           $present = [];
 
           $sid = $data->student_id;
@@ -617,14 +618,31 @@ class FacultyStudentAttendancesController extends AppController {
 
     $this->autoRender = false;
 
-    $app = $this->Students->get($id);
+    // $app = $this->Students->get($id);
+
      // var_dump($faculty.'<br>'.$course);
 
     $course = $this->request->getData('course');
 
     $faculty = $this->request->getData('faculty');
 
-    // var_dump($course);
+    $app = $this->StudentEnrolledCourses->find()
+
+      ->where([
+
+        'visible' => 1,
+
+        'student_id' => $id,
+
+        'faculty_id' => $faculty,
+
+        'course_id' =>$course,
+
+      ])
+
+      ->first();
+
+    // var_dump($app);
 
     $co = $this->Courses->get($course);
 
@@ -633,9 +651,11 @@ class FacultyStudentAttendancesController extends AppController {
     // var_dump($co);
     // var_dump($fa);
 
-    $app->status = 'DROPPED';
+    $app->clearance_status = 3;
 
-    if ($this->Students->save($app)) {
+    $app->clearance_remarks = 'DROPPED';
+
+    if ($this->StudentEnrolledCourses->save($app)) {
 
       //EMAIL VERIFICATION
 

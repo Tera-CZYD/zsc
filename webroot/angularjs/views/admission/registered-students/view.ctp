@@ -1,4 +1,4 @@
-<script type="text/javascript">
+    <script type="text/javascript">
 
   function handleAccess(elementId, permissionCode, currentUser) {
     const element = document.getElementById(elementId);
@@ -13,9 +13,11 @@
 
   // INCLUDE ALL PAGE PERMISSION
   handleAccess('pageView', 'registered students/view', currentUser);
-  handleAccess('pagePrintForm', 'registered students/print cor', currentUser);
+  handleAccess('pagePrintCor', 'registered students/print cor', currentUser);
 
 </script>
+
+
 
 <div class="row" id="pageView">
   <div class="col-lg-12 mt-3">
@@ -35,7 +37,7 @@
                 </tr>
                 <tr>
                   <th class="text-right"> STUDENT NAME : </th>
-                  <td class="italic">{{ data.Student.proper_name }}</td>
+                  <td class="italic">{{ data.Student.last_name }}, {{ data.Student.first_name }} {{ data.Student.middle_name }}</td>
                   <th class="text-right"> COLLEGE : </th>
                   <td class="italic">{{ data.College.name }}</td>
                 </tr>
@@ -52,7 +54,9 @@
           </div>
 
           <div class="col-md-12">
-              <button id="pagePrintForm" type="button" class="btn btn-info  btn-min" ng-click="print(data.Student.id )"><i class="fa fa-print"></i> PRINT CERTIFICATE OF REGISTRATION </button>
+           
+              <button id="pagePrintCor" type="button" class="btn btn-info  btn-min" ng-click="print(data.Student.id )"><i class="fa fa-print"></i> PRINT CERTIFICATE OF REGISTRATION </button>
+             
           </div>
 
           <div class="col-md-12">
@@ -104,6 +108,7 @@
     </div>
   </div>
 </div>
+
 <style type="text/css">
   th {
     white-space: nowrap;

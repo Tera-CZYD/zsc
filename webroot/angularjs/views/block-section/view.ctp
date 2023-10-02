@@ -83,7 +83,7 @@
                     <td class="text-center uppercase">{{ subs.slot }}</td>
                     <td class="text-center uppercase">{{ subs.ptc == 1 ? 'YES' : 'NO' }}</td>
                     <td class="text-center uppercase">
-                      <button class="btn btn-primary btn-min" ng-click="addCourse()"><i class="fa fa-plus"></i> ADD FACULTY </button>
+                      <button class="btn btn-primary btn-min" ng-disabled="subs.faculty_id !== null" ng-click="addFaculty($index)"><i class="fa fa-plus"></i> ADD FACULTY </button>
                     </td>
                   </tr>
                   <tr ng-if="data.BlockSectionCourse == ''">
@@ -134,7 +134,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger btn-sm btn-min" data-dismiss="modal"><i class="fa fa-close"></i> CLOSE </button>
-        <button type="button" class="btn btn-primary btn-sm btn-min" ng-click="saveCourse(sub)"><i class="fa fa-save"></i> ADD </button>
+        <button type="button" class="btn btn-primary btn-sm btn-min" ng-click="saveFaculty(sub)"><i class="fa fa-save"></i> ADD </button>
       </div>
     </div>
   </div>

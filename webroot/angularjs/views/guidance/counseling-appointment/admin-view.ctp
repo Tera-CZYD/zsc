@@ -85,7 +85,7 @@
           <div class="col-md-12">
             <div class="pull-right">
               
-                <button id="pageApprove" href="javascript:void(0)" ng-click="approve(data.CounselingAppointment)" ng-disabled="data.CounselingAppointment.approve == 1 || data.CounselingAppointment.approve == 4 || data.CounselingAppointment.approve == 3" class="btn btn-warning  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
+                <button id="pageApprove" href="javascript:void(0)" ng-click="approve(data.CounselingAppointment)" ng-disabled="data.CounselingAppointment.approve == 1 || data.CounselingAppointment.approve == 4 || data.CounselingAppointment.approve == 3 || data.CounselingAppointment.approve == 2" class="btn btn-warning  btn-min" ><i class="fa fa-check"></i> APPROVE </button>
               
               
                 <button id="pageConfirm" href="javascript:void(0)" ng-click="confirm(data.CounselingAppointment)" ng-disabled="data.CounselingAppointment.approve != 1" class="btn btn-success  btn-min" ><i class="fa fa-check"></i> CONFIRM </button>

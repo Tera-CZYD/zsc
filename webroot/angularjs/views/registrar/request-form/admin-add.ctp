@@ -28,7 +28,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label> SERIAL NUMBER </label>
-                  <input type="text" class="form-control" ng-model="data.RequestForm.serial_number">
+                  <input type="text" class="form-control" ng-model="data.RequestForm.serial_number"> 
                 </div>
               </div>
               <div class="col-md-12">
@@ -73,7 +73,7 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <label> YEAR TERM </label>
-                  <select selectize ng-model="data.RequestForm.year_term_id" ng-options="opt.id as opt.value for opt in year_terms">
+                  <select selectize ng-model="data.RequestForm.year_term_id" ng-options="opt.id as opt.value for opt in year_terms" ng-change="getYear(data.RequestForm.year_term_id)" data-validation-engine="validate[required]">
                     <option value=""></option>
                   </select>
                 </div>
@@ -86,9 +86,11 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label> PURPOSE <i class="required">*</i></label>
-                  <select selectize ng-model="data.RequestForm.purpose_id" ng-options="opt.id as opt.value for opt in purpose" ng-change="getPurpose(data.RequestForm.purpose_id)" data-validation-engine="validate[required]">
+                  <label> IDENTIFIER <i class="required">*</i></label>
+                  <select selectize ng-model="data.RequestForm.identifier" autocomplete="false" data-validation-engine="validate[required]">
                     <option value=""></option>
+                    <option value="Graduate">Graduate</option>
+                    <option value="Enrolled">Enrolled</option>
                   </select>
                 </div>
               </div>
@@ -99,9 +101,32 @@
                 </div>
               </div>
               <div class="col-md-6">
+                <div class="form-group" ng-show="data.RequestForm.identifier != undefined">
+                  <label> PURPOSE <i class="required">*</i></label>
+                  <select selectize ng-model="data.RequestForm.purpose_id" ng-options="opt.id as opt.value for opt in purpose" ng-change="getPurpose(data.RequestForm.purpose_id)" data-validation-engine="validate[required]">
+                    <option value=""></option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
                 <div class="form-group" ng-show="data.RequestForm.purpose_id == 1">
                   <label> OTHERS <i class="required">*</i></label>
                   <textarea rows="1" class="form-control" autocomplete="false" ng-model="data.RequestForm.othersPurpose" data-validation-engine="validate[required]"></textarea>
+                </div>
+              </div>
+              <div class="col-md-12 mt-4" ng-show="data.RequestForm.identifier != undefined">
+                <div class="form-group">
+                  <div class="row mt-4">
+                    <div class="col-md-4">
+                      <input icheck type="checkbox" class="form-control" autocomplete="false" ng-model="data.RequestForm.gwa"> With GWA
+                    </div>
+                    <div class="col-md-4">
+                      <input icheck type="checkbox" class="form-control" autocomplete="false" ng-model="data.RequestForm.unit"> With Units
+                    </div>
+                    <div class="col-md-4">
+                      <input icheck type="checkbox" class="form-control" autocomplete="false" ng-model="data.RequestForm.medium"> With of Instruction
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="clearfix"></div>
@@ -188,6 +213,44 @@
                     </div>
                   </div> -->
 
+                    <div class="clearfix"></div><hr>
+                    
+                    <div class="col-md-12">
+                    <div class="form-group">
+                      <label> REQUESTOR <i class="required">*</i></label><br>
+                      <label>
+                        <input type="radio" ng-model="data.RequestForm.claim" ng-value="false" value="0">
+                        Claim
+                      </label>&nbsp; &nbsp;&nbsp; &nbsp;
+                      <label>
+                        <input type="radio" ng-model="data.RequestForm.claim" ng-value="true" value="1">
+                        Authorized Person
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12" ng-show="data.RequestForm.claim">
+                    <div class="clearfix"></div><hr>
+                  </div>
+
+                  <div class="col-md-12" ng-show="data.RequestForm.claim">
+                    <label>Authorization letter (JPEG or PNG)</label>
+                    <h5>• ID of the student should be attached in lower right corner of the authorization letter.</h5>
+                    <ul class="list-group mb-2">
+                      <div class="col-md-12">
+                        <span class="btn btn-primary btn-min btn-file">
+                          <i class="fa fa-upload"></i>UPLOAD PHOTO
+                          <input ng-file-model="files" id="fileImage" name="picture" class="form-control" type="file" accept=" image/jpeg, image/png" ng-file>
+                        </span>
+                      </div>
+                    </ul>
+                  <div class="clearfix"></div>
+                  <div id="upload_prev"></div> 
+                  
+                  <div class="col-md-12">
+                    <div class="clearfix"></div><hr>
+                  </div>
+                </div>
 
                 </div>
               </div>

@@ -109,7 +109,7 @@
 
     'settings/awardee-management',
 
-    'settings/announcement-management',
+    'settings/announcement',
 
     'settings/memorandum',
 
@@ -157,6 +157,8 @@
 
     'registrar/request-form',
 
+    'registrar/affidavit-of-loss',
+
     // 'registrar/prospectus',
 
     'registrar/purpose',
@@ -175,11 +177,15 @@
 
     'registrar/student-profile',
 
+    'registrar/scholastic-document',
+
     //CASHIER
 
     'cashier/payment',
 
     'cashier/assessment',
+
+    'cashier/requested-form',
 
     //GUIDANCE AND COUNSELING
 

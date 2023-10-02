@@ -90,8 +90,8 @@
           <?php endif ?>
 
           <?php if (hasAccess('registrar/menu', $currentUser)): ?>
-            <li class="nav-link-side nav-completion nav-request-form nav-tor nav-transferee nav-adding-dropping-subject nav-approval-of-enrolled-course nav-club nav-student-club nav-registrar-student-profile nav-purpose"><a><i class="fa fa-briefcase"></i> Registrar </a>
-              <ul class="nav child_menu collapse collapse-completion collapse-request-form collapse-tor collapse-transferee collapse-adding-dropping-subject collapse-club collapse-approval-of-enrolled-course collapse-student-club collapse-registrar-student-profile collapse-purpose">
+            <li class="nav-link-side nav-completion nav-request-form nav-tor nav-transferee nav-adding-dropping-subject nav-approval-of-enrolled-course nav-club nav-student-club nav-registrar-student-profile nav-purpose nav-affidavit-of-loss"><a><i class="fa fa-briefcase"></i> Registrar </a>
+              <ul class="nav child_menu collapse collapse-completion collapse-request-form collapse-tor collapse-transferee collapse-adding-dropping-subject collapse-club collapse-approval-of-enrolled-course collapse-student-club collapse-registrar-student-profile collapse-purpose collapse-affidavit-of-loss">
 
                 <?php if (hasAccess('registrar /index', $currentUser)): ?>
                   <li class="nav-link-side nav-registrar-student-profile">
@@ -131,15 +131,15 @@
 
                 <?php if (hasAccess('adding dropping subject/index', $currentUser)): ?>
                   <li class="nav-link-side nav-adding-dropping-subject">
-                    <a href="#/registrar/admin-adding-dropping-subject" onclick="change('adding-dropping-subject')">Adding/Dropping Subject</a>
+                    <a href="#/registrar/admin-adding-dropping-subject" onclick="change('adding-dropping-subject')">Dropping Subject</a>
                   </li>
                 <?php endif ?>
 
-                <?php if (hasAccess('approval of enrolled course/index', $currentUser)): ?>
+                <!-- <?php if (hasAccess('approval of enrolled course/index', $currentUser)): ?>
                   <li class="nav-link-side nav-approval-of-enrolled-course">
                     <a href="#/registrar/approval-enrolled-course" onclick="change('approval-of-enrolled-course')">Approval of Enrolled Courses</a>
                   </li>
-                  <?php endif ?>
+                <?php endif ?> -->
 
                 <?php if (hasAccess('purpose/index', $currentUser)): ?>
                   <li class="nav-link-side nav-purpose">
@@ -159,13 +159,25 @@
                   </li>
                 <?php endif ?>
 
+                <?php if (hasAccess('affidavit of loss/index', $currentUser)): ?>
+                <li class="nav-link-side nav-affidavit-of-loss">
+                    <a href="#/registrar/admin-affidavit-of-loss" onclick="change('affidavit-of-loss')">Affidavit of loss</a>
+                  </li>
+                <?php endif ?>
+
+                <?php if (hasAccess('scholastic document/index', $currentUser)): ?>
+                  <li class="nav-link-side nav-scholastic-document">
+                    <a href="#/registrar/scholastic-document" onclick="change('scholastic-document')">Scholastic Document Management</a>
+                  </li>
+                <?php endif ?>
+
                 </ul>
             </li>
           <?php endif ?>
 
           <?php if (hasAccess('cashier/menu', $currentUser)): ?>
-            <li class="nav-link-side nav-payment nav-assessment"><a><i class="fa fa-credit-card"></i> Cashier </a>
-              <ul class="nav child_menu collapse collapse-payment collapse-assessment">
+            <li class="nav-link-side nav-payment nav-assessment nav-requested-form-payment"><a><i class="fa fa-credit-card"></i> Cashier </a>
+              <ul class="nav child_menu collapse collapse-payment collapse-assessment collapse-requested-form-payment">
 
                 <?php if (hasAccess('payment/index', $currentUser)): ?>
                   <li class="nav-link-side nav-payment">
@@ -176,6 +188,12 @@
                 <?php if (hasAccess('assessment/index', $currentUser)): ?>
                   <li class="nav-link-side nav-assessment">
                     <a href="#/cashier/assessment" onclick="change('assessment')">Assessment Management</a>
+                  </li>
+                <?php endif ?>
+
+                <?php if (hasAccess('requested form payment/index', $currentUser)): ?>
+                  <li class="nav-link-side nav-requested-form-payment">
+                    <a href="#/cashier/requested-form-payment" onclick="change('requested-form-payment')">Requested Forms</a>
                   </li>
                 <?php endif ?>
 
@@ -514,8 +532,8 @@
           <?php endif ?>
 
           <?php if (hasAccess('curriculum/menu', $currentUser)): ?>
-            <li class="nav-link-side nav-class-schedule nav-colleges nav-program nav-prospectus nav-room nav-building nav-course nav-sections nav-block-section nav-college nav-major nav-curriculum-student-profile"><a><i class="fa fa-industry"></i> Curriculum </a>
-              <ul class="nav child_menu_bot collapse collapse-class-schedule collapse-colleges collapse-prospectus collapse-program collapse-room collapse-building collapse-course collapse-sections collapse-block-section collapse-college collapse-major collapse-curriculum-student-profile">
+            <li class="nav-link-side nav-class-schedule nav-colleges nav-curriculum nav-program nav-prospectus nav-room nav-building nav-course nav-sections nav-block-section nav-college nav-major nav-curriculum-student-profile"><a><i class="fa fa-industry"></i> Curriculum </a>
+              <ul class="nav child_menu_bot collapse collapse-class-schedule collapse-colleges collapse-curriculum collapse-prospectus collapse-program collapse-room collapse-building collapse-course collapse-sections collapse-block-section collapse-college collapse-major collapse-curriculum-student-profile">
 
                 <?php if (hasAccess('curriculum student profile/index', $currentUser)): ?>
                 <li class="nav-link-side nav-curriculum-student-profile">
@@ -523,6 +541,11 @@
                 </li>
               <?php endif ?>
 
+              <?php if (hasAccess('prospectus/index', $currentUser)): ?>
+                <li class="nav-link-side nav-curriculum">
+                  <a href="#/curriculum/curriculums" onclick="change('curriculum')">Curriculum Management</a>
+                </li>
+              <?php endif ?>
 
               <?php if (hasAccess('prospectus/index', $currentUser)): ?>
                 <li class="nav-link-side nav-prospectus">
@@ -530,11 +553,11 @@
                 </li>
               <?php endif ?>
 
-              <?php if (hasAccess('class schedule/index', $currentUser)): ?>
+              <!-- <?php if (hasAccess('class schedule/index', $currentUser)): ?>
                 <li class="nav-link-side nav-class-schedule">
                   <a href="#/class-schedule" onclick="change('class-schedule')"> Class Scheduling </a>
                 </li>
-              <?php endif ?>
+              <?php endif ?> -->
 
               <?php if (hasAccess('block section/index', $currentUser)): ?>
                 <li class="nav-link-side nav-class-block-section">
@@ -779,8 +802,8 @@
           <?php endif ?>
 
           <?php if (hasAccess('settings/menu', $currentUser)): ?>
-            <li class="nav-link-side nav-permissions nav-accounts nav-roles nav-users nav-user-logs nav-backup nav-settings nav-office-reference nav-admin-management nav-award-management nav-awardee-management nav-announcement-management nav-memorandum"><a><i class="fa fa-cog"></i> Settings </a>
-              <ul class="nav child_menu_bot collapse collapse-permissions collapse-accounts collapse-roles collapse-users collapse-user-logs collapse-backup collapse-settings collapse-office-reference collapse-admin-management collapse-award-management collapse-awardee-management collapse-announcement-management collapse-memorandum">
+            <li class="nav-link-side nav-permissions nav-accounts nav-roles nav-users nav-user-logs nav-backup nav-settings nav-office-reference nav-admin-management nav-award-management nav-awardee-management nav-announcement nav-memorandum"><a><i class="fa fa-cog"></i> Settings </a>
+              <ul class="nav child_menu_bot collapse collapse-permissions collapse-accounts collapse-roles collapse-users collapse-user-logs collapse-backup collapse-settings collapse-office-reference collapse-admin-management collapse-award-management collapse-awardee-management collapse-announcement collapse-memorandum">
                 <?php if (hasAccess('organization information/index', $currentUser)): ?>
                   <li class="nav-link-side nav-settings">
                     <a href="#/settings" onclick="change('settings')"> Organization Information </a>
@@ -813,15 +836,15 @@
                   </li>
                 <?php endif ?>
 
-                <?php if (hasAccess('announcement management/index', $currentUser)): ?>
-                  <li class="nav-link-side nav-announcement-management">
-                    <a href="#/settings/announcement-management" onclick="change('announcement-management')"> Announcement Management </a>
+                <?php if (hasAccess('announcement/index', $currentUser)): ?>
+                  <li class="nav-link-side nav-announcement">
+                    <a href="#/settings/announcement" onclick="change('announcement')"> Announcements </a>
                   </li>
                 <?php endif ?>
 
                 <?php if (hasAccess('memorandum/index', $currentUser)): ?>
                   <li class="nav-link-side nav-memorandum">
-                    <a href="#/settings/memorandum" onclick="change('memorandum')"> Memorandum </a>
+                    <a href="#/settings/memorandum" onclick="change('memorandum')"> Memorandums </a>
                   </li>
                 <?php endif ?>
 
