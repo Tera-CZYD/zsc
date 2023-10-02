@@ -7943,6 +7943,33 @@ class SelectController extends AppController {
        $datas = $attendance;
 
     
+    }else if ($code == 'get-student-absent') {
+
+      $student_id = $this->request->getQuery('student_id');
+
+      $year_term_id = $this->request->getQuery('year_term_id');
+
+      // $student = $this->Students->get($student_id);
+
+      $clear = $this->StudentEnrolledCourses->find()
+
+        ->where([
+
+          'visible' => 1,
+
+          'student_id' => $student_id,
+
+          'year_term_id' => $year_term_id,
+
+          'clearance_status' => 3
+
+        ])
+
+        ->all();  
+
+       $datas = $clear;
+
+    
     }else if ($code == 'get-student') {
 
       $student_id = $this->request->getQuery('student_id');

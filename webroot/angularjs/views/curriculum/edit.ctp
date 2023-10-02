@@ -12,40 +12,28 @@
   }
 
   // INCLUDE ALL PAGE PERMISSION
-  handleAccess('pageEdit', 'colleges/edit', currentUser);
+  handleAccess('pageAdd', 'curriculum/add', currentUser);
 
 </script>
 
-<div class="row" id="pageEdit">
+<div class="row" id="pageAdd">
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
-        <div class="header-title">EDIT COLLEGE</div>
+        <div class="header-title">NEW CURRICULUM</div>
         <div class="clearfix"></div><hr>
         <form id="form">
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
                 <label> CODE <i class="required">*</i></label>
-                <input type="text" class="form-control" ng-model="data.College.code" data-validation-engine="validate[required]">
+                <input type="text" class="form-control" ng-model="data.Curriculum.code" data-validation-engine="validate[required]">
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group">
-                <label> NAME <i class="required">*</i></label>
-                <input type="text" class="form-control" ng-model="data.College.name" data-validation-engine="validate[required]">
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <label> ACRONYM <i class="required">*</i></label>
-                <input type="text" class="form-control" ng-model="data.College.acronym" data-validation-engine="validate[required]">
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <label> YEAR ESTABLISHED </label>
-                <input type="text" class="form-control yearpicker" ng-model="data.College.year_established">
+                <label> DESCRIPTION <i class="required">*</i></label>
+                <input type="text" class="form-control" ng-model="data.Curriculum.description" data-validation-engine="validate[required]">
               </div>
             </div>
 
@@ -67,7 +55,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr ng-repeat="subs in data.CollegeSub">
+                    <tr ng-repeat="subs in data.Curriculum.CurriculumSubs">
                       <td style="width: 15px;"> {{ $index + 1 }} </td>
                       <td class="text-left uppercase">{{ subs.program }}</td>
                       <td class="w90px text-center">
@@ -76,7 +64,7 @@
                         <a href="javascript:void(0)" class="btn btn-xs btn-danger" ng-click="removeProgram($index)"><i class="fa fa-trash"></i></a>
                       </td>
                     </tr>
-                    <tr ng-if="data.CollegeSub == ''">
+                    <tr ng-if="data.Curriculum.CurriculumSubs == '' || data.Curriculum.CurriculumSubs == null">
                       <td class="text-center" colspan="3">No data available.</td>
                     </tr>
                   </tbody>
@@ -155,6 +143,5 @@ $('#form').validationEngine('attach');
     </div>
   </div>
 </div>
-
           
 
