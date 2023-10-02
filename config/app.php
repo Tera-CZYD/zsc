@@ -184,11 +184,21 @@ return [
      *   your application that still emit deprecations.
      */
     'Error' => [
+        'errorLevel' => E_ALL & ~E_DEPRECATED,
+        'exceptionRenderer' => 'Cake\Error\ExceptionRenderer',
         'errorLevel' => E_ALL,
         'skipLog' => [],
         'log' => true,
         'trace' => true,
         'ignoredDeprecationPaths' => [],
+        'templates' => [
+            'error' => WWW_ROOT . 'error500.ctp',
+            'exception' => WWW_ROOT . 'error500.ctp',
+            'missingAction' => [
+                'controller' => 'Error',
+                'template' => 'error404',
+            ],
+        ],
     ],
 
     /*
