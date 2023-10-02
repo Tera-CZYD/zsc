@@ -61,7 +61,7 @@
           <div class="col-md-12">
             <div class="text-right">
              
-              <a id="pageEdit" href="#/registrar/student-behavior/edit/{{ data.StudentBehavior.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
+              <a id="pageEdit" href="#/guidance/student-behavior/edit/{{ data.StudentBehavior.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
               
               
               <!-- <button id="pagePrintForm" type="button" class="btn btn-info  btn-min" ng-click="print(data.StudentBehavior.id )"><i class="fa fa-print"></i> PRINT STUDENT BEHAVIOR </button> -->

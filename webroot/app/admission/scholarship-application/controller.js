@@ -1354,6 +1354,8 @@ app.controller("AdminScholarshipApplicationAddController", function ($scope, Sch
   };
 
   $scope.selectedStudent = function (student) {
+
+    // console.log(student);
    
     $scope.student = {
     
@@ -1365,13 +1367,35 @@ app.controller("AdminScholarshipApplicationAddController", function ($scope, Sch
 
       program_id: student.program_id,
 
+      year_term_id: student.year_term_id,
+
       email: student.email,
+
+      school_year: student.school_year,
+
+      contact_no: student.contact_no,
+
+      age: student.age,
+
+      civil_status: student.civil_status,
+
+      gender: student.gender,
    
     };
  
   };
 
   $scope.studentData = function (id) {
+
+    if($scope.student.year_term_id == 1 || $scope.student.year_term_id == 4 || $scope.student.year_term_id == 7 || $scope.student.year_term_id == 10 || $scope.student.year_term_id == 13){
+
+      $scope.student.semester = 1;
+
+    }else if($scope.student.year_term_id == 2 || $scope.student.year_term_id == 5 || $scope.student.year_term_id == 8 || $scope.student.year_term_id == 11 || $scope.student.year_term_id == 14){
+
+      $scope.student.semester = 2;
+
+    }
     
     $scope.data.ScholarshipApplication.student_id = $scope.student.id;
 
@@ -1381,7 +1405,21 @@ app.controller("AdminScholarshipApplicationAddController", function ($scope, Sch
 
     $scope.data.ScholarshipApplication.program_id = $scope.student.program_id;
 
+    $scope.data.ScholarshipApplication.year_term_id = $scope.student.year_term_id;
+
+    $scope.data.ScholarshipApplication.semester = $scope.student.semester;
+
     $scope.data.ScholarshipApplication.email = $scope.student.email;
+
+    $scope.data.ScholarshipApplication.school_year = $scope.student.school_year;
+
+    $scope.data.ScholarshipApplication.contact_number = $scope.student.contact_no;
+
+    $scope.data.ScholarshipApplication.age = $scope.student.age;
+
+    $scope.data.ScholarshipApplication.civil_status = $scope.student.civil_status;
+
+    $scope.data.ScholarshipApplication.sex = $scope.student.gender;
   
   };
 

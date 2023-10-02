@@ -6,6 +6,8 @@ app.controller('DashboardController', function($scope,Select,StudentApplicationM
 
     $scope.data = e.data;
 
+    console.log($scope.data);
+
     if($scope.data.for_medical_interview == 1 && $scope.data.for_schedule == 0){
 
       $('#medical_interview').validationEngine('attach');
@@ -32,7 +34,7 @@ app.controller('DashboardController', function($scope,Select,StudentApplicationM
 
     Dashboard.query(options, function(e) {
 
-      // console.log(currentUser.roleId);
+      // console.log(e);
 
       if (e.ok) {
 
@@ -51,6 +53,8 @@ app.controller('DashboardController', function($scope,Select,StudentApplicationM
         $scope.credited = e.credited;
 
         $scope.incomplete = e.incomplete;
+
+        $scope.announcements = e.announcements;
 
         if(currentUser.roleId == 1){
 
@@ -229,6 +233,8 @@ app.controller('DashboardController', function($scope,Select,StudentApplicationM
           $scope.counts = e.counts;
 
           $scope.scheds = e.scheds;
+
+          $scope.memos = e.memos;
 
           
         }

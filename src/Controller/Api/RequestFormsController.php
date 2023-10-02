@@ -11,7 +11,7 @@ use Cake\I18n\Time;
 
 
 
-class RequestFormsController extends AppController {
+class RequestFormsController extends AppController { 
    
   public function initialize(): void{
 
@@ -20,6 +20,12 @@ class RequestFormsController extends AppController {
     $this->loadComponent('RequestHandler');
 
     $this->RequestForms = TableRegistry::getTableLocator()->get('RequestForms');
+
+    $this->loadModel('RequestedFormPayments');
+
+    $this->loadModel('RequestedFormPaymentSubs');
+
+    $this->loadModel('Students');    
 
   }
 
@@ -184,15 +190,254 @@ class RequestFormsController extends AppController {
 
     $this->autoRender = false;
 
-    $requestData = $this->request->getData('RequestForm');
+    $requestData = $this->request->getData('data');
 
-    $requestData['date'] = isset($requestData['date']) ? fdate($requestData['date'],'Y-m-d') : null;
+    $data = json_decode($requestData, true);
 
-    $data = $this->RequestForms->newEmptyEntity();
+    $data['RequestForm']['date'] = isset($data['RequestForm']['date']) ? fdate($data['RequestForm']['date'],'Y-m-d') : null;
+
+    $uploadedFile = $this->request->getData('file');
+
+      if ($uploadedFile instanceof \Laminas\Diactoros\UploadedFile && $uploadedFile->getError() === UPLOAD_ERR_OK) {
+
+      $data['RequestForm']['image'] = $uploadedFile->getClientFilename();
+
+      }
+
+
+    $requestForm = $this->RequestForms->newEmptyEntity();
    
-    $data = $this->RequestForms->patchEntity($data, $requestData); 
+    $requestForm = $this->RequestForms->patchEntity($requestForm, $data['RequestForm']); 
 
-    if ($this->RequestForms->save($data)) {
+    if ($this->RequestForms->save($requestForm)) {
+
+
+      $request_form_id = $requestForm->id;
+
+        if($data['RequestForm']['claim'] == 1){
+
+            if ($uploadedFile instanceof \Laminas\Diactoros\UploadedFile && $uploadedFile->getError() === UPLOAD_ERR_OK) {
+
+              $data['RequestForm']['image'] = $uploadedFile->getClientFilename();
+
+              // Upload user image
+
+              if (!file_exists('uploads')) {
+
+                mkdir('uploads');
+
+              }
+
+              if (!file_exists('uploads/request-form')) {
+
+                mkdir('uploads/affidavit-of-loss');
+
+              }
+
+              $imagePath = "uploads/request-form/$request_form_id";
+
+              if (!file_exists($imagePath)) {
+
+                mkdir($imagePath);
+
+              }
+
+              $uploadedFilePath = $imagePath . '/' . $uploadedFile->getClientFilename();
+
+              $uploadedFile->moveTo($uploadedFilePath);
+
+            }
+
+        }
+
+      $query = $this->RequestedFormPayments->find();
+
+      $query->select(['total' => $query->func()->count('*')]);
+
+      $total = $query->firstOrFail()->total;
+
+      $code = 'RFP-' . str_pad($total + 1, 5, "0", STR_PAD_LEFT);
+
+      $studentId = $data['RequestForm']['student_id']; 
+
+      $student['Student'] = $this->Students->find()
+
+        ->contain([
+
+          'CollegePrograms' => [
+
+            'conditions' => [
+
+              'CollegePrograms.visible' => 1,
+
+            ]
+
+          ]
+
+        ])
+
+        ->where(['Students.id' => $studentId])
+
+      ->first();
+
+      $payment['student_id'] = $studentId;
+
+      $payment['request_form_id'] = $request_form_id;
+
+      $payment['code'] = $code;
+
+      $payment['student_no'] = $data['RequestForm']['student_no']; 
+
+      $payment['student_name'] = $data['RequestForm']['student_name'];
+
+      $payment['email'] = $student['Student']['email'];
+
+      $payment['contact_no'] = $student['Student']['contact_no'];
+
+      $payment['program'] = $student['Student']['college_program']['name'];
+
+      $payment['request'] = "REQUEST FORMS";
+
+      $data_payment = $this->RequestedFormPayments->newEmptyEntity();
+     
+      $data_payment = $this->RequestedFormPayments->patchEntity($data_payment, $payment);
+
+      if($this->RequestedFormPayments->save($data_payment)){
+
+        $requested_form_payment_id = $data_payment->id;
+
+        $sub = [];
+
+
+      if($requestForm['otr'] != null && $requestForm['otr'] == true){
+
+        $otrVal = isset($data['RequestForm']['otrVal']) ? $data['RequestForm']['otrVal'] : 1;
+
+        $sub[] = [
+
+          'name' => 'Transcript Of Records',
+
+          'amount' => 120 * $otrVal
+
+        ];
+
+      }
+
+      if($requestForm['cav'] != null && $requestForm['cav'] == true){
+
+        $sub[] = [
+
+          'name' => 'Certification Authentication Verification',
+
+          'amount' => 100
+
+        ];
+
+      }
+
+      if($requestForm['cert'] != null && $requestForm['cert'] == true){
+
+        $sub[] = [
+
+          'name' => 'Certification',
+
+          'amount' => 50
+
+        ];
+
+      }
+
+      if($requestForm['hon'] != null && $requestForm['hon'] == true){
+
+        $sub[] = [
+
+          'name' => 'Honorable Dismissal',
+
+          'amount' => 100
+
+        ];
+
+      }
+
+      if($requestForm['authGrad'] != null && $requestForm['authGrad'] == true){
+
+        $sub[] = [
+
+          'name' => 'Authentication ( Graduate )',
+
+          'amount' => 50
+
+        ];
+
+      }
+
+      if($requestForm['authUGrad'] != null && $requestForm['authUGrad'] == true){
+
+        $sub[] = [
+
+          'name' => 'Authentication ( Under Graduate )',
+
+          'amount' => 50
+
+        ];
+
+      }
+
+      if($requestForm['dip'] != null && $requestForm['dip'] == true){
+
+        $sub[] = [
+
+          'name' => 'Diploma',
+
+          'amount' => 200
+
+        ];
+
+      }
+
+      if($requestForm['rr'] != null && $requestForm['rr'] == true){
+
+        $sub[] = [
+
+          'name' => 'Red Ribbon',
+
+          'amount' => 100
+
+        ];
+
+      }
+
+      if($requestForm['other'] != null && $requestForm['other'] == true){
+
+        $sub[] = [
+
+          'name' => $requestData['otherVal'],
+
+          'amount' => 100
+
+        ];
+
+      }
+
+      if(!empty($sub)){
+        
+        foreach ($sub as $key => $value) {
+
+          $sub[$key]['requested_form_payment_id'] = $requested_form_payment_id;
+
+          $sub[$key]['name'] = $value['name'];
+
+          $sub[$key]['amount'] = $value['amount'];
+          
+        }
+
+        $subEntities = $this->RequestedFormPaymentSubs->newEntities($sub);
+
+        $this->RequestedFormPaymentSubs->saveMany($subEntities);
+      
+      }
+
+      }      
 
       $response = array(
 
@@ -200,7 +445,7 @@ class RequestFormsController extends AppController {
 
         'msg' =>'Request Form has been successfully saved.',
 
-        'data'=>$requestData
+        'data'=>$data
 
       );
 
@@ -212,7 +457,7 @@ class RequestFormsController extends AppController {
 
           'description' => 'Request Form Management',
 
-          'code' => $requestData['code'],
+          'code' => $data['RequestForm']['code'],
 
           'created' => date('Y-m-d H:i:s'),
 
@@ -301,17 +546,73 @@ class RequestFormsController extends AppController {
   }
 
 
-  public function edit($id){
+  public function edit(){
 
-    $data = $this->RequestForms->get($id); 
+    $id = $this->request->getParam('id'); 
 
-    $requestData = $this->getRequest()->getData('RequestForm');
+    $requestForm = $this->RequestForms->get($id); 
 
-    $requestData['date'] = isset($requestData['date']) ? fdate($requestData['date'],'Y-m-d') : NULL;
+    // $requestData = $this->getRequest()->getData('RequestForm');
 
-    $this->RequestForms->patchEntity($data, $requestData); 
+    $requestData = $this->request->getData('data');
 
-    if ($this->RequestForms->save($data)) {
+    $data = json_decode($requestData, true);
+
+    $data['RequestForm']['date'] = isset($data['RequestForm']['date']) ? fdate($data['RequestForm']['date'],'Y-m-d') : NULL;
+
+    $uploadedFile = $this->request->getData('file');
+
+      if ($uploadedFile instanceof \Laminas\Diactoros\UploadedFile && $uploadedFile->getError() === UPLOAD_ERR_OK) {
+
+      $data['RequestForm']['image'] = $uploadedFile->getClientFilename();
+
+      }
+
+      if($data['RequestForm']['claim'] == 0){
+
+          $data['RequestForm']['image'] = null;
+
+      }    
+
+    $this->RequestForms->patchEntity($requestForm, $data['RequestForm']); 
+
+    if ($this->RequestForms->save($requestForm)) {
+
+        if($data['RequestForm']['claim'] == 1){
+
+            if ($uploadedFile instanceof \Laminas\Diactoros\UploadedFile && $uploadedFile->getError() === UPLOAD_ERR_OK) {
+
+              $data['RequestForm']['image'] = $uploadedFile->getClientFilename();
+
+              // Upload user image
+
+              if (!file_exists('uploads')) {
+
+                mkdir('uploads');
+
+              }
+
+              if (!file_exists('uploads/request-form')) {
+
+                mkdir('uploads/request-form');
+
+              }
+
+              $imagePath = "uploads/affidavit-of-loss/$id";
+
+              if (!file_exists($imagePath)) {
+
+                mkdir($imagePath);
+
+              }
+
+              $uploadedFilePath = $imagePath . '/' . $uploadedFile->getClientFilename();
+
+              $uploadedFile->moveTo($uploadedFilePath);
+
+            }
+
+        }      
 
       $response = array(
 
@@ -319,7 +620,7 @@ class RequestFormsController extends AppController {
 
         'msg' => 'Request Form has been successfully updated.',
 
-        'data'=> $requestData
+        'data'=> $data['RequestForm']
 
       );
         
@@ -331,7 +632,7 @@ class RequestFormsController extends AppController {
 
           'description' => 'Request Form',
 
-          'code' => $requestData['code'],
+          'code' => $data['RequestForm']['code'],
 
           'created' => date('Y-m-d H:i:s'),
 
@@ -347,7 +648,7 @@ class RequestFormsController extends AppController {
 
         'ok'  =>true,
 
-        'data'=>$requestData,
+        'data'=>$data['RequestForm'],
 
         'msg' =>'Request Form cannot updated this time.',
 

@@ -2511,6 +2511,57 @@ class ReportsController extends AppController {
       $conditionsPrint .= '&per_student='.$per_student;
 
     }
+
+    $conditions['program_id'] = "";
+
+    if ($this->request->getQuery('program_id') != null) {
+
+      $program_id = $this->request->getQuery('program_id'); 
+
+      $conditions['program_id'] = " AND ScholarshipApplication.program_id = $program_id";
+
+      $conditionsPrint .= '&program_id='.$program_id;
+
+    }
+
+    $conditions['year'] = "";
+
+    if ($this->request->getQuery('year')!=null) {
+
+      $year = $this->request->getQuery('year'); 
+
+      if($year==1){
+        $y1 = '1';
+        $y2 = '2';
+      }else if($year==2){
+        $y1 = '4';
+        $y2 = '5';
+      }else if($year==3){
+        $y1 = '7';
+        $y2 = '8';
+      }else if($year==4){
+        $y1 = '10';
+        $y2 = '11';
+      }else if($year==5){
+        $y1 = '13';
+        $y2 = '14';
+      }
+
+      $conditions['year'] = " AND ScholarshipApplication.year_term_id = $year";
+
+    }
+
+    $conditions['scholarship'] = "";
+
+    if ($this->request->getQuery('scholarship') != null) {
+
+      $scholarship = $this->request->getQuery('scholarship'); 
+
+      $conditions['scholarship'] = " AND ScholarshipApplication.scholarship_name_id = $scholarship";
+
+      $conditionsPrint .= '&scholarship='.$scholarship;
+
+    }
     
     $limit = 25;
 

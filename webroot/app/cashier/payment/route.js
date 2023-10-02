@@ -12,7 +12,7 @@ app.config(function($routeProvider) {
 
   .when("/cashier/payment/add/", {
  
-    templateUrl: 'angularjs/views/cashier/payment/index.ctp',
+    templateUrl: 'angularjs/views/cashier/payment/add.ctp',
  
     controller: "PaymentAddController",
  
@@ -20,7 +20,7 @@ app.config(function($routeProvider) {
 
   .when("/cashier/payment/view/:id", {
  
-    templateUrl: 'angularjs/views/cashier/payment/index.ctp',
+    templateUrl: 'angularjs/views/cashier/payment/view.ctp',
  
     controller: "PaymentViewController",
  
@@ -28,7 +28,7 @@ app.config(function($routeProvider) {
 
   .when("/cashier/payment/edit/:id", {
  
-    templateUrl: 'angularjs/views/cashier/payment/index.ctp',
+    templateUrl: 'angularjs/views/cashier/payment/edit.ctp',
  
     controller: "PaymentEditController",
  

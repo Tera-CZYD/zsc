@@ -147,11 +147,11 @@ app.controller('CounselingIntakeAddController', function($scope, CounselingIntak
 
   }
 
-  // Select.get({code: 'course-list'}, function(e) {
+  Select.get({ code: 'year-term-list' },function(e){
 
-  //   $scope.course = e.data;
+    $scope.year_terms = e.data;
 
-  // });
+  });
 
   Select.get({code: 'college-program-list-all'}, function(e) {
 
@@ -193,7 +193,15 @@ app.controller('CounselingIntakeAddController', function($scope, CounselingIntak
 
       name : student.code + ' - ' + student.name,
 
-      date_of_birth : student.date_of_birth
+      date_of_birth : student.date_of_birth,
+
+      program_id : student.program_id,
+
+      year_term_id : student.year_term_id, 
+
+      contact_no: student.contact_no,
+
+      address: student.address,
 
     }; 
 
@@ -206,6 +214,14 @@ app.controller('CounselingIntakeAddController', function($scope, CounselingIntak
     $scope.data.CounselingIntake.student_name = $scope.student.name;
 
     $scope.data.CounselingIntake.birth_date = $scope.student.date_of_birth;
+
+    $scope.data.CounselingIntake.course_id = $scope.student.program_id;
+
+    $scope.data.CounselingIntake.year_term_id = $scope.student.year_term_id;
+
+    $scope.data.CounselingIntake.contact_no = $scope.student.contact_no;
+
+    $scope.data.CounselingIntake.address = $scope.student.address;
 
   }
 
@@ -268,8 +284,9 @@ app.controller('CounselingIntakeViewController', function($scope, $routeParams, 
   }
 
   $scope.load();  
+
   $scope.print = function(id){
-    // console.log(id);
+
     printTable(base + 'print/counseling_intake_form/'+id);
 
   }
@@ -344,11 +361,11 @@ app.controller('CounselingIntakeEditController', function($scope, $routeParams, 
 
   }
 
-  // Select.get({code: 'course-list'}, function(e) {
+  Select.get({ code: 'year-term-list' },function(e){
 
-  //   $scope.course = e.data;
+    $scope.year_terms = e.data;
 
-  // });
+  });
 
   Select.get({code: 'college-program-list-all'}, function(e) {
 
@@ -380,7 +397,7 @@ app.controller('CounselingIntakeEditController', function($scope, $routeParams, 
 
   }
 
-  $scope.selected = function(student) { 
+  $scope.selectedStudent = function(student) { 
 
     $scope.student = {
 
@@ -390,7 +407,11 @@ app.controller('CounselingIntakeEditController', function($scope, $routeParams, 
 
       name : student.code + ' - ' + student.name,
 
-      date_of_birth : student.date_of_birth
+      date_of_birth : student.date_of_birth,
+
+      program_id : student.program_id,
+
+      year_term_id : student.year_term_id
 
     }; 
 
@@ -398,11 +419,15 @@ app.controller('CounselingIntakeEditController', function($scope, $routeParams, 
 
   $scope.studentData = function(id) {
 
-    $scope.data.ReferralSlip.student_id = $scope.student.id;
+    $scope.data.CounselingIntake.student_id = $scope.student.id;
 
-    $scope.data.ReferralSlip.student_name = $scope.student.name;
+    $scope.data.CounselingIntake.student_name = $scope.student.name;
 
     $scope.data.CounselingIntake.birth_date = $scope.student.date_of_birth;
+
+    $scope.data.CounselingIntake.course_id = $scope.student.program_id;
+
+    $scope.data.CounselingIntake.year_term_id = $scope.student.year_term_id;
 
   }
 

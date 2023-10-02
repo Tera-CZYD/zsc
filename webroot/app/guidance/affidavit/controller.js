@@ -231,11 +231,11 @@ app.controller('AffidavitAddController', function($scope, Affidavit, Select) {
 
   });
 
-  // Select.get({code: 'course-list'}, function(e) {
+  Select.get({ code: 'year-term-list' },function(e){
 
-  //   $scope.course = e.data;
+    $scope.year_terms = e.data;
 
-  // });
+  });
 
   $scope.searchStudent = function(options) {
 
@@ -269,7 +269,13 @@ app.controller('AffidavitAddController', function($scope, Affidavit, Select) {
 
       code : student.code,
 
-      name : student.name 
+      name : student.name,
+
+      program_id : student.program_id,
+
+      year_term_id : student.year_term_id,
+
+      address : student.address
 
     }; 
 
@@ -282,6 +288,12 @@ app.controller('AffidavitAddController', function($scope, Affidavit, Select) {
     $scope.data.Affidavit.student_name = $scope.student.name;
 
     $scope.data.Affidavit.student_no = $scope.student.code;
+
+    $scope.data.Affidavit.program_id = $scope.student.program_id;
+
+    $scope.data.Affidavit.year_term_id = $scope.student.year_term_id;
+
+    $scope.data.Affidavit.address = $scope.student.address;
 
   }
 
@@ -474,7 +486,11 @@ app.controller('AffidavitEditController', function($scope, $routeParams, Affidav
 
       code : student.code,
 
-      name : student.name 
+      name : student.name,
+
+      program_id : student.program_id,
+
+      year_term_id : student.year_term_id
 
     }; 
 
@@ -487,6 +503,10 @@ app.controller('AffidavitEditController', function($scope, $routeParams, Affidav
     $scope.data.Affidavit.student_name = $scope.student.name;
 
     $scope.data.Affidavit.student_no = $scope.student.code;
+
+    $scope.data.Affidavit.program_id = $scope.student.program_id;
+
+    $scope.data.Affidavit.year_term_id = $scope.student.year_term_id;
 
   }
 

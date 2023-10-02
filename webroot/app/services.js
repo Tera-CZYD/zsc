@@ -138,7 +138,7 @@ app.factory("ChangeProgram", function($resource, $http) {
   
   $http.defaults.headers.common['X-CSRF-Token'] = csrfToken;
 
-  return $resource( api + 'ChangePrograms/add', {}, { 
+  return $resource( api + 'ChangePrograms/add/:id', {}, { 
 
     query: { method: 'GET', isArray: false },
 

@@ -68,7 +68,7 @@
           <div class="col-md-12">
             <div class="row">
               <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                <a id="pageAdd" href="#/registrar/completion/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
+                <a id="pageAdd" href="#/registrar/completion/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> APPLY</a>
                 <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
                 <button id="pagePrint" ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
                 <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
@@ -95,8 +95,7 @@
                     <th class="text-center"> DATE </th>
                     <th class="text-center"> REQUIREMENT </th>
                     <th class="text-center"> INSTRUCTOR </th>
-                    <th class="text-center"> SEMESTER </th>
-                    <th class="text-center"> YEAR </th>
+                    <th class="text-center"> YEAR LEVEL & SEMESTER </th>
                     <th class="w90px"></th>
                   </tr>
                 </thread>
@@ -109,7 +108,6 @@
                     <td class="text-center">{{ data.requirement }}</td>
                     <td class="text-center">{{ data.instructor }}</td>
                     <td class="text-center">{{ data.semester }}</td>
-                    <td class="text-center">{{ data.year }}</td>
                     <td>
                       <div class="btn-group btn-group-xs">
                         <a id="pageView" href="#/registrar/completion/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>

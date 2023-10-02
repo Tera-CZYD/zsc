@@ -2,7 +2,7 @@
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
-        <h4 class="header-title">ADDING & DROPPING SUBJECT MANAGEMENT</h4>
+        <h4 class="header-title">DROPPING SUBJECT</h4>
         <div class="clearfix"></div><hr>
         <!-- nav tab start -->
           <div class="col-lg-12">
@@ -54,7 +54,7 @@
                 <div class="col-md-12">
                   <div class="row">
                   <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                      <a href="#/registrar/adding-dropping-subject/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
+                      <a href="#/registrar/adding-dropping-subject/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> APPLY</a>
                       <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
                         <button ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>

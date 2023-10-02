@@ -24,19 +24,33 @@
         <div class="clearfix"></div><hr>
         <form id="form">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
               <div class="form-group">
                 <label> CODE <i class="required">*</i></label>
                 <input type="text" class="form-control" ng-model="data.Room.code" data-validation-engine="validate[required]">
               </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-6" >
+              <div class="form-group">
+                <label> COLLEGE <i class="required">*</i></label>
+                <select selectize style="height: 100px" ng-model="data.Room.college_id" ng-options="opt.id as opt.value for opt in colleges" ng-change="getCollegeProgram(data.BlockSection.college_id)" data-validation-engine="validate[required]">
+                  <option value=""></option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
               <div class="form-group">
                 <label> NAME <i class="required">*</i></label>
                 <input type="text" class="form-control" ng-model="data.Room.name" data-validation-engine="validate[required]">
               </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label> SIZE <i class="required">*</i></label>
+                <input type="text" class="form-control" ng-model="data.Room.size" data-validation-engine="validate[required]">
+              </div>
+            </div>
+            <div class="col-md-6">
               <div class="form-group">
                 <label> BUILDING <i class="required">*</i></label>
                 <select class="form-control" ng-model="data.Room.building_id" ng-options="opt.id as opt.value for opt in building"
@@ -45,7 +59,7 @@
                 </select>
               </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-6">
               <div class="form-group">
                 <label> ROOM TYPE <i class="required">*</i></label>
                 <select class="form-control" ng-model="data.Room.room_type_id" ng-options="opt.id as opt.value for opt in room_type"
@@ -56,18 +70,12 @@
             </div>
             <div class="col-md-12">
               <div class="form-group">
-                <label> SIZE <i class="required">*</i></label>
-                <input type="text" class="form-control" ng-model="data.Room.size" data-validation-engine="validate[required]">
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-group">
                 <label> CAPACITY <i class="required">*</i></label>
                 <input type="number" class="form-control" ng-model="data.Room.capacity" number data-validation-engine="validate[required]">
               </div>
             </div>
           </div>
-        </form>
+        </form> 
         <div class="clearfix"></div><hr>
         <div class="row">
           <div class="col-md-12">

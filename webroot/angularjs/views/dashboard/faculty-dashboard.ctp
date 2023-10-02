@@ -208,7 +208,7 @@
   <div class="col-md-4">
     <div class="card" style="height:400px;">
       <div class="card-body" style="overflow-y:scroll;">
-        <p class="card-title font-weight-bold" style="font-size:15px;">Schedule For Today</p>
+        <p class="card-title font-weight-bold" style="font-size:15px;">SCHEDULE FOR TODAY</p>
 
           <div class="tl-item" ng-repeat = "sched in scheds">
             <div class="tl-dot b-primary"></div>
@@ -216,7 +216,17 @@
               <div class="">{{sched.course}}</div>
               <div class="tl-date text-muted mt-1">{{sched.block_section_schedule.block_section.program}} - {{sched.section}}</div>
               <div class="tl-date text-muted mt-1">{{sched.room}} - {{sched.time_start}} - {{sched.time_end}}</div>
-
+            </div>
+          </div>
+          <div class="single-table" ng-show="scheds == null || scheds == ''">
+            <div class="table-responsive">
+              <table class="table table-hover text-center">
+                <thead>
+                  <tr class="table-info">
+                    <th style="font-size:12px;font-weight: normal;"> No Class for today</th>
+                  </tr>
+                </thead>
+              </table>
             </div>
           </div>
         <div class="clearfix"></div>
@@ -225,13 +235,13 @@
   </div>
   <div class="col-md-4">
     <div class="card" style="height:400px;">
-      <div class="card-body">
+      <div class="card-body" style="overflow-y:scroll;">
         <p class="card-title font-weight-bold" style="font-size:15px;">CLEARANCE STATUS OF STUDENTS</p>
         <div class="single-table">
           <div class="table-responsive">
             <table class="table table-hover text-center">
               <thead>
-                <tr class="table-secondary">
+                <tr class="table-info">
                   <th class="text-left" style="font-size:12px;font-weight: normal;"> REMARKS </th>
                   <th class="text-center" style="font-size:12px;font-weight: normal;"> PENDING </th>
                   <th class="text-center" style="font-size:12px;font-weight: normal;"> INCOMPLETE </th>
@@ -255,12 +265,54 @@
     </div>
   </div>
   <div class="col-md-4">
-    <div class="card" style="height:400px;">
-      <div class="card-body">
-        <div id="container" style="height:350px;"></div>
-        <div class="clearfix"></div>
+
+    <div>
+      <div class="card" style="height:188px;">
+        <div class="card-body" style="overflow-y:scroll;">
+          <div class="single-table">
+            <div class="table-responsive">
+              <table class="table table-hover text-center">
+                <thead>
+                  <tr class="table-info">
+                    <th style="font-size:12px;font-weight: normal;"> MEMORANDUMS </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="memo in memos">
+                    <td><span ><a href="{{ memo.memo.memorandum_images[0].imageSrc }}">{{ memo.memo.title }}</a></span></td>
+                   
+                  </tr>
+                
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="height:188px;">
+        <div class="card-body" style="overflow-y:scroll;">
+          <div class="single-table">
+            <div class="table-responsive">
+              <table class="table table-hover text-center">
+                <thead>
+                  <tr class="table-info">
+                    <th style="font-size:12px;font-weight: normal;"> ANNOUNCEMENTS </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="announcement in announcements">
+                    <td><span ><a href="{{ announcement.img[0].imageSrc }}">{{ announcement.title }}</a></span></td>
+                   
+                  </tr>
+                
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
     
   </div>
   

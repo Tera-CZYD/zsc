@@ -157,9 +157,7 @@ class MedicalStudentProfilesController extends AppController {
 
       if (!empty($main) && isset($main['have'])) {
 
-        $treatment = $main['have'];
-
-        $medicalStudentProfileEntity->set('treatment', $treatment);
+        $medicalStudentProfileEntity['treatment'] = @$main['have'][0].','.@$main['have'][1].','.@$main['have'][2].','.@$main['have'][3].','.@$main['have'][4].','.@$main['have'][5].','.@$main['have'][6].','.@$main['have'][7].','.@$main['have'][8].','.@$main['have'][9].','.@$main['have'][10].','.@$main['have'][11].','.@$main['have'][12].','.@$main['have'][13].','.@$main['have'][14].','.@$main['have'][15].','.@$main['have'][16].','.@$main['have'][17].','.@$main['have'][18];
 
         $this->MedicalStudentProfiles->save($medicalStudentProfileEntity);
 
