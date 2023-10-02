@@ -202,19 +202,19 @@
           <?php endif ?>
 
           <?php if (hasAccess('guidance and counseling/menu', $currentUser)): ?>
-            <li class="nav-link-side nav-referral-slip nav-counseling-appointment nav-attendance-counseling nav-counseling-type nav-student-profile nav-counseling-intake nav-promissory-note nav-good-moral nav-affidavit nav-gco-evaluation nav-calendar-activities nav-customer-satisfaction nav-participant-evaluation nav-student-exit nav-student-behavior"><a><i class="fa fa-users"></i> Guidance & Counseling </a>
-              <ul class="nav child_menu collapse collapse-referral-slip collapse-counseling-appointment collapse-attendance-counseling collapse-counseling-type collapse-counseling-intake collapse-promissory-note collapse-good-moral collapse-affidavit collapse-gco-evaluation collapse-calendar-activities collapse-customer-satisfaction collapse-participant-evaluation collapse-student-exit collapse-student-profile collapse-student-behavior">
+            <li class="nav-link-side nav-counseling-appointment nav-attendance-counseling nav-counseling-type nav-student-profile nav-counseling-intake nav-promissory-note nav-good-moral nav-affidavit nav-gco-evaluation nav-calendar-activities nav-customer-satisfaction nav-participant-evaluation nav-student-exit nav-student-behavior"><a><i class="fa fa-users"></i> Guidance & Counseling </a>
+              <ul class="nav child_menu collapse collapse-counseling-appointment collapse-attendance-counseling collapse-counseling-type collapse-counseling-intake collapse-promissory-note collapse-good-moral collapse-affidavit collapse-gco-evaluation collapse-calendar-activities collapse-customer-satisfaction collapse-participant-evaluation collapse-student-exit collapse-student-profile collapse-student-behavior">
 
                 <?php if (hasAccess('student profile/index', $currentUser)): ?>
                 <li class="nav-link-side nav-student-profile">
                   <a href="#/guidance/student-profile" onclick="change('student-profile')">Student Profile</a>
                 </li>
               <?php endif ?>
-              <?php if (hasAccess('referral slip/index', $currentUser)): ?>
+<!--               <?php if (hasAccess('referral slip/index', $currentUser)): ?>
                 <li class="nav-link-side nav-referral-slip">
                   <a href="#/guidance/referral-slip" onclick="change('referral-slip')">Referral Slip</a>
                 </li>
-              <?php endif ?>
+              <?php endif ?> -->
               <?php if (hasAccess('counseling appointment/index', $currentUser)): ?>
                 <li class="nav-link-side nav-counseling-appointment">
                   <a href="#/guidance/admin-counseling-appointment" onclick="change('counseling-appointment')">Counseling Appointment</a>
@@ -289,8 +289,8 @@
           <?php endif ?>
 
           <?php if (hasAccess('faculty/menu', $currentUser)): ?>
-            <li class="nav-link-side nav-faculty-clearance nav-student-clearance nav-faculty-management nav-academic-rank nav-grades nav-program-advisers nav-student-attendance nav-faculty-student-profile"><a><i class="fa fa-user"></i> Faculty </a>
-              <ul class="nav child_menu collapse collapse-faculty-clearance collapse-student-clearance collapse-faculty-management collapse-grades collapse-program-advisers collapse-student-attendance collapse-faculty-student-profile collapse-academic-rank">
+            <li class="nav-link-side nav-faculty-clearance nav-student-clearance nav-faculty-management nav-academic-rank nav-grades nav-program-advisers nav-student-attendance nav-faculty-student-profile nav-referral-slip nav-appointment-slip"><a><i class="fa fa-user"></i> Faculty </a>
+              <ul class="nav child_menu collapse collapse-faculty-clearance collapse-student-clearance collapse-faculty-management collapse-grades collapse-program-advisers collapse-student-attendance collapse-faculty-student-profile collapse-academic-rank collapse-referral-slip collapse-appointment-slip">
                 <?php if (hasAccess('student profile/index', $currentUser)): ?>
                   <li class="nav-link-side nav-faculty-student-profile">
                     <a href="#/faculty/student-profile" onclick="change('faculty-student-profile')"> Student Profile </a>
@@ -343,6 +343,17 @@
                     <a href="#/faculty/academic-rank" onclick="change('academic-rank')"> Academic Rank Management </a>
                   </li>
                 <?php endif ?>
+                <?php if (hasAccess('referral slip/index', $currentUser)): ?>
+                 <li class="nav-link-side nav-referral-slip">
+                   <a href="#/faculty/referral-slip" onclick="change('referral-slip')">Referral Slip</a>
+                 </li>
+               <?php endif ?>
+               <?php if (hasAccess('appointment slip/index', $currentUser)): ?>
+                 <li class="nav-link-side nav-appointment-slip">
+                   <a href="#/faculty/appointment-slip" onclick="change('appointment-slip')">Appointment Slip</a>
+                 </li>
+               <?php endif ?>
+
               </ul>
             </li>
           <?php endif ?>

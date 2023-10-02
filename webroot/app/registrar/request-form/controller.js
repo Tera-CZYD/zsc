@@ -383,7 +383,7 @@ app.controller('RequestFormAddController', function($scope, RequestForm, Select,
 
         if(q.data){
 
-          Select.get({code: 'check-transaction', purpose : $scope.data.RequestForm.purpose_id, student_id : $scope.data.RequestForm.student_id}, function(e) {
+          Select.get({code: 'check-transaction',data: $scope.data, purpose : $scope.data.RequestForm.purpose_id, student_id : $scope.data.RequestForm.student_id}, function(e) {
 
             if(e.data){
 
@@ -583,6 +583,12 @@ app.controller('RequestFormEditController', function($scope, $routeParams, Reque
   //   $scope.course = e.data;
 
   // });
+
+  Select.get({code: 'college-program-list-all'}, function(e) {
+
+    $scope.college_program = e.data;
+
+  });
 
   Select.get({ code: 'year-term-list' },function(e){
 

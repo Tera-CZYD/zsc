@@ -24,6 +24,12 @@ class RequestedFormPaymentsTable extends Table{
 
     ]);
 
+    $this->belongsTo('RequestForms', [
+
+      'foreignKey' => 'request_form_id', 
+
+    ]);
+
     // $this->belongsTo('Students', [
 
     //   'foreignKey' => 'student_id', 
