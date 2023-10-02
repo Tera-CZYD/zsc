@@ -51,8 +51,8 @@
 
           <li class="nav-link-side nav-schedule"><a href="#/student/schedule" onclick="change('schedule')"><i class="fa fa-table"></i> Schedule </a></li>
 
-          <li class="nav-link-side nav-request-form nav-club nav-transferee nav-adding-dropping-subject nav-student-club"><a><i class="fa fa-briefcase"></i> Registrar </a>
-            <ul class="nav child_menu collapse collapse-request-form collapse-club collapse-student-club collapse-transferee collapse-adding-dropping-subject">
+          <li class="nav-link-side nav-request-form nav-club nav-transferee nav-adding-dropping-subject nav-student-club nav-affidavit-of-loss"><a><i class="fa fa-briefcase"></i> Registrar </a>
+            <ul class="nav child_menu collapse collapse-request-form collapse-club collapse-student-club collapse-transferee collapse-adding-dropping-subject collapse-affidavit-of-loss">
 
               <li class="nav-link-side nav-transferee">
                 <a href="#/registrar/transferee" onclick="change('transferee')">School Transfer Request</a>
@@ -68,6 +68,10 @@
               
               <li class="nav-link-side nav-student-club">
                 <a href="#/registrar/student-club" onclick="change('student-club')">Student Clubs Application</a>
+              </li>
+
+              <li class="nav-link-side nav-affidavit-of-loss">
+                <a href="#/registrar/affidavit-of-loss" onclick="change('affidavit-of-loss')">Affidavit Of Loss</a>
               </li>
 
               <!-- <li class="nav-link-side nav-club">
