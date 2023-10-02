@@ -42,6 +42,14 @@ class MainController extends AppController {
 
     parent::beforeFilter($event);
 
+    $action = $this->getRequest()->getParam('action');
+
+    if (!method_exists($this, $action)) {
+
+      return $this->redirect(['controller' => 'Error', 'action' => 'missingAction']); 
+
+    }
+
     $this->Auth->allow(array(
 
       'login',

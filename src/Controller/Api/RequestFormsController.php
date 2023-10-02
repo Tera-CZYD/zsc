@@ -196,6 +196,10 @@ class RequestFormsController extends AppController {
 
     $data['RequestForm']['date'] = isset($data['RequestForm']['date']) ? fdate($data['RequestForm']['date'],'Y-m-d') : null;
 
+    $data['RequestForm']['year'] = isset($data['RequestForm']['date']) ? date('Y', strtotime($data['RequestForm']['date'])) : null;
+
+    $data['RequestForm']['claim'] = ($data['RequestForm']['claim'] == true) ? 1 : 0; 
+
     $uploadedFile = $this->request->getData('file');
 
       if ($uploadedFile instanceof \Laminas\Diactoros\UploadedFile && $uploadedFile->getError() === UPLOAD_ERR_OK) {
@@ -500,10 +504,15 @@ class RequestFormsController extends AppController {
   public function view($id = null){
 
     $data['RequestForm'] = $this->RequestForms->find()
+
       ->contain([
+
           'CollegePrograms'=> [
+
               'conditions' => ['CollegePrograms.visible' => 1],
+
             ]
+            
         ])
 
       ->where([
@@ -559,6 +568,8 @@ class RequestFormsController extends AppController {
     $data = json_decode($requestData, true);
 
     $data['RequestForm']['date'] = isset($data['RequestForm']['date']) ? fdate($data['RequestForm']['date'],'Y-m-d') : NULL;
+
+    $data['RequestForm']['claim'] = ($data['RequestForm']['claim'] == true) ? 1 : 0; 
 
     $uploadedFile = $this->request->getData('file');
 

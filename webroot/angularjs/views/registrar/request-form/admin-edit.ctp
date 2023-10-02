@@ -212,21 +212,21 @@
                     <div class="form-group">
                       <label> REQUESTOR <i class="required">*</i></label><br>
                       <label>
-                        <input type="radio" ng-model="data.AffidavitOfLoss.claim" ng-value="false" value="0">
+                        <input type="radio" ng-model="data.RequestForm.claim" ng-value="false" value="0">
                         Claim
                       </label>&nbsp; &nbsp;&nbsp; &nbsp;
                       <label>
-                        <input type="radio" ng-model="data.AffidavitOfLoss.claim" ng-value="true" value="1">
+                        <input type="radio" ng-model="data.RequestForm.claim" ng-value="true" value="1">
                         Authorized Person
                       </label>
                     </div>
                   </div>
 
-                  <div class="col-md-12" ng-show="data.AffidavitOfLoss.claim">
+                  <div class="col-md-12" ng-show="data.RequestForm.claim">
                     <div class="clearfix"></div><hr>
                   </div>
 
-                  <div class="col-md-12" ng-show="data.AffidavitOfLoss.claim">
+                  <div class="col-md-12" ng-show="data.RequestForm.claim">
                     <label>Authorization letter (JPEG or PNG)</label>
                     <h5>• ID of the student should be attached in lower right corner of the authorization letter.</h5>
                     <ul class="list-group mb-2">

@@ -320,6 +320,10 @@
 
     'faculty/academic-rank',
 
+    'faculty/referral-slip',
+
+    'faculty/appointment-slip',
+
     //COLLEGES
 
     'college',
