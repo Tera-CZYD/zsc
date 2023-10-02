@@ -56,9 +56,9 @@ class CounselingIntakesTable extends Table
 
         Student.date_of_birth,
 
-        CollegeProgram.code,
+        CONCAT(Student.first_name, ', ', IFNULL(Student.last_name,''),'', IFNULL(CONCAT(' ',Student.middle_name), '')) as full_name,
 
-        CONCAT(Student.first_name, ', ', IFNULL(Student.last_name,''),'', IFNULL(CONCAT(' ',Student.middle_name), '')) as full_name
+        YearLevelTerm.description
 
       FROM
 
@@ -66,8 +66,7 @@ class CounselingIntakesTable extends Table
 
         students as Student ON CounselingIntake.student_id = Student.id LEFT JOIN 
 
-        college_programs as CollegeProgram ON CounselingIntake.course_id = CollegeProgram.id
-
+        year_level_terms as YearLevelTerm ON YearLevelTerm.id = Student.year_term_id
 
       WHERE
 
@@ -75,19 +74,13 @@ class CounselingIntakesTable extends Table
 
         Student.visible = true  AND
 
-        CollegeProgram.visible = true AND 
-
         (
  
-
           CounselingIntake.student_name             LIKE  '%$search%' OR
-
-          CounselingIntake.year_level_term          LIKE  '%$search%' OR
 
           CounselingIntake.address                  LIKE  '%$search%' OR
 
           CounselingIntake.contact_no               LIKE  '%$search%' 
-
 
         )
 
@@ -123,9 +116,9 @@ class CounselingIntakesTable extends Table
 
         Student.date_of_birth,
 
-        CollegeProgram.code,
+        CONCAT(Student.first_name, ', ', IFNULL(Student.last_name,''),'', IFNULL(CONCAT(' ',Student.middle_name), '')) as full_name,
 
-        CONCAT(Student.first_name, ', ', IFNULL(Student.last_name,''),'', IFNULL(CONCAT(' ',Student.middle_name), '')) as full_name
+        YearLevelTerm.description
 
       FROM
 
@@ -133,8 +126,7 @@ class CounselingIntakesTable extends Table
 
         students as Student ON CounselingIntake.student_id = Student.id LEFT JOIN 
 
-        college_programs as CollegeProgram ON CounselingIntake.course_id = CollegeProgram.id
-
+        year_level_terms as YearLevelTerm ON YearLevelTerm.id = Student.year_term_id
 
       WHERE
 
@@ -142,19 +134,13 @@ class CounselingIntakesTable extends Table
 
         Student.visible = true  AND
 
-        CollegeProgram.visible = true AND 
-
         (
  
-
           CounselingIntake.student_name             LIKE  '%$search%' OR
-
-          CounselingIntake.year_level_term          LIKE  '%$search%' OR
 
           CounselingIntake.address                  LIKE  '%$search%' OR
 
           CounselingIntake.contact_no               LIKE  '%$search%' 
-
 
         )
 
@@ -228,15 +214,13 @@ class CounselingIntakesTable extends Table
 
         count(*) as count
 
-      
       FROM
 
         counseling_intakes as CounselingIntake LEFT JOIN
 
         students as Student ON CounselingIntake.student_id = Student.id LEFT JOIN 
 
-        college_programs as CollegeProgram ON CounselingIntake.course_id = CollegeProgram.id
-
+        year_level_terms as YearLevelTerm ON YearLevelTerm.id = Student.year_term_id
 
       WHERE
 
@@ -244,14 +228,10 @@ class CounselingIntakesTable extends Table
 
         Student.visible = true  AND
 
-        CollegeProgram.visible = true AND 
-
         (
  
 
           CounselingIntake.student_name             LIKE  '%$search%' OR
-
-          CounselingIntake.year_level_term          LIKE  '%$search%' OR
 
           CounselingIntake.address                  LIKE  '%$search%' OR
 

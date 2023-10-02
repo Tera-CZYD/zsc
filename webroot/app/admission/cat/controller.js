@@ -635,7 +635,7 @@ app.controller('CatController', function($scope, Select, StudentApplication, Stu
 
     if(valid){
 
-      if(data.room !== '' && data.room !== null && data.room !== undefined){
+      // if(data.room !== '' && data.room !== null && data.room !== undefined){
 
         StudentApplicationSchedule.save({ id : $scope.student_id },$scope.schedule, function(e){
 
@@ -659,17 +659,17 @@ app.controller('CatController', function($scope, Select, StudentApplication, Stu
 
         });
 
-      }else{
+      // }else{
 
-        $.gritter.add({
+      //   $.gritter.add({
 
-          title: 'Warning!',
+      //     title: 'Warning!',
 
-          text: 'Please select room.'
+      //     text: 'Please select room.'
 
-        });
+      //   });
 
-      }
+      // }
 
     }
 
@@ -754,8 +754,30 @@ app.controller("CatViewController", function ($scope, $routeParams, StudentAppli
       $scope.data = e.data;
 
       $scope.applicationImage = e.applicationImage;
+
+      if($scope.data.StudentApplication.psa == 1){
+
+        $scope.data.StudentApplication.psa = true
+
+      }else{
+
+        $scope.data.StudentApplication.psa = false        
+
+      }
+
+      if($scope.data.StudentApplication.form_137 == 1){
+
+        $scope.data.StudentApplication.form_137 = true
+
+      }else{
+
+        $scope.data.StudentApplication.form_137 = false
+
+      }
    
     });
+
+
   
   };
 
@@ -764,6 +786,8 @@ app.controller("CatViewController", function ($scope, $routeParams, StudentAppli
     printTable(base + "print/cat_application_form/" + $scope.id); 
 
   };
+
+
 
     $scope.updatePsa = function (data) {
 
@@ -838,6 +862,8 @@ app.controller("CatViewController", function ($scope, $routeParams, StudentAppli
   };
 
   $scope.load();
+
+
 
   $scope.qualify = function(data){  
 

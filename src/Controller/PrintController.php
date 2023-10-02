@@ -49,12 +49,8 @@ class PrintController extends AppController {
 
     $this->loadModel('Students');
 
-<<<<<<< HEAD
-
     $this->loadModel('AddingDroppingSubjects');
 
-=======
->>>>>>> 923ec1a123e3017fd297a924b718554ac68011b1
     $this->loadModel('ClassSchedules');
 
     $this->loadModel('BlockSections');
@@ -9627,10 +9623,10 @@ class PrintController extends AppController {
     // elseif($pdf->GetY() >= 125.5){
     //   $pdf->Ln(4);
     // }
-    $pdf->Ln(16);
+    $pdf->Ln(20);
     $pdf->Cell(117);
     $pdf->Cell(60,5,$data['NurseProfile']['name'],0,0,'C');
-    $pdf->Ln(6);
+    $pdf->Ln(2);
     $pdf->SetFont("Arial", '', 11);
     $pdf->Cell(19.5,5,'',0,0,'L');
     $pdf->Cell(9,5,'Thank you.',0,0,'L');
@@ -10282,7 +10278,7 @@ class PrintController extends AppController {
     $pdf->AddPage("P", "Legal", 0);
     // $pdf->Image($this->base .'/assets/img/dental_form2.png',0,0,215.9,355.6);
 
-    $pdf->Ln(20);
+    $pdf->Ln(10);
     $pdf->SetFont("Arial", 'B', 11);
     $pdf->Cell(35,5,'',0,0,'L');
     $pdf->Cell(10,5,'ORAL HEALTH CONDITION',0,0,'C');
@@ -10290,7 +10286,7 @@ class PrintController extends AppController {
     $pdf->Cell(10,5,'DENTAL HEALTH CONDITION',0,0,'C');
     $pdf->Ln(10);
 
-        $dentalImages = [];
+      $dentalImages = [];
 
       if (!empty($data['DentalImage'])) {
           foreach ($data['DentalImage'] as $image) {
@@ -10298,7 +10294,7 @@ class PrintController extends AppController {
                   $dentalImages[] = [
                       'imageSrc' => '/uploads/dental/' . $id . '/' . $image['images'],
                       'name' => $image['images'],
-                      'id' => $image['dental_id'] ?? null,
+                      'id' => $image['student_profile_id'] ?? null,
                   ];
               }
           }
@@ -10312,7 +10308,7 @@ class PrintController extends AppController {
         }
 
         $xPosition = 125;
-        $yPosition = 20;
+        $yPosition = 30;
         $imageCount = 0;
         $imageLimit = 2; // Set the limit to 2 images
 
@@ -10542,7 +10538,7 @@ class PrintController extends AppController {
     $pdf->Cell(40, 5, 'PROPERTY NAME', 1, 0, 'C', 1);
     $pdf->Cell(35, 5, 'DATE', 1, 0, 'C', 1);
     $pdf->Cell(40, 5, 'MANUFACTURING DATE', 1, 0, 'C', 1);
-    $pdf->Cell(30, 5, 'BATCH NO', 1, 0, 'C', 1);
+    $pdf->Cell(30, 5, 'BATCH NUMBER', 1, 0, 'C', 1);
     $pdf->Cell(35, 5, 'EXPIRATION DATE', 1, 0, 'C', 1);
 
     $pdf->Ln();
@@ -18564,35 +18560,39 @@ class PrintController extends AppController {
 
         'YearLevelTerms',
 
-        'Colleges' => function ($q) {
+        'Colleges' => array(
 
-            return $q->where(['Colleges.visible' => 1]);
+          'conditions' => ['Colleges.visible' => 1]
 
-        },
+        ),
 
-        'CollegePrograms' => function ($q) {
+        'CollegePrograms' => array(
 
-            return $q->where(['CollegePrograms.visible' => 1]);
+          'conditions' => ['CollegePrograms.visible' => 1]
 
-        },
+        ),
 
-        'StudentEnrolledCourses' => function ($q) {
+        'StudentEnrolledCourses' => array(
 
-            return $q->where(['StudentEnrolledCourses.visible' => 1]);
+          'conditions' => [
 
-        },
+            'StudentEnrolledCourses.visible' => 1,
 
-        'StudentEnrolledUnits' => function ($q) {
+          ]
 
-            return $q->where(['StudentEnrolledUnits.visible' => 1]);
+        ),
 
-        },
+        'StudentEnrolledUnits' => array(
 
-        'StudentEnrollments' => function ($q) {
+          'conditions' => ['StudentEnrolledUnits.visible' => 1]
 
-            return $q->where(['StudentEnrollments.visible' => 1]);
+        ),
 
-        },
+        'StudentEnrollments' => array(
+
+          'conditions' => ['StudentEnrollments.visible' => 1]
+
+        ),
 
       ])
 
@@ -18858,7 +18858,7 @@ class PrintController extends AppController {
 
             $value['section'],
 
-            $block_section_course['faculty_name']
+            $block_section_course['faculty_name'] != null ? $block_section_course['faculty_name'] : 'To be assigned'
 
           ));
 
@@ -20006,11 +20006,11 @@ class PrintController extends AppController {
 
                 foreach ($prerequisites as $index => $datas) {
 
-                  $courses = $this->Courses->get($datas['CollegeProgramPrerequisite']['course_id']);
+                  $courses = $this->Courses->get($datas['course_id']);
                   
                   $course_prerequisites[] = array(
 
-                    'course'            => $courses['Course']['title'],
+                    'course'            => $courses['title'],
 
                   );
 
@@ -20378,7 +20378,7 @@ class PrintController extends AppController {
 
     $pdf->ln(4);
     $pdf->Cell(5.4);
-    $pdf->Cell(20,5,'Authoruty to Operate Program:');
+    $pdf->Cell(20,5,'Authority to Operate Program:');
     $pdf->Ln(4);
     $y = $pdf->Gety();
     $pdf->Cell(15);
@@ -20393,7 +20393,7 @@ class PrintController extends AppController {
     $pdf->SetY($y);
     $pdf->Cell(5.4);
     $pdf->Cell(90);
-    $pdf->Cell(27,5,'This Program requires:',0,0,'L');
+    $pdf->Cell(27,5,'This program requires:',0,0,'L');
     $pdf->Cell(21,5,'Computer Course:',0,0,'L');
     $pdf->Cell(15,5,'( ) Yes ( ) No',0,0,'L');
     $pdf->Cell(13);
@@ -25345,7 +25345,7 @@ class PrintController extends AppController {
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
     $pdf->SetFont("Times", 'B', 12);
-    $pdf->Cell(0,5,'CONSULTATION REPORT',0,0,'C');
+    $pdf->Cell(0,5,'EMPLOYEE CONSULATION FREQUENCY REPORT',0,0,'C');
     $pdf->Ln(10);
     $pdf->SetFont("Times", 'B', 9);
     $pdf->Cell(10,5,'#',1,0,'C');
