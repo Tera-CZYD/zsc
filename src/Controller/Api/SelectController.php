@@ -2784,8 +2784,6 @@ class SelectController extends AppController {
 
             $cav = isset($data->RequestForm->cav) ? $data->RequestForm->cav : null; 
 
-            // debug($cav);
-
             if($value['cav'] == $cav) {
 
               $datas = 0;
@@ -2868,7 +2866,7 @@ class SelectController extends AppController {
 
       }
 
-      // debug($datas);
+      // debug($tmp);
 
     }else if ($code == 'check-student-ledger') {
 

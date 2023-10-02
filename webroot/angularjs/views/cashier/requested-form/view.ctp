@@ -57,8 +57,8 @@
           </div>
           <div class="col-md-12">
             <div class="clearfix"></div><hr>
-
-            <div class="col-md-12" ng-if="data.RequestedFormPaymentSub">
+            <div class="row">
+            <div class="col" ng-if="data.RequestedFormPaymentSub">
             <table class="table table-bordered table-striped table-hover">
               <thead>
                 <tr class="bg-info">
@@ -83,6 +83,13 @@
             </table>
           </div>
 
+        <div class="col-md-4" style="display: flex; justify-content: center;" ng-if="data.RequestForm.claim == 1">
+
+                <a href="uploads/request-form/{{data.RequestForm.id}}/{{ data.RequestForm.image }}"><img src="uploads/request-form/{{data.RequestForm.id}}/{{ data.RequestForm.image }}" class="img-responsive" style="max-height: 50vh; max-width: 70%;" /></a>
+
+          </div>
+        </div>
+
           <div class="row">
           <div class="col" ng-if="data.AffidavitOfLoss">
             <div class="header-title">AFFIDAVIT OF LOSS INFORMATION</div>
@@ -104,7 +111,7 @@
                 <tr>
                   <th class="text-right"> AMOUNT : </th>
                   <td class="italic">{{ data.AffidavitOfLoss.amount }}</td>
-                </tr>
+                </tr> 
                 <tr>
                   <th class="text-right"> REMARKS : </th>
                   <td class="italic"><input class="form-control" ng-if="data.RequestedFormPayment.remarks == null" type="text" ng-model="data.remarks">{{ data.RequestedFormPayment.remarks }}</td>
@@ -114,7 +121,7 @@
             </div>
           </div>
 
-          <div class="col-md-4" style="display: flex; justify-content: center;" ng-show="data.AffidavitOfLoss.claim == 1">
+          <div class="col-md-4" style="display: flex; justify-content: center;" ng-if="data.AffidavitOfLoss.claim == 1">
 
                 <a href="uploads/affidavit-of-loss/{{data.AffidavitOfLoss.id}}/{{ data.AffidavitOfLoss.image }}"><img src="uploads/affidavit-of-loss/{{data.AffidavitOfLoss.id}}/{{ data.AffidavitOfLoss.image }}" class="img-responsive" style="max-height: 50vh; max-width: 70%;" /></a>
 
