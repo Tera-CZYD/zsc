@@ -6,8 +6,6 @@ app.controller('DashboardController', function($scope,Select,StudentApplicationM
 
     $scope.data = e.data;
 
-    console.log($scope.data);
-
     if($scope.data.for_medical_interview == 1 && $scope.data.for_schedule == 0){
 
       $('#medical_interview').validationEngine('attach');
@@ -33,8 +31,6 @@ app.controller('DashboardController', function($scope,Select,StudentApplicationM
     options = typeof options !== 'undefined' ?  options : {};
 
     Dashboard.query(options, function(e) {
-
-      // console.log(e);
 
       if (e.ok) {
 
@@ -264,6 +260,8 @@ app.controller('DashboardController', function($scope,Select,StudentApplicationM
       bootbox.confirm('Are you sure you want to submit request?', function(b){
 
         if(b) {
+
+          data.id = currentUser.student.student_applicant_id;
 
           StudentApplicationMedicalRequest.save(data, function(e){
 

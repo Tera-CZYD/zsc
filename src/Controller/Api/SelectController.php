@@ -3252,7 +3252,7 @@ class SelectController extends AppController {
 
         $student_details = $connection->execute($tmp)->fetchAll('assoc');
 
-        $for_medical_interview = $student_details[0]['approve'] == 1 ? 1 : 0;
+        $for_medical_interview = $student_details[0]['approve'] == 3 ? 1 : 0;
 
         $for_schedule = $student_details[0]['status'] == 'REQUESTED' ? 1 : 0;
 
