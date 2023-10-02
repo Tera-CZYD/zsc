@@ -137,6 +137,34 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
     }
 
+    $scope.dropped = function(options) {
+
+      options = typeof options !== 'undefined' ?  options : {};
+
+      // options['per_student'] = 1;
+
+      options['status'] = 3;
+
+      StudentClearance.query(options, function(e) {
+
+        if (e.ok) {
+
+          $scope.datasDropped = e.data;
+
+          $scope.conditionsPrintDropped = e.conditionsPrint;
+
+          // paginator
+
+          $scope.paginatorDropped  = e.paginator;
+
+          $scope.pagesDropped = paginator($scope.paginatorDropped, 5);
+
+        }
+
+      });
+
+    }
+
     $scope.load = function(options) {
 
       $scope.pending(options);
@@ -144,6 +172,8 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
       $scope.cleared(options);
 
       $scope.incomplete(options);
+
+      $scope.dropped(options);
 
     }
 
@@ -300,6 +330,66 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
   };
 
+  $scope.printInc = function () {
+
+    date = "";
+
+    if ($scope.conditionsPrintInc !== "") {
+
+      printTable(
+
+        base + "print/student_clearance?print=1" + $scope.conditionsPrintInc
+
+      );
+
+    } else {
+
+      printTable(base + "print/student_clearance?print=1");
+
+    }
+
+  };
+
+  $scope.printCleared = function () {
+
+    date = "";
+
+    if ($scope.conditionsPrintCleared !== "") {
+
+      printTable(
+
+        base + "print/student_clearance?print=1" + $scope.conditionsPrintCleared
+
+      );
+
+    } else {
+
+      printTable(base + "print/student_clearance?print=1");
+
+    }
+
+  };
+
+  $scope.printDropped = function () {
+
+    date = "";
+
+    if ($scope.conditionsPrintDropped !== "") {
+
+      printTable(
+
+        base + "print/student_clearance?print=1" + $scope.conditionsPrintDropped
+
+      );
+
+    } else {
+
+      printTable(base + "print/student_clearance?print=1");
+
+    }
+
+  };
+
   // console.log($scope);
 
   if(currentUser.roleId != 23){
@@ -318,13 +408,13 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
               // console.log(n);
 
-              Select.get({ code: 'get-student-absent', student_id : n.data.id, year_term_id : n.data.year_term_id },function(q){
+              Select.get({ code: 'get-student-attendance', student_id : n.data.id, year_term_id : n.data.year_term_id },function(q){
 
-                $scope.count = q.data.length;
+                $scope.count = q.data;
 
-                // console.log($scope.count);
+                console.log($scope.count);
 
-                if($scope.count==0){
+                if($scope.count<1){
 
                   // if($scope.count==5){
 
