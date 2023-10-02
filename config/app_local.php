@@ -15,11 +15,9 @@ return [
      * Development Mode:
      * true: Errors and warnings shown.
      */
-<<<<<<< HEAD
-    'debug' => true,
-=======
+
     'debug' => filter_var(env('DEBUG', true), FILTER_VALIDATE_BOOLEAN),
->>>>>>> 9a1c2a94cf89aee0890495d3966772a55d8d063d
+
 
     /*
      * Security and encryption configuration
