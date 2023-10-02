@@ -46,6 +46,8 @@ class StudentClearancesController extends AppController {
 
     $this->Students = TableRegistry::getTableLocator()->get('Students');
 
+    $this->Settings = TableRegistry::getTableLocator()->get('Settings');
+
   }
 
   public function index(){   
@@ -237,6 +239,49 @@ class StudentClearancesController extends AppController {
       }
 
       $conditionsPrint .= '&step='.$step;
+    }
+
+
+    $current_sem = $this->Settings->find()
+
+        ->select([
+
+          'value'
+
+        ])
+
+        ->where([
+
+          'id' => 25
+
+        ])
+
+        ->first();
+
+    // filter current sem
+
+    $conditions['sem'] = '';
+
+    if ($current_sem['value']!=null) {
+
+      $sem = $current_sem['value'];
+
+      if( $sem == 1 ){
+
+        $conditions['sem'] = " AND StudentClearance.year_term_id = 1 || StudentClearance.year_term_id = 4 || StudentClearance.year_term_id = 7 || StudentClearance.year_term_id = 10 || StudentClearance.year_term_id = 13";
+
+      }else if( $sem == 2 ){
+
+        $conditions['sem'] = " AND StudentClearance.year_term_id = 2 || StudentClearance.year_term_id = 5 || StudentClearance.year_term_id = 8 || StudentClearance.year_term_id = 11 || StudentClearance.year_term_id = 14";
+
+      }else{
+
+        $conditions['sem'] = " AND StudentClearance.year_term_id = 3 || StudentClearance.year_term_id = 6 || StudentClearance.year_term_id = 9 || StudentClearance.year_term_id = 12 || StudentClearance.year_term_id = 15";
+
+      }
+
+      $conditionsPrint .= '&sem=' . $sem;
+      
     }
 
     $limit = 25;
