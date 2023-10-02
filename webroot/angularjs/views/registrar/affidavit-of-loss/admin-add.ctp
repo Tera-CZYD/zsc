@@ -129,20 +129,19 @@
 
               
 
-
+                  </form>
+                </div>
+                   <div class="clearfix"></div>
+                <hr>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="pull-right">
+                      <button class="btn btn-primary btn-min" id="save" ng-click="save();"><i class="fa fa-save"></i> SAVE </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </form>
-          <div class="clearfix"></div>
-          <hr>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="pull-right">
-                <button class="btn btn-primary btn-min" id="save" ng-click="save();"><i class="fa fa-save"></i> SAVE </button>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -184,7 +183,7 @@
                     <div class="row">
                       <div class="col-md-12">
                         <ul class="pagination justify-content-center">
-                          <li class="page-item">
+                          <li class="page-item">s
                             <a class="page-link" href="javascript:void(0)" ng-click="searchStudent({ page: 1 ,search: searchTxtStudent})"><sub>&laquo;&laquo;</sub></a>
                           </li>
                           <li class="page-item prevPage {{ !paginator.prevPage? 'disabled':'' }}">

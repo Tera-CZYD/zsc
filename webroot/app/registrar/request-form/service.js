@@ -8,7 +8,60 @@ app.factory("RequestForm", function($resource, $http) {
 
     query: { method: 'GET', isArray: false },
 
-    update: { method: 'PUT' },
+    update: {
+      
+      method: 'POST',
+  
+      headers: { 'Content-Type': undefined, enctype: 'multipart/form-data' },
+  
+      transformRequest: function(data) {
+    
+        $data = data;
+        
+        var formData = new FormData();
+
+        formData.append('data', JSON.stringify($data));
+
+        // attach file
+
+        fileImage = document.getElementById('fileImage');
+
+        if (fileImage != null && fileImage.files.length > 0)
+
+          formData.append('file', fileImage.files[0]);      
+
+        return formData;
+
+      }
+
+    },
+
+    save: {
+
+      method: 'POST',
+
+      headers: { 'Content-Type': undefined, enctype: 'multipart/form-data' },
+
+      transformRequest: function(data) {
+        
+        $data = data;
+        
+        var formData = new FormData();
+
+        formData.append('data', JSON.stringify($data));
+    
+        // attach file
+
+        fileImage = document.getElementById('fileImage');
+
+        if (fileImage != null && fileImage.files.length > 0)
+
+          formData.append('file', fileImage.files[0]);     
+        
+        return formData;
+      }
+
+    },
 
     search: { method: 'GET' },
 

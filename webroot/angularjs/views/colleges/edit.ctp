@@ -120,7 +120,7 @@ $('#form').validationEngine('attach');
               </select>
             </div>
           </div> 
-        </form>
+        </form><br/><br/><br/><br/><br/><br/>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger btn-sm btn-min" data-dismiss="modal"><i class="fa fa-close"></i> CLOSE </button>
@@ -146,7 +146,7 @@ $('#form').validationEngine('attach');
               </select>
             </div>
           </div> 
-        </form>
+        </form><br/><br/><br/><br/><br/><br/>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger btn-sm btn-min" data-dismiss="modal"><i class="fa fa-close"></i> CLOSE </button>
