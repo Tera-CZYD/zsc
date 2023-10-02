@@ -22,7 +22,7 @@
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
-        <div class="header-title">VIEW CURRICULUM INFORMATION</div>
+        <div class="header-title">VIEW CURRICULUM INFORMATION </div>
         <div class="clearfix"></div><hr>
         <div class="row">
           <div class="col-md-12">
@@ -53,11 +53,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr ng-repeat="subs in data.CurriculumSub">
+                  <tr ng-repeat="subs in data.Curriculum.CurriculumSubs">
                     <td style="width: 15px;"> {{ $index + 1 }} </td>
                     <td class="text-left uppercase">{{ subs.program }}</td>
                   </tr>
-                  <tr ng-if="data.CurriculumSub == '' || data.CurriculumSub == null">
+                  <tr ng-if="data.Curriculum.CurriculumSubs == '' || data.Curriculum.CurriculumSubs == null">
                     <td class="text-center" colspan="3">No data available.</td>
                   </tr>
                 </tbody>
@@ -70,8 +70,8 @@
           </div>
           <div class="col-md-12">
             <div class="pull-right">
-                <a id="pageEdit" href="#/college/edit/{{ data.College.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
-                <button id="pageDelete" class="btn btn-danger btn-min" ng-click="remove(data.College)"><i class="fa fa-trash"></i> DELETE </button>
+                <a id="pageEdit" href="#/curriculum/curriculums/edit/{{ data.Curriculum.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
+                <button id="pageDelete" class="btn btn-danger btn-min" ng-click="remove(data.Curriculum)"><i class="fa fa-trash"></i> DELETE </button>
             </div>
           </div>
         </div>
