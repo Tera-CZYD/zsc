@@ -1,3 +1,10 @@
+<?php 
+
+if(!isset($base)){
+  $base = '';
+}
+
+?>
 <head>
   <meta name="csrf-token" content="<?php echo h($this->request->getAttribute('csrfToken')); ?>">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
