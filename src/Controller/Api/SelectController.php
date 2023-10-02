@@ -2784,8 +2784,6 @@ class SelectController extends AppController {
 
             $cav = isset($data->RequestForm->cav) ? $data->RequestForm->cav : null; 
 
-            // debug($cav);
-
             if($value['cav'] == $cav) {
 
               $datas = 0;
@@ -2868,7 +2866,7 @@ class SelectController extends AppController {
 
       }
 
-      // debug($datas);
+      // debug($tmp);
 
     }else if ($code == 'check-student-ledger') {
 
@@ -3254,7 +3252,7 @@ class SelectController extends AppController {
 
         $student_details = $connection->execute($tmp)->fetchAll('assoc');
 
-        $for_medical_interview = $student_details[0]['approve'] == 1 ? 1 : 0;
+        $for_medical_interview = $student_details[0]['approve'] == 3 ? 1 : 0;
 
         $for_schedule = $student_details[0]['status'] == 'REQUESTED' ? 1 : 0;
 
