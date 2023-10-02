@@ -19,6 +19,8 @@ class CurriculumsController extends AppController {
 
     $this->Curriculums = TableRegistry::getTableLocator()->get('Curriculums');
 
+    $this->CurriculumSubs = TableRegistry::getTableLocator()->get('CurriculumSubs');
+
   }
 
   public function index(){   
@@ -105,11 +107,33 @@ class CurriculumsController extends AppController {
 
     $requestData = $this->request->getData('Curriculum');
 
+    $subs = $this->request->getData('CurriculumSub');
+
     $data = $this->Curriculums->newEmptyEntity();
    
     $data = $this->Curriculums->patchEntity($data, $requestData); 
 
     if ($this->Curriculums->save($data)) {
+
+      $id = $data->id;
+
+      if (count($subs) > 0) {
+
+        foreach ($subs as $sub) {
+
+        $subEntities = $this->CurriculumSubs->newEntity([
+
+          'curriculum_id' => $id,
+
+          'program_id' => $sub['program_id'],
+
+        ]);
+
+        $this->CurriculumSubs->save($subEntities);
+
+        }
+
+      }
 
       $response = array(
 
@@ -175,7 +199,11 @@ class CurriculumsController extends AppController {
 
       ->contain([
 
-        'CurriculumSubs',
+        'CurriculumSubs' => [
+
+          'conditions' => ['CurriculumSubs.visible' => 1] 
+
+        ]
 
       ])
 
@@ -183,21 +211,25 @@ class CurriculumsController extends AppController {
 
         'Curriculums.visible' => 1,
 
-        'Curriculums.id' => $id
+        'Curriculums.id'      => $id,
 
       ])
 
       ->first();
 
+    $data['CurriculumSubs'] = $data['curriculum_subs'];
+
+    unset($data['curriculum_subs']);
+
     $response = [
 
       'ok' => true,
 
-      'data' => [
+      'data' => 
+
+      [
 
         'Curriculum' => $data,
-
-        'CurriculumsSub' => $data->college_sub
 
       ],
 
@@ -219,24 +251,45 @@ class CurriculumsController extends AppController {
 
   }
 
-
   public function edit($id){
 
-    $college = $this->Colleges->get($id); 
+    $this->autoRender = false;
 
-    $requestData = $this->getRequest()->getData('College');
+    $requestData = $this->request->getData('Curriculum');
 
-    $requestData['date'] = isset($requestData['date']) ? date('Y/m/d', strtotime($requestData['date'])) : null;
+    $subs = $this->request->getData('CurriculumSub');
 
-    $this->Colleges->patchEntity($college, $requestData); 
+    $data = $this->Curriculums->newEmptyEntity();
+   
+    $data = $this->Curriculums->patchEntity($data, $requestData); 
 
-    if ($this->Colleges->save($college)) {
+    if ($this->Curriculums->save($data)) {
+
+      $id = $data->id;
+
+      if (count($subs) > 0) {
+
+        foreach ($subs as $sub) {
+
+        $subEntities = $this->CurriculumSubs->newEntity([
+
+          'curriculum_id' => $id,
+
+          'program_id' => $sub['program_id'],
+
+        ]);
+
+        $this->CurriculumSubs->save($subEntities);
+
+        }
+
+      }
 
       $response = array(
 
         'ok'  =>true,
 
-        'msg' =>'College has been successfully updated.',
+        'msg' =>'Curriculum has been successfully updated.',
 
         'data'=>$requestData
 
@@ -248,7 +301,7 @@ class CurriculumsController extends AppController {
 
           'action' => 'Edit',
 
-          'description' => 'College Management',
+          'description' => 'Curriculum Management',
 
           'code' => $requestData['code'],
 
@@ -268,7 +321,7 @@ class CurriculumsController extends AppController {
 
         'data'=>$requestData,
 
-        'msg' =>'College cannot updated this time.',
+        'msg' =>'Curriculum cannot updated this time.',
 
       );
 
@@ -296,13 +349,13 @@ class CurriculumsController extends AppController {
 
     $this->request->allowMethod(['delete']);
 
-    $requestData = $this->request->getData('College');
+    $requestData = $this->request->getData('Curriculum');
 
-    $data = $this->Colleges->get($id);
+    $data = $this->Curriculums->get($id);
 
     $data->visible = 0;
 
-    if ($this->Colleges->save($data)) {
+    if ($this->Curriculums->save($data)) {
 
       $userLogTable = TableRegistry::getTableLocator()->get('UserLogs');
         
@@ -310,7 +363,7 @@ class CurriculumsController extends AppController {
 
           'action' => 'Delete',
 
-          'description' => 'College Management',
+          'description' => 'Curriculum Management',
 
           'code' => $data->code,
 
@@ -326,7 +379,7 @@ class CurriculumsController extends AppController {
 
         'ok' => true,
 
-        'msg' => 'College has been successfully deleted'
+        'msg' => 'Curriculum has been successfully deleted'
 
       ];
 
@@ -336,7 +389,7 @@ class CurriculumsController extends AppController {
 
         'ok' => false,
 
-        'msg' => 'College cannot be deleted at this time.'
+        'msg' => 'Curriculum cannot be deleted at this time.'
 
       ];
 
