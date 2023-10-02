@@ -300,6 +300,8 @@ app.controller('CurriculumViewController', function($scope, $routeParams, Delete
 
       $scope.data = e.data;
 
+      console.log(e.data);
+
     });
 
   }
@@ -313,7 +315,7 @@ app.controller('CurriculumViewController', function($scope, $routeParams, Delete
 
       if (c) {
 
-        College.remove({ id: data.id }, function(e) {
+        Curriculum.remove({ id: data.id }, function(e) {
 
           if (e.ok) {
 
@@ -325,7 +327,7 @@ app.controller('CurriculumViewController', function($scope, $routeParams, Delete
 
             });
 
-            window.location = "#/college";
+            window.location = "#/curriculum/curriculums";
 
           }
 
@@ -372,7 +374,7 @@ app.controller('CurriculumEditController', function($scope, $routeParams, Curric
 
     Curriculum : {},
 
-    CollegeSub : []
+    CurriculumSub : []
 
   };
 
@@ -404,7 +406,7 @@ app.controller('CurriculumEditController', function($scope, $routeParams, Curric
   // load 
   $scope.load = function() {
 
-    College.get({ id: $scope.id }, function(e) {
+    Curriculum.get({ id: $scope.id }, function(e) {
 
       $scope.data = e.data;
 
@@ -432,9 +434,9 @@ app.controller('CurriculumEditController', function($scope, $routeParams, Curric
 
     if(valid){
 
-      console.log($scope.data.CollegeSub)
+      console.log($scope.data.CurriculumSub)
 
-      $scope.data.CollegeSub.push(data);
+      $scope.data.CurriculumSub.push(data);
       
       $('#add-program-modal').modal('hide');
 
@@ -460,7 +462,7 @@ app.controller('CurriculumEditController', function($scope, $routeParams, Curric
 
     if(valid){
 
-      $scope.data.CollegeSub[data.index] = data;
+      $scope.data.CurriculumSub[data.index] = data;
       
       $('#edit-program-modal').modal('hide');
 
@@ -470,7 +472,7 @@ app.controller('CurriculumEditController', function($scope, $routeParams, Curric
   
   $scope.removeProgram = function(index) {
 
-    $scope.data.CollegeSub.splice(index,1);
+    $scope.data.CurriculumSub.splice(index,1);
 
   }
 
@@ -480,7 +482,7 @@ app.controller('CurriculumEditController', function($scope, $routeParams, Curric
 
     if (valid) {
 
-      College.update({id:$scope.id}, $scope.data, function(e) {
+      Curriculum.update({id:$scope.id}, $scope.data, function(e) {
 
         if (e.ok) {
 
@@ -492,7 +494,7 @@ app.controller('CurriculumEditController', function($scope, $routeParams, Curric
 
           });
 
-          window.location = '#/college';
+          window.location = '#/curriculum/curriculums';
 
         } else {
 
