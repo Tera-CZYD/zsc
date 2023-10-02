@@ -2370,11 +2370,17 @@ class SelectController extends AppController {
       $id = $this->request->getQuery('id');
 
       $tmp = $this->CollegeProgramCourses->find()
+
           ->where([
+
               'visible' => 1,
+
               'college_program_id' => $id
+
           ])
+
           ->order(['id' => 'ASC'])
+
           ->all();
 
       if(!empty($tmp)){
