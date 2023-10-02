@@ -125,6 +125,8 @@ class StudentClearancesTable extends Table
 
     $step = @$conditions['step'];
 
+    $sem = @$conditions['sem'];
+
     $offset = ($page - 1) * $limit;
 
     $sql = "
@@ -153,7 +155,7 @@ class StudentClearancesTable extends Table
 
       WHERE
 
-        StudentClearance.visible = true $faculty $course $status $college_program $step AND 
+        StudentClearance.visible = true $faculty $course $status $sem $college_program $step AND 
 
         (
  
