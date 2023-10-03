@@ -199,6 +199,12 @@ class SelectController extends AppController {
     $this->loadModel("Barangays");
 
     $this->loadModel("AffidavitOfLosses");
+
+    $this->loadModel("ProgramTerms");
+
+    $this->loadModel("Majors");
+
+    $this->loadModel("Campuses");
     
 
     //sir raf
@@ -332,11 +338,14 @@ class SelectController extends AppController {
     } else if ($code == 'campus-list') {
      
       $tmp = $this->Campuses->find()
-            ->where(['visible' => 1])
-            ->orderAsc('id')
-            ->all();
 
-      if(!empty($tmp)){
+        ->where(['visible' => 1])
+
+        ->orderAsc('id')
+
+        ->all();
+
+      if(count($tmp) > 0){
 
         foreach ($tmp as $k => $data) {
 
@@ -589,31 +598,23 @@ class SelectController extends AppController {
 
     } else if ($code == 'program-term-list') {
      
-      $tmp = $this->ProgramTerm->find('all', array(
+      $tmp = $this->ProgramTerms->find()
 
-        'conditions' => array(
+      ->where(['visible'  => 1])
 
-          'ProgramTerm.visible' => true
+      ->order(['id' => 'ASC'])
 
-        ),
+      ->all();
 
-        'order' => array(
-
-          'ProgramTerm.id' => 'ASC',
-
-        )
-
-      ));
-
-      if(!empty($tmp)){
+      if(count($tmp) > 0){
 
         foreach ($tmp as $k => $data) {
 
           $datas[] = array(
 
-            'id'    => $data['ProgramTerm']['id'],
+            'id'    => $data['id'],
 
-            'value' => $data['ProgramTerm']['term'],
+            'value' => $data['term'],
 
           );
 
@@ -1994,9 +1995,9 @@ class SelectController extends AppController {
 
       $program = '';
 
-      if(isset($this->request->query['id'])){
+      if($this->request->getQuery('id')){
 
-        $id = $this->request->query['id'];
+        $id = $this->request->getQuery('id');
 
         $program = "AND CollegeProgramCourse.college_program_id = $id";
 
@@ -2004,9 +2005,9 @@ class SelectController extends AppController {
 
       $year_term = '';
 
-      if(isset($this->request->query['year_term_id'])){
+      if($this->request->getQuery('year_term_id')){
 
-        $year_term_id = $this->request->query['year_term_id'];
+        $year_term_id = $this->request->getQuery('year_term_id');
 
         $yearData = $this->YearLevelTerm->findById($year_term_id);
 
@@ -2017,6 +2018,7 @@ class SelectController extends AppController {
       }
 
       $this->loadModel('YearLevelTerms');
+
       $tmp = $this->YearLevelTerms->query("
 
         SELECT 
@@ -2073,9 +2075,9 @@ class SelectController extends AppController {
 
       $program = '';
 
-      if(isset($this->request->query['id'])){
+      if($this->request->getQuery('id')){
 
-        $id = $this->request->query['id'];
+        $id = $this->request->getQuery('id');
 
         $program = "AND CollegeProgramCourse.college_program_id = $id";
 
@@ -2083,9 +2085,9 @@ class SelectController extends AppController {
 
       $year_term = '';
 
-      if(isset($this->request->query['year_term_id'])){
+      if($this->request->getQuery('year_term_id')){
 
-        $year_term_id = $this->request->query['year_term_id'];
+        $year_term_id = $this->request->getQuery('year_term_id');
 
         $yearData = $this->YearLevelTerm->findById($year_term_id);
 
@@ -2096,6 +2098,7 @@ class SelectController extends AppController {
       }
 
       $this->loadModel('YearLevelTerms');
+
       $tmp = $this->YearLevelTerms->query("
 
         SELECT 
@@ -2149,6 +2152,7 @@ class SelectController extends AppController {
       }
 
     }else if ($code == 'curriculum-course-list') {
+
         $yearTermId = $this->request->getQuery('year_term_id');
 
         $programId = $this->request->getQuery('id');
@@ -11412,31 +11416,23 @@ class SelectController extends AppController {
 
     }else if ($code == 'major-list') {
      
-      $tmp = $this->Major->find('all', array(
+      $tmp = $this->Majors->find()
 
-        'conditions' => array(
+      ->where(['visible' => 1])
 
-          'Major.visible' => true
+      ->order(['id' => 'ASC'])
 
-        ),
+      ->all();
 
-        'order' => array(
-
-          'Major.id' => 'ASC',
-
-        )
-
-      ));
-
-      if(!empty($tmp)){
+      if(count($tmp) > 0){
 
         foreach ($tmp as $k => $data) {
 
           $datas[] = array(
 
-            'id'    => $data['Major']['id'],
+            'id'    => $data['id'],
 
-            'value' => $data['Major']['name'],
+            'value' => $data['name'],
 
           );
 
