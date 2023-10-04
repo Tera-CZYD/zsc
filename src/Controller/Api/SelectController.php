@@ -199,6 +199,12 @@ class SelectController extends AppController {
     $this->loadModel("Barangays");
 
     $this->loadModel("AffidavitOfLosses");
+
+    $this->loadModel("ProgramTerms");
+
+    $this->loadModel("Majors");
+
+    $this->loadModel("Campuses");
     
 
     //sir raf
@@ -332,11 +338,14 @@ class SelectController extends AppController {
     } else if ($code == 'campus-list') {
      
       $tmp = $this->Campuses->find()
-            ->where(['visible' => 1])
-            ->orderAsc('id')
-            ->all();
 
-      if(!empty($tmp)){
+        ->where(['visible' => 1])
+
+        ->orderAsc('id')
+
+        ->all();
+
+      if(count($tmp) > 0){
 
         foreach ($tmp as $k => $data) {
 
@@ -589,31 +598,23 @@ class SelectController extends AppController {
 
     } else if ($code == 'program-term-list') {
      
-      $tmp = $this->ProgramTerm->find('all', array(
+      $tmp = $this->ProgramTerms->find()
 
-        'conditions' => array(
+      ->where(['visible'  => 1])
 
-          'ProgramTerm.visible' => true
+      ->order(['id' => 'ASC'])
 
-        ),
+      ->all();
 
-        'order' => array(
-
-          'ProgramTerm.id' => 'ASC',
-
-        )
-
-      ));
-
-      if(!empty($tmp)){
+      if(count($tmp) > 0){
 
         foreach ($tmp as $k => $data) {
 
           $datas[] = array(
 
-            'id'    => $data['ProgramTerm']['id'],
+            'id'    => $data['id'],
 
-            'value' => $data['ProgramTerm']['term'],
+            'value' => $data['term'],
 
           );
 
@@ -1994,9 +1995,9 @@ class SelectController extends AppController {
 
       $program = '';
 
-      if(isset($this->request->query['id'])){
+      if($this->request->getQuery('id')){
 
-        $id = $this->request->query['id'];
+        $id = $this->request->getQuery('id');
 
         $program = "AND CollegeProgramCourse.college_program_id = $id";
 
@@ -2004,9 +2005,9 @@ class SelectController extends AppController {
 
       $year_term = '';
 
-      if(isset($this->request->query['year_term_id'])){
+      if($this->request->getQuery('year_term_id')){
 
-        $year_term_id = $this->request->query['year_term_id'];
+        $year_term_id = $this->request->getQuery('year_term_id');
 
         $yearData = $this->YearLevelTerm->findById($year_term_id);
 
@@ -2017,6 +2018,7 @@ class SelectController extends AppController {
       }
 
       $this->loadModel('YearLevelTerms');
+
       $tmp = $this->YearLevelTerms->query("
 
         SELECT 
@@ -2073,9 +2075,9 @@ class SelectController extends AppController {
 
       $program = '';
 
-      if(isset($this->request->query['id'])){
+      if($this->request->getQuery('id')){
 
-        $id = $this->request->query['id'];
+        $id = $this->request->getQuery('id');
 
         $program = "AND CollegeProgramCourse.college_program_id = $id";
 
@@ -2083,9 +2085,9 @@ class SelectController extends AppController {
 
       $year_term = '';
 
-      if(isset($this->request->query['year_term_id'])){
+      if($this->request->getQuery('year_term_id')){
 
-        $year_term_id = $this->request->query['year_term_id'];
+        $year_term_id = $this->request->getQuery('year_term_id');
 
         $yearData = $this->YearLevelTerm->findById($year_term_id);
 
@@ -2096,6 +2098,7 @@ class SelectController extends AppController {
       }
 
       $this->loadModel('YearLevelTerms');
+
       $tmp = $this->YearLevelTerms->query("
 
         SELECT 
@@ -2149,6 +2152,7 @@ class SelectController extends AppController {
       }
 
     }else if ($code == 'curriculum-course-list') {
+
         $yearTermId = $this->request->getQuery('year_term_id');
 
         $programId = $this->request->getQuery('id');
@@ -2370,11 +2374,17 @@ class SelectController extends AppController {
       $id = $this->request->getQuery('id');
 
       $tmp = $this->CollegeProgramCourses->find()
+
           ->where([
+
               'visible' => 1,
+
               'college_program_id' => $id
+
           ])
+
           ->order(['id' => 'ASC'])
+
           ->all();
 
       if(!empty($tmp)){
@@ -2784,8 +2794,6 @@ class SelectController extends AppController {
 
             $cav = isset($data->RequestForm->cav) ? $data->RequestForm->cav : null; 
 
-            // debug($cav);
-
             if($value['cav'] == $cav) {
 
               $datas = 0;
@@ -2868,7 +2876,7 @@ class SelectController extends AppController {
 
       }
 
-      // debug($datas);
+      // debug($tmp);
 
     }else if ($code == 'check-student-ledger') {
 
@@ -3254,7 +3262,7 @@ class SelectController extends AppController {
 
         $student_details = $connection->execute($tmp)->fetchAll('assoc');
 
-        $for_medical_interview = $student_details[0]['approve'] == 1 ? 1 : 0;
+        $for_medical_interview = $student_details[0]['approve'] == 3 ? 1 : 0;
 
         $for_schedule = $student_details[0]['status'] == 'REQUESTED' ? 1 : 0;
 
@@ -7930,7 +7938,7 @@ class SelectController extends AppController {
 
       $student = $this->Students->get($student_id);
 
-      $attendance = $this->Attendances->find()->where([
+      $attendance = $this->StudentEnrolledCourses->find()->where([
 
         'visible' => 1,
 
@@ -7938,11 +7946,13 @@ class SelectController extends AppController {
 
         'year_term_id' => $year_term_id,
 
-        'status' => 'absent'
+        'clearance_status' => 3
 
       ])->count();
 
        $datas = $attendance;
+
+       // debug($attendance);
 
     
     }else if ($code == 'get-student-absent') {
@@ -7951,9 +7961,15 @@ class SelectController extends AppController {
 
       $year_term_id = $this->request->getQuery('year_term_id');
 
+      $section = $this->request->getQuery('section');
+
+      $course_id = $this->request->getQuery('course_id');
+
+      $faculty_id = $this->request->getQuery('faculty_id');
+
       // $student = $this->Students->get($student_id);
 
-      $clear = $this->StudentEnrolledCourses->find()
+      $clear = $this->Attendances->find()
 
         ->where([
 
@@ -7963,11 +7979,15 @@ class SelectController extends AppController {
 
           'year_term_id' => $year_term_id,
 
-          'clearance_status' => 3
+          'section_id' => $section,
+
+          'course_id' => $course_id,
+
+          'faculty_id' => $faculty_id
 
         ])
 
-        ->all();  
+        ->count();  
 
        $datas = $clear;
 
@@ -11396,31 +11416,23 @@ class SelectController extends AppController {
 
     }else if ($code == 'major-list') {
      
-      $tmp = $this->Major->find('all', array(
+      $tmp = $this->Majors->find()
 
-        'conditions' => array(
+      ->where(['visible' => 1])
 
-          'Major.visible' => true
+      ->order(['id' => 'ASC'])
 
-        ),
+      ->all();
 
-        'order' => array(
-
-          'Major.id' => 'ASC',
-
-        )
-
-      ));
-
-      if(!empty($tmp)){
+      if(count($tmp) > 0){
 
         foreach ($tmp as $k => $data) {
 
           $datas[] = array(
 
-            'id'    => $data['Major']['id'],
+            'id'    => $data['id'],
 
-            'value' => $data['Major']['name'],
+            'value' => $data['name'],
 
           );
 

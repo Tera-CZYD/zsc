@@ -85,7 +85,7 @@
               <div class="clearfix"></div><hr>
               <h5 class="table-top-title mb-2"> COURSES </h5>
             </div>
-            <div class="col-md-12" style="margin-bottom: 5px">
+            <div class="col-md-12" style="margin-bottom: 5px"> 
               <button class="btn btn-min btn-primary" ng-click="addCourse()" ng-disabled="data.BlockSection.college_id == null || data.BlockSection.program_id == null"><i class="fa fa-plus"></i>&nbsp;ADD COURSE</button>
             </div>
             <div class="col-md-12">
@@ -110,8 +110,8 @@
                     <td class="text-center uppercase">{{ subs.ptc == 1 ? 'YES' : 'NO' }}</td>
                     <td class="w90px text-center">
                       <div class="btn-group btn-group-xs"></div>
-                      <a href="javascript:void(0)" class="btn btn-xs btn-success" ng-click="editCourse($index, data.BlockSectionCourse)"><i class="fa fa-edit"></i></a>
-                      <a href="javascript:void(0)" class="btn btn-xs btn-danger" ng-click="removeCourse($index)"><i class="fa fa-trash"></i></a>
+                      <a href="javascript:void(0)" class="btn btn-xs btn-success" ng-click="editCourse($index, subs)"><i class="fa fa-edit"></i></a>
+                      <a href="javascript:void(0)" class="btn btn-xs btn-danger" ng-click="removeCourse($index, subs)"><i class="fa fa-trash"></i></a>
                     </td>
                     </tr>
                     <tr ng-if="data.BlockSectionCourse == ''">

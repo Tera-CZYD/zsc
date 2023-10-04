@@ -125,6 +125,8 @@ class CurriculumsController extends AppController {
 
           'curriculum_id' => $id,
 
+          'program' => $sub['program'],
+
           'program_id' => $sub['program_id'],
 
           'program' => $sub['program']

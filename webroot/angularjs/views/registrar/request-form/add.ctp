@@ -6,7 +6,7 @@
           <div class="header-title">NEW REQUEST FORM</div>
           <div class="clearfix"></div>
           <hr>
-          <form id="form">
+          <form id="form"> 
             <div class="row">
 
 
@@ -42,12 +42,13 @@
               
 
 
-              <div class="col-md-6">
+<!--               <div class="col-md-6">
                 <div class="form-group">
                   <label> OFFICIAL RECEIPT #: <i class="required">*</i></label>
                   <input type="text" class="form-control" autocomplete="false" ng-model="data.RequestForm.or_no" data-validation-engine="validate[required]"></input>
                 </div>
-              </div>
+              </div> -->
+              
               <div class="col-md-6">
                 <div class="form-group">
                   <label> PROGRAM <i class="required">*</i></label>
@@ -192,6 +193,45 @@
                     </div>
                   </div> -->
 
+                    <div class="clearfix"></div><hr>
+                    
+                    <div class="col-md-12">
+                    <div class="form-group">
+                      <label> REQUESTOR <i class="required">*</i></label><br>
+                      <label>
+                        <input type="radio" ng-model="data.RequestForm.claim" ng-value="false" value="0">
+                        Claim
+                      </label>&nbsp; &nbsp;&nbsp; &nbsp;
+                      <label>
+                        <input type="radio" ng-model="data.RequestForm.claim" ng-value="true" value="1">
+                        Authorized Person
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12" ng-show="data.RequestForm.claim">
+                    <div class="clearfix"></div><hr>
+                  </div>
+
+                  <div class="col-md-12" ng-show="data.RequestForm.claim">
+                    <label>Authorization letter (JPEG or PNG)</label>
+                    <h5>• ID of the student should be attached in lower right corner of the authorization letter.</h5>
+                    <ul class="list-group mb-2">
+                      <div class="col-md-12">
+                        <span class="btn btn-primary btn-min btn-file">
+                          <i class="fa fa-upload"></i>UPLOAD PHOTO
+                          <input ng-file-model="files" id="fileImage" name="picture" class="form-control" type="file" accept=" image/jpeg, image/png" ng-file>
+                        </span>
+                      </div>
+                    </ul>
+                  <div class="clearfix"></div>
+                  <div id="upload_prev"></div> 
+                  
+                  <div class="col-md-12">
+                    <div class="clearfix"></div><hr>
+                  </div>
+                </div>
+
 
                 </div>
               </div>
@@ -210,7 +250,6 @@
       </div>
     </div>
   </div>
-  <?php echo $this->element('modals/search/searched-student-modal') ?>
 
 <style type="text/css">
   th {
