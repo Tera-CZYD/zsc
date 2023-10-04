@@ -83,7 +83,9 @@
                     <td class="text-center uppercase">{{ subs.slot }}</td>
                     <td class="text-center uppercase">{{ subs.ptc == 1 ? 'YES' : 'NO' }}</td>
                     <td class="text-center uppercase">
-                      <button class="btn btn-primary btn-min" ng-disabled="subs.faculty_id !== null" ng-click="addFaculty($index)"><i class="fa fa-plus"></i> ADD FACULTY </button>
+                      <button class="btn btn-primary btn-min" ng-if="subs.faculty_id === null" ng-click="addFaculty($index)"><i class="fa fa-plus"></i> ADD FACULTY </button>
+
+                      <button class="btn btn-primary btn-min" ng-if="subs.faculty_id !== null" ng-click="editFaculty($index, subs)"><i class="fa fa-plus"></i> EDIT FACULTY </button>                      
                     </td>
                   </tr>
                   <tr ng-if="data.BlockSectionCourse == ''">
@@ -139,6 +141,36 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="edit-faculty-modal" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title uppercase"><i class="fa fa-plus"></i> EDIT FACULTY </h5>
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      </div>
+      <div class="modal-body">
+        <form id="faculty_form">
+          <div class="col-md-12" >
+            <div class="form-group">
+              <label> FACULTY <i class="required">*</i></label>
+              <select selectize style="height: 100px" ng-model="sub.faculty_id" ng-options="opt.id as opt.value for opt in faculties" ng-change="getFaculty(sub.faculty_id)" data-validation-engine="validate[required]">
+                <option value=""></option>
+              </select>
+
+              <br><br><br><br><br><br><br><br><br>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger btn-sm btn-min" data-dismiss="modal"><i class="fa fa-close"></i> CLOSE </button>
+        <button type="button" class="btn btn-primary btn-sm btn-min" ng-click="saveFaculty(sub)"><i class="fa fa-save"></i> ADD </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <style type="text/css">
   th {
     white-space: nowrap;

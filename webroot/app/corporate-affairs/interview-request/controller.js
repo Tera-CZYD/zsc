@@ -814,7 +814,7 @@ app.controller("StudentInterviewRequestController", function ($scope, InterviewR
 
     options = typeof options !== 'undefined' ?  options : {};
 
-    options['per_student'] = 0;
+    options['per_student'] = 1;
 
     options['status'] = 0;
 
@@ -866,7 +866,7 @@ app.controller("StudentInterviewRequestController", function ($scope, InterviewR
 
     options = typeof options !== 'undefined' ?  options : {};
 
-    options['per_student'] = 2;
+    options['per_student'] = 1;
 
     options['status'] = 2;
 

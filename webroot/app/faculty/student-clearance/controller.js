@@ -57,9 +57,9 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
       options = typeof options !== 'undefined' ?  options : {};
 
-      // options['per_student'] = 1;
-
       options['status'] = 0;
+
+      options['course_id'] = $scope.course_id;
 
       StudentClearance.query(options, function(e) {
 
@@ -85,9 +85,9 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
       options = typeof options !== 'undefined' ?  options : {};
 
-      // options['per_student'] = 1;
-
       options['status'] = 1;
+
+      options['course_id'] = $scope.course_id;
 
       StudentClearance.query(options, function(e) {
 
@@ -113,9 +113,9 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
       options = typeof options !== 'undefined' ?  options : {};
 
-      // options['per_student'] = 1;
-
       options['status'] = 2;
+
+      options['course_id'] = $scope.course_id;
 
       StudentClearance.query(options, function(e) {
 
@@ -200,10 +200,9 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
       });
 
     };
-    // $scope.load();
+
   }
  
-
   $scope.reload = function (options) {
 
     $scope.search = {};
@@ -272,7 +271,6 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
   $scope.sendMail = function(data){  
 
-
     bootbox.prompt('Remarks: ', function(result){
 
       if(result){
@@ -307,7 +305,6 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
     });
 
-
   }
 
   $scope.print = function () {
@@ -330,6 +327,8 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
   };
 
+<<<<<<< HEAD
+=======
   $scope.printInc = function () {
 
     date = "";
@@ -392,13 +391,12 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
   // console.log($scope);
 
+>>>>>>> 19dd38f3424b4b737f0d5636c0383c669968774e
   if(currentUser.roleId != 23){
 
     if(currentUser.roleId ==25){
 
       $scope.clearStudent = function(data){  
-
-        // console.log(data);
 
         bootbox.confirm('Are you sure you want to approve the student clearance?', function(b){
 
@@ -406,9 +404,13 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
             Select.get({code: 'get-student', student_id : data.student_id },function(n){
 
+<<<<<<< HEAD
+              Select.get({ code: 'get-student-absent', student_id : n.data.id, year_term_id : n.data.year_term_id },function(q){
+=======
               // console.log(n);
 
               Select.get({ code: 'get-student-attendance', student_id : n.data.id, year_term_id : n.data.year_term_id },function(q){
+>>>>>>> 19dd38f3424b4b737f0d5636c0383c669968774e
 
                 $scope.count = q.data;
 
@@ -478,13 +480,9 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
       }
 
-      
-
     }else{
 
       $scope.clearStudent = function(data){  
-
-        // console.log(data);
 
         bootbox.confirm('Are you sure you want to approve the student clearance?', function(b){
 
@@ -508,7 +506,9 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
                 });
 
-              $scope.load();
+                // $scope.loadPage();
+
+                $scope.load();
 
               }
 
@@ -524,70 +524,192 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
   }else{
 
-      $scope.clearStudent = function(data){  
+    $scope.clearStudent = function(data){  
 
-        bootbox.confirm('Are you sure you want to approve the student clearance?', function(b){
+      bootbox.confirm('Are you sure you want to approve the student clearance?', function(b){
 
-          if(b) {
+        if(b) {
 
-            $scope.data = {
+          $scope.data = {
 
-              course_id : $scope.course_id
+            course_id : $scope.course_id
 
-            };
+          };
 
-            // console.log(data);
+          // console.log(data);
 
-            Select.get({code: 'check-student-check-outs',student_id:data.student_id}, function(q) {
+          Select.get({code: 'check-student-check-outs',student_id:data.student_id}, function(q) {
 
-              // alert(q.data);
+            // alert(q.data);
 
-              if(q.data){
+            if(q.data){
 
-                StudentClearanceClear.update({id:data.id},$scope.data, function(e){
+              StudentClearanceClear.update({id:data.id},$scope.data, function(e){
 
-                  if(e.ok){
+                if(e.ok){
 
-                    $.gritter.add({
+                  $.gritter.add({
 
-                      title : 'Successful!',
+                    title : 'Successful!',
 
-                      text: e.msg
+                    text: e.msg
 
-                    });
+                  });
 
-                    $scope.load();
+                  $scope.load();
 
-                  }
+                }
 
-                });
+              });
 
-              }else{
+            }else{
 
-                $.gritter.add({
+              $.gritter.add({
 
-                  title: 'Warning!',
+                title: 'Warning!',
 
-                  text:  'Student still have some unreturned books.',
+                text:  'Student still have some unreturned books.',
 
-                  
-                });
+                
+              });
 
-              }
+            }
 
-            }); 
+          }); 
 
-          }
+        }
 
-        });
+      });
 
-      }
+    }
 
-    
-
-    
   }
 
+  //RELOAD UPON CLEAR OF STUDENT
+
+    // $scope.loadPage = function(){
+
+    //   if(currentUser.roleId == 12 && currentUser.employee.academic_rank_id == 2){
+
+    //     $scope.pending = function(options) {
+
+    //       options = typeof options !== 'undefined' ?  options : {};
+
+    //       options['status'] = 0;
+
+    //       options['course_id'] = $scope.course_id;
+
+    //       StudentClearance.query(options, function(e) {
+
+    //         if (e.ok) {
+
+    //           $scope.datas = e.data;
+
+    //           $scope.conditionsPrint = e.conditionsPrint;
+
+    //           // paginator
+
+    //           $scope.paginator  = e.paginator;
+
+    //           $scope.pages = paginator($scope.paginator, 5);
+
+    //         }
+
+    //       });
+
+    //     }
+
+    //     $scope.cleared = function(options) {
+
+    //       options = typeof options !== 'undefined' ?  options : {};
+
+    //       options['status'] = 1;
+
+    //       options['course_id'] = $scope.course_id;
+
+    //       StudentClearance.query(options, function(e) {
+
+    //         if (e.ok) {
+
+    //           $scope.datasCleared = e.data;
+
+    //           $scope.conditionsPrintCleared = e.conditionsPrint;
+
+    //           // paginator
+
+    //           $scope.paginatorCleared  = e.paginator;
+
+    //           $scope.pagesCleared = paginator($scope.paginatorCleared, 5);
+
+    //         }
+
+    //       });
+
+    //     }
+
+    //     $scope.incomplete = function(options) {
+
+    //       options = typeof options !== 'undefined' ?  options : {};
+
+    //       options['status'] = 2;
+
+    //       options['course_id'] = $scope.course_id;
+
+    //       StudentClearance.query(options, function(e) {
+
+    //         if (e.ok) {
+
+    //           $scope.datasIncomplete = e.data;
+
+    //           $scope.conditionsPrintIncomplete = e.conditionsPrint;
+
+    //           // paginator
+
+    //           $scope.paginatorIncomplete  = e.paginator;
+
+    //           $scope.pagesIncomplete = paginator($scope.paginatorIncomplete, 5);
+
+    //         }
+
+    //       });
+
+    //     }
+
+    //     $scope.pending([]);
+
+    //     $scope.cleared([]);
+
+    //     $scope.incomplete([]);
+
+    //   }else{
+
+    //     $scope.load = function (options) {
+
+    //       options = typeof options !== "undefined" ? options : {};
+
+    //       StudentClearance.query(options, function (e) {
+
+    //         if (e.ok) {
+
+    //           $scope.datas = e.data;
+
+    //           $scope.conditionsPrint = e.conditionsPrint;
+
+    //           $scope.paginator = e.paginator;
+
+    //           $scope.pages = paginator($scope.paginator, 5);
+
+    //         }
+
+    //       });
+
+    //     };
+
+    //   }
+
+    // }
+
+  //endDate
 
 });
 
