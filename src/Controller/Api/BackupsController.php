@@ -117,14 +117,14 @@ class BackupsController extends AppController {
         $saveResult = $this->BackupFiles->save($backupFileEntity);
 
         // Set appropriate headers for file download
-        $this->response = $this->response->withType('application/download')
+        $data = $this->response->withType('application/download')
             ->withHeader('Content-Disposition', 'attachment; filename=' . $d['fname'])
             ->withHeader('Content-Length', filesize($d['file']));
 
         // Output file content directly to the response
-        $fp = fopen($d['file'], "r");
-        fpassthru($fp);
-        fclose($fp);
+        // $fp = fopen($d['file'], "r");
+        // fpassthru($fp);
+        // fclose($fp);
 
         // Create and save user log entity
         $userLogEntity = $this->UserLogs->newEntity([
@@ -137,6 +137,18 @@ class BackupsController extends AppController {
         $this->UserLogs->save($userLogEntity);
 
       }
+
+      $response = [
+
+      'ok' => true,
+
+      'data' => $data
+
+    ];
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
 
     return $this->response;
 
