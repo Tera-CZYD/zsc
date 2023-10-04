@@ -11603,7 +11603,7 @@ class PrintController extends AppController {
     $pdf->Cell(75,5,'STUDENT NAME',1,0,'C',1);
     $pdf->Cell(65,5,'YEAR LEVEL',1,0,'C',1);
     $pdf->Cell(100,5,'EMAIL',1,0,'C',1);
-    $pdf->Cell(60,5,'APPLICATION NOTE',1,0,'C',1);
+    $pdf->Cell(60,5,'APPLICATION DATE',1,0,'C',1);
     $pdf->Ln();
     $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,35,75,65,100,60));
@@ -15789,7 +15789,7 @@ class PrintController extends AppController {
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
     $pdf->SetFont("Times", 'B', 12);
-    $pdf->Cell(0,5,'Registered Students',0,0,'C');
+    $pdf->Cell(0,5,'REGISTERED STUDENT',0,0,'C');
     $pdf->Ln(10);
     $pdf->SetFont("Times", 'B', 7);
     $pdf->SetFillColor(217,237,247);
