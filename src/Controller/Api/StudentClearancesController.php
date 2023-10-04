@@ -184,8 +184,6 @@ class StudentClearancesController extends AppController {
       
     }
 
-
-    // var_dump($employees['academic_rank_id']);
     $role_id = $this->Auth->user('roleId');
 
     $conditions['step'] = '';
@@ -239,8 +237,8 @@ class StudentClearancesController extends AppController {
       }
 
       $conditionsPrint .= '&step='.$step;
-    }
 
+    }
 
     $current_sem = $this->Settings->find()
 

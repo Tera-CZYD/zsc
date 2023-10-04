@@ -44,7 +44,7 @@ app.controller('CatController', function($scope, Select, StudentApplication, Stu
 
     options = typeof options !== 'undefined' ?  options : {}; 
 
-    options['status'] = 1;
+    options['status'] = 'forRating';
 
     options['entries'] = $scope.pageCount;
 

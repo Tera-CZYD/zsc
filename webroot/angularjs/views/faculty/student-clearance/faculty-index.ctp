@@ -104,7 +104,7 @@
                           </td>
                         </tr>
                         <tr ng-show="datas == null || datas == ''">
-                          <td colspan="10">No available data</td>
+                          <td colspan="5">No available data</td>
                         </tr>
                       </tbody>
                     </table>
@@ -186,7 +186,7 @@
                           </td>
                         </tr>
                         <tr ng-show="datasIncomplete == null || datasIncomplete == ''">
-                          <td colspan="10">No available data</td>
+                          <td colspan="5">No available data</td>
                         </tr>
                       </tbody>
                     </table>
@@ -263,7 +263,7 @@
                           </td>
                         </tr>
                         <tr ng-show="datasCleared == null || datasCleared == ''">
-                          <td colspan="10">No available data</td>
+                          <td colspan="5">No available data</td>
                         </tr>
                       </tbody>
                     </table>
