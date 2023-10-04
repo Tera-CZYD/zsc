@@ -230,7 +230,11 @@ class BlockSectionsController extends AppController {
 
         'YearLevelTerms',
 
-        'BlockSectionCourses'
+        'BlockSectionCourses' => [
+
+          'conditions' => ['BlockSectionCourses.visible' => 1]
+
+        ]
 
       ])
 
@@ -357,6 +361,44 @@ class BlockSectionsController extends AppController {
     $data->visible = 0;
 
     if ($this->BlockSections->save($data)) {
+
+      $block_section_id = $data->id;
+
+      $courses = $this->BlockSectionCourses->find()
+
+      ->where([
+
+        'block_section_id' => $block_section_id
+
+      ])
+
+      ->all();
+
+      foreach($courses as $course){
+
+        $course->visible = 0;
+
+      }
+
+      $this->BlockSectionCourses->saveMany($courses);
+
+      $schedules = $this->BlockSectionSchedules->find()
+
+      ->where([
+
+        'block_section_id' => $block_section_id
+
+      ])
+
+      ->all();
+
+      foreach($schedules as $schedule){
+
+        $schedule->visible = 0;
+
+      }
+
+      $this->BlockSectionSchedules->saveMany($schedules);              
 
       $response = [
 
@@ -737,5 +779,217 @@ class BlockSectionsController extends AppController {
     return $this->response;
 
   }
+
+  public function addCourse($id = null) {
+
+    if($this->request->is('post')){
+
+      $data = $this->getRequest()->getData();
+
+      if (!empty($data)) {
+
+          $blockSectionCourse = $this->BlockSectionCourses->newEmptyEntity();
+     
+          $blockSectionCourse = $this->BlockSectionCourses->patchEntity($blockSectionCourse,$data);
+
+          if ($this->BlockSectionCourses->save($blockSectionCourse)) {
+
+            $response = [
+
+              'ok' => true,
+
+              'data' => $data,
+
+              'msg' => 'Course in Block Section has been successfully saved.',
+
+            ];
+
+          } else {
+
+            $response = [
+
+              'ok' => false,
+
+              'data' => $data,
+
+              'msg' => 'Failed to save Course in Block Section.',
+
+            ];
+
+          }
+
+      } else {
+
+          $response = [
+
+            'ok' => false,
+
+            'msg' => 'No data provided.',
+
+          ];
+      }
+
+      $this->set([
+
+        'response' => $response,
+
+        '_serialize' => 'response',
+
+      ]);      
+
+    }else if($this->request->is('put')){
+
+      $data = $this->getRequest()->getData();
+
+      $blockSectionCourse = $this->BlockSectionCourses->get($id);
+
+      if (!empty($data)) {
+     
+          $blockSectionCourse = $this->BlockSectionCourses->patchEntity($blockSectionCourse,$data);
+
+          if ($this->BlockSectionCourses->save($blockSectionCourse)) {
+
+            $response = [
+
+              'ok' => true,
+
+              'data' => $data,
+
+              'msg' => 'Course in Block Section has been successfully updated.',
+
+            ];
+
+          } else {
+
+            $response = [
+
+              'ok' => false,
+
+              'data' => $data,
+
+              'msg' => 'Failed to update Course in Block Section.',
+
+            ];
+
+          }
+
+      } else {
+
+          $response = [
+
+            'ok' => false,
+
+            'msg' => 'No data provided.',
+
+          ];
+      }
+
+      $this->set([
+
+        'response' => $response,
+
+        '_serialize' => 'response',
+
+      ]);
+
+    }else if($this->request->is('delete')){
+
+      $blockSectionCourse = $this->BlockSectionCourses->get($id);
+
+      $data = $blockSectionCourse->toArray();
+
+      $data['visible'] = 0;
+
+      if (!empty($data)) {
+     
+          $blockSectionCourse = $this->BlockSectionCourses->patchEntity($blockSectionCourse,$data);
+
+          if ($this->BlockSectionCourses->save($blockSectionCourse)) {
+
+            $block_section_course_id = $blockSectionCourse->id;
+
+            $subs = $this->BlockSectionSchedules->find()
+
+            ->where([
+
+              'block_section_course_id' => $id
+
+            ])
+
+            ->all();
+
+            foreach($subs as $sub){
+
+              $sub->visible = 0;
+
+            }
+
+            $this->BlockSectionSchedules->saveMany($subs);
+
+            $response = [
+
+              'ok' => true,
+
+              'data' => $data,
+
+              'msg' => 'Course in Block Section has been successfully deleted.',
+
+            ];
+
+          } else {
+
+            $response = [
+
+              'ok' => false,
+
+              'data' => $data,
+
+              'msg' => 'Failed to delete Course in Block Section.',
+
+            ];
+
+          }
+
+      } else {
+
+          $response = [
+
+            'ok' => false,
+
+            'msg' => 'No data provided.',
+
+          ];
+      }
+
+      $this->set([
+
+        'response' => $response,
+
+        '_serialize' => 'response',
+
+      ]);
+
+
+    }
+
+
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+  }
+
+  // public function editCourse($id = null) {
+
+  //   $this->response->withType('application/json');
+
+  //   $this->response->getBody()->write(json_encode($response));
+
+  //   return $this->response;
+
+  // }  
 
 }

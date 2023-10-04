@@ -244,7 +244,7 @@ class AffidavitOfLossesController extends AppController {
 
     $this->autoRender = false;
 
-   $requestData = $this->request->getData('data');
+   $requestData = $this->request->getData('data'); 
 
     $data = json_decode($requestData, true);
 

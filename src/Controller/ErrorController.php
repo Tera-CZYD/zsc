@@ -67,4 +67,17 @@ class ErrorController extends AppController
     public function afterFilter(EventInterface $event)
     {
     }
+
+    public function missingAction()
+    {
+        
+        $this->viewBuilder()->setLayout(null);
+
+        // Set the response status to 404
+        $this->response = $this->response->withStatus(404);
+
+        // Render the view without layout
+        $this->viewBuilder()->setTemplatePath('Error');
+        $this->render('error404');
+    }
 }

@@ -157,12 +157,6 @@ app.controller('CurriculumAddController', function($scope, Curriculum, Select) {
 
   };
 
-  Select.get({ code: 'campus-list' },function(e){
-
-    $scope.campuses = e.data;
-
-  });
-
   Select.get({ code: 'program-list' },function(e){
 
     $scope.programs = e.data;
@@ -299,8 +293,6 @@ app.controller('CurriculumViewController', function($scope, $routeParams, Delete
     Curriculum.get({ id: $scope.id }, function(e) {
 
       $scope.data = e.data;
-
-      console.log(e.data);
 
     });
 
