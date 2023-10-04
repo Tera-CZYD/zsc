@@ -12,27 +12,6 @@ app.controller('AppointmentSlipController', function($scope, AppointmentSlip) {
   
   });
 
-  // $scope.referral = function(options) {
-
-  //   options = typeof options !== 'undefined' ?  options : {};
-
-  //   ReferralSlip.query(options, function(e) {
-
-  //     if (e.ok) {
-
-  //       $scope.datas = e.data;
-
-  //       $scope.conditionsPrint = e.conditionsPrint;
-
-  //       $scope.paginator = e.paginator;
-
-  //       $scope.pages = paginator($scope.paginator, 5);
-
-  //     }
-
-  //   });
-
-  // }
 
   $scope.appointment = function(options) {
 
@@ -201,22 +180,22 @@ app.controller('AppointmentSlipController', function($scope, AppointmentSlip) {
 
   }
 
-  $scope.printReferral = function(){
+  // $scope.printReferral = function(){
 
-    date = "";
+  //   date = "";
     
-    if ($scope.conditionsPrint !== '') {
+  //   if ($scope.conditionsPrint !== '') {
     
 
-      printTable(base + 'print/referral_slip_management?print=1' + $scope.conditionsPrint);
+  //     printTable(base + 'print/referral_slip_management?print=1' + $scope.conditionsPrint);
 
-    }else{
+  //   }else{
 
-      printTable(base + 'print/referral_slip_management?print=1');
+  //     printTable(base + 'print/referral_slip_management?print=1');
 
-    }
+  //   }
 
-  }
+  // }
 
   $scope.printAppointment = function(){
 
@@ -345,7 +324,7 @@ app.controller('AppointmentSlipAddController', function($scope, AppointmentSlip,
 
           });
 
-          window.location = '#/guidance/referral-slip';
+          window.location = '#/faculty/appointment-slip';
 
         } else {
 
@@ -411,7 +390,7 @@ app.controller('AppointmentSlipViewController', function($scope, $routeParams, A
 
             });
 
-            window.location = "#/guidance/referral-slip";
+            window.location = "#/faculty/appointment-slip";
 
           }
 
@@ -528,7 +507,7 @@ app.controller('AppointmentSlipEditController', function($scope, $routeParams, A
 
           });
 
-          window.location = '#/guidance/referral-slip';
+          window.location = '#/faculty/appointment-slip';
 
         } else {
 
