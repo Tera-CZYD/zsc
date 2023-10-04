@@ -127,11 +127,8 @@ class PrintController extends AppController {
 
     $this->loadModel('AffidavitOfLosses');
 
-<<<<<<< HEAD
-=======
     $this->loadModel('Curriculums');
 
->>>>>>> add5edab7ba288a83f1d2190d5bc2b6cc458fbc5
     $this->InventoryProperties = TableRegistry::getTableLocator()->get('InventoryProperties');
 
 
