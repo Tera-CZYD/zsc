@@ -112,17 +112,17 @@ class StudentApplicationsController extends AppController {
 
       $status = $this->request->getQuery('status');
 
-      if($status == 'assessed'){
+      $conditions['status'] = "AND StudentApplication.approve = $status";
 
-        $conditions['status'] = "AND StudentApplication.approve != 3";
+      $conditionsPrint .= '&status='.$this->request->getQuery('status');
 
-        $conditionsPrint .= '&status!=3';
+      if($status == 1){ //FOR APPROVED TAB OF STUDENT APPLICATION
 
-      }else{
+        $conditions['status'] = "AND StudentApplication.approve <> 0";
 
-        $conditions['status'] = "AND StudentApplication.approve = $status";
+      }elseif($status == 'forRating'){ //RATING TAB OF CAT
 
-        $conditionsPrint .= '&status='.$this->request->getQuery('status');
+        $conditions['status'] = "AND StudentApplication.approve = 1";
 
       }
 

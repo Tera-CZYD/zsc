@@ -446,18 +446,18 @@ class GlobalComponent extends Component {
 
 
 
-  public function TotalArr($arrs = array(), $field){
+  // public function TotalArr($arrs = array(), $field){
 
-    $total = 0;
+  //   $total = 0;
 
-    foreach($arrs as $arr){
+  //   foreach($arrs as $arr){
 
-      $total += $arr[$field];
+  //     $total += $arr[$field];
 
-    }
+  //   }
 
-    return $total;
+  //   return $total;
 
-  }
+  // }
 
 }

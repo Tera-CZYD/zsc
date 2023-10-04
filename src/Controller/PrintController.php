@@ -11700,7 +11700,7 @@ class PrintController extends AppController {
     $pdf->Cell(75,5,'STUDENT NAME',1,0,'C',1);
     $pdf->Cell(65,5,'YEAR LEVEL',1,0,'C',1);
     $pdf->Cell(100,5,'EMAIL',1,0,'C',1);
-    $pdf->Cell(60,5,'APPLICATION NOTE',1,0,'C',1);
+    $pdf->Cell(60,5,'APPLICATION DATE',1,0,'C',1);
     $pdf->Ln();
     $pdf->SetFont("Times", '', 8);
     $pdf->SetWidths(array(10,35,75,65,100,60));
@@ -11944,13 +11944,15 @@ class PrintController extends AppController {
 
       $status = $this->request->getQuery('status');
 
-      if($status == 'assessed'){
+      $conditions['status'] = "AND StudentApplication.approve = $status";
 
-        $conditions['status'] = "AND StudentApplication.approve != 3";
+      if($status == 1){ //FOR APPROVED TAB OF STUDENT APPLICATION
 
-      }else{
+        $conditions['status'] = "AND StudentApplication.approve <> 0";
 
-        $conditions['status'] = "AND StudentApplication.approve = $status";
+      }elseif($status == 'forRating'){ //RATING TAB OF CAT
+
+        $conditions['status'] = "AND StudentApplication.approve = 1";
 
       }
 
@@ -15884,7 +15886,7 @@ class PrintController extends AppController {
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
     $pdf->SetFont("Times", 'B', 12);
-    $pdf->Cell(0,5,'Registered Students',0,0,'C');
+    $pdf->Cell(0,5,'REGISTERED STUDENT',0,0,'C');
     $pdf->Ln(10);
     $pdf->SetFont("Times", 'B', 7);
     $pdf->SetFillColor(217,237,247);
@@ -21340,13 +21342,15 @@ class PrintController extends AppController {
 
       $status = $this->request->getQuery('status');
 
-      if($status == 'assessed'){
+      $conditions['status'] = "AND StudentApplication.approve = $status";
 
-        $conditions['status'] = "AND StudentApplication.approve != 3";
+      if($status == 1){ //FOR APPROVED TAB OF STUDENT APPLICATION
 
-      }else{
+        $conditions['status'] = "AND StudentApplication.approve <> 0";
 
-        $conditions['status'] = "AND StudentApplication.approve = $status";
+      }elseif($status == 'forRating'){ //RATING TAB OF CAT
+
+        $conditions['status'] = "AND StudentApplication.approve = 1";
 
       }
 
@@ -23301,29 +23305,52 @@ class PrintController extends AppController {
   public function catRatingResult($id = null){
 
     $data['StudentApplication'] = $this->StudentApplications->find()
+
     ->contain([
+
         'YearLevelTerms',
+
         'Colleges',
+
         'PreferredPrograms',
 
+
         'SecondaryPrograms',
+
         'StudentApplicationImages' => [
+
             'conditions' => ['StudentApplicationImages.visible' => 1]
+
         ],
+
         'StudentEnrolledCourses' => [
+
             'conditions' => ['StudentEnrolledCourses.visible' => 1]
+
         ],
+
         'StudentEnrolledUnits' => [
+
             'conditions' => ['StudentEnrolledUnits.visible' => 1]
+
         ],
+
         'StudentEnrollments' => [
+
             'conditions' => ['StudentEnrollments.visible' => 1]
+
         ]
+
     ])
+
     ->where([
+
         'StudentApplications.visible' => 1,
+
         'StudentApplications.id' => $id
+
     ])
+
     ->first();
 
     $data['StudentApplication']['birth_date'] = isset($data['StudentApplication']['birth_date']) ? date('m/d/Y', strtotime($data['StudentApplication']['birth_date'])) : '';
@@ -23709,9 +23736,9 @@ class PrintController extends AppController {
     $pdf->Ln(20);
     $pdf->SetTextColor(0,0,0);
     $pdf->SetFont("Arial", 'BU', 11);
-    $pdf->Cell(120);
+    $pdf->Cell(140);
     $pdf->Cell(58,5,'REGAN C. SITOY',0,'C',0);
-    $pdf->Ln();
+    $pdf->Ln(-1);
     $pdf->SetFont("Times", '', 9);
     $pdf->Cell(130);
     $pdf->Cell(58,5,'Head, Admission, & Scholarship Office',0,'C',0);
@@ -24000,24 +24027,13 @@ class PrintController extends AppController {
     $pdf->Ln(20);
     $pdf->SetTextColor(0,0,0);
     $pdf->SetFont("Arial", 'BU', 11);
-    $pdf->Cell(120);
+    $pdf->Cell(140);
     $pdf->Cell(58,5,'REGAN C. SITOY',0,'C',0);
-    $pdf->Ln();
+    $pdf->Ln(-1);
     $pdf->SetFont("Times", '', 9);
     $pdf->Cell(130);
     $pdf->Cell(58,5,'Head, Admission, & Scholarship Office',0,'C',0);
 
-    $pdf->Ln(20);
-    $pdf->SetTextColor(0,0,0);
-    $pdf->SetFont("Arial", 'BU', 11);
-    $pdf->Cell(120);
-    $pdf->Cell(58,5,'REGAN C. SITOY',0,'C',0);
-    $pdf->Ln();
-    $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(130);
-    $pdf->Cell(58,5,'Head, Admission, & Scholarship Office',0,'C',0);
-    
-// print_r($data);
     $pdf->output();
     exit();
 
@@ -24126,7 +24142,7 @@ class PrintController extends AppController {
 
     
     $pdf->Image($this->base .'/assets/img/zam.png',12,4,22,22);
-    $pdf->Image($this->base .'/assets/img/iso.png',178,6,22,18);
+    $pdf->Image($this->base .'/assets/img/iso.png',183,6,15,18);
     $pdf->Ln(4);
     $pdf->SetFont("Arial", '', 8.5);
     $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
