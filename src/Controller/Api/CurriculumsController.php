@@ -127,6 +127,8 @@ class CurriculumsController extends AppController {
 
           'program_id' => $sub['program_id'],
 
+          'program' => $sub['program']
+
         ]);
 
         $this->CurriculumSubs->save($subEntities);
@@ -189,7 +191,7 @@ class CurriculumsController extends AppController {
 
     $this->response->getBody()->write(json_encode($response));
 
-    return $this->response;
+    return $this->response; 
 
   }
 
@@ -225,13 +227,7 @@ class CurriculumsController extends AppController {
 
       'ok' => true,
 
-      'data' => 
-
-      [
-
-        'Curriculum' => $data,
-
-      ],
+      'data' => $data
 
     ];
 
