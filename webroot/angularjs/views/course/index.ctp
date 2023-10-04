@@ -88,7 +88,7 @@
                   <th style="width: 150px">CODE</th>
                   <th>COURSE TITLE</th>
                   <th>YEAR IMPLEMENTATION</th>
-                  <th>SEMESTER</th>
+                  <th>CATEGORY</th>
                   <th class="w90px"></th>
                 </tr>
               </thead>
@@ -98,7 +98,7 @@
                   <td class="text-center">{{ data.code }}</td>
                   <td class="text-left uppercase">{{ data.title }}</td>
                   <td class="text-center ">{{ data.year_implementation }}</td>
-                  <td class="text-center uppercase">{{ data.semester }}</td>
+                  <td class="text-center uppercase">{{ data.category }}</td>
                   <td>
                     <div class="btn-group btn-group-xs">
                     	<a id="pageView" href="#/course/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>

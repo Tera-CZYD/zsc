@@ -129,7 +129,7 @@ class StudentApplicationsTable extends Table{
 
           'ok' => true,
 
-          'msg' => 'Student Application Has been successfuly saved.'
+          'msg' => '<span style="color:#f5f5f5; font-size: 13px">Student Application Has been successfuly saved.</span>'
 
         ];
 

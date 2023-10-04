@@ -767,7 +767,7 @@ class CollegeProgramsController extends AppController {
 
   }
 
-    public function course_delete($id = null) {
+    public function courseDelete($id = null) {
 
       // $this->request->allowMethod(['delete']);
 

@@ -7,6 +7,7 @@
 !/vendor/*
 tmp/debug_kit.sqlite
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -15,6 +16,10 @@ tmp/debug_kit.sqlite
 >>>>>>> cbf752246b01e9430df19b63bb7bdf269e235412
 >>>>>>> 5ccdbedaec4e3749dbca66846cda379180972b34
 
+=======
+
+
+>>>>>>> add5edab7ba288a83f1d2190d5bc2b6cc458fbc5
 # OS generated files #
 ######################
 .DS_Store

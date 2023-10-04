@@ -30,7 +30,8 @@ use App\Model\Table\CounselingTypesTable;
 use App\Model\Table\CounselingIntakesTable;
 use App\Model\Table\ParticipantEvaluationActivitiesTable;
 use App\Model\Table\StudentExitsTable;
-use App\Model\Table\RolesTable; 
+use App\Model\Table\RolesTable;
+use Cake\Datasource\ConnectionManager; 
 
 class SelectController extends AppController {
 
@@ -205,6 +206,13 @@ class SelectController extends AppController {
     $this->loadModel("Majors");
 
     $this->loadModel("Campuses");
+<<<<<<< HEAD
+=======
+
+    $this->loadModel('CollegeProgramSubs');
+
+    $this->loadModel('YearLevelTerms');
+>>>>>>> add5edab7ba288a83f1d2190d5bc2b6cc458fbc5
     
 
     //sir raf
@@ -2009,17 +2017,21 @@ class SelectController extends AppController {
 
         $year_term_id = $this->request->getQuery('year_term_id');
 
-        $yearData = $this->YearLevelTerm->findById($year_term_id);
+        $yearData = $this->YearLevelTerms->findById($year_term_id)->first();
 
-        $order = $yearData['YearLevelTerm']['chronological_order'];
+        $order = $yearData->chronological_order;
 
         $year_term = "AND YearLevelTerm.chronological_order < $order";
 
       }
 
+<<<<<<< HEAD
       $this->loadModel('YearLevelTerms');
 
       $tmp = $this->YearLevelTerms->query("
+=======
+      $sql = "
+>>>>>>> add5edab7ba288a83f1d2190d5bc2b6cc458fbc5
 
         SELECT 
 
@@ -2053,17 +2065,22 @@ class SelectController extends AppController {
 
           Course.code ASC
 
-      ");
+      ";
 
-      if(!empty($tmp)){
+      $connection = ConnectionManager::get('default');
 
-        foreach ($tmp as $k => $data) {
+      $query = $connection->execute($sql);
+      $results = $query->fetchAll('assoc');
+
+      if(!empty($results)){
+
+        foreach ($results as $k => $data) {
 
           $datas[] = array(
 
-            'id'    => $data->id,
+            'id'    => $data['id'],
 
-            'value' => $data->code.' - '.$data->title
+            'value' => $data['code'].' - '.$data['title']
 
           );
 
@@ -2089,17 +2106,21 @@ class SelectController extends AppController {
 
         $year_term_id = $this->request->getQuery('year_term_id');
 
-        $yearData = $this->YearLevelTerm->findById($year_term_id);
+        $yearData = $this->YearLevelTerms->findById($year_term_id)->first();
 
-        $order = $yearData['YearLevelTerm']['chronological_order'];
+        $order = $yearData->chronological_order;
 
         $year_term = "AND YearLevelTerm.chronological_order < $order";
 
       }
 
+<<<<<<< HEAD
       $this->loadModel('YearLevelTerms');
 
       $tmp = $this->YearLevelTerms->query("
+=======
+      $sql = "
+>>>>>>> add5edab7ba288a83f1d2190d5bc2b6cc458fbc5
 
         SELECT 
 
@@ -2133,17 +2154,22 @@ class SelectController extends AppController {
 
           Course.code ASC
 
-      ");
+      ";
 
-      if(!empty($tmp)){
+      $connection = ConnectionManager::get('default');
 
-        foreach ($tmp as $k => $data) {
+      $query = $connection->execute($sql);
+      $results = $query->fetchAll('assoc');
+
+      if(!empty($results)){
+
+        foreach ($results as $k => $data) {
 
           $datas[] = array(
 
-            'id'    => $data->id,
+            'id'    => $data['id'],
 
-            'value' => $data->code.' - '.$data->title
+            'value' => $data['code'].' - '.$data['title']
 
           );
 
@@ -10973,35 +10999,31 @@ class SelectController extends AppController {
 
     } else if ($code == 'college-program-requirements') {
 
-      $program_id = $this->request->query['program_id'];
+      $program_id = $this->request->getQuery('program_id');
      
-      $tmp = $this->CollegeProgramSub->find('all', array(
+      $tmp = $this->CollegeProgramSubs->find()
 
-        'conditions' => array(
+      ->where([
 
-          'CollegeProgramSub.visible' => true,
+        'visible' => 1,
 
-          'CollegeProgramSub.college_program_id' => $program_id
+        'college_program_id' => $program_id
 
-        ),
+      ])
 
-        'order' => array(
+      ->order(['id' => 'ASC'])
 
-          'CollegeProgramSub.id' => 'ASC',
+      ->all();
 
-        )
-
-      ));
-
-      if(!empty($tmp)){
+      if(count($tmp) > 0){
 
         foreach ($tmp as $k => $data) {
 
           $datas[] = array(
 
-            'id'    => $data['CollegeProgramSub']['id'],
+            'id'    => $data['id'],
 
-            'value' => $data['CollegeProgramSub']['requirement'],
+            'value' => $data['requirement'],
 
           );
 
