@@ -70,7 +70,7 @@
                       <th class="text-center w30px">#</th>
                       <th class="text-center"> CONTROL NO. </th>
                       <th class="text-center"> STUDENT NAME </th>
-                      <th class="text-center"> RQUESTED FORM </th>
+                      <th class="text-center"> REQUESTED FORM </th>
                       <th class="text-center"> DATE </th>
                       <th class="w90px"></th>
                     </tr>
@@ -151,7 +151,7 @@
                       <th class="text-center w30px">#</th>
                       <th class="text-center"> CONTROL NO. </th>
                       <th class="text-center"> STUDENT NAME </th>
-                      <th class="text-center"> RREQUESTED FORM </th>
+                      <th class="text-center"> REQUESTED FORM </th>
                       <th class="text-center"> DATE </th>
                       <th class="w90px"></th>
                     </tr>

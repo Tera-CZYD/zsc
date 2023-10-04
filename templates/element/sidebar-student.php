@@ -62,9 +62,9 @@
                 <a href="#/registrar/request-form" onclick="change('request-form')">Request Form</a>
               </li>
 
-              <li class="nav-link-side nav-adding-dropping-subject">
+              <!-- <li class="nav-link-side nav-adding-dropping-subject">
                 <a href="#/registrar/adding-dropping-subject" onclick="change('adding-dropping-subject')">Adding/Dropping Subject</a>
-              </li>
+              </li> -->
               
               <li class="nav-link-side nav-student-club">
                 <a href="#/registrar/student-club" onclick="change('student-club')">Student Clubs Application</a>

@@ -14467,9 +14467,9 @@ class PrintController extends AppController {
 
     $conditions['date'] = '';
 
-    if (isset($this->request->query['date'])) {
+    if ($this->request->getQuery('date')!=null) {
 
-      $search_date = $this->request->query['date'];
+      $search_date = $this->request->getQuery('date');
 
       $conditions['date'] = " AND DATE(Completion.date) = '$search_date'"; 
 
@@ -14477,11 +14477,11 @@ class PrintController extends AppController {
 
     } 
 
-    if (isset($this->request->query['startDate'])) {
+    if ($this->request->getQuery('startDate')!=null) {
 
-      $start = $this->request->query['startDate']; 
+      $start = $this->request->getQuery('startDate'); 
 
-      $end = $this->request->query['endDate'];
+      $end = $this->request->getQuery('endDate');
 
       $conditions['date'] = " AND DATE(Completion.date) >= '$start' AND DATE(Completion.date) <= '$end'";
 
@@ -14527,12 +14527,11 @@ class PrintController extends AppController {
     $pdf->Cell(55,5,'DATE',1,0,'C',1);
     $pdf->Cell(30,5,'REQUIREMENT',1,0,'C',1);
     $pdf->Cell(60,5,'INSTRUCTOR',1,0,'C',1);
-    $pdf->Cell(30,5,'SEMESTER',1,0,'C',1);
-    $pdf->Cell(20,5,'YEAR',1,0,'C',1);
+    $pdf->Cell(50,5,'YEAR & SEMESTER',1,0,'C',1);
     $pdf->Ln();
     $pdf->SetFont("Times", '', 8);
-    $pdf->SetWidths(array(10,35,80,55,30,60,30,20));
-    $pdf->SetAligns(array('C','C','L','C','C','L','C','C'));
+    $pdf->SetWidths(array(10,35,80,55,30,60,30));
+    $pdf->SetAligns(array('C','C','L','C','C','L','C'));
 
     if(count($tmpData)>0){
 
@@ -14554,9 +14553,7 @@ class PrintController extends AppController {
 
           $data['instructor'],
 
-          $data['semester'],
-
-          $data['year'],
+          $data['description']
 
 
         ));
@@ -18265,7 +18262,7 @@ class PrintController extends AppController {
 
     $office_reference = $this->Global->OfficeReference('Scholarship Application');
 
-    $data['ScholarshipApplication'] = $this->ScholarshipApplication->find()
+    $data['ScholarshipApplication'] = $this->ScholarshipApplications->find()
 
     ->contain([
 
@@ -18290,6 +18287,8 @@ class PrintController extends AppController {
     $data['CollegeProgram'] = $data['ScholarshipApplication']['college_program'];
 
     $data['YearLevelTerm'] = $data['ScholarshipApplication']['year_level_term'];
+
+    $data['YearLevelTerm']['year'] = $data['YearLevelTerm'] != null ? $data['YearLevelTerm']['year'] : '' ;
 
     unset($data['ScholarshipApplication']['college_program']);
 
@@ -20822,7 +20821,7 @@ class PrintController extends AppController {
     $pdf->Ln(6);
     $pdf->Cell(10, 5, '', 0, 0, 'L');
     $pdf->Cell(23, 5, 'Date of Birth: ', 0, 0, 'L');
-    $pdf->Cell(45, 5, fdate($data['Student']['date_of_birth'],'m/d/Y'), 0, 0, 'L');
+    $pdf->Cell(45, 5, $data['Student']['date_of_birth']->format('m/d/Y'), 0, 0, 'L');
     $pdf->Cell(10, 5, 'Sex:', 0, 0, 'L');
     $pdf->Cell(25, 5, $data['Student']['gender'], 0, 0, 'L');
     $pdf->Cell(30, 5, 'Valid Credential: ', 0, 0, 'L');
