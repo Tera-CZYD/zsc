@@ -327,8 +327,6 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
   };
 
-<<<<<<< HEAD
-=======
   $scope.printInc = function () {
 
     date = "";
@@ -391,7 +389,7 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
   // console.log($scope);
 
->>>>>>> 19dd38f3424b4b737f0d5636c0383c669968774e
+
   if(currentUser.roleId != 23){
 
     if(currentUser.roleId ==25){
@@ -404,13 +402,8 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
             Select.get({code: 'get-student', student_id : data.student_id },function(n){
 
-<<<<<<< HEAD
-              Select.get({ code: 'get-student-absent', student_id : n.data.id, year_term_id : n.data.year_term_id },function(q){
-=======
-              // console.log(n);
-
               Select.get({ code: 'get-student-attendance', student_id : n.data.id, year_term_id : n.data.year_term_id },function(q){
->>>>>>> 19dd38f3424b4b737f0d5636c0383c669968774e
+
 
                 $scope.count = q.data;
 
@@ -506,7 +499,7 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
 
                 });
 
-                // $scope.loadPage();
+               
 
                 $scope.load();
 
@@ -584,132 +577,6 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
     }
 
   }
-
-  //RELOAD UPON CLEAR OF STUDENT
-
-    // $scope.loadPage = function(){
-
-    //   if(currentUser.roleId == 12 && currentUser.employee.academic_rank_id == 2){
-
-    //     $scope.pending = function(options) {
-
-    //       options = typeof options !== 'undefined' ?  options : {};
-
-    //       options['status'] = 0;
-
-    //       options['course_id'] = $scope.course_id;
-
-    //       StudentClearance.query(options, function(e) {
-
-    //         if (e.ok) {
-
-    //           $scope.datas = e.data;
-
-    //           $scope.conditionsPrint = e.conditionsPrint;
-
-    //           // paginator
-
-    //           $scope.paginator  = e.paginator;
-
-    //           $scope.pages = paginator($scope.paginator, 5);
-
-    //         }
-
-    //       });
-
-    //     }
-
-    //     $scope.cleared = function(options) {
-
-    //       options = typeof options !== 'undefined' ?  options : {};
-
-    //       options['status'] = 1;
-
-    //       options['course_id'] = $scope.course_id;
-
-    //       StudentClearance.query(options, function(e) {
-
-    //         if (e.ok) {
-
-    //           $scope.datasCleared = e.data;
-
-    //           $scope.conditionsPrintCleared = e.conditionsPrint;
-
-    //           // paginator
-
-    //           $scope.paginatorCleared  = e.paginator;
-
-    //           $scope.pagesCleared = paginator($scope.paginatorCleared, 5);
-
-    //         }
-
-    //       });
-
-    //     }
-
-    //     $scope.incomplete = function(options) {
-
-    //       options = typeof options !== 'undefined' ?  options : {};
-
-    //       options['status'] = 2;
-
-    //       options['course_id'] = $scope.course_id;
-
-    //       StudentClearance.query(options, function(e) {
-
-    //         if (e.ok) {
-
-    //           $scope.datasIncomplete = e.data;
-
-    //           $scope.conditionsPrintIncomplete = e.conditionsPrint;
-
-    //           // paginator
-
-    //           $scope.paginatorIncomplete  = e.paginator;
-
-    //           $scope.pagesIncomplete = paginator($scope.paginatorIncomplete, 5);
-
-    //         }
-
-    //       });
-
-    //     }
-
-    //     $scope.pending([]);
-
-    //     $scope.cleared([]);
-
-    //     $scope.incomplete([]);
-
-    //   }else{
-
-    //     $scope.load = function (options) {
-
-    //       options = typeof options !== "undefined" ? options : {};
-
-    //       StudentClearance.query(options, function (e) {
-
-    //         if (e.ok) {
-
-    //           $scope.datas = e.data;
-
-    //           $scope.conditionsPrint = e.conditionsPrint;
-
-    //           $scope.paginator = e.paginator;
-
-    //           $scope.pages = paginator($scope.paginator, 5);
-
-    //         }
-
-    //       });
-
-    //     };
-
-    //   }
-
-    // }
-
-  //endDate
 
 });
 
