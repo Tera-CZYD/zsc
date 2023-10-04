@@ -92,7 +92,7 @@
                       </thead>
                       <tbody>
                         <tr ng-repeat="data in appointments">
-                          <td class="text-center">{{ (paginator.page - 1 ) * paginator.limit + $index + 1 }}</td>
+                          <td class="text-center">{{ (paginatorAppointment.page - 1 ) * paginatorAppointment.limit + $index + 1 }}</td>
                           <td class="text-center">{{ data.code }}</td>
                           <td class="text-left">{{ data.student_name }}</td>
                           <td class="text-center">{{ data.date }}</td>

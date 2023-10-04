@@ -118,7 +118,7 @@ class ReferralRecommendationsTable extends Table{
 
         WHERE
 
-          ReferralRecommendation.visible = true $date   $status  $studentId  AND
+          ReferralRecommendation.visible = true $date $status $studentId  AND
 
           (
    

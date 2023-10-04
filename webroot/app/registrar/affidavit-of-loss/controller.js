@@ -82,13 +82,13 @@ app.controller('AffidavitOfLossController', function($scope, AffidavitOfLoss) {
 
         $scope.datasDisapproved = e.data;
 
-        $scope.conditionsPrintApproved = e.conditionsPrint;
+        $scope.conditionsPrintDisapproved = e.conditionsPrint;
 
         // paginator
 
-        $scope.paginatorApproved  = e.paginator;
+        $scope.paginatorDisapproved  = e.paginator;
 
-        $scope.pagesApproved = paginator($scope.paginatorApproved, 5);
+        $scope.pagesDisapproved = paginator($scope.paginatorDisapproved, 5);
 
       }
 
@@ -338,19 +338,35 @@ app.controller('AffidavitOfLossController', function($scope, AffidavitOfLoss) {
     }
   }
 
-  // $scope.printApproved = function(){
+  $scope.printApproved = function(){
 
-  //   date = "";
+    date = "";
   
-  //   if ($scope.conditionsPrint !== '') {
+    if ($scope.conditionsPrint !== '') {
 
-  //     printTable(base + 'print/request_form?print=1' + $scope.conditionsPrintApproved);
+      printTable(base + 'print/request_form?print=1' + $scope.conditionsPrintApproved);
 
-  //   }else{
+    }else{
 
-  //     printTable(base + 'print/request_form?print=1');
+      printTable(base + 'print/request_form?print=1');
 
-  //   }
+    }
+  }
+
+   $scope.printDisapproved = function(){
+
+    date = "";
+  
+    if ($scope.conditionsPrint !== '') {
+
+      printTable(base + 'print/request_form?print=1' + $scope.conditionsPrintDisapproved);
+
+    }else{
+
+      printTable(base + 'print/request_form?print=1');
+
+    }   
+  }
   // }
   // $scope.printForm = function(){
   //   printTable(base + 'print/practicum_form/');

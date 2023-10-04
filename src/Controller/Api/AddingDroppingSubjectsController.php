@@ -192,9 +192,8 @@ class AddingDroppingSubjectsController extends AppController {
 
        $id = $data->id;
 
-
-
       if (count($subs) > 0) {
+
           foreach ($subs as $sub) {
 
           $subEntities = $this->AddingDroppingSubjectSubs->newEntity([
