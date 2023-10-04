@@ -3,7 +3,7 @@
   <div class="col-lg-12 mt-3">
     <div class="card">
       <div class="card-body">
-        <div class="header-title">PRORGAM - ADD COURSE</div>
+        <div class="header-title">PROGRAM - ADD COURSE</div>
         <div class="clearfix"></div><hr>
         <form id="form">
           <div class="row">

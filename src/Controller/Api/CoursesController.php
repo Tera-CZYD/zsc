@@ -105,7 +105,7 @@ class CoursesController extends AppController {
 
         'year_implementation'          =>$course['year_implementation'],
 
-        'semester'      => $course['yearDescription']
+        'category'      => $course['category']
 
       );
 
@@ -137,9 +137,9 @@ class CoursesController extends AppController {
 
     $requestData = $this->request->getData('Course');
 
-    $requestData['is_computer'] = $requestData['is_computer'] ? 1 : 0;
+    $requestData['is_computer'] = (isset($requestData['is_computer']) && $requestData['is_computer'] == true) ? 1 : 0;
 
-    $requestData['is_jeep'] = $requestData['is_jeep'] ? 1 : 0;
+    $requestData['is_jeep'] = (isset($requestData['is_jeep']) && $requestData['is_jeep'] == true ) ? 1 : 0;
 
     $data = $this->Courses->newEmptyEntity();
    

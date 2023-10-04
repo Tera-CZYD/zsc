@@ -36,13 +36,13 @@
                 <input type="text" class="form-control yearpicker" ng-model="data.Course.year_implementation" data-validation-engine="validate[required]">
               </div>
             </div>
-            <div class="col-md-6">
+<!--             <div class="col-md-6">
               <div class="form-group">
                 <label> SEMESTER <i class="required">*</i></label>
                 <select selectize ng-options="opt.id as opt.value for opt in year_level_term" ng-model="data.Course.year_term_id" data-validation-engine="validate[required]">
                 <option value=""></option></select>
               </div>
-            </div>
+            </div> -->
             <div class="col-md-6">
               <div class="form-group">
                 <label> TITLE <i class="required">*</i></label>
