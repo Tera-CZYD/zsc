@@ -52,6 +52,9 @@
               <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" data-target ="#cleared" role="tab">CLEARED</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" data-target ="#drop" role="tab">DROPPED</a>
+              </li>
             </ul>
             <div class="tab-content mt-3" id="myTabContent">
 
@@ -96,7 +99,7 @@
                           <td class="text-center"> {{ data.course }}</td>
                           <td class="text-center">{{ data.remarks  != null ? data.remarks : 'N/A' }}</td>
                           <td>
-                            <div class="btn-group btn-group-xs">
+                            <div class="btn-group btn-group-xs" ng-show="data.clearance_status !=3 ">
                               <a id="pageView" href="#/faculty/student-clearance/faculty-view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
                               <a id="pageEmail" href="javascript:void(0)" ng-click="sendMail(data)" class="btn btn-info" title="SEND EMAIL"><i class="fa fa-envelope"></i></a>
                               <a id="pageClear" href="javascript:void(0)" ng-click="clearStudent(data)" class="btn btn-warning" title="CLEAR STUDENT"><i class="fa fa-check"></i></a>
@@ -104,7 +107,7 @@
                           </td>
                         </tr>
                         <tr ng-show="datas == null || datas == ''">
-                          <td colspan="10">No available data</td>
+                          <td colspan="5">No available data</td>
                         </tr>
                       </tbody>
                     </table>
@@ -145,7 +148,7 @@
                       <!--
                       <a id="pageAdd" href="#/faculty/student-clearance/faculty-add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
                        -->
-                      <button id="pagePrint" ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>
+                      <button id="pagePrint" ng-click="printInc()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
                     <div class="col-md-4 col-xs-12 pull-right">
@@ -186,7 +189,7 @@
                           </td>
                         </tr>
                         <tr ng-show="datasIncomplete == null || datasIncomplete == ''">
-                          <td colspan="10">No available data</td>
+                          <td colspan="5">No available data</td>
                         </tr>
                       </tbody>
                     </table>
@@ -224,7 +227,7 @@
                 <div class="col-md-12">
                   <div class="row">
                     <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                      <button id="pagePrint" ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>
+                      <button id="pagePrint" ng-click="printCleared()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
                     <div class="col-md-4 col-xs-12 pull-right">
@@ -263,7 +266,7 @@
                           </td>
                         </tr>
                         <tr ng-show="datasCleared == null || datasCleared == ''">
-                          <td colspan="10">No available data</td>
+                          <td colspan="5">No available data</td>
                         </tr>
                       </tbody>
                     </table>
@@ -291,6 +294,83 @@
                     <div class="clearfix"></div>
                     <div class="text-center" ng-show="paginatorCleared.pageCount > 0">
                       <sup class="text-primary">Page {{ paginatorCleared.pageCount > 0 ? paginatorCleared.page : 0 }} out of {{ paginatorCleared.pageCount }}</sup>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade show" id="drop">
+                <div class="clearfix"></div><hr>
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
+                      <button id="pagePrint" ng-click="printDropped()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>
+                      <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
+                    </div>
+                    <div class="col-md-4 col-xs-12 pull-right">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-search"></i></span>
+                        <input type="text" class="form-control search" ng-enter="searchy(searchTxt)" placeholder="SEARCH HERE" ng-model="searchTxt">
+                      </div>
+                      <sup style="font-color:gray">Press Enter to search</sup>
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+                <hr>
+                <div class="single-table mb-5">
+                  <div class="table-responsive">
+                    <table class="table table-bordered text-center">
+                      <thread>
+                        <tr class="bg-info">
+                          <th class="text-center w30px">#</th>
+                          <th class="text-center"> STUDENT NAME </th>
+                          <th class="text-center"> SUBJECT </th>
+                          <th class="text-center"> REMARKS </th>
+                          <th class="w90px"></th>
+                        </tr>
+                      </thread>
+                      <tbody>
+                        <tr ng-repeat="data in datasDropped">
+                          <td class="text-center">{{ (paginator.page - 1 ) * paginator.limit + $index + 1 }}</td>
+                          <td class="text-left">{{ data.student_name }}</td>
+                          <td class="text-center"> {{ data.course }}</td>
+                          <td class="text-center">{{ data.remarks  != null ? data.remarks : 'N/A' }}</td>
+                          <td>
+                            <div class="btn-group btn-group-xs">
+                              <a id="pageView" href="#/faculty/student-clearance/faculty-view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr ng-show="datasDropped == null || datasDropped == ''">
+                          <td colspan="10">No available data</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <ul class="pagination justify-content-center">
+                      <li class="page-item">
+                        <a class="page-link" href="javascript:void(0)" ng-click="dropped({ page: 1 })"><sub>&laquo;&laquo;</sub></a>
+                      </li>
+                      <li class="page-item prevPage {{ !paginatorDropped.prevPage? 'disabled':'' }}">
+                        <a class="page-link" href="javascript:void(0)" ng-click="dropped({ page: paginatorDropped.page - 1 })">&laquo;</a>
+                      </li>
+                      <li ng-repeat="page in pagesDropped" class="page-item {{ paginatorDropped.page == page.number ? 'active':''}}" >
+                        <a class="page-link" href="javascript:void(0)" class="text-center" ng-click="dropped({ page: page.number })">{{ page.number }}</a>
+                      </li>
+                      <li class="page-item nextPage {{ !paginatorDropped.nextPage? 'disabled':'' }}">
+                        <a class="page-link" href="javascript:void(0)" ng-click="dropped({ page: paginatorDropped.page + 1 })">&raquo;</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="javascript:void(0)" ng-click="dropped({ page: paginatorDropped  })"><sub>&raquo;&raquo;</sub> </a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                    <div class="text-center" ng-show="paginatorDropped.pageCount > 0">
+                      <sup class="text-primary">Page {{ paginatorDropped.pageCount > 0 ? paginatorDropped.page : 0 }} out of {{ paginatorDropped.pageCount }}</sup>
                     </div>
                   </div>
                 </div>

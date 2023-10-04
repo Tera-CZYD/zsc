@@ -112,17 +112,17 @@ class StudentApplicationsController extends AppController {
 
       $status = $this->request->getQuery('status');
 
-      if($status == 'assessed'){
+      $conditions['status'] = "AND StudentApplication.approve = $status";
 
-        $conditions['status'] = "AND StudentApplication.approve != 3";
+      $conditionsPrint .= '&status='.$this->request->getQuery('status');
 
-        $conditionsPrint .= '&status!=3';
+      if($status == 1){ //FOR APPROVED TAB OF STUDENT APPLICATION
 
-      }else{
+        $conditions['status'] = "AND StudentApplication.approve <> 0";
 
-        $conditions['status'] = "AND StudentApplication.approve = $status";
+      }elseif($status == 'forRating'){ //RATING TAB OF CAT
 
-        $conditionsPrint .= '&status='.$this->request->getQuery('status');
+        $conditions['status'] = "AND StudentApplication.approve = 1";
 
       }
 
@@ -1026,7 +1026,7 @@ class StudentApplicationsController extends AppController {
     
   }
 
-  public function bulk_email(){
+  public function bulkEmail(){
 
     $this->autoRender = false;
 
@@ -1809,6 +1809,60 @@ class StudentApplicationsController extends AppController {
     
   }
 
+  public function requestInterview($id = null){
+
+    $this->autoRender = false;
+
+    $request = $this->request->getData();
+
+    $app = $this->StudentApplications->get($id);
+
+    $app->request_purpose = $request['purpose'];
+
+    $app->status = 'REQUESTED';
+
+    if ($this->StudentApplications->save($app)) {
+
+      $response = array(
+
+        'ok'   => true,
+
+        'data' => $app,       
+
+        'msg'  => 'You have successfully requested for an medical interview.'
+
+      );
+
+    } else {
+
+      $response = array(
+
+        'ok'   => false,
+
+        'data' => $app,
+
+        'msg'  => 'You cannot request for an medical interview this time.'
+
+      );
+
+    }
+
+    $this->set(array(
+
+      'response'=>$response,
+
+      '_serialize'=>'response'
+
+    ));
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+  }
+
   public function sendSchedule($id = null){
 
     $this->autoRender = false;
@@ -1871,7 +1925,7 @@ class StudentApplicationsController extends AppController {
           ];
 
           //Recipients
-          $mail->setFrom('mycreativepandaii@gmail.com', 'MCP'); // Sender's email and name
+          $mail->setFrom('mycreativepandaii@gmail.com', 'ZAMBOANGA STATE COLLEGE OF MARINE SCIENCES AND TECHNOLOGY'); // Sender's email and name
 
           $mail->addAddress($email, $name); // Recipient's email and name
 
@@ -1892,7 +1946,7 @@ class StudentApplicationsController extends AppController {
 
           ob_start();
 
-          include('Email/cat-email.ctp');
+          include('Email/admission-application-interview-schedule.ctp');
 
           $bodyContent = ob_get_contents();
 

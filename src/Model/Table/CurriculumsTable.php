@@ -12,11 +12,6 @@ class CurriculumsTable extends Table{
 
     $this->addBehavior('Timestamp');
 
-    $this->belongsTo('Campus', [
-
-        'foreignKey' => 'campus_id',
-
-    ]);
 
     $this->hasMany('CurriculumSubs', [
 

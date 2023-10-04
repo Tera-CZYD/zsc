@@ -16,7 +16,7 @@
   handleAccess('pageEdit', 'request form/edit', currentUser);
   handleAccess('pageDelete', 'request form/delete', currentUser);
   handleAccess('pageApprove', 'request form/approve', currentUser);
-  handleAccess('pagePrintForm', 'request form/print request form', currentUser);
+  handleAccess('pagePrintForm', 'request form/print request form', currentUser); 
 
 </script>
 
@@ -72,9 +72,16 @@
                     <th class="text-right"> REMARKS : </th>
                     <td class="italic">{{ data.RequestForm.remarks }}</td>
                   </tr>
+                  <tr>
+                      <th class="text-right"> REQUESTOR : </th>
+                      <td class="italic">{{ data.AffidavitOfLoss.claim == 0 ? 'CLAIM' : (data.AffidavitOfLoss.claim == 1 ? 'AUTHORIZED PERSON' : '') }}</td>
+                  </tr>
                 </table>
               </div>
             </div>
+
+
+
             <div class="clearfix"></div>
             <div class="col-md-12 mt-4" ng-show="data.RequestForm.identifier != undefined">
                 <div class="form-group">
@@ -91,7 +98,7 @@
                   </div>
                 </div>
               </div>
-            <div class="col-md-12 mt-4">
+            <div class="col mt-4">
               <div class="form-group">
                 <label> PLEASE CHECK NATURE OF REQUEST <i class="required">*</i></label>
                 <div class="row mt-4">
@@ -159,6 +166,14 @@
 
               </div>
             </div>
+
+            <div class="col-md-4" style="display: flex; justify-content: center;" ng-show="data.RequestForm.claim == 1">
+
+                <a href="uploads/request-form/{{data.RequestForm.id}}/{{ data.RequestForm.image }}"><img src="uploads/request-form/{{data.RequestForm.id}}/{{ data.RequestForm.image }}" class="img-responsive" style="max-height: 50vh; max-width: 70%;" /></a>
+
+            </div>
+
+
             <div class="col-md-12">
               <div class="clearfix"></div>
               <hr>

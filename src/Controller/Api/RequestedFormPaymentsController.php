@@ -186,7 +186,15 @@ class RequestedFormPaymentsController extends AppController {
         'RequestedFormPaymentSubs',
 
         'AffidavitOfLosses' => [
+
           'conditions' => ['AffidavitOfLosses.visible' => 1]
+
+        ],
+
+        'RequestForms' => [
+
+          'conditions' => ['RequestForms.visible' => 1]
+
         ]
 
       ])
@@ -207,13 +215,17 @@ class RequestedFormPaymentsController extends AppController {
 
         'RequestedFormPaymentSub' => $data['RequestedFormPayment']->requested_form_payment_subs,
 
-        'AffidavitOfLoss' =>$data['RequestedFormPayment']->affidavit_of_loss
+        'AffidavitOfLoss' =>$data['RequestedFormPayment']->affidavit_of_loss,
+
+        'RequestForm' =>$data['RequestedFormPayment']->request_form
 
       ];
 
       unset($data['RequestedFormPayment']->requested_form_payment_subs);
 
       unset($data['RequestedFormPayment']->affidavit_of_loss);
+
+      unset($data['RequestedFormPayment']->request_form);
 
      $response = [
 

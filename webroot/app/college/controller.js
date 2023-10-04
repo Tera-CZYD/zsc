@@ -157,8 +157,6 @@ app.controller('CollegeAddController', function($scope, College, Select) {
 
   };
 
-
-
   Select.get({ code: 'program-list' },function(e){
 
     $scope.programs = e.data;

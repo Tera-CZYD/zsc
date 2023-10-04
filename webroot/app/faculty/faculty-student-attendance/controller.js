@@ -370,7 +370,7 @@ app.controller('FacultyStudentAttendanceViewStudentsController', function($scope
  
       StudentAttendanceFile.save($scope.StudentAttendanceFile, function(e) {
 
-        Select.get({ code: 'get-student-attendance', student_id : $scope.student_id, year_term_id : $scope.year_term_id },function(q){
+        Select.get({ code: 'get-student-absent', student_id : $scope.student_id, year_term_id : $scope.year_term_id, section : $scope.id, course_id : $scope.course, faculty_id : $scope.faculty },function(q){
 
           $scope.count = q.data;
 

@@ -537,7 +537,7 @@ app.controller('BlockSectionAddController', function($scope, BlockSection, Selec
 
 });
 
-app.controller('BlockSectionEditController', function($scope, $routeParams, BlockSection, Select) {
+app.controller('BlockSectionEditController', function($scope, $routeParams, BlockSection, BlockSectionCourse, Select) {
   
   $scope.id = $routeParams.id;
 
@@ -667,7 +667,7 @@ app.controller('BlockSectionEditController', function($scope, $routeParams, Bloc
 
     });
 
-  }
+  } 
 
   $scope.getProgram = function(id){
 
@@ -683,11 +683,11 @@ app.controller('BlockSectionEditController', function($scope, $routeParams, Bloc
 
       });
 
-      Select.get({ code: 'program-course-list', id : id },function(e){
+      // Select.get({ code: 'program-course-list', id : id },function(e){
 
-        $scope.courses = e.data;
+      //   $scope.courses = e.data;
 
-      });
+      // });
 
     }
 
@@ -783,7 +783,25 @@ app.controller('BlockSectionEditController', function($scope, $routeParams, Bloc
 
     if(valid){
 
-      $scope.data.BlockSectionCourse.push(data); 
+        data.block_section_id = $scope.id
+
+        BlockSectionCourse.save(data, function(e){
+
+            if (e.ok) {
+
+              $.gritter.add({
+
+                title: 'Successful!',
+
+                text: e.msg
+
+              });
+
+              $scope.load();
+
+            }
+
+          }); 
 
       $('#add-course-modal').modal('hide');
 
@@ -801,6 +819,7 @@ app.controller('BlockSectionEditController', function($scope, $routeParams, Bloc
 
     $scope.sub = data;
 
+    $scope.sub.ptc = ($scope.sub.ptc == true)? 1 : 0
 
     $('#edit-course-modal').modal('show');
 
@@ -812,17 +831,60 @@ app.controller('BlockSectionEditController', function($scope, $routeParams, Bloc
 
     if(valid){
 
-      $scope.data.BlockSectionCourse[data.index] = data; 
+      $scope.data.BlockSectionCourse[$scope.index] = data
 
-      $('#edit-course-modal').modal('hide');
+      BlockSectionCourse.update($scope.data.BlockSectionCourse[$scope.index], function(e){
+
+        if (e.ok) {
+
+          $.gritter.add({
+
+            title: 'Successful!',
+
+            text: e.msg
+
+          });
+
+          $scope.load();
+
+        }
+
+      });      
+
+    $('#edit-course-modal').modal('hide');
 
     }
 
   }
   
-  $scope.removeCourse = function(index) {
+  $scope.removeCourse = function(index,data) {
 
-    $scope.data.BlockSectionCourse.splice(index,1);
+
+      bootbox.confirm('Are you sure with the selected faculty member?' , function(c){
+
+        if(c) {
+
+          BlockSectionCourse.delete($scope.data.BlockSectionCourse[index], function(e){
+
+            if (e.ok) {
+
+              $.gritter.add({
+
+                title: 'Successful!',
+
+                text: e.msg
+
+              });
+
+              $scope.load();
+
+            }
+
+          });
+
+        }
+
+      });
 
   }
 
@@ -866,7 +928,7 @@ app.controller('BlockSectionEditController', function($scope, $routeParams, Bloc
 
 });
 
-app.controller('BlockSectionViewController', function($scope, $routeParams, BlockSection, BlockSectionCourse, Select) {
+app.controller('BlockSectionViewController', function($scope, $routeParams, BlockSection, BlockSectionCourseFaculty, Select) {
   
   $scope.id = $routeParams.id;
 
@@ -973,7 +1035,7 @@ app.controller('BlockSectionViewController', function($scope, $routeParams, Bloc
 
           $scope.data.BlockSectionCourse[$scope.index].faculty_name = data.faculty_name
 
-          BlockSectionCourse.update($scope.data.BlockSectionCourse[$scope.index], function(e){
+          BlockSectionCourseFaculty.save($scope.data.BlockSectionCourse[$scope.index], function(e){
 
             if (e.ok) {
 
@@ -1000,6 +1062,18 @@ app.controller('BlockSectionViewController', function($scope, $routeParams, Bloc
     $('#add-faculty-modal').modal('hide');
 
   }
+
+  $scope.editFaculty = function(index, data) {
+
+    $('#faculty_form').validationEngine('attach');
+    
+    $scope.sub = data
+
+    $scope.index = index
+
+    $('#add-faculty-modal').modal('show');
+
+  }  
 
   $scope.load();
 

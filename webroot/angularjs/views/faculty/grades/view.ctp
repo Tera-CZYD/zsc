@@ -58,19 +58,10 @@
             <div class="clearfix"></div><hr>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-2">
             <div class="form-group">
-              <label> SELECT PROGRAM </label>
-              <select selectize ng-model="program_id" ng-options="opt.id as opt.value for opt in programs" ng-change = "getProgram(program_id);getDatas();">
-                <option value=""></option>
-              </select>
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="form-group">
-              <label> SELECT COURSE </label>
-              <select selectize ng-model="course_id" ng-options="opt.course_id as opt.value for opt in courses" ng-change = "getDatas()">
+              <label> SELECT YEAR TERM </label>
+              <select selectize ng-model="year_term_id" ng-options="opt.id as opt.value for opt in year_terms" ng-change = "getDatas()">
                 <option value=""></option>
               </select>
             </div>
@@ -85,10 +76,19 @@
             </div>
           </div> 
 
-          <div class="col-md-2">
+          <div class="col-md-4">
             <div class="form-group">
-              <label> SELECT YEAR TERM </label>
-              <select selectize ng-model="year_term_id" ng-options="opt.id as opt.value for opt in year_terms" ng-change = "getDatas()">
+              <label> SELECT PROGRAM </label>
+              <select selectize ng-model="program_id" ng-options="opt.id as opt.value for opt in programs" ng-change = "getProgram(program_id);getDatas();">
+                <option value=""></option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label> SELECT COURSE </label>
+              <select selectize ng-model="course_id" ng-options="opt.course_id as opt.value for opt in courses" ng-change = "getDatas()">
                 <option value=""></option>
               </select>
             </div>
