@@ -23208,29 +23208,52 @@ class PrintController extends AppController {
   public function catRatingResult($id = null){
 
     $data['StudentApplication'] = $this->StudentApplications->find()
+
     ->contain([
+
         'YearLevelTerms',
+
         'Colleges',
+
         'PreferredPrograms',
 
+
         'SecondaryPrograms',
+
         'StudentApplicationImages' => [
+
             'conditions' => ['StudentApplicationImages.visible' => 1]
+
         ],
+
         'StudentEnrolledCourses' => [
+
             'conditions' => ['StudentEnrolledCourses.visible' => 1]
+
         ],
+
         'StudentEnrolledUnits' => [
+
             'conditions' => ['StudentEnrolledUnits.visible' => 1]
+
         ],
+
         'StudentEnrollments' => [
+
             'conditions' => ['StudentEnrollments.visible' => 1]
+
         ]
+
     ])
+
     ->where([
+
         'StudentApplications.visible' => 1,
+
         'StudentApplications.id' => $id
+
     ])
+
     ->first();
 
     $data['StudentApplication']['birth_date'] = isset($data['StudentApplication']['birth_date']) ? date('m/d/Y', strtotime($data['StudentApplication']['birth_date'])) : '';
@@ -23616,9 +23639,9 @@ class PrintController extends AppController {
     $pdf->Ln(20);
     $pdf->SetTextColor(0,0,0);
     $pdf->SetFont("Arial", 'BU', 11);
-    $pdf->Cell(120);
+    $pdf->Cell(140);
     $pdf->Cell(58,5,'REGAN C. SITOY',0,'C',0);
-    $pdf->Ln();
+    $pdf->Ln(-1);
     $pdf->SetFont("Times", '', 9);
     $pdf->Cell(130);
     $pdf->Cell(58,5,'Head, Admission, & Scholarship Office',0,'C',0);
@@ -23907,24 +23930,13 @@ class PrintController extends AppController {
     $pdf->Ln(20);
     $pdf->SetTextColor(0,0,0);
     $pdf->SetFont("Arial", 'BU', 11);
-    $pdf->Cell(120);
+    $pdf->Cell(140);
     $pdf->Cell(58,5,'REGAN C. SITOY',0,'C',0);
-    $pdf->Ln();
+    $pdf->Ln(-1);
     $pdf->SetFont("Times", '', 9);
     $pdf->Cell(130);
     $pdf->Cell(58,5,'Head, Admission, & Scholarship Office',0,'C',0);
 
-    $pdf->Ln(20);
-    $pdf->SetTextColor(0,0,0);
-    $pdf->SetFont("Arial", 'BU', 11);
-    $pdf->Cell(120);
-    $pdf->Cell(58,5,'REGAN C. SITOY',0,'C',0);
-    $pdf->Ln();
-    $pdf->SetFont("Times", '', 9);
-    $pdf->Cell(130);
-    $pdf->Cell(58,5,'Head, Admission, & Scholarship Office',0,'C',0);
-    
-// print_r($data);
     $pdf->output();
     exit();
 
@@ -24033,7 +24045,7 @@ class PrintController extends AppController {
 
     
     $pdf->Image($this->base .'/assets/img/zam.png',12,4,22,22);
-    $pdf->Image($this->base .'/assets/img/iso.png',178,6,22,18);
+    $pdf->Image($this->base .'/assets/img/iso.png',183,6,15,18);
     $pdf->Ln(4);
     $pdf->SetFont("Arial", '', 8.5);
     $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');

@@ -313,7 +313,7 @@
                             <label> Civil Status <i class="required">*</i></label>
                             <select class="form-control" ng-model="data.StudentApplication.civil_status" style="height: 45px" data-validation-engine="validate[required]" autocomplete="false">
                               <option></option>
-                              <option value="Maried">Maried</option>
+                              <option value="Married">Married</option>
                               <option value="Single">Single</option>
                             </select>
                           </div>
