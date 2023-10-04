@@ -370,7 +370,7 @@ app.controller('ReferralSlipAddController', function($scope, ReferralSlip, Selec
 
           });
 
-          window.location = '#/guidance/referral-slip';
+          window.location = '#/faculty/referral-slip';
 
         } else {
 
@@ -436,7 +436,7 @@ app.controller('ReferralSlipViewController', function($scope, $routeParams, Refe
 
             });
 
-            window.location = "#/guidance/referral-slip";
+            window.location = "#/faculty/referral-slip";
 
           }
 
@@ -565,7 +565,7 @@ app.controller('ReferralSlipEditController', function($scope, $routeParams, Refe
 
           });
 
-          window.location = '#/guidance/referral-slip';
+          window.location = '#/faculty/referral-slip';
 
         } else {
 

@@ -126,6 +126,8 @@ class StudentClearancesController extends AppController {
 
     }
 
+    // debug($conditions['status']);
+
     $conditions['faculty'] = '';
 
     $employees = [];
@@ -266,15 +268,15 @@ class StudentClearancesController extends AppController {
 
       if( $sem == 1 ){
 
-        $conditions['sem'] = " AND StudentClearance.year_term_id = 1 || StudentClearance.year_term_id = 4 || StudentClearance.year_term_id = 7 || StudentClearance.year_term_id = 10 || StudentClearance.year_term_id = 13";
+        $conditions['sem'] = " AND ( StudentClearance.year_term_id = 1 || StudentClearance.year_term_id = 4 || StudentClearance.year_term_id = 7 || StudentClearance.year_term_id = 10 || StudentClearance.year_term_id = 13 ) ";
 
       }else if( $sem == 2 ){
 
-        $conditions['sem'] = " AND StudentClearance.year_term_id = 2 || StudentClearance.year_term_id = 5 || StudentClearance.year_term_id = 8 || StudentClearance.year_term_id = 11 || StudentClearance.year_term_id = 14";
+        $conditions['sem'] = " AND ( StudentClearance.year_term_id = 2 || StudentClearance.year_term_id = 5 || StudentClearance.year_term_id = 8 || StudentClearance.year_term_id = 11 || StudentClearance.year_term_id = 14 ) ";
 
       }else{
 
-        $conditions['sem'] = " AND StudentClearance.year_term_id = 3 || StudentClearance.year_term_id = 6 || StudentClearance.year_term_id = 9 || StudentClearance.year_term_id = 12 || StudentClearance.year_term_id = 15";
+        $conditions['sem'] = " AND ( StudentClearance.year_term_id = 3 || StudentClearance.year_term_id = 6 || StudentClearance.year_term_id = 9 || StudentClearance.year_term_id = 12 || StudentClearance.year_term_id = 15 ) ";
 
       }
 
