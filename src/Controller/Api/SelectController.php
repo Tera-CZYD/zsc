@@ -206,6 +206,13 @@ class SelectController extends AppController {
     $this->loadModel('CollegeProgramSubs');
 
     $this->loadModel('YearLevelTerms');
+<<<<<<< HEAD
+=======
+
+    
+
+    //sir raf
+>>>>>>> bee6c6cadf87755a3238d9e961d568eabaf6562b
 
     $this->loadModel("Apartelles");
 
@@ -2095,8 +2102,14 @@ class SelectController extends AppController {
         $year_term = "AND YearLevelTerm.chronological_order < $order";
 
       }
+<<<<<<< HEAD
 
       $sql = "
+=======
+      
+      $sql = "
+
+>>>>>>> bee6c6cadf87755a3238d9e961d568eabaf6562b
 
         SELECT 
 
@@ -2375,13 +2388,17 @@ class SelectController extends AppController {
 
       $id = $this->request->getQuery('id');
 
+      $year_term_id = $this->request->getQuery('year_term_id');
+
       $tmp = $this->CollegeProgramCourses->find()
 
           ->where([
 
               'visible' => 1,
 
-              'college_program_id' => $id
+              'college_program_id' => $id,
+
+              'year_term_id' => $year_term_id
 
           ])
 
