@@ -55,7 +55,11 @@
                     </tr>
                   </thead>
                   <tbody>
+<<<<<<< HEAD
                     <tr ng-repeat="subs in data.Curriculum.CurriculumSubs">
+=======
+                    <tr ng-repeat="subs in data.CurriculumSub">
+>>>>>>> add5edab7ba288a83f1d2190d5bc2b6cc458fbc5
                       <td style="width: 15px;"> {{ $index + 1 }} </td>
                       <td class="text-left uppercase">{{ subs.program }}</td>
                       <td class="w90px text-center">
@@ -64,7 +68,11 @@
                         <a href="javascript:void(0)" class="btn btn-xs btn-danger" ng-click="removeProgram($index)"><i class="fa fa-trash"></i></a>
                       </td>
                     </tr>
+<<<<<<< HEAD
                     <tr ng-if="data.Curriculum.CurriculumSubs == '' || data.Curriculum.CurriculumSubs == null">
+=======
+                    <tr ng-if="data.CurriculumSub == '' || data.CurriculumSub == null">
+>>>>>>> add5edab7ba288a83f1d2190d5bc2b6cc458fbc5
                       <td class="text-center" colspan="3">No data available.</td>
                     </tr>
                   </tbody>

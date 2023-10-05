@@ -37,10 +37,6 @@
                   <td class="italic">{{ data.Course.code }}</td>
                 </tr>
                 <tr>
-                  <th class="text-right" style="width:15%"> SEMESTER : </th>
-                  <td class="italic">{{ data.YearTermLevel.description }}</td>
-                </tr>
-                <tr>
                   <th class="text-right"> TITLE : </th>
                   <td class="italic">{{ data.Course.title }}</td>
                 </tr>

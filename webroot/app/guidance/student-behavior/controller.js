@@ -431,7 +431,7 @@ app.controller('StudentBehaviorAddController', function($scope, StudentBehavior,
 
           });
 
-          window.location = '#/registrar/student-behavior';
+          window.location = '#/guidance/student-behavior';
 
         } else {
 
@@ -499,7 +499,7 @@ app.controller('StudentBehaviorViewController', function($scope, $routeParams, S
 
             });
 
-            window.location = "#/registrar/student-behavior";
+            window.location = "#/guidance/student-behavior";
  
           }
     
@@ -730,7 +730,7 @@ app.controller('StudentBehaviorEditController', function($scope, $routeParams, S
 
           });
 
-          window.location = '#/registrar/student-behavior';
+          window.location = '#/guidance/student-behavior';
 
         } else {
 

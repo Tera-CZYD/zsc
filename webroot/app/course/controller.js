@@ -396,6 +396,10 @@ app.controller('CourseEditController', function($scope, $routeParams, Course, Se
 
       $scope.data = e.data;
 
+      $scope.data.Course.is_computer = ($scope.data.Course.is_computer > 0) ? true : false 
+
+      $scope.data.Course.is_jeep = ($scope.data.Course.is_jeep > 0) ? true : false
+
     });
 
   }

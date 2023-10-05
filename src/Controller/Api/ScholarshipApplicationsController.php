@@ -247,7 +247,7 @@ class ScholarshipApplicationsController extends AppController {
 
   public function view($id = null){
 
-    $data['ScholarshipApplication'] = $this->ScholarshipApplication->find()
+    $data['ScholarshipApplication'] = $this->ScholarshipApplications->find()
     
     ->contain([
       
@@ -281,11 +281,11 @@ class ScholarshipApplicationsController extends AppController {
 
     $data['CollegeProgram'] = $data['ScholarshipApplication']['college_program'];
 
-    $data['ScholarshipApplication']['name_of_school'] = $data['ScholarshipApplication']['school']['school_name'];
+    $data['School']['school_name'] = $data['ScholarshipApplication']['school']['school_name'];
 
     $data['ScholarshipName'] = $data['ScholarshipApplication']['scholarship_name'];
 
-    $data['ScholarshipApplication']['year'] = $data['ScholarshipApplication']['year_level_term']['description'];
+    $data['ScholarshipApplication']['year'] = $data['ScholarshipApplication']['year_level_term'];
 
     unset($data['ScholarshipApplication']['student']);
 

@@ -127,6 +127,8 @@ class PrintController extends AppController {
 
     $this->loadModel('AffidavitOfLosses');
 
+    $this->loadModel('Curriculums');
+
     $this->InventoryProperties = TableRegistry::getTableLocator()->get('InventoryProperties');
 
 
@@ -249,13 +251,15 @@ class PrintController extends AppController {
     $pdf->Ln(10);
     $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
-    $pdf->Cell(15,5,'#',1,0,'C',1);
+    $pdf->Cell(5,5,'#',1,0,'C',1);
     $pdf->Cell(35,5,'CODE',1,0,'C',1);
-    $pdf->Cell(145,5,'COURSE TITLE',1,0,'C',1);
+    $pdf->Cell(90,5,'COURSE TITLE',1,0,'C',1);
+    $pdf->Cell(40,5,'YEAR IMPLEMENTATION',1,0,'C',1);
+    $pdf->Cell(25,5,'CATEGORY',1,0,'C',1);
     $pdf->Ln();
     $pdf->SetFont("Times", '', 8);
-    $pdf->SetWidths(array(15,35,145));
-    $pdf->SetAligns(array('C','C','L'));
+    $pdf->SetWidths(array(5,35,90,40,25));
+    $pdf->SetAligns(array('C','C','C','C','C'));
 
     if(!empty($tmpData)){
 
@@ -268,6 +272,10 @@ class PrintController extends AppController {
           $data['code'],
 
           $data['title'],
+
+          $data['year_implementation'],
+
+          $data['category'],
 
         ));
 
@@ -292,6 +300,95 @@ class PrintController extends AppController {
     exit();
   
   }
+
+  public function curriculum(){
+
+    $conditions = array();
+
+    $conditions['search'] = '';
+
+    if ($this->request->getQuery('search')) {
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+    
+    }
+
+    $tmpData = $this->Curriculums->getAllCurriculumPrint($conditions);
+
+    $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
+
+    require("wordwrap.php");
+    $pdf = new ConductPDF();
+    $pdf->SetMargins(10,10,10);
+    $pdf->SetFooter(true);
+    $pdf->footerSystem = true;
+    $pdf->AliasNbPages();
+    $pdf->AddPage("P", "legal", 0);
+    $pdf->Image($this->base .'/assets/img/zam.png',6,10,25,25);
+    $pdf->SetFont("Times", 'B', 12);
+    $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,strtoupper($this->Global->Settings('lgu_name')),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->SetFont("Times", '', 12);
+    $pdf->Cell(0,5,$this->Global->Settings('address'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('telephone'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Times", 'B', 12);
+    $pdf->Cell(0,5,'Curriculum Management',0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Times", 'B', 8);
+    $pdf->SetFillColor(217,237,247);
+    $pdf->Cell(15,5,'#',1,0,'C',1);
+    $pdf->Cell(35,5,'CODE',1,0,'C',1);
+    $pdf->Cell(145,5,'DESCRIPTION',1,0,'C',1);
+    $pdf->Ln();
+    $pdf->SetFont("Times", '', 8);
+    $pdf->SetWidths(array(15,35,145));
+    $pdf->SetAligns(array('C','C','C'));
+
+    if(count($tmpData) > 0){
+
+      foreach ($tmpData as $key => $data){
+
+        $pdf->RowLegalP(array(
+
+          $key + 1,
+
+          $data['code'],
+
+          $data['description'],
+
+        ));
+
+      }
+
+    }else{
+
+      $pdf->Cell(195,5,'No data available.',1,1,'C');
+
+    }
+
+    $pdf->Ln(5);
+    $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
+    $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
+    $pdf->Ln(0.1);
+    $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+83,$pdf->getY()+2);
+    $pdf->Line($pdf->getX()+112,$pdf->getY()+2,$pdf->getX()+195,$pdf->getY()+2);
+    $pdf->SetDash();
+
+    $pdf->output();
+    exit();
+  
+  }  
 
   public function campus(){
 
@@ -14467,9 +14564,9 @@ class PrintController extends AppController {
 
     $conditions['date'] = '';
 
-    if (isset($this->request->query['date'])) {
+    if ($this->request->getQuery('date')!=null) {
 
-      $search_date = $this->request->query['date'];
+      $search_date = $this->request->getQuery('date');
 
       $conditions['date'] = " AND DATE(Completion.date) = '$search_date'"; 
 
@@ -14477,11 +14574,11 @@ class PrintController extends AppController {
 
     } 
 
-    if (isset($this->request->query['startDate'])) {
+    if ($this->request->getQuery('startDate')!=null) {
 
-      $start = $this->request->query['startDate']; 
+      $start = $this->request->getQuery('startDate'); 
 
-      $end = $this->request->query['endDate'];
+      $end = $this->request->getQuery('endDate');
 
       $conditions['date'] = " AND DATE(Completion.date) >= '$start' AND DATE(Completion.date) <= '$end'";
 
@@ -14527,12 +14624,11 @@ class PrintController extends AppController {
     $pdf->Cell(55,5,'DATE',1,0,'C',1);
     $pdf->Cell(30,5,'REQUIREMENT',1,0,'C',1);
     $pdf->Cell(60,5,'INSTRUCTOR',1,0,'C',1);
-    $pdf->Cell(30,5,'SEMESTER',1,0,'C',1);
-    $pdf->Cell(20,5,'YEAR',1,0,'C',1);
+    $pdf->Cell(50,5,'YEAR & SEMESTER',1,0,'C',1);
     $pdf->Ln();
     $pdf->SetFont("Times", '', 8);
-    $pdf->SetWidths(array(10,35,80,55,30,60,30,20));
-    $pdf->SetAligns(array('C','C','L','C','C','L','C','C'));
+    $pdf->SetWidths(array(10,35,80,55,30,60,30));
+    $pdf->SetAligns(array('C','C','L','C','C','L','C'));
 
     if(count($tmpData)>0){
 
@@ -14554,9 +14650,7 @@ class PrintController extends AppController {
 
           $data['instructor'],
 
-          $data['semester'],
-
-          $data['year'],
+          $data['description']
 
 
         ));
@@ -18265,7 +18359,7 @@ class PrintController extends AppController {
 
     $office_reference = $this->Global->OfficeReference('Scholarship Application');
 
-    $data['ScholarshipApplication'] = $this->ScholarshipApplication->find()
+    $data['ScholarshipApplication'] = $this->ScholarshipApplications->find()
 
     ->contain([
 
@@ -18290,6 +18384,8 @@ class PrintController extends AppController {
     $data['CollegeProgram'] = $data['ScholarshipApplication']['college_program'];
 
     $data['YearLevelTerm'] = $data['ScholarshipApplication']['year_level_term'];
+
+    $data['YearLevelTerm']['year'] = $data['YearLevelTerm'] != null ? $data['YearLevelTerm']['year'] : '' ;
 
     unset($data['ScholarshipApplication']['college_program']);
 
@@ -20822,7 +20918,7 @@ class PrintController extends AppController {
     $pdf->Ln(6);
     $pdf->Cell(10, 5, '', 0, 0, 'L');
     $pdf->Cell(23, 5, 'Date of Birth: ', 0, 0, 'L');
-    $pdf->Cell(45, 5, fdate($data['Student']['date_of_birth'],'m/d/Y'), 0, 0, 'L');
+    $pdf->Cell(45, 5, $data['Student']['date_of_birth']->format('m/d/Y'), 0, 0, 'L');
     $pdf->Cell(10, 5, 'Sex:', 0, 0, 'L');
     $pdf->Cell(25, 5, $data['Student']['gender'], 0, 0, 'L');
     $pdf->Cell(30, 5, 'Valid Credential: ', 0, 0, 'L');
