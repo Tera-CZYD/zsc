@@ -63,6 +63,22 @@ class SettingsController extends AppController {
 
     foreach ($settings as $setting) {
 
+      $value = $setting['value'];
+
+      if($setting['id'] == 25 && $setting['value'] == 1){
+
+        $setting['value'] = 'First Semester';
+
+      }elseif($setting['id'] == 25 && $setting['value'] == 2){
+
+        $setting['value'] = 'Second Semester';
+
+      }elseif($setting['id'] == 25 && $setting['value'] == 3){
+
+        $setting['value'] = 'Summer';
+
+      }
+
       $datas[] = array(
 
         'id'           => $setting['id'],
@@ -209,37 +225,49 @@ class SettingsController extends AppController {
 
     $requestData = $this->request->getData();
 
-    // var_dump($requestData);
+    if($requestData['id'] == 25 && $requestData['value'] == 'First Semester'){
+
+      $requestData['value'] = 1;
+
+    }elseif($requestData['id'] == 25 && $requestData['value'] == 'Second Semester'){
+
+      $requestData['value'] = 2;
+
+    }elseif($requestData['id'] == 25 && $requestData['value'] == 'Summer'){
+
+      $requestData['value'] = 3;
+
+    }
     
     $setting = $this->Settings->patchEntity($setting, $requestData);
     
     if ($this->Settings->save($setting)) {
       
-        $response = [
+      $response = [
+        
+        'response' => true,
+        
+        'message' => 'Information has been saved.'
           
-            'response' => true,
-            
-            'message' => 'Information has been saved.'
-            
-        ];
+      ];
         
     } else {
       
-        $response = [
-          
-            'response' => false,
-            
-            'message' => 'Failed to save information.'
-            
-        ];
+      $response = [
         
+        'response' => false,
+        
+        'message' => 'Failed to save information.'
+        
+      ];
+      
     }
 
     $this->set([
       
-        'response' => $response,
-        
-        '_serialize' => 'response'
+      'response' => $response,
+      
+      '_serialize' => 'response'
         
     ]);
 
