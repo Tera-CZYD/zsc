@@ -2386,13 +2386,17 @@ class SelectController extends AppController {
 
       $id = $this->request->getQuery('id');
 
+      $year_term_id = $this->request->getQuery('year_term_id');
+
       $tmp = $this->CollegeProgramCourses->find()
 
           ->where([
 
               'visible' => 1,
 
-              'college_program_id' => $id
+              'college_program_id' => $id,
+
+              'year_term_id' => $year_term_id
 
           ])
 

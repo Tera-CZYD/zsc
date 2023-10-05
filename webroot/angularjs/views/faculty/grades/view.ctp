@@ -79,7 +79,7 @@
           <div class="col-md-4">
             <div class="form-group">
               <label> SELECT PROGRAM </label>
-              <select selectize ng-model="program_id" ng-options="opt.id as opt.value for opt in programs" ng-change = "getProgram(program_id);getDatas();">
+              <select selectize ng-model="program_id" ng-options="opt.id as opt.value for opt in programs" ng-change = "getProgram(program_id,year_term_id);getDatas();">
                 <option value=""></option>
               </select>
             </div>

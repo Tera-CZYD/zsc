@@ -147,9 +147,9 @@ app.controller('GradeViewController', function($scope, $routeParams, Grade, Grad
 
   });
 
-  $scope.getProgram = function(id){
+  $scope.getProgram = function(id,year){
 
-    Select.get({ code: 'program-course-list', id : id },function(e){
+    Select.get({ code: 'program-course-list', id : id, year_term_id: year},function(e){
 
       $scope.courses = e.data;
 
