@@ -99,7 +99,7 @@
           </div>
 
           <div class="col-md-12" id="pageSubmission">
-            <button class="btn btn-danger btn-min" ng-click="print();" ng-disabled="bool"><i class="fa fa-print"></i> PRINT REPORT OF RATING </button>
+            <button class="btn btn-print btn-min" ng-click="print();" ng-disabled="bool"><i class="fa fa-print"></i> PRINT REPORT OF RATING </button>
             <button class="btn btn-warning btn-min" ng-click="submitMidterm();" ng-disabled="boolMidterm"><i class="fa fa-save"></i> SUBMIT MID TERM GRADE </button>
             <button class="btn btn-success btn-min" ng-click="submitFinalterm();" ng-disabled="boolFinalterm"><i class="fa fa-save"></i> SUBMIT FINAL TERM GRADE </button>
             <button class="btn btn-info btn-min" ng-if="button_status == 'edit'" ng-click="editIncomplete();" ng-disabled="boolIncomplete"><i class="fa fa-edit"></i> EDIT INCOMPLETE </button>
@@ -119,6 +119,7 @@
                     <th class="text-center" style="width:10%">FINALTERM GRADE</th>
                     <th class="text-center">FINAL GRADE</th>
                     <th class="text-center" style="width:15%">REMARKS</th>
+                    <th class="text-center"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -126,12 +127,20 @@
                     <td class="text-center">{{ $index + 1 }}</td>
                     <td class="text-center">{{ sub.student_no }}</td>
                     <td class="text-left">{{ sub.student_name }}</td>
-                    <td><input type="text" style="text-align: center" ng-model="sub.midterm_grade" ng-disabled="boolMidterm" class="form-control" ng-change="getFinalGrade($index)" data-validation-engine="validate[required]" autocomplete="off"></td>
+                    <td><input type="text" style="text-align: center" ng-model="sub.midterm_grade" ng-disabled="sub.midterm_submitted==1" class="form-control" ng-change="getFinalGrade($index)" data-validation-engine="validate[required]" autocomplete="off"></td>
                     <td>
-                      <input type="text" style="text-align: center" ng-model="sub.finalterm_grade" ng-disabled="boolFinalterm && !sub.incomplete_status" class="form-control" ng-change="getFinalGrade($index)" data-validation-engine="validate[required]" autocomplete="off">
+                      <input type="text" style="text-align: center" ng-model="sub.finalterm_grade" ng-disabled="sub.midterm_submitted==0 || sub.finalterm_submitted==1 && !sub.incomplete_status" class="form-control" ng-change="getFinalGrade($index)" data-validation-engine="validate[required]" autocomplete="off">
                     </td>
                     <td class="text-center">{{ sub.final_grade }}</td>
                     <td class="text-center">{{ sub.remarks }}</td>
+                    <td>
+                    <div class="btn-group btn-group-xs">
+                      <button class="btn btn-warning" ng-click="submitSingleMidterm(sub);" ng-disabled="sub.midterm_submitted == 1" title="SUBMIT MID TERM GRADE "><i class="fa fa-save"></i></button>
+                      <button class="btn btn-success" ng-click="submitSingleFinalterm(sub);" ng-disabled="sub.midterm_submitted == 0 || sub.finalterm_submitted==1" title="SUBMIT FINAL TERM GRADE "><i class="fa fa-check"></i></button>
+                      <button class="btn btn-info" ng-if="button_single_status == 'edit'" ng-click="editSingleIncomplete();" ng-disabled="sub.incomplete != 1" title="EDIT INCOMPLETE"><i class="fa fa-edit"></i></button>
+                      <button class="btn btn-info" ng-if="button_single_status == 'save'" ng-disabled="sub.incomplete != 1" ng-click="submitSingleFinalterm(sub);" title="UPDATE INCOMPLETE"><i class="fa fa-save"></i></button>
+                    </div>
+                  </td> 
                   </tr>
                   <tr ng-show="datas == null || datas == ''">
                     <td class="text-center" colspan="9">No available data</td>

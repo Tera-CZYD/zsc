@@ -206,13 +206,11 @@ class SelectController extends AppController {
     $this->loadModel("Majors");
 
     $this->loadModel("Campuses");
-<<<<<<< HEAD
-=======
 
     $this->loadModel('CollegeProgramSubs');
 
     $this->loadModel('YearLevelTerms');
->>>>>>> add5edab7ba288a83f1d2190d5bc2b6cc458fbc5
+
     
 
     //sir raf
@@ -2025,13 +2023,7 @@ class SelectController extends AppController {
 
       }
 
-<<<<<<< HEAD
-      $this->loadModel('YearLevelTerms');
-
-      $tmp = $this->YearLevelTerms->query("
-=======
       $sql = "
->>>>>>> add5edab7ba288a83f1d2190d5bc2b6cc458fbc5
 
         SELECT 
 
@@ -2113,14 +2105,9 @@ class SelectController extends AppController {
         $year_term = "AND YearLevelTerm.chronological_order < $order";
 
       }
-
-<<<<<<< HEAD
-      $this->loadModel('YearLevelTerms');
-
-      $tmp = $this->YearLevelTerms->query("
-=======
+      
       $sql = "
->>>>>>> add5edab7ba288a83f1d2190d5bc2b6cc458fbc5
+
 
         SELECT 
 

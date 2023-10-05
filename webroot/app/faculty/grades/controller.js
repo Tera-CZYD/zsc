@@ -133,7 +133,7 @@ app.controller('GradeController', function($scope, Employee,Select) {
 
 });
 
-app.controller('GradeViewController', function($scope, $routeParams, Grade, GradeUpdate, GradeSubmitMidterm, GradeSubmitFinalTerm, Employee, Select) {
+app.controller('GradeViewController', function($scope, $routeParams, Grade, GradeUpdate, GradeSubmitMidterm, GradeSubmitFinalTerm, Employee, Select,GradeSubmitSingleMidterm, GradeSubmitSingleFinalTerm) {
 
   $scope.id = $routeParams.id;
 
@@ -276,6 +276,36 @@ app.controller('GradeViewController', function($scope, $routeParams, Grade, Grad
 
   }
 
+  $scope.button_single_status = 'edit';
+
+  $scope.editSingleIncomplete = function(){
+
+    $scope.button_single_status = 'save';
+
+    Select.get({ code: 'get-enrolled-courses', program_id : $scope.program_id, course_id : $scope.course_id, section_id : $scope.section_id, year_term_id : $scope.year_term_id, faculty_id : $scope.id },function(e){
+
+      $scope.datas = e.data;
+
+      if($scope.datas.length > 0){
+
+        $scope.conditionsPrint += '&program_id='+$scope.program_id+'&course_id='+$scope.course_id+'&section_id='+$scope.section_id+'&year_term_id='+$scope.year_term_id+'&faculty_id='+$scope.id;
+
+        $.each($scope.datas, function(i,val){
+
+          if(val.incomplete == 1){
+
+            $scope.datas[i].incomplete_status = true;
+
+          }
+
+        });
+
+      }
+
+    });
+
+  }
+
   $scope.getFinalGrade = function(index){
 
     if($scope.datas[index].midterm_grade != null && $scope.datas[index].finalterm_grade != null && $scope.datas[index].finalterm_grade != ''){
@@ -308,12 +338,10 @@ app.controller('GradeViewController', function($scope, $routeParams, Grade, Grad
 
     bootbox.confirm('Are you sure you want to submit mid term grade?', function(b){
 
-
-
       if(b) {
 
         GradeSubmitMidterm.update($scope.datas, function(e){
-                console.log($scope.datas);
+                // console.log($scope.datas);
           if(e.ok){
 
             $.gritter.add({
@@ -353,6 +381,76 @@ app.controller('GradeViewController', function($scope, $routeParams, Grade, Grad
         $scope.button_status = 'edit';
 
         GradeSubmitFinalTerm.update($scope.datas, function(e){
+
+          if(e.ok){
+
+            $.gritter.add({
+
+              title : 'Successful!',
+
+              text : e.msg
+
+            });
+
+            $scope.getDatas();
+
+          }
+
+        });
+
+      }
+
+    });
+
+  }
+
+  $scope.submitSingleMidterm = function(sub){  
+
+    bootbox.confirm('Are you sure you want to submit mid term grade?', function(b){
+
+      if(b) {
+
+        GradeSubmitSingleMidterm.update(sub, function(e){
+                // console.log($scope.datas);
+          if(e.ok){
+
+            $.gritter.add({
+
+              title : 'Successful!',
+
+              text : e.msg
+
+            });
+
+            $scope.getDatas();
+
+          }
+
+        });
+
+      }
+
+    });
+
+  }
+
+  $scope.submitSingleFinalterm = function(sub){  
+
+    text = 'submit final term grade';
+
+    if($scope.button_status == 'save'){
+
+      text = 'update incomplete';
+
+    }
+
+    bootbox.confirm('Are you sure you want to '+text+'?', function(b){
+
+      if(b) {
+
+        $scope.button_status = 'edit';
+
+        GradeSubmitSingleFinalTerm.update(sub, function(e){
 
           if(e.ok){
 
