@@ -125,8 +125,6 @@ class SelectController extends AppController {
 
     $this->loadModel("Students");
 
-    //sir raymond
-
     $this->loadModel("Buildings");
 
     $this->loadModel("Consultations");
@@ -160,8 +158,6 @@ class SelectController extends AppController {
     $this->BlockSectionSchedules = TableRegistry::getTableLocator()->get('BlockSectionSchedules');
 
     $this->Ptcs = TableRegistry::getTableLocator()->get('Ptcs');
-
-    //sir leo
 
     $this->loadModel("ReferralSlips");
 
@@ -206,16 +202,10 @@ class SelectController extends AppController {
     $this->loadModel("Majors");
 
     $this->loadModel("Campuses");
-<<<<<<< HEAD
-=======
 
     $this->loadModel('CollegeProgramSubs');
 
     $this->loadModel('YearLevelTerms');
->>>>>>> add5edab7ba288a83f1d2190d5bc2b6cc458fbc5
-    
-
-    //sir raf
 
     $this->loadModel("Apartelles");
 
@@ -234,8 +224,6 @@ class SelectController extends AppController {
     $this->loadModel('ApartelleStudentClearances');
 
     $this->loadModel('Purposes');
-
-    //sir gerald
 
     $this->loadModel("StudentClubs");
 
@@ -2025,13 +2013,7 @@ class SelectController extends AppController {
 
       }
 
-<<<<<<< HEAD
-      $this->loadModel('YearLevelTerms');
-
-      $tmp = $this->YearLevelTerms->query("
-=======
       $sql = "
->>>>>>> add5edab7ba288a83f1d2190d5bc2b6cc458fbc5
 
         SELECT 
 
@@ -2114,13 +2096,7 @@ class SelectController extends AppController {
 
       }
 
-<<<<<<< HEAD
-      $this->loadModel('YearLevelTerms');
-
-      $tmp = $this->YearLevelTerms->query("
-=======
       $sql = "
->>>>>>> add5edab7ba288a83f1d2190d5bc2b6cc458fbc5
 
         SELECT 
 

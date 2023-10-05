@@ -35,11 +35,8 @@
                 <tr>
                   <th class="text-right"> DESCRIPTION : </th>
                   <td class="italic">{{ data.Curriculum.description }}</td>
-<<<<<<< HEAD
-                </tr>
-=======
                 </tr> 
->>>>>>> add5edab7ba288a83f1d2190d5bc2b6cc458fbc5
+              </table>
             </div> 
           </div>
 
@@ -57,19 +54,13 @@
                   </tr>
                 </thead>
                 <tbody>
-<<<<<<< HEAD
-                  <tr ng-repeat="subs in data.Curriculum.CurriculumSubs">
-                    <td style="width: 15px;"> {{ $index + 1 }} </td>
-                    <td class="text-left uppercase">{{ subs.program }}</td>
-                  </tr>
-                  <tr ng-if="data.Curriculum.CurriculumSubs == '' || data.Curriculum.CurriculumSubs == null">
-=======
+
                   <tr ng-repeat="subs in data.CurriculumSub">
                     <td style="width: 15px;"> {{ $index + 1 }} </td>
                     <td class="text-left uppercase">{{ subs.program }}</td>
                   </tr>
                   <tr ng-if="data.CurriculumSub == '' || data.CurriculumSub == null">
->>>>>>> add5edab7ba288a83f1d2190d5bc2b6cc458fbc5
+
                     <td class="text-center" colspan="3">No data available.</td>
                   </tr>
                 </tbody>

@@ -49,7 +49,7 @@ class CurriculumsTable extends Table{
 
       ORDER BY 
 
-        Curriculum.code DESC
+        Curriculum.id DESC
 
     ";
 
@@ -97,7 +97,7 @@ class CurriculumsTable extends Table{
 
       ORDER BY 
 
-        Curriculum.code ASC
+        Curriculum.id DESC
 
       LIMIT
 

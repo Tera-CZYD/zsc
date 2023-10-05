@@ -199,12 +199,7 @@ class CurriculumsController extends AppController {
 
   public function view($id = null){
 
-<<<<<<< HEAD
-    $data = $this->Curriculums->find()
-=======
     $data['Curriculum'] = $this->Curriculums->find()
->>>>>>> add5edab7ba288a83f1d2190d5bc2b6cc458fbc5
-
       ->contain([
 
         'CurriculumSubs' => [
@@ -225,15 +220,10 @@ class CurriculumsController extends AppController {
 
       ->first();
 
-<<<<<<< HEAD
-    $data['CurriculumSubs'] = $data['curriculum_subs'];
 
-    unset($data['curriculum_subs']);
-=======
     $data['CurriculumSub'] = $data['Curriculum']->curriculum_subs;
 
     unset($data['Curriculum']->curriculum_subs);
->>>>>>> add5edab7ba288a83f1d2190d5bc2b6cc458fbc5
 
     $response = [
 
@@ -267,23 +257,16 @@ class CurriculumsController extends AppController {
 
     $subs = $this->request->getData('CurriculumSub');
 
-<<<<<<< HEAD
-    $data = $this->Curriculums->newEmptyEntity();
-=======
     $data = $this->Curriculums->findById($id)->first();
->>>>>>> add5edab7ba288a83f1d2190d5bc2b6cc458fbc5
-   
+
     $data = $this->Curriculums->patchEntity($data, $requestData); 
 
     if ($this->Curriculums->save($data)) {
 
       $id = $data->id;
 
-<<<<<<< HEAD
-=======
       $this->Curriculums->CurriculumSubs->deleteAll(['curriculum_id' => $id]);
 
->>>>>>> add5edab7ba288a83f1d2190d5bc2b6cc458fbc5
       if (count($subs) > 0) {
 
         foreach ($subs as $sub) {
@@ -294,11 +277,9 @@ class CurriculumsController extends AppController {
 
           'program_id' => $sub['program_id'],
 
-<<<<<<< HEAD
-=======
+
           'program' => $sub['program'],
 
->>>>>>> add5edab7ba288a83f1d2190d5bc2b6cc458fbc5
         ]);
 
         $this->CurriculumSubs->save($subEntities);
