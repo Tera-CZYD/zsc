@@ -206,7 +206,10 @@ class SelectController extends AppController {
     $this->loadModel('CollegeProgramSubs');
 
     $this->loadModel('YearLevelTerms');
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5edd7f751b90e4aa40f205fa597b0f878422d685
 
     $this->loadModel("Apartelles");
 
@@ -2096,7 +2099,10 @@ class SelectController extends AppController {
         $year_term = "AND YearLevelTerm.chronological_order < $order";
 
       }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5edd7f751b90e4aa40f205fa597b0f878422d685
 
       $sql = "
 

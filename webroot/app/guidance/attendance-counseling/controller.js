@@ -140,7 +140,6 @@ app.controller('AttendanceCounselingController', function($scope, AttendanceCoun
   
   }
 
-
   $scope.remove = function(data) {
 
     bootbox.confirm('Are you sure you want to delete ' + data.code +' ?', function(c) {

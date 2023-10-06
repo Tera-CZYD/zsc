@@ -30,7 +30,7 @@ class CalendarActivitiesController extends AppController {
 
     $conditionsPrint = '';
 
-    if ($this->request->getQuery('search')) {
+    if ($this->request->getQuery('search') != null) {
 
       $search = $this->request->getQuery('search');
 
@@ -44,13 +44,11 @@ class CalendarActivitiesController extends AppController {
 
     $conditions['date'] = '';
 
-    if ($this->request->getQuery('date')) {
+    if ($this->request->getQuery('date') != null) {
 
       $search_date = $this->request->getQuery('date');
 
-      $conditions['date'] = " AND DATE(CalendarActivity.date) = '$search_date'"; 
-
-      $dates['date'] = $search_date;
+      $conditions['date'] = " AND DATE(CalendarActivity.startDate) = '$search_date'"; 
 
       $conditionsPrint .= '&date='.$search_date;
 
@@ -58,22 +56,17 @@ class CalendarActivitiesController extends AppController {
 
     //advance search
 
-    if ($this->request->getQuery('startDate')) {
+    if ($this->request->getQuery('startDate') != null) {
 
       $start = $this->request->getQuery('startDate'); 
 
       $end = $this->request->getQuery('endDate');
 
-      $conditions['date'] = " AND DATE(CalendarActivity.date) >= '$start' AND DATE(CalendarActivity.date) <= '$end'";
-
-      $dates['startDate'] = $start;
-
-      $dates['endDate']   = $end;
+      $conditions['date'] = " AND DATE(CalendarActivity.startDate) >= '$start' AND DATE(CalendarActivity.endDate) <= '$end'";
 
       $conditionsPrint .= '&startDate='.$start.'&endDate='.$end;
 
     }
-
 
     $limit = 25;
 
@@ -107,9 +100,9 @@ class CalendarActivitiesController extends AppController {
 
           'title'      => $data['title'],
 
-          'startDate'  => $data['startDate'],
+          'startDate'  => fdate($data['startDate'],'m/d/Y'),
 
-          'endDate'    => $data['endDate'],
+          'endDate'    => fdate($data['endDate'],'m/d/Y'),
 
           'remarks'    => $data['remarks'],
 
