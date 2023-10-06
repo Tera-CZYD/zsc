@@ -8,24 +8,6 @@ app.controller('SettingController', function($scope, Setting,Select){
 
   });
 
-  $scope.getYear = function(id){
-
-    if($scope.year_terms.length > 0){
-
-      $.each($scope.year_terms, function(i,val){
-
-        if(id == val.id){
-
-          $scope.data.ApartelleRegistration.year = val.value;
-
-        }
-
-      });
-
-    }
-
-  }
-
   $scope.load = function(options) {
 
     options = typeof options !== 'undefined' ?  options : {};
@@ -100,8 +82,6 @@ app.controller('SettingAddController', function($scope, Setting){
   $scope.save = function(){
 
     valid = $("#form").validationEngine('validate');
-
-    console.log(valid);
 
     if(valid){
 

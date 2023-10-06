@@ -114,21 +114,20 @@ class GcoEvaluationsController extends AppController {
     $paginator = $tmpData['pagination'];
 
     $datas = [];
-    // var_dump($RequestForms);
+   
     foreach ($gco_evaluations as $data) {
 
       $datas[] = array(
 
-  
-          'id'            => $data['id'],
-  
-          'code'          => $data['code'],
+        'id'             => $data['id'],
 
-          'student_name'  => $data['student_name'],
+        'code'           => $data['code'],
 
-          'date'          => $data['date'],
+        'student_name'   => $data['student_name'],
 
-          'attendanceCode' => $data['attendanceCode']
+        'date'           => fdate($data['date'],'m/d/Y'),
+
+        'attendanceCode' => $data['attendanceCode']
 
       );
 

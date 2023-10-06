@@ -556,6 +556,7 @@ app.controller("ScholarshipApplicationViewController", function ($scope, $routeP
   $scope.load();
 
   $scope.print = function (id) {
+    // console.log(id);
   
     printTable(base + "print/scholarship_application_form/" + id);
   

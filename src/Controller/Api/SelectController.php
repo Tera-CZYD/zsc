@@ -30,7 +30,8 @@ use App\Model\Table\CounselingTypesTable;
 use App\Model\Table\CounselingIntakesTable;
 use App\Model\Table\ParticipantEvaluationActivitiesTable;
 use App\Model\Table\StudentExitsTable;
-use App\Model\Table\RolesTable; 
+use App\Model\Table\RolesTable;
+use Cake\Datasource\ConnectionManager; 
 
 class SelectController extends AppController {
 
@@ -124,8 +125,6 @@ class SelectController extends AppController {
 
     $this->loadModel("Students");
 
-    //sir raymond
-
     $this->loadModel("Buildings");
 
     $this->loadModel("Consultations");
@@ -159,8 +158,6 @@ class SelectController extends AppController {
     $this->BlockSectionSchedules = TableRegistry::getTableLocator()->get('BlockSectionSchedules');
 
     $this->Ptcs = TableRegistry::getTableLocator()->get('Ptcs');
-
-    //sir leo
 
     $this->loadModel("ReferralSlips");
 
@@ -205,9 +202,10 @@ class SelectController extends AppController {
     $this->loadModel("Majors");
 
     $this->loadModel("Campuses");
-    
 
-    //sir raf
+    $this->loadModel('CollegeProgramSubs');
+
+    $this->loadModel('YearLevelTerms');
 
     $this->loadModel("Apartelles");
 
@@ -226,8 +224,6 @@ class SelectController extends AppController {
     $this->loadModel('ApartelleStudentClearances');
 
     $this->loadModel('Purposes');
-
-    //sir gerald
 
     $this->loadModel("StudentClubs");
 
@@ -2009,17 +2005,15 @@ class SelectController extends AppController {
 
         $year_term_id = $this->request->getQuery('year_term_id');
 
-        $yearData = $this->YearLevelTerm->findById($year_term_id);
+        $yearData = $this->YearLevelTerms->findById($year_term_id)->first();
 
-        $order = $yearData['YearLevelTerm']['chronological_order'];
+        $order = $yearData->chronological_order;
 
         $year_term = "AND YearLevelTerm.chronological_order < $order";
 
       }
 
-      $this->loadModel('YearLevelTerms');
-
-      $tmp = $this->YearLevelTerms->query("
+      $sql = "
 
         SELECT 
 
@@ -2053,17 +2047,22 @@ class SelectController extends AppController {
 
           Course.code ASC
 
-      ");
+      ";
 
-      if(!empty($tmp)){
+      $connection = ConnectionManager::get('default');
 
-        foreach ($tmp as $k => $data) {
+      $query = $connection->execute($sql);
+      $results = $query->fetchAll('assoc');
+
+      if(!empty($results)){
+
+        foreach ($results as $k => $data) {
 
           $datas[] = array(
 
-            'id'    => $data->id,
+            'id'    => $data['id'],
 
-            'value' => $data->code.' - '.$data->title
+            'value' => $data['code'].' - '.$data['title']
 
           );
 
@@ -2089,17 +2088,15 @@ class SelectController extends AppController {
 
         $year_term_id = $this->request->getQuery('year_term_id');
 
-        $yearData = $this->YearLevelTerm->findById($year_term_id);
+        $yearData = $this->YearLevelTerms->findById($year_term_id)->first();
 
-        $order = $yearData['YearLevelTerm']['chronological_order'];
+        $order = $yearData->chronological_order;
 
         $year_term = "AND YearLevelTerm.chronological_order < $order";
 
       }
 
-      $this->loadModel('YearLevelTerms');
-
-      $tmp = $this->YearLevelTerms->query("
+      $sql = "
 
         SELECT 
 
@@ -2133,17 +2130,22 @@ class SelectController extends AppController {
 
           Course.code ASC
 
-      ");
+      ";
 
-      if(!empty($tmp)){
+      $connection = ConnectionManager::get('default');
 
-        foreach ($tmp as $k => $data) {
+      $query = $connection->execute($sql);
+      $results = $query->fetchAll('assoc');
+
+      if(!empty($results)){
+
+        foreach ($results as $k => $data) {
 
           $datas[] = array(
 
-            'id'    => $data->id,
+            'id'    => $data['id'],
 
-            'value' => $data->code.' - '.$data->title
+            'value' => $data['code'].' - '.$data['title']
 
           );
 
@@ -2373,13 +2375,17 @@ class SelectController extends AppController {
 
       $id = $this->request->getQuery('id');
 
+      $year_term_id = $this->request->getQuery('year_term_id');
+
       $tmp = $this->CollegeProgramCourses->find()
 
           ->where([
 
               'visible' => 1,
 
-              'college_program_id' => $id
+              'college_program_id' => $id,
+
+              'year_term_id' => $year_term_id
 
           ])
 
@@ -9986,11 +9992,11 @@ class SelectController extends AppController {
 
       $datas = array();
 
-      $employee_id = $this->Session->read('Auth.User.employeeId');
+      $employee_id = $this->Auth->user('employeeId');
 
       $today = date('Y-m-d');
 
-      $tmp = $this->CalendarActivity->query("
+      $query = "
 
         SELECT
 
@@ -10008,37 +10014,37 @@ class SelectController extends AppController {
 
           CalendarActivity.code DESC
 
-      ");
+      ";
 
-      if(!empty($tmp)){
+      $connection = $this->CalendarActivities->getConnection();
 
-        foreach ($tmp as $k => $data) {
+      $tmp = $connection->execute($query)->fetchAll('assoc');
 
-          $url = '#/guidance/calendar-activities/view/';
+      foreach ($tmp as $k => $data) {
 
-          $color = '#5cb85c';
+        $url = '#/guidance/calendar-activities/view/';
 
-          $end = date('Y-m-d', strtotime ('+1 day',strtotime($data['CalendarActivity']['endDate'])));
+        $color = '#5cb85c';
 
-          $datas[] = array(
+        $end = date('Y-m-d', strtotime ('+1 day',strtotime($data['endDate'])));
 
-            'title'     => $data['CalendarActivity']['title']."\n".'Opening : '.fdate($data['CalendarActivity']['startDate'],'F d, Y')."\n".'Closing : '.fdate($data['CalendarActivity']['endDate'],'F d, Y'),
+        $datas[] = array(
 
-            'start'     => $data['CalendarActivity']['startDate'],
+          'title'     => $data['title']."\n".'Opening : '.fdate($data['startDate'],'F d, Y')."\n".'Closing : '.fdate($data['endDate'],'F d, Y'),
 
-            'end'       => $end,
+          'start'     => $data['startDate'],
 
-            'date_from' => $data['CalendarActivity']['startDate'],
+          'end'       => $end,
 
-            'date_to'   => $data['CalendarActivity']['endDate'],
+          'date_from' => $data['startDate'],
 
-            'url'       => $url . $data['CalendarActivity']['id'],
+          'date_to'   => $data['endDate'],
 
-            'color'     => $color
+          'url'       => $url . $data['id'],
 
-          );
+          'color'     => $color
 
-        }
+        );
 
       }
 
@@ -10973,35 +10979,31 @@ class SelectController extends AppController {
 
     } else if ($code == 'college-program-requirements') {
 
-      $program_id = $this->request->query['program_id'];
+      $program_id = $this->request->getQuery('program_id');
      
-      $tmp = $this->CollegeProgramSub->find('all', array(
+      $tmp = $this->CollegeProgramSubs->find()
 
-        'conditions' => array(
+      ->where([
 
-          'CollegeProgramSub.visible' => true,
+        'visible' => 1,
 
-          'CollegeProgramSub.college_program_id' => $program_id
+        'college_program_id' => $program_id
 
-        ),
+      ])
 
-        'order' => array(
+      ->order(['id' => 'ASC'])
 
-          'CollegeProgramSub.id' => 'ASC',
+      ->all();
 
-        )
-
-      ));
-
-      if(!empty($tmp)){
+      if(count($tmp) > 0){
 
         foreach ($tmp as $k => $data) {
 
           $datas[] = array(
 
-            'id'    => $data['CollegeProgramSub']['id'],
+            'id'    => $data['id'],
 
-            'value' => $data['CollegeProgramSub']['requirement'],
+            'value' => $data['requirement'],
 
           );
 

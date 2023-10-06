@@ -47,9 +47,9 @@
 
           <li class="nav-link-side nav-enrolled-course"><a href="#/curriculum/prospectus/view-student/<?php echo $currentUser->studentId ?>" onclick="change('enrolled-course')"><i class="fa fa-list-alt"></i> Enrolled Courses </a></li>
 
-          <li class="nav-link-side nav-scholarship-application"><a href="#/admission/scholarship-application" onclick="change('scholarship-application')"><i class="ti ti-write"></i> Scholarship Application </a></li>
-
           <li class="nav-link-side nav-schedule"><a href="#/student/schedule" onclick="change('schedule')"><i class="fa fa-table"></i> Schedule </a></li>
+
+          <li class="nav-link-side nav-scholarship-application"><a href="#/admission/scholarship-application" onclick="change('scholarship-application')"><i class="ti ti-write"></i> Scholarship Application </a></li>
 
           <li class="nav-link-side nav-request-form nav-club nav-transferee nav-adding-dropping-subject nav-student-club nav-affidavit-of-loss"><a><i class="fa fa-briefcase"></i> Registrar </a>
             <ul class="nav child_menu collapse collapse-request-form collapse-club collapse-student-club collapse-transferee collapse-adding-dropping-subject collapse-affidavit-of-loss">
@@ -62,9 +62,9 @@
                 <a href="#/registrar/request-form" onclick="change('request-form')">Request Form</a>
               </li>
 
-              <li class="nav-link-side nav-adding-dropping-subject">
+              <!-- <li class="nav-link-side nav-adding-dropping-subject">
                 <a href="#/registrar/adding-dropping-subject" onclick="change('adding-dropping-subject')">Adding/Dropping Subject</a>
-              </li>
+              </li> -->
               
               <li class="nav-link-side nav-student-club">
                 <a href="#/registrar/student-club" onclick="change('student-club')">Student Clubs Application</a>

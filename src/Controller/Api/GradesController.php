@@ -471,4 +471,180 @@ class GradesController extends AppController {
 
   } 
 
+  public function submitSingleMidterm($id = null){
+
+    $data = $this->request->getData();
+
+    // debug($data);
+
+    if(!empty($data)){
+
+        $data['midterm_submitted'] = 1;
+
+        $entity = $this->StudentEnrolledCourses->newEntity($data);
+
+        // debug($entity);
+        
+        $this->StudentEnrolledCourses->save($entity);
+
+      $userLogTable = TableRegistry::getTableLocator()->get('UserLogs');
+        
+      $userLogEntity = $userLogTable->newEntity([
+
+          'action' => 'Grade',
+
+          'userId' => $this->Auth->user('id'),
+
+          'description' => 'Submit Mid Term Grade',
+
+          'code' => $data['code'],
+
+          'created' => date('Y-m-d H:i:s'),
+
+          'modified' => date('Y-m-d H:i:s')
+
+      ]);
+      
+      $userLogTable->save($userLogEntity);
+
+      $response = array(
+
+        'ok'   => true,
+
+        'data' => $data,       
+
+        'msg'  => 'Grade has been successfully submitted.'
+
+      );
+
+    }else{
+
+      $response = array(
+
+        'ok'   => false,
+
+        'data' => $data,
+
+        'msg'  =>'Grade cannot be submitted this time.'
+
+      );
+
+    }
+
+    $this->set(array(
+
+      'response'=>$response,
+
+      '_serialize'=>'response'
+
+    ));
+
+        $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+  }
+
+  public function submitSingleFinalterm($id = null){
+
+    $data = $this->request->getData();
+
+    if(!empty($data)){
+
+        if($data['midterm_submitted'] == 1 && ($data['finalterm_grade'] == '' || $data['finalterm_grade'] == null)){
+
+          $data['final_grade'] = 'INC';
+
+          $data['remarks'] = 'INCOMPLETE';
+
+          $data['incomplete'] = 1;
+
+        }else{
+
+          $data['incomplete'] = 0;
+
+        }
+
+        $data['finalterm_submitted'] = 1;
+
+        $data['finalterm_submitted_date'] = date('Y-m-d');
+
+        $entity = $this->StudentEnrolledCourses->newEntity($data);
+
+        // debug($entity);
+        
+        $this->StudentEnrolledCourses->save($entity);
+
+        $student['id'] = $data['student_id'];
+
+        $student['status'] = $data['remarks'];
+
+        $entity = $this->Students->newEntity($student);
+        
+        $this->Students->save($entity);
+
+
+
+      $userLogTable = TableRegistry::getTableLocator()->get('UserLogs');
+        
+      $userLogEntity = $userLogTable->newEntity([
+
+          'action' => 'Grade',
+
+          'userId' => $this->Auth->user('id'),
+
+          'description' => 'Submit Final Term Grade',
+
+          'code' => $data['code'],
+
+          'created' => date('Y-m-d H:i:s'),
+
+          'modified' => date('Y-m-d H:i:s')
+
+      ]);
+      
+      $userLogTable->save($userLogEntity);
+
+      $response = array(
+
+        'ok'   => true,
+
+        'data' => $data,       
+
+        'msg'  => 'Grade has been successfully submitted.'
+
+      );
+
+    }else{
+
+      $response = array(
+
+        'ok'   => false,
+
+        'data' => $data,
+
+        'msg'  =>'Grade cannot be submitted this time.'
+
+      );
+
+    }
+
+    $this->set(array(
+
+      'response'=>$response,
+
+      '_serialize'=>'response'
+
+    ));
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+  } 
+
 }

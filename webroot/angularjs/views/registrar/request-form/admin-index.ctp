@@ -48,7 +48,7 @@
                 <span class="dropleft float-right input-group-text" style="padding : 0;">
                   <a class="fa fa-filter" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 15px;"></a>
                   <div class="dropdown-menu">
-                    <div ng-show="!data.CourseActivity.disable_admin_quiz_button">
+                    <div>
                       <a class="dropdown-item text-dark" href="javascript:void(0)" ng-click="changeFilter('date')">DATE</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item text-dark" href="javascript:void(0)" ng-click="changeFilter('month')">MONTH</a>

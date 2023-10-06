@@ -22,6 +22,8 @@ class BlockSectionsController extends AppController {
 
     $this->BlockSectionSchedules = TableRegistry::getTableLocator()->get('BlockSectionSchedules');
 
+    $this->StudentEnrolledCourses = TableRegistry::getTableLocator()->get('StudentEnrolledCourses');
+
     $this->Employees = TableRegistry::getTableLocator()->get('Employees');
 
   }
@@ -721,13 +723,41 @@ class BlockSectionsController extends AppController {
 
     $data = $this->getRequest()->getData();
 
+    // debug($data['faculty_name']);
+
     $blockSectionCourse = $this->BlockSectionCourses->get($id);
+
+    $enrolled_course = $this->StudentEnrolledCourses->find()
+
+          ->where([
+
+            'visible' => 1,
+
+            'block_section_course_id' => $id
+
+          ])
+
+          ->all();
+
+      $conditions = [
+        'visible' => 1,
+        'block_section_course_id' => $id
+      ];
+
+      // Updated field values
+      $fields = [
+        'faculty_id' => $data['faculty_id'],
+
+        'faculty_name' => $data['faculty_name'], // Replace 'your_field_name' and 'new_value' with your actual field and value
+      ];
 
     if (!empty($data)) {
 
         $blockSectionCourse = $this->BlockSectionCourses->patchEntity($blockSectionCourse,$data);
 
         if ($this->BlockSectionCourses->save($blockSectionCourse)) {
+
+          $this->StudentEnrolledCourses->updateAll($fields, $conditions);
 
           $response = [
 

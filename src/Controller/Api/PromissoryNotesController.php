@@ -30,7 +30,7 @@ class PromissoryNotesController extends AppController {
 
     $conditionsPrint = '';
 
-    if ($this->request->getQuery('search')) {
+    if ($this->request->getQuery('search') != null) {
 
       $search = $this->request->getQuery('search');
 
@@ -42,7 +42,7 @@ class PromissoryNotesController extends AppController {
 
     $conditions['date'] = '';
 
-    if ($this->request->getQuery('date')) {
+    if ($this->request->getQuery('date') != null) {
 
       $search_date = $this->request->getQuery('date');
 
@@ -56,7 +56,7 @@ class PromissoryNotesController extends AppController {
 
     //advance search
 
-    if ($this->request->getQuery('startDate')) {
+    if ($this->request->getQuery('startDate') != null) {
 
       $start = $this->request->getQuery('startDate'); 
 
@@ -74,7 +74,7 @@ class PromissoryNotesController extends AppController {
 
     $conditions['studentId'] = '';
 
-    if ($this->request->getQuery('per_student')) {
+    if ($this->request->getQuery('per_student') != null) {
 
       $per_student = $this->request->getQuery('per_student');
       
@@ -119,7 +119,7 @@ class PromissoryNotesController extends AppController {
 
           'student_name'  => $data['student_name'],
 
-          'date'          => $data['date'],
+          'date'          => fdate($data['date'],'m/d/Y'),
 
           'program'       => $data['name'],
 

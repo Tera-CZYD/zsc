@@ -199,8 +199,7 @@ class CurriculumsController extends AppController {
 
   public function view($id = null){
 
-    $data = $this->Curriculums->find()
-
+    $data['Curriculum'] = $this->Curriculums->find()
       ->contain([
 
         'CurriculumSubs' => [
@@ -221,9 +220,10 @@ class CurriculumsController extends AppController {
 
       ->first();
 
-    $data['CurriculumSubs'] = $data['curriculum_subs'];
 
-    unset($data['curriculum_subs']);
+    $data['CurriculumSub'] = $data['Curriculum']->curriculum_subs;
+
+    unset($data['Curriculum']->curriculum_subs);
 
     $response = [
 
@@ -257,13 +257,15 @@ class CurriculumsController extends AppController {
 
     $subs = $this->request->getData('CurriculumSub');
 
-    $data = $this->Curriculums->newEmptyEntity();
-   
+    $data = $this->Curriculums->findById($id)->first();
+
     $data = $this->Curriculums->patchEntity($data, $requestData); 
 
     if ($this->Curriculums->save($data)) {
 
       $id = $data->id;
+
+      $this->Curriculums->CurriculumSubs->deleteAll(['curriculum_id' => $id]);
 
       if (count($subs) > 0) {
 
@@ -274,6 +276,9 @@ class CurriculumsController extends AppController {
           'curriculum_id' => $id,
 
           'program_id' => $sub['program_id'],
+
+
+          'program' => $sub['program'],
 
         ]);
 

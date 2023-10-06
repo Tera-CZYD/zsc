@@ -53,3 +53,32 @@ app.factory("GradeSubmitFinalTerm", function($resource) {
   });
 
 });
+
+
+app.factory("GradeSubmitSingleMidterm", function($resource) {
+
+  return $resource( api + "Grades/submit_single_midterm/:id", { id: '@id' }, {
+
+    query: { method: 'GET', isArray: false },
+
+    update: { method: 'PUT' },
+
+    search: { method: 'GET' },
+
+  });
+
+});
+
+app.factory("GradeSubmitSingleFinalTerm", function($resource) {
+
+  return $resource( api + "Grades/submit_single_finalterm/:id", { id: '@id' }, {
+
+    query: { method: 'GET', isArray: false },
+
+    update: { method: 'PUT' },
+
+    search: { method: 'GET' },
+
+  });
+
+});

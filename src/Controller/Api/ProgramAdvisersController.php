@@ -187,6 +187,10 @@ class ProgramAdvisersController extends AppController {
 
             ->first();
 
+            // debug($slot);
+
+            $availableSlot = isset($slot) ? $slot['slot'] - $slot['enrolled_students'] : null;
+
             $block_sections[] = array(
 
               'id'         => $value['id'],
@@ -195,7 +199,7 @@ class ProgramAdvisersController extends AppController {
 
               'section'    => $value['section'],
 
-              'available_slot' => $slot['slot'] - $slot['enrolled_students']
+              'available_slot' => $availableSlot
 
             );
 

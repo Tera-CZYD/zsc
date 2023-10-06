@@ -129,7 +129,7 @@
 
                   });
 
-                    window.location = '<?php echo $base;?>pages/login';
+                    window.location = '<?php echo $base;?>main/login';
 
                 }else{
 
