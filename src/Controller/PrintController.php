@@ -95,8 +95,6 @@ class PrintController extends AppController {
 
     $this->loadModel('Tors');
 
-    //sir leo 
-
     $this->Courses = TableRegistry::getTableLocator()->get('Courses');
 
     $this->Colleges = TableRegistry::getTableLocator()->get('Colleges');
@@ -133,9 +131,6 @@ class PrintController extends AppController {
 
     $this->InventoryProperties = TableRegistry::getTableLocator()->get('InventoryProperties');
 
-
-    //sir raymond
-
     $this->LearningResourceMembers = TableRegistry::getTableLocator()->get('LearningResourceMembers');
 
     $this->Bibliographies = TableRegistry::getTableLocator()->get('Bibliographies');
@@ -153,9 +148,6 @@ class PrintController extends AppController {
     $this->PropertyLogs = TableRegistry::getTableLocator()->get('PropertyLogs');
 
     $this->Consultations = TableRegistry::getTableLocator()->get('Consultations');
-
-
-    //sir raf
 
     $this->loadModel("GoodMorals");
 
@@ -190,13 +182,11 @@ class PrintController extends AppController {
 
     $this->BlockSectionCourses = TableRegistry::getTableLocator()->get('BlockSectionCourses');
 
-
     $this->loadModel('Reports');
 
     $this->loadModel('MedicalEmployeeProfiles');
 
     $this->loadModel('RegisteredStudents');
-
 
     $this->viewBuilder = new ViewBuilder();
 
@@ -12252,9 +12242,9 @@ class PrintController extends AppController {
 
     // search conditions
 
-    if(isset($this->request->query['search'])){
+    if($this->request->getQuery('search') != null){
 
-      $search = $this->request->query['search'];
+      $search = $this->request->getQuery('search');
 
       $search = strtolower($search);
 
@@ -12264,33 +12254,29 @@ class PrintController extends AppController {
 
     $conditions['date'] = '';
 
-    if (isset($this->request->query['date'])) {
+    if ($this->request->getQuery('date') != null) {
 
-      $search_date = $this->request->query['date'];
+      $search_date = $this->request->getQuery('date');
 
       $conditions['date'] = " AND DATE(CalendarActivity.startDate) = '$search_date'"; 
-
-      $dates['date'] = $search_date;
 
     }  
 
     //advance search
 
-    if (isset($this->request->query['startDate'])) {
+    if ($this->request->getQuery('startDate') != null) {
 
-      $start = $this->request->query['startDate']; 
+      $start = $this->request->getQuery('startDate'); 
 
-      $end = $this->request->query['endDate'];
+      $end = $this->request->getQuery('endDate');
 
-      $conditions['date'] = " AND DATE(CalendarActivity.startDate) >= '$start' AND DATE(CalendarActivity.startDate) <= '$end'";
-
-      $dates['startDate'] = $start;
-
-      $dates['endDate']   = $end;
+      $conditions['date'] = " AND DATE(CalendarActivity.startDate) >= '$start' AND DATE(CalendarActivity.endDate) <= '$end'";
 
     }
 
-    $tmpData = $this->CalendarActivity->query($this->CalendarActivity->getAllCalendarActivity($conditions));
+    $tmpData = $this->CalendarActivities->getAllCalendarActivityPrint($conditions);
+
+    $datas = new Collection($tmpData);
 
     $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
 
@@ -12330,31 +12316,23 @@ class PrintController extends AppController {
     $pdf->SetWidths(array(10,50,75,70,70,70));
     $pdf->SetAligns(array('C','C','L','C','C','C'));
 
+    if(!$datas->isEmpty()){
 
-    // $pdf->Ln(10);
-    // $pdf->Ellipse(50,25,10,5);
-    // $pdf->Ln(10);
-
-
-    if(!empty($tmpData)){
-
-      foreach ($tmpData as $key => $data){
-
-        $tmp = $data['CalendarActivity'];
+      foreach ($datas as $key => $data){
 
         $pdf->RowLegalL(array(
 
           $key + 1,
 
-          $data['CalendarActivity']['code'],
+          $data['code'],
 
-          $data['CalendarActivity']['title'],
+          $data['title'],
 
-          fdate($data['CalendarActivity']['startDate'],'m/d/Y'),
+          fdate($data['startDate'],'m/d/Y'),
 
-          fdate($data['CalendarActivity']['endDate'],'m/d/Y'),
+          fdate($data['endDate'],'m/d/Y'),
 
-          $data['CalendarActivity']['remarks'],
+          $data['remarks'],
 
 
         ));
