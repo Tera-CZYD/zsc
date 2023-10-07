@@ -11664,6 +11664,22 @@ class PrintController extends AppController {
  
     }
 
+    $conditions['studentId'] = '';
+
+    if ($this->request->getQuery('per_student') != null) {
+
+      $per_student = $this->request->getQuery('per_student');
+
+      $student_id = $this->Auth->user('studentId');
+
+      if ($student_id!=null) {
+
+        $conditions['studentId'] = "AND Transferee.student_id = $student_id";
+
+      }
+
+    }
+
     $tmpData = $this->Transferees->getAllTransfereePrint($conditions);
 
     $datas = new Collection($tmpData);
@@ -11698,13 +11714,14 @@ class PrintController extends AppController {
     $pdf->Cell(10,5,'#',1,0,'C',1);
     $pdf->Cell(35,5,'STUDENT ID',1,0,'C',1);
     $pdf->Cell(75,5,'STUDENT NAME',1,0,'C',1);
-    $pdf->Cell(65,5,'YEAR LEVEL',1,0,'C',1);
-    $pdf->Cell(100,5,'EMAIL',1,0,'C',1);
+    $pdf->Cell(35,5,'YEAR LEVEL',1,0,'C',1);
+    $pdf->Cell(70,5,'PROGRAM',1,0,'C',1);
+    $pdf->Cell(60,5,'EMAIL',1,0,'C',1);
     $pdf->Cell(60,5,'APPLICATION DATE',1,0,'C',1);
     $pdf->Ln();
     $pdf->SetFont("Times", '', 8);
-    $pdf->SetWidths(array(10,35,75,65,100,60));
-    $pdf->SetAligns(array('C','L','L','C','C','C'));
+    $pdf->SetWidths(array(10,35,75,35,70,60,60));
+    $pdf->SetAligns(array('C','L','L','C','C','C','C'));
 
     if(!$datas->isEmpty()){
 
@@ -11718,7 +11735,9 @@ class PrintController extends AppController {
 
           strtoupper($data['full_name']),
 
-          $data['year_level'],  
+          $data['year'],  
+
+          $data['program'],
 
           $data['email'],
 
@@ -19137,6 +19156,34 @@ class PrintController extends AppController {
       }
 
     }
+
+    $assessment['Assessment'] = $this->Assessments->find()
+
+    ->contain([
+
+      'AssessmentSubs' => [
+
+        'conditions' => ['AssessmentSubs.visible' => 1]
+
+      ]
+
+    ])
+
+    ->where([
+
+      'Assessments.visible' => 1,
+
+      'Assessments.student_id' => $id
+
+    ])
+
+    ->first();
+
+
+
+    $assessment['AssessmentSub'] = $assessment['Assessment']->assessment_subs;
+
+    unset($assessment['Assessment']->assessment_subs);
     
     $pdf->Ln(7);
     $pdf->SetFont("Arial", '', 11);
@@ -19150,52 +19197,102 @@ class PrintController extends AppController {
     $pdf->Cell(20, 5, 'AMOUNT', 1, 0, 'C');
     $pdf->Cell(20, 5, 'TOTAL', 1, 0, 'C');
     $pdf->Ln(5);
+    if($assessment['AssessmentSub'][0]['admission_fee'] != null){
+    $pdf->Cell(1, 5, '', 0, 0, 'L');
+    $pdf->Cell(135, 5, 'ADMISSION FEE', 1, 0, 'L');
+    $pdf->Cell(20, 5, '1.00', 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['admission_fee'], 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['admission_fee'], 1, 0, 'L');
+    $pdf->Ln(5);
+    }
+    if($assessment['AssessmentSub'][0]['handbook_fee'] != null){
+    $pdf->Cell(1, 5, '', 0, 0, 'L');
+    $pdf->Cell(135, 5, 'HANDBOOK FEE', 1, 0, 'L');
+    $pdf->Cell(20, 5, '1.00', 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['handbook_fee'], 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['handbook_fee'], 1, 0, 'L');
+    $pdf->Ln(5);
+    }
+    if($assessment['AssessmentSub'][0]['entrance_fee'] != null){
+    $pdf->Cell(1, 5, '', 0, 0, 'L');
+    $pdf->Cell(135, 5, 'ENTRANCE FEE', 1, 0, 'L');
+    $pdf->Cell(20, 5, '1.00', 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['entrance_fee'], 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['entrance_fee'], 1, 0, 'L');
+    $pdf->Ln(5);
+    }
+    if($assessment['AssessmentSub'][0]['registration_fee'] != null){
+    $pdf->Cell(1, 5, '', 0, 0, 'L');
+    $pdf->Cell(135, 5, 'REGISTRATIION FEE', 1, 0, 'L');
+    $pdf->Cell(20, 5, '1.00', 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['registration_fee'], 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['registration_fee'], 1, 0, 'L');
+    $pdf->Ln(5);
+    }
+    if($assessment['AssessmentSub'][0]['school_id_fee'] != null){
+    $pdf->Cell(1, 5, '', 0, 0, 'L');
+    $pdf->Cell(135, 5, 'SCHOOL ID FEE', 1, 0, 'L');
+    $pdf->Cell(20, 5, '1.00', 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['school_id_fee'], 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['school_id_fee'], 1, 0, 'L');
+    $pdf->Ln(5);
+    }
     $pdf->Cell(1, 5, '', 0, 0, 'L');
     $pdf->Cell(135, 5, 'ATHLETICS FEE', 1, 0, 'L');
     $pdf->Cell(20, 5, '1.00', 1, 0, 'L');
-    $pdf->Cell(20, 5, '195.00', 1, 0, 'L');
-    $pdf->Cell(20, 5, '195', 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['athletics_fee'], 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['athletics_fee'], 1, 0, 'L');
     $pdf->Ln(5);
     $pdf->Cell(1, 5, '', 0, 0, 'L');
     $pdf->Cell(135, 5, 'CULTURAL FEE', 1, 0, 'L');
     $pdf->Cell(20, 5, '1.00', 1, 0, 'L');
-    $pdf->Cell(20, 5, '150.00', 1, 0, 'L');
-    $pdf->Cell(20, 5, '150', 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['cultural_fee'], 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['cultural_fee'], 1, 0, 'L');
     $pdf->Ln(5);
     $pdf->Cell(1, 5, '', 0, 0, 'L');
     $pdf->Cell(135, 5, 'DEVT FEE', 1, 0, 'L');
     $pdf->Cell(20, 5, '1.00', 1, 0, 'L');
-    $pdf->Cell(20, 5, '650.00', 1, 0, 'L');
-    $pdf->Cell(20, 5, '650', 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['development_fee'], 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['development_fee'], 1, 0, 'L');
     $pdf->Ln(5);
     $pdf->Cell(1, 5, '', 0, 0, 'L');
     $pdf->Cell(135, 5, 'GUIDANCE FEE', 1, 0, 'L');
     $pdf->Cell(20, 5, '1.00', 1, 0, 'L');
-    $pdf->Cell(20, 5, '100.00', 1, 0, 'L');
-    $pdf->Cell(20, 5, '100', 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['guidance_fee'], 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['guidance_fee'], 1, 0, 'L');
     $pdf->Ln(5);
     $pdf->Cell(1, 5, '', 0, 0, 'L');
     $pdf->Cell(135, 5, 'LIBRARY FEE', 1, 0, 'L');
     $pdf->Cell(20, 5, '1.00', 1, 0, 'L');
-    $pdf->Cell(20, 5, '100.00', 1, 0, 'L');
-    $pdf->Cell(20, 5, '100', 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['library_fee'], 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['library_fee'], 1, 0, 'L');
     $pdf->Ln(5);
     $pdf->Cell(1, 5, '', 0, 0, 'L');
     $pdf->Cell(135, 5, 'MEDICAL/DENTAL FEE', 1, 0, 'L');
     $pdf->Cell(20, 5, '1.00', 1, 0, 'L');
-    $pdf->Cell(20, 5, '120.00', 1, 0, 'L');
-    $pdf->Cell(20, 5, '120', 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['medical_dental_fee'], 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['medical_dental_fee'], 1, 0, 'L');
     $pdf->Ln(5);
     $pdf->Cell(1, 5, '', 0, 0, 'L');
     $pdf->Cell(135, 5, 'TUITION FEE', 1, 0, 'L');
     $pdf->Cell(20, 5, '1.00', 1, 0, 'L');
-    $pdf->Cell(20, 5, '50.00', 1, 0, 'L');
-    $pdf->Cell(20, 5, '50', 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['tuition_fee'], 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['tuition_fee'], 1, 0, 'L');
     $pdf->Ln(5);
+
+    if($assessment['AssessmentSub'][0]['laboratory_fee'] != null){
+    $pdf->Cell(1, 5, '', 0, 0, 'L');
+    $pdf->Cell(135, 5, 'LABORATORY FEE', 1, 0, 'L');
+    $pdf->Cell(20, 5, '1.00', 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['laboratory_fee'], 1, 0, 'L');
+    $pdf->Cell(20, 5, $assessment['AssessmentSub'][0]['laboratory_fee'], 1, 0, 'L');
+    $pdf->Ln(5);
+    }
+
     $pdf->Cell(1, 5, '', 0, 0, 'L');
     $pdf->Cell(135, 5, '', 0, 0, 'L');
     $pdf->Cell(35, 5, 'TOTAL CHARGES', 0, 0, 'C');
-    $pdf->Cell(25, 5, '2615.00', 0, 0, 'C');
+    $pdf->Cell(25, 5, $assessment['AssessmentSub'][0]['total'], 0, 0, 'C');
     $pdf->Ln(5);
     $pdf->Cell(1, 5, '', 0, 0, 'L');
     $pdf->Cell(135, 5, '', 0, 0, 'L');
