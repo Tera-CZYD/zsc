@@ -276,7 +276,11 @@ app.controller('RequestFormAddController', function($scope, RequestForm, Select,
 
   $scope.data = {
 
-    RequestForm : {}
+    RequestForm : {
+
+      claim : false
+
+    }
 
   }
 
@@ -1093,7 +1097,9 @@ app.controller('AdminRequestFormAddController', function($scope, RequestForm, Se
 
     RequestForm : {
 
-      image: null
+      image: null,
+
+      claim : false
 
     }
 

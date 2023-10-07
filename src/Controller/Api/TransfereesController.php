@@ -10,6 +10,16 @@ use Cake\View\JsonView;
 use Cake\View\ViewBuilder;
 use Cake\View\Helper\UrlHelper;
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+include 'PHPMailer/Exception.php';
+
+include 'PHPMailer/PHPMailer.php';
+
+include 'PHPMailer/SMTP.php';
+
 class TransfereesController extends AppController {
    
   public function initialize(): void{
@@ -31,6 +41,8 @@ class TransfereesController extends AppController {
     $this->urlHelper = new UrlHelper($this->view);
 
     $this->base = $this->urlHelper->build('/', ['fullBase' => true]);
+
+    $this->Students = TableRegistry::getTableLocator()->get('Students');
 
   }
 
@@ -140,7 +152,15 @@ class TransfereesController extends AppController {
 
         'email'             => $data['email'],
 
-        'date'              => fdate($data['date'],'m/d/Y')
+        'date'              => fdate($data['date'],'m/d/Y'),
+
+        'approve'           => $data['approve'],
+
+        'year'              =>  $data['year'],
+
+        'program'           =>  $data['program'],
+
+        'college'           =>  $data['college']
 
       );
 
@@ -180,101 +200,149 @@ class TransfereesController extends AppController {
 
       $uploadedFiles = $this->request->getUploadedFiles();
 
-      $data = $this->Transferees->newEmptyEntity();
-   
-      $data = $this->Transferees->patchEntity($data, $main['Transferee']); 
+      $main['Transferee']['student_name'] = (isset($main['Transferee']['student_name'])  || $main['Transferee']['student_name'] != null ) ? $main['Transferee']['student_name'] : $main['Transferee']['last_name'].', '.$main['Transferee']['first_name'].' '.$main['Transferee']['middle_name'];
 
-      if($this->Transferees->save($data)) {
+      $student_no = $main['Transferee']['student_no'];
 
-        $id = $data->id;
+      $students = $this->Transferees->find()
 
-        foreach ($uploadedFiles as $fieldName => $images) {
+      ->where([
 
-          $path = "uploads/transferee/$id";
+        'student_no' => $student_no,
 
-          if (!file_exists($path)) {
+        'visible' => 1
 
-            mkdir($path, 0777, true);
+      ])
 
-          }
+      ->all();
 
-          foreach ($images as $ctr => $image) {
+      if(count($students) == 0 ){
 
-            $filename = $image->getClientFilename();
+        $data = $this->Transferees->newEmptyEntity();
+     
+        $data = $this->Transferees->patchEntity($data, $main['Transferee']); 
 
-            $image->moveTo($path . '/' . $filename);
+        if($this->Transferees->save($data)) {
 
-            $names[$ctr] = $filename;
+          $id = $data->id;
 
-          }
+          foreach ($uploadedFiles as $fieldName => $images) {
 
-        }
+            $path = "uploads/transferee/$id";
 
-        $newPRImage = @$_FILES['attachment']['name'];
+            if (!file_exists($path)) {
 
-        $datasImages = [];
-
-        if (!empty($newPRImage)) {
-
-          if (isset($main['TransfereeImage'])) {
-
-            foreach ($main['TransfereeImage'][count($main['TransfereeImage']) - 1]['images'] as $key => $valueImages) {
-
-              $valueImages['images'] = $names[$key];
-
-              $valueImages['transferee_id'] = $id;
-
-              $datasImages[] = $valueImages;
+              mkdir($path, 0777, true);
 
             }
 
-            $entities = $this->TransfereeImages->newEntities($datasImages);
+            foreach ($images as $ctr => $image) {
 
-            $this->TransfereeImages->saveMany($entities);
+              $filename = $image->getClientFilename();
+
+              $image->moveTo($path . '/' . $filename);
+
+              $names[$ctr] = $filename;
+
+            }
 
           }
 
+          $newPRImage = @$_FILES['attachment']['name'];
+
+          $datasImages = [];
+
+          if (!empty($newPRImage)) {
+
+            if (isset($main['TransfereeImage'])) {
+
+              foreach ($main['TransfereeImage'][count($main['TransfereeImage']) - 1]['images'] as $key => $valueImages) {
+
+                $valueImages['images'] = $names[$key];
+
+                $valueImages['transferee_id'] = $id;
+
+                $datasImages[] = $valueImages;
+
+              }
+
+              $entities = $this->TransfereeImages->newEntities($datasImages); 
+
+              $this->TransfereeImages->saveMany($entities);
+
+            }
+
+          }
+
+          $response = array(
+
+            'ok'  =>true,
+
+            'msg' =>'School Transfer Request has been successfully saved.',
+
+            'data'=>$main['Transferee']
+
+          );
+
+          $userLogEntity = $this->UserLogs->newEntity([
+
+            'action' => 'Add',
+
+            'userId' => $this->Auth->user('id'),
+
+            'code' => $main['Transferee']['student_no'],
+
+            'description' => 'School Transfer Request Management',
+
+            'created' => date('Y-m-d H:i:s'),
+
+            'modified' => date('Y-m-d H:i:s')
+
+          ]);
+
+          $this->UserLogs->save($userLogEntity);
+
+        }else{
+
+          $response = array(
+
+            'ok'  =>true,
+
+            'data'=>$main['Transferee'],
+
+            'msg' =>'School Transfer Request cannot saved this time.',
+
+          );
+
         }
-
-        $response = array(
-
-          'ok'  =>true,
-
-          'msg' =>'School Transfer Request has been successfully saved.',
-
-          'data'=>$main['Transferee']
-
-        );
-
-        $userLogEntity = $this->UserLogs->newEntity([
-
-          'action' => 'Add',
-
-          'userId' => $this->Auth->user('id'),
-
-          'code' => $main['Transferee']['student_no'],
-
-          'description' => 'School Transfer Request Management',
-
-          'created' => date('Y-m-d H:i:s'),
-
-          'modified' => date('Y-m-d H:i:s')
-
-        ]);
-
-        $this->UserLogs->save($userLogEntity);
 
       }else{
 
-        $response = array(
+        if($main['Transferee']['type'] == 'Transfer In'){
 
-          'ok'  =>true,
+          $response = array(
 
-          'data'=>$main['Transferee'],
+            'ok'  =>false,
 
-          'msg' =>'School Transfer Request cannot saved this time.',
+            'data'=>$main['Transferee'],
 
-        );
+            'msg' =>'There is Existing Transferee Record.',
+
+          );
+
+        }else{
+
+          $response = array(
+
+            'ok'  =>false,
+
+            'data'=>$main['Transferee'],
+
+            'msg' =>'There is pending Transfer Out for this student.',
+
+          );
+
+        }
 
       }
       
@@ -306,6 +374,24 @@ class TransfereesController extends AppController {
 
           'conditions' => ['TransfereeImages.visible' => 1]
 
+        ],
+
+        'YearLevelTerms' => [
+
+          'conditions' => ['YearLevelTerms.visible' => 1]
+
+        ],
+
+        'CollegePrograms' => [
+
+          'conditions' => ['CollegePrograms.visible' => 1]
+
+        ],
+
+        'Colleges' => [
+
+          'conditions' => ['Colleges.visible' => 1]
+
         ]
 
       ])
@@ -322,9 +408,21 @@ class TransfereesController extends AppController {
 
     $data['Transferee']['date'] = !is_null($data['Transferee']['date']) ? $data['Transferee']['date']->format('m/d/Y') : null;
 
-    $data['TransfereeImage'] = $data['Transferee']['transferee_images'];
+    $data['TransfereeImage'] = $data['Transferee']->transferee_images;
 
-    unset($data['Transferee']['transferee_images']);
+    $data['College'] = $data['Transferee']->college;
+
+    $data['CollegeProgram'] = $data['Transferee']->college_program;
+
+    $data['YearLevelTerm'] = $data['Transferee']->year_level_term;
+
+    unset($data['Transferee']->transferee_images);
+
+    unset($data['Transferee']->college);
+
+    unset($data['Transferee']->college_programs);
+
+    unset($data['Transferee']->year_level_term);
 
     $transfereeImage = array();
 
@@ -572,5 +670,226 @@ class TransfereesController extends AppController {
     return $this->response;
 
   } 
+
+
+    public function approve($id = null){
+
+    $data = $this->Transferees->get($id);
+
+    $data->approve = 1;
+
+    $data->approve_by_id = $this->currentUser->id;
+
+    if ($this->Transferees->save($data)) {
+
+      $transferee_id = $data->id;
+
+      if($data->type == 'Transfer In'){
+
+      $student_data = array();
+
+      $student_data['transferee_id'] = $transferee_id;
+
+      $student_data['student_no'] = $data->student_no;
+
+      $student_data['first_name'] = $data->first_name;
+
+      $student_data['middle_name'] = $data->middle_name;
+
+      $student_data['last_name'] = $data->last_name;
+
+      $student_data['email'] = $data->email;
+
+      $student_data['gender'] = $data->gender;
+
+      $student_data['incoming_freshmen'] = 0;
+
+      $student_data['contact_no'] = $data->contact_no;
+
+      $student_data['present_address'] = $data->address;
+
+      $student_data['college_id'] = $data->college_id;
+
+      $student_data['program_id'] = $data->program_id;
+
+      $student_data['year_term_id'] = $data->year_term_id;
+
+      $student = $this->Students->newEmptyEntity();
+
+      $student = $this->Students->patchEntity($student,$student_data);
+
+        if($this->Students->save($student)){
+
+          $student_id = $student->id;
+
+          $data->student_id = $student_id;
+
+          $transferee = $this->Transferees->save($data);
+
+
+          if($data->email != ''){
+
+            $name = $data->last_name . ', ' . $data->first_name . ' ' . $data->middle_name;
+
+            $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+            $password = substr(str_shuffle($chars), 0, 10);
+
+            $user_data = array();
+
+            $user_data['studentId'] = $student_id;
+            
+            $user_data['student_name'] = $name;
+            
+            $user_data['username'] = $data->student_no;
+
+            $user_data['password'] = $password;
+            
+            $user_data['first_name'] = $data->first_name;
+
+            $user_data['middle_name'] = $data->middle_name;
+
+            $user_data['last_name'] = $data->last_name;
+
+            $user_data['roleId'] = 13;
+
+            $user_data['developer'] = 0;
+
+            $user_data['active'] = 1;
+
+            $user_data['verified'] = 1;
+
+
+            $user = $this->Users->newEmptyEntity();
+
+            $user = $this->Users->patchEntity($user,$user_data);
+
+            $this->Users->save($user);
+
+            $mail = new PHPMailer(true);
+
+            $mail->isSMTP(); // Send using SMTP
+
+            $mail->Host = 'smtp.gmail.com';
+
+            $mail->SMTPAuth = true;
+
+            $mail->Username = 'mycreativepandaii@gmail.com'; // Your Gmail email address
+
+            $mail->Password = 'tkoahowwnzuzqczy'; // Your Gmail password
+
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption
+
+            $mail->Port = 587; // TCP port to connect to
+
+            // Bypass SSL certificate verification
+            $mail->SMTPOptions = [
+
+              'ssl' => [
+
+                'verify_peer' => false,
+
+                'verify_peer_name' => false,
+
+                'allow_self_signed' => true,
+
+              ],
+
+            ];
+
+            $mail->setFrom('mycreativepandaii@gmail.com', 'ZAMBOANGA STATE COLLEGE OF MARINE SCIENCES AND TECHNOLOGY'); // Sender's email and name
+
+            $mail->addAddress($data->email, $name); // Recipient's email and name
+
+            // Content
+            $mail->isHTML(true); // Set email format to HTML
+
+            $mail->Subject = 'Transferee Student';
+
+            $_SESSION['name'] = @$name; 
+
+            $_SESSION['username'] = $data->student_no; 
+
+            $_SESSION['password'] = $password; 
+
+            $_SESSION['id'] = $student_id; 
+
+            ob_start();
+
+            include('Email/transferee.ctp');
+
+            $bodyContent = ob_get_contents();
+
+            ob_end_clean();
+
+            $mail->Body = $bodyContent;
+                
+
+            $mail->send();
+
+          }
+
+
+
+
+        }
+
+      }else{ 
+
+        $student_id = $data->student_id;
+
+        $student = $this->Students->get($student_id);
+
+        $student = $this->Students->patchEntity($student,[
+
+          'transfer' => 'TRANSFERED OUT'
+
+        ]);
+
+        $this->Students->save($student);
+
+      }
+
+
+
+      $response = [
+
+        'ok' => true,
+
+        'data' => $id,
+
+        'msg' => 'Transferee has been approved.'
+
+      ];
+
+    } else {
+
+      $response = [
+
+        'ok' => false,
+
+        'data' => $id,
+
+        'msg' => 'Transferee cannot be approved this time.'
+
+      ];
+
+    }
+
+    $this->set([
+
+      'response' => $response,
+
+      '_serialize' => 'response'
+
+    ]);
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+  }
 
 }

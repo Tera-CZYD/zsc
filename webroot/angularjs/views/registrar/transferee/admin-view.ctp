@@ -54,8 +54,8 @@
                   <td class="italic">{{ data.Transferee.last_name }}</td>
                 </tr>
                 <tr>
-                  <th class="text-right"> EMAIL : </th>
-                  <td class="italic">{{ data.Transferee.year_level }}</td>
+                  <th class="text-right"> YEAR LEVEL : </th>
+                  <td class="italic">{{ data.YearLevelTerm.year }}</td>
                 </tr>
                 <tr>
                   <th class="text-right"> EMAIL : </th>
