@@ -200,7 +200,6 @@ class CurriculumsController extends AppController {
   public function view($id = null){
 
     $data['Curriculum'] = $this->Curriculums->find()
-
       ->contain([
 
         'CurriculumSubs' => [
@@ -220,6 +219,7 @@ class CurriculumsController extends AppController {
       ])
 
       ->first();
+
 
     $data['CurriculumSub'] = $data['Curriculum']->curriculum_subs;
 
@@ -258,7 +258,7 @@ class CurriculumsController extends AppController {
     $subs = $this->request->getData('CurriculumSub');
 
     $data = $this->Curriculums->findById($id)->first();
-   
+
     $data = $this->Curriculums->patchEntity($data, $requestData); 
 
     if ($this->Curriculums->save($data)) {
@@ -276,6 +276,7 @@ class CurriculumsController extends AppController {
           'curriculum_id' => $id,
 
           'program_id' => $sub['program_id'],
+
 
           'program' => $sub['program'],
 

@@ -50,7 +50,7 @@
                   </tr>
                   <tr>
                     <th class="text-left"> YEAR LEVEL : </th>
-                    <td class="italic">{{ data.ScholarshipApplication.year }}</td>
+                    <td class="italic">{{ data.ScholarshipApplication.year.description }}</td>
                     <th class="text-left"> SCHOOL YEAR : </th>
                     <td class="italic">{{ data.ScholarshipApplication.school_year }}</td>
                   </tr>

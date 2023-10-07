@@ -125,8 +125,6 @@ class SelectController extends AppController {
 
     $this->loadModel("Students");
 
-    //sir raymond
-
     $this->loadModel("Buildings");
 
     $this->loadModel("Consultations");
@@ -160,8 +158,6 @@ class SelectController extends AppController {
     $this->BlockSectionSchedules = TableRegistry::getTableLocator()->get('BlockSectionSchedules');
 
     $this->Ptcs = TableRegistry::getTableLocator()->get('Ptcs');
-
-    //sir leo
 
     $this->loadModel("ReferralSlips");
 
@@ -210,9 +206,6 @@ class SelectController extends AppController {
     $this->loadModel('CollegeProgramSubs');
 
     $this->loadModel('YearLevelTerms');
-    
-
-    //sir raf
 
     $this->loadModel("Apartelles");
 
@@ -231,8 +224,6 @@ class SelectController extends AppController {
     $this->loadModel('ApartelleStudentClearances');
 
     $this->loadModel('Purposes');
-
-    //sir gerald
 
     $this->loadModel("StudentClubs");
 
@@ -2384,13 +2375,17 @@ class SelectController extends AppController {
 
       $id = $this->request->getQuery('id');
 
+      $year_term_id = $this->request->getQuery('year_term_id');
+
       $tmp = $this->CollegeProgramCourses->find()
 
           ->where([
 
               'visible' => 1,
 
-              'college_program_id' => $id
+              'college_program_id' => $id,
+
+              'year_term_id' => $year_term_id
 
           ])
 
@@ -9997,11 +9992,11 @@ class SelectController extends AppController {
 
       $datas = array();
 
-      $employee_id = $this->Session->read('Auth.User.employeeId');
+      $employee_id = $this->Auth->user('employeeId');
 
       $today = date('Y-m-d');
 
-      $tmp = $this->CalendarActivity->query("
+      $query = "
 
         SELECT
 
@@ -10019,37 +10014,37 @@ class SelectController extends AppController {
 
           CalendarActivity.code DESC
 
-      ");
+      ";
 
-      if(!empty($tmp)){
+      $connection = $this->CalendarActivities->getConnection();
 
-        foreach ($tmp as $k => $data) {
+      $tmp = $connection->execute($query)->fetchAll('assoc');
 
-          $url = '#/guidance/calendar-activities/view/';
+      foreach ($tmp as $k => $data) {
 
-          $color = '#5cb85c';
+        $url = '#/guidance/calendar-activities/view/';
 
-          $end = date('Y-m-d', strtotime ('+1 day',strtotime($data['CalendarActivity']['endDate'])));
+        $color = '#5cb85c';
 
-          $datas[] = array(
+        $end = date('Y-m-d', strtotime ('+1 day',strtotime($data['endDate'])));
 
-            'title'     => $data['CalendarActivity']['title']."\n".'Opening : '.fdate($data['CalendarActivity']['startDate'],'F d, Y')."\n".'Closing : '.fdate($data['CalendarActivity']['endDate'],'F d, Y'),
+        $datas[] = array(
 
-            'start'     => $data['CalendarActivity']['startDate'],
+          'title'     => $data['title']."\n".'Opening : '.fdate($data['startDate'],'F d, Y')."\n".'Closing : '.fdate($data['endDate'],'F d, Y'),
 
-            'end'       => $end,
+          'start'     => $data['startDate'],
 
-            'date_from' => $data['CalendarActivity']['startDate'],
+          'end'       => $end,
 
-            'date_to'   => $data['CalendarActivity']['endDate'],
+          'date_from' => $data['startDate'],
 
-            'url'       => $url . $data['CalendarActivity']['id'],
+          'date_to'   => $data['endDate'],
 
-            'color'     => $color
+          'url'       => $url . $data['id'],
 
-          );
+          'color'     => $color
 
-        }
+        );
 
       }
 

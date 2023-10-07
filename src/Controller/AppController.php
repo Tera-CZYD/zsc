@@ -102,6 +102,8 @@ class AppController extends Controller
 
         $this->StudentApplications = TableRegistry::getTableLocator()->get('StudentApplications');
 
+        $this->Settings = TableRegistry::getTableLocator()->get('Settings');
+
         /*
          * Enable the following component for recommended CakePHP form protection settings.
          * see https://book.cakephp.org/4/en/controllers/components/form-protection.html
@@ -242,7 +244,6 @@ class AppController extends Controller
 
           $grades = $connection->execute($tmp)->fetchAll('assoc');
 
-
           $tmp = "
 
             SELECT 
@@ -269,6 +270,8 @@ class AppController extends Controller
 
           $for_schedule = $student_details[0]['status'] == 'REQUESTED' ? 1 : 0;
 
+
+
           //FOR CHECKING IF STUDENT IS REGULAR OR IRREGULAR
 
             $student_data = $this->Students->get($student_id);
@@ -279,26 +282,37 @@ class AppController extends Controller
 
             }
 
-
           //CHECKING IF STUDENT IS ALREADY ENROLLED
 
-            $student_data = $this->Students->get($user['studentId']);
+          //CHECK IF SELF ENROLLMENT IS ACTIVE
 
-            $year_term_id = $student_data['year_term_id'];
+            $settings = $this->Settings->get(26);
 
-            $enrolment_count = $this->StudentEnrollments->find()
+            if($settings['value'] == 'Inactive'){
 
-              ->where([
+              $show_self_enrollment = 0;
+              
+            }
 
-                'visible' => 1,
+          //END
 
-                'student_id' => $user['studentId'],
+          $student_data = $this->Students->get($user['studentId']);
 
-                'year_term_id' => $year_term_id
+          $year_term_id = $student_data['year_term_id'];
 
-              ])
+          $enrolment_count = $this->StudentEnrollments->find()
 
-            ->count();
+            ->where([
+
+              'visible' => 1,
+
+              'student_id' => $user['studentId'],
+
+              'year_term_id' => $year_term_id
+
+            ])
+
+          ->count();
 
         }
 
