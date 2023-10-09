@@ -3593,7 +3593,15 @@ class SelectController extends AppController {
     
         $today = date("Y-m-d");
 
-        $age = floor((strtotime($today) - strtotime($birthdate)) / 31556926);
+        if (!empty($birthdate)) {
+
+          $age = floor((strtotime($today) - strtotime($birthdate)) / 31556926);
+
+        } else {
+
+          $age = 0; 
+          
+        }
 
         $datas[] = array(
 
