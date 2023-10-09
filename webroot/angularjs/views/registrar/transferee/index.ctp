@@ -58,7 +58,7 @@
                           <td class="text-center">{{ (paginator.page - 1 ) * paginator.limit + $index + 1 }}</td>
                           <td class="text-center">{{ data.student_no }}</td>
                           <td class="text-center">{{ data.full_name }}</td>
-                          <td class="text-center">{{ data.year }}</td>
+                          <td class="text-center">{{ data.year_level }}</td>
                           <td class="text-center">{{ data.program }}</td>
                           <td class="text-center">{{ data.email }}</td>
                           <td class="text-center">{{ data.date }}</td>

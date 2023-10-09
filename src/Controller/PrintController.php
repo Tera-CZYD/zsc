@@ -11699,7 +11699,7 @@ class PrintController extends AppController {
     $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
     $pdf->Ln(10);
     $pdf->SetFont("Times", 'B', 12);
-    $pdf->Cell(0,5,'STUDENT APPLICATION',0,0,'C');
+    $pdf->Cell(0,5,'SCHOOL TRANSFER REQUEST',0,0,'C');
     $pdf->Ln(10);
     $pdf->SetFont("Times", 'B', 8);
     $pdf->SetFillColor(217,237,247);
@@ -35631,11 +35631,13 @@ class PrintController extends AppController {
 
   }
 
-  public function online_payment($id = null){
+  public function onlinePayment($id = null){
 
-    $data = $this->RequestForm->findById($id);
+    $data = $this->RequestForm->get($id);
 
-    $student = Set::extract('Student',$this->Student->findById($data['RequestForm']['student_id']));
+    $student = $this->Students->get($data['student_id']);
+
+    // $student = Set::extract('Student',$this->Student->findById($data['RequestForm']['student_id']));
 
     $data['Student'] = $student;
 
