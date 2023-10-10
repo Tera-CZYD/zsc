@@ -2549,6 +2549,8 @@ class ReportsController extends AppController {
 
       $conditions['year'] = " AND ScholarshipApplication.year_term_id = $year";
 
+      $conditionsPrint .= '&year='.$year;
+
     }
 
     $conditions['scholarship'] = "";
@@ -2768,7 +2770,7 @@ class ReportsController extends AppController {
 
     $conditions['search'] = '';
 
-    if($this->request->getQuery('search')){
+    if($this->request->getQuery('search') != null){
 
       $search = $this->request->getQuery('search');
 
@@ -2782,7 +2784,7 @@ class ReportsController extends AppController {
 
     $conditions['date'] = '';
 
-    if ($this->request->getQuery('date')) {
+    if ($this->request->getQuery('date') != null) {
 
       $search_date = $this->request->getQuery('date');
 
@@ -2792,7 +2794,7 @@ class ReportsController extends AppController {
 
     }
 
-    if ($this->request->getQuery('startDate')) {
+    if ($this->request->getQuery('startDate') != null) {
 
       $start = $this->request->getQuery('startDate'); 
 
@@ -2839,6 +2841,7 @@ class ReportsController extends AppController {
             'check_in_id' => $data['id'],
 
           ])
+          
         ->all();
 
         $datas[] = array(
