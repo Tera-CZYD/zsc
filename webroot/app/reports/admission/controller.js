@@ -566,7 +566,9 @@ app.controller('ListApplicantsController', function($scope, Select, ListApplican
 
     options = typeof options !== 'undefined' ?  options : {}; 
 
-    options['status'] = 0;
+    options['status'] = 'forRating';
+
+    options['entries'] = $scope.pageCount;
 
     ListApplicant.query(options, function(e) {
 
@@ -586,37 +588,11 @@ app.controller('ListApplicantsController', function($scope, Select, ListApplican
 
   }
 
-  $scope.disqualified = function(options) {
-
-    options = typeof options !== 'undefined' ?  options : {};
-
-    options['status'] = 3;
-
-    ListApplicant.query(options, function(e) {
-
-      if (e.ok) {
-
-        $scope.datasDisapproved = e.data;
-
-        $scope.conditionsPrintDisapproved = e.conditionsPrint;
-
-        // paginator
-
-        $scope.paginatorDisapproved  = e.paginator;
-
-        $scope.pagesDisapproved = paginator($scope.paginatorDisapproved, 5);
-
-      }
-
-    });
-
-  }
-
   $scope.interview = function(options) {
 
     options = typeof options !== 'undefined' ?  options : {};
 
-    options['status'] = 1;
+    options['status'] = 3;
 
     ListApplicant.query(options, function(e) {
 
@@ -642,7 +618,7 @@ app.controller('ListApplicantsController', function($scope, Select, ListApplican
 
     options = typeof options !== 'undefined' ?  options : {};
 
-    options['status'] = 2;
+    options['status'] = 4;
 
     ListApplicant.query(options, function(e) {
 
@@ -657,6 +633,32 @@ app.controller('ListApplicantsController', function($scope, Select, ListApplican
         $scope.paginatorAssessed  = e.paginator;
 
         $scope.pagesAssessed = paginator($scope.paginatorAssessed, 5);
+
+      }
+
+    });
+
+  }
+
+  $scope.disqualified = function(options) {
+
+    options = typeof options !== 'undefined' ?  options : {};
+
+    options['status'] = 5;
+
+    ListApplicant.query(options, function(e) {
+
+      if (e.ok) {
+
+        $scope.datasDisapproved = e.data;
+
+        $scope.conditionsPrintDisapproved = e.conditionsPrint;
+
+        // paginator
+
+        $scope.paginatorDisapproved  = e.paginator;
+
+        $scope.pagesDisapproved = paginator($scope.paginatorDisapproved, 5);
 
       }
 

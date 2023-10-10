@@ -37,7 +37,9 @@
 
     $year_term_id_enrollment = @$conditions['year_term_id_enrollment'];
 
-    $sql = "SELECT
+    $sql = "
+
+        SELECT
 
           StudentBehavior.*,
 
@@ -90,8 +92,7 @@
 
     $offset = ($page - 1) * $limit;
 
-    $sql = "SELECT * FROM (
-
+    $sql = "
         SELECT
 
           StudentBehavior.*,
@@ -118,7 +119,9 @@
 
           )
 
-      ) as StudentBehavior ";
+      LIMIT
+
+      $limit OFFSET $offset  ";
 
     $query = $this->getConnection()->prepare($sql);
 

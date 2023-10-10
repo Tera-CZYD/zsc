@@ -2581,69 +2581,85 @@ class ReportsTable extends Table
 
       $search = @$conditions['search'];
 
-      $date = @$conditions['date'];
+    $date = @$conditions['date'];
 
-      $status = @$conditions['status'];
+    $status = @$conditions['status'];
 
-      $rate = @$conditions['rate'];
+    $rate = @$conditions['rate'];
 
-      $order = '';
+    $order = '';
 
-      if(@$conditions['order'] == 'studentRateAsc'){
+    if(@$conditions['order'] == 'studentRateAsc'){
 
-        $order = "ORDER BY CAST(StudentApplication.rate AS DECIMAL(10, 2)) ASC";
+      $order = "ORDER BY CAST(StudentApplication.rate AS DECIMAL(10, 2)) ASC";
 
-      }elseif(@$conditions['order'] == 'studentRateDesc'){
+    }elseif(@$conditions['order'] == 'studentRateDesc'){
 
-        $order = "ORDER BY CAST(StudentApplication.rate AS DECIMAL(10, 2)) DESC";
+      $order = "ORDER BY CAST(StudentApplication.rate AS DECIMAL(10, 2)) DESC";
 
-      }else{
+    }elseif(@$conditions['order'] == 'applicantNameDesc'){
 
-        $order = "ORDER BY full_name ASC";
+      $order = "ORDER BY full_name DESC";
 
-      }
+    }elseif(@$conditions['order'] == 'applicantNameAsc'){
 
-      $offset = ($page - 1) * $limit;
+      $order = "ORDER BY full_name ASC";
 
-      $sql = "
+    }elseif(@$conditions['order'] == 'applicationDateDesc'){
 
-        SELECT
+      $order = "ORDER BY StudentApplication.application_date DESC";
 
-          StudentApplication.*,
+    }elseif(@$conditions['order'] == 'applicationDateAsc'){
 
-          CollegeProgram.name,
+      $order = "ORDER BY StudentApplication.application_date ASC";
 
-          IFNULL(CONCAT(StudentApplication.last_name,', ',StudentApplication.first_name,' ',IFNULL(StudentApplication.middle_name,' ')),' ') AS full_name
+    }else{
 
-        FROM
+      $order = "ORDER BY full_name ASC";
 
-          student_applications as StudentApplication LEFT JOIN 
+    }
 
-          college_programs as CollegeProgram ON StudentApplication.preferred_program_id = CollegeProgram.id
+    $offset = ($page - 1) * $limit;
 
-        WHERE
+    $sql = "
 
-          StudentApplication.visible = true $date $status $rate AND
+      SELECT
 
-          CollegeProgram.visible = true AND
+        StudentApplication.*,
 
-          (
-   
-            StudentApplication.first_name LIKE  '%$search%' OR
+        CollegeProgram.name,
 
-            StudentApplication.middle_name LIKE  '%$search%' OR
+        IFNULL(CONCAT(StudentApplication.last_name,', ',StudentApplication.first_name,' ',IFNULL(StudentApplication.middle_name,' ')),' ') AS full_name
 
-            StudentApplication.last_name LIKE  '%$search%' OR
+      FROM
 
-            StudentApplication.email LIKE  '%$search%' OR
+        student_applications as StudentApplication LEFT JOIN 
 
-            StudentApplication.contact_no LIKE  '%$search%' OR
+        college_programs as CollegeProgram ON StudentApplication.preferred_program_id = CollegeProgram.id
 
-            StudentApplication.address LIKE  '%$search%'
+      WHERE
 
-          )
+        StudentApplication.visible = true $date $status $rate AND
 
-        $order
+        CollegeProgram.visible = true AND
+
+        (
+ 
+          StudentApplication.first_name LIKE  '%$search%' OR
+
+          StudentApplication.middle_name LIKE  '%$search%' OR
+
+          StudentApplication.last_name LIKE  '%$search%' OR
+
+          StudentApplication.email LIKE  '%$search%' OR
+
+          StudentApplication.contact_no LIKE  '%$search%' OR
+
+          StudentApplication.address LIKE  '%$search%'
+
+        )
+
+      $order
 
       ";
 
@@ -2660,67 +2676,84 @@ class ReportsTable extends Table
 
       $search = @$conditions['search'];
 
-      $date = @$conditions['date'];
+    $date = @$conditions['date'];
 
-      $status = @$conditions['status'];
+    $status = @$conditions['status'];
 
-      $rate = @$conditions['rate'];
+    $rate = @$conditions['rate'];
 
-      $order = '';
+    $order = '';
 
-      if(@$conditions['order'] == 'studentRateAsc'){
+    if(@$conditions['order'] == 'studentRateAsc'){
 
-        $order = "ORDER BY CAST(StudentApplication.rate AS DECIMAL(10, 2)) ASC";
+      $order = "ORDER BY CAST(StudentApplication.rate AS DECIMAL(10, 2)) ASC";
 
-      }elseif(@$conditions['order'] == 'studentRateDesc'){
+    }elseif(@$conditions['order'] == 'studentRateDesc'){
 
-        $order = "ORDER BY CAST(StudentApplication.rate AS DECIMAL(10, 2)) DESC";
+      $order = "ORDER BY CAST(StudentApplication.rate AS DECIMAL(10, 2)) DESC";
 
-      }else{
+    }elseif(@$conditions['order'] == 'applicantNameDesc'){
 
-        $order = "ORDER BY full_name ASC";
+      $order = "ORDER BY full_name DESC";
 
-      }
+    }elseif(@$conditions['order'] == 'applicantNameAsc'){
 
-      $sql = "
+      $order = "ORDER BY full_name ASC";
 
-        SELECT
+    }elseif(@$conditions['order'] == 'applicationDateDesc'){
 
-          StudentApplication.*,
+      $order = "ORDER BY StudentApplication.application_date DESC";
 
-          CollegeProgram.name,
+    }elseif(@$conditions['order'] == 'applicationDateAsc'){
 
-          IFNULL(CONCAT(StudentApplication.last_name,', ',StudentApplication.first_name,' ',IFNULL(StudentApplication.middle_name,' ')),' ') AS full_name
+      $order = "ORDER BY StudentApplication.application_date ASC";
 
-        FROM
+    }else{
 
-          student_applications as StudentApplication LEFT JOIN 
+      $order = "ORDER BY full_name ASC";
 
-          college_programs as CollegeProgram ON StudentApplication.preferred_program_id = CollegeProgram.id
+    }
 
-        WHERE
 
-          StudentApplication.visible = true $date $status $rate AND
+    $sql = "
 
-          CollegeProgram.visible = true AND
+      SELECT
 
-          (
-   
-            StudentApplication.first_name LIKE  '%$search%' OR
+        StudentApplication.*,
 
-            StudentApplication.middle_name LIKE  '%$search%' OR
+        CollegeProgram.name,
 
-            StudentApplication.last_name LIKE  '%$search%' OR
+        IFNULL(CONCAT(StudentApplication.last_name,', ',StudentApplication.first_name,' ',IFNULL(StudentApplication.middle_name,' ')),' ') AS full_name
 
-            StudentApplication.email LIKE  '%$search%' OR
+      FROM
 
-            StudentApplication.contact_no LIKE  '%$search%' OR
+        student_applications as StudentApplication LEFT JOIN 
 
-            StudentApplication.address LIKE  '%$search%'
+        college_programs as CollegeProgram ON StudentApplication.preferred_program_id = CollegeProgram.id
 
-          )
+      WHERE
 
-        $order
+        StudentApplication.visible = true $date $status $rate AND
+
+        CollegeProgram.visible = true AND
+
+        (
+ 
+          StudentApplication.first_name LIKE  '%$search%' OR
+
+          StudentApplication.middle_name LIKE  '%$search%' OR
+
+          StudentApplication.last_name LIKE  '%$search%' OR
+
+          StudentApplication.email LIKE  '%$search%' OR
+
+          StudentApplication.contact_no LIKE  '%$search%' OR
+
+          StudentApplication.address LIKE  '%$search%'
+
+        )
+
+      $order
 
       ";
 
