@@ -2478,6 +2478,12 @@ class ReportsTable extends Table
 
       $studentId = @$conditions['studentId'];
 
+      $year = @$conditions['year'];
+
+      $program_id = @$conditions['program_id'];
+
+      $scholarship = @$conditions['scholarship'];
+
       $sql = "SELECT 
 
           ScholarshipApplication.*,
@@ -2498,7 +2504,7 @@ class ReportsTable extends Table
 
         WHERE
 
-          ScholarshipApplication.visible = true $date $status $studentId AND
+          ScholarshipApplication.visible = true $date $status $studentId $year $program_id $scholarship AND
 
           (
    

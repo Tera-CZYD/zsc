@@ -184,6 +184,8 @@ class PrintController extends AppController {
 
     $this->BlockSectionCourses = TableRegistry::getTableLocator()->get('BlockSectionCourses');
 
+    $this->CheckInSub = TableRegistry::getTableLocator()->get('CheckInSubs');
+
     $this->loadModel('Reports');
 
     $this->loadModel('MedicalEmployeeProfiles');
@@ -206,7 +208,7 @@ class PrintController extends AppController {
 
     $conditions['search'] = '';
 
-    if ($this->request->getQuery('search')) {
+    if ($this->request->getQuery('search') != null) {
 
       $search = $this->request->getQuery('search');
 
@@ -255,7 +257,7 @@ class PrintController extends AppController {
     $pdf->SetWidths(array(5,35,90,40,25));
     $pdf->SetAligns(array('C','C','C','C','C'));
 
-    if(!empty($tmpData)){
+    if(count($tmpData) > 0){
 
       foreach ($tmpData as $key => $data){
 
@@ -10554,7 +10556,7 @@ class PrintController extends AppController {
 
     $conditions['search'] = '';
 
-    if ($this->request->getQuery('search')) {
+    if ($this->request->getQuery('search') != null) {
 
       $search = $this->request->getQuery('search');
 
@@ -10566,9 +10568,9 @@ class PrintController extends AppController {
 
     $conditions['date'] = '';
 
-    if (isset($this->request->getQuery['date'])) {
+    if ($this->request->getQuery('date') != null) {
 
-      $search_date = $this->request->getQuery['date'];
+      $search_date = $this->request->getQuery('date');
 
       $conditions['date'] = " AND DATE(PropertyLog.date) = '$search_date'"; 
 
@@ -10576,9 +10578,9 @@ class PrintController extends AppController {
 
     } 
 
-    if (isset($this->request->getQuery['startDate'])) {
+    if ($this->request->getQuery('startDate') != null) {
 
-      $start = $this->request->getQuery['startDate']; 
+      $start = $this->request->getQuery('startDate'); 
 
       $end = $this->request->getQuery['endDate'];
 
@@ -10591,9 +10593,9 @@ class PrintController extends AppController {
     }
     $conditions['type'] = '';
 
-    if (isset($this->request->getQuery['type'])) {
+    if ($this->request->getQuery('type') != null) {
 
-      $type = $this->request->getQuery['type'];
+      $type = $this->request->getQuery('type');
 
       $conditions['type'] = "AND PropertyLog.type = '$type'";
 
@@ -10641,7 +10643,7 @@ class PrintController extends AppController {
     $pdf->SetWidths(array(15,40,35,40,30,35));
     $pdf->SetAligns(array('C','C','C','C','C','C'));
  
-    if(!empty($tmpData)){
+    if(count($tmpData) > 0){
 
       foreach ($tmpData as $key => $data){
 
@@ -12233,6 +12235,226 @@ class PrintController extends AppController {
           $data['gender'],
 
           fdate($data['application_date'],'m/d/Y'),
+
+        ));
+
+      }
+
+    }else{
+
+      $pdf->Cell(345,5,'No data available.',1,1,'C');
+
+    }
+
+    $pdf->Ln(5);
+
+    $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
+    $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
+    $pdf->Ln(0.1);
+    $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+160,$pdf->getY()+2);
+    $pdf->Line($pdf->getX()+188,$pdf->getY()+2,$pdf->getX()+345,$pdf->getY()+2);
+    $pdf->SetDash();
+
+    $pdf->output();
+    exit();
+
+  }
+
+  public function scholarshipApplicationList(){
+
+    $conditions = [];
+
+    if ($this->request->getQuery('search')) {
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+    }
+
+
+    $conditions['date'] = '';
+
+    if ($this->request->getQuery('date')) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(ScholarshipApplication.date) = '$search_date'"; 
+
+      $dates['date'] = $search_date;
+
+    }  
+
+    //advance search
+
+    if ($this->request->getQuery('startdate')) {
+
+      $start = $this->request->getQuery('startdate'); 
+
+      $end = $this->request->getQuery('endDate');
+
+      $conditions['date'] = " AND DATE(ScholarshipApplication.date) >= '$start' AND DATE(ScholarshipApplication.date) <= '$end'";
+
+      $dates['startDate'] = $start;
+
+      $dates['endDate']   = $end;
+
+    }
+
+    $conditions['status'] = '';
+
+    if ($this->request->getQuery('status')!=null) {
+
+      $status = $this->request->getQuery('status');
+
+      $conditions['status'] = " AND ScholarshipApplication.approve = $status";
+
+    }
+
+    $conditions['studentId'] = '';
+
+    if ($this->request->getQuery('per_student')) {
+
+      $per_student = $this->request->getQuery('per_student');
+      
+      $studentId = $this->Session->read('Auth.User.studentId');
+
+      $conditions['studentId'] = " AND ScholarshipApplication.student_id = $studentId";
+
+    }
+
+    $conditions['program_id'] = "";
+
+    if ($this->request->getQuery('program_id') != null) {
+
+      $program_id = $this->request->getQuery('program_id'); 
+
+      $conditions['program_id'] = " AND ScholarshipApplication.program_id = $program_id";
+
+    }
+
+    $conditions['year'] = "";
+
+    if ($this->request->getQuery('year')!=null) {
+
+      $year = $this->request->getQuery('year'); 
+
+      if($year==1){
+        $y1 = '1';
+        $y2 = '2';
+      }else if($year==2){
+        $y1 = '4';
+        $y2 = '5';
+      }else if($year==3){
+        $y1 = '7';
+        $y2 = '8';
+      }else if($year==4){
+        $y1 = '10';
+        $y2 = '11';
+      }else if($year==5){
+        $y1 = '13';
+        $y2 = '14';
+      }
+
+      $conditions['year'] = " AND ScholarshipApplication.year_term_id = $year";
+
+    }
+
+    $conditions['scholarship'] = "";
+
+    if ($this->request->getQuery('scholarship') != null) {
+
+      $scholarship = $this->request->getQuery('scholarship'); 
+
+      $conditions['scholarship'] = " AND ScholarshipApplication.scholarship_name_id = $scholarship";
+
+    }
+    
+    $tmpData = $this->Reports->getAllListScholarPrint($conditions);
+
+    $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
+
+    require("wordwrap.php");
+    $pdf = new ConductPDF();
+    $pdf->SetMargins(5,10,5);
+    $pdf->SetFooter(true);
+    $pdf->footerSystem = true;
+    $pdf->AliasNbPages();
+    $pdf->AddPage("L", "legal", 0);
+    $pdf->Image($this->base .'/assets/img/zam2.png',75,10,25,25);
+    $pdf->SetFont("Times", 'B', 12);
+    $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,strtoupper($this->Global->Settings('lgu_name')),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->SetFont("Times", '', 12);
+    $pdf->Cell(0,5,$this->Global->Settings('address'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('telephone'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
+    $pdf->Ln(10);
+
+
+    if($this->request->getQuery('status') == 0){
+
+      $status = 'PENDING';
+
+    }else if($this->request->getQuery('status') == 1){
+
+      $status = 'APPROVED';
+
+    }else{
+
+      $status = 'DISAPPROVED';
+
+    }
+
+    $pdf->SetFont("Times", 'B', 12);
+    $pdf->Cell(0,5,$status.' STUDENT APPLICATION',0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Times", 'B', 8);
+    $pdf->SetFillColor(217,237,247);
+    $pdf->Cell(10,5,'#',1,0,'C',1);
+    $pdf->Cell(30,5,' CODE',1,0,'C',1);
+    $pdf->Cell(70,5,' APPLICANT NAME',1,0,'C',1);
+    $pdf->Cell(30,5,'DATE APPLIED',1,0,'C',1);
+    $pdf->Cell(70,5,'PROGRAM',1,0,'C',1);
+    $pdf->Cell(50,5,'SCHOLARSHIP NAME',1,0,'C',1);
+    $pdf->Cell(25,5,'AGE',1,0,'C',1);
+    $pdf->Cell(25,5,'SEX',1,0,'C',1);
+    $pdf->Cell(35,5,'STATUS',1,0,'C',1);
+    $pdf->Ln();
+    $pdf->SetFont("Times", '', 8);
+    $pdf->SetWidths(array(10,30,70,30,70,50,25,25,35));
+    $pdf->SetAligns(array('C','C','L','C','C','C','C','C','C'));
+
+    if(count($tmpData) > 0){
+
+      foreach ($tmpData as $key => $data){
+
+        $pdf->RowLegalL(array(
+
+          $key + 1,
+
+          $data['code'],
+
+          strtoupper($data['student_name']),
+
+          fdate($data['date'],'m/d/Y'),
+
+          $data['name'],
+
+          $data['scholarship_name'],
+
+          $data['age'],
+
+          $data['sex'],
+
+          'CONFIRMED'
 
         ));
 
@@ -20045,7 +20267,7 @@ class PrintController extends AppController {
   
   }
 
-  public function list_checkins(){
+  public function listCheckins(){
 
     $conditions = array();
 
@@ -20053,9 +20275,9 @@ class PrintController extends AppController {
 
     // search conditions
 
-    if(isset($this->request->query['search'])){
+    if($this->request->getQuery('search') != null){
 
-      $search = $this->request->query['search'];
+      $search = $this->request->getQuery('search');
 
       $search = strtolower($search);
 
@@ -20065,9 +20287,9 @@ class PrintController extends AppController {
 
     $conditions['date'] = '';
 
-    if (isset($this->request->query['date'])) {
+    if ($this->request->getQuery('date') != null) {
 
-      $search_date = $this->request->query['date'];
+      $search_date = $this->request->getQuery('date');
 
       $conditions['date'] = " AND DATE(StudentEnrollment.date) = '$search_date'"; 
 
@@ -20075,11 +20297,11 @@ class PrintController extends AppController {
 
     //advance search
 
-    if (isset($this->request->query['startDate'])) {
+    if ($this->request->getQuery('startDate') != null) {
 
-      $start = $this->request->query['startDate']; 
+      $start = $this->request->getQuery('startDate'); 
 
-      $end = $this->request->query['endDate'];
+      $end = $this->request->getQuery('endDate');
 
       $conditions['date'] = " AND DATE(StudentEnrollment.date) >= '$start' AND DATE(StudentEnrollment.date) <= '$end'";
 
@@ -20087,17 +20309,15 @@ class PrintController extends AppController {
 
     $conditions['year_term_id'] = " AND StudentEnrollment.year_term_id IS NULL";
 
-    if (isset($this->request->query['year_term_id'])) {
+    if ($this->request->getQuery('year_term_id')) {
 
-      $year_term_id = $this->request->query['year_term_id']; 
+      $year_term_id = $this->request->getQuery('year_term_id'); 
 
       $conditions['year_term_id'] = " AND StudentEnrollment.year_term_id = $year_term_id";
 
     }
 
-    $this->loadModel('Report');
-
-    $tmpData = $this->Report->query($this->Report->getAllListCheckIns($conditions));
+    $tmpData = $this->Reports->getAllCheckinPrint($conditions);
 
     require("wordwrap.php");
     $pdf = new ConductPDF();
@@ -20141,25 +20361,51 @@ class PrintController extends AppController {
 
       foreach ($tmpData as $key => $data){
 
-        $tmp = $data['Report'];
+        $title = '';
+        $author = '';
+        $barcode = '';
+
+        $sub = $this->CheckInSub->find()
+        
+          ->where([
+            
+            'visible' => 1,
+
+            'check_in_id' => $data['id'],
+
+          ])
+          
+        ->all();
+
+        if(count($sub) > 0){
+
+          foreach ($sub as $keys => $values) {
+            
+            $title .= "\n".$values['title'];
+
+            $author .= "\n".$values['author'];
+
+            $barcode .= "\n".$values['barcode_no'];
+
+          }
+
+        }
 
         $pdf->RowLegalL(array(
 
           $key + 1,
 
-          $data['Report']['code'],  
+          $data['code'],  
 
-          $data['Report']['student_name'],
+          $data['member_name'],
 
-          $data['Report']['title'],
+          $title,
 
-          $data['Report']['author'],
+          $author,
 
-          $data['Report']['barcode_no'],
+          $barcode,
 
-          fdate($data['Report']['status_dt'], 'm/d/Y'),
-
-          // $data['Report']['dueback']
+          fdate($data['date_returned'],'m/d/Y')
           
         ));
 
@@ -32950,17 +33196,17 @@ class PrintController extends AppController {
 
     $query = $medicalEmployeeProfilesTable->find()
 
-        ->contain(['Colleges'])
+      ->contain(['Colleges'])
 
-        ->where([
+      ->where([
 
-            'MedicalEmployeeProfiles.visible' => 1,
+        'MedicalEmployeeProfiles.visible' => 1,
 
-            'MedicalEmployeeProfiles.id' => $id,
+        'MedicalEmployeeProfiles.id' => $id,
 
-        ])
+      ])
 
-        ->first();
+    ->first();
 
     $data = $query->toArray();
 
@@ -33015,7 +33261,7 @@ class PrintController extends AppController {
     $pdf->Cell(2,5,'',0,0,'L');
     $y = $pdf->getY();
     $pdf->Cell(15,5,'NAME: ',0,0,'L');
-    $pdf->Cell(65, 5, isset($data['MedicalEmployeeProfile']['employee_name']) ? $data['MedicalEmployeeProfile']['employee_name'] : '', 0, 0, 'L');
+    $pdf->Cell(65, 5, $data['employee_name'] != null ? $data['employee_name'] : '', 0, 0, 'L');
     $pdf->Line(25,$pdf->getY()+5,100,$pdf->getY()+5);
 
     $pdf->setXY(105,$y);
@@ -33024,7 +33270,8 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'COLLEGE: ',0,0,'L');
     $pdf->Cell(8);
 
-    $collegeInfo = isset($data['College']['code']) && isset($data['College']['name']) ? $data['College']['code'] . ' - ' . $data['College']['name'] : '';
+    $collegeInfo = $data['code'] . ' - ' . $data['college']['name'];
+    $pdf->SetFont("Arial", '', 6);
     $pdf->Cell(85, 5, $collegeInfo, 0, 0, 'L');
 
     $pdf->Line(127,$pdf->getY()+5,200,$pdf->getY()+5);
@@ -33037,7 +33284,7 @@ class PrintController extends AppController {
     $pdf->Cell(5);
     $pdf->SetFont("Arial", '', 8.5);
 
-    $address = isset($data['MedicalEmployeeProfile']['address']) ? $data['MedicalEmployeeProfile']['address'] : '';
+    $address = $data['address'];
     $pdf->Cell(85, 5, $address, 0, 0, 'L');
 
     $pdf->Line(31,$pdf->getY()+5,100,$pdf->getY()+5);
@@ -33048,7 +33295,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'CIVIL STATUS: ',0,0,'L');
     $pdf->Cell(13);
 
-    $civilStatus = isset($data['MedicalEmployeeProfile']['civil_status']) ? $data['MedicalEmployeeProfile']['civil_status'] : '';
+    $civilStatus = $data['civil_status'];
     $pdf->Cell(85, 5, $civilStatus, 0, 0, 'L');
 
     $pdf->Line(129,$pdf->getY()+5,200,$pdf->getY()+5);
@@ -33060,7 +33307,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'AGE: ',0,0,'L');
     // $pdf->Cell(5);
 
-    $age = isset($data['MedicalEmployeeProfile']['age']) ? $data['MedicalEmployeeProfile']['age'] : '';
+    $age = $data['age'];
     $pdf->Cell(85, 5, $age, 0, 0, 'L');
 
     $pdf->Line(21,$pdf->getY()+5,100,$pdf->getY()+5);
@@ -33071,7 +33318,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'WEIGHT: ',0,0,'L');
     $pdf->Cell(5);
 
-    $weight = isset($data['MedicalEmployeeProfile']['weight']) ? $data['MedicalEmployeeProfile']['weight'] : '';
+    $weight = $data['weight'];
     $pdf->Cell(85, 5, $weight, 0, 0, 'L');
 
     $pdf->Line(127,$pdf->getY()+5,200,$pdf->getY()+5);
@@ -33083,7 +33330,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'HEIGHT: ',0,0,'L');
     $pdf->Cell(6);
 
-    $height = isset($data['MedicalEmployeeProfile']['height']) ? $data['MedicalEmployeeProfile']['height'] : '';
+    $height = $data['height'];
     $pdf->Cell(85, 5, $height, 0, 0, 'L');
 
     $pdf->Line(27,$pdf->getY()+5,100,$pdf->getY()+5);
@@ -33104,7 +33351,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'RESPIRATORY SYSTEM: ',0,0,'L');
     $pdf->Cell(30);
 
-    $respiratorySystem = isset($data['MedicalEmployeeProfile']['respiratory_system']) ? $data['MedicalEmployeeProfile']['respiratory_system'] : '';
+    $respiratorySystem = $data['respiratory_system'];
     $pdf->Cell(100, 5, $respiratorySystem, 0, 0, 'L');
 
     $pdf->Line(53,$pdf->getY()+5,100,$pdf->getY()+5);
@@ -33118,7 +33365,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'EYES: ',0,0,'L');
     $pdf->Cell(5);
 
-    $eyes = isset($data['MedicalEmployeeProfile']['eyes']) ? $data['MedicalEmployeeProfile']['eyes'] : '';
+    $eyes = $data['eyes'];
     $pdf->Cell(85, 5, $eyes, 0, 0, 'L');
 
     $pdf->Line(127,$pdf->getY()+5,200,$pdf->getY()+5);
@@ -33129,7 +33376,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'COLOR PRECEPTION: ',0,0,'L');
     $pdf->Cell(25);
 
-    $colorPerception = isset($data['MedicalEmployeeProfile']['color_perception']) ? $data['MedicalEmployeeProfile']['color_perception'] : '';
+    $colorPerception = $data['color_perception'];
     $pdf->Cell(85, 5, $colorPerception, 0, 0, 'L');
 
     $pdf->Line(143,$pdf->getY()+5,200,$pdf->getY()+5);
@@ -33141,7 +33388,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'FLOUROGRAPHY: ',0,0,'L');
     $pdf->Cell(20);
 
-    $flourography = isset($data['MedicalEmployeeProfile']['flourography']) ? $data['MedicalEmployeeProfile']['flourography'] : '';
+    $flourography = $data['flourography'];
     $pdf->Cell(85, 5, $flourography, 0, 0, 'L');
 
     $pdf->Line(42,$pdf->getY()+5,100,$pdf->getY()+5);
@@ -33152,7 +33399,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'VISION: ',0,0,'L');
     $pdf->Cell(5);
 
-    $vision = isset($data['MedicalEmployeeProfile']['vision']) ? $data['MedicalEmployeeProfile']['vision'] : '';
+    $vision = $data['vision'];
     $pdf->Cell(85, 5, $vision, 0, 0, 'L');
 
     $pdf->Line(129,$pdf->getY()+5,200,$pdf->getY()+5);
@@ -33164,7 +33411,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'LUNGS: ',0,0,'L');
     $pdf->Cell(5);
 
-    $lungs = isset($data['MedicalEmployeeProfile']['lungs']) ? $data['MedicalEmployeeProfile']['lungs'] : '';
+    $lungs = $data['lungs'];
     $pdf->Cell(85, 5, $lungs, 0, 0, 'L');
 
     $pdf->Line(26,$pdf->getY()+5,100,$pdf->getY()+5);
@@ -33175,7 +33422,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'FAR RIGHT: ',0,0,'L');
     $pdf->Cell(10);
 
-    $farRight = isset($data['MedicalEmployeeProfile']['far_right']) ? $data['MedicalEmployeeProfile']['far_right'] : '';
+    $farRight = $data['far_right'];
     $pdf->Cell(85, 5, $farRight, 0, 0, 'L');
 
     $pdf->Line(129,$pdf->getY()+5,200,$pdf->getY()+5);
@@ -33187,7 +33434,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'HEART: ',0,0,'L');
     $pdf->Cell(5);
 
-    $heart = isset($data['MedicalEmployeeProfile']['heart']) ? $data['MedicalEmployeeProfile']['heart'] : '';
+    $heart = $data['heart'];
     $pdf->Cell(85, 5, $heart, 0, 0, 'L');
 
     $pdf->Line(26,$pdf->getY()+5,100,$pdf->getY()+5);
@@ -33198,7 +33445,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'LEFT: ',0,0,'L');
     $pdf->Cell(1);
 
-    $farLeft = isset($data['MedicalEmployeeProfile']['far_left']) ? $data['MedicalEmployeeProfile']['far_left'] : '';
+    $farLeft = $data['far_left'];
     $pdf->Cell(85, 5, $farLeft, 0, 0, 'L');
 
     $pdf->Line(129,$pdf->getY()+5,200,$pdf->getY()+5);
@@ -33216,7 +33463,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'SYSTOLIC: ',0,0,'L');
     $pdf->Cell(10);
 
-    $systolic = isset($data['MedicalEmployeeProfile']['systolic']) ? $data['MedicalEmployeeProfile']['systolic'] : '';
+    $systolic = $data['systolic'];
     $pdf->Cell(85, 5, $systolic, 0, 0, 'L');
 
     $pdf->Line(31,$pdf->getY()+5,100,$pdf->getY()+5);
@@ -33227,7 +33474,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'EARS: ',0,0,'L');
     $pdf->Cell(-1);
 
-    $ears = isset($data['MedicalEmployeeProfile']['ears']) ? $data['MedicalEmployeeProfile']['ears'] : '';
+    $ears = $data['ears'];
     $pdf->Cell(85, 5, $ears, 0, 0, 'L');
 
     $pdf->Line(130,$pdf->getY()+5,200,$pdf->getY()+5);
@@ -33239,7 +33486,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'DIASTOLIC: ',0,0,'L');
     $pdf->Cell(10);
 
-    $diastolic = isset($data['MedicalEmployeeProfile']['diastolic']) ? $data['MedicalEmployeeProfile']['diastolic'] : '';
+    $diastolic = $data['diastolic'];
     $pdf->Cell(85, 5, $diastolic, 0, 0, 'L');
 
     $pdf->Line(32,$pdf->getY()+5,100,$pdf->getY()+5);
@@ -33250,7 +33497,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'HEARING: ',0,0,'L');
     $pdf->Cell(5);
 
-    $hearing = isset($data['MedicalEmployeeProfile']['hearing']) ? $data['MedicalEmployeeProfile']['hearing'] : '';
+    $hearing = $data['hearing'];
     $pdf->Cell(85, 5, $hearing, 0, 0, 'L');
 
     $pdf->Line(130,$pdf->getY()+5,200,$pdf->getY()+5);
@@ -33262,7 +33509,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'SITTING: ',0,0,'L');
     $pdf->Cell(10);
 
-    $sitting = isset($data['MedicalEmployeeProfile']['sitting']) ? $data['MedicalEmployeeProfile']['sitting'] : '';
+    $sitting = $data['sitting'];
     $pdf->Cell(85, 5, $sitting, 0, 0, 'L');
 
     $pdf->Line(28,$pdf->getY()+5,100,$pdf->getY()+5);
@@ -33273,7 +33520,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'THROAT: ',0,0,'L');
     $pdf->Cell(3.5);
 
-    $throat = isset($data['MedicalEmployeeProfile']['throat']) ? $data['MedicalEmployeeProfile']['throat'] : '';
+    $throat = $data['throat'];
     $pdf->Cell(85, 5, $throat, 0, 0, 'L');
 
     $pdf->Line(130,$pdf->getY()+5,200,$pdf->getY()+5);
@@ -33285,7 +33532,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'AGILITY TESTS: ',0,0,'L');
     $pdf->Cell(20);
 
-    $agility_test = isset($data['MedicalEmployeeProfile']['agility_test']) ? $data['MedicalEmployeeProfile']['agility_test'] : '';
+    $agility_test = $data['agility_test'];
     $pdf->Cell(85, 5, $agility_test, 0, 0, 'L');
 
     $pdf->Line(42,$pdf->getY()+5,100,$pdf->getY()+5);
@@ -33296,7 +33543,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'IMMUNIZATION: ',0,0,'L');
     $pdf->Cell(15);
 
-    $immunization = isset($data['MedicalEmployeeProfile']['immunization']) ? $data['MedicalEmployeeProfile']['immunization'] : '';
+    $immunization = $data['immunization'];
     $pdf->Cell(85, 5, $immunization, 0, 0, 'L');
 
     $pdf->Line(130,$pdf->getY()+5,200,$pdf->getY()+5);
@@ -33312,7 +33559,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'DIGESTIVE SYSTEM: ',0,0,'L');
     $pdf->Cell(20);
 
-    $digestive_system = isset($data['MedicalEmployeeProfile']['digestive_system']) ? $data['MedicalEmployeeProfile']['digestive_system'] : '';
+    $digestive_system = $data['digestive_system'];
     $pdf->Cell(85, 5, $digestive_system, 0, 0, 'L');
 
     $pdf->Line(47,$pdf->getY()+5,100,$pdf->getY()+5);
@@ -33327,7 +33574,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'REMARKS: ',0,0,'L');
     $pdf->Cell(15);
 
-    $remarks = isset($data['MedicalEmployeeProfile']['remarks']) ? $data['MedicalEmployeeProfile']['remarks'] : '';
+    $remarks = $data['remarks'];
     $pdf->Cell(85, 5, $remarks, 0, 0, 'L');
 
     $pdf->Line(122,$pdf->getY()+5,200,$pdf->getY()+5);
@@ -33343,7 +33590,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'GENITO-UNIRARY SYSTEM: ',0,0,'L');
     $pdf->Cell(40);
 
-    $digestiveSystem = isset($data['MedicalEmployeeProfile']['digestive_system']) ? $data['MedicalEmployeeProfile']['digestive_system'] : '';
+    $digestiveSystem = $data['digestive_system'];
     $pdf->Cell(85, 5, $digestiveSystem, 0, 0, 'L');
 
     $pdf->Line(58,$pdf->getY()+5,100,$pdf->getY()+5);
@@ -33358,7 +33605,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'RECOMMENDATIONS: ',0,0,'L');
     $pdf->Cell(25);
 
-    $recommendation = isset($data['MedicalEmployeeProfile']['recommendation']) ? $data['MedicalEmployeeProfile']['recommendation'] : '';
+    $recommendation = $data['recommendation'];
     $pdf->Cell(85, 5, $recommendation, 0, 0, 'L');
 
     $pdf->Line(140,$pdf->getY()+5,200,$pdf->getY()+5);
@@ -33374,7 +33621,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'URINALYSIS: ',0,0,'L');
     $pdf->Cell(15);
 
-    $urinalysis = isset($data['MedicalEmployeeProfile']['urinalysis']) ? $data['MedicalEmployeeProfile']['urinalysis'] : '';
+    $urinalysis = $data['urinalysis'];
     $pdf->Cell(85, 5, $urinalysis, 0, 0, 'L');
 
     $pdf->Line(34,$pdf->getY()+5,100,$pdf->getY()+5);
@@ -33386,7 +33633,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'SKIN: ',0,0,'L');
     $pdf->Cell(15);
 
-    $skin = isset($data['MedicalEmployeeProfile']['skin']) ? $data['MedicalEmployeeProfile']['skin'] : '';
+    $skin = $data['skin'];
     $pdf->Cell(85, 5, $skin, 0, 0, 'L');
 
     $pdf->Line(22,$pdf->getY()+5,100,$pdf->getY()+5);
@@ -33398,7 +33645,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'LOCOMOTION SYSTEM: ',0,0,'L');
     $pdf->Cell(35);
 
-    $locomotion_system = isset($data['MedicalEmployeeProfile']['locomotion_system']) ? $data['MedicalEmployeeProfile']['locomotion_system'] : '';
+    $locomotion_system = $data['locomotion_system'];
     $pdf->Cell(85, 5, $locomotion_system, 0, 0, 'L');
 
     $pdf->Line(52,$pdf->getY()+5,100,$pdf->getY()+5);
@@ -33410,7 +33657,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'NERVOUS SYSTEM: ',0,0,'L');
     $pdf->Cell(25);
 
-    $nervous_system = isset($data['MedicalEmployeeProfile']['nervous_system']) ? $data['MedicalEmployeeProfile']['nervous_system'] : '';
+    $nervous_system = $data['nervous_system'];
     $pdf->Cell(85, 5, $nervous_system, 0, 0, 'L');
 
     $pdf->Line(46,$pdf->getY()+5,100,$pdf->getY()+5);
@@ -33448,7 +33695,7 @@ class PrintController extends AppController {
     $pdf->Cell(15,5,'PLACE: ',0,0,'L');
     $pdf->Cell(10);
 
-    $address = isset($data['MedicalEmployeeProfile']['address']) ? $data['MedicalEmployeeProfile']['address'] : '';
+    $address = $data['address'];
     $pdf->Cell(85, 5, $address, 0, 0, 'L');
     
     $pdf->Line(25,$pdf->getY()+5,100,$pdf->getY()+5);

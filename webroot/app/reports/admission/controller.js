@@ -265,7 +265,7 @@ app.controller('ListScholarsController', function($scope, ListScholar,Select) {
 
   }
 
-  $scope.confirmed = function(options) {
+  $scope.load = function(options) {
 
     options = typeof options !== 'undefined' ?  options : {};
 
@@ -277,7 +277,7 @@ app.controller('ListScholarsController', function($scope, ListScholar,Select) {
 
         $scope.datasConfirmed = e.data;
 
-        $scope.conditionsPrintConfirmed = e.conditionsPrint;
+        $scope.conditionsPrint = e.conditionsPrint;
 
         // paginator
 
@@ -288,13 +288,6 @@ app.controller('ListScholarsController', function($scope, ListScholar,Select) {
       }
 
     });
-
-  }
-
-
-  $scope.load = function(options) {
-
-    $scope.confirmed(options);
 
   }
 
@@ -476,55 +469,13 @@ app.controller('ListScholarsController', function($scope, ListScholar,Select) {
 
  $scope.print = function(){
 
-    if ($scope.conditionsPrintPending !== '') {
+    if ($scope.conditionsPrint !== '') {
     
-      printTable(base + 'print/student_applications?print=1' + $scope.conditionsPrint);
+      printTable(base + 'print/scholarship_application_list?print=1' + $scope.conditionsPrint);
 
     }else{
 
-      printTable(base + 'print/student_applications?print=1');
-
-    }
-
-  }
-
-  $scope.printApproved = function(){
-
-    if ($scope.conditionsPrintApproved !== '') {
-    
-      printTable(base + 'print/student_applications?print=1' + $scope.conditionsPrintApproved);
-
-    }else{
-
-      printTable(base + 'print/student_applications?print=1');
-
-    }
-
-  }
-
-  $scope.printConfirmed = function(){
-
-    if ($scope.conditionsPrintApproved !== '') {
-    
-      printTable(base + 'print/student_applications?print=1' + $scope.conditionsPrintConfirmed);
-
-    }else{
-
-      printTable(base + 'print/student_applications?print=1');
-
-    }
-
-  }
-
-  $scope.printDisapproved = function(){
-
-    if ($scope.conditionsPrintDispproved !== '') {
-    
-      printTable(base + 'print/student_applications?print=1' + $scope.conditionsPrintDispproved);
-
-    }else{
-
-      printTable(base + 'print/student_applications?print=1');
+      printTable(base + 'print/scholarship_application_list?print=1');
 
     }
 

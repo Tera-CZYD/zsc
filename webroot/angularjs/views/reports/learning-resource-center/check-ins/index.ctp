@@ -82,23 +82,7 @@
             <table class="table table-bordered text-center">
               <thead>
                 <tr class="bg-info">
-<!-- <<<<<<< HEAD
-                      <th class="text-center w30px">#</th>
-                      <th class="text-center"> LIBRARY ID NUMBER</th>
-                      <th class="text-center"> MEMBER NAME </th>
-                      <th class="text-center"> EMAIL </th>
-                      <th class="text-center"> DATE RETURNED </th>
-                    </tr>
-                  </thread>
-                  <tbody>
-                    <tr ng-repeat="data in datas">
-                      <td class="text-center">{{ (paginator.page - 1 ) * paginator.limit + $index + 1 }}</td>
-                      <td class="text-center">{{data.library_id_number}}</td>
-                      <td class="text-left uppercase">{{ data.member_name }}</td>
-                      <td class="text-center uppercase">{{ data.email }}</td>
-                      <td class="text-center uppercase">{{ data.date_returned }}</td>
-                    </tr>
-======= -->
+
                   <th class="w30px"> # </th>
                   <th class="text-center"> CONTROL NO. </th>
                   <th class="text-center"> MEMBER NAME </th>
