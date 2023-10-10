@@ -309,6 +309,20 @@ app.controller('RequestedFormPaymentController', function($scope, RequestedFormP
     }
   }
 
+   $scope.printApproved = function(){
+
+    if ($scope.conditionsPrintApproved !== '') {
+    
+      printTable(base + 'print/requested_form_payment?print=1' + $scope.conditionsPrintApproved);
+
+    }else{
+
+      printTable(base + 'print/requested_form_payment?print=1');
+
+    }
+
+  }
+
 });
 
 
