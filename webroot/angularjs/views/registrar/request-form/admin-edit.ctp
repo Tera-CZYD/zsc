@@ -212,11 +212,11 @@
                     <div class="form-group">
                       <label> REQUESTOR <i class="required">*</i></label><br>
                       <label>
-                        <input type="radio" ng-model="data.RequestForm.claim" ng-value="false" value="0">
+                        <input type="radio" ng-model="data.RequestForm.claim" ng-value="false" value="false">
                         Claim
                       </label>&nbsp; &nbsp;&nbsp; &nbsp;
                       <label>
-                        <input type="radio" ng-model="data.RequestForm.claim" ng-value="true" value="1">
+                        <input type="radio" ng-model="data.RequestForm.claim" ng-value="true" value="true">
                         Authorized Person
                       </label>
                     </div>

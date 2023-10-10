@@ -90,6 +90,7 @@
                           <th class="text-center"> STUDENT ID </th>
                           <th class="text-center"> STUDENT NAME </th>
                           <th class="text-center"> YEAR LEVEL </th>
+                          <th class="text-center"> PROGRAM </th>
                           <th class="text-center"> EMAIL </th>
                           <th class="text-center"> APPLICATION DATE </th>
                           <th class="w90px"></th>
@@ -100,12 +101,14 @@
                           <td class="text-center">{{ (paginator.page - 1 ) * paginator.limit + $index + 1 }}</td>
                           <td class="text-center">{{ data.student_no }}</td>
                           <td class="text-center">{{ data.full_name }}</td>
-                          <td class="text-center">{{ data.year_level }}</td>
+                          <td class="text-center">{{ data.year }}</td>
+                          <td class="text-center">{{ data.program }}</td>
                           <td class="text-center">{{ data.email }}</td>
                           <td class="text-center">{{ data.date }}</td>
                           <td>
                             <div class="btn-group btn-group-xs">
-                              <a id="pageView" href="#/registrar/admin-transferee/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                              <a id="pageView" href="#/registrar/admin-transferee/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
+                              <button id="pageApprove" href="javascript:void(0)" ng-disabled="data.approve > 0" ng-click="approve(data)" class="btn btn-warning" title="APPROVE"><i class="fa fa-check"></i></button>  
                               <a id="pageEdit" href="#/registrar/admin-transferee/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
                               <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a>
                             </div>

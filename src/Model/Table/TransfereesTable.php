@@ -18,6 +18,30 @@ class TransfereesTable extends Table{
 
     ]);
 
+    // $this->belongsTo('Students', [
+
+    //   'foreignKey' => 'transferee_id', 
+
+    // ]);
+
+    $this->belongsTo('YearLevelTerms', [
+
+      'foreignKey' => 'year_term_id', 
+
+    ]);
+
+    $this->belongsTo('CollegePrograms', [
+
+      'foreignKey' => 'program_id', 
+
+    ]);
+
+    $this->belongsTo('Colleges', [
+
+      'foreignKey' => 'college_id', 
+
+    ]);          
+
   }
 
   public function getAllTransfereePrint($conditions){
@@ -34,11 +58,23 @@ class TransfereesTable extends Table{
 
         Transferee.*,
 
+        College.name as college,
+
+        CollegeProgram.name as program,
+
+        YearLevelTerm.year as year,
+
         IFNULL(CONCAT(Transferee.last_name,', ',Transferee.first_name,' ',IFNULL(Transferee.middle_name,' ')),' ') AS full_name
 
       FROM
 
-        transferees as Transferee 
+        transferees as Transferee LEFT JOIN
+
+        colleges as College ON College.id = Transferee.college_id LEFT JOIN
+
+        college_programs as CollegeProgram ON CollegeProgram.id = Transferee.program_id LEFT JOIN
+
+        year_level_terms as YearLevelTerm ON YearLevelTerm.id = Transferee.year_term_id
 
       WHERE
 
@@ -90,11 +126,24 @@ class TransfereesTable extends Table{
 
         Transferee.*,
 
+        College.name as college,
+
+        CollegeProgram.name as program,
+
+        YearLevelTerm.year as year,        
+
         IFNULL(CONCAT(Transferee.last_name,', ',Transferee.first_name,' ',IFNULL(Transferee.middle_name,' ')),' ') AS full_name
 
       FROM
 
-        transferees as Transferee 
+        transferees as Transferee LEFT JOIN
+
+        colleges as College ON College.id = Transferee.college_id LEFT JOIN
+
+        college_programs as CollegeProgram ON CollegeProgram.id = Transferee.program_id LEFT JOIN
+
+        year_level_terms as YearLevelTerm ON YearLevelTerm.id = Transferee.year_term_id
+
 
       WHERE
 
@@ -186,7 +235,13 @@ class TransfereesTable extends Table{
 
        FROM
 
-        transferees as Transferee 
+        transferees as Transferee LEFT JOIN
+
+        colleges as College ON College.id = Transferee.college_id LEFT JOIN
+
+        college_programs as CollegeProgram ON CollegeProgram.id = Transferee.program_id LEFT JOIN
+
+        year_level_terms as YearLevelTerm ON YearLevelTerm.id = Transferee.year_term_id 
 
       WHERE
 

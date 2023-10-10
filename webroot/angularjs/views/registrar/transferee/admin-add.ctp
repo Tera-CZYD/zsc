@@ -85,11 +85,28 @@
               </div>
             </div>
 
-            <div class="clearfix"></div>
             <div class="col-md-6">
               <div class="form-group">
                 <label> YEAR TERM </label>
                 <select selectize ng-model="data.Transferee.year_term_id" ng-options="opt.id as opt.value for opt in year_terms">
+                  <option value=""></option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> College </label>
+                <select selectize ng-model="data.Transferee.college_id" ng-change="getProgram(data.Transferee.college_id)" ng-options="opt.id as opt.value for opt in colleges">
+                  <option value=""></option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-6"> 
+              <div class="form-group">
+                <label> PROGRAM </label>
+                <select selectize ng-model="data.Transferee.program_id" ng-options="opt.id as opt.value for opt in programs">
                   <option value=""></option>
                 </select>
               </div>

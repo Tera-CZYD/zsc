@@ -142,6 +142,8 @@ class ProgramAdvisersTable extends Table{
 
         students as Student LEFT JOIN 
 
+        transferees as Transferee ON Transferee.id = Student.transferee_id LEFT JOIN
+
         student_applications as StudentApplication ON StudentApplication.id = Student.student_applicant_id LEFT JOIN
 
         college_programs as CollegeProgram ON CollegeProgram.id = Student.program_id LEFT JOIN
@@ -176,7 +178,11 @@ class ProgramAdvisersTable extends Table{
 
         Student.year_term_id = $year_term_id AND 
 
-        StudentApplication.status = 'QUALIFIED' AND 
+        StudentApplication.status = 'QUALIFIED' OR
+
+        Transferee.approve = 1 AND 
+
+        Transferee.year_term_id = $year_term_id $status $date AND
 
       (
 
