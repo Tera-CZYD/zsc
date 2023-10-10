@@ -19,6 +19,13 @@ include 'PHPMailer/PHPMailer.php';
 
 include 'PHPMailer/SMTP.php';
 
+require 'SMS/vendor/autoload.php';
+use Infobip\Api\SmsApi;
+use Infobip\Configuration;
+use Infobip\Model\SmsAdvancedTextualRequest;
+use Infobip\Model\SmsDestination;
+use Infobip\Model\SmsTextualMessage;
+
 
 class ChangeProgramsController extends AppController {
 
@@ -56,36 +63,36 @@ class ChangeProgramsController extends AppController {
 
     $pref = $this->CollegePrograms->find()
 
-        ->where([
+      ->where([
 
-            'visible' => 1,
+        'visible' => 1,
 
-            'id' => $data['preferred_program_id']
+        'id' => $data['preferred_program_id']
 
-        ])
+      ])
 
-        ->first();
+    ->first();
 
-     $app = $this->StudentApplications->find()
+    $app = $this->StudentApplications->find()
 
-        ->where([
+      ->where([
 
-            'visible' => 1,
+        'visible' => 1,
 
-            'id' => $data['id']
+        'id' => $data['id']
 
-        ])
+      ])
 
-        ->first();
+    ->first();
 
-      $studentApplication = $this->StudentApplications->newEntity($data);
+    $studentApplication = $this->StudentApplications->newEntity($data);
 
-      $studentApplication = $this->StudentApplications->patchEntity($studentApplication, $data);
+    $studentApplication = $this->StudentApplications->patchEntity($studentApplication, $data);
 
-      
-      if($this->StudentApplications->save($studentApplication)){
+    
+    if($this->StudentApplications->save($studentApplication)){
 
-        if(isset($app['email'])){
+      if(isset($app['email'])){
 
         $name = $app['first_name'].' '.substr($app['middle_name'],0,1).'. '.$app['last_name'];
 
@@ -96,7 +103,7 @@ class ChangeProgramsController extends AppController {
         $preferred = $pref['name'];
 
         //EMAIL VERIFICATION
-        if(isset($email)){
+          if(isset($email)){
 
             if($email != ''){
 
@@ -145,7 +152,64 @@ class ChangeProgramsController extends AppController {
 
             }
 
-        }
+          }
+
+        //END EMAIL VERIFICATION 
+
+        //SMS NOTIFICATION
+
+          // if($app['contact_no'] != null){
+
+          //   $contact_no = $app['contact_no'];
+
+          //   $BASE_URL = "https://l3zndj.api.infobip.com";
+
+          //   $API_KEY = "c1ad2a470047d8d917fbb56151e22f85-5b4c9dc0-01cc-4a5f-b46f-d29ddad4997d";
+
+          //   $SENDER = "InfoSMS";
+
+          //   //SAMPLE CONTACT NUMBER FORMAT
+          //   //639178673561
+
+          //   $RECIPIENT = $contact_no;
+
+          //   $MESSAGE_TEXT = "Hi, Greetings from Zamboanga State College of Marine Sciences and Technology. \n\nThis is to notify you that you have successfully changed your program to ".$preferred.".";
+
+          //   $configuration = new Configuration(host: $BASE_URL, apiKey: $API_KEY);
+
+          //   $sendSmsApi = new SmsApi(config: $configuration);
+
+          //   $destination = new SmsDestination(
+
+          //     to: $RECIPIENT
+
+          //   );
+
+          //   $message = new SmsTextualMessage(destinations: [$destination], from: $SENDER, text: $MESSAGE_TEXT);
+
+          //   $request = new SmsAdvancedTextualRequest(messages: [$message]);
+
+          //   try {
+
+          //     $smsResponse = $sendSmsApi->sendSmsMessage($request);
+
+          //     // echo $smsResponse->getBulkId() . PHP_EOL;
+
+          //     // foreach ($smsResponse->getMessages() ?? [] as $message) {
+
+          //     //   echo sprintf('Message ID: %s, status: %s', $message->getMessageId(), $message->getStatus()?->getName()) . PHP_EOL;
+
+          //     // }
+
+          //   } catch (Throwable $apiException) {
+
+          //     // echo("HTTP Code: " . $apiException->getCode() . "\n");
+
+          //   }
+
+          // }
+
+        //END 
 
       }
     }

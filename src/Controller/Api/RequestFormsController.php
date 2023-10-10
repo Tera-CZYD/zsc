@@ -788,17 +788,17 @@ class RequestFormsController extends AppController {
 
             $smsResponse = $sendSmsApi->sendSmsMessage($request);
 
-            echo $smsResponse->getBulkId() . PHP_EOL;
+            // echo $smsResponse->getBulkId() . PHP_EOL;
 
-            foreach ($smsResponse->getMessages() ?? [] as $message) {
+            // foreach ($smsResponse->getMessages() ?? [] as $message) {
 
-              echo sprintf('Message ID: %s, status: %s', $message->getMessageId(), $message->getStatus()?->getName()) . PHP_EOL;
+            //   echo sprintf('Message ID: %s, status: %s', $message->getMessageId(), $message->getStatus()?->getName()) . PHP_EOL;
 
-            }
+            // }
 
           } catch (Throwable $apiException) {
 
-            echo("HTTP Code: " . $apiException->getCode() . "\n");
+            // echo("HTTP Code: " . $apiException->getCode() . "\n");
 
           }
 
