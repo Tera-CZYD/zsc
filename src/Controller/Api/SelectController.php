@@ -1487,8 +1487,11 @@ class SelectController extends AppController {
     } else if ($code == 'scholarship-name-list') {
            
       $tmp = $this->ScholarshipNames->find()
+
           ->where(['visible' => 1])
+
           ->order(['id' => 'ASC'])
+          
           ->all();
 
       if(!empty($tmp)){

@@ -15,7 +15,7 @@ app.controller('AssessmentController', function($scope, Assessment) {
 
     $scope.pending = function(options) {
 
-    options = typeof options !== 'undefined' ?  options : {}; 
+    options = typeof options !== 'undefined' ?  options : {};  
 
     options['status'] = 0;
 
@@ -331,7 +331,9 @@ app.controller('AssessmentController', function($scope, Assessment) {
 });
 
 
-app.controller('AssessmentViewController', function($scope, $routeParams, Assessment, AssessmentApprove) {
+app.controller('AssessmentViewController', function($scope, $routeParams, Select, Assessment, AssessmentApprove) {
+
+  $('#form').validationEngine('attach');
 
   $scope.id = $routeParams.id;
 
@@ -341,13 +343,26 @@ app.controller('AssessmentViewController', function($scope, $routeParams, Assess
 
   };
 
-  // load 
+  // load
 
-  Assessment.get({ id: $scope.id }, function(e) {
+  $scope.load = function() {
 
-    $scope.data = e.data;
+    Assessment.get({ id: $scope.id }, function(e) {
 
-  });
+      $scope.data = e.data;
+
+    });
+
+    Select.get({ code:'scholarship-name-list' }, function(e) {
+
+      $scope.scholarships = e.data;
+
+    });
+
+  }
+
+  $scope.load();  
+
 
   $scope.compute = function() {
 
@@ -367,33 +382,120 @@ app.controller('AssessmentViewController', function($scope, $routeParams, Assess
 
   }
 
-    $scope.approve = function(data){
+  //   $scope.approve = function(data){
 
-    bootbox.confirm('Are you sure you want to approve assessment ' +  data.code + '?', function(e){
+  //       $scope.bootboxMessage = '<div class="form-group">' +
+  //     '<label for="dropdown">Select an option:</label>' +
+  //     '<select id="dropdown" class="form-control" ng-model="data.Assessment.scholarship" ' +
+  //     'ng-options="opt.id as opt.value for opt in scholarships">' +
+  //     '</select>' +
+  //     '</div>';
 
-      if(e) {
+  //     bootbox.dialog({
 
-        AssessmentApprove.get({id:data.id}, function(e){
+  //       title: "Select Scholarship Name",
 
-          if(e.ok){
+  //       message: $scope.bootboxMessage,
 
-            $.gritter.add({
+  //      buttons: {
 
-              title: 'Successful!',
+  //       confirm: {
 
-              text: 'Assessment has been approved.'
+  //         label: "OK",
+
+  //         className:'btn btn-success',
+
+  //         callback: function () {
+
+  //           console.log("Selected Option:" + $scope.data.Assessment.code);
+
+  //         }
+
+  //       },
+
+  //       cancel:{
+
+  //         label: "Cancel",
+
+  //         className: "btn btn-danger"
+
+  //       }
+
+  //      },
+
+  //      onEscape: function () {  
+
+  //      }          
+
+  //     });
+
+  //   // bootbox.confirm('Are you sure you want to approve assessment ' +  data.code + '?', function(e){
+
+  //   //   if(e) {
+
+  //   //     AssessmentApprove.get({id:data.id}, function(e){
+
+  //   //       if(e.ok){
+
+  //   //         $.gritter.add({
+
+  //   //           title: 'Successful!',
+
+  //   //           text: 'Assessment has been approved.'
+
+  //   //         });
+
+  //   //       }
+
+  //   //       window.location = "#/cashier/assessment";
+
+  //   //     });
+
+  //   //   }
+
+  //   // });
+
+  // }
+
+  $scope.approve = function (data){
+
+    $('#scholarship').modal('show');
+
+    $scope.scholarship = function (data){
+
+        const scholarship_name = $scope.scholarships.filter(function (scholarship) {
+            return scholarship.id == data.scholarship_id;
+        });
+
+
+          bootbox.confirm('Are you sure you want to approve assessment ' +  data.code + '?', function(e){
+
+          if(e) {
+
+            AssessmentApprove.get({id:data.id, scholarship_name : scholarship_name[0].value, scholarship_id : data.scholarship_id}, function(e){
+
+              if(e.ok){
+
+                $.gritter.add({
+
+                  title: 'Successful!',
+
+                  text: 'Assessment has been approved.'
+
+                });
+
+              }
+
+              window.location = "#/cashier/assessment";
 
             });
 
           }
 
-          window.location = "#/cashier/assessment";
-
         });
 
-      }
+    }
 
-    });
 
   }
 
