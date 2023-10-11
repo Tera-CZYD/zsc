@@ -1,4 +1,4 @@
-app.controller('StudentClubController', function($scope, StudentClub) {
+app.controller('StudentClubController', function($scope, $window, StudentClub) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -105,6 +105,14 @@ app.controller('StudentClubController', function($scope, StudentClub) {
     $scope.disapproved(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 
@@ -667,7 +675,7 @@ app.controller('StudentClubEditController', function($scope, $routeParams, Stude
 
 });
 
-app.controller('AdminStudentClubController', function($scope, StudentClub) {
+app.controller('AdminStudentClubController', function($scope, $window, StudentClub) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -769,6 +777,14 @@ app.controller('AdminStudentClubController', function($scope, StudentClub) {
 
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

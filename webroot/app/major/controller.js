@@ -1,4 +1,4 @@
-app.controller('MajorController', function($scope, Major) {
+app.controller('MajorController', function($scope, $window, Major) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -31,6 +31,14 @@ app.controller('MajorController', function($scope, Major) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

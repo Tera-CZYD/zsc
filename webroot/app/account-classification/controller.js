@@ -1,4 +1,4 @@
-app.controller('AccountClassificationController', function($scope, AccountClassification) {
+app.controller('AccountClassificationController', function($scope, $window, AccountClassification) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -33,6 +33,14 @@ app.controller('AccountClassificationController', function($scope, AccountClassi
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

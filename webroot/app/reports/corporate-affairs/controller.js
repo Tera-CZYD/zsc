@@ -1,4 +1,4 @@
-app.controller('MonthlyPaymentController', function($scope,Select, MonthlyPayment) {
+app.controller('MonthlyPaymentController', function($scope,Select, $window, MonthlyPayment) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -37,6 +37,14 @@ app.controller('MonthlyPaymentController', function($scope,Select, MonthlyPaymen
     });
 
   }
+  
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
   
   $scope.load(); 
 

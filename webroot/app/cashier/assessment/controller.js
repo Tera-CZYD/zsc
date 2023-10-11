@@ -1,4 +1,4 @@
-app.controller('AssessmentController', function($scope, Assessment) {
+app.controller('AssessmentController', function($scope, $window, Assessment) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -12,6 +12,11 @@ app.controller('AssessmentController', function($scope, Assessment) {
   
   });
 
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
 
     $scope.pending = function(options) {
 
@@ -77,6 +82,8 @@ app.controller('AssessmentController', function($scope, Assessment) {
 
 
   }
+
+  $scope.scrollToTop();
 
   $scope.load();
   

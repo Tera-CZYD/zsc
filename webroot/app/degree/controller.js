@@ -1,4 +1,4 @@
-app.controller('DegreeController', function($scope, Degree,Select) {
+app.controller('DegreeController', function($scope, $window, Degree,Select) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -33,6 +33,14 @@ app.controller('DegreeController', function($scope, Degree,Select) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 

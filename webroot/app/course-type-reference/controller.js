@@ -1,4 +1,4 @@
-app.controller('CourseTypeReferenceController', function($scope, CourseTypeReference) {
+app.controller('CourseTypeReferenceController', function($scope, $window, CourseTypeReference) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -33,6 +33,14 @@ app.controller('CourseTypeReferenceController', function($scope, CourseTypeRefer
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

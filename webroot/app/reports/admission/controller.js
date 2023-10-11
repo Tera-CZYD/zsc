@@ -1,4 +1,4 @@
-app.controller('ListStudentController', function($scope,Select, ListStudent) {
+app.controller('ListStudentController', function($scope,Select, $window, ListStudent) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -31,6 +31,14 @@ app.controller('ListStudentController', function($scope,Select, ListStudent) {
   }
 
   $scope.datas = '';
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   // load data
 
@@ -221,7 +229,7 @@ app.controller('ListStudentController', function($scope,Select, ListStudent) {
 
 });
 
-app.controller('ListScholarsController', function($scope, ListScholar,Select) {
+app.controller('ListScholarsController', function($scope, $window, ListScholar,Select) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -290,6 +298,14 @@ app.controller('ListScholarsController', function($scope, ListScholar,Select) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   
@@ -483,7 +499,7 @@ app.controller('ListScholarsController', function($scope, ListScholar,Select) {
 
 });
 
-app.controller('ListApplicantsController', function($scope, Select, ListApplicant) {
+app.controller('ListApplicantsController', function($scope, Select, $window, ListApplicant) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -677,6 +693,14 @@ app.controller('ListApplicantsController', function($scope, Select, ListApplican
 
   }
 
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
+
   $scope.load();
   
   $scope.reload = function(options) {
@@ -851,7 +875,7 @@ app.controller('ListApplicantsController', function($scope, Select, ListApplican
 
 });
 
-app.controller("ScholarshipEvaluationsController", function ($scope, ScholarshipEvaluation) {
+app.controller("ScholarshipEvaluationsController", function ($scope, $window, ScholarshipEvaluation) {
   
   $scope.today = Date.parse("today").toString("MM/dd/yyyy");
 
@@ -896,6 +920,14 @@ app.controller("ScholarshipEvaluationsController", function ($scope, Scholarship
 
     $scope.confirmed(options);
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 

@@ -1,4 +1,4 @@
-app.controller('UsersController', function($scope, User) {
+app.controller('UsersController', function($scope, $window, User) {
   
   $scope.user = function(options) {
 
@@ -123,6 +123,14 @@ app.controller('UsersController', function($scope, User) {
     $scope.vice(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
    

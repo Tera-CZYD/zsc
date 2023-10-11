@@ -1,4 +1,4 @@
-app.controller('AcademicTermController', function($scope, AcademicTerm) {
+app.controller('AcademicTermController', function($scope, $window, AcademicTerm) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -11,6 +11,7 @@ app.controller('AcademicTermController', function($scope, AcademicTerm) {
     todayHighlight: true
   
   });
+
 
   $scope.load = function(options) {
 
@@ -33,6 +34,14 @@ app.controller('AcademicTermController', function($scope, AcademicTerm) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

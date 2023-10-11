@@ -2928,6 +2928,8 @@ class SelectController extends AppController {
 
       $result = $connection->execute($tmp)->fetch('assoc');
 
+      if($result){
+
       if($result['balance'] > 0){
 
         $datas = 0;
@@ -2937,6 +2939,11 @@ class SelectController extends AppController {
         $datas = 1;
 
       }
+    }else{
+
+      $datas = 1;
+
+    }
 
     }else if ($code == 'check-student-check-outs') {
 

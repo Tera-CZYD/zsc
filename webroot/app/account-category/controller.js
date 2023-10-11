@@ -1,4 +1,4 @@
-app.controller('AccountCategoryController', function($scope, AccountCategory) {
+app.controller('AccountCategoryController', function($scope, $window, AccountCategory) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -33,6 +33,14 @@ app.controller('AccountCategoryController', function($scope, AccountCategory) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

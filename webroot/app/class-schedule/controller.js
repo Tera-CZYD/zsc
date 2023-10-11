@@ -1,4 +1,4 @@
-app.controller('ClassScheduleController', function($scope, ClassSchedule, Select) {
+app.controller('ClassScheduleController', function($scope, $window, ClassSchedule, Select) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -45,6 +45,14 @@ app.controller('ClassScheduleController', function($scope, ClassSchedule, Select
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

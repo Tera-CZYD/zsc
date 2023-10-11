@@ -1,4 +1,4 @@
-app.controller('MedicalEmployeeProfileController', function($scope, MedicalEmployeeProfile) {
+app.controller('MedicalEmployeeProfileController', function($scope, $window, MedicalEmployeeProfile) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -33,6 +33,14 @@ app.controller('MedicalEmployeeProfileController', function($scope, MedicalEmplo
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

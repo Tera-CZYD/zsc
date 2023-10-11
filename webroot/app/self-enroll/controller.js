@@ -1,4 +1,4 @@
-app.controller('SelfEnrollController', function($scope,Student,StudentRegistration,PreregistrationSubject,Select) {
+app.controller('SelfEnrollController', function($scope,Student, $window, StudentRegistration,PreregistrationSubject,Select) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -19,6 +19,14 @@ app.controller('SelfEnrollController', function($scope,Student,StudentRegistrati
     YearLevelTerm : []
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   Select.get({ code: 'student-academic-term-list' },function(e){
 

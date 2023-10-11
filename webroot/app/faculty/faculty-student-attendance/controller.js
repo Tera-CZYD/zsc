@@ -1,4 +1,4 @@
-app.controller('FacultyStudentAttendanceController', function($scope, StudentEnrolledCourse) {
+app.controller('FacultyStudentAttendanceController', function($scope, $window, StudentEnrolledCourse) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -33,6 +33,14 @@ app.controller('FacultyStudentAttendanceController', function($scope, StudentEnr
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

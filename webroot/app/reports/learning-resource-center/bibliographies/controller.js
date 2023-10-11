@@ -1,4 +1,4 @@
-app.controller('ListBibliography', function($scope,Select, ListBibliography) {
+app.controller('ListBibliography', function($scope,Select, $window, ListBibliography) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -13,6 +13,14 @@ app.controller('ListBibliography', function($scope,Select, ListBibliography) {
   });
 
   $scope.datas = '';
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   // load data
 

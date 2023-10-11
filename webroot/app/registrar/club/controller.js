@@ -1,4 +1,4 @@
-app.controller("ClubController", function ($scope, Club) {
+app.controller("ClubController", function ($scope, $window, Club) {
 
   $scope.today = Date.parse("today").toString("MM/dd/yyyy");
 
@@ -25,6 +25,14 @@ app.controller("ClubController", function ($scope, Club) {
       }
     });
   };
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 

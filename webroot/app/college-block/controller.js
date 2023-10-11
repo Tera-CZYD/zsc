@@ -1,4 +1,4 @@
-app.controller('CollegeBlockController', function($scope, CollegeBlock,Select) {
+app.controller('CollegeBlockController', function($scope, $window, CollegeBlock,Select) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -45,6 +45,14 @@ app.controller('CollegeBlockController', function($scope, CollegeBlock,Select) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 
