@@ -122,6 +122,7 @@
             </div>
             <div class="col-md-12">
               <div class="pull-right">
+                <button type="button" class="btn btn-success btn-min" ng-click="onlinePayment(data.RequestForm.id )"><i class="fa fa-credit-card"></i> ONLINE PAYMENT </button>
                 <button type="button" class="btn btn-warning btn-min" ng-show="data.RequestForm.approve == 1" ng-disabled="data.RequestForm.is_request_printed == 1"  ng-click="printRequested(data.RequestForm.id )"><i class="fa fa-print"></i> PRINT REQUESTED FORM </button>
                 <a href="#/registrar/request-form/edit/{{ data.RequestForm.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
                 <button type="button" class="btn btn-info btn-min" ng-show="data.RequestForm.approve == 1" ng-disabled="data.RequestForm.isprint == 1"  ng-click="print(data.RequestForm.id )"><i class="fa fa-print"></i> PRINT REQUEST FORM </button>

@@ -346,6 +346,8 @@ app.controller('TransfereeAddController', function($scope, Transferee, Select, S
 
       $scope.data.Transferee.type = 'Transfer Out';
 
+      $scope.data.Transferee.year_level = response.data.YearLevelTerm.description;
+
     });
 
   });

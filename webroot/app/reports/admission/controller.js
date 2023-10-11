@@ -265,7 +265,7 @@ app.controller('ListScholarsController', function($scope, ListScholar,Select) {
 
   }
 
-  $scope.confirmed = function(options) {
+  $scope.load = function(options) {
 
     options = typeof options !== 'undefined' ?  options : {};
 
@@ -277,7 +277,7 @@ app.controller('ListScholarsController', function($scope, ListScholar,Select) {
 
         $scope.datasConfirmed = e.data;
 
-        $scope.conditionsPrintConfirmed = e.conditionsPrint;
+        $scope.conditionsPrint = e.conditionsPrint;
 
         // paginator
 
@@ -288,13 +288,6 @@ app.controller('ListScholarsController', function($scope, ListScholar,Select) {
       }
 
     });
-
-  }
-
-
-  $scope.load = function(options) {
-
-    $scope.confirmed(options);
 
   }
 
@@ -476,55 +469,13 @@ app.controller('ListScholarsController', function($scope, ListScholar,Select) {
 
  $scope.print = function(){
 
-    if ($scope.conditionsPrintPending !== '') {
+    if ($scope.conditionsPrint !== '') {
     
-      printTable(base + 'print/student_applications?print=1' + $scope.conditionsPrint);
+      printTable(base + 'print/scholarship_application_list?print=1' + $scope.conditionsPrint);
 
     }else{
 
-      printTable(base + 'print/student_applications?print=1');
-
-    }
-
-  }
-
-  $scope.printApproved = function(){
-
-    if ($scope.conditionsPrintApproved !== '') {
-    
-      printTable(base + 'print/student_applications?print=1' + $scope.conditionsPrintApproved);
-
-    }else{
-
-      printTable(base + 'print/student_applications?print=1');
-
-    }
-
-  }
-
-  $scope.printConfirmed = function(){
-
-    if ($scope.conditionsPrintApproved !== '') {
-    
-      printTable(base + 'print/student_applications?print=1' + $scope.conditionsPrintConfirmed);
-
-    }else{
-
-      printTable(base + 'print/student_applications?print=1');
-
-    }
-
-  }
-
-  $scope.printDisapproved = function(){
-
-    if ($scope.conditionsPrintDispproved !== '') {
-    
-      printTable(base + 'print/student_applications?print=1' + $scope.conditionsPrintDispproved);
-
-    }else{
-
-      printTable(base + 'print/student_applications?print=1');
+      printTable(base + 'print/scholarship_application_list?print=1');
 
     }
 
@@ -566,7 +517,9 @@ app.controller('ListApplicantsController', function($scope, Select, ListApplican
 
     options = typeof options !== 'undefined' ?  options : {}; 
 
-    options['status'] = 0;
+    options['status'] = 'forRating';
+
+    options['entries'] = $scope.pageCount;
 
     ListApplicant.query(options, function(e) {
 
@@ -586,37 +539,11 @@ app.controller('ListApplicantsController', function($scope, Select, ListApplican
 
   }
 
-  $scope.disqualified = function(options) {
-
-    options = typeof options !== 'undefined' ?  options : {};
-
-    options['status'] = 3;
-
-    ListApplicant.query(options, function(e) {
-
-      if (e.ok) {
-
-        $scope.datasDisapproved = e.data;
-
-        $scope.conditionsPrintDisapproved = e.conditionsPrint;
-
-        // paginator
-
-        $scope.paginatorDisapproved  = e.paginator;
-
-        $scope.pagesDisapproved = paginator($scope.paginatorDisapproved, 5);
-
-      }
-
-    });
-
-  }
-
   $scope.interview = function(options) {
 
     options = typeof options !== 'undefined' ?  options : {};
 
-    options['status'] = 1;
+    options['status'] = 3;
 
     ListApplicant.query(options, function(e) {
 
@@ -642,7 +569,7 @@ app.controller('ListApplicantsController', function($scope, Select, ListApplican
 
     options = typeof options !== 'undefined' ?  options : {};
 
-    options['status'] = 2;
+    options['status'] = 4;
 
     ListApplicant.query(options, function(e) {
 
@@ -657,6 +584,32 @@ app.controller('ListApplicantsController', function($scope, Select, ListApplican
         $scope.paginatorAssessed  = e.paginator;
 
         $scope.pagesAssessed = paginator($scope.paginatorAssessed, 5);
+
+      }
+
+    });
+
+  }
+
+  $scope.disqualified = function(options) {
+
+    options = typeof options !== 'undefined' ?  options : {};
+
+    options['status'] = 5;
+
+    ListApplicant.query(options, function(e) {
+
+      if (e.ok) {
+
+        $scope.datasDisapproved = e.data;
+
+        $scope.conditionsPrintDisapproved = e.conditionsPrint;
+
+        // paginator
+
+        $scope.paginatorDisapproved  = e.paginator;
+
+        $scope.pagesDisapproved = paginator($scope.paginatorDisapproved, 5);
 
       }
 

@@ -15,8 +15,6 @@ class PaymentsController extends AppController {
 
     parent::initialize();
 
-    $this->loadComponent('Paginator');
-
     $this->loadComponent('RequestHandler');
 
     $this->Payments = TableRegistry::getTableLocator()->get('Payments');

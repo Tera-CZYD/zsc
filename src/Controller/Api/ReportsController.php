@@ -2173,42 +2173,21 @@ class ReportsController extends AppController {
 
       $status = $this->request->getQuery('status');
 
-      if($status == 'assessed'){
+      $conditions['status'] = "AND StudentApplication.approve = $status";
 
-        $conditions['status'] = "AND StudentApplication.approve != 3";
+      $conditionsPrint .= '&status='.$this->request->getQuery('status');
 
-        $conditionsPrint .= '&status!=3';
+      if($status == 1){ //FOR APPROVED TAB OF STUDENT APPLICATION
 
-      }else{
+        $conditions['status'] = "AND StudentApplication.approve <> 0";
 
-        $conditions['status'] = "AND StudentApplication.approve = $status";
+      }elseif($status == 'forRating'){ //RATING TAB OF CAT
 
-        $conditionsPrint .= '&status='.$this->request->getQuery('status');
+        $conditions['status'] = "AND StudentApplication.approve = 1";
 
       }
 
     }
-
-    $conditions['rate'] = '';
-
-    if ($this->request->getQuery('rate') != null) {
-
-      $rate = $this->request->getQuery('rate');
-
-      if($rate == 0){
-
-        $conditions['rate'] = "AND StudentApplication.rate_by_id IS NULL";
-
-      }else{
-
-        $conditions['rate'] = "AND StudentApplication.rate_by_id IS NOT NULL";
-
-      }
-
-      $conditionsPrint .= '&rate='.$this->request->getQuery('rate');
-
-    }
-
 
     $conditions['order'] = '';
 
@@ -2222,6 +2201,13 @@ class ReportsController extends AppController {
       
     }
 
+    $entries = 25;
+
+    if ($this->request->getQuery('entries') != null){
+
+      $entries = $this->request->getQuery('entries');
+      
+    }
     // var_dump($conditions);
 
     $limit = 25;
@@ -2549,6 +2535,8 @@ class ReportsController extends AppController {
 
       $conditions['year'] = " AND ScholarshipApplication.year_term_id = $year";
 
+      $conditionsPrint .= '&year='.$year;
+
     }
 
     $conditions['scholarship'] = "";
@@ -2768,7 +2756,7 @@ class ReportsController extends AppController {
 
     $conditions['search'] = '';
 
-    if($this->request->getQuery('search')){
+    if($this->request->getQuery('search') != null){
 
       $search = $this->request->getQuery('search');
 
@@ -2782,7 +2770,7 @@ class ReportsController extends AppController {
 
     $conditions['date'] = '';
 
-    if ($this->request->getQuery('date')) {
+    if ($this->request->getQuery('date') != null) {
 
       $search_date = $this->request->getQuery('date');
 
@@ -2792,7 +2780,7 @@ class ReportsController extends AppController {
 
     }
 
-    if ($this->request->getQuery('startDate')) {
+    if ($this->request->getQuery('startDate') != null) {
 
       $start = $this->request->getQuery('startDate'); 
 
@@ -2839,6 +2827,7 @@ class ReportsController extends AppController {
             'check_in_id' => $data['id'],
 
           ])
+          
         ->all();
 
         $datas[] = array(

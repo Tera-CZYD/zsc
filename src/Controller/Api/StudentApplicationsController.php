@@ -24,6 +24,13 @@ include 'PHPMailer/PHPMailer.php';
 
 include 'PHPMailer/SMTP.php';
 
+require 'SMS/vendor/autoload.php';
+use Infobip\Api\SmsApi;
+use Infobip\Configuration;
+use Infobip\Model\SmsAdvancedTextualRequest;
+use Infobip\Model\SmsDestination;
+use Infobip\Model\SmsTextualMessage;
+
 class StudentApplicationsController extends AppController {
    
   public function initialize(): void{
@@ -784,6 +791,61 @@ class StudentApplicationsController extends AppController {
 
         //EMAIL VERIFICATION
 
+        //SMS NOTIFICATION
+
+          // if($app['contact_no'] != null){
+
+          //   $contact_no = $app['contact_no'];
+
+          //   $BASE_URL = "https://l3zndj.api.infobip.com";
+
+          //   $API_KEY = "c1ad2a470047d8d917fbb56151e22f85-5b4c9dc0-01cc-4a5f-b46f-d29ddad4997d";
+
+          //   $SENDER = "InfoSMS";
+
+          //   //SAMPLE CONTACT NUMBER FORMAT
+          //   //639178673561
+
+          //   $RECIPIENT = $contact_no;
+
+          //   $MESSAGE_TEXT = "Hi, Greetings from Zamboanga State College of Marine Sciences and Technology. \n\nThis is to notify you that your application passed the requirements. Please wait for further instructions regarding your exmaination.";
+
+          //   $configuration = new Configuration(host: $BASE_URL, apiKey: $API_KEY);
+
+          //   $sendSmsApi = new SmsApi(config: $configuration);
+
+          //   $destination = new SmsDestination(
+
+          //     to: $RECIPIENT
+
+          //   );
+
+          //   $message = new SmsTextualMessage(destinations: [$destination], from: $SENDER, text: $MESSAGE_TEXT);
+
+          //   $request = new SmsAdvancedTextualRequest(messages: [$message]);
+
+          //   try {
+
+          //     $smsResponse = $sendSmsApi->sendSmsMessage($request);
+
+          //     // echo $smsResponse->getBulkId() . PHP_EOL;
+
+          //     // foreach ($smsResponse->getMessages() ?? [] as $message) {
+
+          //     //   echo sprintf('Message ID: %s, status: %s', $message->getMessageId(), $message->getStatus()?->getName()) . PHP_EOL;
+
+          //     // }
+
+          //   } catch (Throwable $apiException) {
+
+          //     // echo("HTTP Code: " . $apiException->getCode() . "\n");
+
+          //   }
+
+          // }
+
+        //END 
+
         $response = array(
 
           'ok'   => true,
@@ -958,6 +1020,61 @@ class StudentApplicationsController extends AppController {
           }
 
         //EMAIL VERIFICATION
+
+        //SMS NOTIFICATION
+
+          // if($app['contact_no'] != null){
+
+          //   $contact_no = $app['contact_no'];
+
+          //   $BASE_URL = "https://l3zndj.api.infobip.com";
+
+          //   $API_KEY = "c1ad2a470047d8d917fbb56151e22f85-5b4c9dc0-01cc-4a5f-b46f-d29ddad4997d";
+
+          //   $SENDER = "InfoSMS";
+
+          //   //SAMPLE CONTACT NUMBER FORMAT
+          //   //639178673561
+
+          //   $RECIPIENT = $contact_no;
+
+          //   $MESSAGE_TEXT = "Hi, Greetings from Zamboanga State College of Marine Sciences and Technology. \n\nThis is to notify you that your application did not passed the requirements";
+
+          //   $configuration = new Configuration(host: $BASE_URL, apiKey: $API_KEY);
+
+          //   $sendSmsApi = new SmsApi(config: $configuration);
+
+          //   $destination = new SmsDestination(
+
+          //     to: $RECIPIENT
+
+          //   );
+
+          //   $message = new SmsTextualMessage(destinations: [$destination], from: $SENDER, text: $MESSAGE_TEXT);
+
+          //   $request = new SmsAdvancedTextualRequest(messages: [$message]);
+
+          //   try {
+
+          //     $smsResponse = $sendSmsApi->sendSmsMessage($request);
+
+          //     // echo $smsResponse->getBulkId() . PHP_EOL;
+
+          //     // foreach ($smsResponse->getMessages() ?? [] as $message) {
+
+          //     //   echo sprintf('Message ID: %s, status: %s', $message->getMessageId(), $message->getStatus()?->getName()) . PHP_EOL;
+
+          //     // }
+
+          //   } catch (Throwable $apiException) {
+
+          //     // echo("HTTP Code: " . $apiException->getCode() . "\n");
+
+          //   }
+
+          // }
+
+        //END
 
         $response = array(
 
@@ -1388,9 +1505,9 @@ class StudentApplicationsController extends AppController {
 
         $program = $this->CollegeProgram->get($app['preferred_program_id']);
 
-        if(!empty($program)){ // EMAIL FOR FAILED
+        if(!empty($program)){ 
 
-          if($program['passing_rate'] > $app['rate']){
+          if($program['passing_rate'] > $app['rate']){ // EMAIL FOR FAILED
 
             $program_list = $this->CollegeProgram->find()
 
@@ -1506,6 +1623,65 @@ class StudentApplicationsController extends AppController {
               }
 
             //EMAIL VERFIFICATION
+
+            //SMS NOTIFICATION
+
+              // $link = $this->base.'change-program/'.$app['id'];
+
+              // if($app['contact_no'] != null){
+
+              //   $contact_no = $app['contact_no'];
+
+              //   $BASE_URL = "https://l3zndj.api.infobip.com";
+
+              //   $API_KEY = "c1ad2a470047d8d917fbb56151e22f85-5b4c9dc0-01cc-4a5f-b46f-d29ddad4997d";
+
+              //   $SENDER = "InfoSMS";
+
+              //   //SAMPLE CONTACT NUMBER FORMAT
+              //   //639178673561
+
+              //   $RECIPIENT = $contact_no;
+
+              //   $MESSAGE_TEXT = "Hi, Greetings from Zamboanga State College of Marine Sciences and Technology. \n\nThis is to notify you that you scored ".@$this->request->getData('rate')." and did not meet the required rating (".$program['passing_rate'].") for ".$program['name']."\n\nClick here to change your program : ".$link;
+
+
+
+              //   $configuration = new Configuration(host: $BASE_URL, apiKey: $API_KEY);
+
+              //   $sendSmsApi = new SmsApi(config: $configuration);
+
+              //   $destination = new SmsDestination(
+
+              //     to: $RECIPIENT
+
+              //   );
+
+              //   $message = new SmsTextualMessage(destinations: [$destination], from: $SENDER, text: $MESSAGE_TEXT);
+
+              //   $request = new SmsAdvancedTextualRequest(messages: [$message]);
+
+              //   try {
+
+              //     $smsResponse = $sendSmsApi->sendSmsMessage($request);
+
+              //     // echo $smsResponse->getBulkId() . PHP_EOL;
+
+              //     // foreach ($smsResponse->getMessages() ?? [] as $message) {
+
+              //     //   echo sprintf('Message ID: %s, status: %s', $message->getMessageId(), $message->getStatus()?->getName()) . PHP_EOL;
+
+              //     // }
+
+              //   } catch (Throwable $apiException) {
+
+              //     // echo("HTTP Code: " . $apiException->getCode() . "\n");
+
+              //   }
+
+              // }
+
+            //END 
 
           }else{ // EMAIL FOR PASSED
 
@@ -2105,6 +2281,61 @@ class StudentApplicationsController extends AppController {
 
       //EMAIL VERIFICATION
 
+      //SMS NOTIFICATION
+
+        // if($app['contact_no'] != null){
+
+        //   $contact_no = $app['contact_no'];
+
+        //   $BASE_URL = "https://l3zndj.api.infobip.com";
+
+        //   $API_KEY = "c1ad2a470047d8d917fbb56151e22f85-5b4c9dc0-01cc-4a5f-b46f-d29ddad4997d";
+
+        //   $SENDER = "InfoSMS";
+
+        //   //SAMPLE CONTACT NUMBER FORMAT
+        //   //639178673561
+
+        //   $RECIPIENT = $contact_no;
+
+        //   $MESSAGE_TEXT = "Hi, Greetings from Zamboanga State College of Marine Sciences and Technology. \n\nThis is to notify you that you passed the medical examination.";
+
+        //   $configuration = new Configuration(host: $BASE_URL, apiKey: $API_KEY);
+
+        //   $sendSmsApi = new SmsApi(config: $configuration);
+
+        //   $destination = new SmsDestination(
+
+        //     to: $RECIPIENT
+
+        //   );
+
+        //   $message = new SmsTextualMessage(destinations: [$destination], from: $SENDER, text: $MESSAGE_TEXT);
+
+        //   $request = new SmsAdvancedTextualRequest(messages: [$message]);
+
+        //   try {
+
+        //     $smsResponse = $sendSmsApi->sendSmsMessage($request);
+
+        //     // echo $smsResponse->getBulkId() . PHP_EOL;
+
+        //     // foreach ($smsResponse->getMessages() ?? [] as $message) {
+
+        //     //   echo sprintf('Message ID: %s, status: %s', $message->getMessageId(), $message->getStatus()?->getName()) . PHP_EOL;
+
+        //     // }
+
+        //   } catch (Throwable $apiException) {
+
+        //     // echo("HTTP Code: " . $apiException->getCode() . "\n");
+
+        //   }
+
+        // }
+
+      //END 
+
       $response = array(
 
         'ok'   => true,
@@ -2263,6 +2494,61 @@ class StudentApplicationsController extends AppController {
         }
 
       //EMAIL VERIFICATION
+
+      //SMS NOTIFICATION
+
+        // if($app['contact_no'] != null){
+
+        //   $contact_no = $app['contact_no'];
+
+        //   $BASE_URL = "https://l3zndj.api.infobip.com";
+
+        //   $API_KEY = "c1ad2a470047d8d917fbb56151e22f85-5b4c9dc0-01cc-4a5f-b46f-d29ddad4997d";
+
+        //   $SENDER = "InfoSMS";
+
+        //   //SAMPLE CONTACT NUMBER FORMAT
+        //   //639178673561
+
+        //   $RECIPIENT = $contact_no;
+
+        //   $MESSAGE_TEXT = "Hi, Greetings from Zamboanga State College of Marine Sciences and Technology. \n\nThis is to notify you that you did not passed the medical examination.";
+
+        //   $configuration = new Configuration(host: $BASE_URL, apiKey: $API_KEY);
+
+        //   $sendSmsApi = new SmsApi(config: $configuration);
+
+        //   $destination = new SmsDestination(
+
+        //     to: $RECIPIENT
+
+        //   );
+
+        //   $message = new SmsTextualMessage(destinations: [$destination], from: $SENDER, text: $MESSAGE_TEXT);
+
+        //   $request = new SmsAdvancedTextualRequest(messages: [$message]);
+
+        //   try {
+
+        //     $smsResponse = $sendSmsApi->sendSmsMessage($request);
+
+        //     // echo $smsResponse->getBulkId() . PHP_EOL;
+
+        //     // foreach ($smsResponse->getMessages() ?? [] as $message) {
+
+        //     //   echo sprintf('Message ID: %s, status: %s', $message->getMessageId(), $message->getStatus()?->getName()) . PHP_EOL;
+
+        //     // }
+
+        //   } catch (Throwable $apiException) {
+
+        //     // echo("HTTP Code: " . $apiException->getCode() . "\n");
+
+        //   }
+
+        // }
+
+      //END 
 
       $response = array(
 

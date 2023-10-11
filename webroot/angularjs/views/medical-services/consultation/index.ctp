@@ -175,7 +175,7 @@
               <div class="clearfix"></div><hr>
               <div class="col-md-12">
                 <div class="row">
-                  <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">=
+                  <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                     <a id="pageAdd" href="#/medical-services/consultation/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
                     <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
                     <button id="pagePrint" ng-click="printApprove()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>

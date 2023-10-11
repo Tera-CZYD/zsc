@@ -328,6 +328,20 @@ app.controller('AssessmentController', function($scope, Assessment) {
     }
   }
 
+  $scope.printApproved = function(){
+
+    if ($scope.conditionsPrintApproved !== '') {
+    
+      printTable(base + 'print/assessment?print=1' + $scope.conditionsPrintApproved);
+
+    }else{
+
+      printTable(base + 'print/assessment?print=1');
+
+    }
+
+  }
+
 });
 
 

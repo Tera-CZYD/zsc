@@ -137,15 +137,9 @@ class CoursesController extends AppController {
 
     $requestData = $this->request->getData('Course');
 
-<<<<<<< HEAD
     $requestData['is_computer'] = $requestData['is_computer'] ? 1 : 0;
 
     $requestData['is_jeep'] = $requestData['is_jeep'] ? 1 : 0;
-=======
-    $requestData['is_computer'] = (isset($requestData['is_computer']) && $requestData['is_computer'] == true) ? 1 : 0;
-
-    $requestData['is_jeep'] = (isset($requestData['is_jeep']) && $requestData['is_jeep'] == true ) ? 1 : 0;
->>>>>>> add5edab7ba288a83f1d2190d5bc2b6cc458fbc5
 
     $data = $this->Courses->newEmptyEntity();
    

@@ -253,59 +253,92 @@ class StudentsController extends AppController {
 
   public function view($id = null){
 
-     $data['Student'] = $this->Student->find()
-        ->contain([
+    $data['Student'] = $this->Student->find()
+
+      ->contain([
+
         'YearLevelTerms',
+
         'Curriculums' => [
-            'conditions' => [
-                'Curriculums.visible' => 1
-            ]
+
+          'conditions' => [
+
+            'Curriculums.visible' => 1
+
+          ]
+
         ],
-        // 'StudentProfiles' => [
-        //     'conditions' => [
-        //         'StudentProfiles.visible' => 1
-        //     ]
-        // ],
+
         'Colleges' => [
-            // 'Campuses' => [
-            //     'conditions' => [
-            //         'Campuses.visible' => 1
-            //     ]
-            // ],
-            'conditions' => [
-                'Colleges.visible' => 1
-            ]
+       
+          'conditions' => [
+
+            'Colleges.visible' => 1
+
+          ]
+
         ],
+
         'CollegePrograms' => [
+      
             'conditions' => [
+      
                 'CollegePrograms.visible' => 1
+      
             ]
+      
         ],
+      
         'StudentEnrolledCourses' => [
+      
             'conditions' => [
+      
                 'StudentEnrolledCourses.visible' => 1
+      
             ]
+      
         ],
+      
         'StudentEnrolledUnits' => [
+      
             'conditions' => [
+      
                 'StudentEnrolledUnits.visible' => 1
+      
             ]
+      
         ],
+      
         'StudentEnrolledSchedules' => [
+      
             'conditions' => [
+      
                 'StudentEnrolledSchedules.visible' => 1
+      
             ]
+      
         ],
+      
         'StudentEnrollments' => [
+      
             'conditions' => [
+      
                 'StudentEnrollments.visible' => 1
+      
             ]
+      
         ]
-    ])
-    ->where([
+
+      ])
+
+      ->where([
+
         'Students.visible' => 1,
+
         'Students.id' => $id
-    ])
+
+      ])
+
     ->first();
 
       $data['Student']['date_of_date'] = isset($data['Student']['date_of_date']) ? date('m/d/Y', strtotime($data['Student']['date_of_date'])) : null;
