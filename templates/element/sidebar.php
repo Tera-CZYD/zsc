@@ -275,7 +275,7 @@
 
               <?php if (hasAccess('participant evaluation/index', $currentUser)): ?>
                 <li class="nav-link-side nav-participant-evaluation">
-                  <a href="#/guidance/participant-evaluation" onclick="change('participant-evaluation')">Participant Evaluation Activity</a>
+                  <a href="#/guidance/admin-participant-evaluation" onclick="change('participant-evaluation')">Participant Evaluation Activity</a>
                 </li>
               <?php endif ?>
                <?php if (hasAccess('student exit/index', $currentUser)): ?>
