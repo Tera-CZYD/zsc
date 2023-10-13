@@ -1,4 +1,4 @@
-app.controller('DashboardController', function($scope,Select,StudentApplicationMedicalRequest, Dashboard){
+app.controller('DashboardController', function($scope, $window, Select,StudentApplicationMedicalRequest, Dashboard){
 
   $scope.base = base;
 
@@ -240,6 +240,14 @@ app.controller('DashboardController', function($scope,Select,StudentApplicationM
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 

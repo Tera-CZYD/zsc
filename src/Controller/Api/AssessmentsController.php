@@ -28,6 +28,8 @@ class AssessmentsController extends AppController {
 
     $this->BlockSectionCourses = TableRegistry::getTableLocator()->get('BlockSectionCourses');
 
+    $this->Students = TableRegistry::getTableLocator()->get('Students');
+
     $this->UserLogs = TableRegistry::getTableLocator()->get('UserLogs');
 
   }
@@ -323,13 +325,35 @@ class AssessmentsController extends AppController {
 
     $data = $this->Assessments->get($id);
 
+    $scholarship_name = $this->request->getQuery('scholarship_name');
+
+    $scholarship_id = $this->request->getQuery('scholarship_id');
+
     $data->approve = 1;
+
+    $data->scholarship_id = $scholarship_id;
+
+    $data->scholarship_name = $scholarship_name;
 
     $data->approve_by_id = $this->currentUser->id;
 
     if ($this->Assessments->save($data)) {
 
       $student_id = $data->student_id;
+
+      $student = $this->Students->get($student_id);
+
+      $student->scholarship_id = $scholarship_id;
+
+      $student->scholarship_name = $scholarship_name;
+
+      $this->Students->save($student);
+
+      // $student_query = "UPDATE students SET scholarship_id = $scholarship_id, scholarship_name = $scholarship_name WHERE id = $student_id";
+
+      // $student_con = $this->Students->getConnection();
+
+      // $student_con->execute($student_query)->fetchAll('assoc');
 
       $year_term_id = $data->year_term_id;
 

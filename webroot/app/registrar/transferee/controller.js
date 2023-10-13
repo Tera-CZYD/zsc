@@ -1,4 +1,4 @@
-app.controller('TransfereeController', function($scope, Transferee) {
+app.controller('TransfereeController', function($scope, $window, Transferee) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -103,6 +103,14 @@ app.controller('TransfereeController', function($scope, Transferee) {
     $scope.disapproved(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   
@@ -671,7 +679,7 @@ app.controller('TransfereeEditController', function($scope, $routeParams, Transf
 
 });
 
-app.controller('AdminTransfereeController', function($scope, Transferee, TransfereeApprove) {
+app.controller('AdminTransfereeController', function($scope, $window, Transferee, TransfereeApprove) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -770,6 +778,14 @@ app.controller('AdminTransfereeController', function($scope, Transferee, Transfe
     // $scope.disapproved(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

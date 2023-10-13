@@ -1,4 +1,4 @@
-app.controller('AffidavitOfLossController', function($scope, AffidavitOfLoss) {
+app.controller('AffidavitOfLossController', function($scope, $window, AffidavitOfLoss) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -107,6 +107,14 @@ app.controller('AffidavitOfLossController', function($scope, AffidavitOfLoss) {
     $scope.disapproved(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 
@@ -763,7 +771,7 @@ app.controller('AffidavitOfLossEditController', function($scope, $routeParams, A
 
 });
 
-app.controller('AdminAffidavitOfLossController', function($scope, AffidavitOfLoss) {
+app.controller('AdminAffidavitOfLossController', function($scope, $window, AffidavitOfLoss) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -865,6 +873,14 @@ app.controller('AdminAffidavitOfLossController', function($scope, AffidavitOfLos
 
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

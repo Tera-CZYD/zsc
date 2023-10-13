@@ -1,4 +1,4 @@
-app.controller('ApprovalEnrolledCourseController', function($scope, ApprovalEnrolledCourse, ApprovalEnrolledCourseApproved, ProgramAdviserEmail) {
+app.controller('ApprovalEnrolledCourseController', function($scope, $window, ApprovalEnrolledCourse, ApprovalEnrolledCourseApproved, ProgramAdviserEmail) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -75,6 +75,14 @@ app.controller('ApprovalEnrolledCourseController', function($scope, ApprovalEnro
     $scope.approved(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 

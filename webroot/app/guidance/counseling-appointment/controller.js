@@ -1,4 +1,4 @@
-app.controller('CounselingAppointmentController', function($scope, CounselingAppointment) {
+app.controller('CounselingAppointmentController', function($scope, $window, CounselingAppointment) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -163,6 +163,14 @@ app.controller('CounselingAppointmentController', function($scope, CounselingApp
     $scope.cancelled(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 
@@ -701,7 +709,7 @@ app.controller('CounselingAppointmentEditController', function($scope, $routePar
 
 });
 
-app.controller('AdminCounselingAppointmentController', function($scope, CounselingAppointment) {
+app.controller('AdminCounselingAppointmentController', function($scope, $window, CounselingAppointment) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -856,6 +864,14 @@ app.controller('AdminCounselingAppointmentController', function($scope, Counseli
     $scope.cancelled(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

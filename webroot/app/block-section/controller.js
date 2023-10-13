@@ -1,4 +1,4 @@
-app.controller('BlockSectionController', function($scope, BlockSection, Select) {
+app.controller('BlockSectionController', function($scope, $window,  BlockSection, Select) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -55,6 +55,14 @@ app.controller('BlockSectionController', function($scope, BlockSection, Select) 
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   
@@ -356,7 +364,7 @@ app.controller('BlockSectionAddController', function($scope, BlockSection, Selec
 
       });
 
-      Select.get({ code: 'program-course-list', id : id },function(e){
+      Select.get({ code: 'program-course-list', id : id, year_term_id :$scope.data.BlockSection.year_term_id  },function(e){
 
         $scope.courses = e.data;
 

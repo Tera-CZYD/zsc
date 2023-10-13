@@ -1,4 +1,4 @@
-app.controller('CheckInController', function($scope, CheckIn) {
+app.controller('CheckInController', function($scope, $window, CheckIn) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -33,6 +33,14 @@ app.controller('CheckInController', function($scope, CheckIn) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

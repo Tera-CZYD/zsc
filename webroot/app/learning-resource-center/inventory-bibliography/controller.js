@@ -1,4 +1,4 @@
-app.controller('InventoryBibliographyController', function($scope,Select, InventoryBibliography, Bibliography) {
+app.controller('InventoryBibliographyController', function($scope,Select, $window, InventoryBibliography, Bibliography) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -57,6 +57,14 @@ app.controller('InventoryBibliographyController', function($scope,Select, Invent
     $scope.collection_types = e.data;
       
   });
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

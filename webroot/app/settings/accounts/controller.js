@@ -1,4 +1,4 @@
-app.controller('AccountController', function($scope, Account) {
+app.controller('AccountController', function($scope, $window, Account) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -32,6 +32,14 @@ app.controller('AccountController', function($scope, Account) {
 
   }
 
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
+  
   $scope.load();
   
   $scope.reload = function(options) {

@@ -1,4 +1,4 @@
-app.controller('FacultyQceController', function($scope, FacultyQce,Select) {
+app.controller('FacultyQceController', function($scope, $window, FacultyQce,Select) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -47,6 +47,14 @@ app.controller('FacultyQceController', function($scope, FacultyQce,Select) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

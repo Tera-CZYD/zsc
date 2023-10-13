@@ -1,4 +1,4 @@
-app.controller('ReportCheckInController', function($scope,Select, ListCheckIn) {
+app.controller('ReportCheckInController', function($scope,Select, $window, ListCheckIn) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -39,6 +39,14 @@ app.controller('ReportCheckInController', function($scope,Select, ListCheckIn) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

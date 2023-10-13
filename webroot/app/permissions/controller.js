@@ -1,4 +1,4 @@
-app.controller('PermissionsController', function($scope, Permission) {
+app.controller('PermissionsController', function($scope, $window, Permission) {
 
   $scope.load = function(options) {
 
@@ -21,6 +21,14 @@ app.controller('PermissionsController', function($scope, Permission) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 

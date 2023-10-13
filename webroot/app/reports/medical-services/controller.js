@@ -1,4 +1,4 @@
-app.controller('MedicalMonthlyAccomplishmentController', function($scope,Select, MedicalMonthlyAccomplishment) {
+app.controller('MedicalMonthlyAccomplishmentController', function($scope,Select, $window, MedicalMonthlyAccomplishment) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -38,6 +38,14 @@ app.controller('MedicalMonthlyAccomplishmentController', function($scope,Select,
 
   }
   
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
+
   $scope.load(); 
 
   $scope.reload = function(options) {
@@ -168,7 +176,7 @@ app.controller('MedicalMonthlyAccomplishmentController', function($scope,Select,
 
 });
 
-app.controller('MedicalMonthlyConsumptionController', function($scope,Select, MedicalMonthlyConsumption) {
+app.controller('MedicalMonthlyConsumptionController', function($scope,Select, $window, MedicalMonthlyConsumption) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -207,7 +215,15 @@ app.controller('MedicalMonthlyConsumptionController', function($scope,Select, Me
     });
 
   }
-  
+ 
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
+
   $scope.load(); 
 
   $scope.reload = function(options) {
@@ -338,7 +354,7 @@ app.controller('MedicalMonthlyConsumptionController', function($scope,Select, Me
 
 });
 
-app.controller('MedicalDailyTreatmentController', function($scope,Select, DailyTreatment) {
+app.controller('MedicalDailyTreatmentController', function($scope,Select, $window, DailyTreatment) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -377,7 +393,15 @@ app.controller('MedicalDailyTreatmentController', function($scope,Select, DailyT
     });
 
   }
-  
+ 
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
+
   $scope.load(); 
 
   $scope.reload = function(options) {
@@ -522,7 +546,7 @@ app.controller('MedicalDailyTreatmentController', function($scope,Select, DailyT
 
 });
 
-app.controller('PropertyEquimentReportController', function($scope,Select, PropertyEquipmentReport) {
+app.controller('PropertyEquimentReportController', function($scope,Select, $window, PropertyEquipmentReport) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -562,6 +586,15 @@ app.controller('PropertyEquimentReportController', function($scope,Select, Prope
 
   }
   
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
+
   $scope.load(); 
 
   $scope.reload = function(options) {
@@ -707,7 +740,7 @@ app.controller('PropertyEquimentReportController', function($scope,Select, Prope
 
 });
 
-app.controller('ConsultationReportController', function($scope,Select, ConsultationReport) {
+app.controller('ConsultationReportController', function($scope,Select, $window, ConsultationReport) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -746,6 +779,14 @@ app.controller('ConsultationReportController', function($scope,Select, Consultat
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
   
   $scope.load(); 
 
@@ -877,7 +918,7 @@ app.controller('ConsultationReportController', function($scope,Select, Consultat
 
 });
 
-app.controller('ConsultationEmployeeReportController', function($scope,Select, ConsultationEmployeeReport) {
+app.controller('ConsultationEmployeeReportController', function($scope,Select, $window, ConsultationEmployeeReport) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -919,7 +960,15 @@ app.controller('ConsultationEmployeeReportController', function($scope,Select, C
     });
 
   }
-  
+ 
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
+
   $scope.load(); 
 
   $scope.reload = function(options) {
@@ -1050,7 +1099,7 @@ app.controller('ConsultationEmployeeReportController', function($scope,Select, C
 
 });
 
-app.controller('EmployeeFrequencyReportController', function($scope,Select, EmployeeFrequencyReport) {
+app.controller('EmployeeFrequencyReportController', function($scope,Select, $window, EmployeeFrequencyReport) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -1090,6 +1139,14 @@ app.controller('EmployeeFrequencyReportController', function($scope,Select, Empl
     });
 
   }
+  
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
   
   $scope.load(); 
 
