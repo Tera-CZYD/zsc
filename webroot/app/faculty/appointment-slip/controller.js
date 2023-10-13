@@ -1,4 +1,4 @@
-app.controller('AppointmentSlipController', function($scope, AppointmentSlip) {
+app.controller('AppointmentSlipController', function($scope, $window, AppointmentSlip) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -42,6 +42,14 @@ app.controller('AppointmentSlipController', function($scope, AppointmentSlip) {
     $scope.appointment(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 

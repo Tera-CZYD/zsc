@@ -1,4 +1,4 @@
-app.controller('MedicalCertificateController', function($scope, MedicalCertificate) {
+app.controller('MedicalCertificateController', function($scope, $window, MedicalCertificate) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -145,6 +145,14 @@ app.controller('MedicalCertificateController', function($scope, MedicalCertifica
     // $scope.referred(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

@@ -1,4 +1,4 @@
-app.controller('PaymentController', function($scope, Payment) {
+app.controller('PaymentController', function($scope, $window, Payment) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -33,6 +33,14 @@ app.controller('PaymentController', function($scope, Payment) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

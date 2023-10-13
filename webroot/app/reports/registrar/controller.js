@@ -1,4 +1,4 @@
-app.controller('SubjectMasterlistController', function($scope,Select, CollegeProgramReport) {
+app.controller('SubjectMasterlistController', function($scope,Select, $window, CollegeProgramReport) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -73,7 +73,15 @@ app.controller('SubjectMasterlistController', function($scope,Select, CollegePro
     });
 
   }
-  
+ 
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
+
   // $scope.load(); 
 
   $scope.reload = function(options) {
@@ -160,7 +168,7 @@ app.controller('SubjectMasterlistController', function($scope,Select, CollegePro
 
 });
 
-app.controller('EnrollmentListReportController', function($scope, EnrollmentListReport,Select) {
+app.controller('EnrollmentListReportController', function($scope, $window, EnrollmentListReport,Select) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -211,6 +219,14 @@ app.controller('EnrollmentListReportController', function($scope, EnrollmentList
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   // $scope.load();
 
@@ -370,7 +386,7 @@ app.controller('EnrollmentListReportController', function($scope, EnrollmentList
 });
 
 
-app.controller('StudentRankingController', function($scope, StudentRanking,Select) {
+app.controller('StudentRankingController', function($scope, $window, StudentRanking,Select) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -427,6 +443,13 @@ app.controller('StudentRankingController', function($scope, StudentRanking,Selec
 
   }
 
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.getFinal = function(){
 
@@ -604,7 +627,7 @@ app.controller('StudentRankingController', function($scope, StudentRanking,Selec
 
 });
 
-app.controller('PromotedStudentController', function($scope, PromotedStudent,Select) {
+app.controller('PromotedStudentController', function($scope, $window, PromotedStudent,Select) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -661,6 +684,14 @@ app.controller('PromotedStudentController', function($scope, PromotedStudent,Sel
 
   }
 
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.getFinal = function(){
 
@@ -840,7 +871,7 @@ app.controller('PromotedStudentController', function($scope, PromotedStudent,Sel
 });
 
 
-app.controller('StudentBehaviorReportController', function($scope, StudentBehaviorReport,Select) {
+app.controller('StudentBehaviorReportController', function($scope, $window, StudentBehaviorReport,Select) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -897,6 +928,13 @@ app.controller('StudentBehaviorReportController', function($scope, StudentBehavi
 
   }
 
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.getFinal = function(){
 
@@ -1074,7 +1112,7 @@ app.controller('StudentBehaviorReportController', function($scope, StudentBehavi
 
 });
 
-app.controller('AcademicFailuresListController', function($scope,Select, AcademicFailuresList) {
+app.controller('AcademicFailuresListController', function($scope,Select, $window, AcademicFailuresList) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -1181,7 +1219,15 @@ app.controller('AcademicFailuresListController', function($scope,Select, Academi
     });
 
   }
-  
+ 
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
+
   // $scope.load(); 
 
   $scope.reload = function(options) {
@@ -1274,7 +1320,7 @@ app.controller('AcademicFailuresListController', function($scope,Select, Academi
 
 });
 
-app.controller('StudentClubListController', function($scope,Select, StudentClubList) {
+app.controller('StudentClubListController', function($scope,Select, $window, StudentClubList) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -1335,7 +1381,15 @@ app.controller('StudentClubListController', function($scope,Select, StudentClubL
     });
 
   }
-  
+ 
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
+
   // $scope.load(); 
 
   $scope.reload = function(options) {
@@ -1414,7 +1468,7 @@ app.controller('StudentClubListController', function($scope,Select, StudentClubL
 });
 
 
-app.controller('AcademicListController', function($scope,Select, AcademicList) {
+app.controller('AcademicListController', function($scope,Select, $window, AcademicList) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -1504,7 +1558,15 @@ app.controller('AcademicListController', function($scope,Select, AcademicList) {
     });
 
   }
-  
+ 
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
+
   // $scope.load(); 
 
   $scope.reload = function(options) {
@@ -1662,7 +1724,7 @@ app.controller('AcademicListController', function($scope,Select, AcademicList) {
 
 });
 
-app.controller('ListAcademicAwardeeController', function($scope,Select, ListAcademicAwardee) {
+app.controller('ListAcademicAwardeeController', function($scope,Select, $window, ListAcademicAwardee) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -1719,6 +1781,14 @@ app.controller('ListAcademicAwardeeController', function($scope,Select, ListAcad
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.getFinal = function(){
 
@@ -1968,7 +2038,7 @@ app.controller('ListAcademicAwardeeController', function($scope,Select, ListAcad
 
 });
 
-app.controller('GWAController', function($scope,Select, GWA) {
+app.controller('GWAController', function($scope,Select, $window, GWA) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -2029,7 +2099,13 @@ app.controller('GWAController', function($scope,Select, GWA) {
   }
 
 
+  $scope.scrollToTop = function() {
 
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
     $scope.getData = function(){
 
@@ -2248,7 +2324,7 @@ app.controller('GWAController', function($scope,Select, GWA) {
 
 });
 
-app.controller('EnrollmentProfileController', function($scope,Select, EnrollmentProfile) {
+app.controller('EnrollmentProfileController', function($scope,Select, $window, EnrollmentProfile) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -2331,6 +2407,14 @@ app.controller('EnrollmentProfileController', function($scope,Select, Enrollment
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
   
   // $scope.load(); 
 
@@ -2424,7 +2508,7 @@ app.controller('EnrollmentProfileController', function($scope,Select, Enrollment
 
 });
 
-app.controller('TranscriptOfRecordsController', function($scope, TranscriptOfRecord,Select) {
+app.controller('TranscriptOfRecordsController', function($scope, $window, TranscriptOfRecord,Select) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -2507,6 +2591,14 @@ app.controller('TranscriptOfRecordsController', function($scope, TranscriptOfRec
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

@@ -1,4 +1,4 @@
-app.controller('PropertyLogController', function($scope, PropertyLog) {
+app.controller('PropertyLogController', function($scope, $window, PropertyLog) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -175,6 +175,14 @@ app.controller('PropertyLogController', function($scope, PropertyLog) {
     $scope.others(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

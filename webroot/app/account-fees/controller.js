@@ -1,4 +1,4 @@
-app.controller('AccountFeeController', function($scope, AccountFee) {
+app.controller('AccountFeeController', function($scope, $window, AccountFee) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -33,6 +33,14 @@ app.controller('AccountFeeController', function($scope, AccountFee) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

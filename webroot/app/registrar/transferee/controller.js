@@ -1,4 +1,4 @@
-app.controller('TransfereeController', function($scope, Transferee) {
+app.controller('TransfereeController', function($scope, $window, Transferee) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -104,6 +104,14 @@ app.controller('TransfereeController', function($scope, Transferee) {
 
   }
 
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
+
   $scope.load();
   
   $scope.reload = function(options) {
@@ -208,7 +216,7 @@ app.controller('TransfereeController', function($scope, Transferee) {
 
     });
   
-  } 
+  }
 
   $scope.remove = function(data) {
 
@@ -332,9 +340,21 @@ app.controller('TransfereeAddController', function($scope, Transferee, Select, S
 
       $scope.data.Transferee.year_term_id = response.data.Student.year_term_id;
 
+      $scope.data.Transferee.college_id = response.data.Student.college_id;
+
+      $scope.data.Transferee.program_id = response.data.Student.program_id;
+
       $scope.data.Transferee.email = response.data.Student.email;
 
+      $scope.data.Transferee.gender = response.data.Student.gender;
+
+      $scope.data.Transferee.contact_no = response.data.Student.contact_no;
+
+      $scope.data.Transferee.address = response.data.Student.present_address;
+
       $scope.data.Transferee.type = 'Transfer Out';
+
+      $scope.data.Transferee.year_level = response.data.YearLevelTerm.description;
 
     });
 
@@ -486,6 +506,12 @@ app.controller('TransfereeEditController', function($scope, $routeParams, Transf
     TransfereeImage : []
 
   }
+
+  Select.get({ code: 'year-term-list' },function(e){
+
+    $scope.year_terms = e.data;
+
+  });
 
   // load 
 
@@ -653,7 +679,7 @@ app.controller('TransfereeEditController', function($scope, $routeParams, Transf
 
 });
 
-app.controller('AdminTransfereeController', function($scope, Transferee) {
+app.controller('AdminTransfereeController', function($scope, $window, Transferee, TransfereeApprove) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -752,6 +778,14 @@ app.controller('AdminTransfereeController', function($scope, Transferee) {
     // $scope.disapproved(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   
@@ -859,6 +893,46 @@ app.controller('AdminTransfereeController', function($scope, Transferee) {
   
   }
 
+  $scope.approve = function(data) {
+
+    bootbox.confirm('Are you sure you want to approve transferee?', function(c) {
+
+      if (c) {
+
+        TransfereeApprove.get({id : data.id}, function(e) {
+
+          if(e.ok) {
+
+            $.gritter.add({
+
+              title : 'Successful!',
+
+              text: e.msg
+
+            });
+
+            $scope.load();
+
+          }else{
+
+            $.gritter.add({
+
+              title : 'Warning!',
+
+              text: e.msg
+
+            });
+
+          }
+
+        })
+
+      }
+
+    });
+
+  }
+
   $scope.remove = function(data) {
 
     bootbox.confirm('Are you sure you want to delete transferee?', function(c) {
@@ -943,6 +1017,48 @@ app.controller('AdminTransfereeAddController', function($scope, Transferee, Sele
 
   });
 
+  Select.get({ code: 'college-list' }, function(e) {
+
+    $scope.colleges = e.data;
+
+  });
+
+  $scope.getProgram = function(id){
+
+      Select.get({ code: 'application-program-list', college_id : id }, function(e) { 
+
+        $scope.programs = e.data;
+
+      });
+
+  }
+
+  if($scope.data.type == 'Transfer In'){
+
+      $scope.getProgram = function(id){
+
+      Select.get({ code: 'application-program-list', college_id : id }, function(e) { 
+
+        $scope.programs = e.data;
+
+      });
+
+    }
+
+  }else{
+
+    Select.get({ code: 'program-list' }, function(e) { 
+
+        $scope.programs = e.data;
+
+    });
+
+  }
+
+
+
+
+
   $scope.searchStudent = function(options) {
 
     options = typeof options !== 'undefined' ?  options : {};
@@ -985,7 +1101,17 @@ app.controller('AdminTransfereeAddController', function($scope, Transferee, Sele
 
       year_term_id : student.year_term_id,
 
+      college_id : student.college_id,
+
+      program_id : student.program_id,
+
       email : student.email,
+
+      gender : student.gender,
+
+      contact_no : student.contact_no,
+
+      address : student.address,
 
     }; 
 
@@ -1007,7 +1133,17 @@ app.controller('AdminTransfereeAddController', function($scope, Transferee, Sele
 
     $scope.data.Transferee.year_term_id = $scope.student.year_term_id;
 
+    $scope.data.Transferee.college_id = $scope.student.college_id;
+
+    $scope.data.Transferee.program_id = $scope.student.program_id;
+
     $scope.data.Transferee.email = $scope.student.email;
+
+    $scope.data.Transferee.gender = $scope.student.gender;
+
+    $scope.data.Transferee.contact_no = $scope.student.contact_no;
+
+    $scope.data.Transferee.address = $scope.student.address;
 
   }
 
@@ -1026,6 +1162,10 @@ app.controller('AdminTransfereeAddController', function($scope, Transferee, Sele
     $scope.data.Transferee.last_name = null;
 
     $scope.data.Transferee.year_term_id = null;
+
+    $scope.data.Transferee.college_id = null;
+
+    $scope.data.Transferee.program_id = null;
 
     $scope.data.Transferee.email = null;
 
@@ -1229,6 +1369,50 @@ app.controller('AdminTransfereeEditController', function($scope, $routeParams, T
     Transferee : {},
 
     TransfereeImage : []
+
+  }
+
+  Select.get({ code: 'year-term-list' },function(e){
+
+    $scope.year_terms = e.data;
+
+  });
+
+  Select.get({ code: 'college-list' }, function(e) {
+
+    $scope.colleges = e.data;
+
+  });
+
+  $scope.getProgram = function(id){
+
+      Select.get({ code: 'application-program-list', college_id : id }, function(e) { 
+
+        $scope.programs = e.data;
+
+      });
+
+  }
+
+  if($scope.data.type == 'Transfer In'){
+
+      $scope.getProgram = function(id){
+
+      Select.get({ code: 'application-program-list', college_id : id }, function(e) { 
+
+        $scope.programs = e.data;
+
+      });
+
+    }
+
+  }else{
+
+    Select.get({ code: 'program-list' }, function(e) { 
+
+        $scope.programs = e.data;
+
+    });
 
   }
 

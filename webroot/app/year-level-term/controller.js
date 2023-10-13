@@ -1,4 +1,4 @@
-app.controller('YearLevelTermController', function($scope, YearLevelTerm) {
+app.controller('YearLevelTermController', function($scope, $window, YearLevelTerm) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -33,6 +33,14 @@ app.controller('YearLevelTermController', function($scope, YearLevelTerm) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

@@ -1,4 +1,4 @@
-app.controller('BibliographyController', function($scope, Bibliography) {
+app.controller('BibliographyController', function($scope, $window, Bibliography) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -33,6 +33,14 @@ app.controller('BibliographyController', function($scope, Bibliography) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   
@@ -498,7 +506,7 @@ app.controller('BibliographyEditController', function($scope, $routeParams, Bibl
 
 });
 
-app.controller('AdminBibliographyController', function($scope,Select, Bibliography) {
+app.controller('AdminBibliographyController', function($scope,Select, $window, Bibliography) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -533,6 +541,14 @@ app.controller('AdminBibliographyController', function($scope,Select, Bibliograp
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

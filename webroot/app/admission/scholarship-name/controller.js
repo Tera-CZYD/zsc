@@ -1,4 +1,4 @@
-app.controller('ScholarshipNameController', function($scope, ScholarshipName) {
+app.controller('ScholarshipNameController', function($scope, $window, ScholarshipName) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -33,6 +33,14 @@ app.controller('ScholarshipNameController', function($scope, ScholarshipName) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

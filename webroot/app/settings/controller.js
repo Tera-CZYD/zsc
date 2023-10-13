@@ -1,4 +1,4 @@
-app.controller('SettingController', function($scope, Setting,Select){
+app.controller('SettingController', function($scope, $window, Setting,Select){
 
   // load business
 
@@ -31,6 +31,14 @@ app.controller('SettingController', function($scope, Setting,Select){
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 

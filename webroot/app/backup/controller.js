@@ -1,4 +1,4 @@
-app.controller('BackupController', function($scope,Backup,BackupExport ){
+app.controller('BackupController', function($scope, $window, Backup,BackupExport ){
 
   $('.datepicker').datepicker({format: 'yyyy-mm-dd', autoclose: true,today: true,
 
@@ -23,6 +23,14 @@ app.controller('BackupController', function($scope,Backup,BackupExport ){
     });
 
   };
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

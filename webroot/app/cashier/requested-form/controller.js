@@ -1,4 +1,4 @@
-app.controller('RequestedFormPaymentController', function($scope, RequestedFormPayment) {
+app.controller('RequestedFormPaymentController', function($scope, $window, RequestedFormPayment) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -77,6 +77,14 @@ app.controller('RequestedFormPaymentController', function($scope, RequestedFormP
 
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   
@@ -307,6 +315,20 @@ app.controller('RequestedFormPaymentController', function($scope, RequestedFormP
       printTable(base + 'print/requested_form_payment?print=1');
 
     }
+  }
+
+   $scope.printApproved = function(){
+
+    if ($scope.conditionsPrintApproved !== '') {
+    
+      printTable(base + 'print/requested_form_payment?print=1' + $scope.conditionsPrintApproved);
+
+    }else{
+
+      printTable(base + 'print/requested_form_payment?print=1');
+
+    }
+
   }
 
 });

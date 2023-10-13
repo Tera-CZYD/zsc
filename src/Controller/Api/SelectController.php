@@ -705,7 +705,16 @@ class SelectController extends AppController {
         $birthdate = $student['date_of_birth'];
     
         $today = date("Y-m-d");
-        $age = floor((strtotime($today) - strtotime($birthdate)) / 31556926);
+
+        if (!empty($birthdate)) {
+
+          $age = floor((strtotime($today) - strtotime($birthdate)) / 31556926);
+
+        } else {
+
+          $age = 0; 
+
+        }
 
         $datas[] = array(
 
@@ -1487,8 +1496,11 @@ class SelectController extends AppController {
     } else if ($code == 'scholarship-name-list') {
            
       $tmp = $this->ScholarshipNames->find()
+
           ->where(['visible' => 1])
+
           ->order(['id' => 'ASC'])
+          
           ->all();
 
       if(!empty($tmp)){
@@ -2888,23 +2900,37 @@ class SelectController extends AppController {
 
       $student_id = $this->request->getQuery('student_id');
      
-      $tmp = $this->StudentLedgers->find()
+      $tmp = "
 
-        ->where([
+        SELECT 
 
-          'visible' => 1,
+          IFNULL(SUM(StudentLedger.balance),0) - IFNULL(SUM(StudentLedger.payment),0) as balance
 
-          'student_id' => $student_id,
+        FROM  
+       
+          student_ledgers as StudentLedger
 
-          'balance >' => 0,
+        WHERE 
 
-          'status IS' => NULL
+          StudentLedger.visible = true AND 
 
-        ])
+          StudentLedger.student_id = $student_id AND 
 
-      ->count();
+          (StudentLedger.remarks = 'Apartelle/Dormitory Balance' OR StudentLedger.remarks = 'Apartelle/Dormitory')
 
-      if($tmp > 1){
+        GROUP BY 
+
+          StudentLedger.student_id
+
+      ";
+
+      $connection = $this->StudentLedgers->getConnection();
+
+      $result = $connection->execute($tmp)->fetch('assoc');
+
+      if($result){
+
+      if($result['balance'] > 0){
 
         $datas = 0;
 
@@ -2913,6 +2939,11 @@ class SelectController extends AppController {
         $datas = 1;
 
       }
+    }else{
+
+      $datas = 1;
+
+    }
 
     }else if ($code == 'check-student-check-outs') {
 
@@ -3572,7 +3603,15 @@ class SelectController extends AppController {
     
         $today = date("Y-m-d");
 
-        $age = floor((strtotime($today) - strtotime($birthdate)) / 31556926);
+        if (!empty($birthdate)) {
+
+          $age = floor((strtotime($today) - strtotime($birthdate)) / 31556926);
+
+        } else {
+
+          $age = 0; 
+          
+        }
 
         $datas[] = array(
 

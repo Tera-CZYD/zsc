@@ -1,4 +1,4 @@
- app.controller('TorController', function($scope, Tor,Select) {
+ app.controller('TorController', function($scope, $window, Tor,Select) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -69,6 +69,14 @@
   }
 
   $scope.conditionsPrint = '';
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   // $scope.load();
 

@@ -1,4 +1,4 @@
-app.controller('ProspectusController', function($scope, Prospectus,Select) {
+app.controller('ProspectusController', function($scope, $window, Prospectus,Select) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -81,6 +81,14 @@ app.controller('ProspectusController', function($scope, Prospectus,Select) {
   }
 
   $scope.conditionsPrint = '';
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   // $scope.load();
 

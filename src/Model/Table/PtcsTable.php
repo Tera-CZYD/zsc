@@ -20,6 +20,44 @@ class PtcsTable extends Table{
 
   }
 
+    public function getAllPtcPrint($conditions){
+
+    $search = @$conditions['search'];
+
+    $sql = "
+
+      SELECT
+
+        Ptc.*
+
+      FROM
+
+        ptcs as Ptc  
+
+      WHERE
+
+        Ptc.visible = true AND
+
+        (
+
+          Ptc.code LIKE '%$search%'
+
+        )
+ 
+      ORDER BY 
+
+        Ptc.id DESC
+
+    ";
+
+    $query = $this->getConnection()->prepare($sql);
+
+    $query->execute();
+
+    return $query;
+
+  }
+
   public function getAllPtc($conditions, $limit, $page){
 
     $search = @$conditions['search'];

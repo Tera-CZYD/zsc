@@ -1,4 +1,4 @@
-app.controller('PromissoryNoteController', function($scope, PromissoryNote) {
+app.controller('PromissoryNoteController', function($scope, $window, PromissoryNote) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -33,6 +33,14 @@ app.controller('PromissoryNoteController', function($scope, PromissoryNote) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

@@ -1,4 +1,4 @@
-app.controller('BuildingController', function($scope, Building) {
+app.controller('BuildingController', function($scope, $window, Building) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -11,6 +11,12 @@ app.controller('BuildingController', function($scope, Building) {
     todayHighlight: true
 
   });
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
 
   $scope.load = function(options) {
 
@@ -31,6 +37,8 @@ app.controller('BuildingController', function($scope, Building) {
     });
 
   }
+
+  $scope.scrollToTop();
 
   $scope.load();
 

@@ -467,7 +467,7 @@ class ProgramAdvisersController extends AppController {
 
           $assessment_sub['assessment_id'] = $assessment_id;
 
-          $assessment_sub['total'] = $assessment_sub['tuition_fee'] + $assessment_sub['athletics_fee'] + $assessment_sub['cultural_fee'] + $assessment_sub['development_fee'] + $assessment_sub['guidance_fee'] + $assessment_sub['laboratory_fee'] + $assessment_sub['library_fee'] + $assessment_sub['medical_dental_fee'] + $assessment_sub['computer_fee'] + $assessment_sub['jeep_fee'] +  $assessment_sub['assessment_id'];
+          $assessment_sub['total'] = $assessment_sub['tuition_fee'] + $assessment_sub['athletics_fee'] + $assessment_sub['cultural_fee'] + $assessment_sub['development_fee'] + $assessment_sub['guidance_fee'] + $assessment_sub['laboratory_fee'] + $assessment_sub['library_fee'] + $assessment_sub['medical_dental_fee'] + $assessment_sub['computer_fee'] + $assessment_sub['jeep_fee'];
 
           $assessment_data = $this->AssessmentSubs->newEmptyEntity();
        

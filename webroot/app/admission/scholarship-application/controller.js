@@ -1,4 +1,4 @@
-app.controller("ScholarshipApplicationController", function ($scope, ScholarshipApplication) {
+app.controller("ScholarshipApplicationController", function ($scope, $window, ScholarshipApplication) {
   
   $scope.today = Date.parse("today").toString("MM/dd/yyyy");
 
@@ -133,6 +133,14 @@ app.controller("ScholarshipApplicationController", function ($scope, Scholarship
     $scope.disapproved(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 
@@ -808,7 +816,7 @@ app.controller("ScholarshipApplicationEditController", function ($scope, $routeP
 
 });
 
-app.controller("AdminScholarshipApplicationController", function ($scope, ScholarshipApplication,ScholarshipApplicationViewGrade,Select,ScholarshipApplicationRequestData) {
+app.controller("AdminScholarshipApplicationController", function ($scope, $window, ScholarshipApplication,ScholarshipApplicationViewGrade,Select,ScholarshipApplicationRequestData) {
   
   $scope.today = Date.parse("today").toString("MM/dd/yyyy");
 
@@ -935,6 +943,14 @@ app.controller("AdminScholarshipApplicationController", function ($scope, Schola
     $scope.disapproved(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 

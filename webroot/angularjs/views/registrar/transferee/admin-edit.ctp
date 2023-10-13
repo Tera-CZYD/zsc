@@ -33,7 +33,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label> TYPE <i class="required">*</i></label>
-                <select class="form-control" autocomplete="false" ng-model="data.Transferee.type" ng-change="clearData()" data-validation-engine="validate[required]">
+                <select class="form-control" autocomplete="false" disabled ng-model="data.Transferee.type" ng-change="clearData()" data-validation-engine="validate[required]">
                   <option value=""></option>
                   <option value="Transfer In">Transfer In</option>
                   <option value="Transfer Out">Transfer Out</option>
@@ -85,7 +85,6 @@
               </div>
             </div>
             
-            <div class="clearfix"></div>
             <div class="col-md-6">
               <div class="form-group">
                 <label> YEAR TERM </label>
@@ -93,7 +92,26 @@
                   <option value=""></option>
                 </select>
               </div>
-            </div> 
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> College </label>
+                <select selectize ng-model="data.Transferee.college_id" ng-change="getProgram(data.Transferee.college_id)" ng-options="opt.id as opt.value for opt in colleges">
+                  <option value=""></option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label> PROGRAM </label>
+                <select selectize ng-model="data.Transferee.program_id" ng-options="opt.id as opt.value for opt in programs">
+                  <option value=""></option>
+                </select>
+              </div>
+            </div>
+
 
             <div class="col-md-6">
               <div class="form-group">

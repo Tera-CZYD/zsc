@@ -24,7 +24,7 @@
                   <div class="row">
                     <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                         <a href="#/registrar/transferee/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> APPLY</a>
-                      <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a>
+                      <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
                         <button ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
                       <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                     </div>
@@ -47,6 +47,7 @@
                           <th class="text-center"> STUDENT ID </th>
                           <th class="text-center"> STUDENT NAME </th>
                           <th class="text-center"> YEAR LEVEL </th>
+                          <th class="text-center"> PROGRAM </th> 
                           <th class="text-center"> EMAIL </th>
                           <th class="text-center"> APPLICATION DATE </th>
                           <th class="w90px"></th>
@@ -58,6 +59,7 @@
                           <td class="text-center">{{ data.student_no }}</td>
                           <td class="text-center">{{ data.full_name }}</td>
                           <td class="text-center">{{ data.year_level }}</td>
+                          <td class="text-center">{{ data.program }}</td>
                           <td class="text-center">{{ data.email }}</td>
                           <td class="text-center">{{ data.date }}</td>
                           <td>
@@ -289,7 +291,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="advance-search-modal">
+<!-- <div class="modal fade" id="advance-search-modal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -356,11 +358,11 @@
         </div>
       </div>
       <div class="modal-footer">
-        <!-- <div class="btn-group btn-group-sm pull-right btn-min"> -->
+        <div class="btn-group btn-group-sm pull-right btn-min"> 
           <button type="button" class="btn btn-danger btn-sm btn-min" data-dismiss="modal"> CANCEL</button>
           <button type="button" class="btn btn-primary btn-sm btn-min" ng-click="searchFilter(search)"> SEARCH</button>
-        <!-- </div>  -->
+         </div>  
       </div>
-    </div><!-- modal-content -->
-  </div><!-- modal-dialog -->
-</div>
+    </div>
+  </div>
+</div> -->

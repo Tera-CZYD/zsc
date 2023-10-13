@@ -1,4 +1,4 @@
-app.controller('SpecializationController', function($scope, Specialization) {
+app.controller('SpecializationController', function($scope, $window, Specialization) {
 
 
 
@@ -64,7 +64,13 @@ app.controller('SpecializationController', function($scope, Specialization) {
 
   }
 
+  $scope.scrollToTop = function() {
 
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 

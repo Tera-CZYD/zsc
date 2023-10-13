@@ -1,4 +1,4 @@
-app.controller('ListRequestedFormController', function($scope,Select, ListRequestedForm) {
+app.controller('ListRequestedFormController', function($scope,Select, $window, ListRequestedForm) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -38,6 +38,14 @@ app.controller('ListRequestedFormController', function($scope,Select, ListReques
 
   }
   
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
+
   $scope.load(); 
 
   $scope.reload = function(options) {
@@ -185,7 +193,7 @@ app.controller('ListRequestedFormController', function($scope,Select, ListReques
 
 });
 
-app.controller('GcoEvaluationListController', function($scope,Select, GcoEvaluationList) {
+app.controller('GcoEvaluationListController', function($scope,Select, $window, GcoEvaluationList) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -274,6 +282,14 @@ app.controller('GcoEvaluationListController', function($scope,Select, GcoEvaluat
     });
 
   }
+ 
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
   
   $scope.load(); 
 

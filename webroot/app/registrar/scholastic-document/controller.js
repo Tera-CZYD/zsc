@@ -1,4 +1,4 @@
-app.controller("ScholasticDocumentController", function ($scope, ScholasticDocument) {
+app.controller("ScholasticDocumentController", function ($scope, $window, ScholasticDocument) {
 
   $scope.today = Date.parse("today").toString("MM/dd/yyyy");
 
@@ -25,6 +25,14 @@ app.controller("ScholasticDocumentController", function ($scope, ScholasticDocum
       }
     });
   };
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 

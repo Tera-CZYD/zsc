@@ -162,3 +162,37 @@
     white-space: nowrap;
   }
 </style>
+
+
+<div class="modal fade" id="scholarship">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">SELECT SCHOLARSHIP</h5>
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+
+              <div class="form-group">
+                <label> PROGRAM <i class="required">*</i></label>
+                <select selectize ng-model="data.Assessment.scholarship_id" ng-options="opt.id as opt.value for opt in scholarships" ng-change="getCourse(data.Transferee.scholarship)" data-validation-engine="validate[required]">
+                  <option value=""></option>
+                </select>
+
+            </div>
+          </div>
+        </div>  
+      </div> 
+
+      <div class="modal-footer">
+        <div class="pull-right">
+          <button type="button" class="btn btn-danger btn-sm btn-min" data-dismiss="modal"><i class="fa fa-close"></i> CLOSE</button>
+          <button type="button" class="btn btn-primary btn-sm btn-min" ng-disabled="!data.Assessment.scholarship_id" ng-click="scholarship(data.Assessment)" data-dismiss="modal"><i class="fa fa-check"></i> OK</button>
+        </div> 
+        
+      </div>
+    </div>  
+  </div>
+</div>

@@ -1,4 +1,4 @@
-app.controller('IllnessRecommendationController', function($scope, IllnessRecommendation) {
+app.controller('IllnessRecommendationController', function($scope, $window, IllnessRecommendation) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -33,6 +33,14 @@ app.controller('IllnessRecommendationController', function($scope, IllnessRecomm
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

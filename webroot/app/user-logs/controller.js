@@ -1,4 +1,4 @@
-app.controller('UserLogController', function($scope, UserLog, Select) {
+app.controller('UserLogController', function($scope, $window, UserLog, Select) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -37,6 +37,14 @@ app.controller('UserLogController', function($scope, UserLog, Select) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 

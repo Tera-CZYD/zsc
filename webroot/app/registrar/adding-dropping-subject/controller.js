@@ -1,4 +1,4 @@
-app.controller('AddingDroppingSubjectController', function($scope, AddingDroppingSubject) {
+app.controller('AddingDroppingSubjectController', function($scope, $window, AddingDroppingSubject) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -105,6 +105,14 @@ app.controller('AddingDroppingSubjectController', function($scope, AddingDroppin
     $scope.disapproved(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 
@@ -974,7 +982,7 @@ app.controller('AddingDroppingSubjectEditController', function($scope, $routePar
 
 });
 
-app.controller('AdminAddingDroppingSubjectController', function($scope, AddingDroppingSubject) {
+app.controller('AdminAddingDroppingSubjectController', function($scope, $window, AddingDroppingSubject) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -1077,6 +1085,14 @@ app.controller('AdminAddingDroppingSubjectController', function($scope, AddingDr
     $scope.disapproved(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   
