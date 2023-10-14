@@ -233,7 +233,10 @@
               <div class="col-md-12">
                 <div class="row">
                   <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1b969585cfe2ee7ab2d2bbbae7b1e7ced4c7a8dd
                     <button ng-click="printApproved()" class="btn btn-print  btn-min"><i class="fa fa-print"></i>PRINT</button>
                     <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
                   </div>

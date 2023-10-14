@@ -175,7 +175,7 @@ class RequestFormsTable extends Table{
 
     $date = @$conditions['date'];
 
-        $status = @$conditions['status'];
+    $status = @$conditions['status'];
 
     $studentId = @$conditions['studentId'];
 
