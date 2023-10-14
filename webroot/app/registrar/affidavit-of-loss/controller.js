@@ -352,11 +352,11 @@ app.controller('AffidavitOfLossController', function($scope, $window, AffidavitO
   
     if ($scope.conditionsPrint !== '') {
 
-      printTable(base + 'print/request_form?print=1' + $scope.conditionsPrintApproved);
+      printTable(base + 'print/affidavit_of_loss?print=1' + $scope.conditionsPrintApproved);
 
     }else{
 
-      printTable(base + 'print/request_form?print=1');
+      printTable(base + 'print/affidavit_of_loss?print=1');
 
     }
   }
@@ -367,11 +367,11 @@ app.controller('AffidavitOfLossController', function($scope, $window, AffidavitO
   
     if ($scope.conditionsPrint !== '') {
 
-      printTable(base + 'print/request_form?print=1' + $scope.conditionsPrintDisapproved);
+      printTable(base + 'print/affidavit_of_loss?print=1' + $scope.conditionsPrintDisapproved);
 
     }else{
 
-      printTable(base + 'print/request_form?print=1');
+      printTable(base + 'print/affidavit_of_loss?print=1');
 
     }   
   }

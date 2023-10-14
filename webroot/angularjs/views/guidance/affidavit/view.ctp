@@ -62,7 +62,7 @@
                 </tr>
                 <tr>
                   <th class="text-right"> YEAR : </th>
-                  <td class="italic">{{ data.Affidavit.year }}</td>
+                  <td class="italic">{{ data.YearLevelTerm.year }}</td>
                 </tr>
                 <tr>
                   <th class="text-right"> OR NO. : </th>

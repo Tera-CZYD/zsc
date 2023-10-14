@@ -158,4 +158,3 @@
     </div>
   </div>
 </div>
-<?php echo $this->element('modals/advance-search/advance-search-date') ?>

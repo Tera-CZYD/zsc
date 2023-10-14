@@ -102,9 +102,9 @@
                 <a href="#/medical-services/student-log/student-index" onclick="change('student-log')">Log</a>
               </li>  -->
               
-              <li class="nav-link-side nav-medical-consent">
+<!--               <li class="nav-link-side nav-medical-consent">
                 <a href="#/medical-services/medical-consent" onclick="change('medical-consent')">Medical Consent</a>
-              </li>
+              </li> -->
 
               <li class="nav-link-side nav-consultation">
                 <a href="#/medical-services/consultation/student-index" onclick="change('consultation')">Consultation</a>

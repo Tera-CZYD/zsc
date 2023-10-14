@@ -64,10 +64,10 @@
           </div>
          </form>
         <div class="clearfix"></div><hr>
-        <div class="row">
+        <div class="row"> 
           <div class="col-md-12">
             <div class="pull-right">
-              <button class="btn btn-primary btn-min" id = "save" ng-click="save();"><i class="fa fa-save"></i> SAVE </button>
+              <button class="btn btn-primary btn-min" id = "update" ng-click="update();"><i class="fa fa-save"></i> UPDATE </button>
             </div>
           </div>
         </div>

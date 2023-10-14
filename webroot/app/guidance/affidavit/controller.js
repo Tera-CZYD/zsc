@@ -241,7 +241,7 @@ app.controller('AffidavitAddController', function($scope, Affidavit, Select) {
 
   Select.get({ code: 'year-term-list' },function(e){
 
-    $scope.year_terms = e.data;
+    $scope.year_terms = e.data; 
 
   });
 
@@ -459,6 +459,12 @@ app.controller('AffidavitEditController', function($scope, $routeParams, Affidav
   Select.get({code: 'college-program-list-all'}, function(e) {
 
     $scope.college_program = e.data;
+
+  });
+
+  Select.get({ code: 'year-term-list' },function(e){
+
+    $scope.year_terms = e.data; 
 
   });
 
