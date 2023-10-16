@@ -6,15 +6,21 @@ use Cake\ORM\Table;
 use Cake\ORM\Query;
 use Cake\Database\StatementInterface;
 
-class YearLevelTermsTable extends Table{
+class AcademicTermsTable extends Table{
 
   public function initialize(array $config): void{
 
     $this->addBehavior('Timestamp');
 
+    $this->belongsTo('YearLevelTerms', [
+
+          'foreignKey' => 'year_term_id',
+
+      ]);
+
   }
 
-  public function getAllYearLevelTerm($conditions, $limit, $page){
+  public function getAllAcademicTerm($conditions, $limit, $page){
 
     $search = @$conditions['search'];
 
@@ -24,34 +30,34 @@ class YearLevelTermsTable extends Table{
 
       SELECT
 
-        YearLevelTerm.*
+        AcademicTerm.*,
+
+        YearLevelTerm.description
 
       FROM
 
-        year_level_terms as YearLevelTerm
+        academic_terms as AcademicTerm LEFT JOIN
+
+        year_level_terms as YearLevelTerm ON AcademicTerm.year_term_id = YearLevelTerm.id
 
       WHERE
 
-        YearLevelTerm.visible = true AND 
+        AcademicTerm.visible = true AND 
 
         (
 
 
-          YearLevelTerm.description         LIKE  '%$search%' OR
-
-          YearLevelTerm.year         LIKE  '%$search%' OR
-
-          YearLevelTerm.semester         LIKE  '%$search%'
+          AcademicTerm.school_year_start     LIKE  '%$search%'
 
         )
 
       GROUP BY
 
-        YearLevelTerm.id
+        AcademicTerm.id
 
       ORDER BY 
 
-        YearLevelTerm.description ASC
+        AcademicTerm.school_year_start ASC
 
       LIMIT
 
@@ -77,7 +83,7 @@ class YearLevelTermsTable extends Table{
 
     $limit = $options['limit'];
 
-    $result = $this->getAllYearLevelTerm($conditions, $limit, $page)->fetchAll('assoc');
+    $result = $this->getAllAcademicTerm($conditions, $limit, $page)->fetchAll('assoc');
 
     $paginator = [
 
@@ -117,19 +123,17 @@ class YearLevelTermsTable extends Table{
 
        FROM
 
-        year_level_terms as YearLevelTerm 
+        academic_terms as AcademicTerm LEFT JOIN
+
+        year_level_terms as YearLevelTerm ON AcademicTerm.year_term_id = YearLevelTerm.id
 
       WHERE
 
-        YearLevelTerm.visible = true AND 
+        AcademicTerm.visible = true AND 
 
         (
 
-          YearLevelTerm.description         LIKE  '%$search%' OR
-
-          YearLevelTerm.year         LIKE  '%$search%' OR
-
-          YearLevelTerm.semester         LIKE  '%$search%'
+          AcademicTerm.school_year_start         LIKE  '%$search%'
 
         )
 

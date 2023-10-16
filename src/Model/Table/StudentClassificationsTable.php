@@ -6,7 +6,7 @@ use Cake\ORM\Table;
 use Cake\ORM\Query;
 use Cake\Database\StatementInterface;
 
-class YearLevelTermsTable extends Table{
+class StudentClassificationsTable extends Table{
 
   public function initialize(array $config): void{
 
@@ -14,7 +14,7 @@ class YearLevelTermsTable extends Table{
 
   }
 
-  public function getAllYearLevelTerm($conditions, $limit, $page){
+  public function getAllStudentClassification($conditions, $limit, $page){
 
     $search = @$conditions['search'];
 
@@ -24,34 +24,30 @@ class YearLevelTermsTable extends Table{
 
       SELECT
 
-        YearLevelTerm.*
+        StudentClassification.*
 
       FROM
 
-        year_level_terms as YearLevelTerm
+        student_classifications as StudentClassification
 
       WHERE
 
-        YearLevelTerm.visible = true AND 
+        StudentClassification.visible = true AND 
 
         (
 
 
-          YearLevelTerm.description         LIKE  '%$search%' OR
-
-          YearLevelTerm.year         LIKE  '%$search%' OR
-
-          YearLevelTerm.semester         LIKE  '%$search%'
+          StudentClassification.classification LIKE  '%$search%'
 
         )
 
       GROUP BY
 
-        YearLevelTerm.id
+        StudentClassification.id
 
       ORDER BY 
 
-        YearLevelTerm.description ASC
+        StudentClassification.classification ASC
 
       LIMIT
 
@@ -77,7 +73,7 @@ class YearLevelTermsTable extends Table{
 
     $limit = $options['limit'];
 
-    $result = $this->getAllYearLevelTerm($conditions, $limit, $page)->fetchAll('assoc');
+    $result = $this->getAllStudentClassification($conditions, $limit, $page)->fetchAll('assoc');
 
     $paginator = [
 
@@ -107,8 +103,6 @@ class YearLevelTermsTable extends Table{
 
     $search = @$conditions['search'];
 
-    // $college_id = @$conditions['college_id'];
-
     $sql = "
 
       SELECT
@@ -117,19 +111,15 @@ class YearLevelTermsTable extends Table{
 
        FROM
 
-        year_level_terms as YearLevelTerm 
+        student_classifications as StudentClassification 
 
       WHERE
 
-        YearLevelTerm.visible = true AND 
+        StudentClassification.visible = true AND 
 
         (
 
-          YearLevelTerm.description         LIKE  '%$search%' OR
-
-          YearLevelTerm.year         LIKE  '%$search%' OR
-
-          YearLevelTerm.semester         LIKE  '%$search%'
+          StudentClassification.classification LIKE  '%$search%'
 
         )
 

@@ -6,7 +6,7 @@ use Cake\ORM\Table;
 use Cake\ORM\Query;
 use Cake\Database\StatementInterface;
 
-class YearLevelTermsTable extends Table{
+class AdmissionStatusesTable extends Table{
 
   public function initialize(array $config): void{
 
@@ -14,9 +14,11 @@ class YearLevelTermsTable extends Table{
 
   }
 
-  public function getAllYearLevelTerm($conditions, $limit, $page){
+  public function getAllAdmissionStatus($conditions, $limit, $page){
 
     $search = @$conditions['search'];
+
+    // $college_id = @$conditions['college_id'];
 
     $offset = ($page - 1) * $limit;
 
@@ -24,34 +26,30 @@ class YearLevelTermsTable extends Table{
 
       SELECT
 
-        YearLevelTerm.*
+        AdmissionStatus.*
 
       FROM
 
-        year_level_terms as YearLevelTerm
+        admission_statuses as AdmissionStatus
 
       WHERE
 
-        YearLevelTerm.visible = true AND 
+        AdmissionStatus.visible = true AND 
 
         (
 
 
-          YearLevelTerm.description         LIKE  '%$search%' OR
-
-          YearLevelTerm.year         LIKE  '%$search%' OR
-
-          YearLevelTerm.semester         LIKE  '%$search%'
+          AdmissionStatus.status         LIKE  '%$search%'
 
         )
 
       GROUP BY
 
-        YearLevelTerm.id
+        AdmissionStatus.id
 
       ORDER BY 
 
-        YearLevelTerm.description ASC
+        AdmissionStatus.status ASC
 
       LIMIT
 
@@ -77,7 +75,7 @@ class YearLevelTermsTable extends Table{
 
     $limit = $options['limit'];
 
-    $result = $this->getAllYearLevelTerm($conditions, $limit, $page)->fetchAll('assoc');
+    $result = $this->getAllAdmissionStatus($conditions, $limit, $page)->fetchAll('assoc');
 
     $paginator = [
 
@@ -117,19 +115,15 @@ class YearLevelTermsTable extends Table{
 
        FROM
 
-        year_level_terms as YearLevelTerm 
+        admission_statuses as AdmissionStatus 
 
       WHERE
 
-        YearLevelTerm.visible = true AND 
+        AdmissionStatus.visible = true AND 
 
         (
 
-          YearLevelTerm.description         LIKE  '%$search%' OR
-
-          YearLevelTerm.year         LIKE  '%$search%' OR
-
-          YearLevelTerm.semester         LIKE  '%$search%'
+          AdmissionStatus.status         LIKE  '%$search%'
 
         )
 

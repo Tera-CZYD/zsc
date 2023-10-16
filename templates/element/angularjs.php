@@ -294,6 +294,14 @@
 
     'sections',
 
+    'academic_terms',
+
+    'admission-statuses',
+
+    'student-classifications',
+
+    'year-level-terms',
+
     'prospectus',
 
     'student-profile',
