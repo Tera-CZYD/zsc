@@ -275,7 +275,7 @@
 
               <?php if (hasAccess('participant evaluation/index', $currentUser)): ?>
                 <li class="nav-link-side nav-participant-evaluation">
-                  <a href="#/guidance/participant-evaluation" onclick="change('participant-evaluation')">Participant Evaluation Activity</a>
+                  <a href="#/guidance/admin-participant-evaluation" onclick="change('participant-evaluation')">Participant Evaluation Activity</a>
                 </li>
               <?php endif ?>
                <?php if (hasAccess('student exit/index', $currentUser)): ?>
@@ -543,8 +543,8 @@
           <?php endif ?>
 
           <?php if (hasAccess('curriculum/menu', $currentUser)): ?>
-            <li class="nav-link-side nav-class-schedule nav-colleges nav-curriculum nav-program nav-prospectus nav-room nav-building nav-course nav-sections nav-block-section nav-college nav-major nav-curriculum-student-profile"><a><i class="fa fa-industry"></i> Curriculum </a>
-              <ul class="nav child_menu_bot collapse collapse-class-schedule collapse-colleges collapse-curriculum collapse-prospectus collapse-program collapse-room collapse-building collapse-course collapse-sections collapse-block-section collapse-college collapse-major collapse-curriculum-student-profile">
+            <li class="nav-link-side nav-class-schedule nav-colleges nav-curriculum nav-program nav-prospectus nav-room nav-building nav-course nav-sections nav-block-section nav-college nav-major nav-curriculum-student-profile nav-academic-term nav-year-level-term"><a><i class="fa fa-industry"></i> Curriculum </a>
+              <ul class="nav child_menu_bot collapse collapse-class-schedule collapse-colleges collapse-curriculum collapse-prospectus collapse-program collapse-room collapse-building collapse-course collapse-sections collapse-block-section collapse-college collapse-major collapse-curriculum-student-profile collapse-academic-term collapse-year-level-term">
 
                 <?php if (hasAccess('curriculum student profile/index', $currentUser)): ?>
                 <li class="nav-link-side nav-curriculum-student-profile">
@@ -598,6 +598,20 @@
               <?php endif ?>
               <?php if (hasAccess('major/index', $currentUser)): ?>
                 <li class="nav-link-side nav-major"> <a href="#/major" onclick="change('major')"> Major </a></li>
+              <?php endif ?>
+              <?php if (hasAccess('academic term management/index', $currentUser)): ?>
+                <li class="nav-link-side nav-academic-term"><a href="#/academic-terms" onclick="change('academic-term')"> Academic Terms </a></li>
+              <?php endif ?>
+              <?php if (hasAccess('year level term management/index', $currentUser)): ?>
+                <li class="nav-link-side nav-year-level-term"><a href="#/year-level-terms" onclick="change('year-level-term')"> Year Level Terms </a></li>
+              <?php endif ?>
+
+              <?php if (hasAccess('admission status management/index', $currentUser)): ?>
+                <li class="nav-link-side nav-admission-status"><a href="#/admission-statuses" onclick="change('admission-status')"> Admission Statuses </a></li>
+              <?php endif ?>
+
+              <?php if (hasAccess('student classification management/index', $currentUser)): ?>
+                <li class="nav-link-side nav-student-classification"><a href="#/student-classifications" onclick="change('student-classifications')"> Student Classfifications </a></li>
               <?php endif ?>
               </ul>
             </li>

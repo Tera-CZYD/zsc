@@ -82,6 +82,8 @@ app.controller('GcoEvaluationController', function($scope, $window, GcoEvaluatio
 
   }
 
+  $scope.selectedFilter = 'date';
+
   $scope.changeFilter = function(type){
 
     $scope.search = {};

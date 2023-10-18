@@ -112,7 +112,7 @@ class AffidavitsController extends AppController {
 
           'program'       => $data['name'],
 
-          'year'          => $data['year'],
+          'year'          => $data['year_level'],
 
       );
 
@@ -220,7 +220,13 @@ class AffidavitsController extends AppController {
 
               'conditions' => ['CollegePrograms.visible' => 1],
 
-            ]
+            ],
+
+        'YearLevelTerms' => [
+        
+          'conditions' => ['YearLevelTerms.visible' => 1]
+
+        ]    
 
         ])
 
@@ -238,11 +244,15 @@ class AffidavitsController extends AppController {
 
       unset($Affidavit['CollegeProgram']);
 
+      unset($Affidavit['YearLevelTerm']);
+
       $data = [
 
         'Affidavit' => $Affidavit,
 
         'CollegeProgram'  => $data['CollegeProgram'],
+
+        'YearLevelTerm'  => $data['YearLevelTerm'],
 
       ];
 

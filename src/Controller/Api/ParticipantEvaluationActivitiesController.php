@@ -42,6 +42,20 @@ class ParticipantEvaluationActivitiesController extends AppController {
 
     }
 
+    $conditions['studentId'] = '';
+
+    if ($this->request->getQuery('per_student')) {
+
+      $per_student = $this->request->getQuery('per_student');
+      
+      $studentId = $this->Auth->user('studentId');
+
+      $conditions['studentId'] = "AND ParticipantEvaluationActivity.student_id = $studentId";
+
+      $conditionsPrint .= '&per_student='.$per_student;
+
+    }
+
     $limit = 25;
 
     $tmpData = $this->ParticipantEvaluationActivities->paginate($this->ParticipantEvaluationActivities->getAllParticipantEvaluationActivity($conditions, $limit, $page), [
@@ -115,7 +129,11 @@ class ParticipantEvaluationActivitiesController extends AppController {
 
     $requestData = $this->request->getData('ParticipantEvaluationActivity');
 
+    $id = $this->Auth->user('studentId');
+
     $requestData['date'] = isset($requestData['date']) ? date('Y-m-d', strtotime($requestData['date'])) : null;
+
+    $requestData['student_id'] = $id;
 
     $data = $this->ParticipantEvaluationActivities->newEmptyEntity();
    
@@ -245,7 +263,11 @@ class ParticipantEvaluationActivitiesController extends AppController {
 
     $requestData = $this->getRequest()->getData('ParticipantEvaluationActivity');
 
-    $requestData['date'] = isset($requestData['date']) ? date('Y-m-d', strtotime($requestData['date'])) : NULL;
+    $id = $this->Auth->user('studentId');
+
+    $requestData['date'] = isset($requestData['date']) ? date('Y-m-d', strtotime($requestData['date'])) : null;
+
+    $requestData['student_id'] = $id;
 
     $this->ParticipantEvaluationActivities->patchEntity($data, $requestData); 
 

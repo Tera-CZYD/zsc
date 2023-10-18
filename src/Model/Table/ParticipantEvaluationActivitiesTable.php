@@ -29,6 +29,8 @@ class ParticipantEvaluationActivitiesTable extends Table
 
     $date = @$conditions['date'];
 
+    $studentId = @$conditions['studentId'];
+
     $sql = "
 
       SELECT 
@@ -45,7 +47,7 @@ class ParticipantEvaluationActivitiesTable extends Table
 
     WHERE 
 
-      ParticipantEvaluationActivity.visible = true AND 
+      ParticipantEvaluationActivity.visible = true $search $date $studentId AND 
 
       (
 
@@ -81,6 +83,8 @@ class ParticipantEvaluationActivitiesTable extends Table
 
     $date = @$conditions['date'];
 
+    $studentId = @$conditions['studentId'];
+
     $offset = ($page - 1) * $limit;
 
     $sql = "
@@ -99,7 +103,7 @@ class ParticipantEvaluationActivitiesTable extends Table
 
     WHERE 
 
-      ParticipantEvaluationActivity.visible = true AND 
+      ParticipantEvaluationActivity.visible = true $studentId $search $date AND 
 
       (
 
@@ -179,6 +183,8 @@ class ParticipantEvaluationActivitiesTable extends Table
 
     $date = @$conditions['date'];
 
+    $studentId = @$conditions['studentId'];
+
     $sql = "
 
       SELECT
@@ -193,7 +199,7 @@ class ParticipantEvaluationActivitiesTable extends Table
 
     WHERE 
 
-      ParticipantEvaluationActivity.visible = true AND 
+      ParticipantEvaluationActivity.visible = true $search $date $studentId AND 
 
       (
 

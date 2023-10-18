@@ -114,6 +114,14 @@
 
       $routes->resources('Curriculums');
 
+      $routes->resources('AcademicTerms');
+
+      $routes->resources('StudentClassifications');
+
+      $routes->resources('AdmissionStatuses');
+
+      $routes->resources('YearLevelTerms');
+
       $routes->resources('StudentApplications');
 
       $routes->resources('StudentApplicationImages');

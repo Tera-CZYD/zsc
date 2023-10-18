@@ -29,6 +29,14 @@ class AffidavitsTable extends Table
 
     ]);
 
+    $this->belongsTo('YearLevelTerms', [
+
+      'foreignKey' => 'year_term_id',
+
+      'propertyName' => 'YearLevelTerm'
+
+    ]);
+
   }
 
   public function getAllAffidavitPrint($conditions){
@@ -43,13 +51,17 @@ class AffidavitsTable extends Table
 
         Affidavit.*,
 
-        CollegeProgram.name
+        CollegeProgram.name,
+
+        YearLevelTerm.year as year_level
 
       FROM
 
         affidavits as Affidavit LEFT JOIN
 
-        college_programs as CollegeProgram ON Affidavit.program_id = CollegeProgram.id 
+        college_programs as CollegeProgram ON Affidavit.program_id = CollegeProgram.id LEFT JOIN
+
+        year_level_terms as YearLevelTerm ON Affidavit.year_term_id = YearLevelTerm.id
 
       WHERE
 
@@ -95,13 +107,17 @@ class AffidavitsTable extends Table
 
         Affidavit.*,
 
-        CollegeProgram.name
+        CollegeProgram.name,
+
+        YearLevelTerm.year as year_level
 
       FROM
 
         affidavits as Affidavit LEFT JOIN
 
-        college_programs as CollegeProgram ON Affidavit.program_id = CollegeProgram.id 
+        college_programs as CollegeProgram ON Affidavit.program_id = CollegeProgram.id LEFT JOIN
+
+        year_level_terms as YearLevelTerm ON Affidavit.year_term_id = YearLevelTerm.id
 
       WHERE
 
@@ -193,7 +209,9 @@ class AffidavitsTable extends Table
 
         affidavits as Affidavit LEFT JOIN
 
-        college_programs as CollegeProgram ON Affidavit.program_id = CollegeProgram.id 
+        college_programs as CollegeProgram ON Affidavit.program_id = CollegeProgram.id LEFT JOIN
+
+        year_level_terms as YearLevelTerm ON Affidavit.year_term_id = YearLevelTerm.id
 
       WHERE
 

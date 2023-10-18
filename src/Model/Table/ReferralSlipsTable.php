@@ -15,8 +15,6 @@ class ReferralSlipsTable extends Table
 
       'foreignKey' => 'course_id',
 
-      'propertyName' => 'CollegeProgram'
-
     ]);
 
     $this->belongsTo('Students', [
@@ -24,6 +22,12 @@ class ReferralSlipsTable extends Table
       'foreignKey' => 'student_id',
 
       'propertyName' => 'Student'
+
+    ]);
+
+    $this->belongsTo('YearLevelTerms', [
+
+      'foreignKey' => 'year_term_id'
 
     ]);
 
@@ -46,7 +50,7 @@ class ReferralSlipsTable extends Table
 
         ReferralSlip.remarks,
 
-        ReferralSlip.year,
+        YearLevelTerm.year,
 
         CollegeProgram.name,
 
@@ -58,7 +62,9 @@ class ReferralSlipsTable extends Table
 
         college_programs as CollegeProgram ON ReferralSlip.course_id = CollegeProgram.id LEFT JOIN
 
-        students as Student ON ReferralSlip.student_id = Student.id
+        students as Student ON ReferralSlip.student_id = Student.id LEFT JOIN
+
+        year_level_terms as YearLevelTerm ON ReferralSlip.year_term_id = YearLevelTerm.id
 
 
       WHERE
@@ -111,7 +117,7 @@ class ReferralSlipsTable extends Table
 
         ReferralSlip.remarks,
 
-        ReferralSlip.year,
+        YearLevelTerm.year,
 
         CollegeProgram.name,
 
@@ -123,7 +129,9 @@ class ReferralSlipsTable extends Table
 
         college_programs as CollegeProgram ON ReferralSlip.course_id = CollegeProgram.id LEFT JOIN
 
-        students as Student ON ReferralSlip.student_id = Student.id
+        students as Student ON ReferralSlip.student_id = Student.id LEFT JOIN
+
+        year_level_terms as YearLevelTerm ON ReferralSlip.year_term_id = YearLevelTerm.id
 
 
       WHERE
@@ -221,7 +229,9 @@ class ReferralSlipsTable extends Table
 
         college_programs as CollegeProgram ON ReferralSlip.course_id = CollegeProgram.id LEFT JOIN
 
-        students as Student ON ReferralSlip.student_id = Student.id
+        students as Student ON ReferralSlip.student_id = Student.id LEFT JOIN
+
+        year_level_terms as YearLevelTerm ON ReferralSlip.year_term_id = YearLevelTerm.id
 
 
       WHERE
