@@ -19,6 +19,8 @@ class StudentSchedulesController extends AppController {
 
     $this->StudentEnrolledSchedules = TableRegistry::getTableLocator()->get('StudentEnrolledSchedules');
 
+    $this->Students = TableRegistry::getTableLocator()->get('Students');
+
   }
 
   public function index(){   
@@ -47,17 +49,19 @@ class StudentSchedulesController extends AppController {
 
       $student_id = $this->Auth->user('studentId');
 
+      $student = $this->Students->get($student_id);
+
       if ($student_id!='') {
 
-        $conditions['student_id'] = "AND StudentEnrolledSchedule.student_id = $student_id";
+        $year_term_id = $student['year_term_id'];
+
+        $conditions['student_id'] = "AND StudentEnrolledSchedule.student_id = $student_id AND StudentEnrolledSchedule.year_term_id = $year_term_id";
 
       }
 
       $conditionsPrint .= '&per_student='.$student_id;
 
     }
-
-    // var_dump($conditions);
 
     $limit = 25;
 

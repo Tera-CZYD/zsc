@@ -14,9 +14,9 @@ class StudentEnrolledSchedulesTable extends Table{
 
     $this->belongsTo('BlockSectionSchedules', [
 
-        'foreignKey' => 'block_section_schedule_id', 
+      'foreignKey' => 'block_section_schedule_id', 
 
-      ]);
+    ]);
 
   }
 
