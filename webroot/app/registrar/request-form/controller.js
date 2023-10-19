@@ -1,4 +1,4 @@
-app.controller('RequestFormController', function($scope, RequestForm) {
+app.controller('RequestFormController', function($scope, $window, RequestForm) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -76,6 +76,14 @@ app.controller('RequestFormController', function($scope, RequestForm) {
 
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 
@@ -762,7 +770,7 @@ app.controller('RequestFormEditController', function($scope, $routeParams, Reque
 
 });
 
-app.controller('AdminRequestFormController', function($scope, RequestForm, RequestFormUpdate) {
+app.controller('AdminRequestFormController', function($scope, $window, RequestForm, RequestFormUpdate) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -860,6 +868,14 @@ app.controller('AdminRequestFormController', function($scope, RequestForm, Reque
 
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

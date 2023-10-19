@@ -1,4 +1,4 @@
-app.controller('CalendarActivityController', function($scope, CalendarActivity, $compile) {
+app.controller('CalendarActivityController', function($scope, $window, CalendarActivity, $compile) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -39,6 +39,14 @@ app.controller('CalendarActivityController', function($scope, CalendarActivity, 
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 

@@ -1,4 +1,4 @@
-app.controller('AdminEnrollmentController', function($scope,Enrollment,Select,StudentApplication,Student) {
+app.controller('AdminEnrollmentController', function($scope, $window, Enrollment,Select,StudentApplication,Student) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 

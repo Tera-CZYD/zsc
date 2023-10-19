@@ -108,7 +108,7 @@
                         autocomplete="false" data-validation-engine="validate[required]"
                         style="height: 44px">
                         <option value=""></option>
-                        <option value="Maried">Maried</option>
+                        <option value="Married">Married</option>
                         <option value="Single">Single</option>
                         </option>
                         <option value="Separated">Separated</option>

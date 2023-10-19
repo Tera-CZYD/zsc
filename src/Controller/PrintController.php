@@ -131,6 +131,8 @@ class PrintController extends AppController {
 
     $this->loadModel('Curriculums');
 
+    $this->loadModel('Ptcs');
+
     $this->InventoryProperties = TableRegistry::getTableLocator()->get('InventoryProperties');
 
     $this->LearningResourceMembers = TableRegistry::getTableLocator()->get('LearningResourceMembers');
@@ -153,9 +155,9 @@ class PrintController extends AppController {
 
     $this->loadModel("GoodMorals");
 
-     $this->loadModel("NurseProfiles");
+    $this->loadModel("NurseProfiles");
 
-     $this->loadModel('StudentLogs');
+    $this->loadModel('StudentLogs');
 
     $this->loadModel('Prospectuses');
 
@@ -6616,7 +6618,7 @@ class PrintController extends AppController {
     $pdf->Cell(1,5,'',0,0,'L');
     $pdf->SetFont("Arial", '', 9);
     $y = $pdf->GetY();
-    $pdf->MultiCell(100,5,$data['CollegeProgram']['name'].' - '.properCase($data['ReferralSlip']['year']),0,1);
+    $pdf->MultiCell(100,5,$data['CollegeProgram']['name'].' - '.$data['ReferralSlip']['year'],0,1);
     $pdf->setXY(3,$y);
     $pdf->Line(62,$pdf->getY(),127,$pdf->getY());
 
@@ -13644,9 +13646,9 @@ class PrintController extends AppController {
 
       $per_student = $this->request->getQuery('per_student');
       
-      $studentId = $this->Session->read('Auth.User.studentId');
+      $student_id = $this->Auth->user('studentId');
 
-      $conditions['studentId'] = "AND RequestForm.student_id = $studentId";
+      $conditions['studentId'] = "AND RequestForm.student_id = $student_id";
 
     }
 
@@ -13804,9 +13806,9 @@ class PrintController extends AppController {
 
       $per_student = $this->request->getQuery('per_student');
       
-      $studentId = $this->Session->read('Auth.User.studentId');
+      $student_id = $this->Auth->user('studentId');
 
-      $conditions['studentId'] = "AND AffidavitOfLoss.student_id = $studentId";
+      $conditions['studentId'] = "AND AffidavitOfLoss.student_id = $student_id";
 
     }
 
@@ -15005,7 +15007,7 @@ class PrintController extends AppController {
     $pdf->Cell(50,5,'YEAR & SEMESTER',1,0,'C',1);
     $pdf->Ln();
     $pdf->SetFont("Times", '', 8);
-    $pdf->SetWidths(array(10,35,80,55,30,60,30));
+    $pdf->SetWidths(array(10,35,80,55,30,60,50));
     $pdf->SetAligns(array('C','C','L','C','C','L','C'));
 
     if(count($tmpData)>0){
@@ -29331,6 +29333,99 @@ class PrintController extends AppController {
 
   }
 
+     public function ptc() {
+
+    $conditions = array();
+
+    $conditions['search'] = '';
+
+    // search conditions
+
+    if($this->request->getQuery('search') != null) {
+
+      $search = $this->request->getQuery('search');
+
+      $search = strtolower($search);
+
+      $conditions['search'] = $search;
+
+    }
+
+    $tmpData = $this->Ptcs->getAllPtcPrint($conditions);
+
+    $datas = new Collection($tmpData);
+
+    $full_name = $this->Auth->user('first_name').' '.$this->Auth->user('last_name');
+
+    require("wordwrap.php");
+    $pdf = new ConductPDF();
+    $pdf->SetMargins(10,10,10);
+    $pdf->SetFooter(true);
+    $pdf->footerSystem = true;
+    $pdf->AliasNbPages();
+    $pdf->AddPage("P", "legal", 0);
+    $pdf->Image($this->base .'/assets/img/zam.png',6,10,25,25);
+    $pdf->SetFont("Times", 'B', 12);
+    $pdf->Cell(0,5,'Republic of the Philippines',0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,strtoupper($this->Global->Settings('lgu_name')),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->SetFont("Times", '', 12);
+    $pdf->Cell(0,5,$this->Global->Settings('address'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('telephone'),0,0,'C');
+    $pdf->Ln(5);
+    $pdf->Cell(0,5,$this->Global->Settings('website').' Email: '.$this->Global->Settings('email'),0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Times", 'B', 12);
+    $pdf->Cell(0,5,'PTC',0,0,'C');
+    $pdf->Ln(10);
+    $pdf->SetFont("Times", 'B', 8);
+    $pdf->SetFillColor(217,237,247);
+    $pdf->Cell(15,5,'#',1,0,'C',1);
+    $pdf->Cell(90,5,'CODE',1,0,'C',1);
+    $pdf->Cell(90,5,'SECTION',1,0,'C',1);
+    $pdf->Ln();
+    $pdf->SetFont("Times", '', 7);
+    $pdf->SetWidths(array(15,90,90));
+    $pdf->SetAligns(array('C','C','C'));
+
+    if(!$datas->isEmpty()){
+
+      foreach ($datas as $key => $data){ 
+
+        $pdf->RowLegalL(array(
+
+          $key + 1,
+
+          $data['code'],
+
+          $data['section'],
+
+
+        ));
+
+      }
+
+    }else{
+
+      $pdf->Cell(195,5,'No data available.',1,1,'C');
+
+    }
+
+    $pdf->Ln(5);
+    $pdf->SetDash(2.5,1.5);
+    $pdf->SetFont("Times", 'B', 8);
+    $pdf->Cell(0,5,'* Nothing to follow *',0,0,'C');
+    $pdf->Ln(0.1);
+    $pdf->Line($pdf->getX(),$pdf->getY()+2,$pdf->getX()+85,$pdf->getY()+2);
+    $pdf->Line($pdf->getX()+111,$pdf->getY()+2,$pdf->getX()+195,$pdf->getY()+2);
+
+    $pdf->output();
+    exit();
+
+  }
+
   public function approval_enrolled_course() {
 
     $conditions = array();
@@ -30876,7 +30971,7 @@ class PrintController extends AppController {
 
     $conditions['status'] = '';
 
-    if ($this->request->getQuery('status')) {
+    if ($this->request->getQuery('status') != null) {
 
       $status = $this->request->getQuery('status');
 
@@ -30886,17 +30981,17 @@ class PrintController extends AppController {
 
     $conditions['studentId'] = '';
 
-    if ($this->request->getQuery('per_student')) {
+    if ($this->request->getQuery('per_student') != null) {
 
       $per_student = $this->request->getQuery('per_student');
       
-      $employee_id = $this->Session->read('Auth.User.studentId');
+      $student_id = $this->Auth->user('studentId');
 
-      $conditions['studentId'] = "AND StudentClub.student_id = $employee_id";
+      $conditions['studentId'] = "AND StudentClub.student_id = $student_id";
 
     }
 
-    $tmpData = $this->StudentClubs->getAllStudentClub($conditions);
+    $tmpData = $this->StudentClubs->getAllStudentClubPrint($conditions);
 
     $full_name = $this->Auth->user('first_name') . ' ' . $this->Auth->user('last_name');
     require("wordwrap.php");

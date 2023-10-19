@@ -1,4 +1,4 @@
-app.controller("ConsultationController", function ($scope, Consultation) {
+app.controller("ConsultationController", function ($scope, $window, Consultation) {
 
   $scope.today = Date.parse("today").toString("MM/dd/yyyy");
 
@@ -145,6 +145,14 @@ app.controller("ConsultationController", function ($scope, Consultation) {
     $scope.referred(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 

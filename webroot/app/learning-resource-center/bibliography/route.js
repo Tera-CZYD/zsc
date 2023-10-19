@@ -4,7 +4,7 @@ app.config(function($routeProvider) {
 
   .when('/learning-resource-center/bibliography', {
 
-    templateUrl: tmp + 'learning_resource_center__bibliography__index',
+    templateUrl: 'angularjs/views/learning-resource-center/bibliography/index.ctp',
 
     controller: 'BibliographyController',
 
@@ -12,7 +12,8 @@ app.config(function($routeProvider) {
 
   .when('/learning-resource-center/bibliography/add', {
 
-    templateUrl: tmp + 'learning_resource_center__bibliography__add',
+    templateUrl: 'angularjs/views/learning-resource-center/bibliography/add.ctp', 
+
 
     controller: 'BibliographyAddController',
 
@@ -20,7 +21,7 @@ app.config(function($routeProvider) {
 
   .when('/learning-resource-center/bibliography/edit/:id', {
 
-    templateUrl: tmp + 'learning_resource_center__bibliography__edit',
+    templateUrl: 'angularjs/views/learning-resource-center/bibliography/edit.ctp',
 
     controller: 'BibliographyEditController',
 
@@ -28,7 +29,7 @@ app.config(function($routeProvider) {
 
   .when('/learning-resource-center/bibliography/view/:id', {
 
-    templateUrl: tmp + 'learning_resource_center__bibliography__view',
+    templateUrl: 'angularjs/views/learning-resource-center/bibliography/view.ctp',
 
     controller: 'BibliographyViewController',
 

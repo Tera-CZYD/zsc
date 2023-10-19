@@ -1,4 +1,4 @@
-app.controller('FacultyController', function($scope, Employee,Select) {
+app.controller('FacultyController', function($scope, $window, Employee,Select) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -50,6 +50,14 @@ app.controller('FacultyController', function($scope, Employee,Select) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

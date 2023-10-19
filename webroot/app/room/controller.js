@@ -1,4 +1,4 @@
-app.controller('RoomController', function($scope, Room) {
+app.controller('RoomController', function($scope, $window, Room) {
 
 
 
@@ -64,7 +64,13 @@ app.controller('RoomController', function($scope, Room) {
 
   }
 
+  $scope.scrollToTop = function() {
 
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 

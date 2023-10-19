@@ -1,4 +1,4 @@
-app.controller('MemorandumController', function($scope, Memorandum) {
+app.controller('MemorandumController', function($scope, $window, Memorandum) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -35,6 +35,14 @@ app.controller('MemorandumController', function($scope, Memorandum) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

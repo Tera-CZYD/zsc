@@ -1,4 +1,4 @@
-app.controller('AffidavitOfLossController', function($scope, AffidavitOfLoss) {
+app.controller('AffidavitOfLossController', function($scope, $window, AffidavitOfLoss) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -107,6 +107,14 @@ app.controller('AffidavitOfLossController', function($scope, AffidavitOfLoss) {
     $scope.disapproved(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 
@@ -344,11 +352,11 @@ app.controller('AffidavitOfLossController', function($scope, AffidavitOfLoss) {
   
     if ($scope.conditionsPrint !== '') {
 
-      printTable(base + 'print/request_form?print=1' + $scope.conditionsPrintApproved);
+      printTable(base + 'print/affidavit_of_loss?print=1' + $scope.conditionsPrintApproved);
 
     }else{
 
-      printTable(base + 'print/request_form?print=1');
+      printTable(base + 'print/affidavit_of_loss?print=1');
 
     }
   }
@@ -359,11 +367,11 @@ app.controller('AffidavitOfLossController', function($scope, AffidavitOfLoss) {
   
     if ($scope.conditionsPrint !== '') {
 
-      printTable(base + 'print/request_form?print=1' + $scope.conditionsPrintDisapproved);
+      printTable(base + 'print/affidavit_of_loss?print=1' + $scope.conditionsPrintDisapproved);
 
     }else{
 
-      printTable(base + 'print/request_form?print=1');
+      printTable(base + 'print/affidavit_of_loss?print=1');
 
     }   
   }
@@ -763,7 +771,7 @@ app.controller('AffidavitOfLossEditController', function($scope, $routeParams, A
 
 });
 
-app.controller('AdminAffidavitOfLossController', function($scope, AffidavitOfLoss) {
+app.controller('AdminAffidavitOfLossController', function($scope, $window, AffidavitOfLoss) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -865,6 +873,14 @@ app.controller('AdminAffidavitOfLossController', function($scope, AffidavitOfLos
 
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

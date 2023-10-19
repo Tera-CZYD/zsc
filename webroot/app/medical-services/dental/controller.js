@@ -1,4 +1,4 @@
-app.controller('DentalController', function($scope, Dental) {
+app.controller('DentalController', function($scope, $window, Dental) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -145,6 +145,14 @@ app.controller('DentalController', function($scope, Dental) {
     $scope.referred(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

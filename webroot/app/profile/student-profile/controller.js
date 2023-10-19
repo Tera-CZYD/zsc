@@ -1,6 +1,6 @@
 
 
-app.controller('StudentViewController', function($scope, $routeParams, Student) {
+app.controller('StudentViewController', function($scope, $routeParams, $window, Student) {
 
   $scope.id = $routeParams.id;
 
@@ -16,6 +16,14 @@ app.controller('StudentViewController', function($scope, $routeParams, Student) 
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 

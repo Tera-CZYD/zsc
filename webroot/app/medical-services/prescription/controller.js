@@ -1,4 +1,4 @@
-app.controller('PrescriptionController', function($scope, Prescription) {
+app.controller('PrescriptionController', function($scope, $window, Prescription) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -33,6 +33,14 @@ app.controller('PrescriptionController', function($scope, Prescription) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

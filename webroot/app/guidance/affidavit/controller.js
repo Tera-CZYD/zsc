@@ -1,4 +1,4 @@
-app.controller('AffidavitController', function($scope, Affidavit) {
+app.controller('AffidavitController', function($scope, $window, Affidavit) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -33,6 +33,14 @@ app.controller('AffidavitController', function($scope, Affidavit) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   
@@ -233,7 +241,7 @@ app.controller('AffidavitAddController', function($scope, Affidavit, Select) {
 
   Select.get({ code: 'year-term-list' },function(e){
 
-    $scope.year_terms = e.data;
+    $scope.year_terms = e.data; 
 
   });
 
@@ -451,6 +459,12 @@ app.controller('AffidavitEditController', function($scope, $routeParams, Affidav
   Select.get({code: 'college-program-list-all'}, function(e) {
 
     $scope.college_program = e.data;
+
+  });
+
+  Select.get({ code: 'year-term-list' },function(e){
+
+    $scope.year_terms = e.data; 
 
   });
 

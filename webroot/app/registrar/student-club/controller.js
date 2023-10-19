@@ -1,4 +1,4 @@
-app.controller('StudentClubController', function($scope, StudentClub) {
+app.controller('StudentClubController', function($scope, $window, StudentClub) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -80,7 +80,7 @@ app.controller('StudentClubController', function($scope, StudentClub) {
 
         $scope.datasDisapproved = e.data;
 
-        $scope.conditionsPrintApproved = e.conditionsPrint;
+        $scope.conditionsPrintDisapproved = e.conditionsPrint;
 
         // paginator
 
@@ -105,6 +105,14 @@ app.controller('StudentClubController', function($scope, StudentClub) {
     $scope.disapproved(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 
@@ -250,20 +258,36 @@ app.controller('StudentClubController', function($scope, StudentClub) {
     }
   }
 
-  // $scope.printApproved = function(){
+  $scope.printApproved = function(){
 
-  //   date = "";
+    date = "";
   
-  //   if ($scope.conditionsPrint !== '') {
+    if ($scope.conditionsPrint !== '') {
 
-  //     printTable(base + 'print/request_form?print=1' + $scope.conditionsPrintApproved);
+      printTable(base + 'print/student_club?print=1' + $scope.conditionsPrintApproved);
 
-  //   }else{
+    }else{
 
-  //     printTable(base + 'print/request_form?print=1');
+      printTable(base + 'print/student_club?print=1');
 
-  //   }
-  // }
+    }
+  }
+
+  $scope.printDisapproved = function(){
+
+    date = "";
+  
+    if ($scope.conditionsPrint !== '') {
+
+      printTable(base + 'print/student_club?print=1' + $scope.conditionsPrintDisapproved);
+
+    }else{
+
+      printTable(base + 'print/student_club?print=1');
+
+    }
+  }  
+
   // $scope.printForm = function(){
   //   printTable(base + 'print/practicum_form/');
   // }
@@ -667,7 +691,7 @@ app.controller('StudentClubEditController', function($scope, $routeParams, Stude
 
 });
 
-app.controller('AdminStudentClubController', function($scope, StudentClub) {
+app.controller('AdminStudentClubController', function($scope, $window, StudentClub) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -769,6 +793,14 @@ app.controller('AdminStudentClubController', function($scope, StudentClub) {
 
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

@@ -1496,8 +1496,11 @@ class SelectController extends AppController {
     } else if ($code == 'scholarship-name-list') {
            
       $tmp = $this->ScholarshipNames->find()
+
           ->where(['visible' => 1])
+
           ->order(['id' => 'ASC'])
+          
           ->all();
 
       if(!empty($tmp)){
@@ -2925,6 +2928,8 @@ class SelectController extends AppController {
 
       $result = $connection->execute($tmp)->fetch('assoc');
 
+      if($result){
+
       if($result['balance'] > 0){
 
         $datas = 0;
@@ -2934,6 +2939,11 @@ class SelectController extends AppController {
         $datas = 1;
 
       }
+    }else{
+
+      $datas = 1;
+
+    }
 
     }else if ($code == 'check-student-check-outs') {
 

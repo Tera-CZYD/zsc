@@ -1,4 +1,4 @@
-app.controller('RegisteredStudentController', function($scope, RegisteredStudent,Select) {
+app.controller('RegisteredStudentController', function($scope, $window, RegisteredStudent,Select) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -50,7 +50,15 @@ app.controller('RegisteredStudentController', function($scope, RegisteredStudent
 
   }
 
-  // $scope.load();
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
+
+  // $scope.load(); 
 
   $scope.getData = function(year_term_id){
 

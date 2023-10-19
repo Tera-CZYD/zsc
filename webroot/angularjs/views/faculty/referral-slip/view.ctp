@@ -52,7 +52,7 @@
                 </tr>
                 <tr>
                   <th class="text-right"> YEAR : </th>
-                  <td class="italic">{{ data.ReferralSlip.year }}</td>
+                  <td class="italic">{{ data.YearLevelTerm.year }}</td>
                 </tr>
                 <tr>
                   <th class="text-right"> REASON : </th>

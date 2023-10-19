@@ -1,4 +1,4 @@
-app.controller('ApartelleRegistrationController', function($scope, ApartelleRegistration,ApartelleRegistrationEmail) {
+app.controller('ApartelleRegistrationController', function($scope, $window, ApartelleRegistration,ApartelleRegistrationEmail) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -113,6 +113,14 @@ app.controller('ApartelleRegistrationController', function($scope, ApartelleRegi
     $scope.disapproved(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   
@@ -719,7 +727,7 @@ app.controller('ApartelleRegistrationEditController', function($scope, $routePar
 
 });
 
-app.controller('AdminApartelleRegistrationController', function($scope, ApartelleRegistration,ApartelleRegistrationEmail) {
+app.controller('AdminApartelleRegistrationController', function($scope, $window, ApartelleRegistration,ApartelleRegistrationEmail) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -828,6 +836,14 @@ app.controller('AdminApartelleRegistrationController', function($scope, Apartell
     $scope.disapproved(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

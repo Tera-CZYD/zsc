@@ -1,4 +1,4 @@
-app.controller('ReferralSlipController', function($scope, ReferralSlip, AppointmentSlip) {
+app.controller('ReferralSlipController', function($scope, $window, ReferralSlip, AppointmentSlip) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -63,6 +63,14 @@ app.controller('ReferralSlipController', function($scope, ReferralSlip, Appointm
     $scope.appointment(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 

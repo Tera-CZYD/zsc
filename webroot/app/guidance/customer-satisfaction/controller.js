@@ -1,4 +1,4 @@
-app.controller('CustomerSatisfactionController', function($scope, CustomerSatisfaction) {
+app.controller('CustomerSatisfactionController', function($scope, $window, CustomerSatisfaction) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -33,6 +33,14 @@ app.controller('CustomerSatisfactionController', function($scope, CustomerSatisf
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

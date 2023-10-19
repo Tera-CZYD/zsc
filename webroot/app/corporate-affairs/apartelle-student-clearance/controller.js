@@ -1,4 +1,4 @@
-app.controller('ApartelleStudentClearanceController', function($scope, ApartelleStudentClearance,ApartelleRegistrationEmail) {
+app.controller('ApartelleStudentClearanceController', function($scope, $window, ApartelleStudentClearance,ApartelleRegistrationEmail) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -113,6 +113,14 @@ app.controller('ApartelleStudentClearanceController', function($scope, Apartelle
     $scope.disapproved(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   
@@ -672,7 +680,7 @@ app.controller('ApartelleStudentClearanceEditController', function($scope, $rout
 
 });
 
-app.controller('AdminApartelleStudentClearanceController', function($scope, ApartelleStudentClearance) {
+app.controller('AdminApartelleStudentClearanceController', function($scope, $window, ApartelleStudentClearance) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -781,6 +789,14 @@ app.controller('AdminApartelleStudentClearanceController', function($scope, Apar
     $scope.disapproved(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   

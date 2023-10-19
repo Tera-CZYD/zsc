@@ -1,4 +1,4 @@
-app.controller('ProgramAdviserController', function($scope, ProgramAdviser,ProgramAdviserEnlist, Ptc, Select) {
+app.controller('ProgramAdviserController', function($scope, $window, ProgramAdviser,ProgramAdviserEnlist, Ptc, Select) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -109,6 +109,14 @@ app.controller('ProgramAdviserController', function($scope, ProgramAdviser,Progr
     $scope.ptc(options);
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
 
@@ -347,6 +355,23 @@ app.controller('ProgramAdviserController', function($scope, ProgramAdviser,Progr
     }else{
 
       printTable(base + 'print/program_adviser?print=1');
+
+    }
+
+  }
+
+    $scope.printPtc = function(){
+
+    date = "";
+    
+    if ($scope.conditionsPrintEnlisted !== '') {
+    
+
+      printTable(base + 'print/ptc?print=1' + $scope.conditionsPrintPtc);
+
+    }else{
+
+      printTable(base + 'print/ptc?print=1');
 
     }
 

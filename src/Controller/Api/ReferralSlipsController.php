@@ -226,10 +226,25 @@ class ReferralSlipsController extends AppController {
 
   public function view($id = null){
 
-    $data = $this->ReferralSlips->find()
+    $data['ReferralSlip'] = $this->ReferralSlips->find()
+
       ->contain([
-          'CollegePrograms'
+
+          'CollegePrograms' => [
+
+            'conditions' => ['CollegePrograms.visible' => 1]
+
+          ],
+
+          'YearLevelTerms' => [
+
+            'conditions' => ['YearLevelTerms.visible' => 1]
+
+          ]
+
+
         ])
+
 
       ->where([
 
@@ -241,17 +256,19 @@ class ReferralSlipsController extends AppController {
 
       ->first();
 
-      $ReferralSlip = $data->toArray();
-
-      unset($ReferralSlip['CollegeProgram']);
-
       $data = [
 
-        'ReferralSlip' => $ReferralSlip,
+        'ReferralSlip' => $data['ReferralSlip'],
 
-        'CollegeProgram' => $data['CollegeProgram'],
+        'CollegeProgram' => $data['ReferralSlip']->college_program,
+
+        'YearLevelTerm' => $data['ReferralSlip']->year_level_term
 
       ];
+
+      unset($data['ReferralSlip']->college_program);
+
+      unset($data['ReferralSlip']->year_level_term);
 
       $data['ReferralSlip']['date'] = isset($data['ReferralSlip']['date']) ? date('m/d/Y', strtotime($data['ReferralSlip']['date'])) : null;
       

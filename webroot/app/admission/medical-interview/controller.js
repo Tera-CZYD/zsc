@@ -1,4 +1,4 @@
-app.controller('MedicalInterviewController', function($scope, MedicalInterview) {
+app.controller('MedicalInterviewController', function($scope, $window, MedicalInterview) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -33,6 +33,14 @@ app.controller('MedicalInterviewController', function($scope, MedicalInterview) 
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();  
 
   $scope.load();
   

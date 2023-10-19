@@ -1,4 +1,4 @@
-app.controller("StudentClearanceController", function ($scope,Select, StudentClearance,StudentClearanceEmail,StudentClearanceClear) {
+app.controller("StudentClearanceController", function ($scope,Select, $window, StudentClearance,StudentClearanceEmail,StudentClearanceClear) {
 
   $scope.today = Date.parse("today").toString("MM/dd/yyyy");
 
@@ -202,6 +202,14 @@ app.controller("StudentClearanceController", function ($scope,Select, StudentCle
     };
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();  
  
   $scope.reload = function (options) {
 

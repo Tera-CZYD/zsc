@@ -1,4 +1,4 @@
-app.controller('GcoEvaluationController', function($scope, GcoEvaluation) {
+app.controller('GcoEvaluationController', function($scope, $window, GcoEvaluation) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -35,6 +35,14 @@ app.controller('GcoEvaluationController', function($scope, GcoEvaluation) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   
@@ -73,6 +81,8 @@ app.controller('GcoEvaluationController', function($scope, GcoEvaluation) {
     }
 
   }
+
+  $scope.selectedFilter = 'date';
 
   $scope.changeFilter = function(type){
 
@@ -388,7 +398,7 @@ app.controller('GcoEvaluationViewController', function($scope, $routeParams, Gco
 
 });
 
-app.controller('AdminGcoEvaluationController', function($scope, GcoEvaluation) {
+app.controller('AdminGcoEvaluationController', function($scope, $window, GcoEvaluation) {
 
   $scope.today = Date.parse('today').toString('MM/dd/yyyy');
 
@@ -423,6 +433,14 @@ app.controller('AdminGcoEvaluationController', function($scope, GcoEvaluation) {
     });
 
   }
+
+  $scope.scrollToTop = function() {
+
+    $window.scrollTo(0, 0);
+
+  };
+
+  $scope.scrollToTop();
 
   $scope.load();
   
