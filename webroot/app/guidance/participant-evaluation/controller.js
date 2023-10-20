@@ -297,6 +297,12 @@ app.controller('AdminParticipantEvaluationActivityAddController', function($scop
 
   }
 
+  Select.get({ code: 'year-term-list' },function(e){
+
+    $scope.year_terms = e.data;
+
+  });
+
   Select.get({code: 'college-program-list-all'}, function(e) {
 
     $scope.college_program = e.data;
@@ -321,7 +327,7 @@ app.controller('AdminParticipantEvaluationActivityAddController', function($scop
 
           });
 
-          window.location = '#/guidance/participant-evaluation';
+          window.location = '#/guidance/admin-participant-evaluation';
 
         } else {
 
@@ -438,6 +444,12 @@ app.controller('AdminParticipantEvaluationActivityEditController', function($sco
     ParticipantEvaluationActivity : {}
 
   }
+
+  Select.get({ code: 'year-term-list' },function(e){
+
+    $scope.year_terms = e.data;
+
+  });
 
   Select.get({code: 'college-program-list-all'}, function(e) {
 
@@ -800,6 +812,12 @@ app.controller('ParticipantEvaluationActivityAddController', function($scope, Pa
 
   }
 
+  Select.get({ code: 'year-term-list' },function(e){
+
+    $scope.year_terms = e.data;
+
+  });
+
   Select.get({code: 'college-program-list-all'}, function(e) {
 
     $scope.college_program = e.data;
@@ -941,6 +959,12 @@ app.controller('ParticipantEvaluationActivityEditController', function($scope, $
     ParticipantEvaluationActivity : {}
 
   }
+
+  Select.get({ code: 'year-term-list' },function(e){
+
+    $scope.year_terms = e.data;
+
+  });
 
   Select.get({code: 'college-program-list-all'}, function(e) {
 
