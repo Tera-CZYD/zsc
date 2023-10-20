@@ -18,6 +18,8 @@ class ItemIssuancesController extends AppController {
 
     $this->ItemIssuances = TableRegistry::getTableLocator()->get('ItemIssuances');
 
+    $this->ItemIssuanceSubs = TableRegistry::getTableLocator()->get('ItemIssuanceSubs');
+
   }
 
   public function index(){   
@@ -170,11 +172,29 @@ class ItemIssuancesController extends AppController {
 
     $requestData['date'] = isset($requestData['date']) ? fdate($requestData['date'],'Y-m-d') : NULL;
 
+    $subs = $this->request->getData('ItemIssuanceSub');
+
     $data = $this->ItemIssuances->newEmptyEntity();
    
     $data = $this->ItemIssuances->patchEntity($data, $requestData); 
 
     if ($this->ItemIssuances->save($data)) {
+
+      $itemIssuanceId = $data->id;
+
+      if(!empty($subs)){
+        
+        foreach ($subs as $key => $value) {
+
+          $subs[$key]['item_issuance_id'] = $itemIssuanceId;
+          
+        }
+
+        $subEntities = $this->ItemIssuanceSubs->newEntities($subs);
+
+        $this->ItemIssuanceSubs->saveMany($subEntities);
+      
+      }
 
       $response = array(
 
@@ -238,15 +258,29 @@ class ItemIssuancesController extends AppController {
 
     $data['ItemIssuance'] = $this->ItemIssuances->find()
 
+      ->contain([
+
+        'ItemIssuanceSubs' => [
+
+          'conditions' => ['ItemIssuanceSubs.visible' => 1]
+
+        ]
+
+      ])
+
       ->where([
 
-        'visible' => 1,
+        'ItemIssuances.visible' => 1,
 
-        'id' => $id
+        'ItemIssuances.id' => $id
 
       ])
 
       ->first();
+
+    $data['ItemIssuanceSub'] = $data['ItemIssuance']->item_issuance_subs;
+
+    unset($data['ItemIssuance']->item_issuance_subs);
 
     $data['ItemIssuance']['active_view'] = $data['ItemIssuance']['active'] ? 'True' : 'False';
 
@@ -280,17 +314,35 @@ class ItemIssuancesController extends AppController {
 
   public function edit($id){
 
-    $building = $this->ItemIssuances->get($id); 
+    $item_issuance = $this->ItemIssuances->get($id); 
 
     $requestData = $this->getRequest()->getData('ItemIssuance');
+
+    $subs = $this->getRequest()->getData('ItemIssuanceSub');
 
     $requestData['date'] = isset($requestData['date']) ? date('Y/m/d', strtotime($requestData['date'])) : null;
 
     $requestData['date'] = isset($requestData['date']) ? fdate($requestData['date'],'Y-m-d') : NULL;
 
-    $this->ItemIssuances->patchEntity($building, $requestData); 
+    $this->ItemIssuances->patchEntity($item_issuance, $requestData); 
 
-    if ($this->ItemIssuances->save($building)) {
+    if ($this->ItemIssuances->save($item_issuance)) {
+
+      $this->ItemIssuances->ItemIssuanceSubs->deleteAll(['item_issuance_id' => $id]);
+
+        if(!empty($subs)){
+          
+          foreach ($subs as $key => $value) {
+
+            $subs[$key]['item_issuance_id'] = $id;
+            
+          }
+
+          $subEntities = $this->ItemIssuanceSubs->newEntities($subs);
+
+          $this->ItemIssuanceSubs->saveMany($subEntities);
+        
+        }
 
       $response = array(
 
@@ -362,6 +414,30 @@ class ItemIssuancesController extends AppController {
 
     if ($this->ItemIssuances->save($data)) {
 
+      $subs = $this->ItemIssuanceSubs->find()
+
+      ->where(['item_issuance_id' => $id])
+
+      ->all();
+
+      if (!empty($subs)) {
+
+          $subEntities = [];
+
+          foreach ($subs as  $value) {
+
+              $value->item_issuance_id = $id;
+
+              $value->visible = 0;
+              
+              $subEntities[] = $value;
+
+          }
+
+          $this->ItemIssuanceSubs->saveMany($subEntities);
+      }
+
+
       $response = [
 
         'ok' => true,
@@ -415,5 +491,72 @@ class ItemIssuancesController extends AppController {
     return $this->response;
 
   }
+
+
+  public function approve($id){
+
+    $this->autoRender = false;
+
+    $data = $this->ItemIssuances->get($id);
+
+    $data->status = 1;
+
+    $data->approved_by_id = $this->currentUser->id;
+
+    if ($this->ItemIssuances->save($data)) {
+
+      $response = [
+
+        'ok' => true,
+
+        'msg' => 'Item Issuance has been successfully Approved'
+
+      ];
+
+      $userLogTable = TableRegistry::getTableLocator()->get('UserLogs');
+        
+      $userLogEntity = $userLogTable->newEntity([
+
+          'action' => 'Approve',
+
+          'description' => 'Item Issuance',
+
+          'code' => $data->code,
+
+          'created' => date('Y-m-d H:i:s'),
+
+          'modified' => date('Y-m-d H:i:s')
+
+      ]);
+      
+      $userLogTable->save($userLogEntity);
+
+    } else {
+
+      $response = [
+
+        'ok' => false,
+
+        'msg' => 'Item Issuance cannot be approved at this time.'
+
+      ];
+
+    }
+
+    $this->set([
+
+      'response' => $response,
+
+      '_serialize' => 'response'
+
+    ]);
+
+    $this->response->withType('application/json');
+
+    $this->response->getBody()->write(json_encode($response));
+
+    return $this->response;
+
+  }  
 
 }

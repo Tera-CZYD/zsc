@@ -299,20 +299,31 @@ class CollegeProgramsController extends AppController {
           $this->CollegePrograms->CollegeProgramSubs->deleteAll(['college_program_id' => $id]);
 
           if (!empty($subs)) {
+
               foreach ($subs as $sub) {
+
                   $subEntities = $CollegeProgramSubs->newEntity([
+
                       'college_program_id' => $id,
+
                       'requirement' => $sub['requirement'],
+
                   ]);
 
                   $this->CollegeProgramSubs->save($subEntities);
+
               }
+
           }
 
           $response = [
+
               'ok' => true,
+
               'msg' => 'College Program has been successfully updated.',
+
               'data' => $requestData,
+              
           ];
 
           $userLogTable = TableRegistry::getTableLocator()->get('UserLogs');

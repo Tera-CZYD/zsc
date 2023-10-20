@@ -148,9 +148,12 @@ td {
               <label> ITEM TYPE <i class="required">*</i></label>
               <select class="form-control" autocomplete="false" ng-model="adata.item_type" ng-change="getItemType(adata.item_type)" data-validation-engine="validate[required]">
                 <option value=""></option>
-                <option value="EQUIPMENT">EQUIPMENT</option>
+                <option value="MEDICAL EQUIPMENT">MEDICAL EQUIPMENT</option>
+                <option value="DENTAL EQUIPMENT">DENTAL EQUIPMENT</option>
+                <option value="MEDICAL SUPPLIES">MEDICAL SUPPLIES</option>
+                <option value="DENTAL SUPPLIES">DENTAL SUPPLIES</option>
                 <option value="MEDICINE">MEDICINE</option>
-                <option value="MEDICINE KIT">MEDICINE KIT</option>
+                <option value="OTHERS">OTHERS</option>
               </select>
             </div>
           </div>
@@ -196,9 +199,12 @@ td {
               <label> ITEM TYPE <i class="required">*</i></label>
               <select class="form-control" autocomplete="false" ng-model="adata.item_type" ng-change="getItemType(adata.item_type)" data-validation-engine="validate[required]">
                 <option value=""></option>
-                <option value="EQUIPMENT">EQUIPMENT</option>
+                <option value="MEDICAL EQUIPMENT">MEDICAL EQUIPMENT</option>
+                <option value="DENTAL EQUIPMENT">DENTAL EQUIPMENT</option>
+                <option value="MEDICAL SUPPLIES">MEDICAL SUPPLIES</option>
+                <option value="DENTAL SUPPLIES">DENTAL SUPPLIES</option>
                 <option value="MEDICINE">MEDICINE</option>
-                <option value="MEDICINE KIT">MEDICINE KIT</option>
+                <option value="OTHERS">OTHERS</option>
               </select>
             </div>
           </div>

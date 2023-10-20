@@ -1869,35 +1869,53 @@ class SelectController extends AppController {
 
     } else if ($code == 'account-item-list') {
 
-      $tmp = $this->AccountFee->find('all', array(
+      // $tmp = $this->AccountFee->find('all', array(
 
-        'contain' => array(
+      //   'contain' => array(
 
-          'ChartOfAccount' => array(
+      //     'ChartOfAccount' => array(
 
-            'conditions' => array(
+      //       'conditions' => array(
 
-              'ChartOfAccount.visible' => true
+      //         'ChartOfAccount.visible' => true
 
-            ),
+      //       ),
 
-          ),
+      //     ),
 
-        ),
+      //   ),
 
-        'conditions' => array(
+      //   'conditions' => array(
 
-          'AccountFee.visible' => true,
+      //     'AccountFee.visible' => true,
 
-        ),
+      //   ),
 
-        'order' => array(
+      //   'order' => array(
 
-          'AccountFee.account_id' => 'ASC',
+      //     'AccountFee.account_id' => 'ASC',
 
-        )
+      //   )
 
-      ));
+      // ));
+
+      $tmp['AccountFee'] = $this->AccountFees->find()
+
+      ->contain([
+
+        'ChartOfAccounts' => [
+
+          'condiions' => ['ChartOfAccounts.visible' => 1]
+
+        ]
+
+      ])
+
+      ->where(['AccountFees.visible' => 1])
+
+      ->order(['AccountFees.account_id' => 'ASC'])
+
+      ->all();
 
       if(!empty($tmp)){
 
@@ -11185,35 +11203,31 @@ class SelectController extends AppController {
 
     } else if ($code == 'item-list') {
 
-      $type = $this->request->query['type'];
+      $type = $this->request->getQuery('type');
      
-      $tmp = $this->PropertyLog->find('all', array(
+      $tmp = $this->PropertyLogs->find()
 
-        'conditions' => array(
+      ->where([
 
-          'PropertyLog.visible' => true,
+        'visible' => 1,
 
-          'PropertyLog.type' => $type
+        'type' => $type
 
-        ),
+      ])
 
-        'order' => array(
+      ->order(['property_name' => 'ASC'])
 
-          'PropertyLog.property_name' => 'ASC',
+      ->all();
 
-        )
-
-      ));
-
-      if(!empty($tmp)){
+      if(count($tmp) > 0){
 
         foreach ($tmp as $k => $data) {
 
           $datas[] = array(
 
-            'id'    => $data['PropertyLog']['id'],
+            'id'    => $data->id,
 
-            'value' => $data['PropertyLog']['property_name']
+            'value' => $data->property_name
 
           );
 
@@ -11224,13 +11238,21 @@ class SelectController extends AppController {
     } else if ($code == 'dental-list') {
      
        $tmp = $this->Dentals
+
           ->find()
+
           ->where([
+
               'visible' => 1,
+
           ])
+
           ->order([
+
               'code' => 'ASC',
+
           ])
+
           ->all();
 
       if(!empty($tmp)){
@@ -11252,13 +11274,21 @@ class SelectController extends AppController {
     } else if ($code == 'consultation-list') {
      
        $tmp = $this->Consultations
+
           ->find()
+
           ->where([
+
               'visible' => 1,
+
           ])
+
           ->order([
+
               'code' => 'ASC',
+
           ])
+          
           ->all();
 
       if(!empty($tmp)){
