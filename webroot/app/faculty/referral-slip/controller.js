@@ -499,6 +499,12 @@ app.controller('ReferralSlipEditController', function($scope, $routeParams, Refe
 
   });
 
+  Select.get({ code: 'year-term-list' },function(e){
+
+    $scope.year_terms = e.data;
+
+  });
+
   $scope.searchStudent = function(options) {
 
     options = typeof options !== 'undefined' ?  options : {};

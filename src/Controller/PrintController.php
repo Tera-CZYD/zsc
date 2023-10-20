@@ -13646,9 +13646,9 @@ class PrintController extends AppController {
 
       $per_student = $this->request->getQuery('per_student');
       
-      $studentId = $this->Session->read('Auth.User.studentId');
+      $student_id = $this->Auth->user('studentId');
 
-      $conditions['studentId'] = "AND RequestForm.student_id = $studentId";
+      $conditions['studentId'] = "AND RequestForm.student_id = $student_id";
 
     }
 
@@ -13806,9 +13806,9 @@ class PrintController extends AppController {
 
       $per_student = $this->request->getQuery('per_student');
       
-      $studentId = $this->Session->read('Auth.User.studentId');
+      $student_id = $this->Auth->user('studentId');
 
-      $conditions['studentId'] = "AND AffidavitOfLoss.student_id = $studentId";
+      $conditions['studentId'] = "AND AffidavitOfLoss.student_id = $student_id";
 
     }
 
@@ -30971,7 +30971,7 @@ class PrintController extends AppController {
 
     $conditions['status'] = '';
 
-    if ($this->request->getQuery('status')) {
+    if ($this->request->getQuery('status') != null) {
 
       $status = $this->request->getQuery('status');
 
@@ -30981,17 +30981,17 @@ class PrintController extends AppController {
 
     $conditions['studentId'] = '';
 
-    if ($this->request->getQuery('per_student')) {
+    if ($this->request->getQuery('per_student') != null) {
 
       $per_student = $this->request->getQuery('per_student');
       
-      $employee_id = $this->Session->read('Auth.User.studentId');
+      $student_id = $this->Auth->user('studentId');
 
-      $conditions['studentId'] = "AND StudentClub.student_id = $employee_id";
+      $conditions['studentId'] = "AND StudentClub.student_id = $student_id";
 
     }
 
-    $tmpData = $this->StudentClubs->getAllStudentClub($conditions);
+    $tmpData = $this->StudentClubs->getAllStudentClubPrint($conditions);
 
     $full_name = $this->Auth->user('first_name') . ' ' . $this->Auth->user('last_name');
     require("wordwrap.php");

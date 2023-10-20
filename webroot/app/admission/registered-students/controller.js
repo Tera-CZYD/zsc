@@ -57,8 +57,8 @@ app.controller('RegisteredStudentController', function($scope, $window, Register
   };
 
   $scope.scrollToTop();
-  
-  // $scope.load();
+
+  // $scope.load(); 
 
   $scope.getData = function(year_term_id){
 

@@ -12,7 +12,8 @@ app.config(function($routeProvider) {
 
   .when('/learning-resource-center/bibliography/add', {
 
-    templateUrl: 'angularjs/views/learning-resource-center/bibliography/add.ctp',
+    templateUrl: 'angularjs/views/learning-resource-center/bibliography/add.ctp', 
+
 
     controller: 'BibliographyAddController',
 
