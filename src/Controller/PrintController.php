@@ -17074,7 +17074,8 @@ class PrintController extends AppController {
     $pdf->Line(103,$pdf->getY()+5,190,$pdf->getY()+5);
     $pdf->Cell(5,5,'',0,0,'L');
     $pdf->Cell(30,5,'DATE OF BIRTH: ',0,0,'L');
-    $pdf->Cell(30,5,$data['CounselingIntake']['birth_date']->format('m/d/Y'),0,0,'L');
+    $bday = $data['CounselingIntake']['date_of_birth'] == null ? "":$data['Student']['date_of_birth']->format('m/d/Y');
+    $pdf->Cell(30,5,$bday,0,0,'L');
     $pdf->Cell(30,5,'PLACE OF BIRTH: ',0,0,'L');
     $pdf->Cell(50,5,$data['CounselingIntake']['birth_place'],0,0,'L');
     $pdf->Ln(7);
@@ -21496,7 +21497,8 @@ class PrintController extends AppController {
     $pdf->Ln(6);
     $pdf->Cell(10, 5, '', 0, 0, 'L');
     $pdf->Cell(23, 5, 'Date of Birth: ', 0, 0, 'L');
-    $pdf->Cell(45, 5, $data['Student']['date_of_birth']->format('m/d/Y'), 0, 0, 'L');
+    $bday = $data['Student']['date_of_birth'] == null ? "":$data['Student']['date_of_birth']->format('m/d/Y');
+    $pdf->Cell(45, 5, $bday, 0, 0, 'L');
     $pdf->Cell(10, 5, 'Sex:', 0, 0, 'L');
     $pdf->Cell(25, 5, $data['Student']['gender'], 0, 0, 'L');
     $pdf->Cell(30, 5, 'Valid Credential: ', 0, 0, 'L');
