@@ -31,7 +31,7 @@
           <div class="row">
             <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
               
-                <a id="pageAdd" href="#/guidance/participant-evaluation/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD RECORD </a>
+                <a id="pageAdd" href="#/guidance/admin-participant-evaluation/add" class="btn btn-primary btn-sm btn-min"><i class="fa fa-plus"></i> ADD RECORD </a>
                        
                 <a id="pagePrint" ng-click="print()" class="btn btn-print btn-sm btn-min"><i class="fa fa-print"></i> PRINT </a>
               
@@ -72,10 +72,10 @@
                   <td>
                     <div class="btn-group btn-group-xs">
                       
-                      	<a id="pageView" href="#/guidance/participant-evaluation/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
+                      	<a id="pageView" href="#/guidance/admin-participant-evaluation/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a>
                       
                       
-                      	<a id="pageEdit" href="#/guidance/participant-evaluation/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a>
+                      	<a id="pageEdit" href="#/guidance/admin-participant-evaluation/edit/{{ data.id }}" class="btn btn-primary" title="EDIT"><i class="fa fa-edit"></i></a>
                       
                       
                       <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" title="DELETE"><i class="fa fa-trash"></i></a>

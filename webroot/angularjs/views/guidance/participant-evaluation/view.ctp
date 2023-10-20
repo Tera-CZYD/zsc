@@ -22,7 +22,7 @@
                 </tr>
                 <tr>
                   <th class="text-right"> YEAR LEVEL : </th>
-                  <td class="italic">{{ adata.ParticipantEvaluationActivity.year }}</td>
+                  <td class="italic">{{ adata.YearLevelTerm.description }}</td>
                 </tr>
                 <tr>
                   <th class="text-right"> DATE : </th>

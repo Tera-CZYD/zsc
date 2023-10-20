@@ -77,7 +77,7 @@
                     <div class="form-group">
                       <button class="btn btn-primary pull-right btn-min">SIGN IN</button>
                       <div class="card-header" style="color: white;padding:0; margin: 0;">
-                        <a href="https://play.google.com/store/apps/details?id=com.zscmst.smisv1&hl=en-PH"><img src="<?php echo $base ?>/assets/img/google_play.png" width="25%" style="float:left;margin-left:0;"></a>
+                        <a href="https://play.google.com/store/apps/details?id=com.zamv1.esmisv1"><img src="<?php echo $base ?>/assets/img/google_play.png" width="25%" style="float:left;margin-left:0;"></a>
                       </div>
                     </div>
 

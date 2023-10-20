@@ -56,6 +56,13 @@
                   <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
                   <button ng-click="print()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
                   <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
+                  <?php if (hasAccess('bibliography/print barcode', $currentUser)): ?>
+                    <button type="button" class="btn btn-print btn-min" ng-click="printBarcode()"><i class="fa fa-print"></i> PRINT BARCODE </button>
+                  <?php endif ?>
+                  <button type="button" class="btn btn-print btn-min" ng-click="printCallNumber()"><i class="fa fa-print"></i> PRINT CALL NUMBER </button>
+                  <?php if (hasAccess('bibliography/print cataloge', $currentUser)): ?>
+                    <button type="button" class="btn btn-print btn-min" ng-click="printCatalog()"><i class="fa fa-print"></i> PRINT CATALOG </button>
+                  <?php endif ?>
                 </div>
                 <div class="col-md-4 col-xs-12 pull-right">
                   <div class="input-group-prepend">
@@ -66,19 +73,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-12">
-              <div class="row"> 
-                <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                  <?php if (hasAccess('bibliography/print barcode', $currentUser)): ?>
-                    <button type="button" class="btn btn-print btn-min" ng-click="printBarcode()"><i class="fa fa-print"></i> PRINT BARCODE </button>
-                  <?php endif ?>
-                  <button type="button" class="btn btn-print btn-min" ng-click="printCallNumber()"><i class="fa fa-print"></i> PRINT CALL NUMBER </button>
-                  <?php if (hasAccess('bibliography/print cataloge', $currentUser)): ?>
-                    <button type="button" class="btn btn-print btn-min" ng-click="printCatalog()"><i class="fa fa-print"></i> PRINT CATALOG </button>
-                  <?php endif ?>
-                </div>
-              </div>
-          </div>
+
             <div class="clearfix"></div><hr>
             <div class="single-table mb-5">
               <div class="table-responsive">
