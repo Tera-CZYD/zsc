@@ -21,6 +21,14 @@ class ParticipantEvaluationActivitiesTable extends Table
 
     ]);
 
+    $this->belongsTo('YearLevelTerms', [
+
+      'foreignKey' => 'year_term_id', 
+
+      'propertyName' => 'YearLevelTerm'
+
+    ]);;
+
   }
 
   public function getAllParticipantEvaluationActivityPrint($conditions){
@@ -37,13 +45,17 @@ class ParticipantEvaluationActivitiesTable extends Table
 
       ParticipantEvaluationActivity.*,
 
-      CollegeProgram.name as program_name
+      CollegeProgram.name as program_name,
+
+      YearLevelTerm.description
 
     FROM 
 
       participant_evaluation_activities as ParticipantEvaluationActivity LEFT JOIN 
 
-      college_programs as CollegeProgram ON ParticipantEvaluationActivity.course_id = CollegeProgram.id
+      college_programs as CollegeProgram ON ParticipantEvaluationActivity.course_id = CollegeProgram.id LEFT JOIN
+
+      year_level_terms as YearLevelTerm ON ParticipantEvaluationActivity.year_term_id = YearLevelTerm.id
 
     WHERE 
 
@@ -57,9 +69,7 @@ class ParticipantEvaluationActivitiesTable extends Table
 
         ParticipantEvaluationActivity.venue           LIKE      '%$search%'     OR
 
-        ParticipantEvaluationActivity.course_id       LIKE      '%$search%'     OR
-
-        ParticipantEvaluationActivity.year            LIKE      '%$search%'     
+        ParticipantEvaluationActivity.course_id       LIKE      '%$search%'     
 
       )
 
@@ -93,17 +103,21 @@ class ParticipantEvaluationActivitiesTable extends Table
 
       ParticipantEvaluationActivity.*,
 
-      CollegeProgram.name as program_name
+      CollegeProgram.name as program_name,
+
+      YearLevelTerm.description
 
     FROM 
 
       participant_evaluation_activities as ParticipantEvaluationActivity LEFT JOIN 
 
-      college_programs as CollegeProgram ON ParticipantEvaluationActivity.course_id = CollegeProgram.id
+      college_programs as CollegeProgram ON ParticipantEvaluationActivity.course_id = CollegeProgram.id LEFT JOIN
+
+      year_level_terms as YearLevelTerm ON ParticipantEvaluationActivity.year_term_id = YearLevelTerm.id
 
     WHERE 
 
-      ParticipantEvaluationActivity.visible = true $studentId $search $date AND 
+      ParticipantEvaluationActivity.visible = true $studentId $search AND 
 
       (
 
@@ -113,9 +127,7 @@ class ParticipantEvaluationActivitiesTable extends Table
 
         ParticipantEvaluationActivity.venue           LIKE      '%$search%'     OR
 
-        ParticipantEvaluationActivity.course_id       LIKE      '%$search%'     OR
-
-        ParticipantEvaluationActivity.year            LIKE      '%$search%'     
+        ParticipantEvaluationActivity.course_id       LIKE      '%$search%'    
 
       )
 
@@ -195,7 +207,9 @@ class ParticipantEvaluationActivitiesTable extends Table
 
       participant_evaluation_activities as ParticipantEvaluationActivity LEFT JOIN 
 
-      college_programs as CollegeProgram ON ParticipantEvaluationActivity.course_id = CollegeProgram.id
+      college_programs as CollegeProgram ON ParticipantEvaluationActivity.course_id = CollegeProgram.id LEFT JOIN
+
+      year_level_terms as YearLevelTerm ON ParticipantEvaluationActivity.year_term_id = YearLevelTerm.id
 
     WHERE 
 
@@ -209,9 +223,7 @@ class ParticipantEvaluationActivitiesTable extends Table
 
         ParticipantEvaluationActivity.venue           LIKE      '%$search%'     OR
 
-        ParticipantEvaluationActivity.course_id       LIKE      '%$search%'     OR
-
-        ParticipantEvaluationActivity.year            LIKE      '%$search%'     
+        ParticipantEvaluationActivity.course_id       LIKE      '%$search%'        
 
       )
 
