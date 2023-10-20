@@ -16990,6 +16990,7 @@ class PrintController extends AppController {
 
 	// debug($data['CounselingIntake']);
 
+<<<<<<< HEAD
 	$data['CounselingIntake']['student_name'] = ($data['CounselingIntake']['student_name']);
 	require("wordwrap.php");
 	$pdf = new ConductPDF();
@@ -17124,6 +17125,143 @@ class PrintController extends AppController {
 	$pdf->Cell(2, 5, '', 0, 0, 'L');
 	$pdf->Cell(25, 5, 'Compulsions', 0, 0, 'L');
 	$pdf->Cell(5, 5, '', 0, 0, 'L');
+=======
+    $data['CounselingIntake']['student_name'] = ($data['CounselingIntake']['student_name']);
+    require("wordwrap.php");
+    $pdf = new ConductPDF();
+    $pdf->SetMargins(10,10,10);
+    $pdf->AddPage("P", "Legal", 0);
+    $pdf->SetAutoPageBreak(false);
+    $pdf->SetFont("Times", '', 10);
+    // $pdf->Image($this->base .'/assets/img/counseling_intake.png',0,0,215.9,355.6);
+    $pdf->Ln(5);
+        //? -----------------------------------------------------------------------------------  HEADER START
+    $pdf->Image($this->base .'/assets/img/zam.png',5,15,25,25);
+    $pdf->Image($this->base .'/assets/img/iso.png',190,15,20,25);
+    $pdf->Ln(3.5);
+    $pdf->Cell(0, 5, 'Republic of the Philippines', 0, 0, 'C');
+    $pdf->Ln(5);
+    $pdf->SetFont("Times", 'B', 11);
+    $pdf->Cell(0, 5, strtoupper($this->Global->Settings('lgu_name')), 0, 0, 'C');
+    $pdf->Ln(5);
+    $pdf->SetFont("Times", '', 11);
+    $pdf->Cell(0, 6, $this->Global->Settings('address'), 0, 0, 'C');
+    $pdf->Ln(5);
+    $pdf->SetFont("Times", '', 9);
+    $pdf->Cell(0, 5, 'Tel No: (062) 991-0647; Telefax: (062) 991-0777 http://www.zscmst.edu.ph  email: registrar@zscmst.edu.ph', 0, 0, 'C');
+    $pdf->Ln(5);
+    $pdf->SetLineWidth(0.4);
+    $pdf->Line(12.5, $pdf->getY() + 1, 187, $pdf->getY() + 1);
+    $pdf->SetLineWidth(0.7);
+    $pdf->Line(12.5, $pdf->getY() + 2, 187, $pdf->getY() + 2);
+    $pdf->SetLineWidth(0.2);
+    $pdf->Rect(14.5, $pdf->GetY() + 3.5, 31, 14.5);
+    $pdf->Ln(4);
+    $pdf->SetFont("Times", '', 5.5);
+    $pdf->Cell(6, 5, '', 0, 0, 'L');
+    $pdf->Cell(68, 5, 'ZSCMST - '. @$office_reference['OfficeReference']['reference_code'], 0, 0, 'L');
+    $pdf->SetFont("Times", 'B', 14);
+    $pdf->Cell(50, 5.5, 'GUIDANCE   AND   COUNSELING   OFFICE', 0, 0, 'C');
+    $pdf->Ln(3);
+    $pdf->SetFont("Times", '', 5.5);
+    $pdf->Cell(6, 5, '', 0, 0, 'L');
+    $pdf->Cell(68, 5, 'Adopted Date:  '. @$office_reference['OfficeReference']['adopted'], 0, 0, 'L');
+    $pdf->Ln(3);
+    $pdf->SetFont("Times", '', 5.5);
+    $pdf->Cell(6, 5, '', 0, 0, 'L');
+    $pdf->Cell(65, 5, 'Revision Status: ' . @$office_reference['OfficeReference']['revision_status'], 0, 0, 'L');
+    $pdf->Ln(3);
+    $pdf->SetFont("Times", '', 5.5);
+    $pdf->Cell(6, 5, '', 0, 0, 'L');
+    $pdf->Cell(65, 5, 'Revision Date: ' . @$office_reference['OfficeReference']['revision_date'], 0, 0, 'L');
+    $pdf->Ln(1);
+    $pdf->SetFont("Arial", 'B', 14);
+    $pdf->Cell(0, 5, 'COUNSELING INTAKE FORM', 0, 0, 'C');
+    //? -----------------------------------------------------------------------------------  Content  
+    $pdf->Ln(7);
+    $pdf->SetFont("Arial", '', 7);
+    $pdf->Line(25,$pdf->getY()+4,190,$pdf->getY()+4);
+    $pdf->Cell(5,5,'',0,0,'L');
+    $pdf->Cell(15,5,'NAME: ',0,0,'L');
+    $pdf->Cell(10,5,$data['CounselingIntake']['Student']['last_name'].", ".$data['CounselingIntake']['Student']['first_name'].", ".$data['CounselingIntake']['Student']['middle_name'],0,0,'L');
+    $pdf->Line(36,$pdf->getY()+8,120,$pdf->getY()+8);
+    $pdf->Line(140,$pdf->getY()+8,190,$pdf->getY()+8);
+    $pdf->Ln(4);
+    $pdf->Cell(5,5,'',0,0,'L');
+    $pdf->Cell(30,5,'Course and Year: ',0,0,'L');
+    $pdf->Cell(80,5,$data['CounselingIntake']['CollegeProgram']['code']." - ".$year['description'],0,0,'L');
+    $pdf->Cell(20,5,'Contact No.: ',0,0,'L');
+    $pdf->Cell(80,5,$data['CounselingIntake']['contact_no'],0,0,'L');
+    $pdf->Ln(4);
+    $pdf->Line(30,$pdf->getY()+4,190,$pdf->getY()+4);
+    $pdf->Cell(5,5,'',0,0,'L');
+    $pdf->Cell(20,5,'ADDRESS: ',0,0,'L');
+    $pdf->Cell(80,5,$data['CounselingIntake']['address'],0,0,'L');
+    $pdf->Ln(4);
+    $pdf->Line(42,$pdf->getY()+5,70,$pdf->getY()+5);
+    $pdf->Line(103,$pdf->getY()+5,190,$pdf->getY()+5);
+    $pdf->Cell(5,5,'',0,0,'L');
+    $pdf->Cell(30,5,'DATE OF BIRTH: ',0,0,'L');
+    $bday = $data['CounselingIntake']['date_of_birth'] == null ? "":$data['Student']['date_of_birth']->format('m/d/Y');
+    $pdf->Cell(30,5,$bday,0,0,'L');
+    $pdf->Cell(30,5,'PLACE OF BIRTH: ',0,0,'L');
+    $pdf->Cell(50,5,$data['CounselingIntake']['birth_place'],0,0,'L');
+    $pdf->Ln(7);
+    $pdf->SetFont("Arial", '', 8);
+    $pdf->Cell(0, 5, '*********************************************************************************************************************************************************************************', 0, 0, 'c');
+    $pdf->Ln(6);
+    $pdf->SetFont("Arial", 'B', 8);
+    $pdf->Cell(0, 5, 'BEHAVIOR: Circle any of the following behaviors that apply to you:', 0, 0, 'C');
+    //? -------------------------------------------------------------------------------------------------  BEHAVIOR  
+    $pdf->Ln(8);
+    $check = "";
+    $pdf->Cell(5, 5, '', 0, 0, 'L');
+    if ($data['CounselingIntakeSub']['behave'][0])
+      $check = "4";
+    else $check = "";
+    $pdf->SetFont('ZapfDingbats', '', 10);
+    $pdf->Cell(6, 6, $check, 1, 0, 'C');
+    $pdf->SetFont("Arial", '', 8);
+    $pdf->Cell(2, 5, '', 0, 0, 'L');
+    $pdf->Cell(25, 5, 'Overeat', 0, 0, 'L');
+    $pdf->Cell(5, 5, '', 0, 0, 'L');
+    if ($data['CounselingIntakeSub']['behave'][1])
+      $check = "4";
+    else $check = "";
+    $pdf->SetFont('ZapfDingbats', '', 10);
+    $pdf->Cell(6, 6, $check, 1, 0, 'C');
+    $pdf->SetFont("Arial", '', 8);
+    $pdf->Cell(2, 5, '', 0, 0, 'L');
+    $pdf->Cell(25, 5, 'Suicidal attempts', 0, 0, 'L');
+    $pdf->Cell(5, 5, '', 0, 0, 'L');
+    if ($data['CounselingIntakeSub']['behave'][2])
+      $check = "4";
+    else $check = "";
+    $pdf->SetFont('ZapfDingbats', '', 10);
+    $pdf->Cell(6, 6, $check, 1, 0, 'C');
+    $pdf->SetFont("Arial", '', 8);
+    $pdf->Cell(2, 5, '', 0, 0, 'L');
+    $pdf->Cell(25, 5, 'Take drugs', 0, 0, 'L');
+    $pdf->Cell(5, 5, '', 0, 0, 'L');
+    if ($data['CounselingIntakeSub']['behave'][3])
+      $check = "4";
+    else $check = "";
+    $pdf->SetFont('ZapfDingbats', '', 10);
+    $pdf->Cell(6, 6, $check, 1, 0, 'C');
+    $pdf->SetFont("Arial", '', 8);
+    $pdf->Cell(2, 5, '', 0, 0, 'L');
+    $pdf->Cell(25, 5, 'Insomnia', 0, 0, 'L');
+    $pdf->Cell(5, 5, '', 0, 0, 'L');
+    if ($data['CounselingIntakeSub']['behave'][4])
+      $check = "4";
+    else $check = "";
+    $pdf->SetFont('ZapfDingbats', '', 10);
+    $pdf->Cell(6, 6, $check, 1, 0, 'C');
+    $pdf->SetFont("Arial", '', 8);
+    $pdf->Cell(2, 5, '', 0, 0, 'L');
+    $pdf->Cell(25, 5, 'Compulsions', 0, 0, 'L');
+    $pdf->Cell(5, 5, '', 0, 0, 'L');
+>>>>>>> 208f6da996370b8a2699cff61456af8c91336345
 
 	$pdf->Ln(8);
 	$pdf->Cell(5, 5, '', 0, 0, 'L');
@@ -21441,6 +21579,7 @@ class PrintController extends AppController {
 
 	$full_name = $this->Auth->user('first_name') . ' ' . $this->Auth->user('last_name');
 
+<<<<<<< HEAD
 	require("wordwrap.php");
 	$pdf = new ConductPDF();
 	$pdf->SetMargins(5, 9, 5);
@@ -21698,6 +21837,266 @@ class PrintController extends AppController {
 	$pdf->output();
 	exit();
 	
+=======
+    require("wordwrap.php");
+    $pdf = new ConductPDF();
+    $pdf->SetMargins(5, 9, 5);
+    $pdf->AddPage("P", "Legal", 0);
+    $pdf->SetAutoPageBreak(false);
+    $pdf->Image($this->base . '/assets/img/zam.png', 6.5, 22,35, 35);
+    $pdf->SetFont("Times", '', 12);
+    $pdf->Cell(0, 5, 'ZSCMST-OCR 3.10.I-I5', 0, 0, 'L');
+    $pdf->Image($this->base . '/assets/img/iso.png', 182, 13, 18, 21);
+    $pdf->SetFont("Times", '', 10);
+    $pdf->Ln(5);
+    $pdf->Cell(-7);
+    $pdf->Cell(0, 5, 'Republic of the Philippines', 0, 0, 'C');
+    $pdf->Ln(5);
+    $pdf->SetFont("Times", 'B', 11);
+    $pdf->Cell(-5);
+    $pdf->Cell(0, 5, strtoupper($this->Global->Settings('lgu_name')), 0, 0, 'C');
+    $pdf->Ln(4.5);
+    $pdf->SetFont("Times", '', 10);
+    $pdf->Cell(0, 6, $this->Global->Settings('address'), 0, 0, 'C');
+
+    $pdf->Ln(15);
+    $pdf->SetFont("Times", '', 14);
+    $pdf->Cell(-6);
+    $pdf->Cell(0, 6, 'OFFICE OF THE COLLEGE REGISTRAR', 0, 0, 'C');
+    $pdf->Ln(7);
+    $pdf->SetFont("Times", '', 17);
+    $pdf->Cell(45, 8, '', 0, 0, 'C');
+    $pdf->Cell(115, 8, 'OFFICIAL TRANSCRIPT OF RECORDS', 1, 0, 'C');
+
+    $pdf->Ln(10);
+    $pdf->SetFont("Times", '', 11);
+    $pdf->Line(27, $pdf->getY()+5, 110, $pdf->getY()+5);
+    $pdf->Line(150, $pdf->getY()+5, 200, $pdf->getY()+5);
+    $pdf->Cell(10, 5, '', 0, 0, 'L');
+    $pdf->Cell(13, 5, 'Name: ', 0, 0, 'L');
+    $pdf->SetFont("Times", 'B', 11);
+    $pdf->Cell(90, 5, strtoupper($data['Student']['last_name'].', '.$data['Student']['first_name'].' '.$data['Student']['middle_name']), 0, 0, 'L');
+    $pdf->SetFont("Times", '', 11);
+    $pdf->Cell(33, 5, 'Date of Admission: ', 0, 0, 'L');
+    // $pdf->Cell(80, 5, fdate($data['StudentApplication']['approved_date'],'m/d/Y'), 0, 0, 'L');
+    $pdf->Line(38, $pdf->getY() + 11, 80, $pdf->getY() + 11);
+    $pdf->Line(93, $pdf->getY() + 11, 110, $pdf->getY() + 11);
+    $pdf->Line(148, $pdf->getY() + 11, 200, $pdf->getY() + 11);
+    $pdf->Ln(6);
+    $pdf->Cell(10, 5, '', 0, 0, 'L');
+    $pdf->Cell(23, 5, 'Date of Birth: ', 0, 0, 'L');
+    $bday = $data['Student']['date_of_birth'] == null ? "":$data['Student']['date_of_birth']->format('m/d/Y');
+    $pdf->Cell(45, 5, $bday, 0, 0, 'L');
+    $pdf->Cell(10, 5, 'Sex:', 0, 0, 'L');
+    $pdf->Cell(25, 5, $data['Student']['gender'], 0, 0, 'L');
+    $pdf->Cell(30, 5, 'Valid Credential: ', 0, 0, 'L');
+    $pdf->Cell(80, 5, '', 0, 0, 'L');
+    $pdf->Ln(6);
+    $pdf->Line(35, $pdf->getY() + 5, 110, $pdf->getY() + 5);
+    $pdf->Line(140, $pdf->getY() + 5, 155, $pdf->getY() + 5);
+    $pdf->Line(173, $pdf->getY() + 5, 200, $pdf->getY() + 5);
+    $pdf->Cell(10, 5, '', 0, 0, 'L');
+    $pdf->Cell(20, 5, 'Birth Place: ', 0, 0, 'L');
+    $pdf->Cell(83, 5, @$data['Student']['place_of_birth'], 0, 0, 'L');
+    $pdf->Cell(23, 5, 'Civil Status: ', 0, 0, 'L');
+    $pdf->Cell(15, 5, @$data['Student']['civil_status'], 0, 0, 'L');
+    $pdf->Cell(17, 5, 'Religion:', 0, 0, 'L');
+    $pdf->Cell(25, 5, @$data['Student']['religion'], 0, 0, 'L');
+    $pdf->Ln(6);
+    $pdf->SetFont("Times", '', 11);
+    $pdf->Line(40, $pdf->getY()+5, 110, $pdf->getY()+5);
+    $pdf->Line(148, $pdf->getY()+5, 200, $pdf->getY()+5);
+    $pdf->Cell(10, 5, '', 0, 0, 'L');
+    $pdf->Cell(28, 5, 'Home Address: ', 0, 0, 'L');
+    $pdf->Cell(75, 5, '', 0, 0, 'L');
+    $pdf->Cell(31, 5, 'Parent / Guardian: ', 0, 0, 'L');
+    $pdf->Cell(80, 5, '', 0, 0, 'L');
+    $pdf->Ln(7);
+    $pdf->SetFont("Times", '', 10);
+    $pdf->Rect(20, $pdf->GetY(), 175, 21);
+    $pdf->Cell(15, 5, '', 0, 0, 'L');
+    $pdf->Cell(60, 5, 'Preliminar Education: ', 0, 0, 'L');
+    $pdf->Cell(60, 5, 'Name of School', 0, 0, 'L');
+    $pdf->Cell(31, 5, 'Address', 0, 0, 'L');
+    $pdf->Cell(80, 5, 'School Year', 0, 0, 'L');
+    $pdf->Ln(4);
+    $pdf->Cell(15, 5, '', 0, 0, 'L');
+    $pdf->Cell(60, 5, 'Intermediate: ', 0, 0, 'L');
+    $pdf->Ln(4);
+    $pdf->Cell(15, 5, '', 0, 0, 'L');
+    $pdf->Cell(60, 5, 'Secondary: ', 0, 0, 'L');
+    $pdf->Ln(4);
+    $pdf->Cell(15, 5, '', 0, 0, 'L');
+    $pdf->Cell(60, 5, 'Senior High School: ', 0, 0, 'L');    
+    $pdf->Ln(4);
+    $pdf->Cell(15, 5, '', 0, 0, 'L');
+    $pdf->Cell(60, 5, 'College: ', 0, 0, 'L');
+    $pdf->Ln(6);
+    $pdf->SetFont("Times", '', 10);
+    $pdf->Line(42, $pdf->getY()+5, 185, $pdf->getY()+5);
+    $pdf->Cell(20, 5, '', 0, 0, 'L');
+    $pdf->Cell(13, 5, 'DEGREE: ', 0, 0, 'L');
+    $pdf->Ln(6);
+    $pdf->Line(40, $pdf->getY()+5, 185, $pdf->getY()+5);
+    $pdf->Cell(20, 5, '', 0, 0, 'L');
+    $pdf->Cell(13, 5, 'MAJOR: ', 0, 0, 'L');
+    $pdf->Ln(6);
+    $pdf->Line(67, $pdf->getY()+5, 110, $pdf->getY()+5);
+    $pdf->Line(156, $pdf->getY()+5, 185, $pdf->getY()+5);
+    $pdf->Cell(20, 5, '', 0, 0, 'L');
+    $pdf->Cell(43, 5, 'DATE OF GRADUATION: ', 0, 0, 'L');
+    $pdf->Cell(51, 5, '', 0, 0, 'L');
+    $pdf->Cell(38, 5, 'ACADEMIC AWARDS: ', 0, 0, 'L');
+    $pdf->Cell(13, 5, '', 0, 0, 'L');
+    $pdf->Ln(8);
+    $pdf->Cell(10, 8, '', 0, 0, 'L');
+    $pdf->Cell(35,8, 'COURSE NUMBER', 1, 0, 'C');
+    $pdf->Cell(100, 8, 'COURSE TITLE', 1, 0, 'C');
+    $y = $pdf->getY();
+    $pdf->SetFont("Times", '', 8);
+    $pdf->MultiCell(15, 4, 'FINAL GRADE', 1, 'C');
+    $pdf->SetXY(165, $pdf->getY()-8);
+    $pdf->MultiCell(15, 4, 'RE-EXAM
+    ', 1, 1);
+    $pdf->SetXY(180, $pdf->getY()-8);
+    $pdf->MultiCell(20, 4, 'UNITS OF CREDIT', 1, 'C');
+
+    if(!empty($tor)){
+
+      foreach ($tor as $key => $value) {
+
+        $pdf->SetWidths(array(35,100,15,15,20));
+        $pdf->SetAligns(array('C','L','C','C','C'));
+
+        $pdf->SetFont("Times", 'BU', 8);
+        $pdf->Cell(10, 8, '', 0, 0, 'L');
+
+        $pdf->RowLegalTor(array(
+
+          '',
+
+          $value['semester'],
+
+          '',
+
+          '',
+
+          '',
+
+        ));
+        
+        if(!empty($value['subs'])){
+
+          foreach ($value['subs'] as $keys => $values) {
+
+            $pdf->SetFont("Times", '', 8);
+            $pdf->Cell(10, 8, '', 0, 0, 'L');
+
+            $pdf->SetWidths(array(35,100,15,15,20));
+            $pdf->SetAligns(array('L','L','C','C','C'));
+              
+            $pdf->RowLegalTor(array(
+
+              $values['course_code'],
+
+              $values['course'],
+
+              $values['final'],
+
+              $values['re_exam'],
+
+              $values['credit_unit'],
+
+            ),$data);
+
+          }
+
+        }
+
+      }
+
+    }
+
+    $pdf->Cell(10, 5, '', 0, 0, 'L');
+    $pdf->Cell(35, 5, '', 'LRB', 0, 'L');
+    $pdf->Cell(100, 5, '', 'LRB', 0, 'L');
+    $pdf->Cell(15, 5, '', 'LRB', 0, 'L');
+    $pdf->Cell(15, 5, '', 'LRB', 0, 'L');
+    $pdf->Cell(20, 5, '', 'LRB', 1, 'L');
+    $pdf->getY();
+    $pdf->Ln(0);
+    $pdf->SetFont("Times", 'BU', 11);
+    $pdf->Cell(0, 8, 'GRADING SYSTEM', 0, 0, 'C');
+    $pdf->Ln(7);
+    $pdf->SetFont("Times", 'I', 7);
+    $pdf->Cell(15, 5, '', 0, 0, 'L');
+    $pdf->Cell(25, 5, 'UNDERGRADUATE:', 0, 0, 'L');
+    $pdf->SetFont("Times", '', 7);
+    $pdf->Cell(80, 5, '1.00-1.50 - Superior, 1.51-2.00 - Very Good,2.01-2.50 - Good,', 0, 0, 'L');
+    $pdf->Cell(20, 5, 'GRADUATE: 1.0 - Excellent, 1.25 -Very Good, 1.5 - Good,', 0, 0, 'L');
+    $pdf->Ln(3);
+    $pdf->Cell(40, 5, '', 0, 0, 'L');
+    $pdf->Cell(95, 5, '2.51-3.00 - Fair, 5.00 - Failure, AW - Authorized Withdrawal means Dropped', 0, 0, 'L');
+    $pdf->Cell(20, 5, '1.75 - Fair,2.0 - Passing INC - Incomplete,', 0, 0, 'L');
+    $pdf->Ln(3);
+    $pdf->Cell(43, 5, '', 0, 0, 'L');
+    $pdf->Cell(95, 5, 'a grade of5.00 - Failure', 0, 0, 'L');
+    $pdf->Cell(20, 5, '3.0 - Failure', 0, 0, 'L');
+    $pdf->Ln(3);
+    $pdf->SetFont("Times", 'B', 10);
+    $pdf->Cell(0, 8, 'Any unauthorized errstrre or alteration voids the entries on this form.', 0, 0, 'C');
+    $pdf->Ln(7);
+    $pdf->SetFont("Times", '', 7);
+    $pdf->Cell(15, 5, '', 0, 0, 'L');
+    $pdf->Cell(23, 5, 'CREDITS: The units of credits is the semester hour. Each unit of credits is at least seventeen (17) hours of actual time inclusive of examinations. The statrdard', 0, 0, 'L');
+    $pdf->Ln(3);
+    $pdf->Cell(32, 5, '', 0, 0, 'L');
+    $pdf->Cell(80, 5, 'number of hours for every one unit of credit is as follows: Lecture = 1 unit, Laborarory = 3 hours: 1 unit, Physical Educalion = hour/week.', 0, 0, 'L');
+    $pdf->Ln(7);
+    $pdf->SetFont("Times", '', 11);
+    $pdf->Cell(15, 5, '', 0, 0, 'L');
+    $pdf->Cell(25, 5, 'REMARKS:', 0, 0, 'L');
+    $pdf->SetFont("Times", 'B', 11);
+    $pdf->Cell(23, 5, '', 0, 0, 'L');
+    $pdf->Ln(4);
+    $pdf->SetFont("Times", '', 11);
+    $pdf->Cell(15, 5, '', 0, 0, 'L');
+    $pdf->Line(45, $pdf->getY(), 150, $pdf->getY());
+    $pdf->SetFont("Times", '', 10);
+    $pdf->Cell(25, 5, '(NOT VALID WITHOUT COLLEGE SEAL)', 0, 0, 'L');
+    // $pdf->Image($this->base . '/assets/img/zscmst-qr.png', 160, 325,25, 25);
+    $pdf->Ln(13);
+    $pdf->SetFont("Times", '', 11);
+    $pdf->Line(20, $pdf->getY(),60, $pdf->getY());
+    $pdf->Cell(25, 5, '', 0, 0, 'L');
+    $pdf->SetFont("Times", 'I', 9);
+    $pdf->Cell(23, 5, 'Prepared by', 0, 0, 'L');
+    $pdf->Line(65, $pdf->getY(),105, $pdf->getY());
+    $pdf->Cell(22, 5, '', 0, 0, 'L');
+    $pdf->Cell(23, 5, 'Checked by', 0, 0, 'L');
+    $pdf->Line(110, $pdf->getY(),150, $pdf->getY());
+    $pdf->Cell(18, 5, '', 0, 0, 'L');
+    $pdf->Cell(23, 5, 'College Registrar', 0, 0, 'L');
+    $pdf->Ln(7);
+    $pdf->Cell(15, 5, '', 0, 0, 'L');
+    $pdf->SetFont("Times", 'I', 9);
+    $pdf->Cell(23, 5, 'Student No.: ', 0, 0, 'L');
+    $pdf->Line(38, $pdf->getY()+5,60, $pdf->getY()+5);
+    $pdf->Cell(30, 5, '', 0, 0, 'L');
+    $pdf->SetFont("Times", 'I', 9);
+    $pdf->Cell(23, 5, 'Date: ', 0, 0, 'L');
+    $pdf->Line(83, $pdf->getY()+5,105, $pdf->getY()+5);
+    $pdf->Cell(28, 5, '', 0, 0, 'L');
+    $pdf->SetFont("Times", '', 9);
+    $pdf->Cell(15, 5, 'Page', 0, 0, 'L');
+    $pdf->Cell(23, 5, 'of', 0, 0, 'L');
+    $pdf->Line(133, $pdf->getY()+5,138, $pdf->getY()+5);
+    $pdf->Line(145, $pdf->getY()+5,150, $pdf->getY()+5);
+
+    $pdf->output();
+    exit();
+    
+>>>>>>> 208f6da996370b8a2699cff61456af8c91336345
   }
 
   public function medicalMonthlyAccomplishment(){
