@@ -42,6 +42,18 @@ class ParticipantEvaluationActivitiesController extends AppController {
 
     }
 
+    $conditions['date'] = '';
+
+    if ($this->request->getQuery('date')) {
+
+      $search_date = $this->request->getQuery('date');
+
+      $conditions['date'] = " AND DATE(ParticipantEvaluationActivity.date) = '$search_date'"; 
+
+      $conditionsPrint .= '&date='.$search_date;
+
+    } 
+
     $conditions['studentId'] = '';
 
     if ($this->request->getQuery('per_student')) {
@@ -89,7 +101,7 @@ class ParticipantEvaluationActivitiesController extends AppController {
 
           'venue'         => $data['venue'],
 
-          'year'          => $data['year'],
+          'year'          => $data['description'],
 
           'course'        => $data['program_name'],
 
@@ -205,7 +217,9 @@ class ParticipantEvaluationActivitiesController extends AppController {
 
       ->contain([
 
-        'CollegePrograms'
+        'CollegePrograms',
+
+        'YearLevelTerms'
 
         ])
 
@@ -225,10 +239,13 @@ class ParticipantEvaluationActivitiesController extends AppController {
 
         'CollegeProgram'  => $data['ParticipantEvaluationActivity']->CollegeProgram,
 
+        'YearLevelTerm' => $data['ParticipantEvaluationActivity']->YearLevelTerm
+
       ];
 
       unset($data['ParticipantEvaluationActivity']->CollegeProgram);
 
+      unset($data['ParticipantEvaluationActivity']->YearLevelTerm);
 
       $data['ParticipantEvaluationActivity']['date'] = isset($data['ParticipantEvaluationActivity']['date']) ? date('m/d/Y', strtotime($data['ParticipantEvaluationActivity']['date'])) : null;
 

@@ -62,13 +62,9 @@
 
             <div class="col-md-6 pull-right">
               <div class="form-group">
-                <label> YEAR <i class="required">*</i></label>
-                <select selectize ng-model="data.ParticipantEvaluationActivity.year" data-validation-engine="validate[required]">
-                  <option></option>
-                  <option>First Year</option>
-                  <option>Second Year</option>
-                  <option>Third Year</option>
-                  <option>Fourth Year</option>
+                <label> YEAR TERM </label>
+                <select selectize ng-model="data.ParticipantEvaluationActivity.year_term_id" ng-options="opt.id as opt.value for opt in year_terms">
+                  <option value=""></option>
                 </select>
               </div>
             </div>

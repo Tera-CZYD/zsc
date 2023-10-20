@@ -44,7 +44,7 @@
                 </tr>
                 <tr>
                   <th class="text-right"> YEAR LEVEL : </th>
-                  <td class="italic">{{ adata.ParticipantEvaluationActivity.year }}</td>
+                  <td class="italic">{{ adata.YearLevelTerm.description }}</td>
                 </tr>
                 <tr>
                   <th class="text-right"> DATE : </th>
@@ -346,7 +346,7 @@
           <div class="col-md-12">
             <div class="pull-right">
               
-                <a id="pageEdit" href="#/guidance/participant-evaluation/edit/{{ adata.ParticipantEvaluationActivity.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
+                <a id="pageEdit" href="#/guidance/admin-participant-evaluation/edit/{{ adata.ParticipantEvaluationActivity.id }}" class="btn btn-primary btn-min"><i class="fa fa-edit"></i> EDIT </a>
                 
                 
                 <button id="pagePrint" type="button" class="btn btn-info  btn-min" ng-click="print(data.id )"><i class="fa fa-print"></i> PRINT PARTICIPANT EVALUATION ACTIVITY</button>
