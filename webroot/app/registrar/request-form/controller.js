@@ -846,11 +846,35 @@ app.controller('AdminRequestFormController', function($scope, $window, RequestFo
 
         $scope.datasPaid = e.data;
 
-        $scope.conditionsPrint = e.conditionsPrint;
+        $scope.conditionsPrintPaid = e.conditionsPrint;
 
-        $scope.paginator = e.paginator;
+        $scope.paginatorPaid = e.paginator;
 
-        $scope.pages = paginator($scope.paginator, 5);
+        $scope.pagesPaid = paginator($scope.paginatorPaid, 5);
+
+      }
+
+    });
+
+  }
+
+  $scope.tor = function(options) {
+
+    options = typeof options !== 'undefined' ?  options : {};
+
+    options['status'] = 3;
+
+    RequestForm.query(options, function(e) {
+
+      if (e.ok) {
+
+        $scope.datasTor = e.data;
+
+        $scope.conditionsPrintTor = e.conditionsPrint;
+
+        $scope.paginatorTor = e.paginator;
+
+        $scope.pagesTor = paginator($scope.paginatorTor, 5);
 
       }
 
@@ -866,6 +890,7 @@ app.controller('AdminRequestFormController', function($scope, $window, RequestFo
 
     $scope.paid(options);
 
+    $scope.tor(options);
 
   }
 
@@ -1074,6 +1099,34 @@ app.controller('AdminRequestFormController', function($scope, $window, RequestFo
     if ($scope.conditionsPrintApproved !== '') {
     
       printTable(base + 'print/request_form?print=1' + $scope.conditionsPrintApproved);
+
+    }else{
+
+      printTable(base + 'print/request_form?print=1');
+
+    }
+
+  }
+
+  $scope.printPaid = function(){
+
+    if ($scope.conditionsPrintPaid !== '') {
+    
+      printTable(base + 'print/request_form?print=1' + $scope.conditionsPrintPaid);
+
+    }else{
+
+      printTable(base + 'print/request_form?print=1');
+
+    }
+
+  }
+
+  $scope.printTor = function(){
+
+    if ($scope.conditionsPrintTor !== '') {
+    
+      printTable(base + 'print/request_form?print=1' + $scope.conditionsPrintTor);
 
     }else{
 

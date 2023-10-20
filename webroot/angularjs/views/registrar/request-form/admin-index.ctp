@@ -39,7 +39,10 @@
                   <a class="nav-link" data-toggle="tab" data-target ="#approved" role="tab">APPROVED</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" data-target ="#paid" role="tab">TRANSCRIPT OF RECORD</a>
+                  <a class="nav-link" data-toggle="tab" data-target ="#paid" role="tab">PAID</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" data-target ="#paid_tor" role="tab">TRANSCRIPT OF RECORD</a>
                 </li>
               </ul>
             </div>
@@ -74,9 +77,9 @@
             <div class="tab-content mt-3" id="myTabContent">
 
 
-             <div class="tab-pane fade show active" id="request">
-              <div class="clearfix"></div><hr>
-              <div class="col-md-12">
+          <div class="tab-pane fade show active" id="request">
+            <div class="clearfix"></div><hr>
+            <div class="col-md-12">
               <div class="row">
                 <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
                   <a id="pageAdd" href="#/registrar/admin-request-form/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> APPLY</a>
@@ -169,108 +172,11 @@
             </div>
           </div>
 
-
-          <div class="tab-pane fade show" id="paid">
-                <div class="clearfix"></div><hr>
-            <div class="col-md-12">
-              <div class="row">
-                <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                    <a id="pageAdd" href="#/registrar/admin-request-form/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
-                  <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
-                    <button id="pagePrint" ng-click="printApproved()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
-                  <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
-                  <!-- <?php if (hasAccess('request form/print', $currentUser)): ?>
-                    <button ng-click="printForm()" class="btn btn-info btn-min"><i class="fa fa-print"></i> PRINT PRACTICUM FORM</button>
-                  <?php endif ?>
-
-                  <?php if (hasAccess('cog/print', $currentUser)): ?>
-                    <button ng-click="printCOG()" class="btn btn-info btn-min"><i class="fa fa-print"></i> PRINT CERTIFICATE OF REGISTRATION FORM</button>
-                  <?php endif ?>
-                  <?php if (hasAccess('report rating/print', $currentUser)): ?>
-                    <button ng-click="printReportRating()" class="btn btn-info btn-min"><i class="fa fa-print"></i> PRINT REPORT RATING FORM</button>
-                  <?php endif ?>
-                  <?php if (hasAccess('examinees attendance sheet/print', $currentUser)): ?>
-                    <button ng-click="printEAS()" class="btn btn-info btn-min"><i class="fa fa-print"></i> PRINT EXAMINEES ATTENDANCE SHEET</button>
-                  <?php endif ?> -->
-                </div>
-                <div class="col-md-4 col-xs-12 pull-right">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-search"></i></span>
-                    <input type="text" class="form-control search" ng-enter="searchy(searchTxt)" placeholder="SEARCH HERE" ng-model="searchTxt">
-                  </div>
-                  <sup style="font-color:gray">Press Enter to search</sup> 
-                </div>
-              </div>
-            </div>
-            <div class="clearfix"></div><hr> 
-            <div class="single-table mb-5">
-              <div class="table-responsive">
-                <table class="table table-bordered text-center">
-                  <thread>
-                    <tr class="bg-info">
-                      <th class="text-center w30px">#</th>
-                      <th class="text-center"> CONTROL NO. </th>
-                      <th class="text-center"> STUDENT NAME </th>
-                      <th class="text-center"> DATE </th>
-                      <th class="text-center"> COURSE </th>
-                      <th class="w90px"></th>
-                    </tr>
-                  </thread>
-                  <tbody>
-                    <tr ng-repeat="data in datasPaid">
-                      <td class="text-center">{{ (paginator.page - 1 ) * paginator.limit + $index + 1 }}</td>
-                      <td class="text-center">{{ data.code }}</td>
-                      <td class="text-left">{{ data.student_name }}</td>
-                      <td class="text-center">{{ data.date }}</td>
-                      <td class="text-center">{{ data.course }}</td>
-                      <td>
-                        <div class="btn-group btn-group-xs">
-                          <a id="pageView" href="#/registrar/admin-request-form/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
-                          <!-- <a id="pageEdit" href="#/registrar/admin-request-form/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
-                          <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a> -->
-                        </div>
-                      </td>
-                    </tr>
-                    <tr ng-show="datasPaid == null || datasPaid == ''">
-                      <td colspan="8">No available data</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <ul class="pagination justify-content-center">
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:void(0)" ng-click="load({ page: 1, search: searchTxt })"><sub>&laquo;&laquo;</sub></a>
-                  </li>
-                  <li class="page-item prevPage {{ !paginator.prevPage? 'disabled':'' }}">
-                    <a class="page-link" href="javascript:void(0)" ng-click="load({ page: paginator.page - 1, search: searchTxt })">&laquo;</a>
-                  </li>
-                  <li ng-repeat="page in pages" class="page-item {{ paginator.page == page.number ? 'active':''}}" >
-                    <a class="page-link" href="javascript:void(0)" class="text-center" ng-click="load({ page: page.number, search: searchTxt })">{{ page.number }}</a>
-                  </li>
-                  <li class="page-item nextPage {{ !paginator.nextPage? 'disabled':'' }}">
-                    <a class="page-link" href="javascript:void(0)" ng-click="load({ page: paginator.page + 1, search: searchTxt })">&raquo;</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="javascript:void(0)" ng-click="load({ page: paginator.pageCount, search: searchTxt })"><sub>&raquo;&raquo;</sub> </a>
-                  </li>
-                </ul>
-                <div class="clearfix"></div>
-                <div class="text-center" ng-show="paginator.pageCount > 0">
-                  <sup class="text-primary">Page {{ paginator.pageCount > 0 ? paginator.page : 0 }} out of {{ paginator.pageCount }}</sup>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <div class="tab-pane fade show" id="approved">
-                <div class="clearfix"></div><hr>
+            <div class="clearfix"></div><hr>
             <div class="col-md-12">
               <div class="row">
                 <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
-                    <a id="pageAdd" href="#/registrar/admin-request-form/add" class="btn btn-primary  btn-min"><i class="fa fa-plus"></i> ADD</a>
                   <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
                     <button id="pagePrint" ng-click="printApproved()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
                   <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
@@ -394,6 +300,194 @@
                 <div class="clearfix"></div>
                 <div class="text-center" ng-show="paginator.pageCount > 0">
                   <sup class="text-primary">Page {{ paginator.pageCount > 0 ? paginator.page : 0 }} out of {{ paginator.pageCount }}</sup>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade show" id="paid">
+            <div class="clearfix"></div><hr>
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
+                  <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
+                    <button id="pagePrint" ng-click="printPaid()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                  <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
+                  <!-- <?php if (hasAccess('request form/print', $currentUser)): ?>
+                    <button ng-click="printForm()" class="btn btn-info btn-min"><i class="fa fa-print"></i> PRINT PRACTICUM FORM</button>
+                  <?php endif ?>
+
+                  <?php if (hasAccess('cog/print', $currentUser)): ?>
+                    <button ng-click="printCOG()" class="btn btn-info btn-min"><i class="fa fa-print"></i> PRINT CERTIFICATE OF REGISTRATION FORM</button>
+                  <?php endif ?>
+                  <?php if (hasAccess('report rating/print', $currentUser)): ?>
+                    <button ng-click="printReportRating()" class="btn btn-info btn-min"><i class="fa fa-print"></i> PRINT REPORT RATING FORM</button>
+                  <?php endif ?>
+                  <?php if (hasAccess('examinees attendance sheet/print', $currentUser)): ?>
+                    <button ng-click="printEAS()" class="btn btn-info btn-min"><i class="fa fa-print"></i> PRINT EXAMINEES ATTENDANCE SHEET</button>
+                  <?php endif ?> -->
+                </div>
+                <div class="col-md-4 col-xs-12 pull-right">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-search"></i></span>
+                    <input type="text" class="form-control search" ng-enter="searchy(searchTxt)" placeholder="SEARCH HERE" ng-model="searchTxt">
+                  </div>
+                  <sup style="font-color:gray">Press Enter to search</sup> 
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div><hr> 
+            <div class="single-table mb-5">
+              <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                  <thread>
+                    <tr class="bg-info">
+                      <th class="text-center w30px">#</th>
+                      <th class="text-center"> CONTROL NO. </th>
+                      <th class="text-center"> STUDENT NAME </th>
+                      <th class="text-center"> DATE </th>
+                      <th class="text-center"> COURSE </th>
+                      <th class="w90px"></th>
+                    </tr>
+                  </thread>
+                  <tbody>
+                    <tr ng-repeat="data in datasPaid">
+                      <td class="text-center">{{ (paginatorPaid.page - 1 ) * paginatorPaid.limit + $index + 1 }}</td>
+                      <td class="text-center">{{ data.code }}</td>
+                      <td class="text-left">{{ data.student_name }}</td>
+                      <td class="text-center">{{ data.date }}</td>
+                      <td class="text-center">{{ data.course }}</td>
+                      <td>
+                        <div class="btn-group btn-group-xs">
+                          <a id="pageView" href="#/registrar/admin-request-form/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                          <!-- <a id="pageEdit" href="#/registrar/admin-request-form/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
+                          <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a> -->
+                        </div>
+                      </td>
+                    </tr>
+                    <tr ng-show="datasPaid == null || datasPaid == ''">
+                      <td colspan="8">No available data</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item">
+                    <a class="page-link" href="javascript:void(0)" ng-click="load({ page: 1, search: searchTxt })"><sub>&laquo;&laquo;</sub></a>
+                  </li>
+                  <li class="page-item prevPage {{ !paginatorPaid.prevPage? 'disabled':'' }}">
+                    <a class="page-link" href="javascript:void(0)" ng-click="load({ page: paginatorPaid.page - 1, search: searchTxt })">&laquo;</a>
+                  </li>
+                  <li ng-repeat="page in pagesPaid" class="page-item {{ paginatorPaid.page == page.number ? 'active':''}}" >
+                    <a class="page-link" href="javascript:void(0)" class="text-center" ng-click="load({ page: page.number, search: searchTxt })">{{ page.number }}</a>
+                  </li>
+                  <li class="page-item nextPage {{ !paginatorPaid.nextPage? 'disabled':'' }}">
+                    <a class="page-link" href="javascript:void(0)" ng-click="load({ page: paginatorPaid.page + 1, search: searchTxt })">&raquo;</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="javascript:void(0)" ng-click="load({ page: paginatorPaid.pageCount, search: searchTxt })"><sub>&raquo;&raquo;</sub> </a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+                <div class="text-center" ng-show="paginatorPaid.pageCount > 0">
+                  <sup class="text-primary">Page {{ paginatorPaid.pageCount > 0 ? paginatorPaid.page : 0 }} out of {{ paginatorPaid.pageCount }}</sup>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade show" id="paid_tor">
+            <div class="clearfix"></div><hr>
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-8 col-xs-12" style="margin-bottom: 2px;padding-left: 0px">
+                  <!-- <a href="javascript:void(0)" class="btn btn-success  btn-min" ng-click="advance_search()"><i class="fa fa-search"></i> ADVANCE SEARCH</a> -->
+                    <button id="pagePrint" ng-click="printTor()" class="btn btn-print  btn-min"><i class="fa fa-print"></i> PRINT</button>
+                  <button type="button" class="btn btn-warning  btn-min" ng-click="reload()"><i class="fa fa-refresh"></i> RELOAD </button>
+                  <!-- <?php if (hasAccess('request form/print', $currentUser)): ?>
+                    <button ng-click="printForm()" class="btn btn-info btn-min"><i class="fa fa-print"></i> PRINT PRACTICUM FORM</button>
+                  <?php endif ?>
+
+                  <?php if (hasAccess('cog/print', $currentUser)): ?>
+                    <button ng-click="printCOG()" class="btn btn-info btn-min"><i class="fa fa-print"></i> PRINT CERTIFICATE OF REGISTRATION FORM</button>
+                  <?php endif ?>
+                  <?php if (hasAccess('report rating/print', $currentUser)): ?>
+                    <button ng-click="printReportRating()" class="btn btn-info btn-min"><i class="fa fa-print"></i> PRINT REPORT RATING FORM</button>
+                  <?php endif ?>
+                  <?php if (hasAccess('examinees attendance sheet/print', $currentUser)): ?>
+                    <button ng-click="printEAS()" class="btn btn-info btn-min"><i class="fa fa-print"></i> PRINT EXAMINEES ATTENDANCE SHEET</button>
+                  <?php endif ?> -->
+                </div>
+                <div class="col-md-4 col-xs-12 pull-right">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-search"></i></span>
+                    <input type="text" class="form-control search" ng-enter="searchy(searchTxt)" placeholder="SEARCH HERE" ng-model="searchTxt">
+                  </div>
+                  <sup style="font-color:gray">Press Enter to search</sup> 
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div><hr> 
+            <div class="single-table mb-5">
+              <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                  <thread>
+                    <tr class="bg-info">
+                      <th class="text-center w30px">#</th>
+                      <th class="text-center"> CONTROL NO. </th>
+                      <th class="text-center"> STUDENT NAME </th>
+                      <th class="text-center"> DATE </th>
+                      <th class="text-center"> COURSE </th>
+                      <th class="w90px"></th>
+                    </tr>
+                  </thread>
+                  <tbody>
+                    <tr ng-repeat="data in datasTor">
+                      <td class="text-center">{{ (paginatorTor.page - 1 ) * paginatorTor.limit + $index + 1 }}</td>
+                      <td class="text-center">{{ data.code }}</td>
+                      <td class="text-left">{{ data.student_name }}</td>
+                      <td class="text-center">{{ data.date }}</td>
+                      <td class="text-center">{{ data.course }}</td>
+                      <td>
+                        <div class="btn-group btn-group-xs">
+                          <a id="pageView" href="#/registrar/admin-request-form/view/{{ data.id }}" class="btn btn-success" title="VIEW"><i class="fa fa-eye"></i></a> 
+                          <!-- <a id="pageEdit" href="#/registrar/admin-request-form/edit/{{ data.id }}" class="btn btn-primary" ng-disabled = "data.status != 0" title="EDIT"><i class="fa fa-edit"></i></a> 
+                          <a id="pageDelete" href="javascript:void(0)" ng-click="remove(data)" class="btn btn-danger" ng-disabled = "data.status != 0" title="DELETE"><i class="fa fa-trash"></i></a> -->
+                        </div>
+                      </td>
+                    </tr>
+                    <tr ng-show="datasTor == null || datasTor == ''">
+                      <td colspan="8">No available data</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item">
+                    <a class="page-link" href="javascript:void(0)" ng-click="load({ page: 1, search: searchTxt })"><sub>&laquo;&laquo;</sub></a>
+                  </li>
+                  <li class="page-item prevPage {{ !paginatorTor.prevPage? 'disabled':'' }}">
+                    <a class="page-link" href="javascript:void(0)" ng-click="load({ page: paginatorTor.page - 1, search: searchTxt })">&laquo;</a>
+                  </li>
+                  <li ng-repeat="page in pagesTor" class="page-item {{ paginatorTor.page == page.number ? 'active':''}}" >
+                    <a class="page-link" href="javascript:void(0)" class="text-center" ng-click="load({ page: page.number, search: searchTxt })">{{ page.number }}</a>
+                  </li>
+                  <li class="page-item nextPage {{ !paginatorTor.nextPage? 'disabled':'' }}">
+                    <a class="page-link" href="javascript:void(0)" ng-click="load({ page: paginatorTor.page + 1, search: searchTxt })">&raquo;</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="javascript:void(0)" ng-click="load({ page: paginatorTor.pageCount, search: searchTxt })"><sub>&raquo;&raquo;</sub> </a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+                <div class="text-center" ng-show="paginatorTor.pageCount > 0">
+                  <sup class="text-primary">Page {{ paginatorTor.pageCount > 0 ? paginatorTor.page : 0 }} out of {{ paginatorTor.pageCount }}</sup>
                 </div>
               </div>
             </div>

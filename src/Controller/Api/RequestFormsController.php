@@ -93,7 +93,15 @@ class RequestFormsController extends AppController {
 
       $status = $this->request->getQuery('status');
 
-      $conditions['status'] = "AND RequestForm.approve = $status";
+      if($status == 3){
+
+        $conditions['status'] = "AND RequestForm.approve = 2 AND RequestForm.otr = 1";
+
+      }else{
+
+        $conditions['status'] = "AND RequestForm.approve = $status";
+
+      }
  
       $conditionsPrint .= '&status='.$this->request->getQuery('status');
 
