@@ -1437,6 +1437,64 @@ class StudentApplicationsController extends AppController {
 
     //SAVING
 
+    //SMS NOTIFICATION
+
+      $link = $this->base.'change-program/'.$app['id'];
+
+      if($app['contact_no'] != null){
+
+        $contact_no = $app['contact_no'];
+
+        $BASE_URL = "https://l3zndj.api.infobip.com";
+
+        $API_KEY = "c1ad2a470047d8d917fbb56151e22f85-5b4c9dc0-01cc-4a5f-b46f-d29ddad4997d";
+
+        $SENDER = "InfoSMS";
+
+        //SAMPLE CONTACT NUMBER FORMAT
+        //639178673561
+
+        $RECIPIENT = $contact_no;
+
+        $MESSAGE_TEXT = "Hi, Greetings from Zamboanga State College of Marine Sciences and Technology. \n\nThis is to notify you about the details of your College Examination Test. \n\nDate : ". fdate($request['date'],'F d, Y')."\n\nTime : ".$request['time']."\n\nPlace : ".$request['place'];
+
+
+        $configuration = new Configuration(host: $BASE_URL, apiKey: $API_KEY);
+
+        $sendSmsApi = new SmsApi(config: $configuration);
+
+        $destination = new SmsDestination(
+
+          to: $RECIPIENT
+
+        );
+
+        $message = new SmsTextualMessage(destinations: [$destination], from: $SENDER, text: $MESSAGE_TEXT);
+
+        $request = new SmsAdvancedTextualRequest(messages: [$message]);
+
+        try {
+
+          $smsResponse = $sendSmsApi->sendSmsMessage($request);
+
+          // echo $smsResponse->getBulkId() . PHP_EOL;
+
+          // foreach ($smsResponse->getMessages() ?? [] as $message) {
+
+          //   echo sprintf('Message ID: %s, status: %s', $message->getMessageId(), $message->getStatus()?->getName()) . PHP_EOL;
+
+          // }
+
+        } catch (Throwable $apiException) {
+
+          // echo("HTTP Code: " . $apiException->getCode() . "\n");
+
+        }
+
+      }
+
+    //END 
+
     $response = array(
 
       'ok'   => true,

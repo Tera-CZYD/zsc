@@ -67,7 +67,6 @@
 	     
       $routes->connect('/select', ['controller' => 'Select']);
 
-      //sir raymond
       $routes->resources('Buildings');
 
       $routes->resources('Dashboards');
@@ -154,9 +153,6 @@
 
       $routes->connect('/reports/transcript_of_records', ['controller' => 'Reports', 'action' => 'transcript_of_records']);
 
-
-      //sir raff
-
       $routes->resources('Accounts');
 
       $routes->resources('OfficeReferences');
@@ -198,8 +194,6 @@
       $routes->resources('Tors');
 
       $routes->resources('Ptcs');
-
-      //sir leo
 
       $routes->resources('AddingDroppingSubjects');
 
@@ -257,18 +251,17 @@
 
       $routes->resources('StudentAttendanceFiles');
 
-        $routes->resources('AffidavitOfLosses');
+      $routes->resources('AffidavitOfLosses');
 
-        $routes->resources('StudentEnrollments');
+      $routes->resources('StudentEnrollments');
 
-        // $routes->connect('/admin-affidavit-of-loss/:id', ['controller' => 'AffidavitofLosses', 'action' => 'edit']);
+      // $routes->connect('/admin-affidavit-of-loss/:id', ['controller' => 'AffidavitofLosses', 'action' => 'edit']);
 
-        $routes->connect('/affidavit-of-losses/:id', ['controller' => 'AffidavitofLosses', 'action' => 'edit']);
+      $routes->connect('/affidavit-of-losses/:id', ['controller' => 'AffidavitofLosses', 'action' => 'edit']);
 
-        $routes->resources('ScholasticDocuments');
+      $routes->resources('ScholasticDocuments');
 
-        $routes->resources('RequestedFormPayments');
-
+      $routes->resources('RequestedFormPayments');
 
       //REPORTS MEDICAL SERVICES
 
@@ -294,14 +287,9 @@
 
       $routes->connect('/reports/list_students', ['controller' => 'Reports', 'action' => 'list_students']);
 
-
       //REPORTS LEARNING RESOURCE
 
       $routes->connect('/reports/list_bibliographies', ['controller' => 'Reports', 'action' => 'listInventoryBibliographies']);
-
-
-
-	    //czyd
 
       $routes->resources('Users');
 
@@ -377,9 +365,6 @@
 
       $routes->resources('FacultyStudentAttendances');
 
-
-      // sir Gerald
-
       $routes->resources('Clubs');
 
       $routes->resources('InterviewRequests');
@@ -393,8 +378,6 @@
       $routes->connect('/reports/student_ranking', ['controller' => 'Reports', 'action' => 'student_ranking']);
 
       $routes->connect('/reports/list_academic_awardees', ['controller' => 'Reports', 'action' => 'list_academic_awardees']);
-
-
 
       // Other routes
       $routes->fallbacks();

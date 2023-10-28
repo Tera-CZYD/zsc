@@ -9,12 +9,12 @@ use Cake\Controller\Controller;
 use Cake\View\JsonView;
 use Cake\I18n\Time;
 
-require 'SMS/vendor/autoload.php';
-use Infobip\Api\SmsApi;
-use Infobip\Configuration;
-use Infobip\Model\SmsAdvancedTextualRequest;
-use Infobip\Model\SmsDestination;
-use Infobip\Model\SmsTextualMessage;
+// require 'SMS/vendor/autoload.php';
+// use Infobip\Api\SmsApi;
+// use Infobip\Configuration;
+// use Infobip\Model\SmsAdvancedTextualRequest;
+// use Infobip\Model\SmsDestination;
+// use Infobip\Model\SmsTextualMessage;
 
 
 class RequestFormsController extends AppController { 
